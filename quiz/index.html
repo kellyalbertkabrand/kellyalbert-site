@@ -395,7 +395,7 @@ function showResult(){
     var diagHtml='';
 
     // Deep analysis paragraph
-    diagHtml+='<div class="quiz-result-section" style="background:rgba(61,107,126,.08);border-color:rgba(61,107,126,.2);"><h4>Análise do seu momento</h4><p style="font-size:.9rem;color:var(--t-700);line-height:1.85;">'+deepAnalysis+'</p></div>';
+    diagHtml+='<div class="quiz-result-section" style="background:rgba(61,107,126,.08);border-color:rgba(61,107,126,.2);"><h4>Análise do seu momento</h4><p style="font-size:.9rem;color:var(--t-700);">'+deepAnalysis+'</p></div>';
 
     // Critical points with deep text
     var criticals=[];
@@ -409,7 +409,7 @@ function showResult(){
     if(criticals.length>0){
       diagHtml+='<div class="quiz-result-section"><h4>Onde sua marca está mais vulnerável</h4>';
       for(var i=0;i<criticals.length;i++){
-        diagHtml+='<div style="padding:1rem 0;'+(i<criticals.length-1?'border-bottom:1px solid var(--border-light);':'')+'"><p style="font-size:.88rem;color:var(--t-700);line-height:1.8;">'+criticals[i]+'</p></div>';
+        diagHtml+='<div style="padding:1rem 0;'+(i<criticals.length-1?'border-bottom:1px solid var(--border-light);':'')+'"><p style="font-size:.88rem;color:var(--t-700);">'+criticals[i]+'</p></div>';
       }
       diagHtml+='</div>';
     }
