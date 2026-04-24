@@ -85,23 +85,42 @@ p {
 .t-sm   { font-size: .88rem;  line-height: 1.7;  }
 .t-xs   { font-size: .78rem;  line-height: 1.6;  }
 
-/* LABELS — pills uppercase de categoria
-   .label     → padrão (ECOSSISTEMA KA, DEPOIMENTOS)
-   .label--sm → variante menor (ETAPA 01, DE DENTRO PARA FORA) */
+/* LABELS — pílula oval em todo o site (referência: design da Mentoria "A JORNADA")
+   Fundo em relevo escuro semitransparente, texto na cor de destaque do ambiente.
+   .label     → padrão · .label--sm → variante menor pra etapas micro */
 .label {
+  display: inline-block;
+  padding: .6rem 1.6rem;
   font-family: var(--body);
   font-size: .65rem;
-  font-weight: 600;
-  letter-spacing: .3em;
+  font-weight: 700;
+  letter-spacing: .25em;
   text-transform: uppercase;
   color: var(--cta);
-  display: inline-block;
-  margin-bottom: .4rem;
+  background-color: rgba(15, 25, 35, .06);
+  border-radius: 100px;
+  margin-bottom: 1rem;
 }
 .label--sm {
   font-size: .55rem;
   font-weight: 700;
-  letter-spacing: .3em;
+  letter-spacing: .25em;
+  padding: .45rem 1.1rem;
+}
+
+/* Em ambientes escuros: pill com fundo branco semitransparente + texto dourado */
+.amb-marinho .label,
+.amb-preto .label,
+.amb-essencia .label,
+.section--dark .label {
+  color: #D4C49E;
+  background-color: rgba(255, 255, 255, .06);
+}
+
+/* Cobre: pill com creme semitransparente */
+.amb-cobre .label {
+  color: #EDE8DD;
+  background-color: rgba(255, 255, 255, .1);
 }
 
 /* QUOTES — citações em Playfair italic
