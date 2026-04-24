@@ -879,13 +879,11 @@ h4 + p { margin-top: .4rem; }
   p { text-wrap: pretty; }
 }
 
-/* MOBILE (≤640px) — h1/h2 viram 1.85rem (sem quebrar pra 1.55 depois) */
+/* MOBILE (≤640px) — regra de títulos:
+   - Primeira dobra (hero, page-header, quiz) = 2.5rem (destaque)
+   - Todos os outros h1/h2 = 1.85rem (padrão de seção) */
 @media(max-width:640px) {
-  h1, .hero h1, .page-header h1 {
-    font-size: 1.85rem !important;
-    max-width: 95vw;
-  }
-  h2 { font-size: 1.85rem !important; }
+  h1, h2 { font-size: 1.85rem !important; max-width: 95vw; }
   h3 { font-size: 1.35rem !important; }
   h4 { font-size: 1rem !important; }
   .eco-card__name { font-size: 1.5rem !important; }
@@ -895,6 +893,12 @@ h4 + p { margin-top: .4rem; }
   .t-lead { font-size: 1rem; }
   .t-sm   { font-size: .85rem; }
   .t-xs   { font-size: .75rem; }
+  /* Primeira dobra — hero + page-header + pergunta do quiz */
+  .hero h1, .hero h2, .page-header h1,
+  #question-container h2 {
+    font-size: 2.5rem !important;
+    line-height: 1.15 !important;
+  }
 }
 
 /* SMALL MOBILE (≤480px) — h1/h2 mantêm 1.85rem (sem quebrar) */
