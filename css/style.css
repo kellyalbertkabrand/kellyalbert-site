@@ -66,16 +66,46 @@ a:hover{color:var(--cta)}
 ::selection{background:var(--blue-soft);color:var(--t-900)}
 
 /* TIPOGRAFIA (h1–h4) — bloco canônico mais abaixo na seção "BASE TYPOGRAPHY".
-   Aqui só ficam labels, parágrafos e utilitários. */
+   Aqui ficam labels, parágrafos e utilitários de texto. */
 
-/* Labels / Categorias */
-.label{font-size:.68rem}
+/* CORPO DE TEXTO — baseline padrão (baseado no padrão /sobre)
+   5 níveis: .t-hero (1.15) · .t-lead (1.05) · p default (1rem) · .t-sm (.88) · .t-xs (.78)
+   Responsivo mobile: cada nível encolhe um toque, ver @media max-width:640px abaixo. */
+p {
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--t-600);
+  margin-bottom: 1rem;
+}
 
-/* Texto de apoio / parágrafos */
-p{line-height:1.75;color:var(--t-600)}
+.t-hero { font-size: 1.15rem; line-height: 1.85; }
+.t-lead { font-size: 1.05rem; line-height: 1.85; }
+.t-sm   { font-size: .88rem;  line-height: 1.7;  }
+.t-xs   { font-size: .78rem;  line-height: 1.6;  }
 
-/* Frases de destaque */
-.highlight-text{font-family:var(--heading);font-size:1.3rem;font-weight:500;color:var(--t-900);line-height:1.5;font-style:italic}
+/* LABELS — pills uppercase de categoria (ECOSSISTEMA KA, DEPOIMENTOS, etc.) */
+.label {
+  font-family: var(--body);
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--cta);
+  display: inline-block;
+  margin-bottom: .4rem;
+}
+
+/* Frases de destaque em Playfair italic */
+.highlight-text {
+  font-family: var(--heading);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--t-900);
+  line-height: 1.5;
+  font-style: italic;
+}
 
 /* Espaçamento padrão: título → subtítulo → texto */
 h1+.line{margin-top:.8rem}
@@ -83,10 +113,6 @@ h2+.line{margin-top:.6rem}
 .line+p{margin-top:1.2rem}
 h2+p{margin-top:.8rem}
 h3+p{margin-top:.5rem}
-
-p{margin-bottom:1rem;color:var(--t-500);font-weight:400;font-size:.95rem}
-
-.label{font-family:var(--body);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--cta);display:inline-block;margin-bottom:.4rem}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 2.5rem}
 .section{padding:7rem 0;position:relative}
 .line{width:48px;height:2px;background:var(--blue-dark);margin:1.5rem 0}
@@ -853,6 +879,12 @@ h2 + p { margin-top: .8rem; }
   h3 { font-size: 1.35rem !important; }
   h4 { font-size: 1rem !important; }
   .eco-card__name { font-size: 1.5rem !important; }
+  /* Corpo de texto encolhe um toque no mobile */
+  p       { font-size: .95rem; }
+  .t-hero { font-size: 1.05rem; }
+  .t-lead { font-size: 1rem; }
+  .t-sm   { font-size: .85rem; }
+  .t-xs   { font-size: .75rem; }
 }
 
 /* SMALL MOBILE (≤480px) */
