@@ -1,0 +1,34 @@
+User-agent: *
+Allow: /
+Disallow: /blog/
+Disallow: /teste/
+Disallow: /home2/
+Disallow: /sistema/
+Disallow: /bio/
+
+# AI Crawlers - Welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+Sitemap: https://kellyalbert.com.br/sitemap.xml

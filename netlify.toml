@@ -1,0 +1,102 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/livro"
+  to = "/livro/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mentoria"
+  to = "/mentoria/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/programa"
+  to = "/programa/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/cases"
+  to = "/cases/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/bio"
+  to = "/bio/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/quiz"
+  to = "/quiz/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/teste"
+  to = "/teste/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/casesuvinil"
+  to = "/casesuvinil/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/casesabre"
+  to = "/casesabre/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/caseyufil"
+  to = "/caseyufil/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/casebeteti"
+  to = "/casebeteti/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/caseramarim"
+  to = "/caseramarim/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/casecomfortflex"
+  to = "/casecomfortflex/index.html"
+  status = 200
+
+
+[[redirects]]
+  from = "/metodo"
+  to = "/metodo/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/produtos"
+  to = "/livro"
+  status = 301
+[[redirects]]
+  from = "/home2"
+  to = "/home2/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/caseamordebicho"
+  to = "/caseamordebicho/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/caseshapes"
+  to = "/caseshapes/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/link"
+  to = "/link/index.html"
+  status = 200

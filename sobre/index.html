@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre | KA | Inteligência para Marcas | Kelly Albert</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Kelly Albert","jobTitle":"Estrategista de Marcas e Fundadora da KA","description":"Publicitária com MBA pela FGV/SP e especializações pela ESPM/SP. Mais de 20 anos de experiência em marketing e branding. Criadora do Método Marca com Essência©.","url":"https://kellyalbert.com.br/sobre","image":"https://kellyalbert.com.br/images/kelly-bio.jpg","worksFor":{"@type":"Organization","name":"KA | Inteligência para Marcas","url":"https://kellyalbert.com.br"},"alumniOf":[{"@type":"EducationalOrganization","name":"FGV/SP"},{"@type":"EducationalOrganization","name":"ESPM/SP"}],"knowsAbout":["Branding","Posicionamento de Marca","Marketing Estratégico","Comunicação","Inteligência Artificial aplicada a Marcas"]}
+</script>
+<meta name="description" content="Conheça a KA | Inteligência para Marcas, o Método Marca com Essência© e Kelly Albert. Escritório de posicionamento de marca com mais de 20 anos de experiência.">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<style>
+/* SOBRE Page-specific styles */
+
+/* Title colors handled per section */
+
+.layers-flow{display:flex;flex-direction:column;gap:1rem;max-width:420px;margin:2.5rem auto 0}
+.layer-item{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;border-radius:10px;position:relative}
+.layer-item:not(:last-child)::after{content:'';position:absolute;left:2.2rem;bottom:-1rem;width:2px;height:1rem;background:var(--border-light)}
+.layer-num{font-family:var(--heading);font-size:1.1rem;font-weight:700;width:2.5rem;height:2.5rem;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
+.layer-text{font-family:var(--heading);font-size:1rem;font-weight:500}
+
+.steps-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:2.5rem;max-width:700px;margin-left:auto;margin-right:auto}
+.step-card{border-radius:12px;padding:2rem;border-left:4px solid;display:flex;gap:1.2rem;align-items:flex-start}
+.step-num{font-family:var(--heading);font-size:1.8rem;font-weight:700;line-height:1;flex-shrink:0}
+.step-card h4{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.step-card p{font-size:.9rem;color:var(--t-600);line-height:1.7}
+
+.quote-box{border-radius:10px;padding:1.5rem 2rem;margin-top:1.5rem;font-family:var(--heading);font-size:1rem;font-style:italic;line-height:1.5;text-align:center}
+
+/* Eco cards — replicado exatamente da Home */
+.eco-products{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
+.eco-card{border-radius:16px;padding:2.5rem 1.8rem;display:flex;flex-direction:column;text-align:center;transition:all .4s ease;position:relative;overflow:hidden}
+.eco-card--light{background:rgba(61,107,126,.07);border:1px solid rgba(61,107,126,.15)}
+.eco-card--light:hover{border-color:rgba(61,107,126,.4);box-shadow:0 16px 50px rgba(0,0,0,.05);transform:translateY(-4px)}
+.eco-card--featured{background:var(--cta);border:2px solid var(--cta);color:#fff}
+.eco-card--featured:hover{box-shadow:0 20px 60px rgba(61,107,126,.2);transform:translateY(-4px)}
+/* Livro = Caramelo #C47830 */
+.eco-card--livro .em-key,.eco-card--livro .eco-card__name .hl{color:#fff !important}
+.eco-card--livro{background:#C47830;border:2px solid #C47830;color:#fff}
+.eco-card--livro:hover{box-shadow:0 20px 60px rgba(196,120,48,.25);transform:translateY(-4px)}
+.eco-card--livro .eco-card__tag{color:rgba(255,255,255,.7)}
+.eco-card--livro .eco-card__name{color:#fff}
+.eco-card--livro .eco-card__desc{color:rgba(255,255,255,.88)}
+.eco-card--livro .eco-card__feature{color:rgba(255,255,255,.7)}
+.eco-card--livro .eco-card__feature::before{background:rgba(255,255,255,.5)}
+.eco-card--livro .eco-card__features{border-top-color:rgba(255,255,255,.2)}
+.eco-card--livro .btn{background:#fff;color:#C47830;font-weight:700}
+/* Programa = Cobre oficial #8B5A2B */
+.eco-card--programa .eco-card__name,.eco-card--programa .eco-card__name .hl{color:#EDE8DD !important}
+.eco-card--direcao .eco-card__name,.eco-card--direcao .eco-card__name .hl{color:#EDE8DD !important}
+.eco-card--programa .eco-card__name .hl,.eco-card--direcao .eco-card__name .hl{color:var(--dourado-c) !important}
+.eco-card--programa{background:#8B5A2B;border:2px solid #8B5A2B;color:#EDE8DD}
+.eco-card--programa:hover{box-shadow:0 20px 60px rgba(139,90,43,.35);transform:translateY(-4px)}
+.eco-card--programa .eco-card__tag{color:rgba(237,232,221,.6)}
+.eco-card--programa .eco-card__name{color:#EDE8DD}
+.eco-card--programa .eco-card__desc{color:rgba(237,232,221,.85)}
+.eco-card--programa .eco-card__feature{color:rgba(237,232,221,.65)}
+.eco-card--programa .eco-card__feature::before{background:rgba(224,184,128,.6)}
+.eco-card--programa .eco-card__features{border-top-color:rgba(237,232,221,.12)}
+.eco-card--programa .btn{background:#E0B880;color:#8B5A2B;font-weight:700;border:none}
+/* Direção = Azul Marinho + accent dourado */
+.eco-card--direcao{background:#1A2E3D;border:2px solid rgba(224,184,128,.25);color:#EDE8DD}
+.eco-card--direcao:hover{border-color:rgba(224,184,128,.5);box-shadow:0 20px 60px rgba(21,37,53,.3);transform:translateY(-4px)}
+.eco-card--direcao .eco-card__tag{color:#E0B880}
+.eco-card--direcao .eco-card__name{color:#EDE8DD}
+.eco-card--direcao .eco-card__desc{color:rgba(237,232,221,.85)}
+.eco-card--direcao .eco-card__feature{color:rgba(237,232,221,.65)}
+.eco-card--direcao .eco-card__feature::before{background:rgba(224,184,128,.6)}
+.eco-card--direcao .eco-card__features{border-top-color:rgba(237,232,221,.12)}
+.eco-card--direcao .btn{background:#E0B880;color:#152535;font-weight:700;border:none}
+.eco-card__icon{margin:0 auto 1.5rem;width:80px;height:80px}
+.eco-card__tag{font-size:.58rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.6rem}
+.eco-card--light .eco-card__tag{color:var(--cta)}
+.eco-card--featured .eco-card__tag{color:rgba(255,255,255,.5)}
+.eco-card__name{font-family:var(--heading);font-size:1.6rem;font-weight:600;line-height:1.2;margin-bottom:.8rem}
+.eco-card--featured .eco-card__name{color:#fff}
+.eco-card__desc{font-size:.85rem;line-height:1.75;flex:1}
+.eco-card--light .eco-card__desc{color:var(--t-600)}
+.eco-card--featured .eco-card__desc{color:rgba(255,255,255,.8)}
+.eco-card .btn{margin-top:1.5rem;width:100%;justify-content:center;white-space:nowrap}
+.eco-card__features{display:flex;flex-direction:column;gap:.4rem;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(61,107,126,.12)}
+.eco-card--featured .eco-card__features{border-top-color:rgba(255,255,255,.15)}
+.eco-card__feature{font-size:.72rem;color:var(--t-500);display:flex;align-items:center;gap:.4rem;text-align:left}
+.eco-card--featured .eco-card__feature{color:rgba(255,255,255,.6)}
+.eco-card__feature::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--cta);flex-shrink:0}
+.eco-card--featured .eco-card__feature::before{background:rgba(255,255,255,.4)}
+@media(max-width:968px){
+  .eco-products{grid-template-columns:1fr!important;gap:1.5rem!important;max-width:420px!important;margin:0 auto!important}
+  .eco-card{width:100%!important;max-width:100%!important}
+}
+/* Marker destaque (substitui itálico grifado) */
+.hl{color:var(--dourado-c);font-weight:700;font-style:normal}
+.hl-gold{color:var(--dourado-c);font-weight:700;font-style:normal}
+.hl-light{color:var(--blue,#B8CDD8);font-weight:700;font-style:normal}
+.em-key{color:var(--cta);font-weight:600}
+.cta-final{background:var(--preto);padding:6rem 0;position:relative;overflow:hidden}
+.cta-final h2{color:#EDE8DD;font-size:2.2rem}
+.cta-final p{color:rgba(237,232,221,.65)}
+.cta-final .btn--cta{animation:btnPulse 2s ease-in-out infinite}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 0 0 rgba(61,107,126,.4)}50%{box-shadow:0 0 0 14px rgba(61,107,126,0)}}
+.btn--pulse{animation:btnPulse 2s ease-in-out infinite}
+
+/* Grid backgrounds */
+.bg-grid-light{background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:32px 32px}
+.bg-grid-dark{background-image:linear-gradient(rgba(237,232,221,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,232,221,.05) 1px,transparent 1px);background-size:32px 32px}
+
+/* Dark sections for bio */
+.section--dark{background:var(--preto);color:#EDE8DD}
+.section--dark h2{color:#EDE8DD}
+.section--dark p{color:rgba(237,232,221,.7)}
+.section--dark .label{color:var(--cta-light)}
+.section--dark .line{background:var(--cta-light)}
+
+/* Animations */
+@keyframes sparkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+@media(max-width:968px){
+  .eco-products{grid-template-columns:1fr;gap:1.5rem;max-width:420px;margin:0 auto}
+  .eco-card--featured{transform:none}
+  .grid-2{grid-template-columns:1fr;gap:2.5rem}
+}
+</style>
+<meta name="keywords" content="Kelly Albert, KA Inteligência para Marcas, Método Marca com Essência, posicionamento de marca, escritório de branding">
+<meta property="og:title" content="Sobre | KA | Inteligência para Marcas | Kelly Albert">
+<meta property="og:description" content="Conheça a KA | Inteligência para Marcas, o Método Marca com Essência© e Kelly Albert. Escritório de posicionamento de marca com mais de 20 anos de experiência.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kellyalbert.com.br/images/logo-ka-full.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kellyalbert.com.br/sobre/">
+</head><body>
+
+<nav class="nav"><div class="nav__inner">
+  <a href="/" class="nav__brand"><img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas" class="nav__logo"></a>
+  <ul class="nav__links"><li><a href="/">Home</a></li><li><a href="/sobre">Sobre</a></li><li class="nav__dropdown"><a class="nav__dropdown-toggle">Produtos</a><div class="nav__dropdown-menu"><a href="/livro">Livro</a><a href="/mentoria">Mentoria</a><a href="/direcao">Direção</a><a href="/programa">Programa</a></div></li><li><a href="/cases">Cases</a></li><li><a href="/quiz" class="nav__cta">Diagnóstico Gratuito</a></li></ul>
+  <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 1. HERO - O QUE É A KA                                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="hero bg-grid-dark amb-preto" style="padding:10rem 0 5rem;background-color:var(--preto);position:relative;overflow:hidden;">
+  <!-- Ambient background -->
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;">
+    <div style="position:absolute;top:8%;right:8%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.1) 0%,transparent 70%);"></div>
+    <div style="position:absolute;bottom:12%;left:5%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(184,155,106,.06) 0%,transparent 70%);"></div>
+    <svg style="position:absolute;top:20%;left:12%;opacity:.3" width="6" height="6"><circle cx="3" cy="3" r="2" fill="#D4C49E"><animate attributeName="opacity" values=".2;.8;.2" dur="3s" repeatCount="indefinite"/></circle></svg>
+    <svg style="position:absolute;top:45%;right:18%;opacity:.2" width="8" height="8"><circle cx="4" cy="4" r="3" fill="#B8CDD8"><animate attributeName="opacity" values=".1;.5;.1" dur="4s" repeatCount="indefinite" begin=".5s"/></circle></svg>
+    <svg style="position:absolute;bottom:25%;left:22%;opacity:.15" width="5" height="5"><circle cx="2.5" cy="2.5" r="2" fill="#D4C49E"><animate attributeName="opacity" values=".1;.4;.1" dur="3.5s" repeatCount="indefinite" begin="1s"/></circle></svg>
+    <svg style="position:absolute;top:65%;right:30%;opacity:.12" width="4" height="4"><circle cx="2" cy="2" r="1.5" fill="#B8CDD8"><animate attributeName="opacity" values=".1;.35;.1" dur="5s" repeatCount="indefinite" begin="2s"/></circle></svg>
+  </div>
+
+  <div class="container text-center" style="max-width:850px;position:relative;z-index:1;">
+    <div class="animate-on-scroll">
+      <div style="margin-bottom:2rem;">
+        <img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas" style="height:70px;margin:0 auto;filter:brightness(0) invert(1);opacity:.85;">
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:.8rem;margin:0 auto 2rem;">
+        <div style="width:50px;height:1px;background:linear-gradient(to right,transparent,var(--dourado-c));"></div>
+        <svg width="8" height="8"><circle cx="4" cy="4" r="3" fill="var(--dourado-c)" opacity=".6"><animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/></circle></svg>
+        <div style="width:50px;height:1px;background:linear-gradient(to left,transparent,var(--dourado-c));"></div>
+      </div>
+
+      <p style="font-size:1.15rem;color:rgba(237,232,221,.9);max-width:720px;margin:0 auto;line-height:1.85;">Somos um escritório de branding especialistas em <span style="color:var(--dourado-c);font-weight:600;">Posicionamento</span> e <span style="color:var(--dourado-c);font-weight:600;">Reposicionamento</span> de marcas. Através de um método autoral, revelamos a essência que já existe dentro de cada marca, e transformamos essa verdade em posicionamento, identidade e direção estratégica.</p>
+      <p style="font-size:.95rem;color:rgba(237,232,221,.68);max-width:680px;margin:1.2rem auto 0;line-height:1.85;">Trabalhamos de dentro para fora: da essência dos fundadores à percepção do mercado, com profundidade, método, inteligência humana e artificial, para que a marca seja lembrada, desejada e escolhida. <span style="color:var(--dourado-c);font-weight:600;">Sempre!</span></p>
+    </div>
+
+    <!-- 4 CAMADAS -->
+    <div class="animate-on-scroll" style="margin-top:4rem;">
+      <p style="font-size:.6rem;color:var(--dourado-c);font-weight:700;letter-spacing:.4em;text-transform:uppercase;margin-bottom:1.5rem;">De dentro para fora</p>
+
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;max-width:340px;margin:0 auto;">
+        <!-- Camada 1 -->
+        <div style="background:rgba(184,155,106,.12);border:1px solid rgba(184,155,106,.25);border-radius:14px;padding:1.4rem 1rem;text-align:center;width:100%;transition:all .4s ease;">
+          <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .5rem;display:block;"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(184,155,106,.2)" stroke-width="1.5"/><circle cx="22" cy="22" r="10" fill="none" stroke="rgba(184,155,106,.15)" stroke-width="1"/><circle cx="22" cy="22" r="5" fill="rgba(184,155,106,.12)" stroke="var(--dourado-c)" stroke-width="1.5"><animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/></circle><circle cx="22" cy="22" r="2" fill="var(--dourado-c)" opacity=".6"/></svg>
+          <p style="font-size:.72rem;color:var(--dourado-c);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:0;line-height:1.4;">Essência dos Fundadores</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0;opacity:.35;"><path d="M9 4 L9 12 M5 9 L9 13 L13 9" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" stroke-linecap="round"/></svg>
+
+        <!-- Camada 2 -->
+        <div style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:14px;padding:1.4rem 1rem;text-align:center;width:100%;transition:all .4s ease;">
+          <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .5rem;display:block;"><rect x="8" y="8" width="28" height="28" rx="5" fill="none" stroke="rgba(184,205,216,.3)" stroke-width="1.5"/><circle cx="16" cy="18" r="3" fill="none" stroke="var(--cta-light)" stroke-width="1.2" opacity=".5"/><circle cx="28" cy="18" r="3" fill="none" stroke="var(--cta-light)" stroke-width="1.2" opacity=".4"/><path d="M12 30 C12 24 18 22 22 22 C26 22 32 24 32 30" fill="none" stroke="var(--cta-light)" stroke-width="1.2" opacity=".4"/><circle cx="36" cy="8" r="2" fill="var(--cta-light)" opacity=".3"><animate attributeName="opacity" values=".2;.6;.2" dur="2.5s" repeatCount="indefinite"/></circle></svg>
+          <p style="font-size:.72rem;color:var(--cta-light);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:0;line-height:1.4;">Cultura Organizacional</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0;opacity:.35;"><path d="M9 4 L9 12 M5 9 L9 13 L13 9" fill="none" stroke="var(--cta-light)" stroke-width="1.5" stroke-linecap="round"/></svg>
+
+        <!-- Camada 3 -->
+        <div style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:14px;padding:1.4rem 1rem;text-align:center;width:100%;transition:all .4s ease;">
+          <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .5rem;display:block;"><polygon points="22,4 40,14 40,30 22,40 4,30 4,14" fill="none" stroke="rgba(184,205,216,.25)" stroke-width="1.5"/><polygon points="22,10 34,18 34,26 22,34 10,26 10,18" fill="rgba(61,107,126,.06)" stroke="var(--cta-light)" stroke-width="1" opacity=".5"><animate attributeName="opacity" values=".3;.7;.3" dur="3s" repeatCount="indefinite"/></polygon><circle cx="22" cy="22" r="3" fill="var(--cta-light)" opacity=".35"/></svg>
+          <p style="font-size:.72rem;color:var(--cta-light);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:0;line-height:1.4;">Cultura da Marca</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink:0;opacity:.35;"><path d="M9 4 L9 12 M5 9 L9 13 L13 9" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" stroke-linecap="round"/></svg>
+
+        <!-- Camada 4 -->
+        <div style="background:var(--cta);border:2px solid var(--cta);border-radius:14px;padding:1.4rem 1rem;text-align:center;width:100%;box-shadow:0 8px 30px rgba(61,107,126,.25);transition:all .4s ease;">
+          <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .5rem;display:block;"><circle cx="22" cy="22" r="16" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><path d="M12 28 L18 22 L24 25 L34 14" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"><animate attributeName="opacity" values=".4;1;.4" dur="2.5s" repeatCount="indefinite"/></path><circle cx="34" cy="14" r="2.5" fill="#D4C49E" opacity=".6"><animate attributeName="r" values="2.5;3.5;2.5" dur="2s" repeatCount="indefinite"/></circle></svg>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.9);font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:0;line-height:1.4;">Percepção do Mercado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Frase destaque -->
+    <div class="animate-on-scroll" style="margin-top:3.5rem;">
+      <div style="background:rgba(184,155,106,.08);border:1px solid rgba(184,155,106,.15);border-radius:14px;padding:2rem 2.5rem;max-width:620px;margin:0 auto;">
+        <p style="font-family:var(--heading);font-size:1.1rem;font-style:italic;color:var(--dourado-c);line-height:1.6;margin:0;font-weight:500;">"Branding não é luxo de marca grande.<br>É o que faz o pequeno sobreviver e crescer."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 2. MÉTODO                                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section section--dark bg-grid-dark" style="background-color:#1A2E3D;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(184,155,106,.04) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:10%;left:5%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.06) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="container" style="max-width:900px;position:relative;z-index:1;">
+    <div class="text-center animate-on-scroll">
+      <span class="label" style="color:var(--dourado-c);">Método exclusivo</span>
+      <h2 style="color:var(--bg-1);font-size:2.2rem;">Método <span class="hl-gold">Marca com Essência</span><sup style="font-size:.55em;">©</sup></h2>
+      <div style="display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1.2rem auto;">
+        <div style="width:30px;height:1px;background:linear-gradient(to right,transparent,var(--dourado-c));"></div>
+        <svg width="6" height="6"><circle cx="3" cy="3" r="2.5" fill="var(--dourado-c)" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/></circle></svg>
+        <div style="width:30px;height:1px;background:linear-gradient(to left,transparent,var(--dourado-c));"></div>
+      </div>
+      <p style="font-size:1rem;color:rgba(237,232,221,.8);margin-top:1.2rem;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.85;">O Método Marca com Essência© começa pela revelação da essência que sustenta a marca. Essa essência já existe nas crenças dos fundadores, nas decisões que se repetem, nos comportamentos que moldam a cultura e na forma como a marca se expressa no mundo. Nosso trabalho é <span style="color:var(--dourado-c);font-weight:600;">revelar, nomear, organizar e lapidar</span> essa base.</p>
+    </div>
+
+    <!-- Quote block -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <div style="background:rgba(184,155,106,.06);border-left:3px solid var(--dourado-c);border-radius:0 12px 12px 0;padding:2rem 2.5rem;max-width:750px;margin:0 auto;">
+        <p style="font-family:var(--heading);font-size:.95rem;font-style:italic;color:rgba(237,232,221,.75);line-height:1.8;margin:0;">"Branding é o lugar que a marca ocupa na cabeça do cliente. É como ele pensa e sente sobre a sua marca. É o que faz ele escolher você antes de comparar preço. Logo é a tradução visual de algo que precisa existir ANTES: a essência, o posicionamento, a identidade verbal, a estratégia. Quando o empresário começa pelo logo, ele decora a fachada de uma casa sem alicerce."</p>
+      </div>
+    </div>
+
+    <!-- 4 Etapas — 1 por linha -->
+    <div style="display:grid;grid-template-columns:1fr;gap:1.2rem;margin-top:3rem;max-width:720px;margin-left:auto;margin-right:auto;">
+      <div class="animate-on-scroll" style="background:rgba(184,155,106,.08);border:1px solid rgba(184,155,106,.15);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;">
+        <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><circle cx="25" cy="25" r="20" fill="none" stroke="rgba(184,155,106,.25)" stroke-width="1.5"/><circle cx="25" cy="25" r="10" fill="none" stroke="rgba(184,155,106,.15)" stroke-width="1"/><circle cx="25" cy="25" r="5" fill="rgba(184,155,106,.1)" stroke="var(--dourado-c)" stroke-width="1.5"><animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/></circle><circle cx="25" cy="25" r="2" fill="var(--dourado-c)" opacity=".5"/></svg>
+        <p style="font-size:.55rem;color:var(--dourado-c);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 01</p>
+        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Revelação de <span class="hl-gold">Essência</span></h4>
+        <p style="font-size:.78rem;color:rgba(237,232,221,.65);margin:0;line-height:1.6;">Crenças dos fundadores, ikigai empresarial, padrões que se repetem. A essência é revelada, nomeada e documentada.</p>
+        <p style="font-size:.6rem;color:rgba(184,155,106,.4);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">ONDE ATUA: Essência dos Fundadores</p>
+      </div>
+      <div class="animate-on-scroll stagger-1" style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;">
+        <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><rect x="10" y="10" width="30" height="30" rx="4" fill="none" stroke="rgba(184,205,216,.3)" stroke-width="1.5"/><line x1="18" y1="20" x2="32" y2="20" stroke="var(--cta-light)" stroke-width="1.5" opacity=".5"/><line x1="18" y1="25" x2="28" y2="25" stroke="var(--cta-light)" stroke-width="1.5" opacity=".4"/><line x1="18" y1="30" x2="30" y2="30" stroke="var(--cta-light)" stroke-width="1.5" opacity=".3"/><circle cx="36" cy="14" r="3" fill="var(--cta-light)" opacity=".3"><animate attributeName="opacity" values=".2;.6;.2" dur="2s" repeatCount="indefinite"/></circle></svg>
+        <p style="font-size:.55rem;color:var(--cta-light);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 02</p>
+        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Construção de <span style="color:var(--cta-light);font-style:italic;">Clareza</span></h4>
+        <p style="font-size:.78rem;color:rgba(237,232,221,.65);margin:0;line-height:1.6;">Posicionamento, DNA, proposta de valor, identidade verbal, análise de concorrentes e clientes.</p>
+        <p style="font-size:.6rem;color:rgba(184,205,216,.35);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">ONDE ATUA: Essência > Cultura > Marca</p>
+      </div>
+      <div class="animate-on-scroll" style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;">
+        <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><path d="M25 5 L25 10" stroke="var(--cta-light)" stroke-width="2" stroke-linecap="round"/><path d="M25 15 L35 40 L25 34 L15 40 Z" fill="rgba(61,107,126,.1)" stroke="var(--cta-light)" stroke-width="1.5" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="0 25 25;8 25 25;0 25 25;-8 25 25;0 25 25" dur="4s" repeatCount="indefinite"/></path><circle cx="25" cy="25" r="2.5" fill="var(--cta-light)" opacity=".4"/></svg>
+        <p style="font-size:.55rem;color:var(--cta-light);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 03</p>
+        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Definição de <span style="color:var(--cta-light);font-style:italic;">Direção</span></h4>
+        <p style="font-size:.78rem;color:rgba(237,232,221,.65);margin:0;line-height:1.6;">Identidade visual, estrutura da oferta, plano de comunicação e agentes de IA exclusivos.</p>
+        <p style="font-size:.6rem;color:rgba(184,205,216,.35);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">ONDE ATUA: Marca > Percepção</p>
+      </div>
+      <div class="animate-on-scroll stagger-1" style="background:var(--cta);border:2px solid var(--cta);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;box-shadow:0 8px 30px rgba(61,107,126,.2);">
+        <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><polygon points="25,5 45,18 45,35 25,48 5,35 5,18" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><circle cx="25" cy="26" r="6" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><animate attributeName="r" values="6;8;6" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="25" cy="5" r="2" fill="#D4C49E" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="1.5s" repeatCount="indefinite"/></circle></svg>
+        <p style="font-size:.55rem;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 04</p>
+        <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem;"><span style="font-style:italic;">Posicionamento</span> no Mercado</h4>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.6);margin:0;line-height:1.6;">Marca pronta para ser ativada com coerência. Não só bonita, coerente. Não só presente, escolhida.</p>
+        <p style="font-size:.6rem;color:rgba(255,255,255,.3);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">RESULTADO</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 3. QUEM ESTÁ POR TRÁS - Kelly + Equipe                -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section section--dark bg-grid-dark" style="background-color:var(--preto);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:10%;left:8%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.08) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:15%;right:5%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(184,155,106,.05) 0%,transparent 70%);pointer-events:none;"></div>
+  <svg style="position:absolute;top:25%;right:15%;opacity:.2" width="6" height="6"><circle cx="3" cy="3" r="2" fill="#D4C49E"><animate attributeName="opacity" values=".2;.7;.2" dur="3s" repeatCount="indefinite"/></circle></svg>
+  <svg style="position:absolute;bottom:30%;left:20%;opacity:.15" width="5" height="5"><circle cx="2.5" cy="2.5" r="2" fill="#B8CDD8"><animate attributeName="opacity" values=".1;.4;.1" dur="4s" repeatCount="indefinite" begin=".5s"/></circle></svg>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="grid-2" style="align-items:start;gap:4rem;">
+      <!-- Foto -->
+      <div class="animate-on-scroll stagger-1" style="text-align:center;position:relative;display:flex;justify-content:flex-end;">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:85%;height:85%;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.15) 0%,transparent 70%);filter:blur(25px);z-index:0;"></div>
+        <img src="/images/kelly-bio.jpg" alt="Kelly Albert" style="border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.3);width:100%;max-width:380px;max-height:500px;object-fit:cover;object-position:top;position:relative;z-index:1;">
+      </div>
+
+      <!-- Texto -->
+      <div class="animate-on-scroll">
+        <span class="label" style="color:var(--dourado-c);">Quem está por trás</span>
+        <h2 style="color:var(--bg-1);font-size:2.2rem;margin-bottom:.3rem;"><span class="hl-gold">Kelly Albert</span></h2>
+        <div style="display:flex;align-items:center;gap:.6rem;margin:0 0 1.5rem;">
+          <div style="width:30px;height:1px;background:linear-gradient(to right,var(--dourado-c),transparent);"></div>
+          <svg width="6" height="6"><circle cx="3" cy="3" r="2.5" fill="var(--dourado-c)" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/></circle></svg>
+        </div>
+
+        <p style="font-size:1.05rem;color:rgba(237,232,221,.92);line-height:1.85;margin-top:0;">Fundadora da <span style="color:var(--dourado-c);font-weight:600;">KA | Inteligência para Marcas</span>, um escritório de branding especializado em posicionamento e reposicionamento de marcas, já atuou junto a marcas como <span style="color:rgba(237,232,221,.96);font-weight:500;">McDonald's, Sebrae, Atacadão do Grupo Carrefour, Suvinil, Grupo Ramarim, Band FM</span> entre outras.</p>
+
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);line-height:1.85;margin-top:1.2rem;">Com mais de <span style="color:var(--dourado-c);font-weight:600;">20 anos de experiência</span>, atuando em departamentos de marketing como executiva, agências de propaganda tradicionais e tendo a sua agência de marketing digital por mais de 13 anos, é publicitária de formação, com <span style="color:rgba(237,232,221,.92);font-weight:500;">MBA em Gestão Estratégica de Negócios pela FGV/SP</span> e especializações pela <span style="color:rgba(237,232,221,.92);font-weight:500;">ESPM/SP</span>, Kelly sempre buscou unir profundidade, técnica e visão estratégica para transformar marcas a partir do que elas realmente são.</p>
+
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);line-height:1.85;margin-top:1.2rem;">Criadora do <span style="color:var(--dourado-c);font-weight:600;">Método Marca com Essência©</span>, sua abordagem integra branding, posicionamento, comunicação e um ecossistema de inteligências artificiais como aliadas de processos mais consistentes, profundos e aplicáveis. <span style="color:rgba(237,232,221,.92);font-weight:500;">Inteligência humana integrada com inteligência artificial.</span></p>
+
+        <!-- Time KA -->
+        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(237,232,221,.08);">
+          <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;">
+            <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="12" cy="10" r="5" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" opacity=".4"/><circle cx="22" cy="10" r="5" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" opacity=".25"/><path d="M4 28 C4 20 10 18 16 18 C22 18 28 20 28 28" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" opacity=".3"/></svg>
+            <p style="font-size:.85rem;color:var(--dourado-c);font-weight:600;margin:0;">Time KA</p>
+          </div>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.65);line-height:1.8;margin:0;">A KA conta com uma equipe que atua junto ao escritório, entre profissionais contratados e parceiros estratégicos, garantindo profundidade técnica e execução em cada projeto.</p>
+        </div>
+
+        <!-- Quote em destaque -->
+        <div style="margin-top:2rem;background:rgba(184,205,216,.12);border:1px solid rgba(184,205,216,.2);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
+          <p style="font-family:var(--heading);font-size:1rem;font-style:italic;color:var(--cta-light);line-height:1.6;margin:0;">"Essência sem direção se dispersa.<br>Direção sem essência se esvazia."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 4. LOGOS                                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bg-grid-light" style="padding:3.5rem 0;background-color:#f1ede6;">
+  <div class="container text-center">
+    <span class="label">Empresas que já passaram por nós</span>
+    <h2 style="margin-bottom:2rem;">Marcas que confiaram em nosso trabalho</h2>
+    <div class="logo-grid" style="border-radius:14px;padding:2rem;">
+      <img src="/images/logos/mcdonalds.jpg" alt="McDonald's" class="logo-grid__item">
+      <img src="/images/logos/atacadao.jpg" alt="Atacadão" class="logo-grid__item">
+      <img src="/images/logos/sebrae.jpg" alt="Sebrae" class="logo-grid__item">
+      <img src="/images/logos/suvinil.jpg" alt="Suvinil" class="logo-grid__item">
+      <img src="/images/logos/ramarim.jpg" alt="Ramarim" class="logo-grid__item">
+      <img src="/images/logos/comfortflex.jpg" alt="ComfortFlex" class="logo-grid__item">
+      <img src="/images/logos/usaflex.jpg" alt="Usaflex" class="logo-grid__item">
+      <img src="/images/logos/bandfm.jpg" alt="Rede Band FM" class="logo-grid__item">
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 5. DEPOIMENTOS                                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section bg-grid-light" style="background-color:var(--bg-1);">
+  <div class="container">
+    <div class="text-center animate-on-scroll" style="margin-bottom:3rem;">
+      <span class="label">Depoimentos</span>
+      <h2>O que dizem sobre nós</h2>
+    </div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow carousel-arrow--left" aria-label="Anterior">‹</button>
+      <button class="carousel-arrow carousel-arrow--right" aria-label="Próximo">›</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track">
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"A Kelly me conduziu neste caminho de descobertas e me ajudou a transformar a marca Fernando Beteti de 'O seu Repórter Saúde' para 'O seu Jornalista de Confiança'. Foram meses de pesquisas, discussões e estudos até chegarmos à definição certa."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Fernando Beteti</p><p class="testimonial-card__role">Jornalista, 2,3 milhões de seguidores</p><a href="https://instagram.com/fernandobeteti" target="_blank" class="testimonial-card__ig">@fernandobeteti</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Não tenho palavras para agradecer esse trabalho que estamos fazendo juntos. Muito obrigado por estar me guiando nesse processo."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">José Bráulio Petry</p><p class="testimonial-card__role">Advogado, Doutor em Direito, Escritório Petry Fonseca</p><a href="https://instagram.com/petryfonseca" target="_blank" class="testimonial-card__ig">@petryfonseca</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"O trabalho da Kelly é muito diferenciado, traz um olhar com valorização do nosso eu e do profissional. Estou adorando e recomendo!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Angela Matzenbacher</p><p class="testimonial-card__role">Dermatologista Capilar</p><a href="https://instagram.com/draangelamatzenbacher" target="_blank" class="testimonial-card__ig">@draangelamatzenbacher</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Estou encantada com esse trabalho. É profundo e ao mesmo tempo objetivo, me direcionando exatamente naquilo que posso desenvolver. Essa é a nossa luz, o nosso ikigai."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Ângela Portocarrero</p><p class="testimonial-card__role">Neurocientista do Comportamento</p><a href="https://instagram.com/angelap_neuro" target="_blank" class="testimonial-card__ig">@angelap_neuro</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Ajudou muito aqui na agência a entender nosso público e a verdadeira essência da nossa marca. Com isso conseguimos focar em resultados para nosso público real. Vale muito a pena!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Spin Criação de Sites</p><p class="testimonial-card__role">Agência de criação digital</p><a href="https://instagram.com/spinmkt" target="_blank" class="testimonial-card__ig">@spinmkt</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"A KA é fantástica. A Kelly sabe demais, é super atenciosa, explica tudo com calma e tem muita transparência. Recomendo a todos e de olhos fechados!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Mirna Pagnossin</p><p class="testimonial-card__role">Fundadora da Spin Criação de Sites</p><a href="https://instagram.com/mirna_pagnossin" target="_blank" class="testimonial-card__ig">@mirna_pagnossin</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Extremamente cordial, com bastante conhecimento e cheia de proatividade. Personaliza a mentoria de acordo com as necessidades da marca. Ótima em todos os sentidos!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Francisco Oliveira</p><p class="testimonial-card__role">Designer Floral, Flowers By Francis, New Jersey, EUA</p><a href="https://instagram.com/flowersbyfrancis" target="_blank" class="testimonial-card__ig">@flowersbyfrancis</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Estou amando todo o processo e tudo que tem surgido com ele. Obrigada Kelly, por todo carinho e atenção. Tu é incrível!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Robertha Silveira</p><p class="testimonial-card__role">Arquiteta, Ser Arquitetura e Alma</p><a href="https://instagram.com/ser.arquiteturaealma" target="_blank" class="testimonial-card__ig">@ser.arquiteturaealma</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Todas as pessoas deveriam fazer a mentoria com a Kelly. Ela abre visões e insights que sozinhos os gestores não conseguiriam visualizar. Esclarecedora e sem tendenciosidade."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Caroline Mallmanni</p><p class="testimonial-card__role">Coordenadora de Negócios, empresa Gugui</p><a href="https://instagram.com/carolmallmann._" target="_blank" class="testimonial-card__ig">@carolmallmann._</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"A Kelly me ajudou a aumentar meu brand awareness e triplicou meu número de seguidores. Sempre vai além, compartilhando ideias e ferramentas. Excelente profissional, super competente."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Narjara Costa</p><p class="testimonial-card__role">Consultora de Imigração, Canadá</p><a href="https://instagram.com/narjara.costa" target="_blank" class="testimonial-card__ig">@narjara.costa</a></div></div></div>
+        </div>
+      </div>
+      <div class="carousel-dots"><button class="carousel-dot active"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 6. ECOSSISTEMA — 4 produtos (exato da home)           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section bg-grid-light" style="background-color:var(--bg-2);">
+  <div class="container">
+    <div class="text-center animate-on-scroll" style="margin-bottom:3rem;">
+      <span class="label">Ecossistema Marca com Essência<sup style="font-size:.55em;">©</sup></span>
+      <h1 style="max-width:650px;margin:0 auto;">04 produtos para 04 momentos diferentes</h1>
+      <div class="line line--center"></div>
+      <p style="max-width:560px;margin:1rem auto 0;font-size:.95rem;color:var(--t-600);">Cada produto atende um nível de necessidade. Do primeiro passo à <span class="hl">Estruturação</span> completa da marca.</p>
+    </div>
+
+    <div class="eco-products">
+      <!-- LIVRO -->
+      <div class="eco-card eco-card--livro animate-on-scroll">
+        <img src="/images/livro-mockup.jpg" alt="Livro Marca com Essência" style="width:100%;max-width:260px;margin:0 auto 1.2rem;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.1);">
+        <p class="eco-card__tag">Faça você mesmo</p>
+        <h3 class="eco-card__name"><span class="hl">Livro</span><br>Marca com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <p class="eco-card__desc">Estruture sua marca com clareza e direção, de forma 100% prática e com <span class="em-key">Inteligência Artificial</span> integrada. Você sai com a <span class="em-key">Base Estratégica</span> da sua marca pronta.</p>
+        <div class="eco-card__features">
+          <span class="eco-card__feature">Agentes de IA no ChatGPT treinados com o método</span>
+          <span class="eco-card__feature">Áudios complementares (Spotify)</span>
+          <span class="eco-card__feature">Exercícios estruturados (Google Docs)</span>
+        </div>
+        <a href="/livro" class="btn" style="background:#fff;color:#C47830;font-weight:700;">Quero Meu Livro</a>
+      </div>
+
+      <!-- MENTORIA -->
+      <div class="eco-card eco-card--featured animate-on-scroll stagger-1">
+        <svg class="eco-card__icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+          <circle cx="40" cy="40" r="18" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+          <path d="M40 18 L40 12" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M40 22 L52 50 L40 44 L28 50 Z" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linejoin="round">
+            <animateTransform attributeName="transform" type="rotate" values="0 40 40;10 40 40;0 40 40;-10 40 40;0 40 40" dur="4s" repeatCount="indefinite"/>
+          </path>
+          <circle cx="40" cy="40" r="3" fill="rgba(255,255,255,.4)"/>
+          <circle cx="60" cy="20" r="1.5" fill="#D4C49E" opacity=".4"><animate attributeName="opacity" values=".2;.8;.2" dur="1.2s" repeatCount="indefinite"/></circle>
+          <circle cx="22" cy="60" r="2" fill="#D4C49E" opacity=".3"><animate attributeName="opacity" values=".15;.6;.15" dur="1.8s" repeatCount="indefinite" begin=".4s"/></circle>
+        </svg>
+        <p class="eco-card__tag">Com apoio estratégico</p>
+        <h3 class="eco-card__name" style="color:#fff;">Mentoria<br>Marca com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <p class="eco-card__desc">Aprofunde o processo com direção e acompanhamento estratégico da Kelly Albert, sem perder o protagonismo da própria construção.</p>
+        <div class="eco-card__features">
+          <span class="eco-card__feature">8 encontros ao vivo em grupo</span>
+          <span class="eco-card__feature">Devolutivas individuais</span>
+          <span class="eco-card__feature">Exercícios práticos entre encontros</span>
+        </div>
+        <a href="/mentoria" class="btn" style="background:#fff;color:var(--cta);font-weight:700;">Saiba mais</a>
+      </div>
+
+      <!-- PROGRAMA -->
+      <div class="eco-card eco-card--programa animate-on-scroll stagger-2">
+        <svg class="eco-card__icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="40,8 72,24 72,56 40,72 8,56 8,24" fill="rgba(255,255,255,.06)" stroke="#fff" stroke-width="1.5" opacity=".55"/>
+          <polygon points="40,16 62,28 62,52 40,64 18,52 18,28" fill="none" stroke="#fff" stroke-width="1" opacity=".3"/>
+          <line x1="40" y1="8" x2="40" y2="72" stroke="#fff" stroke-width=".8" opacity=".2"/>
+          <line x1="8" y1="24" x2="72" y2="56" stroke="#fff" stroke-width=".8" opacity=".2"/>
+          <line x1="72" y1="24" x2="8" y2="56" stroke="#fff" stroke-width=".8" opacity=".2"/>
+          <circle cx="40" cy="40" r="5" fill="rgba(255,255,255,.15)" stroke="#fff" stroke-width="1.5">
+            <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="40" cy="8" r="2.5" fill="#D4C49E" opacity=".6"><animate attributeName="opacity" values=".3;.8;.3" dur="1.5s" repeatCount="indefinite"/></circle>
+          <circle cx="72" cy="24" r="2" fill="#fff" opacity=".4"><animate attributeName="opacity" values=".2;.6;.2" dur="1.8s" repeatCount="indefinite" begin=".3s"/></circle>
+          <circle cx="8" cy="56" r="2" fill="#D4C49E" opacity=".3"><animate attributeName="opacity" values=".15;.5;.15" dur="2s" repeatCount="indefinite" begin=".6s"/></circle>
+        </svg>
+        <p class="eco-card__tag">Estruturação completa</p>
+        <h3 class="eco-card__name"><span class="hl">Programa</span><br>Marca com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <p class="eco-card__desc">O projeto completo de posicionamento. Um processo profundo, estruturado e conduzido da essência à presença no mercado.</p>
+        <div class="eco-card__features">
+          <span class="eco-card__feature">Revelação de essência + base estratégica</span>
+          <span class="eco-card__feature">Identidade verbal e plano de comunicação</span>
+          <span class="eco-card__feature">Agentes de IA exclusivos da marca</span>
+        </div>
+        <a href="/programa" class="btn" style="background:#E0B880;color:#8B5A2B;font-weight:700;border:none;">Saiba mais</a>
+      </div>
+
+      <!-- DIREÇÃO -->
+      <div class="eco-card eco-card--direcao animate-on-scroll stagger-3">
+        <svg class="eco-card__icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="28" fill="none" stroke="#3D6B7E" stroke-width="1.5" opacity=".4"/>
+          <circle cx="40" cy="40" r="18" fill="none" stroke="#3D6B7E" stroke-width="1" opacity=".25" stroke-dasharray="3 4"><animateTransform attributeName="transform" type="rotate" values="0 40 40;360 40 40" dur="20s" repeatCount="indefinite"/></circle>
+          <path d="M40 15 L36 40 L44 40 Z" fill="rgba(184,155,106,.3)" stroke="#B89B6A" stroke-width="1.5" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="-5 40 40;5 40 40;-5 40 40" dur="5s" repeatCount="indefinite"/></path>
+          <circle cx="40" cy="40" r="4" fill="#B89B6A" opacity=".6"/>
+          <circle cx="55" cy="18" r="1.5" fill="#B89B6A" opacity=".4"><animate attributeName="opacity" values=".2;.7;.2" dur="1.5s" repeatCount="indefinite"/></circle>
+        </svg>
+        <p class="eco-card__tag">Acompanhamento contínuo</p>
+        <h3 class="eco-card__name"><span class="hl">Direção</span><br>com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <p class="eco-card__desc">Acompanhamento estratégico mensal em branding, comunicação e marketing. Clareza e direção contínua para o seu negócio.</p>
+        <div class="eco-card__features">
+          <span class="eco-card__feature">04 encontros mensais individuais</span>
+          <span class="eco-card__feature">Resumo estratégico em PDF</span>
+          <span class="eco-card__feature">Revisão a cada encontro</span>
+        </div>
+        <a href="/direcao" class="btn" style="background:#E0B880;color:#152535;font-weight:700;border:none;">Saiba mais</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 7. CTA POTÊNCIA                                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CTA POTÊNCIA -->
+<section class="cta-final bg-grid-dark">
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <div class="animate-on-scroll">
+      <h2>Sua marca tem <span class="hl-gold">Potência</span>. Vamos revelar.</h2>
+      <p style="max-width:460px;margin:1rem auto 2.5rem;color:rgba(237,232,221,.65);font-size:.95rem;">Descubra em poucos minutos o que está impedindo sua marca de ser lembrada, desejada e escolhida.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;max-width:320px;margin:0 auto;">
+        <a href="/quiz" class="btn btn--diag btn--lg btn--pulse" style="width:100%;text-align:center;justify-content:center;">Fazer Diagnóstico Gratuito</a>
+        <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%20Albert%2C%20como%20vai%3F%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20KA%20%7C%20Intelig%C3%AAncia%20para%20Marcas." target="_blank" class="btn btn--lg" style="width:100%;text-align:center;justify-content:center;background:#25D366;color:#fff;border:none;border-radius:100px;font-size:.78rem;font-weight:600;">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+  <div class="footer__grid-3">
+    <div>
+      <div class="footer__brand"><img src="/images/logo-ka.png" alt="KA" class="footer__logo"></div>
+      <p class="footer__desc">Porque essência <b>conecta</b><br>e <b>posicionamento</b> faz vender.</p>
+    </div>
+    <div><h4>Ecossistema</h4><ul class="footer__links"><li><a href="/livro">Livro</a></li><li><a href="/mentoria">Mentoria</a></li><li><a href="/direcao">Direção</a></li><li><a href="/programa">Programa</a></li><li><a href="/cases">Cases</a></li></ul></div>
+    <div><h4>Conteúdo</h4><ul class="footer__links"><li><a href="/sobre">Sobre</a></li><li><a href="/quiz">Diagnóstico</a></li></ul></div>
+  </div>
+  <div class="footer__bottom"><span>Kelly Albert® 2026. CNPJ: 15.096.943/0001-37</span><div class="footer__social"><a href="https://wa.me/5551993163333" target="_blank">WhatsApp</a><a href="https://instagram.com/kellyalbert.brand" target="_blank">Instagram</a><a href="https://www.tiktok.com/@kellyalbertbr" target="_blank">TikTok</a></div></div>
+</div></footer>
+<script src="/js/main.js"></script>
+</body></html>

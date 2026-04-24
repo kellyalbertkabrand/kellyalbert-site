@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Diagnóstico Estratégico de Marca | KA | Inteligência para Marcas</title>
+<meta name="description" content="Faça o diagnóstico gratuito e descubra o que está impedindo sua marca de ser lembrada, desejada e escolhida. Resultado imediato.">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+.quiz-result-section{background:var(--bg-0);border-radius:12px;padding:2rem;border:1px solid var(--border-light);margin-bottom:1.5rem;text-align:left}
+.quiz-result-section h4{margin-bottom:.8rem;color:var(--t-900)}
+.quiz-result-section p{font-size:.88rem;margin-bottom:.5rem}
+.quiz-result-section .pain{color:var(--t-900);font-weight:500;font-size:.9rem}
+.quiz-result-section .insight{color:var(--t-500);font-size:.85rem;font-weight:300;font-style:italic;border-left:2px solid var(--blue);padding-left:1rem;margin-top:.8rem}
+.score-ring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative}
+.score-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:6px solid var(--bg-4)}
+.score-ring__value{font-family:var(--heading);font-size:2.8rem;font-weight:700;color:var(--t-black);position:relative;z-index:1}
+.score-ring svg{position:absolute;inset:-3px;transform:rotate(-90deg)}
+.score-ring circle{fill:none;stroke-width:6;stroke-linecap:round}
+.score-ring .bg{stroke:var(--bg-4)}
+.score-ring .fill{stroke:var(--blue-dark);transition:stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1)}
+.danger-list{list-style:none;padding:0}
+.danger-list li{padding:.6rem 0;font-size:.88rem;color:var(--t-700);display:flex;align-items:flex-start;gap:.6rem;border-bottom:1px solid var(--border-light)}
+.danger-list li:last-child{border-bottom:0}
+.danger-list li::before{content:'⚠';font-size:.8rem;margin-top:.15rem;flex-shrink:0}
+.strength-list{list-style:none;padding:0}
+.strength-list li{padding:.5rem 0;font-size:.88rem;color:var(--t-600);display:flex;align-items:flex-start;gap:.6rem}
+.strength-list li::before{content:'✓';color:var(--blue-dark);font-weight:700;flex-shrink:0}
+.context-option{display:block;width:100%;text-align:left;padding:.85rem 1.2rem;margin-bottom:.5rem;border:1px solid var(--border-light);border-radius:8px;background:var(--bg-0);cursor:pointer;font-size:.95rem;color:var(--t-700);transition:all .2s ease;font-family:var(--body);box-sizing:border-box}
+.context-option:hover{border-color:var(--blue);background:var(--bg-2)}
+.context-option.selected{border-color:var(--cta);background:rgba(61,107,126,.08);color:var(--t-900);font-weight:500}
+.recommended-badge{display:inline-block;background:var(--cta);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.25rem .8rem;border-radius:100px;margin-bottom:.8rem}
+.mobile-br{display:none}
+.quiz-nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;gap:1rem;width:100%}
+.quiz-nav-spacer{flex:1}
+
+/* QUIZ MOBILE */
+html{overflow-x:hidden!important;-webkit-overflow-scrolling:touch}
+body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;position:relative}
+*{box-sizing:border-box}
+.section{overflow:visible;max-width:100vw}
+.container{overflow:visible;max-width:100vw}
+.quiz-container{overflow:visible}
+
+@media(max-width:968px){
+  .mobile-br{display:inline}
+  
+  .container{padding:0 1rem!important}
+}
+
+@media(max-width:640px){
+  .quiz-container{padding:0}
+  .context-option,.quiz-option{padding:.9rem 1rem!important;font-size:.88rem!important}
+  #context-container h3{font-size:1.05rem!important;padding:0}
+  #question-container h2{font-size:1.05rem!important;padding:0}
+  .container{padding:0 .8rem!important}
+}
+
+
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#F4F1EB">
+<meta name="keywords" content="diagnóstico de marca gratuito, teste posicionamento de marca, análise de marca, Kelly Albert diagnóstico">
+<meta property="og:title" content="Diagnóstico Estratégico de Marca | KA | Inteligência para Marcas">
+<meta property="og:description" content="Faça o diagnóstico gratuito e descubra o que está impedindo sua marca de ser lembrada, desejada e escolhida. Resultado imediato.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kellyalbert.com.br/images/logo-ka-full.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kellyalbert.com.br/quiz/">
+</head><body>
+
+<!-- Netlify Forms: form oculto para detecção no deploy -->
+<form name="diagnostico" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field">
+  <input name="nome">
+  <input name="email">
+  <input name="whatsapp">
+</form>
+
+<div style="text-align:center;padding:2.5rem 0 0;">
+  <a href="/"><img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas" style="height:36px;margin:0 auto;"></a>
+</div>
+
+<section class="section" style="padding-top:2rem;">
+  <div class="container">
+    <div class="quiz-container" id="quiz-app">
+
+      <!-- INTRO -->
+      <div id="step-intro" class="text-center">
+        <span class="label">Diagnóstico Estratégico <span style="background:#25D366;color:#fff;padding:.25rem .7rem;border-radius:100px;font-size:.72rem;letter-spacing:.15em;margin-left:.3rem;font-weight:700;">GRATUITO</span></span>
+        <h1 style="margin-bottom:1rem;">Sua marca está <em>invisível</em> para o mercado?</h1>
+        <div class="line line--center"></div>
+        <p style="font-size:1.05rem;color:var(--t-700);max-width:500px;margin:1.5rem auto;font-weight:400;">A maioria dos empreendedores entrega muito e é percebido pouco. Em 3 minutos você vai descobrir <strong>exatamente</strong> o que está impedindo sua marca de ser lembrada, desejada e escolhida.</p>
+        <p style="font-size:.88rem;max-width:460px;margin:0 auto 2.5rem;">Este diagnóstico revela os pontos cegos que fazem você competir por preço em vez de por valor. O resultado pode ser desconfortável, mas é o primeiro passo.</p>
+        <button class="btn btn--cta btn--lg" onclick="goTo('step-lead')">Quero Descobrir o que Está Errado</button>
+        <p style="font-size:.75rem;color:var(--t-300);margin-top:1.2rem;">Resultado imediato. Sem enrolação.</p>
+      </div>
+
+      <!-- LEAD CAPTURE -->
+      <div id="step-lead" style="display:none;" class="text-center">
+        <h2 style="margin-bottom:.5rem;">Antes de começar</h2>
+        <div class="line line--center"></div>
+        <p style="max-width:420px;margin:1.5rem auto 2rem;font-size:.92rem;">Para liberar seu diagnóstico personalizado, deixe seus dados:</p>
+        <div style="max-width:380px;margin:0 auto;">
+          <input type="text" id="lead-name" class="form-input" placeholder="Seu nome" style="margin-bottom:.6rem;">
+          <input type="email" id="lead-email" class="form-input" placeholder="Seu melhor e-mail" style="margin-bottom:.6rem;">
+          <input type="tel" id="lead-whatsapp" class="form-input" placeholder="Seu WhatsApp" style="margin-bottom:1.2rem;">
+          <button class="btn btn--cta btn--lg" style="width:100%;justify-content:center;" onclick="submitLeadAndContinue()">Continuar</button>
+        </div>
+        <p style="font-size:.7rem;color:var(--t-300);margin-top:.8rem;">Seus dados estão seguros. Sem spam.</p>
+      </div>
+
+      <!-- CONTEXT QUESTIONS -->
+      <div id="step-context" style="display:none;">
+        <div class="text-center" style="margin-bottom:2rem;">
+          <span class="label">Sobre seu negócio</span>
+          <h2><span style="background:rgba(61,107,126,.25);padding:.2rem .8rem;border-radius:6px;">Vamos entender seu momento</span></h2>
+          <div class="line line--center"></div>
+        </div>
+        <div id="context-container"></div>
+        <div class="quiz-nav-row">
+          <button class="btn btn--outline" id="ctx-prev" onclick="prevContext()" style="display:none;">← Voltar</button>
+          <div class="quiz-nav-spacer"></div>
+          <button class="btn btn--cta" id="ctx-next" onclick="nextContext()" style="display:none;">Próxima</button>
+        </div>
+      </div>
+
+      <!-- STRATEGIC QUESTIONS -->
+      <div id="step-strategic" style="display:none;">
+        <div class="quiz-progress"><div class="quiz-progress__bar" id="progress-bar" style="width:0%;"></div></div>
+        <div id="question-container"></div>
+        <div class="quiz-nav-row">
+          <button class="btn btn--outline" id="btn-prev" onclick="prevQuestion()" style="display:none;">← Voltar</button>
+          <div class="quiz-nav-spacer"></div>
+          <button class="btn btn--cta" id="btn-next" onclick="nextQuestion()" style="display:none;">Próxima</button>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div id="step-result" style="display:none;">
+        <div class="text-center">
+          <span class="label" id="result-level"></span>
+          <h1 style="margin-bottom:1rem;" id="result-title"></h1>
+          <div class="line line--center"></div>
+          <p style="font-size:1.05rem;max-width:520px;margin:1.5rem auto 2rem;color:var(--t-700);" id="result-subtitle"></p>
+        </div>
+        <div class="score-ring" id="score-ring">
+          <svg viewBox="0 0 146 146"><circle class="bg" cx="73" cy="73" r="70"/><circle class="fill" id="score-circle" cx="73" cy="73" r="70" stroke-dasharray="440" stroke-dashoffset="440"/></svg>
+          <div class="score-ring__value" id="result-score"></div>
+        </div>
+        <div id="result-diagnosis"></div>
+        <div class="text-center" style="margin-top:2.5rem;">
+          <div id="result-cta-text"></div>
+          <div id="result-cta" style="width:100%;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="/js/main.js"></script>
+<script>
+// ============================
+// CONTEXT QUESTIONS
+// ============================
+var contextQuestions=[
+  {q:"Qual é o estágio do seu negócio?",options:["Estou começando agora","Já tenho clientes, mas ainda estou estruturando minha marca","Já tenho uma empresa estruturada e quero posicionar melhor","Tenho uma empresa consolidada e quero fortalecer posicionamento"],scores:[0,1,2,3]},
+  {q:"Qual tipo de marca você possui?",options:["Marca pessoal (profissional liberal ou especialista)","Empresa de serviços","Empresa de produtos","Ainda estou estruturando meu modelo de negócio"],scores:[1,2,2,0]},
+  {q:"Quantas pessoas trabalham hoje no seu negócio?",options:["Apenas eu","De 2 a 5 pessoas","De 6 a 20 pessoas","Mais de 20 pessoas"],scores:[0,1,2,3]},
+  {q:"Há quanto tempo sua empresa existe?",options:["Ainda não comecei oficialmente","Menos de 2 anos","Entre 2 e 5 anos","Mais de 5 anos"],scores:[0,1,2,3]}
+];
+
+// ============================
+// STRATEGIC QUESTIONS
+// ============================
+var strategicQuestions=[
+  {q:"Quando alguém pergunta o que você faz, você consegue responder em uma frase e a pessoa entender na hora?",sub:"Isso revela o nível de clareza do seu posicionamento.",options:[{text:"Sim. Digo uma frase e a pessoa entende, se interessa e quer saber mais.",score:3,tag:"clareza"},{text:"Mais ou menos. Explico, mas sinto que preciso dar muitos detalhes.",score:2,tag:"clareza"},{text:"Depende. Cada vez explico de um jeito diferente.",score:1,tag:"clareza"},{text:"Não. Até eu me confundo quando tento explicar.",score:0,tag:"clareza"}]},
+  {q:"Você sabe exatamente quem é o cliente que mais valoriza e paga bem pelo seu trabalho?",sub:"Sem público claro, sua marca fala com todo mundo e não conecta com ninguém.",options:[{text:"Sim. Sei quem é, o que busca e por que me escolhe.",score:3,tag:"publico"},{text:"Tenho uma ideia geral, mas nunca aprofundei.",score:2,tag:"publico"},{text:"Atendo quem aparece. Não escolho.",score:1,tag:"publico"},{text:"Não sei quem é meu cliente ideal.",score:0,tag:"publico"}]},
+  {q:"Se um concorrente oferece preço mais baixo, o que acontece com seus clientes?",sub:"Isso mede o quanto sua marca é percebida pelo valor, ou apenas pelo preço.",options:[{text:"Ficam. Sabem que meu valor vai além do preço.",score:3,tag:"valor"},{text:"A maioria fica, mas alguns vão embora.",score:2,tag:"valor"},{text:"Perco clientes frequentemente para preço menor.",score:1,tag:"valor"},{text:"Entro em guerra de preço para não perder.",score:0,tag:"valor"}]},
+  {q:"Suas redes sociais, site, materiais e atendimento falam a mesma língua?",sub:"Inconsistência é o sintoma mais comum de uma marca sem posicionamento.",options:[{text:"Sim. Tudo é coerente: visual, tom, mensagem.",score:3,tag:"consistencia"},{text:"Em parte. Alguns canais são mais alinhados que outros.",score:2,tag:"consistencia"},{text:"Cada canal parece de um negócio diferente.",score:1,tag:"consistencia"},{text:"Não penso nisso. Faço o que dá no momento.",score:0,tag:"consistencia"}]},
+  {q:"Você sabe dizer qual é o propósito da sua marca, além de pagar as contas?",sub:"Propósito é o que separa marcas que vendem de marcas que são escolhidas.",options:[{text:"Sim. Tenho um propósito claro que guia minhas decisões.",score:3,tag:"proposito"},{text:"Sinto que existe algo, mas nunca coloquei em palavras.",score:2,tag:"proposito"},{text:"Meu foco é vender. Propósito parece coisa de marca grande.",score:1,tag:"proposito"},{text:"Nunca pensei nisso.",score:0,tag:"proposito"}]},
+  {q:"Seus clientes indicam você espontaneamente?",sub:"Indicação espontânea é o maior sinal de uma marca com essência clara.",options:[{text:"Sim, frequentemente. É meu principal canal.",score:3,tag:"indicacao"},{text:"Às vezes, mas não é consistente.",score:2,tag:"indicacao"},{text:"Raramente. Preciso correr atrás de cada cliente.",score:1,tag:"indicacao"},{text:"Quase nunca. Dependo 100% de tráfego pago ou esforço próprio.",score:0,tag:"indicacao"}]},
+  {q:"Se sua marca sumisse amanhã, seus clientes sentiriam falta ou simplesmente procurariam outro?",sub:"Essa é a pergunta que separa uma marca de verdade de um fornecedor qualquer.",options:[{text:"Sentiriam falta. Minha marca tem algo que não encontram em outro lugar.",score:3,tag:"essencia"},{text:"Alguns sentiriam, outros substituiriam fácil.",score:2,tag:"essencia"},{text:"A maioria substituiria sem pensar muito.",score:1,tag:"essencia"},{text:"Sinceramente? Acho que nem perceberiam.",score:0,tag:"essencia"}]}
+];
+
+var currentCtx=0, ctxAnswers=[];
+var currentQ=0, answers=[];
+
+// ============================
+// ENVIO DE LEAD NETLIFY + MAILERLITE
+// ============================
+function submitLeadAndContinue() {
+  var nome = document.getElementById('lead-name').value.trim();
+  var email = document.getElementById('lead-email').value.trim();
+  var whatsapp = document.getElementById('lead-whatsapp').value.trim();
+
+  if (!nome || !email) {
+    alert('Por favor, preencha seu nome e e-mail.');
+    return;
+  }
+
+  // 1) Enviar para Netlify Forms (backup)
+  var formData = new FormData();
+  formData.append('form-name', 'diagnostico');
+  formData.append('nome', nome);
+  formData.append('email', email);
+  formData.append('whatsapp', whatsapp);
+  fetch('/', { method: 'POST', body: formData })
+    .catch(function(err) { console.log('Netlify Forms erro:', err); });
+
+  // 2) Enviar para MailerLite (email marketing)
+  fetch('https://connect.mailerlite.com/api/subscribers', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZDRhMDU2MWM5ZmU1NjMxZWM0ZDhlMzFjNDQ0ZDVkNmZkMTM4ZDU4MGM2Y2UzMGQzYjVlMzYxZjlmNWI5ZjBmOGU1OGRiZTEzOTE1YTE0NTYiLCJpYXQiOjE3NzQ4MzE1MTcuNzk4OTM2LCJuYmYiOjE3NzQ4MzE1MTcuNzk4OTM5LCJleHAiOjQ5MzA1MDUxMTcuNzk1MDM2LCJzdWIiOiIyMjUxMjA1Iiwic2NvcGVzIjpbXX0.LvjN2_AdnSMakXXEcmqVbLWSnbVjHxUChmMDFmk3vWFVNN1pHjC7WqZG_3C9ghMLNqTfPTPY2dtUbBn5arj3w4qkHOExqH_0pm0SmQmvaC2hzuGwXu6_uHGdjSdWXbODVeViNvlE_jISoXHa0CeiteE0iHTUezQO5WG4Ts1SERzihKexPmG_JU18ZAcc1Hh0ko6Dt_O1_3AjdeGBSMgXFBGfMoUJgaXqY0kK0NvoZsWTRFpI8VSK_YykWpohyPOGkkvQ58jmHxbsGgLWqw15EzxDpxRKsKvpeuWyk05EJox4lNZ6Jn17xX4GclQ0-gByymtl13CH1ESzhQbEbg41Aee78qu7u_JvZ3g5_g0tCenNxFglinJfW8wFgb-hiSU0zUuI6_MztkpJpSjbCWhAWQVM3gg48Me_uBYbXTcUi17dVonPMz0yl4FJCpAGytV76tcimnRwhiezzpmItPUyskmAYNGNW100dLykP1rhGxkLgg9yvfo-WLMAJAcTa4U2MKbl5o-SAfyNpz9NOQXQYTPVFFf68QIZ7ZEJC0bZjFZ8kTLqVSx4CVb-S9Z-CXz1v6WhALACdLDrZXDhMEhXPpqekqi1FlLOxZH9q9AAlflmv1jWvBhWqR0zpEbG07zGnIjYRo61I-AfhE1iuUCyokKvaHEQhk4slfjvTWT22zk'
+    },
+    body: JSON.stringify({
+      email: email,
+      fields: {
+        name: nome,
+        last_name: '',
+        phone: whatsapp
+      },
+      groups: ['183324004183967092']
+    })
+  }).catch(function(err) { console.log('MailerLite erro:', err); });
+
+  // 3) Continuar o quiz normalmente
+  goTo('step-context');
+}
+
+function goTo(id){
+  document.querySelectorAll('#quiz-app > div').forEach(function(d){d.style.display='none';});
+  document.getElementById(id).style.display='block';
+  if(id==='step-context'){showContext();}
+  if(id==='step-strategic'){showQuestion();}
+}
+
+// CONTEXT
+function showContext(){
+  var q=contextQuestions[currentCtx];
+  var h='<h2 style="margin-bottom:1rem;line-height:1.35;text-align:center;">'+q.q+'</h2>';
+  q.options.forEach(function(o,i){
+    h+='<button class="context-option '+(ctxAnswers[currentCtx]===i?'selected':'')+'" onclick="selectContext('+i+')">'+o+'</button>';
+  });
+  document.getElementById('context-container').innerHTML=h;
+  document.getElementById('ctx-prev').style.display=currentCtx>0?'inline-flex':'none';
+  document.getElementById('ctx-next').style.display='none';
+}
+function selectContext(i){
+  ctxAnswers[currentCtx]=i;
+  document.querySelectorAll('.context-option').forEach(function(b,j){b.classList.toggle('selected',j===i);});
+  var btn=document.getElementById('ctx-next');
+  btn.style.display='inline-flex';
+  btn.textContent=currentCtx===contextQuestions.length-1?'Iniciar Diagnóstico':'Próxima';
+}
+function nextContext(){
+  if(ctxAnswers[currentCtx]===undefined)return;
+  if(currentCtx<contextQuestions.length-1){currentCtx++;showContext();}
+  else{goTo('step-strategic');}
+}
+function prevContext(){if(currentCtx>0){currentCtx--;showContext();}}
+
+// STRATEGIC
+function showQuestion(){
+  var q=strategicQuestions[currentQ];
+  document.getElementById('progress-bar').style.width=((currentQ)/strategicQuestions.length)*100+'%';
+  var h='<h2 style="margin-bottom:.5rem;line-height:1.35;text-align:center;">'+q.q+'</h2>';
+  h+='<p style="font-size:1rem;color:var(--cta);margin-bottom:2rem;font-weight:400;line-height:1.6;text-align:center;">'+q.sub+'</p>';
+  q.options.forEach(function(o,i){
+    h+='<button class="quiz-option '+(answers[currentQ]===i?'selected':'')+'" onclick="selectOption('+i+')">'+o.text+'</button>';
+  });
+  document.getElementById('question-container').innerHTML=h;
+  document.getElementById('btn-prev').style.display=currentQ>0?'inline-flex':'none';
+  document.getElementById('btn-next').style.display='none';
+}
+function selectOption(i){
+  answers[currentQ]=i;
+  document.querySelectorAll('.quiz-option').forEach(function(b,j){b.classList.toggle('selected',j===i);});
+  var btn=document.getElementById('btn-next');
+  btn.style.display='inline-flex';
+  btn.textContent=currentQ===strategicQuestions.length-1?'Ver Diagnóstico':'Próxima';
+}
+function nextQuestion(){
+  if(answers[currentQ]===undefined)return;
+  if(currentQ<strategicQuestions.length-1){currentQ++;showQuestion();}
+  else{showResult();}
+}
+function prevQuestion(){if(currentQ>0){currentQ--;showQuestion();}}
+
+// RESULT
+function showResult(){
+  try{
+    // Expande o container (640px default) para largura do ecossistema na home (1100px)
+    var qc = document.querySelector('.quiz-container');
+    if (qc) { qc.style.maxWidth = '1100px'; }
+
+    var maturityScore=0;
+    for(var i=0;i<ctxAnswers.length;i++){
+      if(ctxAnswers[i]!==undefined && contextQuestions[i]){
+        maturityScore+=contextQuestions[i].scores[ctxAnswers[i]];
+      }
+    }
+
+    var total=0;
+    var tagScores={clareza:0,publico:0,valor:0,consistencia:0,proposito:0,indicacao:0,essencia:0};
+    for(var i=0;i<answers.length;i++){
+      if(answers[i]!==undefined && strategicQuestions[i] && strategicQuestions[i].options[answers[i]]){
+        var opt=strategicQuestions[i].options[answers[i]];
+        total+=opt.score;
+        tagScores[opt.tag]=opt.score;
+      }
+    }
+    var max=strategicQuestions.length*3;
+    var pct=max>0?Math.round((total/max)*100):0;
+
+    goTo('step-result');
+
+    // Score ring
+    var scoreEl=document.getElementById('result-score');
+    if(scoreEl) scoreEl.textContent=pct+'%';
+    var circumference=2*Math.PI*70;
+    var offset=circumference-(pct/100)*circumference;
+    var circle=document.getElementById('score-circle');
+    if(circle){
+      circle.style.strokeDasharray=circumference;
+      setTimeout(function(){circle.style.strokeDashoffset=offset;},300);
+    }
+
+    var level,title,subtitle,deepAnalysis;
+
+    var sorted=[];
+    for(var k in tagScores){sorted.push([k,tagScores[k]]);}
+    sorted.sort(function(a,b){return a[1]-b[1];});
+
+    // Deep analysis texts per tag
+    var deepPains={
+      clareza:{
+        0:'<strong>Clareza zero.</strong> Quando você não consegue explicar o que faz em uma frase, o mercado faz isso por você. E o mercado não é gentil. Ele simplifica, reduz, compara. Sem clareza, você é "mais um". Pense: se o seu melhor cliente precisasse indicar você agora, ele saberia dizer exatamente o que você faz e por que você é diferente?',
+        1:'<strong>Clareza instável.</strong> Você sabe o que faz, mas cada vez explica de um jeito. Isso parece flexibilidade, mas o mercado lê como insegurança. Quando sua marca não tem uma frase clara e repetível, cada interação começa do zero. Você perde a força do acúmulo.'
+      },
+      publico:{
+        0:'<strong>Público indefinido.</strong> Vender para todo mundo é o mesmo que vender para ninguém. Sem saber exatamente quem é o cliente que mais valoriza o que você entrega, sua comunicação vira ruído. Você investe tempo, dinheiro e energia falando com pessoas que nunca vão comprar de você.',
+        1:'<strong>Público vago.</strong> Ter uma "ideia geral" do público é perigoso porque dá a sensação de que está tudo resolvido. Não está. Posicionamento exige precisão. Quem é essa pessoa? O que ela busca? Por que ela escolheria você e não o concorrente? Se você não sabe responder isso com segurança, sua marca está vulnerável.'
+      },
+      valor:{
+        0:'<strong>Guerra de preço.</strong> Se o seu cliente vai embora quando encontra mais barato, sua marca não está comunicando valor. Ela está funcionando como commodity. O preço vira o único critério. E nessa guerra, quem tem mais caixa vence. Não quem entrega mais.',
+        1:'<strong>Valor percebido frágil.</strong> Alguns clientes ficam, outros vão para o mais barato. Isso significa que o valor existe, mas não está sendo comunicado de forma consistente. A pergunta é: o que justifica o investimento em você? Se essa resposta não está clara na sua comunicação, o cliente decide sozinho. E geralmente decide pelo preço.'
+      },
+      consistencia:{
+        0:'<strong>Marca fragmentada.</strong> Site diz uma coisa, Instagram outra, atendimento outra. Para você, são "canais diferentes". Para o cliente, é confusão. E confusão gera desconfiança. Ninguém compra de uma marca que não parece saber quem é.',
+        1:'<strong>Consistência parcial.</strong> Alguns pontos de contato funcionam bem, outros não. O perigo é que você não percebe a inconsistência, mas o cliente percebe. Ele sente que algo não encaixa, mesmo sem saber dizer o quê. Esse desencaixe silencioso custa vendas que você nunca vai contabilizar.'
+      },
+      proposito:{
+        0:'<strong>Marca sem causa.</strong> Sem um propósito articulado, sua marca existe para vender. Só isso. E marcas que existem só para vender competem por atenção em desvantagem. Propósito não é frase bonita. É o que faz o cliente escolher você quando existem 50 opções parecidas.',
+        1:'<strong>Propósito latente.</strong> Você sente que existe algo maior por trás do que faz. E provavelmente existe. Mas enquanto esse propósito não estiver nomeado, ele não trabalha por você. O propósito precisa estar em palavras, na sua comunicação, no seu dia a dia. Senão, é só um sentimento guardado.'
+      },
+      indicacao:{
+        0:'<strong>Marca que não marca.</strong> Se seus clientes não te indicam espontaneamente, sua marca não está criando memória. Você está entregando um serviço e indo embora. A indicação é o termômetro mais honesto de uma marca. Se ela não acontece, é porque a experiência não foi suficientemente memorável.',
+        1:'<strong>Indicação aleatória.</strong> Acontece às vezes, mas não é consistente. Isso geralmente significa que a experiência com a marca varia. Alguns clientes vivem o melhor da sua marca, outros não. A questão não é se você é bom, é se a marca entrega a mesma experiência sempre.'
+      },
+      essencia:{
+        0:'<strong>Marca substituível.</strong> Se seus clientes te trocariam sem pensar duas vezes, sua marca não tem essência percebida. Eles compram de você por conveniência, preço ou falta de alternativa. Quando a alternativa aparecer, eles vão. Essência é o que faz alguém ficar mesmo quando é mais fácil ir embora.',
+        1:'<strong>Essência não comunicada.</strong> Ela existe. Você sabe que tem algo diferente. Mas o mercado não vê. A essência está presa dentro da empresa, entre os fundadores, nos bastidores. O trabalho é tirá-la de dentro e colocá-la onde o cliente pode ver, sentir e valorizar.'
+      }
+    };
+
+    if(pct>=80){
+      level='Diagnóstico<br class="mobile-br">Marca com Essência Ativa';
+      title='Sua marca tem base sólida. Mas boa <strong style="font-weight:650;">não é memorável</strong>.';
+      subtitle='Você está à frente da maioria. Sua marca já tem fundamentos. A pergunta agora é diferente: você está apenas mantendo ou está construindo algo que vai ser lembrado daqui a 10 anos?';
+      deepAnalysis='Marcas que chegam nesse nível correm um risco invisível: a acomodação. Tudo funciona, os clientes vêm, o negócio roda. Mas <strong>funcionar não é o mesmo que protagonizar</strong>. O próximo nível não é sobre corrigir o que está errado. É sobre amplificar o que já é forte e transformar boa reputação em posicionamento inabalável.';
+    }else if(pct>=50){
+      level='Diagnóstico<br class="mobile-br">Marca com Essência Latente';
+      title='Sua marca tem potencial real, mas está <strong style="font-weight:650;">desperdiçando</strong>.';
+      subtitle='Existe algo genuíno no que você faz. Seus melhores clientes sabem disso. O problema é que o mercado como um todo não consegue enxergar.';
+      deepAnalysis='Esse é o estágio mais frustrante: <strong>você sabe que entrega mais do que o mercado percebe</strong>. Sente que o preço não reflete o valor. Que os concorrentes parecem maiores mesmo entregando menos. Isso acontece porque a essência da sua marca existe, mas não foi revelada, nomeada e comunicada de forma estratégica. Ela está latente. Presa dentro de você e da sua empresa.';
+    }else{
+      level='Diagnóstico<br class="mobile-br">Marca com Essência Adormecida';
+      title='Sua marca está <strong style="font-weight:650;">operando no escuro</strong>.';
+      subtitle='Sem posicionamento claro, cada real investido em marketing é um tiro no escuro. Cada post, cada campanha, cada conversa de venda começa do zero.';
+      deepAnalysis='O diagnóstico é direto: <strong>sua marca ainda não existe como marca</strong>. Existe como nome, como serviço, como produto. Mas não como posicionamento. Isso significa que você está competindo no mercado mais difícil que existe: o mercado dos indiferenciados. Onde o cliente escolhe por preço, por proximidade ou por acaso. Nenhuma dessas razões constrói um negócio sustentável.';
+    }
+
+    var levelEl=document.getElementById('result-level');
+    var titleEl=document.getElementById('result-title');
+    var subtitleEl=document.getElementById('result-subtitle');
+    if(levelEl) levelEl.innerHTML=level;
+    if(titleEl) titleEl.innerHTML=title;
+    if(subtitleEl) subtitleEl.textContent=subtitle;
+
+    // Build deep diagnosis
+    var diagHtml='';
+
+    // Deep analysis paragraph
+    diagHtml+='<div class="quiz-result-section" style="background:rgba(61,107,126,.08);border-color:rgba(61,107,126,.2);"><h4>Análise do seu momento</h4><p style="font-size:.9rem;color:var(--t-700);line-height:1.85;">'+deepAnalysis+'</p></div>';
+
+    // Critical points with deep text
+    var criticals=[];
+    for(var i=0;i<Math.min(3,sorted.length);i++){
+      var tag=sorted[i][0],score=sorted[i][1];
+      if(score<=1 && deepPains[tag] && deepPains[tag][score]){
+        criticals.push(deepPains[tag][score]);
+      }
+    }
+
+    if(criticals.length>0){
+      diagHtml+='<div class="quiz-result-section"><h4>Onde sua marca está mais vulnerável</h4>';
+      for(var i=0;i<criticals.length;i++){
+        diagHtml+='<div style="padding:1rem 0;'+(i<criticals.length-1?'border-bottom:1px solid var(--border-light);':'')+'"><p style="font-size:.88rem;color:var(--t-700);line-height:1.8;">'+criticals[i]+'</p></div>';
+      }
+      diagHtml+='</div>';
+    }
+
+    // Strengths
+    var strengths=[];
+    var sTexts={clareza:'Clareza na comunicação',publico:'Conhecimento do público',valor:'Percepção de valor',consistencia:'Consistência da marca',proposito:'Propósito articulado',indicacao:'Indicações orgânicas',essencia:'Essência percebida'};
+    for(var i=0;i<sorted.length;i++){
+      if(sorted[i][1]>=2 && sTexts[sorted[i][0]]){strengths.push(sTexts[sorted[i][0]]);}
+    }
+    if(strengths.length>0){
+      diagHtml+='<div class="quiz-result-section"><h4>O que já está funcionando</h4><ul class="strength-list">';
+      for(var i=0;i<strengths.length;i++){diagHtml+='<li>'+strengths[i]+'</li>';}
+      diagHtml+='</ul></div>';
+    }
+
+    // Closing reflection
+    diagHtml+='<div style="text-align:center;margin:3rem 0 1.5rem;max-width:650px;margin-left:auto;margin-right:auto;padding:2rem;background:rgba(61,107,126,.08);border-radius:12px;border:1px solid rgba(61,107,126,.15);"><p style="font-family:var(--heading);font-size:1.5rem;font-weight:600;color:var(--t-900);line-height:1.4;">O primeiro passo para mudar o posicionamento da sua marca é <strong style="font-weight:750;">enxergar com clareza</strong> onde ela está hoje.</p></div>';
+
+    var diagEl=document.getElementById('result-diagnosis');
+    if(diagEl) diagEl.innerHTML=diagHtml;
+
+  }catch(e){
+    console.error('Erro no diagnóstico:',e);
+  }
+
+  // PRODUCTS — mesmo layout do Ecossistema Marca com Essência© da home
+  var prodHtml='<div style="margin-top:1rem;">';
+  prodHtml+='<div class="text-center" style="margin-bottom:3rem;"><span class="label">Ecossistema Marca com Essência<sup style="font-size:.55em;">©</sup></span><h2 style="max-width:650px;margin:0 auto;">Agora que você sabe onde está,<br>a pergunta é: o que fazer com isso?</h2><div class="line line--center"></div><p style="max-width:560px;margin:1rem auto 0;font-size:.95rem;color:var(--t-600);">Cada produto atende um nível de necessidade. Do primeiro passo à <strong style="font-weight:650;">Estruturação</strong> completa da marca.</p></div>';
+
+  prodHtml+='<div class="eco-products">';
+
+  // LIVRO
+  prodHtml+='<div class="eco-card eco-card--livro">';
+  prodHtml+='<img src="/images/livro-mockup.jpg" alt="Livro Marca com Essência" style="width:100%;max-width:260px;margin:0 auto 1.2rem;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.1);">';
+  prodHtml+='<p class="eco-card__tag">Faça você mesmo</p>';
+  prodHtml+='<h3 class="eco-card__name"><span class="hl">Livro</span><br>Marca com Essência<sup style="font-size:.55em;">&copy;</sup></h3>';
+  prodHtml+='<p class="eco-card__desc">Estruture sua marca com clareza e direção, de forma 100% prática e com <span class="em-key">Inteligência Artificial</span> integrada. Você sai com a <span class="em-key">Base Estratégica</span> da sua marca pronta.</p>';
+  prodHtml+='<div class="eco-card__features">';
+  prodHtml+='<span class="eco-card__feature">Agentes de IA no ChatGPT treinados com o método</span>';
+  prodHtml+='<span class="eco-card__feature">Áudios complementares (Spotify)</span>';
+  prodHtml+='<span class="eco-card__feature">Exercícios estruturados (Google Docs)</span>';
+  prodHtml+='</div>';
+  prodHtml+='<a href="/livro" class="btn">Quero Meu Livro</a>';
+  prodHtml+='</div>';
+
+  // MENTORIA (featured)
+  prodHtml+='<div class="eco-card eco-card--featured">';
+  prodHtml+='<svg class="eco-card__icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
+  prodHtml+='<circle cx="40" cy="40" r="28" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="2"/>';
+  prodHtml+='<circle cx="40" cy="40" r="18" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>';
+  prodHtml+='<path d="M40 18 L40 12" stroke="rgba(255,255,255,.4)" stroke-width="2" stroke-linecap="round"/>';
+  prodHtml+='<path d="M40 22 L52 50 L40 44 L28 50 Z" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="0 40 40;10 40 40;0 40 40;-10 40 40;0 40 40" dur="4s" repeatCount="indefinite"/></path>';
+  prodHtml+='<circle cx="40" cy="40" r="3" fill="rgba(255,255,255,.4)"/>';
+  prodHtml+='<circle cx="60" cy="20" r="1.5" fill="#D4C49E" opacity=".4"><animate attributeName="opacity" values=".2;.8;.2" dur="1.2s" repeatCount="indefinite"/></circle>';
+  prodHtml+='<circle cx="22" cy="60" r="2" fill="#D4C49E" opacity=".3"><animate attributeName="opacity" values=".15;.6;.15" dur="1.8s" repeatCount="indefinite" begin=".4s"/></circle>';
+  prodHtml+='</svg>';
+  prodHtml+='<p class="eco-card__tag">Com apoio estratégico</p>';
+  prodHtml+='<h3 class="eco-card__name">Mentoria<br>Marca com Essência<sup style="font-size:.55em;">&copy;</sup></h3>';
+  prodHtml+='<p class="eco-card__desc">Aprofunde o processo com direção e acompanhamento estratégico da Kelly Albert, sem perder o protagonismo da própria construção.</p>';
+  prodHtml+='<div class="eco-card__features">';
+  prodHtml+='<span class="eco-card__feature">8 encontros ao vivo em grupo</span>';
+  prodHtml+='<span class="eco-card__feature">Devolutivas individuais</span>';
+  prodHtml+='<span class="eco-card__feature">Exercícios práticos entre encontros</span>';
+  prodHtml+='</div>';
+  prodHtml+='<a href="/mentoria" class="btn">Saiba mais</a>';
+  prodHtml+='</div>';
+
+  // PROGRAMA
+  prodHtml+='<div class="eco-card eco-card--programa">';
+  prodHtml+='<svg class="eco-card__icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
+  prodHtml+='<polygon points="40,8 72,24 72,56 40,72 8,56 8,24" fill="rgba(255,255,255,.06)" stroke="#fff" stroke-width="1.5" opacity=".55"/>';
+  prodHtml+='<polygon points="40,16 62,28 62,52 40,64 18,52 18,28" fill="none" stroke="#fff" stroke-width="1" opacity=".3"/>';
+  prodHtml+='<line x1="40" y1="8" x2="40" y2="72" stroke="#fff" stroke-width=".8" opacity=".2"/>';
+  prodHtml+='<line x1="8" y1="24" x2="72" y2="56" stroke="#fff" stroke-width=".8" opacity=".2"/>';
+  prodHtml+='<line x1="72" y1="24" x2="8" y2="56" stroke="#fff" stroke-width=".8" opacity=".2"/>';
+  prodHtml+='<circle cx="40" cy="40" r="5" fill="rgba(255,255,255,.15)" stroke="#fff" stroke-width="1.5"><animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/></circle>';
+  prodHtml+='<circle cx="40" cy="8" r="2.5" fill="#D4C49E" opacity=".6"><animate attributeName="opacity" values=".3;.8;.3" dur="1.5s" repeatCount="indefinite"/></circle>';
+  prodHtml+='<circle cx="72" cy="24" r="2" fill="#fff" opacity=".4"><animate attributeName="opacity" values=".2;.6;.2" dur="1.8s" repeatCount="indefinite" begin=".3s"/></circle>';
+  prodHtml+='<circle cx="8" cy="56" r="2" fill="#D4C49E" opacity=".3"><animate attributeName="opacity" values=".15;.5;.15" dur="2s" repeatCount="indefinite" begin=".6s"/></circle>';
+  prodHtml+='</svg>';
+  prodHtml+='<p class="eco-card__tag">Estruturação completa</p>';
+  prodHtml+='<h3 class="eco-card__name"><span class="hl">Programa</span><br>Marca com Essência<sup style="font-size:.55em;">&copy;</sup></h3>';
+  prodHtml+='<p class="eco-card__desc">O projeto completo de posicionamento. Um processo profundo, estruturado e conduzido da essência à presença no mercado.</p>';
+  prodHtml+='<div class="eco-card__features">';
+  prodHtml+='<span class="eco-card__feature">Revelação de essência + base estratégica</span>';
+  prodHtml+='<span class="eco-card__feature">Identidade verbal e plano de comunicação</span>';
+  prodHtml+='<span class="eco-card__feature">Agentes de IA exclusivos da marca</span>';
+  prodHtml+='</div>';
+  prodHtml+='<a href="/programa" class="btn">Saiba mais</a>';
+  prodHtml+='</div>';
+
+  // DIREÇÃO
+  prodHtml+='<div class="eco-card eco-card--direcao">';
+  prodHtml+='<svg class="eco-card__icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">';
+  prodHtml+='<circle cx="40" cy="40" r="28" fill="none" stroke="#3D6B7E" stroke-width="1.5" opacity=".4"/>';
+  prodHtml+='<circle cx="40" cy="40" r="18" fill="none" stroke="#3D6B7E" stroke-width="1" opacity=".25" stroke-dasharray="3 4"><animateTransform attributeName="transform" type="rotate" values="0 40 40;360 40 40" dur="20s" repeatCount="indefinite"/></circle>';
+  prodHtml+='<path d="M40 15 L36 40 L44 40 Z" fill="rgba(184,155,106,.3)" stroke="#B89B6A" stroke-width="1.5" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="-5 40 40;5 40 40;-5 40 40" dur="5s" repeatCount="indefinite"/></path>';
+  prodHtml+='<circle cx="40" cy="40" r="4" fill="#B89B6A" opacity=".6"/>';
+  prodHtml+='<circle cx="55" cy="18" r="1.5" fill="#B89B6A" opacity=".4"><animate attributeName="opacity" values=".2;.7;.2" dur="1.5s" repeatCount="indefinite"/></circle>';
+  prodHtml+='</svg>';
+  prodHtml+='<p class="eco-card__tag">Acompanhamento contínuo</p>';
+  prodHtml+='<h3 class="eco-card__name"><span class="hl">Direção</span><br>com Essência<sup style="font-size:.55em;">&copy;</sup></h3>';
+  prodHtml+='<p class="eco-card__desc">Acompanhamento estratégico mensal em branding, comunicação e marketing. Clareza e direção contínua para o seu negócio.</p>';
+  prodHtml+='<div class="eco-card__features">';
+  prodHtml+='<span class="eco-card__feature">04 encontros mensais individuais</span>';
+  prodHtml+='<span class="eco-card__feature">Resumo estratégico em PDF</span>';
+  prodHtml+='<span class="eco-card__feature">Revisão a cada encontro</span>';
+  prodHtml+='</div>';
+  prodHtml+='<a href="/direcao" class="btn">Saiba mais</a>';
+  prodHtml+='</div>';
+
+  prodHtml+='</div></div>';
+
+  var ctaTextEl=document.getElementById('result-cta-text');
+  var ctaEl=document.getElementById('result-cta');
+  if(ctaTextEl) ctaTextEl.innerHTML='';
+  if(ctaEl) ctaEl.innerHTML=prodHtml;
+}
+</script>
+</body></html>

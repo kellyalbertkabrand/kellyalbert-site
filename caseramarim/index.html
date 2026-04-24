@@ -1,0 +1,458 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Ramarim | KA Inteligência para Marcas</title>
+<meta name="description" content="Case de posicionamento estratégico para Ramarim: marca de calçados femininos com mais de 60 anos de história. Como renovamos a narrativa mantendo o legado e abrindo espaço para a mulher contemporânea.">
+<meta property="og:title" content="Case Ramarim | KA Inteligência para Marcas">
+<meta property="og:description" content="Posicionamento estratégico completo para Ramarim — uma marca brasileira com 60+ anos que une tradição, moda e autenticidade.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://kellyalbert.com.br/images/ramarim/capa.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kellyalbert.com.br/caseramarim/">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+:root{
+  /* Paleta Ramarim institucional — preto, branco e neutros terrosos do próprio brand book */
+  --ram-preto:#0F1112;
+  --ram-tinta:#2A2A2A;
+  --ram-branco:#FFFFFF;
+  --ram-bege:#F4F0E9;
+  --ram-bege-escuro:#E8E2D5;
+  --ram-cobre:#8B5A2B;
+  --ram-cobre-sutil:rgba(139,90,43,.08);
+  --ram-dourado:#B89B6A;
+  --ram-asfalto:#50504E;
+}
+
+/* Imagens com estilo editorial do brand book */
+.ci{width:100%;border-radius:0;box-shadow:0 24px 60px rgba(0,0,0,.08);}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
+.cg img{width:100%;border-radius:0;box-shadow:0 16px 40px rgba(0,0,0,.07);transition:transform .4s ease;}
+.cg img:hover{transform:scale(1.015);}
+.cfull{width:100%;margin:2.5rem 0;}
+.cfull img{width:100%;border-radius:0;box-shadow:0 20px 60px rgba(0,0,0,.08);}
+
+/* Quote editorial Ramarim - preto + acento cobre sutil */
+.ch{padding:2.5rem 2.8rem;background:var(--ram-cobre-sutil);border-left:3px solid var(--ram-cobre);border-radius:0;margin:2.5rem 0;}
+.ch p{margin:0;font-family:var(--heading);font-size:1.3rem;font-style:italic;line-height:1.6;color:var(--ram-preto);font-weight:400;}
+.ch .src{margin-top:.8rem;font-family:var(--body);font-size:.78rem;font-style:normal;color:var(--ram-asfalto);font-weight:600;letter-spacing:.15em;text-transform:uppercase;}
+
+/* Stats discretas - fundo bege, numeração preto */
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:2.5rem 0;padding:2.5rem 2rem;background:var(--ram-bege);border-radius:0;border-top:1px solid var(--ram-cobre);}
+.cd-i{text-align:center;}
+.cd-i .n{font-family:var(--heading);font-size:2.4rem;font-weight:700;color:var(--ram-preto);line-height:1;letter-spacing:-.02em;}
+.cd-i .d{font-size:.72rem;color:var(--ram-asfalto);margin-top:.4rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600;}
+
+/* Pills institucionais (cobre sutil, não vermelho) */
+.cp{display:inline-block;padding:.5rem 1.1rem;background:var(--ram-cobre-sutil);border:1px solid rgba(139,90,43,.18);color:var(--ram-cobre);border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:.25rem;}
+
+/* Etapas em 1 coluna — visual editorial preto e branco */
+.cetapas{display:grid;grid-template-columns:1fr;gap:0;margin:2rem 0;max-width:720px;margin-left:auto;margin-right:auto;}
+.cetapa{padding:1.8rem 2rem;background:var(--ram-branco);border-bottom:1px solid rgba(0,0,0,.08);display:grid;grid-template-columns:70px 1fr;gap:1.5rem;align-items:center;transition:all .3s ease;}
+.cetapa:first-child{border-top:1px solid rgba(0,0,0,.08);}
+.cetapa:hover{background:var(--ram-bege);}
+.cetapa .num{font-family:var(--heading);font-size:2rem;font-weight:700;color:var(--ram-preto);line-height:1;letter-spacing:-.02em;}
+.cetapa .tit{font-weight:700;font-size:.95rem;margin:0 0 .3rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ram-preto);}
+.cetapa p{margin:0;font-family:var(--body);font-size:.88rem;color:var(--ram-asfalto);line-height:1.65;}
+
+@media(max-width:768px){.cg{grid-template-columns:1fr;}.cd{grid-template-columns:1fr 1fr;gap:1.2rem;padding:1.8rem;}.cetapa{grid-template-columns:50px 1fr;padding:1.4rem 1.2rem;gap:1rem;}.cetapa .num{font-size:1.6rem;}}
+
+/* Label da seção */
+.ram-label{display:inline-block;font-size:.65rem;color:var(--ram-cobre);font-weight:700;letter-spacing:.35em;text-transform:uppercase;margin-bottom:.5rem;}
+
+/* Bloco editorial preto - frase-chave */
+.ram-editorial{
+  background:var(--ram-preto);
+  color:var(--ram-branco);
+  padding:5rem 3rem;
+  margin:3rem 0;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.ram-editorial h2{
+  font-family:var(--heading);
+  font-size:2.6rem;
+  font-weight:700;
+  color:var(--ram-branco);
+  line-height:1.15;
+  letter-spacing:-.01em;
+  margin:0 0 1.5rem;
+  text-transform:uppercase;
+}
+.ram-editorial h2 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--ram-dourado);
+  text-transform:none;
+  display:block;
+  font-size:1.4rem;
+  margin-top:.5rem;
+  letter-spacing:0;
+}
+.ram-editorial p{
+  font-size:1.05rem;
+  color:rgba(255,255,255,.82);
+  max-width:620px;
+  margin:0 auto;
+  line-height:1.7;
+}
+@media(max-width:680px){.ram-editorial{padding:3.5rem 1.5rem}.ram-editorial h2{font-size:1.7rem}.ram-editorial h2 em{font-size:1rem}}
+
+/* Manifesto tipográfico Ramarize-se */
+.ram-manifesto{
+  background:var(--ram-bege);
+  padding:5rem 3rem;
+  margin:4rem 0;
+  text-align:center;
+  border-top:1px solid rgba(139,90,43,.3);
+  border-bottom:1px solid rgba(139,90,43,.3);
+}
+.ram-manifesto .big{
+  font-family:var(--heading);
+  font-size:5rem;
+  font-weight:700;
+  color:var(--ram-preto);
+  text-transform:uppercase;
+  letter-spacing:-.03em;
+  line-height:.95;
+  margin:0;
+}
+.ram-manifesto .big em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--ram-cobre);
+}
+.ram-manifesto .sub{
+  font-size:.78rem;
+  color:var(--ram-asfalto);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  margin-top:1.5rem;
+  font-weight:600;
+}
+@media(max-width:680px){.ram-manifesto{padding:3rem 1.2rem}.ram-manifesto .big{font-size:2.6rem}}
+
+/* Ficha técnica editorial - fundo preto com header em dourado */
+.ram-ficha{
+  padding:2.8rem 3rem;
+  background:var(--ram-preto);
+  color:var(--ram-branco);
+  margin-top:3rem;
+}
+.ram-ficha h3{
+  font-family:var(--heading);
+  font-size:.75rem;
+  color:var(--ram-dourado);
+  text-transform:uppercase;
+  letter-spacing:.35em;
+  font-weight:600;
+  margin:0 0 1.5rem;
+}
+.ram-ficha p{color:rgba(255,255,255,.85);margin:.4rem 0;font-size:.92rem;}
+.ram-ficha p strong{color:var(--ram-branco);font-weight:700;}
+@media(max-width:680px){.ram-ficha{padding:2rem 1.5rem}}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0F1112">
+</head><body>
+
+<nav class="nav"><div class="nav__inner">
+  <a href="/" class="nav__brand"><img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas" class="nav__logo"></a>
+  <ul class="nav__links"><li><a href="/">Home</a></li><li><a href="/sobre">Sobre</a></li><li class="nav__dropdown"><a class="nav__dropdown-toggle">Produtos</a><div class="nav__dropdown-menu"><a href="/livro">Livro</a><a href="/mentoria">Mentoria</a><a href="/direcao">Direção</a><a href="/programa">Programa</a></div></li><li><a href="/cases">Cases</a></li><li><a href="/quiz" class="nav__cta">Diagnóstico Gratuito</a></li></ul>
+  <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+
+<!-- HERO — PRETO EDITORIAL -->
+<!-- HERO PADRONIZADO — FUNDO #F8F7F2 COM XADREZ, TEXTO PRETO ALTO CONTRASTE -->
+<header class="page-header case-hero" style="background:#f8f7f2!important;color:#000;text-align:center;position:relative;overflow:hidden;padding:9rem 0 5rem;border-bottom:1px solid rgba(0,0,0,.08);">
+  <!-- Textura XADREZ tabuleiro -->
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.04) 1px,transparent 1.3px),radial-gradient(circle,rgba(0,0,0,.04) 1px,transparent 1.3px);background-size:26px 26px,26px 26px;background-position:0 0,13px 13px;pointer-events:none;"></div>
+  <div class="container" style="text-align:center;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;max-width:760px;">
+    <!-- Tipo de entrega em 2 linhas -->
+    <p class="case-hero__tipo" style="text-align:center;font-family:var(--heading);font-size:1.15rem;font-weight:400;color:#000;line-height:1.15;margin:0 0 1rem;letter-spacing:.02em;">
+      Case | Posicionamento Estratégico
+    </p>
+    <!-- Nome da marca -->
+    <h1 style="text-align:center;width:100%;color:#000;font-family:var(--heading);font-size:3.8rem;font-weight:700;line-height:1;letter-spacing:-.02em;margin:0 0 1rem;">Ramarim</h1>
+    <!-- Descrição -->
+    <p style="text-align:center;color:#1A1A1A;max-width:640px;font-family:var(--body);font-size:1.02rem;font-weight:500;line-height:1.75;margin:0;">Mais de 60 anos empoderando a mulher brasileira. Como renovamos a narrativa de uma marca de calçados femininos com seis décadas de tradição, mantendo o legado e abrindo espaço para a mulher contemporânea.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:900px;">
+
+    <!-- CRÉDITOS · ASSINATURA VISUAL KA + VM ROCKS -->
+
+
+    <!-- CAPA BRAND BOOK -->
+    <img src="/images/ramarim/capa.jpg" alt="Brand Book Ramarim" class="ci animate-on-scroll">
+
+    <!-- STATS -->
+    <div class="cd animate-on-scroll">
+      <div class="cd-i"><div class="n">60+</div><div class="d">Anos de história</div></div>
+      <div class="cd-i"><div class="n">5</div><div class="d">Pilares da marca</div></div>
+      <div class="cd-i"><div class="n">BR</div><div class="d">Marca brasileira</div></div>
+      <div class="cd-i"><div class="n">3</div><div class="d">Gerações de clientes</div></div>
+    </div>
+
+    <!-- POR QUE NOS PROCUROU -->
+    <div class="animate-on-scroll">
+      <span class="ram-label">Por Que Nos Procurou</span>
+      <h2>Uma marca sólida, com legado reconhecido, que precisava <em>renovar a narrativa sem romper com o passado</em></h2>
+      <div class="line"></div>
+      <p>A Ramarim é uma das marcas de calçados femininos mais tradicionais do Brasil — mais de 60 anos de história, três gerações de consumidoras, autoridade consolidada em qualidade e acabamento refinado.</p>
+      <p>Mas toda marca com décadas de mercado chega a um momento em que precisa olhar pra dentro e se perguntar: <em>a forma como nos comunicamos hoje ainda traduz o que somos?</em></p>
+    </div>
+
+    <img src="/images/ramarim/essencia.jpg" alt="Essência Ramarim - Ramarize-se" class="ci animate-on-scroll" style="margin-top:2.5rem;">
+
+    <!-- O DESAFIO -->
+    <div class="animate-on-scroll" style="margin-top:2.5rem;">
+      <span class="ram-label">O Desafio</span>
+      <h2>Conectar <em>tradição e modernidade</em> em uma única narrativa</h2>
+      <div class="line"></div>
+      <p>A mulher Ramarim é dinâmica, urbana, conectada. Transita entre trabalho, lazer e eventos sociais sem mudar de guarda-roupa cada vez. Valoriza qualidade e estilo na mesma proporção em que valoriza conforto.</p>
+      <p>O desafio era construir uma narrativa que honrasse os mais de 60 anos da marca e, ao mesmo tempo, fizesse sentido para a mulher brasileira de hoje — que acompanha tendências, é adepta às redes sociais e exige versatilidade em cada peça.</p>
+    </div>
+
+    <!-- PROPÓSITO -->
+    <img src="/images/ramarim/proposito.jpg" alt="Nosso Propósito Ramarim" class="cfull animate-on-scroll">
+
+    <!-- A ESSÊNCIA -->
+    <div class="animate-on-scroll" style="margin-top:2.5rem;">
+      <span class="ram-label">A Essência</span>
+      <h2>Democratizar a moda feminina sem abrir mão de <em>qualidade, estilo e conforto</em></h2>
+      <div class="line"></div>
+      <p>A Ramarim existe para valorizar a mulher brasileira através de calçados que unem qualidade superior, design atual e conforto como padrão — não como luxo.</p>
+      <p>É uma marca que reconhece que a mulher moderna não precisa escolher entre estilo e conforto. E que calçado é muito mais que produto: é uma forma de expressar individualidade.</p>
+    </div>
+
+    <div class="ch animate-on-scroll">
+      <p>"Adoro moda, mas sou autêntica e não abro mão do meu conforto."</p>
+      <div class="src">Essência Ramarim · revelada no processo</div>
+    </div>
+
+    <!-- BLOCO EDITORIAL PRETO — Mulher Ramarim -->
+    <div class="ram-editorial animate-on-scroll">
+      <h2>A mulher Ramarim<em>é elegante, inovadora e conectada</em></h2>
+      <p>Dinâmica, realizadora, conectada às tendências. Valoriza estilo, conforto e qualidade. Equilibra o casual e o formal. Transita por trabalho, lazer e eventos sociais sem abrir mão de autenticidade em cada escolha.</p>
+    </div>
+
+    <img src="/images/ramarim/mulher.jpg" alt="Mulher Ramarim - Autoestima e autoconfiança" class="cfull animate-on-scroll">
+
+    <!-- PILARES -->
+    <div class="animate-on-scroll" style="margin-top:2.5rem;">
+      <span class="ram-label">Pilares da Marca</span>
+      <h2>Cinco fundamentos que <em>sustentam a identidade</em></h2>
+      <div class="line"></div>
+      <p>Os pilares foram validados com todos os stakeholders — público interno, representantes e clientes finais — para garantir que refletem a percepção real da marca no mercado.</p>
+    </div>
+
+    <img src="/images/ramarim/pilares.jpg" alt="Pilares da marca Ramarim" class="cfull animate-on-scroll">
+
+    <div class="cetapas animate-on-scroll">
+      <div class="cetapa">
+        <div class="num">01</div>
+        <div>
+          <p class="tit">Qualidade</p>
+          <p>Da escolha das matérias-primas à fabricação, da comunicação à venda. Qualidade absoluta é entregar o melhor em cada etapa.</p>
+        </div>
+      </div>
+      <div class="cetapa">
+        <div class="num">02</div>
+        <div>
+          <p class="tit">Estilo e Design</p>
+          <p>Design contemporâneo alinhado às tendências globais da moda. Coleções e comunicação sempre atualizadas.</p>
+        </div>
+      </div>
+      <div class="cetapa">
+        <div class="num">03</div>
+        <div>
+          <p class="tit">Conforto</p>
+          <p>Conforto é pré-requisito, não diferencial. Se é Ramarim, é confortável — em qualquer coleção, em qualquer tendência.</p>
+        </div>
+      </div>
+      <div class="cetapa">
+        <div class="num">04</div>
+        <div>
+          <p class="tit">Confiança e Credibilidade</p>
+          <p>Uma marca de 60+ anos se constrói com foco em resultado e responsabilidade nas relações — com o público final e com o público interno.</p>
+        </div>
+      </div>
+      <div class="cetapa">
+        <div class="num">05</div>
+        <div>
+          <p class="tit">Inovação</p>
+          <p>Design atual, novas tecnologias, comunicação e engajamento que se renovam. Inovar é fazer melhor, diferente, sempre.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISSÃO VISÃO VALORES -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">Missão, Visão, Valores</span>
+      <h2>A identidade institucional <em>redesenhada</em></h2>
+      <div class="line"></div>
+      <p>Junto com os pilares, redesenhamos missão, visão e valores para traduzir com precisão o que a Ramarim é hoje — e o que quer ser amanhã.</p>
+    </div>
+
+    <img src="/images/ramarim/missao.jpg" alt="Missão Ramarim" class="cfull animate-on-scroll">
+
+    <!-- POSICIONAMENTO -->
+    <div class="animate-on-scroll" style="margin-top:2.5rem;">
+      <span class="ram-label">O Posicionamento</span>
+      <h2>Mais do que uma marca de calçados, uma <em>marca de moda</em></h2>
+      <div class="line"></div>
+      <p>A Ramarim passou a se posicionar como uma marca de moda que une qualidade superior, contemporaneidade, inovação e tecnologia. Com presença forte e comunicação envolvente, se reinventa continuamente para estar ao lado da mulher que valoriza atitude, estilo e leveza a cada passo.</p>
+    </div>
+
+    <img src="/images/ramarim/posicionamento.jpg" alt="Posicionamento Ramarim" class="cfull animate-on-scroll">
+
+    <div class="ch animate-on-scroll">
+      <p>"Elegante, inovadora e conectada — a personalidade da marca Ramarim."</p>
+      <div class="src">Síntese do posicionamento</div>
+    </div>
+
+    <!-- PÚBLICO -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">Público-Alvo</span>
+      <h2>A mulher Ramarim é <em>dinâmica, realizadora, conectada</em></h2>
+      <div class="line"></div>
+      <p>Mulheres que valorizam estilo, conforto e qualidade. Que equilibram o casual e o formal. Que acompanham tendências e precisam de versatilidade. Que transitam entre trabalho, lazer e eventos sociais sem abrir mão de autenticidade.</p>
+      <div style="margin:1.5rem 0;">
+        <span class="cp">Principal · 25 a 45 anos</span>
+        <span class="cp">Potencial · 15 a 24 anos</span>
+      </div>
+      <p>O público principal cresce com a marca — que as acompanha em várias fases da vida. O público potencial (jovens pós-pandemia) é altamente adepto às redes sociais, com atitude e irreverência como assinatura.</p>
+    </div>
+
+    <!-- COMO FIZEMOS -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">Como Fizemos</span>
+      <h2>Escuta profunda + análise de mercado + <em>imersão na história</em></h2>
+      <div class="line"></div>
+      <p>O processo combinou três frentes: o que os stakeholders internos dizem sobre a marca, o que os concorrentes comunicam e o que a mulher brasileira moderna espera de uma marca de calçados com mais de 60 anos de história.</p>
+    </div>
+
+    <div class="cetapas animate-on-scroll">
+      <div class="cetapa"><div class="num">01</div><div><p class="tit">Imersão com stakeholders</p><p>Entrevistas com público interno, representantes e clientes finais para mapear percepções reais da marca.</p></div></div>
+      <div class="cetapa"><div class="num">02</div><div><p class="tit">Análise de percepção de mercado</p><p>Estudo qualitativo de avaliações nas redes, comentários e comportamento de compra da consumidora.</p></div></div>
+      <div class="cetapa"><div class="num">03</div><div><p class="tit">Mapeamento de concorrência</p><p>Como marcas de calçados femininos premium e populares se posicionam no Brasil.</p></div></div>
+      <div class="cetapa"><div class="num">04</div><div><p class="tit">Revelação de essência</p><p>Ikigai empresarial da marca — o que a Ramarim tem de único e que já está presente há 60 anos.</p></div></div>
+      <div class="cetapa"><div class="num">05</div><div><p class="tit">Construção dos pilares</p><p>Validação dos cinco pilares com todos os stakeholders — garantindo que traduzem a realidade da marca.</p></div></div>
+      <div class="cetapa"><div class="num">06</div><div><p class="tit">Documentação em Brand Book</p><p>Todo o posicionamento, linguagem verbal e diretrizes visuais consolidados em um único guia.</p></div></div>
+    </div>
+
+    <!-- O QUE FOI FEITO -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">O Que Foi Feito</span>
+      <h2>Posicionamento estratégico completo + <em>Brand Book como guia</em></h2>
+      <div class="line"></div>
+      <p>Entregamos o Programa Marca com Essência© na versão completa para Ramarim — traduzindo 60 anos de história em um documento que guia todas as decisões de marca daqui pra frente.</p>
+    </div>
+
+    <div class="cetapas animate-on-scroll">
+      <div class="cetapa"><div class="num">01</div><div><p class="tit">Missão, Visão, Valores</p><p>Redefinição das bases que norteiam todas as decisões da marca.</p></div></div>
+      <div class="cetapa"><div class="num">02</div><div><p class="tit">Posicionamento</p><p>O lugar que a Ramarim ocupa na mente da consumidora brasileira.</p></div></div>
+      <div class="cetapa"><div class="num">03</div><div><p class="tit">Personalidade da marca</p><p>Elegante, inovadora e conectada — como a marca se expressa e se comporta.</p></div></div>
+      <div class="cetapa"><div class="num">04</div><div><p class="tit">Público-alvo principal e potencial</p><p>Quem é a mulher Ramarim hoje e quem é a que virá nos próximos anos.</p></div></div>
+      <div class="cetapa"><div class="num">05</div><div><p class="tit">Linguagem verbal e tagline</p><p>Tom de voz, vocabulário e a tagline que convida: <strong>"Ramarize-se"</strong>.</p></div></div>
+      <div class="cetapa"><div class="num">06</div><div><p class="tit">Diretrizes de identidade visual</p><p>Paleta de cores, tipografia, proporções de logo, grafismos e elementos visuais.</p></div></div>
+    </div>
+
+    <!-- MANIFESTO RAMARIZE-SE -->
+    <div class="ram-manifesto animate-on-scroll">
+      <p class="big">RAMARIZE<em>-SE</em></p>
+      <p class="sub">Tagline · O convite a manifestar sua identidade</p>
+    </div>
+
+    <!-- LOGOTIPO E IDENTIDADE VISUAL -->
+    <div class="animate-on-scroll" style="margin-top:2.5rem;">
+      <span class="ram-label">Identidade Visual</span>
+      <h2>Logotipo, grafismos e <em>aplicações de marca</em></h2>
+      <div class="line"></div>
+      <p>A identidade visual foi desenvolvida com a VM Rocks Design (Gabi Lucato) a partir do posicionamento estratégico entregue pela KA. Logotipo, grafismos, paleta e diretrizes de aplicação em cada ponto de contato.</p>
+    </div>
+
+    <div class="cg animate-on-scroll">
+      <img src="/images/ramarim/logotipo.jpg" alt="Logotipo Ramarim">
+      <img src="/images/ramarim/grafismo.jpg" alt="Grafismos e aplicações">
+    </div>
+
+    <!-- EDITORIAL — MODA E INOVAÇÃO -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">Editorial de Moda</span>
+      <h2>A marca que <em>lança tendências</em></h2>
+      <div class="line"></div>
+      <p>Todo o guia visual foi pensado para que cada imagem Ramarim funcione como um editorial de moda — inovador, desruptivo e sempre conectado ao universo da mulher contemporânea.</p>
+    </div>
+
+    <img src="/images/ramarim/editorial.jpg" alt="Editorial de moda Ramarim" class="cfull animate-on-scroll">
+
+    <!-- DETALHES -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">Qualidade nos Detalhes</span>
+      <h2>Foco nos detalhes, <em>qualidade superior, acabamento refinado</em></h2>
+      <div class="line"></div>
+      <p>O guia visual orienta como evidenciar o acabamento impecável que é parte do DNA dos produtos Ramarim em cada coleção.</p>
+    </div>
+
+    <img src="/images/ramarim/detalhes.jpg" alt="Qualidade superior e acabamento refinado" class="cfull animate-on-scroll">
+
+    <!-- O RESULTADO -->
+    <div class="animate-on-scroll" style="margin-top:3rem;">
+      <span class="ram-label">O Resultado</span>
+      <h2>Uma Ramarim que honra o legado e <em>conversa com a mulher de hoje</em></h2>
+      <div class="line"></div>
+      <p>Com o Brand Book entregue, a Ramarim passou a ter direção estratégica clara para cada ponto de contato — do e-commerce ao ponto de venda, da campanha à comunicação interna. O legado de 60 anos continua sendo a base. A forma de contar essa história ganhou a elegância editorial que a mulher brasileira moderna merece.</p>
+    </div>
+
+    <div class="ch animate-on-scroll">
+      <p>"Porque essência conecta. E posicionamento faz vender."</p>
+      <div class="src">Kelly Albert · KA | Inteligência para Marcas</div>
+    </div>
+
+    <!-- FICHA TÉCNICA PADRÃO -->
+    <div class="animate-on-scroll" style="padding:2rem;background:var(--bg-2);border-radius:16px;margin-top:1rem;">
+      <span class="label">Ficha Técnica</span>
+      <div class="line" style="margin-top:1rem;"></div>
+      <p><strong>Cliente:</strong> Ramarim · Marca de Calçados Femininos</p>
+      <p><strong>Escopo:</strong> Programa Marca com Essência<sup style="font-size:.55em;">©</sup> completo (posicionamento estratégico, linguagem verbal e Brand Book de 76 páginas)</p>
+      <p><strong>Estratégia e linguagem:</strong> KA | Inteligência para Marcas (Kelly Albert)</p>
+      <p><strong>Design e identidade visual:</strong> VM Rocks Design (Gabi Lucato)</p>
+    </div>
+    <!-- BOTÃO VER TODOS OS CASES -->
+    <div class="animate-on-scroll" style="margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(0,0,0,.08);text-align:center;">
+      <a href="/cases" style="display:inline-block;padding:.95rem 2.4rem;border:1.5px solid #0F1112;color:#0F1112;border-radius:100px;font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;transition:all .3s ease;background:transparent;">Ver todos os cases</a>
+    </div>
+</div>
+</section>
+
+<!-- CTA POTÊNCIA -->
+<section class="cta-final bg-grid-dark">
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <div class="animate-on-scroll">
+      <h2>Sua marca tem <span class="hl-gold">Potência</span>. Vamos revelar.</h2>
+      <p style="max-width:460px;margin:1rem auto 2.5rem;color:rgba(237,232,221,.65);font-size:.95rem;">Descubra em poucos minutos o que está impedindo sua marca de ser lembrada, desejada e escolhida.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;max-width:320px;margin:0 auto;">
+        <a href="/quiz" class="btn btn--diag btn--lg btn--pulse" style="width:100%;text-align:center;justify-content:center;">Fazer Diagnóstico Gratuito</a>
+        <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%20Albert%2C%20como%20vai%3F%20Vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20KA%20%7C%20Intelig%C3%AAncia%20para%20Marcas." target="_blank" class="btn btn--lg" style="width:100%;text-align:center;justify-content:center;background:#25D366;color:#fff;border:none;border-radius:100px;font-size:.78rem;font-weight:600;">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer__grid-3">
+    <div><div class="footer__brand"><img src="/images/logo-ka.png" alt="KA" class="footer__logo"></div><p class="footer__desc">Porque essência <b>conecta</b><br>e <b>posicionamento</b> faz vender.</p></div>
+    <div><h4>Ecossistema</h4><ul class="footer__links"><li><a href="/livro">Livro</a></li><li><a href="/mentoria">Mentoria</a></li><li><a href="/direcao">Direção</a></li><li><a href="/programa">Programa</a></li><li><a href="/cases">Cases</a></li></ul></div>
+    <div><h4>Conteúdo</h4><ul class="footer__links"><li><a href="/sobre">Sobre</a></li><li><a href="/quiz">Diagnóstico</a></li></ul></div>
+  </div>
+  <div class="footer__bottom"><span>Kelly Albert® 2026. CNPJ: 15.096.943/0001-37</span><div class="footer__social"><a href="https://wa.me/5551993163333" target="_blank">WhatsApp</a><a href="https://instagram.com/kellyalbert.brand" target="_blank">Instagram</a><a href="https://www.tiktok.com/@kellyalbertbr" target="_blank">TikTok</a></div></div>
+</div></footer>
+<script src="/js/main.js"></script>
+</body></html>

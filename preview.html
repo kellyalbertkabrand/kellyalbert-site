@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Preview — Site Kelly Albert</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0F1923;color:#EDE8DD;min-height:100vh;}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:100;background:rgba(15,25,35,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(237,232,221,.1);padding:1rem 1.5rem;}
+.hdr-inner{max-width:1440px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.logo{font-family:Georgia,serif;font-weight:600;font-size:1.1rem;letter-spacing:.02em;}
+.logo small{display:block;font-size:.62rem;opacity:.55;letter-spacing:.25em;text-transform:uppercase;font-family:sans-serif;margin-top:.15rem;}
+.controls{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;}
+.btn{padding:.55rem 1rem;border:1px solid rgba(237,232,221,.2);background:rgba(237,232,221,.04);color:#EDE8DD;border-radius:6px;font-size:.72rem;font-weight:600;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;font-family:inherit;}
+.btn:hover{background:rgba(184,155,106,.15);border-color:#B89B6A;}
+.btn.active{background:#B89B6A;color:#0F1923;border-color:#B89B6A;}
+.btn-refresh{background:#3D6B7E;border-color:#3D6B7E;color:#fff;}
+.btn-refresh:hover{background:#4d7d91;border-color:#4d7d91;}
+
+/* Info bar */
+.info{background:rgba(184,155,106,.08);border-bottom:1px solid rgba(184,155,106,.15);padding:.7rem 1.5rem;font-size:.72rem;color:rgba(237,232,221,.7);text-align:center;}
+.info b{color:#D4C49E;}
+
+/* Main */
+main{padding:1.5rem;max-width:1600px;margin:0 auto;}
+.cat{margin-bottom:2rem;}
+.cat-title{font-family:Georgia,serif;font-weight:600;font-size:1.15rem;margin-bottom:.8rem;display:flex;align-items:baseline;gap:.7rem;}
+.cat-title small{font-size:.62rem;opacity:.55;letter-spacing:.2em;text-transform:uppercase;font-family:sans-serif;font-weight:500;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1.2rem;}
+body.viewport-mobile .grid{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));}
+body.viewport-mobile .frame-wrap{height:740px;}
+body.viewport-mobile iframe{width:375px;height:720px;}
+body.viewport-tablet .grid{grid-template-columns:repeat(auto-fill,minmax(540px,1fr));}
+body.viewport-tablet .frame-wrap{height:740px;}
+body.viewport-tablet iframe{width:768px;height:720px;transform:scale(.68);transform-origin:top left;}
+
+.card{background:#1a2b3d;border:1px solid rgba(237,232,221,.08);border-radius:12px;overflow:hidden;transition:transform .2s;}
+.card:hover{transform:translateY(-2px);border-color:rgba(184,155,106,.3);}
+.card-head{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;border-bottom:1px solid rgba(237,232,221,.06);background:rgba(0,0,0,.2);}
+.card-title{font-size:.8rem;font-weight:600;color:#EDE8DD;display:flex;align-items:center;gap:.5rem;}
+.card-title .url{font-size:.65rem;color:rgba(237,232,221,.45);font-weight:400;}
+.card-actions{display:flex;gap:.3rem;}
+.card-btn{width:28px;height:28px;border-radius:5px;border:1px solid rgba(237,232,221,.15);background:transparent;color:rgba(237,232,221,.7);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s;text-decoration:none;}
+.card-btn:hover{background:rgba(184,155,106,.15);color:#D4C49E;border-color:#B89B6A;}
+
+.frame-wrap{position:relative;height:620px;overflow:auto;background:#EDE8DD;}
+iframe{width:100%;height:100%;border:0;display:block;background:#F7F3EA;}
+
+.status{position:absolute;top:.6rem;right:.6rem;font-size:.6rem;background:rgba(0,0,0,.5);color:rgba(255,255,255,.7);padding:.2rem .5rem;border-radius:3px;font-weight:500;letter-spacing:.08em;pointer-events:none;z-index:1;opacity:0;transition:opacity .3s;}
+.card.loading .status{opacity:1;}
+
+/* Footer */
+footer{text-align:center;padding:2rem 1.5rem;font-size:.68rem;color:rgba(237,232,221,.4);border-top:1px solid rgba(237,232,221,.08);margin-top:2rem;}
+footer a{color:#D4C49E;text-decoration:none;}
+
+@media(max-width:640px){
+  .grid{grid-template-columns:1fr !important;}
+  .hdr-inner{justify-content:center;text-align:center;}
+  body.viewport-tablet iframe{transform:none;width:100%;}
+}
+</style>
+</head>
+<body class="viewport-desktop">
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="logo">KA · Preview<small>kellyalbert.com.br</small></div>
+    <div class="controls">
+      <button class="btn active" data-viewport="desktop" onclick="setViewport('desktop', this)">Desktop</button>
+      <button class="btn" data-viewport="tablet" onclick="setViewport('tablet', this)">Tablet</button>
+      <button class="btn" data-viewport="mobile" onclick="setViewport('mobile', this)">Mobile</button>
+      <button class="btn btn-refresh" onclick="refreshAll()">Recarregar tudo</button>
+    </div>
+  </div>
+</header>
+
+<div class="info">
+  Ferramenta interna · não indexada · use para validar visual antes de aprovar ZIP. <b>Lazy loading:</b> iframes carregam conforme você rola a página.
+</div>
+
+<main>
+
+  <section class="cat">
+    <h2 class="cat-title">Principais <small>institucionais · core</small></h2>
+    <div class="grid" id="grid-main"></div>
+  </section>
+
+  <section class="cat">
+    <h2 class="cat-title">Produtos <small>ecossistema KA</small></h2>
+    <div class="grid" id="grid-prod"></div>
+  </section>
+
+  <section class="cat">
+    <h2 class="cat-title">Cases <small>projetos entregues</small></h2>
+    <div class="grid" id="grid-cases"></div>
+  </section>
+
+  <section class="cat">
+    <h2 class="cat-title">Utilidades <small>redes sociais · diagnóstico</small></h2>
+    <div class="grid" id="grid-util"></div>
+  </section>
+
+</main>
+
+<footer>
+  Preview gerado pelo projeto Kelly Albert. Para atualizar, regenere o ZIP com <a href="/lint-project.py">lint-project.py</a> validado.
+</footer>
+
+<script>
+const pages = {
+  'grid-main': [
+    {t:'Home',url:'/'},
+    {t:'Sobre',url:'/sobre/'},
+    {t:'Cases (listagem)',url:'/cases/'},
+  ],
+  'grid-prod': [
+    {t:'Livro',url:'/livro/'},
+    {t:'Mentoria',url:'/mentoria/'},
+    {t:'Programa',url:'/programa/'},
+    {t:'Direção',url:'/direcao/'},
+    {t:'Produtos (resumo)',url:'/produtos/'},
+  ],
+  'grid-cases': [
+    {t:'Amor de Bicho',url:'/caseamordebicho/'},
+    {t:'Shapes',url:'/caseshapes/'},
+    {t:'Yufil',url:'/caseyufil/'},
+    {t:'ComfortFlex',url:'/casecomfortflex/'},
+    {t:'Suvinil',url:'/casesuvinil/'},
+    {t:'Beteti',url:'/casebeteti/'},
+    {t:'Ramarim',url:'/caseramarim/'},
+  ],
+  'grid-util': [
+    {t:'Quiz (diagnóstico)',url:'/quiz/'},
+    {t:'Bio',url:'/bio/'},
+    {t:'Link-in-bio',url:'/link/'},
+  ],
+};
+
+function makeCard(p){
+  const card = document.createElement('div');
+  card.className = 'card loading';
+  card.innerHTML = `
+    <div class="card-head">
+      <div class="card-title">${p.t}<span class="url">${p.url}</span></div>
+      <div class="card-actions">
+        <a class="card-btn" href="${p.url}" target="_blank" title="Abrir em nova aba">↗</a>
+        <button class="card-btn" onclick="reloadCard(this)" title="Recarregar">↻</button>
+      </div>
+    </div>
+    <div class="frame-wrap">
+      <div class="status">Carregando...</div>
+    </div>
+  `;
+  return card;
+}
+
+function loadIframe(card, url){
+  const wrap = card.querySelector('.frame-wrap');
+  const existing = wrap.querySelector('iframe');
+  if (existing) existing.remove();
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.loading = 'lazy';
+  iframe.addEventListener('load', () => card.classList.remove('loading'));
+  wrap.appendChild(iframe);
+}
+
+function reloadCard(btn){
+  const card = btn.closest('.card');
+  const url = card.querySelector('.url').textContent;
+  card.classList.add('loading');
+  loadIframe(card, url + '?t=' + Date.now());
+}
+
+function refreshAll(){
+  document.querySelectorAll('.card').forEach(c => {
+    const url = c.querySelector('.url').textContent;
+    c.classList.add('loading');
+    loadIframe(c, url + '?t=' + Date.now());
+  });
+}
+
+function setViewport(v, btn){
+  document.body.className = 'viewport-' + v;
+  document.querySelectorAll('.controls .btn[data-viewport]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Inicializar: criar cards e usar IntersectionObserver pra lazy-load
+Object.keys(pages).forEach(gridId => {
+  const grid = document.getElementById(gridId);
+  pages[gridId].forEach(p => {
+    const card = makeCard(p);
+    card.dataset.url = p.url;
+    grid.appendChild(card);
+  });
+});
+
+// Lazy load com observer — só carrega iframe quando entra em viewport
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.loaded){
+      loadIframe(e.target, e.target.dataset.url);
+      e.target.dataset.loaded = '1';
+      obs.unobserve(e.target);
+    }
+  });
+}, {rootMargin: '200px'});
+
+document.querySelectorAll('.card').forEach(c => obs.observe(c));
+</script>
+
+</body>
+</html>

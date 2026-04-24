@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!--
+  TEMPLATE: Newsletter KA
+  Uso: substituir placeholders e colar no editor HTML do MailerLite.
+  Padrão aprovado por Kelly: fundo creme, hero azul essência, CTA dourado pulsante.
+
+  Placeholders:
+    {{ASSUNTO}}        — subject line do email
+    {{PREVIEW}}        — preview text (150 chars máx)
+    {{BADGE_TEXTO}}    — badge de topo (ex: "NOVO ARTIGO")
+    {{HEADLINE}}       — título principal do email
+    {{PARAG_1}}..{{PARAG_N}}  — parágrafos do corpo
+    {{CTA_TEXTO}}      — texto do botão (ex: "Ler artigo completo")
+    {{CTA_LINK}}       — URL do botão
+    {{ASSINATURA_NOME}} — "Kelly Albert" (padrão)
+    {{ASSINATURA_CARGO}} — "Estrategista de Marcas" (padrão)
+
+  Regras do padrão:
+    - Fundo: #FAF8F4 (externo #F2F0EB)
+    - Hero: Azul Essência #3D6B7E
+    - CTA: dourado #B89B6A com pulse
+    - Imagens embutidas em base64 (sem URLs externas)
+    - Assinatura em 1 linha (white-space:nowrap)
+    - Footer: site + Kelly Albert® 2026 + CNPJ + Cancelar inscrição
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>{{ASSUNTO}}</title>
+<style>
+  body{margin:0;padding:0;background:#F2F0EB;font-family:Arial,sans-serif;color:#2d2d2d;}
+  .wrapper{max-width:600px;margin:0 auto;background:#FAF8F4;}
+  .preview{display:none;font-size:1px;color:#F2F0EB;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;}
+
+  .hero{background:#3D6B7E;padding:3rem 2rem;text-align:center;color:#F4F1EB;position:relative;}
+  .badge{display:inline-block;background:rgba(244,241,235,.15);color:#D4C49E;font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:100px;margin-bottom:1rem;}
+  .hero h1{font-family:Georgia,serif;font-size:1.9rem;font-weight:600;line-height:1.2;margin:0;color:#F4F1EB;}
+  .hero h1 em{color:#D4C49E;font-style:italic;}
+
+  .body{padding:2.5rem 2rem;}
+  .body p{font-size:1rem;line-height:1.75;color:#3d3d3d;margin:0 0 1.2rem;}
+  .body p strong{color:#3D6B7E;}
+
+  .book-wrap{text-align:center;padding:1.5rem 0;}
+  .book-img{max-width:180px;border-radius:4px;box-shadow:0 16px 32px rgba(0,0,0,.12);}
+
+  .cta-wrap{text-align:center;padding:1.8rem 0;}
+  .cta{display:inline-block;background:#B89B6A;color:#FAF8F4;text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:1rem 2.4rem;border-radius:100px;box-shadow:0 8px 24px rgba(184,155,106,.35);}
+
+  .quote{border-left:4px solid #3D6B7E;background:rgba(61,107,126,.06);padding:1.4rem 1.8rem;margin:1.8rem 0;border-radius:0 10px 10px 0;}
+  .quote p{font-family:Georgia,serif;font-style:italic;font-size:1.02rem;color:#2d2d2d;margin:0;}
+
+  .sep{text-align:center;padding:1rem 0;color:#B89B6A;}
+
+  .sign{padding:2rem;text-align:left;border-top:1px solid rgba(184,155,106,.2);margin-top:1rem;}
+  .sign-row{white-space:nowrap;display:flex;align-items:center;gap:.8rem;}
+  .sign-photo{width:50px;height:50px;border-radius:50%;border:2px solid #D4C49E;}
+  .sign-text{font-size:.82rem;color:#3d3d3d;}
+  .sign-text b{color:#3D6B7E;}
+
+  .footer{background:#2E3640;color:rgba(244,241,235,.6);padding:2rem;text-align:center;font-size:.72rem;line-height:1.7;}
+  .footer a{color:#D4C49E;text-decoration:none;}
+
+  @media(max-width:600px){
+    .hero{padding:2rem 1.2rem;}
+    .hero h1{font-size:1.5rem;}
+    .body{padding:2rem 1.2rem;}
+    .cta{padding:.85rem 1.8rem;}
+  }
+</style>
+</head>
+<body>
+<span class="preview">{{PREVIEW}}</span>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="badge">{{BADGE_TEXTO}}</span>
+    <h1>{{HEADLINE}}</h1>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <p>{{PARAG_1}}</p>
+
+    <p>{{PARAG_2}}</p>
+
+    <!-- Quote opcional -->
+    <div class="quote">
+      <p>"{{QUOTE}}"</p>
+    </div>
+
+    <p>{{PARAG_3}}</p>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <a href="{{CTA_LINK}}" class="cta">{{CTA_TEXTO}}</a>
+    </div>
+
+    <!-- Separador decorativo -->
+    <div class="sep">◆</div>
+
+    <p>{{PARAG_FINAL}}</p>
+
+  </div>
+
+  <!-- ASSINATURA -->
+  <div class="sign">
+    <div class="sign-row">
+      <img src="data:image/jpeg;base64,{{ASSINATURA_FOTO_BASE64}}" alt="Kelly Albert" class="sign-photo">
+      <span class="sign-text"><b>{{ASSINATURA_NOME}}</b> | {{ASSINATURA_CARGO}}</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <a href="https://kellyalbert.com.br">kellyalbert.com.br</a><br>
+    Kelly Albert® 2026 · CNPJ: 15.096.943/0001-37<br>
+    <a href="{$unsubscribe}">Cancelar inscrição</a>
+  </div>
+
+</div>
+</body>
+</html>

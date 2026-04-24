@@ -1,0 +1,851 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelly Albert | KA Inteligência para Marcas</title>
+<meta name="description" content="Kelly Albert · KA Inteligência para Marcas. Mais de 20 anos atuando com marcas nacionais e multinacionais. Livro, Mentoria, Programa e Direção.">
+<meta property="og:title" content="Kelly Albert | KA Inteligência para Marcas">
+<meta property="og:description" content="Posicionamento não é privilégio de marcas grandes. É questão de sobrevivência.">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://kellyalbert.com.br/images/kelly-bio.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kellyalbert.com.br/bio/">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+:root{
+  --bio-marinho:#152535;
+  --bio-marinho-2:#1A2E3D;
+  --bio-cobre:#8B5A2B;
+  --bio-essencia:#3D6B7E;
+  --bio-dourado:#B89B6A;
+  --bio-dourado-c:#D4C49E;
+  --bio-creme:#EDE8DD;
+  --bio-bege:#F7F3EA;
+  --bio-bege-2:#EDE8DD;
+}
+
+body{background:var(--bio-bege);}
+.bio-page .nav{display:none;}
+
+/* ─── HEADER FININHO TOPO ─── */
+.bio-topbar{
+  background:var(--bio-marinho-2);
+  padding:.7rem 1.5rem;
+  text-align:center;
+  border-bottom:1px solid rgba(212,196,158,.15);
+}
+.bio-topbar img{height:24px;filter:brightness(0) invert(1);opacity:.9;}
+
+/* ─── HERO ─── */
+.bio-hero{
+  background:var(--bio-marinho);
+  color:var(--bio-creme);
+  padding:2.5rem 1.5rem 2.8rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.bio-hero::before{
+  content:"";position:absolute;top:-80px;right:-60px;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(212,196,158,.18) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.bio-hero::after{
+  content:"";position:absolute;bottom:-60px;left:-60px;
+  width:220px;height:220px;
+  background:radial-gradient(circle,rgba(61,107,126,.25) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.bio-hero-inner{position:relative;z-index:1;max-width:500px;margin:0 auto;}
+
+.bio-intro-txt{
+  font-family:var(--heading);
+  font-size:1.05rem;
+  color:rgba(237,232,221,.85);
+  line-height:1.6;
+  margin:0 auto 1.8rem;
+  max-width:420px;
+  font-style:italic;
+}
+
+.bio-photo-wrap{
+  position:relative;display:inline-block;margin-bottom:1.4rem;
+  animation:photoFadeIn 1s ease-out;
+}
+.bio-photo-wrap::before{
+  content:"";position:absolute;inset:-8px;
+  border-radius:50%;
+  background:conic-gradient(from 0deg,var(--bio-dourado-c),var(--bio-essencia),var(--bio-dourado-c));
+  opacity:.5;z-index:0;
+  animation:photoRotate 14s linear infinite;
+}
+.bio-photo{
+  width:140px;height:140px;border-radius:50%;
+  object-fit:cover;object-position:top;
+  border:3px solid var(--bio-marinho);
+  position:relative;z-index:1;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+@keyframes photoFadeIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
+@keyframes photoRotate{to{transform:rotate(360deg);}}
+
+.bio-name{
+  font-family:var(--heading);font-size:2rem;font-weight:600;
+  color:var(--bio-creme);margin:0 0 .3rem;line-height:1.1;
+}
+.bio-name em{color:var(--bio-dourado-c);font-style:italic;}
+
+.bio-title{
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bio-dourado-c);font-weight:500;
+  margin:.2rem 0 1.4rem;
+}
+
+.bio-autoridade{
+  font-size:.88rem;color:rgba(237,232,221,.75);
+  line-height:1.7;margin:0 auto 1.8rem;max-width:440px;
+}
+.bio-autoridade strong{color:var(--bio-creme);font-weight:600;}
+
+/* GRID de logos no hero · marcas que já passaram pela KA (fluidos, sem fundo) */
+.bio-hero-logos{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.2rem 1.4rem;
+  align-items:center;
+  justify-items:center;
+  max-width:420px;
+  margin:0 auto;
+  padding:1.4rem 0 0;
+  border-top:1px solid rgba(237,232,221,.12);
+}
+.bio-hero-logos img{
+  display:block;
+  width:100%;
+  max-width:76px;
+  height:38px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.72;
+  transition:opacity .3s ease, transform .3s ease;
+}
+.bio-hero-logos img:hover{opacity:1;transform:translateY(-2px);}
+@media(max-width:380px){
+  .bio-hero-logos{grid-template-columns:repeat(3,1fr);gap:1rem;max-width:320px;}
+  .bio-hero-logos img{height:34px;}
+}
+
+.bio-quote{
+  padding:1.2rem 1.4rem;
+  background:rgba(212,196,158,.08);
+  border-left:3px solid var(--bio-dourado-c);
+  border-radius:4px 14px 14px 4px;
+  max-width:460px;margin:0 auto;
+  text-align:left;
+}
+.bio-quote p{
+  font-family:var(--heading);font-size:1rem;font-style:italic;
+  color:rgba(237,232,221,.95);margin:0;line-height:1.5;
+}
+.bio-quote p strong{color:var(--bio-dourado-c);font-style:normal;font-weight:600;}
+
+/* ─── DIAGNÓSTICO ─── */
+.bio-diag{
+  margin:1.8rem 1rem 1.5rem;padding:2.4rem 1.7rem;
+  background:var(--bio-marinho);
+  border-radius:18px;color:var(--bio-creme);
+  text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 16px 40px rgba(21,37,53,.3);
+  border:1px solid rgba(212,196,158,.12);
+}
+.bio-diag::before{
+  content:"";position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(184,155,106,.16) 0%,transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.bio-diag-inner{position:relative;z-index:1;}
+.bio-diag-label{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.58rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--bio-dourado-c);
+  font-weight:700;margin-bottom:.9rem;
+  padding:.25rem .9rem;background:rgba(212,196,158,.1);border-radius:100px;
+}
+.bio-diag-badge-green{
+  display:inline-block;
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:800;color:#fff;
+  padding:.45rem 1.3rem;margin-bottom:.9rem;
+  background:#22c55e;border-radius:100px;
+  box-shadow:0 6px 18px rgba(34,197,94,.45);
+  animation:greenPulse 1.3s ease-in-out infinite;
+  transform-origin:center;
+}
+@keyframes greenPulse{
+  0%,100%{
+    box-shadow:0 6px 18px rgba(34,197,94,.4), 0 0 0 0 rgba(34,197,94,.55);
+    transform:scale(1);
+    background:#22c55e;
+  }
+  50%{
+    box-shadow:0 10px 30px rgba(34,197,94,.65), 0 0 0 10px rgba(34,197,94,0);
+    transform:scale(1.06);
+    background:#16a34a;
+  }
+}
+.bio-diag-sub{
+  font-size:.72rem;letter-spacing:.15em;
+  color:rgba(237,232,221,.7);font-weight:400;
+  margin:1rem 0 0 !important;
+  text-transform:none;
+  line-height:1.6;
+  text-align:center;
+}
+.bio-diag h3{
+  font-family:var(--heading);font-size:2.1rem !important;font-weight:700;
+  color:var(--bio-creme);margin:.2rem 0 .8rem;line-height:1.05;
+  letter-spacing:-.02em;
+}
+.bio-diag h3 em{color:var(--bio-dourado-c);font-style:italic;font-weight:700;}
+.bio-diag p{font-size:.95rem;color:rgba(237,232,221,.85);margin:.5rem 0 1.6rem;line-height:1.55;}
+
+/* ─── PRODUTOS (empilhados) ─── */
+.bio-produtos{padding:2.5rem 1rem 1.5rem;}
+.bio-produtos-head{text-align:center;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto;}
+.bio-produtos-label{
+  display:inline-block;font-size:.62rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--bio-cobre);
+  font-weight:700;margin-bottom:.5rem;
+}
+.bio-produtos-head h2{
+  font-family:var(--heading);font-size:1.8rem;font-weight:600;
+  color:var(--t-900);margin:0 0 .5rem;
+}
+.bio-produtos-head h2 em{color:var(--bio-cobre);font-style:italic;}
+.bio-produtos-head p{font-size:.92rem;color:var(--t-700);margin:.5rem 0 0;line-height:1.6;}
+
+.bio-produtos-stack{
+  display:flex;flex-direction:column;gap:1rem;
+  max-width:600px;margin:0 auto;
+}
+
+.bio-card{
+  display:flex;flex-direction:row;align-items:center;
+  padding:0;
+  background:#FAF8F4;border-radius:16px;
+  border:1px solid rgba(0,0,0,.05);
+  text-decoration:none;color:inherit;
+  box-shadow:0 6px 22px rgba(0,0,0,.05);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+  overflow:hidden;position:relative;min-height:110px;
+}
+.bio-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 20px 44px rgba(0,0,0,.1);
+  border-color:var(--card-color);
+}
+.bio-card-side{
+  width:90px;flex-shrink:0;
+  background:var(--card-color);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.bio-card-side::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 0%,rgba(255,255,255,.15) 100%);
+}
+.bio-card-num{
+  font-family:var(--heading);font-size:2rem;font-weight:700;
+  color:rgba(255,255,255,.95);position:relative;z-index:1;letter-spacing:-.02em;
+}
+.bio-card-body{
+  flex:1;padding:1.1rem 1.3rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.bio-card-label{
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--card-color);font-weight:700;margin-bottom:.25rem;
+}
+.bio-card h3{
+  font-family:var(--heading);font-size:1.25rem;font-weight:600;
+  color:var(--t-900);margin:0 0 .3rem;line-height:1.2;
+}
+.bio-card p{
+  font-size:.82rem;color:var(--t-700);line-height:1.5;
+  margin:0 0 .5rem;
+}
+.bio-card-arrow{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--card-color);
+}
+.bio-card-arrow svg{width:11px;height:11px;transition:transform .3s ease;}
+.bio-card:hover .bio-card-arrow svg{transform:translateX(4px);}
+
+.bio-card.livro{--card-color:#8B5A2B;}
+.bio-card.mentoria{--card-color:#3D6B7E;}
+.bio-card.programa{--card-color:#152535;}
+.bio-card.direcao{--card-color:#5B8D9B;}
+
+/* Badge "Próxima turma" na lateral da Mentoria */
+.bio-card-badge{
+  position:absolute;bottom:.5rem;left:.3rem;right:.3rem;
+  font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;font-weight:700;text-align:center;
+  background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.35);
+  padding:.3rem .2rem;border-radius:6px;line-height:1.2;
+  animation:badgePulse 2.5s ease-in-out infinite;
+}
+@keyframes badgePulse{0%,100%{background:rgba(255,255,255,.25);}50%{background:rgba(255,255,255,.45);}}
+.bio-card.mentoria .bio-card-side{padding:.5rem .3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;}
+.bio-card.mentoria .bio-card-num{margin-top:.8rem;}
+
+/* ─── CARD ESPECIAL LIVRO (destaque com logos e imagem) ─── */
+.bio-card-livro{
+  display:flex;flex-direction:row;align-items:stretch;
+  background:linear-gradient(135deg,#152535 0%,#1a2e3d 100%);
+  border-radius:16px;overflow:hidden;
+  border:1px solid rgba(212,196,158,.15);
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  text-decoration:none;color:inherit;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
+  position:relative;
+}
+.bio-card-livro::before{
+  content:"";position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;
+  background:radial-gradient(circle,rgba(212,196,158,.18) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.bio-card-livro:hover{
+  transform:translateY(-4px);
+  box-shadow:0 22px 48px rgba(0,0,0,.22);
+  border-color:rgba(212,196,158,.4);
+}
+.bio-card-livro-side{
+  width:130px;flex-shrink:0;
+  background:rgba(212,196,158,.08);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:1.2rem .6rem;
+  border-right:1px solid rgba(212,196,158,.1);
+  position:relative;
+}
+.bio-card-livro-num{
+  font-family:var(--heading);font-size:2.2rem;font-weight:700;
+  color:var(--bio-dourado-c);line-height:1;letter-spacing:-.02em;
+}
+.bio-card-livro-img{
+  width:100%;max-width:100px;height:auto;
+  border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.4);
+  margin-top:1rem;display:block;
+}
+.bio-card-livro-body{
+  flex:1;padding:1.3rem 1.4rem 1.4rem;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:1;
+}
+.bio-card-livro-body h3{
+  font-family:var(--heading);font-size:1.25rem;font-weight:600;
+  margin:0 0 .6rem;line-height:1.25;
+}
+.bio-card-livro-logos{
+  display:flex;gap:1.1rem;align-items:center;
+  padding:.9rem 0;margin:.3rem 0 .9rem;
+  border-top:1px solid rgba(212,196,158,.12);
+  border-bottom:1px solid rgba(212,196,158,.12);
+}
+.bio-card-livro-logos img{
+  height:36px;width:auto;
+  filter:brightness(0) invert(1);opacity:.85;
+  transition:opacity .25s;
+}
+.bio-card-livro:hover .bio-card-livro-logos img{opacity:1;}
+
+/* BADGE "FAÇA VOCÊ MESMO + IA" piscando no card Livro */
+.bio-card-livro-badge-ia{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:800;color:#152535;
+  padding:.32rem .75rem;margin-bottom:.6rem;
+  background:#D4C49E;border-radius:100px;
+  box-shadow:0 4px 14px rgba(212,196,158,.35);
+  animation:goldPulse 1.6s ease-in-out infinite;
+  transform-origin:center;
+  align-self:flex-start;
+}
+@keyframes goldPulse{
+  0%,100%{
+    box-shadow:0 4px 14px rgba(212,196,158,.35), 0 0 0 0 rgba(212,196,158,.55);
+    transform:scale(1);
+    background:#D4C49E;
+  }
+  50%{
+    box-shadow:0 8px 24px rgba(212,196,158,.6), 0 0 0 8px rgba(212,196,158,0);
+    transform:scale(1.04);
+    background:#E8D9B3;
+  }
+}
+
+.bio-card-livro-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  padding:.7rem 1.2rem;align-self:flex-start;
+  background:var(--bio-dourado);color:#fff;
+  border-radius:100px;font-size:.72rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 6px 18px rgba(184,155,106,.3);
+  transition:transform .25s,box-shadow .25s;
+}
+.bio-card-livro:hover .bio-card-livro-btn{
+  transform:translateX(3px);
+  box-shadow:0 10px 24px rgba(184,155,106,.45);
+}
+.bio-card-livro-btn svg{width:12px;height:12px;}
+
+@media(max-width:580px){
+  .bio-card-livro{flex-direction:column;}
+  .bio-card-livro-side{width:100%;flex-direction:row;justify-content:space-around;border-right:0;border-bottom:1px solid rgba(212,196,158,.1);padding:1.2rem 1rem;}
+  .bio-card-livro-img{max-width:80px;margin-top:0;}
+}
+
+/* ─── MINI BIO / "Quem está por trás" herdam css global da /sobre (.section--dark, .hl-gold, etc) ─── */
+
+/* ─── CTA FINAL ─── */
+.bio-cta-final{
+  margin:1rem 1rem 2rem;padding:2.2rem 1.5rem;
+  background:var(--bio-marinho);border-radius:18px;
+  color:var(--bio-creme);text-align:center;
+  position:relative;overflow:hidden;
+}
+.bio-cta-final::before{
+  content:"";position:absolute;top:-60px;left:-60px;
+  width:220px;height:220px;
+  background:radial-gradient(circle,rgba(184,155,106,.22) 0%,transparent 70%);
+  border-radius:50%;
+}
+.bio-cta-final-inner{position:relative;z-index:1;}
+.bio-cta-final-label{
+  display:inline-block;font-size:.6rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--bio-dourado-c);
+  font-weight:700;margin-bottom:.5rem;
+}
+.bio-cta-final h3{
+  font-family:var(--heading);font-size:1.5rem;font-weight:600;
+  color:var(--bio-creme);margin:0 0 1rem;line-height:1.25;
+}
+.bio-cta-final h3 em{color:var(--bio-dourado-c);font-style:italic;}
+.bio-cta-final-btns{display:flex;flex-direction:column;gap:.7rem;max-width:320px;margin:1.2rem auto 0;}
+.bio-cta-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.95rem 1.5rem;border-radius:100px;
+  text-decoration:none;font-size:.78rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  transition:transform .25s,box-shadow .25s;
+}
+.bio-cta-btn--diag{background:var(--bio-dourado);color:#fff;box-shadow:0 8px 24px rgba(184,155,106,.35);}
+.bio-cta-btn--whats{background:#25D366;color:#fff;box-shadow:0 8px 24px rgba(37,211,102,.3);}
+.bio-cta-btn:hover{transform:translateY(-2px);}
+.bio-cta-btn svg{width:14px;height:14px;}
+
+/* ─── FOOTER MINI ─── */
+.bio-footer-mini{
+  padding:1.2rem 1rem;text-align:center;
+  background:var(--bio-bege-2);
+  border-top:1px solid rgba(139,90,43,.1);
+}
+.bio-footer-mini p{
+  font-size:.68rem;color:var(--t-500);line-height:1.7;margin:0;
+}
+.bio-footer-mini a{color:var(--bio-cobre);text-decoration:none;font-weight:600;}
+
+/* ─── SCROLL REVEAL ─── */
+.bio-reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease;}
+.bio-reveal.in{opacity:1;transform:translateY(0);}
+
+/* ─── DESKTOP ─── */
+@media(min-width:720px){
+  .bio-hero{padding:3rem 2rem 3.5rem;}
+  .bio-photo{width:160px;height:160px;}
+  .bio-name{font-size:2.4rem;}
+  .bio-intro-txt{font-size:1.15rem;}
+  .bio-autoridade{font-size:.95rem;}
+  .bio-quote p{font-size:1.1rem;}
+  .bio-diag{max-width:620px;margin:2rem auto 1.8rem;padding:2.6rem 2rem;}
+  .bio-diag h3{font-size:2.3rem !important;line-height:1.05;}
+  .bio-produtos-head h2{font-size:2.1rem;}
+  .bio-card-side{width:120px;}
+  .bio-card-num{font-size:2.4rem;}
+  .bio-card h3{font-size:1.35rem;}
+  .bio-card p{font-size:.88rem;}
+  .bio-depo-head h2{font-size:2rem;}
+  .bio-mini h3{font-size:1.65rem;}
+  .bio-cta-final{max-width:640px;margin:2rem auto 2.5rem;padding:2.8rem 2rem;}
+  .bio-cta-final h3{font-size:1.8rem;}
+  .bio-cta-final-btns{flex-direction:row;max-width:520px;justify-content:center;}
+  .bio-cta-btn{flex:1;}
+}
+
+/* ─── REDES SOCIAIS ─── */
+.bio-socials{
+  background:var(--bio-marinho);
+  padding:2.5rem 1.2rem 3.2rem;
+  text-align:center;
+  position:relative;
+}
+.bio-socials-label{
+  display:inline-block;
+  font-family:var(--body);
+  font-size:.6rem;
+  font-weight:700;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--bio-dourado-c);
+  margin-bottom:1.5rem;
+}
+.bio-socials-grid{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  max-width:420px;
+  margin:0 auto;
+}
+.bio-social{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.55rem;
+  text-decoration:none;
+  color:var(--bio-creme);
+  transition:transform .3s ease;
+  width:64px;
+}
+.bio-social:hover{transform:translateY(-4px);}
+.bio-social-icon{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(237,232,221,.08);
+  border:1px solid rgba(212,196,158,.3);
+  transition:all .3s ease;
+}
+.bio-social:hover .bio-social-icon{
+  background:rgba(212,196,158,.18);
+  border-color:rgba(212,196,158,.6);
+}
+.bio-social-icon svg{
+  width:24px;
+  height:24px;
+  fill:var(--bio-dourado-c);
+}
+.bio-social-label{
+  font-size:.68rem;
+  font-weight:600;
+  letter-spacing:.05em;
+  color:rgba(237,232,221,.75);
+}
+@media(min-width:720px){
+  .bio-socials{padding:3rem 1.2rem 3.5rem;}
+  .bio-socials-grid{gap:1.5rem;max-width:500px;}
+  .bio-social{width:72px;}
+  .bio-social-icon{width:60px;height:60px;}
+  .bio-social-icon svg{width:26px;height:26px;}
+}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#152535">
+</head><body class="bio-page">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HEADER FININHO                                         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<header class="bio-topbar amb-escuro">
+  <img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas">
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO (texto → foto → autoridade)                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bio-hero amb-marinho">
+  <div class="bio-hero-inner">
+
+    <div class="bio-photo-wrap">
+      <img src="/images/kelly-bio.jpg" alt="Kelly Albert" class="bio-photo">
+    </div>
+
+    <h1 class="bio-name" style="color:#EDE8DD;">Kelly <em>Albert</em></h1>
+    <p class="bio-title">Estrategista de Marcas</p>
+
+    <p class="bio-autoridade">Olá, meu nome é Kelly Albert, seja bem-vindo. Sou fundadora da <strong style="white-space:nowrap;">KA&nbsp;|&nbsp;Inteligência&nbsp;para&nbsp;Marcas</strong> e já tive a oportunidade de atuar junto a <strong>pequenas, médias e grandes empresas</strong>. E posso te ajudar com o mesmo olhar estratégico que entrego às grandes marcas.</p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DIAGNÓSTICO GRATUITO                                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bio-diag bio-reveal">
+  <div class="bio-diag-inner">
+    <span class="bio-diag-badge-green">Gratuito</span>
+    <span class="bio-diag-label">Diagnóstico da sua marca</span>
+    <h3>Descubra agora o que está <em>travando</em> a sua marca</h3>
+    <p>Em poucos minutos, o diagnóstico revela o que precisa mudar. A maioria se surpreende com a resposta.</p>
+    <a href="/quiz" class="btn btn--diag btn--lg btn--pulse" style="width:100%;max-width:340px;text-align:center;justify-content:center;margin-top:.5rem;font-size:1.15rem;padding:1.3rem 2rem;letter-spacing:.06em;font-weight:700;">Fazer Diagnóstico Gratuito</a>
+    <p class="bio-diag-sub">✦ 100% gratuito<br>Resultado imediato ✦</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- EMPRESAS QUE JÁ PASSARAM (exato da /sobre)             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bg-grid-light bio-reveal" style="padding:3.5rem 0;background-color:#f1ede6;">
+  <div class="container text-center">
+    <span class="label">Empresas que já passaram por nós</span>
+    <h2 style="margin-bottom:2rem;">Marcas que confiaram em nosso trabalho</h2>
+    <div class="logo-grid" style="border-radius:14px;padding:2rem;">
+      <img src="/images/logos/mcdonalds.jpg" alt="McDonald's" class="logo-grid__item">
+      <img src="/images/logos/atacadao.jpg" alt="Atacadão" class="logo-grid__item">
+      <img src="/images/logos/sebrae.jpg" alt="Sebrae" class="logo-grid__item">
+      <img src="/images/logos/suvinil.jpg" alt="Suvinil" class="logo-grid__item">
+      <img src="/images/logos/ramarim.jpg" alt="Ramarim" class="logo-grid__item">
+      <img src="/images/logos/comfortflex.jpg" alt="ComfortFlex" class="logo-grid__item">
+      <img src="/images/logos/usaflex.jpg" alt="Usaflex" class="logo-grid__item">
+      <img src="/images/logos/bandfm.jpg" alt="Rede Band FM" class="logo-grid__item">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PRODUTOS (empilhados, sem preço)                       -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bio-produtos">
+  <div class="bio-produtos-head bio-reveal">
+    <span class="bio-produtos-label">Ecossistema KA</span>
+    <h2>Escolha o <em>próximo passo</em></h2>
+    <p>Quatro caminhos com a mesma essência. Escolha por onde começar.</p>
+  </div>
+
+  <div class="bio-produtos-stack">
+
+    <!-- LIVRO (card destaque com logos + imagem) -->
+    <a href="/livro" class="bio-card-livro bio-reveal">
+      <div class="bio-card-livro-side">
+        <span class="bio-card-livro-num">01</span>
+        <img src="/images/livro-mockup-mesa.jpg" alt="Livro Marca com Essência" class="bio-card-livro-img">
+      </div>
+      <div class="bio-card-livro-body">
+        <span class="bio-card-livro-badge-ia">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px;"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+          Faça você mesmo + IA
+        </span>
+        <span class="bio-card-label" style="color:var(--dourado-c);">Livro</span>
+        <h3 style="color:#EDE8DD;">Livro Marca com <span style="color:var(--dourado-c);font-style:italic;">Essência<sup style="font-size:.55em;">©</sup></span></h3>
+        <p style="color:rgba(237,232,221,.9);font-size:.92rem;margin-bottom:.5rem;"><strong style="color:#EDE8DD;">Posicionamento de marca na prática</strong> com Inteligência Artificial trabalhando com você em cada etapa.</p>
+        <p style="color:rgba(237,232,221,.7);font-size:.85rem;margin-bottom:1rem;">Um livro-consultoria que te guia passo a passo para estruturar sua marca, ganhar clareza estratégica e fazê-la ser <strong style="color:var(--dourado-c);">lembrada, desejada e escolhida</strong>.</p>
+
+        <div class="bio-card-livro-logos">
+          <img src="/images/logo-chatgpt.png" alt="ChatGPT" title="Agentes de IA no ChatGPT">
+          <img src="/images/logo-googledocs.png" alt="Google Docs" title="Perguntas estratégicas no Google Docs">
+          <img src="/images/logo-spotify.png" alt="Spotify" title="Áudios complementares no Spotify">
+        </div>
+
+        <span class="bio-card-livro-btn">
+          Conhecer o livro
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- MENTORIA -->
+    <a href="/mentoria" class="bio-card mentoria bio-reveal">
+      <div class="bio-card-side">
+        <span class="bio-card-num">02</span>
+        <span class="bio-card-badge">Próxima turma 20/05</span>
+      </div>
+      <div class="bio-card-body">
+        <span class="bio-card-label">Mentoria</span>
+        <h3>Mentoria Marca com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <p>Em 8 encontros ao vivo, você sai com a sua <strong>marca estruturada, Brand Book completo</strong> e clareza estratégica para atrair os clientes certos, cobrar o que merece e crescer com consistência.</p>
+        <span class="bio-card-arrow">Conhecer a mentoria <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <!-- DIREÇÃO -->
+    <a href="/direcao" class="bio-card direcao bio-reveal">
+      <div class="bio-card-side"><span class="bio-card-num">03</span></div>
+      <div class="bio-card-body">
+        <span class="bio-card-label">Direção</span>
+        <h3>Direção Estratégica</h3>
+        <p>Acompanhamento mensal para quem já tem base e precisa de <strong>direção contínua em branding, comunicação e marketing</strong>. Para crescer com consistência, sem se perder no operacional nem tomar decisões no escuro.</p>
+        <span class="bio-card-arrow">Conhecer a direção <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <!-- PROGRAMA -->
+    <a href="/programa" class="bio-card programa bio-reveal">
+      <div class="bio-card-side"><span class="bio-card-num">04</span></div>
+      <div class="bio-card-body">
+        <span class="bio-card-label">Programa</span>
+        <h3>Programa Marca com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <p>Consultoria completa feita sob medida: posicionamento, linguagem verbal e identidade visual construídos junto a você, para <strong>transformar sua marca em uma referência clara no seu mercado</strong>. Mesmo escopo dos cases da KA.</p>
+        <span class="bio-card-arrow">Conhecer o programa <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- DEPOIMENTOS (exato da /sobre)                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section bg-grid-light" style="background-color:var(--bg-1);">
+  <div class="container">
+    <div class="text-center animate-on-scroll" style="margin-bottom:3rem;">
+      <span class="label">Depoimentos</span>
+      <h2>O que dizem sobre nós</h2>
+    </div>
+    <div class="carousel-wrap">
+      <button class="carousel-arrow carousel-arrow--left" aria-label="Anterior">‹</button>
+      <button class="carousel-arrow carousel-arrow--right" aria-label="Próximo">›</button>
+      <div class="carousel-track-container">
+        <div class="carousel-track">
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"A Kelly me conduziu neste caminho de descobertas e me ajudou a transformar a marca Fernando Beteti de 'O seu Repórter Saúde' para 'O seu Jornalista de Confiança'. Foram meses de pesquisas, discussões e estudos até chegarmos à definição certa."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Fernando Beteti</p><p class="testimonial-card__role">Jornalista, 2,3 milhões de seguidores</p><a href="https://instagram.com/fernandobeteti" target="_blank" class="testimonial-card__ig">@fernandobeteti</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Não tenho palavras para agradecer esse trabalho que estamos fazendo juntos. Muito obrigado por estar me guiando nesse processo."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">José Bráulio Petry</p><p class="testimonial-card__role">Advogado, Doutor em Direito, Escritório Petry Fonseca</p><a href="https://instagram.com/petryfonseca" target="_blank" class="testimonial-card__ig">@petryfonseca</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"O trabalho da Kelly é muito diferenciado, traz um olhar com valorização do nosso eu e do profissional. Estou adorando e recomendo!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Angela Matzenbacher</p><p class="testimonial-card__role">Dermatologista Capilar</p><a href="https://instagram.com/draangelamatzenbacher" target="_blank" class="testimonial-card__ig">@draangelamatzenbacher</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Estou encantada com esse trabalho. É profundo e ao mesmo tempo objetivo, me direcionando exatamente naquilo que posso desenvolver. Essa é a nossa luz, o nosso ikigai."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Ângela Portocarrero</p><p class="testimonial-card__role">Neurocientista do Comportamento</p><a href="https://instagram.com/angelap_neuro" target="_blank" class="testimonial-card__ig">@angelap_neuro</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Ajudou muito aqui na agência a entender nosso público e a verdadeira essência da nossa marca. Com isso conseguimos focar em resultados para nosso público real. Vale muito a pena!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Spin Criação de Sites</p><p class="testimonial-card__role">Agência de criação digital</p><a href="https://instagram.com/spinmkt" target="_blank" class="testimonial-card__ig">@spinmkt</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"A KA é fantástica. A Kelly sabe demais, é super atenciosa, explica tudo com calma e tem muita transparência. Recomendo a todos e de olhos fechados!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Mirna Pagnossin</p><p class="testimonial-card__role">Fundadora da Spin Criação de Sites</p><a href="https://instagram.com/mirna_pagnossin" target="_blank" class="testimonial-card__ig">@mirna_pagnossin</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Extremamente cordial, com bastante conhecimento e cheia de proatividade. Personaliza a mentoria de acordo com as necessidades da marca. Ótima em todos os sentidos!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Francisco Oliveira</p><p class="testimonial-card__role">Designer Floral, Flowers By Francis, New Jersey, EUA</p><a href="https://instagram.com/flowersbyfrancis" target="_blank" class="testimonial-card__ig">@flowersbyfrancis</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Estou amando todo o processo e tudo que tem surgido com ele. Obrigada Kelly, por todo carinho e atenção. Tu é incrível!"</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Robertha Silveira</p><p class="testimonial-card__role">Arquiteta, Ser Arquitetura e Alma</p><a href="https://instagram.com/ser.arquiteturaealma" target="_blank" class="testimonial-card__ig">@ser.arquiteturaealma</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"Todas as pessoas deveriam fazer a mentoria com a Kelly. Ela abre visões e insights que sozinhos os gestores não conseguiriam visualizar. Esclarecedora e sem tendenciosidade."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Caroline Mallmanni</p><p class="testimonial-card__role">Coordenadora de Negócios, empresa Gugui</p><a href="https://instagram.com/carolmallmann._" target="_blank" class="testimonial-card__ig">@carolmallmann._</a></div></div></div>
+          <div class="carousel-slide"><div class="testimonial-card"><p class="testimonial-card__text">"A Kelly me ajudou a aumentar meu brand awareness e triplicou meu número de seguidores. Sempre vai além, compartilhando ideias e ferramentas. Excelente profissional, super competente."</p><div class="testimonial-card__meta"><p class="testimonial-card__name">Narjara Costa</p><p class="testimonial-card__role">Consultora de Imigração, Canadá</p><a href="https://instagram.com/narjara.costa" target="_blank" class="testimonial-card__ig">@narjara.costa</a></div></div></div>
+        </div>
+      </div>
+      <div class="carousel-dots"><button class="carousel-dot active"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button><button class="carousel-dot"></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- QUEM ESTÁ POR TRÁS · Kelly (resumido, layout exato /sobre) -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="section section--dark amb-preto bg-grid-dark" style="background-color:var(--preto);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:10%;left:8%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.08) 0%,transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:15%;right:5%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(184,155,106,.05) 0%,transparent 70%);pointer-events:none;"></div>
+  <svg style="position:absolute;top:25%;right:15%;opacity:.2" width="6" height="6"><circle cx="3" cy="3" r="2" fill="#D4C49E"><animate attributeName="opacity" values=".2;.7;.2" dur="3s" repeatCount="indefinite"/></circle></svg>
+  <svg style="position:absolute;bottom:30%;left:20%;opacity:.15" width="5" height="5"><circle cx="2.5" cy="2.5" r="2" fill="#B8CDD8"><animate attributeName="opacity" values=".1;.4;.1" dur="4s" repeatCount="indefinite" begin=".5s"/></circle></svg>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="grid-2" style="align-items:start;gap:4rem;">
+      <!-- Foto -->
+      <div class="animate-on-scroll stagger-1" style="text-align:center;position:relative;display:flex;justify-content:flex-end;">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:85%;height:85%;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.15) 0%,transparent 70%);filter:blur(25px);z-index:0;"></div>
+        <img src="/images/kelly-bio.jpg" alt="Kelly Albert" style="border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.3);width:100%;max-width:380px;max-height:500px;object-fit:cover;object-position:top;position:relative;z-index:1;">
+      </div>
+
+      <!-- Texto -->
+      <div class="animate-on-scroll">
+        <span class="label" style="color:var(--dourado-c);">Quem está por trás</span>
+        <h2 style="color:var(--bg-1);font-size:2.2rem;margin-bottom:.3rem;"><span class="hl-gold">Kelly Albert</span></h2>
+        <div style="display:flex;align-items:center;gap:.6rem;margin:0 0 1.5rem;">
+          <div style="width:30px;height:1px;background:linear-gradient(to right,var(--dourado-c),transparent);"></div>
+          <svg width="6" height="6"><circle cx="3" cy="3" r="2.5" fill="var(--dourado-c)" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/></circle></svg>
+        </div>
+
+        <p style="font-size:1.05rem;color:rgba(237,232,221,.92);line-height:1.85;margin-top:0;">Fundadora da <span style="color:var(--dourado-c);font-weight:600;">KA | Inteligência para Marcas</span>, escritório de branding especializado em posicionamento e reposicionamento de marcas. Atuou junto a marcas como <span style="color:rgba(237,232,221,.96);font-weight:500;">McDonald's, Sebrae, Atacadão do Grupo Carrefour, Suvinil, Grupo Ramarim e Band FM</span>.</p>
+
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);line-height:1.85;margin-top:1.2rem;">Publicitária com <span style="color:var(--dourado-c);font-weight:600;">mais de 20 anos de mercado</span>, <span style="color:rgba(237,232,221,.92);font-weight:500;">MBA em Gestão Estratégica de Negócios pela FGV/SP</span> e especializações pela <span style="color:rgba(237,232,221,.92);font-weight:500;">ESPM/SP</span>.</p>
+
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);line-height:1.85;margin-top:1.2rem;">Criadora do <span style="color:var(--dourado-c);font-weight:600;">Método Marca com Essência©</span>, integra branding, posicionamento, comunicação e <span style="color:rgba(237,232,221,.92);font-weight:500;">Inteligência Artificial</span> em um processo profundo e aplicável.</p>
+
+        <!-- Quote em destaque -->
+        <div style="margin-top:2rem;background:rgba(184,205,216,.12);border:1px solid rgba(184,205,216,.2);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
+          <p style="font-family:var(--heading);font-size:1rem;font-style:italic;color:var(--cta-light);line-height:1.6;margin:0;">"Essência sem direção se dispersa.<br>Direção sem essência se esvazia."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CTA FINAL                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bio-cta-final amb-marinho bio-reveal">
+  <div class="bio-cta-final-inner">
+    <span class="bio-cta-final-label">Vamos conversar</span>
+    <h3 style="color:#EDE8DD;">Pronta para revelar a <em>potência</em> da sua marca?</h3>
+    <div class="bio-cta-final-btns">
+      <a href="/quiz" class="bio-cta-btn bio-cta-btn--diag">
+        Diagnóstico gratuito
+        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%20Albert%2C%20como%20vai%3F%20Vim%20atrav%C3%A9s%20do%20link%20da%20bio%20e%20gostaria%20de%20saber%20mais." target="_blank" class="bio-cta-btn bio-cta-btn--whats">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.6 1.8.8 2.5.8 3.4.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- REDES SOCIAIS                                          -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="bio-socials bio-reveal">
+  <span class="bio-socials-label">Conecte-se</span>
+  <div class="bio-socials-grid">
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener" class="bio-social" aria-label="Instagram Kelly Albert">
+      <span class="bio-social-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1M12 0C8.7 0 8.3 0 7.1.1 5.8.1 5 .3 4.2.6c-.8.3-1.5.7-2.2 1.4C1.3 2.7.9 3.4.6 4.2c-.3.8-.5 1.6-.6 2.9C0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.3 2.1.6 2.9.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.5 2.9.6 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.1-.3 2.9-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.6.6-2.9.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.3-2.1-.6-2.9-.3-.8-.7-1.5-1.4-2.2-.7-.7-1.4-1.1-2.2-1.4-.8-.3-1.6-.5-2.9-.6C15.7 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2S15.4 5.8 12 5.8zm0 10.2c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6.4-11.8c-.8 0-1.4.6-1.4 1.4s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4-.6-1.4-1.4-1.4z"/></svg>
+      </span>
+      <span class="bio-social-label">Instagram</span>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%20Albert%2C%20como%20vai%3F%20Vim%20atrav%C3%A9s%20do%20link%20da%20bio%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="noopener" class="bio-social" aria-label="WhatsApp Kelly Albert">
+      <span class="bio-social-icon">
+        <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.6 1.8.8 2.5.8 3.4.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2z"/></svg>
+      </span>
+      <span class="bio-social-label">WhatsApp</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER MINI                                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer class="footer bio-footer-mini">
+  <div class="container">
+    <p>
+      <a href="/">kellyalbert.com.br</a><br>
+      Kelly Albert® 2026 · CNPJ: 15.096.943/0001-37
+    </p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.bio-reveal').forEach(el=>io.observe(el));
+})();
+
+// Carrossel de depoimentos usa o main.js do site (incluído no footer)
+</script>
+
+<script src="/js/main.js"></script>
+
+</body></html>
