@@ -59,14 +59,8 @@ img{max-width:100%;display:block}
 .bg-grid-light{background-image:var(--grid-light);background-size:32px 32px}
 .bg-grid-dark{background-image:var(--grid-dark);background-size:32px 32px}
 
-/* ═══ TYPOGRAPHY ═══ */
-h1,h2,h3{font-family:var(--heading);text-wrap:balance;word-break:normal;overflow-wrap:normal}
-h1{font-size:2.8rem;font-weight:600;color:var(--t-900);letter-spacing:-.03em;line-height:1.15}
-h2{font-size:2.4rem;font-weight:500;color:var(--t-900);letter-spacing:-.02em;line-height:1.2}
-h3{font-size:1.8rem;font-weight:500;color:var(--t-900);line-height:1.3}
-h4{font-family:var(--heading);font-size:1.1rem;font-weight:600;color:var(--t-900);line-height:1.3}
-p{line-height:1.75;color:var(--t-600);margin-bottom:1rem;font-weight:400;font-size:.95rem}
-.label{font-family:var(--body);font-size:.65rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--cta);display:inline-block;margin-bottom:.4rem}
+/* Tipografia herdada do CSS global /css/style.css (bloco canônico).
+   Nenhuma regra local de h1/h2/h3/h4/p/.label aqui — evita drift. */
 .container{max-width:var(--max-w);margin:0 auto;padding:0 2.5rem}
 .section{padding:7rem 0;position:relative}
 .line{width:48px;height:2px;background:var(--blue-dark);margin:1.5rem 0}
@@ -287,8 +281,6 @@ p{line-height:1.75;color:var(--t-600);margin-bottom:1rem;font-weight:400;font-si
   .footer__grid-3{grid-template-columns:1fr 1fr;gap:1.2rem}
   .footer{padding:2rem 0 1rem}
   .footer__bottom{margin-top:1.2rem}
-  h1{font-size:2.2rem}
-  h2{font-size:1.8rem}
   .method-step__num{font-size:2rem}
   .method-steps{margin-left:0;margin-right:auto}
   .iceberg-svg{max-width:320px;margin:2rem auto 0}
@@ -298,8 +290,6 @@ p{line-height:1.75;color:var(--t-600);margin-bottom:1rem;font-weight:400;font-si
   .pain-grid{grid-template-columns:1fr}
   .container{padding:0 1.5rem}
   .section{padding:5rem 0}
-  h1{font-size:1.8rem}
-  h2{font-size:1.6rem}
   .btn--lg{padding:.85rem 2rem;font-size:.75rem}
   .method-steps{max-width:100%;margin-left:0}
   .method-step{padding:1rem 1.2rem;gap:1rem}
@@ -334,9 +324,8 @@ p{line-height:1.75;color:var(--t-600);margin-bottom:1rem;font-weight:400;font-si
 @keyframes sparkleV6{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.3)}}
 .sparkle-v6{animation:sparkleV6 1.5s ease-in-out infinite}
 
-/* Responsivo Home */
+/* Responsivo Home — tipografia herdada do CSS global */
 @media(max-width:968px){
-  .hero h1{font-size:2.2rem!important}
   .grid-2{grid-template-columns:1fr!important;gap:2.5rem!important}
   .eco-products{grid-template-columns:1fr!important;gap:1.5rem!important;max-width:420px!important;margin:0 auto!important}
   .eco-card{width:100%!important;max-width:100%!important}
@@ -346,8 +335,6 @@ p{line-height:1.75;color:var(--t-600);margin-bottom:1rem;font-weight:400;font-si
 @media(max-width:640px){
   .section{padding:3.5rem 0!important}
   .hero{padding:8rem 0 3rem!important}
-  .hero h1{font-size:1.85rem!important}
-  h2{font-size:1.55rem!important}
   .container{padding:0 1.2rem!important}
   .method-steps{gap:.8rem!important}
   .eco-card{padding:1.5rem!important}
