@@ -789,18 +789,17 @@ h1, h2, h3, h4 {
   overflow-wrap: normal;
 }
 
-/* H1 — Título grande da página */
+/* H1 e H2 — Títulos de seção (padrão unificado: 2.2rem como na /sobre) */
 h1, .hero h1, .page-header h1 {
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   letter-spacing: -.03em;
   line-height: 1.15;
   margin-bottom: 1rem;
   max-width: 700px;
 }
 
-/* H2 — Título de seção */
 h2 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   letter-spacing: -.02em;
   line-height: 1.2;
   margin-bottom: .8rem;
@@ -866,10 +865,10 @@ h4 + p { margin-top: .4rem; }
    MOBILE TYPOGRAPHY — Bigger titles, balanced breaks
    ======================================== */
 
-/* TABLET (≤968px) */
+/* TABLET (≤968px) — h1/h2 mantêm 2.2rem, h3/h4 encolhem */
 @media(max-width:968px) {
   h1, .hero h1, .page-header h1 {
-    font-size: 2.6rem !important;
+    font-size: 2.2rem !important;
     max-width: 90vw;
     text-wrap: balance;
   }
@@ -880,10 +879,10 @@ h4 + p { margin-top: .4rem; }
   p { text-wrap: pretty; }
 }
 
-/* MOBILE (≤640px) */
+/* MOBILE (≤640px) — h1/h2 viram 1.85rem (sem quebrar pra 1.55 depois) */
 @media(max-width:640px) {
   h1, .hero h1, .page-header h1 {
-    font-size: 2.2rem !important;
+    font-size: 1.85rem !important;
     max-width: 95vw;
   }
   h2 { font-size: 1.85rem !important; }
@@ -898,10 +897,8 @@ h4 + p { margin-top: .4rem; }
   .t-xs   { font-size: .75rem; }
 }
 
-/* SMALL MOBILE (≤480px) */
+/* SMALL MOBILE (≤480px) — h1/h2 mantêm 1.85rem (sem quebrar) */
 @media(max-width:480px) {
-  h1, .hero h1, .page-header h1 { font-size: 1.9rem !important; }
-  h2 { font-size: 1.55rem !important; }
   h3 { font-size: 1.25rem !important; }
   .eco-card__name { font-size: 1.35rem !important; }
 }
@@ -957,9 +954,9 @@ h4 + p { margin-top: .4rem; }
   
 }
 
-/* Diag closing box bigger on mobile */
+/* Diag closing box — h2 segue padrão global (1.85rem no mobile) */
 @media(max-width:640px){
-  .diag-closing h2{font-size:2.4rem!important}
+  .diag-closing h2{font-size:1.85rem!important}
   .diag-closing p{font-size:1rem!important}
   .tech-card__logo{height:100px!important}
   .tech-card{padding:2rem 1.5rem!important}
@@ -980,7 +977,7 @@ h4 + p { margin-top: .4rem; }
 }
 
 /* Diag closing box: orange bg with dark text */
-.diag-closing h2{color:var(--t-900)!important;font-size:3rem!important;line-height:1.15!important}
+.diag-closing h2{color:var(--t-900)!important;font-size:2.2rem!important;line-height:1.15!important}
 .diag-closing p{color:var(--t-800)!important}
 
 /* FOOTER: two column layout */
