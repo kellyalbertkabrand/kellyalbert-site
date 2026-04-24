@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Segredos do pipeline de transcrição
+credentials.json
+token.json
+.env
