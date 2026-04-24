@@ -65,13 +65,8 @@ a,a:hover,a:visited,a:focus,a:active,u,ins{text-decoration:none!important}
 a:hover{color:var(--cta)}
 ::selection{background:var(--blue-soft);color:var(--t-900)}
 
-/* =============================== */
-/* TYPOGRAPHIC HIERARCHY SYSTEM · declaração canônica em linhas 776-811 */
-/* =============================== */
-h1,h2,h3{font-family:var(--heading);text-wrap:balance;word-break:normal;overflow-wrap:normal}
-
-/* H4: Títulos menores (result sections, cards internos) */
-h4{font-family:var(--heading);font-size:1.1rem;font-weight:600;color:var(--t-900);line-height:1.3}
+/* TIPOGRAFIA (h1–h4) — bloco canônico mais abaixo na seção "BASE TYPOGRAPHY".
+   Aqui só ficam labels, parágrafos e utilitários. */
 
 /* Labels / Categorias */
 .label{font-size:.68rem}
@@ -351,11 +346,9 @@ p{margin-bottom:1rem;color:var(--t-500);font-weight:400;font-size:.95rem}
   
   .logo-bar{gap:1.5rem}
   .logo-bar__text{font-size:.6rem;padding:.3rem .5rem}
-  h2{font-size:2rem}
 }
 @media(max-width:640px){
   .container{padding:0 1.5rem}
-  h2{font-size:1.85rem}
   .nav__inner{height:70px;padding:0 1.5rem}
   .nav__logo{height:36px}
   .footer__grid{grid-template-columns:1fr;gap:1rem;text-align:left}
@@ -736,42 +729,46 @@ h3 .inline-logo{height:1.2em}
    - Consistent spacing between title → subtitle → text
    ======================================== */
 
-/* BASE TYPOGRAPHY (all versions) */
-h1, h2, h3 {
+/* BASE TYPOGRAPHY — Hierarquia canônica dos títulos (padrão /sobre)
+   Quatro degraus: h1 grande · h2 de seção · h3 de card · h4 de sub-item.
+   Responsivo logo abaixo (tablet ≤968px, mobile ≤640px, mobile-xs ≤480px). */
+h1, h2, h3, h4 {
   font-family: var(--heading);
+  font-weight: 600;
+  color: var(--t-900);
   text-wrap: balance;
   word-break: normal;
   overflow-wrap: normal;
 }
 
-/* H1 — Main titles */
+/* H1 — Título grande da página */
 h1, .hero h1, .page-header h1 {
   font-size: 2.8rem;
-  font-weight: 600;
-  color: var(--t-900);
   letter-spacing: -.03em;
   line-height: 1.15;
   margin-bottom: 1rem;
   max-width: 700px;
 }
 
-/* H2 — Section titles */
+/* H2 — Título de seção */
 h2 {
   font-size: 2.4rem;
-  font-weight: 600;
-  color: var(--t-900);
   letter-spacing: -.02em;
   line-height: 1.2;
   margin-bottom: .8rem;
 }
 
-/* H3 — Component titles */
+/* H3 — Título de card/componente */
 h3 {
   font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--t-900);
   line-height: 1.3;
   margin-bottom: .5rem;
+}
+
+/* H4 — Título de sub-item */
+h4 {
+  font-size: 1.1rem;
+  line-height: 1.3;
 }
 
 /* LABEL — Category tag above titles */
@@ -839,20 +836,11 @@ h2 + p { margin-top: .8rem; }
     max-width: 90vw;
     text-wrap: balance;
   }
-  h2 {
-    font-size: 2.2rem !important;
-    text-wrap: balance;
-  }
-  h3 {
-    font-size: 1.3rem !important;
-    text-wrap: balance;
-  }
-  .eco-card__name {
-    font-size: 1.6rem !important;
-  }
-  p {
-    text-wrap: pretty;
-  }
+  h2 { font-size: 2.2rem !important; text-wrap: balance; }
+  h3 { font-size: 1.5rem !important; text-wrap: balance; }
+  h4 { font-size: 1.05rem !important; }
+  .eco-card__name { font-size: 1.6rem !important; }
+  p { text-wrap: pretty; }
 }
 
 /* MOBILE (≤640px) */
@@ -861,31 +849,18 @@ h2 + p { margin-top: .8rem; }
     font-size: 2.2rem !important;
     max-width: 95vw;
   }
-  h2 {
-    font-size: 1.8rem !important;
-  }
-  h3 {
-    font-size: 1.2rem !important;
-  }
-  .eco-card__name {
-    font-size: 1.5rem !important;
-  }
+  h2 { font-size: 1.85rem !important; }
+  h3 { font-size: 1.35rem !important; }
+  h4 { font-size: 1rem !important; }
+  .eco-card__name { font-size: 1.5rem !important; }
 }
 
 /* SMALL MOBILE (≤480px) */
 @media(max-width:480px) {
-  h1, .hero h1, .page-header h1 {
-    font-size: 1.9rem !important;
-  }
-  h2 {
-    font-size: 1.55rem !important;
-  }
-  h3 {
-    font-size: 1.1rem !important;
-  }
-  .eco-card__name {
-    font-size: 1.35rem !important;
-  }
+  h1, .hero h1, .page-header h1 { font-size: 1.9rem !important; }
+  h2 { font-size: 1.55rem !important; }
+  h3 { font-size: 1.25rem !important; }
+  .eco-card__name { font-size: 1.35rem !important; }
 }
 
 
@@ -902,12 +877,9 @@ h2 + p { margin-top: .8rem; }
   
 }
 
-/* MOBILE: bigger product names in ecossistema */
+/* MOBILE: product name line-height ajustado no ecossistema */
 @media(max-width:968px){
-  .eco-card__name{font-size:1.8rem!important;line-height:1.2!important}
-}
-@media(max-width:640px){
-  .eco-card__name{font-size:1.5rem!important}
+  .eco-card__name{line-height:1.2!important}
 }
 
 @media(max-width:640px){
@@ -942,11 +914,6 @@ h2 + p { margin-top: .8rem; }
   
 }
 
-/* Ecossistema title bigger on mobile */
-@media(max-width:968px){
-  .eco-card__name{font-size:1.8rem!important}
-}
-
 /* Diag closing box bigger on mobile */
 @media(max-width:640px){
   .diag-closing h2{font-size:2.4rem!important}
@@ -967,11 +934,6 @@ h2 + p { margin-top: .8rem; }
 
 @media(max-width:968px){
   .tech-card__logo{height:120px!important}
-}
-
-/* MOBILE: key h2 titles same size as h1 */
-@media(max-width:640px){
-  h2{font-size:2.2rem!important}
 }
 
 /* Diag closing box: orange bg with dark text */
