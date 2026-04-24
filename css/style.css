@@ -124,14 +124,17 @@ p {
   font-style: italic;
 }
 
-/* Espaçamento padrão: título → subtítulo → texto */
-h1+.line{margin-top:.8rem}
-h2+.line{margin-top:.6rem}
-.line+p{margin-top:1.2rem}
-h2+p{margin-top:.8rem}
-h3+p{margin-top:.5rem}
+/* Espaçamento entre elementos (label→título→linha→parágrafo) — bloco canônico mais abaixo na seção SPACING */
 .container{max-width:var(--max-w);margin:0 auto;padding:0 2.5rem}
+
+/* SEÇÕES — padding vertical padronizado (padrão /sobre)
+   .section     → 7rem    (seção padrão)
+   .section--sm → 3.5rem  (seção compacta · "Empresas que passaram", etc.)
+   .section--lg → 9rem    (seção ampla · CTA final, hero interno)
+   Responsivo mobile: encolhe pra 4.5rem / 2.5rem / 5.5rem em ≤968px */
 .section{padding:7rem 0;position:relative}
+.section--sm{padding:3.5rem 0}
+.section--lg{padding:9rem 0}
 .line{width:48px;height:2px;background:var(--blue-dark);margin:1.5rem 0}
 .line--center{margin-left:auto;margin-right:auto}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
@@ -376,7 +379,9 @@ h3+p{margin-top:.5rem}
   .feature-strip__item:nth-child(2){border-right:0}
   .feature-strip__item:nth-child(-n+2){border-bottom:0}
   .footer__grid{grid-template-columns:1fr 1fr;gap:1.2rem}
-  .section{padding:5rem 0}
+  .section{padding:4.5rem 0}
+  .section--sm{padding:2.5rem 0}
+  .section--lg{padding:5.5rem 0}
   .nav__inner{height:68px}
   .nav__logo{height:40px}
   .nav__links{display:none}
@@ -814,11 +819,15 @@ h4 {
   line-height: 1.3;
 }
 
-/* SPACING: title → subtitle → text */
-.label + h1, .label + h2 { margin-top: .3rem; }
-h1 + .line, h2 + .line { margin-top: .8rem; }
+/* SPACING — distância vertical entre elementos consecutivos
+   Ordem típica: label → título → linha decorativa → parágrafo → CTA */
+.label + h1, .label + h2, .label + h3 { margin-top: .3rem; }
+h1 + .line, h2 + .line, h3 + .line { margin-top: .8rem; }
 .line + p { margin-top: 1.2rem; }
+h1 + p { margin-top: 1rem; }
 h2 + p { margin-top: .8rem; }
+h3 + p { margin-top: .5rem; }
+h4 + p { margin-top: .4rem; }
 
 /* Hero specific */
 .hero h1 { margin-bottom: 1.5rem; }
