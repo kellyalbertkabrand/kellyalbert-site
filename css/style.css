@@ -905,6 +905,9 @@ h4 + p { margin-top: .4rem; }
   h4 { font-size: 1.05rem !important; }
   .eco-card__name { font-size: 1.6rem !important; }
   p { text-wrap: pretty; }
+  /* Perguntas do quiz: proporção controlada com subtexto */
+  #question-container h2,
+  #context-container h2 { font-size: 1.7rem !important; line-height: 1.3 !important; }
 }
 
 /* MOBILE (≤640px) — regra de títulos:
@@ -921,11 +924,16 @@ h4 + p { margin-top: .4rem; }
   .t-lead { font-size: 1rem; }
   .t-sm   { font-size: .88rem; }
   .t-xs   { font-size: .82rem; }
-  /* Primeira dobra — hero + page-header + pergunta do quiz */
-  .hero h1, .hero h2, .page-header h1,
-  #question-container h2 {
+  /* Primeira dobra — hero + page-header */
+  .hero h1, .hero h2, .page-header h1 {
     font-size: 2.5rem !important;
     line-height: 1.15 !important;
+  }
+  /* Perguntas do quiz: compacto e proporcional ao subtexto */
+  #question-container h2,
+  #context-container h2 {
+    font-size: 1.55rem !important;
+    line-height: 1.3 !important;
   }
 }
 
