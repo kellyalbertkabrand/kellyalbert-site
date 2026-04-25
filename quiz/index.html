@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="/css/style.css">
 <style>
 .quiz-result-section{background:var(--bg-0);border-radius:12px;padding:2rem;border:1px solid var(--border-light);margin-bottom:1.5rem;text-align:left}
-.quiz-result-section h4{margin-bottom:.8rem;color:var(--t-900)}
-.quiz-result-section p{font-size:.88rem;margin-bottom:.5rem}
-.quiz-result-section .pain{color:var(--t-900);font-weight:500;font-size:.9rem}
-.quiz-result-section .insight{color:var(--t-500);font-size:.85rem;font-weight:300;font-style:italic;border-left:2px solid var(--blue);padding-left:1rem;margin-top:.8rem}
+.quiz-result-section h4{font-size:1.15rem;font-weight:600;margin-bottom:1rem;color:var(--t-900);font-family:var(--heading)}
+.quiz-result-section p{font-size:.95rem;line-height:1.8;margin-bottom:.5rem;color:var(--t-700)}
+.quiz-result-section .pain{color:var(--t-900);font-weight:500;font-size:.95rem}
+.quiz-result-section .insight{color:var(--t-500);font-size:.9rem;font-weight:300;border-left:2px solid var(--blue);padding-left:1rem;margin-top:.8rem}
 .score-ring{width:140px;height:140px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;position:relative}
 .score-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:6px solid var(--bg-4)}
 .score-ring__value{font-family:var(--heading);font-size:2.8rem;font-weight:700;color:var(--t-black);position:relative;z-index:1}
@@ -16,11 +16,11 @@
 .score-ring .bg{stroke:var(--bg-4)}
 .score-ring .fill{stroke:var(--blue-dark);transition:stroke-dashoffset 1.5s cubic-bezier(.16,1,.3,1)}
 .danger-list{list-style:none;padding:0}
-.danger-list li{padding:.6rem 0;font-size:.88rem;color:var(--t-700);display:flex;align-items:flex-start;gap:.6rem;border-bottom:1px solid var(--border-light)}
+.danger-list li{padding:.6rem 0;font-size:.95rem;color:var(--t-700);display:flex;align-items:flex-start;gap:.6rem;border-bottom:1px solid var(--border-light)}
 .danger-list li:last-child{border-bottom:0}
 .danger-list li::before{content:'⚠';font-size:.8rem;margin-top:.15rem;flex-shrink:0}
 .strength-list{list-style:none;padding:0}
-.strength-list li{padding:.5rem 0;font-size:.88rem;color:var(--t-600);display:flex;align-items:flex-start;gap:.6rem}
+.strength-list li{padding:.5rem 0;font-size:.95rem;color:var(--t-600);display:flex;align-items:flex-start;gap:.6rem}
 .strength-list li::before{content:'✓';color:var(--blue-dark);font-weight:700;flex-shrink:0}
 .context-option{display:block;width:100%;text-align:left;padding:.85rem 1.2rem;margin-bottom:.5rem;border:1px solid var(--border-light);border-radius:8px;background:var(--bg-0);cursor:pointer;font-size:.95rem;color:var(--t-700);transition:all .2s ease;font-family:var(--body);box-sizing:border-box}
 .context-option:hover{border-color:var(--blue);background:var(--bg-2)}
@@ -47,8 +47,8 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
 @media(max-width:640px){
   .quiz-container{padding:0}
   .context-option,.quiz-option{padding:.9rem 1rem!important;font-size:.88rem!important}
-  #context-container h3{font-size:1.05rem!important;padding:0}
-  #question-container h2{font-size:1.05rem!important;padding:0}
+  #context-container h3{padding:0}
+  #question-container h2{padding:0}
   .container{padding:0 .8rem!important}
 }
 
@@ -64,7 +64,13 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
 <meta property="og:title" content="Diagnóstico Estratégico de Marca | KA | Inteligência para Marcas">
 <meta property="og:description" content="Faça o diagnóstico gratuito e descubra o que está impedindo sua marca de ser lembrada, desejada e escolhida. Resultado imediato.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://kellyalbert.com.br/images/logo-ka-full.png">
+<meta property="og:image" content="/images/og/og-quiz.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:url" content="https://kellyalbert.com.br/quiz/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/images/og/og-quiz.jpg">
 <meta property="og:locale" content="pt_BR">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://kellyalbert.com.br/quiz/">
@@ -88,8 +94,9 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
 
       <!-- INTRO -->
       <div id="step-intro" class="text-center">
-        <span class="label">Diagnóstico Estratégico <span style="background:#25D366;color:#fff;padding:.25rem .7rem;border-radius:100px;font-size:.72rem;letter-spacing:.15em;margin-left:.3rem;font-weight:700;">GRATUITO</span></span>
-        <h1 style="margin-bottom:1rem;">Sua marca está <em>invisível</em> para o mercado?</h1>
+        <div style="text-align:center;margin-bottom:.6rem;"><span style="background:#25D366;color:#fff;padding:.3rem .9rem;border-radius:100px;font-size:.72rem;letter-spacing:.18em;font-weight:700;white-space:nowrap;display:inline-block;">GRATUITO</span></div>
+        <span class="label">Diagnóstico Estratégico</span>
+        <h1 style="margin-bottom:1rem;">Sua marca está invisível para o mercado?</h1>
         <div class="line line--center"></div>
         <p style="font-size:1.05rem;color:var(--t-700);max-width:500px;margin:1.5rem auto;font-weight:400;">A maioria dos empreendedores entrega muito e é percebido pouco. Em 3 minutos você vai descobrir <strong>exatamente</strong> o que está impedindo sua marca de ser lembrada, desejada e escolhida.</p>
         <p style="font-size:.88rem;max-width:460px;margin:0 auto 2.5rem;">Este diagnóstico revela os pontos cegos que fazem você competir por preço em vez de por valor. O resultado pode ser desconfortável, mas é o primeiro passo.</p>
@@ -114,8 +121,7 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
       <!-- CONTEXT QUESTIONS -->
       <div id="step-context" style="display:none;">
         <div class="text-center" style="margin-bottom:2rem;">
-          <span class="label">Sobre seu negócio</span>
-          <h2><span style="background:rgba(61,107,126,.25);padding:.2rem .8rem;border-radius:6px;">Vamos entender seu momento</span></h2>
+          <span class="label">Vamos entender seu momento</span>
           <div class="line line--center"></div>
         </div>
         <div id="context-container"></div>
@@ -242,7 +248,7 @@ function goTo(id){
 // CONTEXT
 function showContext(){
   var q=contextQuestions[currentCtx];
-  var h='<h2 style="margin-bottom:1rem;line-height:1.35;text-align:center;">'+q.q+'</h2>';
+  var h='<h2 style="font-size:1.85rem;margin-bottom:1.2rem;line-height:1.35;text-align:center;">'+q.q+'</h2>';
   q.options.forEach(function(o,i){
     h+='<button class="context-option '+(ctxAnswers[currentCtx]===i?'selected':'')+'" onclick="selectContext('+i+')">'+o+'</button>';
   });
@@ -268,8 +274,8 @@ function prevContext(){if(currentCtx>0){currentCtx--;showContext();}}
 function showQuestion(){
   var q=strategicQuestions[currentQ];
   document.getElementById('progress-bar').style.width=((currentQ)/strategicQuestions.length)*100+'%';
-  var h='<h2 style="margin-bottom:.5rem;line-height:1.35;text-align:center;">'+q.q+'</h2>';
-  h+='<p style="font-size:1rem;color:var(--cta);margin-bottom:2rem;font-weight:400;line-height:1.6;text-align:center;">'+q.sub+'</p>';
+  var h='<h2 style="font-size:1.85rem;margin-bottom:.7rem;line-height:1.35;text-align:center;">'+q.q+'</h2>';
+  h+='<p style="font-size:1.05rem;color:var(--cta);margin-bottom:2rem;font-weight:400;line-height:1.6;text-align:center;">'+q.sub+'</p>';
   q.options.forEach(function(o,i){
     h+='<button class="quiz-option '+(answers[currentQ]===i?'selected':'')+'" onclick="selectOption('+i+')">'+o.text+'</button>';
   });
@@ -396,7 +402,7 @@ function showResult(){
     var diagHtml='';
 
     // Deep analysis paragraph
-    diagHtml+='<div class="quiz-result-section" style="background:rgba(61,107,126,.08);border-color:rgba(61,107,126,.2);"><h4>Análise do seu momento</h4><p style="font-size:.9rem;color:var(--t-700);line-height:1.85;">'+deepAnalysis+'</p></div>';
+    diagHtml+='<div class="quiz-result-section" style="background:rgba(61,107,126,.08);border-color:rgba(61,107,126,.2);"><h4>Análise do seu momento</h4><p style="font-size:.95rem;color:var(--t-700);line-height:1.85;">'+deepAnalysis+'</p></div>';
 
     // Critical points with deep text
     var criticals=[];
@@ -410,7 +416,7 @@ function showResult(){
     if(criticals.length>0){
       diagHtml+='<div class="quiz-result-section"><h4>Onde sua marca está mais vulnerável</h4>';
       for(var i=0;i<criticals.length;i++){
-        diagHtml+='<div style="padding:1rem 0;'+(i<criticals.length-1?'border-bottom:1px solid var(--border-light);':'')+'"><p style="font-size:.88rem;color:var(--t-700);line-height:1.8;">'+criticals[i]+'</p></div>';
+        diagHtml+='<div style="padding:1rem 0;'+(i<criticals.length-1?'border-bottom:1px solid var(--border-light);':'')+'"><p style="font-size:.95rem;color:var(--t-700);line-height:1.8;">'+criticals[i]+'</p></div>';
       }
       diagHtml+='</div>';
     }

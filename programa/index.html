@@ -12,16 +12,16 @@
 <style>
 .prog-feature{background:rgba(61,107,126,.06);border:1px solid rgba(61,107,126,.12);border-radius:14px;padding:2rem;text-align:center;transition:all .4s ease}
 .prog-feature:hover{border-color:rgba(61,107,126,.3);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.04)}
-.prog-feature h4{font-size:1rem;margin-bottom:.5rem;font-weight:600}
-.prog-feature p{font-size:.85rem;color:var(--t-600);line-height:1.7;margin:0}
-.prog-para-quem li{font-size:.9rem;color:var(--t-600);line-height:1.8;padding:.4rem 0;padding-left:1.5rem;position:relative;list-style:none}
+.prog-feature h4{font-size:1.1rem;margin-bottom:.5rem;font-weight:600}
+.prog-feature p{font-size:.88rem;color:var(--t-600);line-height:1.7;margin:0}
+.prog-para-quem li{font-size:.9rem;color:var(--t-600);padding:.4rem 0;padding-left:1.5rem;position:relative;list-style:none}
 .prog-para-quem li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cta);position:absolute;left:0;top:.85rem}
 .prog-nao li::before{background:var(--dourado)}
 .etapa-block{background:rgba(61,107,126,.04);border:1px solid rgba(61,107,126,.1);border-radius:14px;padding:1.5rem 2rem;margin-bottom:.8rem;transition:all .4s ease;display:flex;gap:1.2rem;align-items:flex-start}
 .etapa-block:hover{border-color:rgba(61,107,126,.25)}
 .etapa-num{font-family:var(--heading);font-size:1.6rem;font-weight:600;color:var(--cta);min-width:36px;line-height:1}
-.etapa-block h4{font-size:.92rem;font-weight:700;color:var(--t-800);margin-bottom:.2rem}
-.etapa-block p{font-size:.82rem;color:var(--t-600);margin:0;line-height:1.6}
+.etapa-block h4{font-size:1.1rem;font-weight:600;color:var(--t-800);margin-bottom:.2rem}
+.etapa-block p{font-size:.88rem;color:var(--t-600);margin:0;line-height:1.6}
 .plan-card{border-radius:16px;padding:2.5rem 2rem;display:flex;flex-direction:column;text-align:center;transition:all .4s ease}
 .plan-card:hover{transform:translateY(-4px)}
 .plan-card--essencial{background:rgba(237,232,221,.08);border:1px solid rgba(237,232,221,.15)}
@@ -32,14 +32,12 @@
 /* SISTEMA VISUAL SITE KA v6.0 */
 .amb-marinho{background:#152535;color:#EDE8DD}.amb-marinho h1,.amb-marinho h2,.amb-marinho h3{color:#EDE8DD}.amb-marinho p{color:rgba(237,232,221,.96)}
 .est-diamond{background-image:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(237,232,221,.09) 22px,rgba(237,232,221,.09) 23px),repeating-linear-gradient(-45deg,transparent,transparent 22px,rgba(237,232,221,.09) 22px,rgba(237,232,221,.09) 23px)}
-@media(max-width:968px){.grid-2{grid-template-columns:1fr!important;gap:2rem!important}h1{font-size:2.1rem!important}h2{font-size:1.7rem!important}}
-@media(max-width:640px){.section{padding:3rem 1.2rem!important}h1{font-size:1.85rem!important}h2{font-size:1.55rem!important}.container{padding:0 1.2rem!important}}
+@media(max-width:968px){.grid-2{grid-template-columns:1fr!important;gap:2rem!important}}
+@media(max-width:640px){.section{padding:3rem 1.2rem!important}.container{padding:0 1.2rem!important}}
 </style>
 <style>
-/* MOBILE COMPREHENSIVE FIX */
+/* MOBILE COMPREHENSIVE FIX — tipografia herdada do CSS global */
 @media(max-width:968px){
-  
-  .hero h1{font-size:2rem!important}
   .hero video{max-width:850px!important;width:100%!important;max-height:none!important;margin:0 auto}
   [style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important}
   [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr 1fr!important}
@@ -48,8 +46,6 @@
   [style*="display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap"]{gap:.4rem!important}
   [style*="display:flex;align-items:center;justify-content:center;gap:.5rem"] svg[width="18"]{display:none}
   .plan-card p[style*="font-size:1.5rem"]{font-size:1.3rem!important}
-  [style*="font-size:2.2rem"]{font-size:1.85rem!important}
-  [style*="font-size:2rem"]{font-size:1.7rem!important}
   [style*="padding:2rem 2.5rem"]{padding:1.5rem!important}
   [style*="padding:2rem 2.2rem"]{padding:1.5rem 1.2rem!important}
   [style*="padding:1.5rem 1.8rem"]{padding:1.2rem!important}
@@ -57,7 +53,6 @@
 }
 @media(max-width:640px){
   .hero{padding:6rem 0 2rem!important}
-  .hero h1{font-size:1.7rem!important}
   .hero video{max-width:100%!important;max-height:none!important}
   .section{padding:3rem 0!important}
   .container{padding-left:1rem!important;padding-right:1rem!important}
@@ -68,8 +63,6 @@
   [style*="display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap"]{flex-direction:column;gap:.6rem!important}
   [style*="display:flex;align-items:center;justify-content:center;gap:.5rem"] svg[width="18"]{display:none}
   [style*="width:155px"]{width:100%!important}
-  h2[style*="font-size:2.2rem"]{font-size:1.7rem!important}
-  h2[style*="font-size:2rem"]{font-size:1.6rem!important}
   .plan-card p[style*="font-size:1.5rem"]{font-size:1.2rem!important}
   [style*="max-width:750px"]{max-width:100%!important}
   [style*="max-width:700px"]{max-width:100%!important}
@@ -80,7 +73,6 @@
   [style*="font-size:1.15rem"]{font-size:1rem!important}
   [style*="font-size:1.1rem"]{font-size:.95rem!important}
   [style*="font-size:1.05rem"]{font-size:.92rem!important}
-  .cta-final h2{font-size:1.4rem!important}
   .btn-group{flex-direction:column!important;align-items:center!important;gap:.8rem!important}
   .btn--lg{width:100%!important;justify-content:center!important}
   svg[viewBox="0 0 400 320"]{max-width:100%!important}
@@ -103,7 +95,14 @@ details summary::marker{display:none}
 <meta property="og:title" content="Programa MARCA COM ESSÊNCIA© | Posicionamento Completo">
 <meta property="og:description" content="O projeto completo de posicionamento conduzido pela Kelly Albert, sua equipe e parceiros.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://kellyalbert.com.br/images/logo-ka-full.png">
+<meta property="og:image" content="/images/og/og-programa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:url" content="https://kellyalbert.com.br/programa/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="/images/og/og-programa.jpg">
 <meta name="robots" content="index, follow">
 
 <style>
@@ -113,7 +112,7 @@ details summary::marker{display:none}
 @media(max-width:968px){.section h2, section h2{font-size:2rem!important}}
 @media(max-width:640px){
   .section h2, section h2{font-size:1.85rem!important}
-  .prog-feature h4{font-size:1rem!important;letter-spacing:.1em!important}
+  .prog-feature h4{font-size:1.1rem;letter-spacing:.1em!important}
   [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
 }
 /* Scroll fade */
@@ -138,14 +137,14 @@ details summary::marker{display:none}
   <div class="container" style="position:relative;z-index:1;">
     <div class="animate-on-scroll scroll-fade" style="text-align:center;max-width:650px;margin:0 auto;">
       <span class="label" style="background:rgba(184,155,106,.12);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--dourado-c);">FAZEMOS PRA VOCÊ</span>
-      <h1 style="color:var(--bg-1);font-size:2.6rem;">Programa Marca com <span class="hl-gold">Essência</span><sup style="font-size:.55em;">©</sup></h1>
+      <h1 style="color:var(--bg-1);">Programa Marca com <span class="hl-gold">Essência<sup style="font-size:.55em;">©</sup></span></h1>
       <div style="display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1.2rem auto;">
         <div style="width:30px;height:1px;background:linear-gradient(to right,transparent,var(--dourado-c));"></div>
         <svg width="6" height="6"><circle cx="3" cy="3" r="2.5" fill="var(--dourado-c)" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/></circle></svg>
         <div style="width:30px;height:1px;background:linear-gradient(to left,transparent,var(--dourado-c));"></div>
       </div>
-      <p style="font-size:1.1rem;color:rgba(237,232,221,.9);margin:1rem auto 0;max-width:520px;line-height:1.85;font-weight:400;">O projeto completo de <span style="color:var(--dourado-c);font-weight:600;">posicionamento de marca</span> conduzido pela <span style="color:var(--dourado-c);font-weight:600;">Kelly Albert, sua equipe e parceiros</span>.</p>
-      <p style="font-size:.95rem;color:rgba(237,232,221,.78);margin:.8rem auto 0;max-width:460px;line-height:1.85;">Da revelação da <span style="color:rgba(237,232,221,.85);font-weight:500;">essência dos fundadores</span> ao posicionamento estratégico, identidade verbal e <span style="color:rgba(237,232,221,.85);font-weight:500;">Inteligência Artificial</span> aplicada.</p>
+      <p style="font-size:1.1rem;color:rgba(237,232,221,.9);margin:1rem auto 0;max-width:520px;font-weight:400;">O projeto completo de <span style="color:var(--dourado-c);font-weight:600;">posicionamento de marca</span> conduzido pela <span style="color:var(--dourado-c);font-weight:600;">Kelly Albert, sua equipe e parceiros</span>.</p>
+      <p style="font-size:.95rem;color:rgba(237,232,221,.78);margin:.8rem auto 0;max-width:460px;">Da revelação da <span style="color:rgba(237,232,221,.85);font-weight:500;">essência dos fundadores</span> ao posicionamento estratégico, identidade verbal e <span style="color:rgba(237,232,221,.85);font-weight:500;">Inteligência Artificial</span> aplicada.</p>
     </div>
     <div class="animate-on-scroll scroll-fade delay-1" style="margin-top:3rem;position:relative;max-width:850px;margin-left:auto;margin-right:auto;">
       <div style="position:absolute;inset:-15px;border-radius:24px;background:linear-gradient(135deg,rgba(61,107,126,.15),rgba(184,155,106,.1));filter:blur(20px);z-index:0;"></div>
@@ -197,7 +196,7 @@ details summary::marker{display:none}
       </div>
     </div>
     <div class="animate-on-scroll scroll-fade" style="text-align:center;margin-top:2.5rem;">
-      <p style="font-size:.95rem;color:rgba(237,232,221,.82);line-height:1.7;max-width:500px;margin:0 auto;">Esses sintomas não se resolvem com mais divulgação. Eles revelam uma marca que ainda não encontrou <span style="color:var(--cta-light);font-style:italic;">Clareza</span> no seu <span style="color:var(--cta-light);font-style:italic;">Posicionamento</span>.</p>
+      <p style="font-size:.95rem;color:rgba(237,232,221,.82);line-height:1.7;max-width:500px;margin:0 auto;">Esses sintomas não se resolvem com mais divulgação. Eles revelam uma marca que ainda não encontrou <span style="color:var(--cta-light);">Clareza</span> no seu <span style="color:var(--cta-light);">Posicionamento</span>.</p>
     </div>
   </div>
 </section>
@@ -272,7 +271,7 @@ details summary::marker{display:none}
     <div class="text-center animate-on-scroll scroll-fade">
       <span class="label" style="background:rgba(61,107,126,.08);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--cta);">PROGRAMA MARCA COM ESSÊNCIA©</span>
       <h2 style="margin-top:1rem;">Tudo o que sua marca precisa para ser <span class="hl">lembrada, desejada e escolhida</span></h2>
-      <p style="font-size:1rem;color:var(--t-600);max-width:550px;margin:1.2rem auto 0;line-height:1.85;">Não é mentoria, não é curso. É um <span style="color:var(--cta);font-weight:600;">projeto sob medida</span> onde a Kelly, sua equipe e parceiros conduzem todo o processo.</p>
+      <p style="font-size:1rem;color:var(--t-600);max-width:550px;margin:1.2rem auto 0;">Não é mentoria, não é curso. É um <span style="color:var(--cta);font-weight:600;">projeto sob medida</span> onde a Kelly, sua equipe e parceiros conduzem todo o processo.</p>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;" class="prog-grid-3">
@@ -322,13 +321,13 @@ details summary::marker{display:none}
   <div class="container" style="max-width:900px;position:relative;z-index:1;">
     <div class="text-center animate-on-scroll">
       <span class="label" style="background:rgba(184,155,106,.12);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--dourado-c);">MÉTODO EXCLUSIVO</span>
-      <h2 style="color:var(--bg-1);font-size:2.4rem;">Método <span class="hl-gold">Marca com Essência</span><sup style="font-size:.55em;">©</sup></h2>
+      <h2 style="color:var(--bg-1);">Método <span class="hl-gold">Marca com Essência<sup style="font-size:.55em;">©</sup></span></h2>
       <div style="display:flex;align-items:center;justify-content:center;gap:.6rem;margin:1.2rem auto;">
         <div style="width:30px;height:1px;background:linear-gradient(to right,transparent,var(--dourado-c));"></div>
         <svg width="6" height="6"><circle cx="3" cy="3" r="2.5" fill="var(--dourado-c)" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/></circle></svg>
         <div style="width:30px;height:1px;background:linear-gradient(to left,transparent,var(--dourado-c));"></div>
       </div>
-      <p style="font-size:1rem;color:rgba(237,232,221,.8);margin-top:1.2rem;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.85;">O Método Marca com Essência<span style="color:inherit;">©</span> começa pela revelação da essência que sustenta a marca. Essa essência já existe nas crenças dos fundadores, nas decisões que se repetem, nos comportamentos que moldam a cultura e na forma como a marca se expressa no mundo. Nosso trabalho é <span style="color:var(--dourado-c);font-weight:600;">revelar, nomear, organizar e lapidar</span> essa base.</p>
+      <p style="font-size:1rem;color:rgba(237,232,221,.8);margin-top:1.2rem;max-width:700px;margin-left:auto;margin-right:auto;">O Método Marca com Essência<span style="color:inherit;">©</span> começa pela revelação da essência que sustenta a marca. Essa essência já existe nas crenças dos fundadores, nas decisões que se repetem, nos comportamentos que moldam a cultura e na forma como a marca se expressa no mundo. Nosso trabalho é <span style="color:var(--dourado-c);font-weight:600;">revelar, nomear, organizar e lapidar</span> essa base.</p>
     </div>
 
     
@@ -344,21 +343,21 @@ details summary::marker{display:none}
       <div class="animate-on-scroll scroll-fade delay-1" style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;">
         <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><rect x="10" y="10" width="30" height="30" rx="4" fill="none" stroke="rgba(184,205,216,.3)" stroke-width="1.5"/><line x1="18" y1="20" x2="32" y2="20" stroke="var(--cta-light)" stroke-width="1.5" opacity=".5"/><line x1="18" y1="25" x2="28" y2="25" stroke="var(--cta-light)" stroke-width="1.5" opacity=".4"/><line x1="18" y1="30" x2="30" y2="30" stroke="var(--cta-light)" stroke-width="1.5" opacity=".3"/><circle cx="36" cy="14" r="3" fill="var(--cta-light)" opacity=".3"><animate attributeName="opacity" values=".2;.6;.2" dur="2s" repeatCount="indefinite"/></circle></svg>
         <p style="font-size:.55rem;color:var(--cta-light);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 02</p>
-        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Construção de <span style="color:var(--cta-light);font-style:italic;">Clareza</span></h4>
+        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Construção de <span style="color:var(--cta-light);">Clareza</span></h4>
         <p style="font-size:.78rem;color:rgba(237,232,221,.82);margin:0;line-height:1.6;">Posicionamento, DNA, proposta de valor, identidade verbal, análise de concorrentes e clientes.</p>
         <p style="font-size:.6rem;color:rgba(184,205,216,.35);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">ONDE ATUA: Essência > Cultura > Marca</p>
       </div>
       <div class="animate-on-scroll scroll-fade" style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;">
         <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><path d="M25 5 L25 10" stroke="var(--cta-light)" stroke-width="2" stroke-linecap="round"/><path d="M25 15 L35 40 L25 34 L15 40 Z" fill="rgba(61,107,126,.1)" stroke="var(--cta-light)" stroke-width="1.5" stroke-linejoin="round"><animateTransform attributeName="transform" type="rotate" values="0 25 25;8 25 25;0 25 25;-8 25 25;0 25 25" dur="4s" repeatCount="indefinite"/></path><circle cx="25" cy="25" r="2.5" fill="var(--cta-light)" opacity=".4"/></svg>
         <p style="font-size:.55rem;color:var(--cta-light);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 03</p>
-        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Definição de <span style="color:var(--cta-light);font-style:italic;">Direção</span></h4>
+        <h4 style="color:var(--bg-1);font-size:1rem;margin-bottom:.5rem;">Definição de <span style="color:var(--cta-light);">Direção</span></h4>
         <p style="font-size:.78rem;color:rgba(237,232,221,.82);margin:0;line-height:1.6;">Identidade visual, estrutura da oferta, plano de comunicação e agentes de IA exclusivos.</p>
         <p style="font-size:.6rem;color:rgba(184,205,216,.35);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">ONDE ATUA: Marca > Percepção</p>
       </div>
       <div class="animate-on-scroll scroll-fade delay-1" style="background:var(--cta);border:2px solid var(--cta);border-radius:12px;padding:2rem;text-align:center;transition:all .4s ease;box-shadow:0 8px 30px rgba(61,107,126,.2);">
         <svg width="50" height="50" viewBox="0 0 50 50" style="margin:0 auto .8rem;display:block;"><polygon points="25,5 45,18 45,35 25,48 5,35 5,18" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><circle cx="25" cy="26" r="6" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><animate attributeName="r" values="6;8;6" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="25" cy="5" r="2" fill="#D4C49E" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="1.5s" repeatCount="indefinite"/></circle></svg>
         <p style="font-size:.55rem;color:rgba(255,255,255,.68);font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:.3rem;">Etapa 04</p>
-        <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem;"><span style="font-style:italic;">Posicionamento</span> no Mercado</h4>
+        <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem;"><span>Posicionamento</span> no Mercado</h4>
         <p style="font-size:.78rem;color:rgba(255,255,255,.6);margin:0;line-height:1.6;">Marca pronta para ser ativada com coerência. Não só bonita, coerente. Não só presente, escolhida.</p>
         <p style="font-size:.6rem;color:rgba(255,255,255,.3);margin-top:.6rem;margin-bottom:0;letter-spacing:.1em;">RESULTADO</p>
       </div>
@@ -408,11 +407,11 @@ details summary::marker{display:none}
     <div class="animate-on-scroll scroll-fade" style="text-align:center;">
       <span class="label" style="background:rgba(61,107,126,.08);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--cta);">A DIFERENÇA</span>
       <h2 style="margin-top:1rem;">Não é sobre fazer <span class="hl">bonito</span>. É sobre fazer <span class="hl">certo</span>.</h2>
-      <p style="font-size:1rem;color:var(--t-700);line-height:1.85;margin-top:1.5rem;">A maioria das empresas começa pelo visual: logo, cores, site. O <span style="background:linear-gradient(to top,rgba(184,205,216,.35) 40%,transparent 40%);font-weight:700;">Programa MARCA COM ESSÊNCIA©</span> começa pelo que vem <span class="em-key">antes</span>: a essência que sustenta tudo.</p>
-      <p style="font-size:.95rem;color:var(--t-600);line-height:1.85;">Quando o alicerce é sólido, tudo que vem depois se encaixa com naturalidade. Sem forçar, sem improvisar.</p>
+      <p style="font-size:1rem;color:var(--t-700);margin-top:1.5rem;">A maioria das empresas começa pelo visual: logo, cores, site. O <span style="background:linear-gradient(to top,rgba(184,205,216,.35) 40%,transparent 40%);font-weight:700;">Programa MARCA COM ESSÊNCIA©</span> começa pelo que vem <span class="em-key">antes</span>: a essência que sustenta tudo.</p>
+      <p style="font-size:.95rem;color:var(--t-600);">Quando o alicerce é sólido, tudo que vem depois se encaixa com naturalidade. Sem forçar, sem improvisar.</p>
       <div style="background:rgba(61,107,126,.06);border-radius:14px;padding:1.5rem 2rem;margin-top:2rem;border:1px solid rgba(61,107,126,.14);">
-        <p style="font-family:var(--heading);font-size:1rem;font-style:italic;color:var(--t-700);line-height:1.7;margin:0;">"Quando o empresário começa pelo logo, ele decora a fachada de uma casa sem alicerce. Essência vem primeiro. Sempre."</p>
-        <p style="font-family:var(--heading);font-size:.85rem;color:var(--cta);font-style:italic;font-weight:500;margin:.5rem 0 0;">Kelly Albert</p>
+        <p style="font-family:var(--heading);font-size:1rem;color:var(--t-700);line-height:1.7;margin:0;">"Quando o empresário começa pelo logo, ele decora a fachada de uma casa sem alicerce. Essência vem primeiro. Sempre."</p>
+        <p style="font-family:var(--heading);font-size:.85rem;color:var(--cta);font-weight:500;margin:.5rem 0 0;">Kelly Albert</p>
       </div>
     </div>
   </div>
@@ -436,17 +435,17 @@ details summary::marker{display:none}
       <!-- Texto -->
       <div class="animate-on-scroll scroll-fade">
         <span class="label" style="background:rgba(184,155,106,.12);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--dourado-c);">QUEM ESTÁ POR TRÁS</span>
-        <h2 style="color:var(--bg-1);font-size:2.4rem;margin-bottom:.3rem;"><span class="hl-gold">Kelly Albert</span></h2>
+        <h2 style="color:var(--bg-1);margin-bottom:.3rem;"><span class="hl-gold">Kelly Albert</span></h2>
         <div style="display:flex;align-items:center;gap:.6rem;margin:0 0 1.5rem;">
           <div style="width:30px;height:1px;background:linear-gradient(to right,var(--dourado-c),transparent);"></div>
           <svg width="6" height="6"><circle cx="3" cy="3" r="2.5" fill="var(--dourado-c)" opacity=".5"><animate attributeName="opacity" values=".3;.8;.3" dur="2s" repeatCount="indefinite"/></circle></svg>
         </div>
 
-        <p style="font-size:1.05rem;color:rgba(237,232,221,.85);line-height:1.85;margin-top:0;">Fundadora da <span style="color:var(--dourado-c);font-weight:600;">KA | Inteligência para Marcas</span>, um escritório de branding especializado em posicionamento e reposicionamento de marcas, já atuou junto a marcas como <span style="color:rgba(237,232,221,.96);font-weight:500;">McDonald's, Sebrae, Atacadão do Grupo Carrefour, Suvinil, Grupo Ramarim, Band FM</span> entre outras.</p>
+        <p style="font-size:1.05rem;color:rgba(237,232,221,.85);margin-top:0;">Fundadora da <span style="color:var(--dourado-c);font-weight:600;">KA | Inteligência para Marcas</span>, um escritório de branding especializado em posicionamento e reposicionamento de marcas, já atuou junto a marcas como <span style="color:rgba(237,232,221,.96);font-weight:500;">McDonald's, Sebrae, Atacadão do Grupo Carrefour, Suvinil, Grupo Ramarim, Band FM</span> entre outras.</p>
 
-        <p style="font-size:.95rem;color:rgba(237,232,221,.78);line-height:1.85;margin-top:1.2rem;">Com mais de <span style="color:var(--dourado-c);font-weight:600;">20 anos de experiência</span>, atuando em departamentos de marketing como executiva, agências de propaganda tradicionais e tendo a sua agência de marketing digital por mais de 13 anos, é publicitária de formação, com <span style="color:rgba(237,232,221,.85);font-weight:500;">MBA em Gestão Estratégica de Negócios pela FGV/SP</span> e especializações pela <span style="color:rgba(237,232,221,.85);font-weight:500;">ESPM/SP</span>, Kelly sempre buscou unir profundidade, técnica e visão estratégica para transformar marcas a partir do que elas realmente são.</p>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);margin-top:1.2rem;">Com mais de <span style="color:var(--dourado-c);font-weight:600;">20 anos de experiência</span>, atuando em departamentos de marketing como executiva, agências de propaganda tradicionais e tendo a sua agência de marketing digital por mais de 13 anos, é publicitária de formação, com <span style="color:rgba(237,232,221,.85);font-weight:500;">MBA em Gestão Estratégica de Negócios pela FGV/SP</span> e especializações pela <span style="color:rgba(237,232,221,.85);font-weight:500;">ESPM/SP</span>, Kelly sempre buscou unir profundidade, técnica e visão estratégica para transformar marcas a partir do que elas realmente são.</p>
 
-        <p style="font-size:.95rem;color:rgba(237,232,221,.78);line-height:1.85;margin-top:1.2rem;">Criadora do <span style="color:var(--dourado-c);font-weight:600;">Método Marca com Essência<span style="color:inherit">©</span></span>, sua abordagem integra branding, posicionamento, comunicação e um ecossistema de inteligências artificiais como aliadas de processos mais consistentes, profundos e aplicáveis. <span style="color:rgba(237,232,221,.85);font-weight:500;">Inteligência humana integrada com inteligência artificial.</span></p>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);margin-top:1.2rem;">Criadora do <span style="color:var(--dourado-c);font-weight:600;">Método Marca com Essência<span style="color:inherit">©</span></span>, sua abordagem integra branding, posicionamento, comunicação e um ecossistema de inteligências artificiais como aliadas de processos mais consistentes, profundos e aplicáveis. <span style="color:rgba(237,232,221,.85);font-weight:500;">Inteligência humana integrada com inteligência artificial.</span></p>
 
         <!-- Time KA -->
         <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(237,232,221,.08);">
@@ -454,12 +453,12 @@ details summary::marker{display:none}
             <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="12" cy="10" r="5" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" opacity=".4"/><circle cx="22" cy="10" r="5" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" opacity=".25"/><path d="M4 28 C4 20 10 18 16 18 C22 18 28 20 28 28" fill="none" stroke="var(--dourado-c)" stroke-width="1.5" opacity=".3"/></svg>
             <p style="font-size:.85rem;color:var(--dourado-c);font-weight:600;margin:0;">Time KA</p>
           </div>
-          <p style="font-size:.88rem;color:rgba(237,232,221,.82);line-height:1.8;margin:0;">A KA conta com uma equipe que atua junto ao escritório, entre profissionais contratados e parceiros estratégicos, garantindo profundidade técnica e execução em cada projeto.</p>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.82);margin:0;">A KA conta com uma equipe que atua junto ao escritório, entre profissionais contratados e parceiros estratégicos, garantindo profundidade técnica e execução em cada projeto.</p>
         </div>
 
         <!-- Quote em destaque -->
         <div style="margin-top:2rem;background:rgba(184,205,216,.12);border:1px solid rgba(184,205,216,.2);border-radius:12px;padding:1.5rem 2rem;text-align:center;">
-          <p style="font-family:var(--heading);font-size:1rem;font-style:italic;color:var(--cta-light);line-height:1.6;margin:0;">"Essência sem direção se dispersa.<br>Direção sem essência se esvazia."</p>
+          <p style="font-family:var(--heading);font-size:1rem;color:var(--cta-light);line-height:1.6;margin:0;">"Essência sem direção se dispersa.<br>Direção sem essência se esvazia."</p>
         </div>
       </div>
     </div>
@@ -469,7 +468,7 @@ details summary::marker{display:none}
 <!-- LOGOS -->
 <section class="bg-grid-light" style="padding:3.5rem 0;background-color:#f1ede6;">
   <div class="container text-center">
-    <span class="label" style="background:rgba(61,107,126,.08);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--cta);">EMPRESAS QUE JÁ PASSARAM POR NÓS</span>
+    <span class="label" style="background:rgba(61,107,126,.08);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--cta);">EMPRESAS QUE JÁ<br>PASSARAM POR NÓS</span>
     <h2 style="margin-bottom:2rem;">Marcas que confiaram em nosso trabalho</h2>
     <div class="logo-grid" style="border-radius:14px;padding:2rem;">
       <img src="/images/logos/mcdonalds.jpg" alt="McDonald's" class="logo-grid__item">
