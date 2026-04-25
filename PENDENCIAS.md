@@ -8,8 +8,8 @@
 
 ### Produção / Deploy
 
-- [ ] **DNS `kellyalbert.com.br` → Netlify** — configuração pendente no Registro.br
-- [ ] Subir ZIP v65 no Netlify e validar no domínio real
+- [x] DNS `kellyalbert.com.br` → Netlify (concluído)
+- [x] Deploy automático via integração Git → Netlify (não usa mais ZIP)
 
 ### Home
 
