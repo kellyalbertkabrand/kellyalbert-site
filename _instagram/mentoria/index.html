@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Carrossel IG · Mentoria Marca com Essência©</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@400;500;600;700&family=Outfit:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marinho:#152535; --preto:#0F1923; --essencia:#3D6B7E;
+  --cobre:#C47830; --cobre-dark:#8B5A2B;
+  --dourado:#B89B6A; --dourado-c:#D4C49E; --mostarda:#E0B880;
+  --bege:#EDE8DD; --papel:#F8F7F2; --branco:#FFFFFF; --verde:#2E8B57;
+  --heading:'Playfair Display',Georgia,serif;
+  --body:'Montserrat',system-ui,sans-serif;
+  --num:'Outfit',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2A2A2A;font-family:var(--body);padding:40px 0;display:flex;flex-direction:column;align-items:center;gap:40px}
+.toolbar{position:fixed;top:12px;right:12px;background:#fff;color:#1a1a1a;padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.5;z-index:9999;box-shadow:0 6px 24px rgba(0,0,0,.4);max-width:300px}
+.toolbar strong{display:block;margin-bottom:4px;font-size:13px}
+
+/* SLIDE BASE */
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;color:var(--bege);display:flex;flex-direction:column;justify-content:center;padding:110px 90px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.slide--marinho{background:var(--marinho)}
+.slide--preto{background:var(--preto)}
+.slide--cobre{background:var(--cobre-dark)}
+
+/* TEXTURAS */
+.est-grid{background-image:linear-gradient(rgba(237,232,221,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(237,232,221,.045) 1px,transparent 1px);background-size:60px 60px}
+.est-dots{background-image:radial-gradient(circle,rgba(237,232,221,.06) 1.2px,transparent 1.2px);background-size:34px 34px}
+.est-diamond{background-image:linear-gradient(45deg,rgba(237,232,221,.04) 1px,transparent 1px),linear-gradient(-45deg,rgba(237,232,221,.04) 1px,transparent 1px);background-size:50px 50px}
+
+/* GLOWS */
+.glow-tl{position:absolute;top:-160px;left:-160px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.18) 0%,transparent 70%);pointer-events:none}
+.glow-br{position:absolute;bottom:-120px;right:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(184,155,106,.12) 0%,transparent 70%);pointer-events:none}
+.glow-tr{position:absolute;top:-100px;right:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.12) 0%,transparent 70%);pointer-events:none}
+
+/* TIPOGRAFIA */
+.label{display:inline-block;font-size:15px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--dourado-c);margin-bottom:28px}
+.label--cobre{color:var(--cobre)}
+.label--pill{background:rgba(184,155,106,.12);border:1px solid rgba(184,155,106,.25);padding:10px 22px;border-radius:100px}
+
+h1{font-family:var(--heading);font-weight:600;line-height:1.04;font-size:96px;color:var(--bege);letter-spacing:-.01em}
+h2{font-family:var(--heading);font-weight:600;line-height:1.1;font-size:68px;color:var(--bege);letter-spacing:-.005em}
+h3{font-family:var(--heading);font-size:44px;font-weight:500;line-height:1.15;color:var(--bege)}
+p{font-size:28px;line-height:1.55;color:rgba(237,232,221,.85)}
+p.lead{font-size:34px;line-height:1.45}
+p.small{font-size:22px;color:rgba(237,232,221,.7);line-height:1.6}
+p.tiny{font-size:18px;color:rgba(237,232,221,.55);letter-spacing:.05em}
+
+.gold{color:var(--dourado-c);font-weight:700;font-style:normal}
+.cobre{color:var(--cobre);font-weight:700}
+.bege-fort{color:#fff;font-weight:600}
+
+/* LINHA DECORATIVA */
+.line-deco{display:inline-flex;align-items:center;gap:14px;margin:30px 0}
+.line-deco span{display:block;width:60px;height:1px;background:linear-gradient(to right,transparent,var(--dourado-c))}
+.line-deco span:last-child{background:linear-gradient(to left,transparent,var(--dourado-c))}
+.line-deco i{display:block;width:7px;height:7px;border-radius:50%;background:var(--dourado-c);opacity:.65}
+
+/* RODAPÉ DO SLIDE */
+.slide__brand{position:absolute;bottom:50px;left:90px;font-family:var(--heading);font-size:18px;font-weight:500;color:rgba(237,232,221,.55);letter-spacing:.22em;text-transform:uppercase}
+.slide__num{position:absolute;bottom:50px;right:90px;font-family:var(--num);font-size:18px;font-weight:700;color:rgba(237,232,221,.45);letter-spacing:.3em}
+.slide__swipe{position:absolute;bottom:50px;left:50%;transform:translateX(-50%);font-size:15px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--cobre);display:flex;align-items:center;gap:10px}
+.slide__swipe svg{display:block}
+
+/* BLOCOS DE CONTEÚDO */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:22px;margin-top:14px}
+.checklist li{display:flex;gap:20px;align-items:flex-start;font-size:28px;line-height:1.4;color:var(--bege)}
+.checklist li svg{flex-shrink:0;margin-top:6px}
+.checklist--gold li svg circle{stroke:var(--dourado-c)}
+.checklist--gold li svg path{stroke:var(--dourado-c)}
+
+/* QUOTE */
+.quote{font-family:var(--heading);font-style:italic;font-size:46px;line-height:1.3;color:#fff;font-weight:400;border-left:3px solid var(--dourado-c);padding:8px 0 8px 36px;margin:30px 0}
+.quote-author{font-family:var(--heading);font-size:22px;font-weight:500;color:var(--dourado-c);letter-spacing:.18em;text-transform:uppercase;margin-top:24px}
+
+/* GRID DE ETAPAS */
+.etapas{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.etapa{background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.1);border-radius:18px;padding:32px 28px}
+.etapa.is-cobre{background:rgba(196,120,48,.12);border-color:rgba(196,120,48,.25)}
+.etapa.is-gold{background:rgba(184,155,106,.1);border-color:rgba(184,155,106,.22)}
+.etapa.is-essencia{background:rgba(61,107,126,.16);border-color:rgba(61,107,126,.3)}
+.etapa__num{font-family:var(--heading);font-size:38px;font-weight:600;color:var(--dourado-c);line-height:1;margin-bottom:14px}
+.etapa.is-cobre .etapa__num{color:var(--cobre)}
+.etapa.is-essencia .etapa__num{color:#B8CDD8}
+.etapa__title{font-family:var(--heading);font-size:26px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:8px}
+.etapa__desc{font-size:18px;color:rgba(237,232,221,.78);line-height:1.5}
+
+/* CARTÃO DATA */
+.date-card{background:rgba(184,155,106,.08);border:1px solid rgba(184,155,106,.2);border-radius:22px;padding:42px 48px;text-align:center;margin:30px 0}
+.date-card__hat{font-size:14px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(237,232,221,.7);margin-bottom:18px}
+.date-card__main{font-family:var(--heading);font-size:54px;font-weight:600;color:var(--cobre);line-height:1.15;margin:8px 0}
+.date-card__sub{font-size:22px;color:#fff;font-weight:600;margin-top:14px}
+
+/* PÍLULAS DE DATA */
+.dates-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+.dates-pills span{background:rgba(196,120,48,.16);border:1px solid rgba(196,120,48,.3);color:var(--cobre);font-size:18px;font-weight:700;padding:10px 18px;border-radius:100px;letter-spacing:.04em}
+.dates-pills span.is-first{background:var(--cobre);color:#fff;border-color:var(--cobre)}
+
+/* PREÇO */
+.price-card{background:rgba(184,155,106,.08);border:1px solid rgba(184,155,106,.22);border-radius:24px;padding:48px 40px;text-align:center;margin-top:20px}
+.price-card__hat{font-size:14px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(237,232,221,.65);margin-bottom:6px}
+.price-card__big{display:flex;align-items:flex-start;justify-content:center;gap:8px;color:var(--dourado-c)}
+.price-card__big .cur{font-family:var(--num);font-size:38px;font-weight:700;margin-top:30px}
+.price-card__big .num{font-family:var(--num);font-size:140px;font-weight:700;line-height:1}
+.price-card__big .cents{font-family:var(--num);font-size:46px;font-weight:700;margin-top:24px}
+.price-card__alt{font-size:22px;color:rgba(237,232,221,.65);margin-top:12px}
+
+/* CTA */
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:26px 50px;background:var(--verde);color:#fff;font-size:22px;font-weight:700;border-radius:100px;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 16px 50px rgba(46,139,87,.35);margin-top:30px}
+
+/* MARCA / FOOTER INFO */
+.brand-stamp{display:flex;align-items:center;gap:14px;margin-top:24px}
+.brand-stamp__txt{font-size:18px;color:rgba(237,232,221,.7);letter-spacing:.05em}
+.brand-stamp__txt strong{color:var(--dourado-c);font-weight:700}
+
+@media print{
+  body{background:#fff;padding:0;gap:0}
+  .slide{box-shadow:none;page-break-after:always;page-break-inside:avoid}
+  .toolbar{display:none}
+  @page{size:1080px 1350px;margin:0}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <strong>Carrossel IG · Mentoria Marca com Essência©</strong>
+  8 slides · 1080×1350 px<br>
+  Para exportar: print de cada slide individual, ou Ctrl+P → Salvar como PDF (1 slide por página).
+</div>
+
+<!-- ============================================================ -->
+<!-- SLIDE 01 · CAPA -->
+<!-- ============================================================ -->
+<section class="slide slide--marinho est-diamond">
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label label--pill">Mentoria Marca com Essência<sup style="font-size:.55em;">©</sup></span>
+
+    <div class="line-deco"><span></span><i></i><span></span></div>
+
+    <h1>A sua marca não tem<br>um problema de<br><span style="font-style:italic;color:rgba(237,232,221,.6);">marketing</span>.</h1>
+
+    <p class="lead" style="margin-top:48px;max-width:820px;">
+      Tem um problema de <span class="gold">posicionamento</span>.
+    </p>
+
+    <div style="margin-top:70px;display:inline-flex;align-items:center;gap:18px;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.32);padding:18px 28px;border-radius:100px;">
+      <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="3" fill="#C47830"/><circle cx="9" cy="9" r="7" fill="none" stroke="#C47830" stroke-width="1" opacity=".5"/></svg>
+      <span style="font-size:18px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;">Próxima turma · 20 de Maio · 2026</span>
+    </div>
+  </div>
+
+  <div class="slide__swipe">
+    Arrasta
+    <svg width="22" height="14" viewBox="0 0 22 14"><path d="M1 7 L20 7 M14 1 L20 7 L14 13" fill="none" stroke="#C47830" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">01 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 02 · DIAGNÓSTICO -->
+<!-- ============================================================ -->
+<section class="slide slide--marinho est-dots">
+  <div class="glow-tr"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label">O sintoma</span>
+    <h2>Você reconhece<br><span class="gold">algum desses</span>?</h2>
+
+    <ul class="checklist" style="margin-top:60px;">
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="rgba(224,184,128,.5)" stroke-width="1.5"/><line x1="13" y1="7" x2="13" y2="14" stroke="#E0B880" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="18" r="1.4" fill="#E0B880"/></svg>
+        A sua marca não consegue explicar <span class="bege-fort">o que faz e por que é diferente</span>
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="rgba(224,184,128,.5)" stroke-width="1.5"/><line x1="13" y1="7" x2="13" y2="14" stroke="#E0B880" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="18" r="1.4" fill="#E0B880"/></svg>
+        O público <span class="bege-fort">não entende o seu diferencial</span>
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="rgba(224,184,128,.5)" stroke-width="1.5"/><line x1="13" y1="7" x2="13" y2="14" stroke="#E0B880" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="18" r="1.4" fill="#E0B880"/></svg>
+        Cada canal parece ser de um <span class="bege-fort">negócio diferente</span>
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="rgba(224,184,128,.5)" stroke-width="1.5"/><line x1="13" y1="7" x2="13" y2="14" stroke="#E0B880" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="18" r="1.4" fill="#E0B880"/></svg>
+        Você atrai cliente que <span class="bege-fort">só pede desconto</span>
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke="rgba(224,184,128,.5)" stroke-width="1.5"/><line x1="13" y1="7" x2="13" y2="14" stroke="#E0B880" stroke-width="2" stroke-linecap="round"/><circle cx="13" cy="18" r="1.4" fill="#E0B880"/></svg>
+        Os concorrentes <span class="bege-fort">crescem mais rápido</span>
+      </li>
+    </ul>
+
+    <p class="small" style="margin-top:50px;max-width:820px;">
+      Tudo isso é sintoma da <span class="gold">mesma raiz</span>: ausência de posicionamento.
+    </p>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">02 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 03 · A VIRADA / DEFINIÇÃO -->
+<!-- ============================================================ -->
+<section class="slide slide--preto est-grid">
+  <div class="glow-tl"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label">A virada</span>
+    <h2>Posicionamento é o<br><span class="gold">lugar</span> que a sua marca<br>ocupa na <span class="gold">cabeça do cliente</span>.</h2>
+
+    <div class="line-deco"><span></span><i></i><span></span></div>
+
+    <div class="quote">
+      "Logo é a tradução visual de algo que precisa existir ANTES: a essência, o posicionamento, a identidade verbal, a estratégia."
+    </div>
+
+    <div style="display:flex;align-items:center;gap:18px;margin-top:36px;">
+      <div style="width:48px;height:1px;background:var(--dourado-c);"></div>
+      <span class="quote-author">Kelly Albert</span>
+    </div>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">03 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 04 · O MÉTODO -->
+<!-- ============================================================ -->
+<section class="slide slide--marinho est-grid">
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label">Método exclusivo</span>
+    <h2>Marca com<br><span class="gold">Essência<sup style="font-size:.5em;">©</sup></span></h2>
+
+    <div class="line-deco"><span></span><i></i><span></span></div>
+
+    <p class="lead" style="max-width:820px;">
+      Em <span class="gold">04 etapas</span>, do invisível ao visível.
+    </p>
+
+    <div class="etapas">
+      <div class="etapa is-gold">
+        <div class="etapa__num">01</div>
+        <div class="etapa__title">Revelação de Essência</div>
+        <div class="etapa__desc">Crenças dos fundadores, ikigai empresarial, padrões que se repetem.</div>
+      </div>
+      <div class="etapa is-essencia">
+        <div class="etapa__num">02</div>
+        <div class="etapa__title">Construção de Clareza</div>
+        <div class="etapa__desc">Posicionamento, DNA, proposta de valor, identidade verbal.</div>
+      </div>
+      <div class="etapa is-essencia">
+        <div class="etapa__num">03</div>
+        <div class="etapa__title">Definição de Direção</div>
+        <div class="etapa__desc">Identidade visual, estrutura da oferta, plano de comunicação.</div>
+      </div>
+      <div class="etapa is-cobre">
+        <div class="etapa__num">04</div>
+        <div class="etapa__title">Posicionamento no Mercado</div>
+        <div class="etapa__desc">Marca pronta para ser ativada com coerência. Não só presente — escolhida.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">04 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 05 · O QUE VOCÊ RECEBE -->
+<!-- ============================================================ -->
+<section class="slide slide--preto est-dots">
+  <div class="glow-br"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label">Tudo incluído</span>
+    <h2>O que você recebe<br>na <span class="gold">Mentoria</span></h2>
+
+    <ul class="checklist checklist--gold" style="margin-top:54px;">
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><span class="gold">8 encontros AO VIVO</span> com Kelly Albert</span>
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Método Marca com Essência<sup style="font-size:.55em;">©</sup> completo
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="gold">7 Agentes de IA exclusivos</span> no ChatGPT
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="bege-fort">Brand Book completo</span> da sua marca
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Livro Marca com Essência<sup style="font-size:.55em;">©</sup> <span style="color:rgba(237,232,221,.6);">(físico + digital)</span>
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Áudios complementares no Spotify
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Conteúdo gravado de cada encontro
+      </li>
+    </ul>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">05 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 06 · COMO FUNCIONA / DATAS -->
+<!-- ============================================================ -->
+<section class="slide slide--marinho est-grid">
+  <div class="glow-tl"></div>
+  <div class="glow-tr"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label label--cobre" style="background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.28);padding:10px 22px;border-radius:100px;">Próxima turma confirmada</span>
+
+    <h2 style="margin-top:30px;"><span class="cobre">08 encontros</span><br>04 semanas · ao vivo</h2>
+
+    <div class="date-card">
+      <div class="date-card__hat">Início</div>
+      <div class="date-card__main">20 de Maio a<br>12 de Junho · 2026</div>
+      <div class="date-card__sub">Terças e Quintas <span style="color:var(--cobre);">·</span> 19h30 às 21h30</div>
+    </div>
+
+    <p class="small" style="text-align:center;margin-top:8px;">
+      No mínimo 2h por encontro <span style="color:var(--cobre);">·</span> mais de 16h ao vivo
+    </p>
+
+    <div class="dates-pills">
+      <span class="is-first">20/05</span>
+      <span>22/05</span>
+      <span>27/05</span>
+      <span>29/05</span>
+      <span>03/06</span>
+      <span>05/06</span>
+      <span>10/06</span>
+      <span>12/06</span>
+    </div>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">06 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 07 · PARA QUEM É -->
+<!-- ============================================================ -->
+<section class="slide slide--preto est-grid">
+  <div class="glow-tl"></div>
+
+  <div style="position:relative;z-index:1;">
+    <span class="label">Para quem é</span>
+    <h2>Essa mentoria<br>é <span class="gold">pra você</span> se...</h2>
+
+    <ul class="checklist checklist--gold" style="margin-top:60px;">
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        É <span class="bege-fort">empresário, profissional liberal</span> ou marca pessoal
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Sente que sua marca <span class="bege-fort">não comunica</span> o seu valor real
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Cansou de <span class="bege-fort">improvisar</span> a comunicação
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Quer suporte da Kelly <span class="bege-fort">ao vivo</span>, não fazer sozinho
+      </li>
+      <li>
+        <svg width="26" height="26" viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="none" stroke-width="1.5"/><path d="M7 13 L11.5 17.5 L19 9.5" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Quer sair com o <span class="gold">Brand Book pronto</span>, validado e direcionado
+      </li>
+    </ul>
+
+    <p class="small" style="margin-top:50px;border-top:1px solid rgba(237,232,221,.1);padding-top:28px;">
+      <span style="color:rgba(237,232,221,.5);">Não é pra quem busca</span> solução pronta sem participar do processo.
+    </p>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">07 / 08</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 08 · CTA / INVESTIMENTO -->
+<!-- ============================================================ -->
+<section class="slide slide--marinho est-diamond">
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+
+  <div style="position:relative;z-index:1;text-align:center;">
+    <span class="label label--pill" style="background:rgba(196,120,48,.16);border-color:rgba(196,120,48,.32);color:#fff;">Garanta a sua vaga</span>
+
+    <h2 style="margin-top:24px;">Mentoria Marca com<br><span class="gold">Essência<sup style="font-size:.5em;">©</sup></span></h2>
+
+    <div class="line-deco" style="margin:24px auto;"><span></span><i></i><span></span></div>
+
+    <div class="price-card">
+      <div class="price-card__hat">12x de</div>
+      <div class="price-card__big">
+        <span class="cur">R$</span>
+        <span class="num">98</span>
+        <span class="cents">,04</span>
+      </div>
+      <div class="price-card__alt">ou R$ 990 à vista <span style="color:var(--cobre);">·</span> Pix ou cartão</div>
+    </div>
+
+    <a href="https://wa.me/5551993163333" class="cta-btn" style="text-decoration:none;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3C8.7 21.5 10.3 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1.1-1.4-1.1-2.7 0-1.3.7-1.9 1-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.7.7 1.8.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.4-.4.5-.1.1-.3.3-.1.5.1.3.7 1.1 1.5 1.8 1 .9 1.8 1.2 2.1 1.3.3.1.4.1.6-.1.2-.2.7-.8.9-1 .2-.3.4-.2.6-.1.3.1 1.7.8 2 .9.3.2.5.2.6.4.1.2.1 1-.1 1.5z"/></svg>
+      WhatsApp 51 99316-3333
+    </a>
+
+    <p class="tiny" style="margin-top:24px;">Vagas limitadas <span style="color:var(--cobre);">·</span> Próxima turma 20 de Maio · 2026</p>
+
+    <div style="margin-top:60px;border-top:1px solid rgba(237,232,221,.12);padding-top:30px;display:flex;flex-direction:column;gap:8px;align-items:center;">
+      <p style="font-family:var(--heading);font-size:22px;font-weight:600;color:#fff;letter-spacing:.05em;">@kellyalbert.brand</p>
+      <p class="tiny">kellyalbert.com.br/mentoria</p>
+    </div>
+  </div>
+
+  <div class="slide__brand">Kelly Albert · KA</div>
+  <div class="slide__num">08 / 08</div>
+</section>
+
+</body>
+</html>
