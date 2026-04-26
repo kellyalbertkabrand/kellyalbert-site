@@ -4,7 +4,6 @@ Disallow: /blog/
 Disallow: /teste/
 Disallow: /home2/
 Disallow: /sistema/
-Disallow: /bio/
 
 # AI Crawlers - Welcome
 User-agent: GPTBot
