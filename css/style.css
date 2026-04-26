@@ -4,6 +4,9 @@ html{overflow-x:hidden!important;-webkit-overflow-scrolling:touch}
 body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;position:relative}
 *,*::before,*::after{box-sizing:border-box}
 
+/* Responsive images: HTML width/height são apenas hints de aspect-ratio, não dimensões literais */
+img{max-width:100%;height:auto;width:auto}
+
 :root {
   /* PALETA KA 2026 */
   --bg-0: #F7F3EA;
