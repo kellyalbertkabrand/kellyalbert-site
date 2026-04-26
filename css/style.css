@@ -739,14 +739,14 @@ h3 .inline-logo{height:1.2em}
 @media(max-width:968px){
   .carousel-wrap{padding:0 45px}
   .carousel-arrow{width:36px;height:36px;font-size:1rem}
-  .testimonial-card{padding:1.8rem 1.5rem}
-  .testimonial-card__text{font-size:.88rem;line-height:1.7}
+  .testimonial-card{padding:1.8rem 1.5rem;text-align:center}
+  .testimonial-card__text{font-size:.88rem;line-height:1.7;text-align:center}
 }
 @media(max-width:640px){
   .carousel-wrap{padding:0 35px}
   .carousel-arrow{width:30px;height:30px;font-size:.85rem}
-  .testimonial-card{padding:1.5rem 1.2rem}
-  .testimonial-card__text{font-size:.82rem;line-height:1.6}
+  .testimonial-card{padding:1.5rem 1.2rem;text-align:center}
+  .testimonial-card__text{font-size:.82rem;line-height:1.6;text-align:center}
 }
 
 .testimonial-card__ig{font-size:.65rem;color:var(--cta);font-weight:400;text-decoration:none;display:inline-block;line-height:1.3}
