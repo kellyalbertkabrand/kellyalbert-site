@@ -31,13 +31,14 @@
 @keyframes btnPulse{0%,100%{box-shadow:0 0 0 0 rgba(61,107,126,.4)}50%{box-shadow:0 0 0 14px rgba(61,107,126,0)}}
 @keyframes btnPulseGreen{0%,100%{box-shadow:0 0 0 0 rgba(46,139,87,.4)}50%{box-shadow:0 0 0 14px rgba(46,139,87,0)}}
 .btn--pulse{animation:btnPulse 2s ease-in-out infinite}
-.date-badge{background:rgba(184,155,106,.08);border:2px solid rgba(184,155,106,.2);border-radius:16px;padding:1.5rem 2rem;text-align:center;max-width:480px;margin:0 auto}
-.date-badge .date-main{font-family:var(--heading);font-size:2.4rem;font-weight:700;color:var(--dourado-c);line-height:1.2;display:inline-block;padding:.45rem 1.4rem;background:rgba(184,155,106,.15);border-radius:100px;border:2px solid rgba(184,155,106,.5);animation:dateBlink 1.6s ease-in-out infinite;box-shadow:0 0 0 0 rgba(184,155,106,.6)}
-.date-badge .date-sub{font-size:.85rem;color:rgba(237,232,221,.78);margin-top:.5rem}
+.date-badge{background:rgba(184,155,106,.06);border:1px solid rgba(184,155,106,.18);border-radius:16px;padding:1.5rem 2rem;text-align:center;max-width:480px;margin:0 auto}
+.date-badge .date-main{font-family:var(--heading);font-size:1.35rem;font-weight:600;color:#152535;line-height:1.2;display:inline-flex;align-items:center;gap:.65rem;padding:.85rem 1.9rem;background:var(--dourado-c);border-radius:100px;letter-spacing:.01em;box-shadow:0 8px 24px rgba(184,155,106,.3);transition:transform .3s ease,box-shadow .3s ease}
+.date-badge .date-main::before{content:"";width:8px;height:8px;border-radius:50%;background:#152535;box-shadow:0 0 0 0 rgba(21,37,53,.5);animation:datePulse 1.8s ease-in-out infinite;flex-shrink:0}
+.date-badge .date-sub{font-size:.85rem;color:rgba(237,232,221,.78);margin-top:.7rem}
 
-@keyframes dateBlink{
-  0%, 100%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(184,155,106,.55);border-color:rgba(184,155,106,.8)}
-  50%{opacity:.85;transform:scale(1.035);box-shadow:0 0 24px 8px rgba(184,155,106,.25);border-color:rgba(184,155,106,.95)}
+@keyframes datePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(21,37,53,.55)}
+  50%{box-shadow:0 0 0 7px rgba(21,37,53,0)}
 }
 .schedule-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:1rem}
 .schedule-card{background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.15);border-radius:12px;padding:1rem 1.2rem;text-align:center}

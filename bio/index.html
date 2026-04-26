@@ -293,10 +293,10 @@ body{background:var(--bio-bege);}
 .bio-card:hover .bio-card-arrow{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.18);}
 .bio-card:hover .bio-card-arrow svg{transform:translateX(4px);}
 
-.bio-card.livro{--card-color:#8B5A2B;}
+.bio-card.livro{--card-color:#C47830;}
 .bio-card.mentoria{--card-color:#3D6B7E;}
-.bio-card.programa{--card-color:#152535;}
-.bio-card.direcao{--card-color:#5B8D9B;}
+.bio-card.programa{--card-color:#8B5A2B;}
+.bio-card.direcao{--card-color:#152535;}
 
 /* Badge "Próxima turma" na lateral da Mentoria — abaixo do número, sem sobreposição */
 .bio-card-badge{
@@ -315,13 +315,35 @@ body{background:var(--bio-bege);}
 }
 .bio-card.mentoria .bio-card-num{margin:0;}
 
+/* Destaque da próxima data dentro do corpo do card mentoria */
+.bio-card-date{
+  display:inline-flex;align-items:center;gap:.5rem;
+  margin:.2rem 0 .7rem;padding:.45rem .9rem;
+  background:rgba(61,107,126,.1);
+  border:1px solid rgba(61,107,126,.25);
+  border-radius:100px;
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;
+  color:#3D6B7E;line-height:1;
+}
+.bio-card-date strong{font-weight:800;color:#2D5567;}
+.bio-card-date::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:#3D6B7E;
+  box-shadow:0 0 0 0 rgba(61,107,126,.55);
+  animation:dotPulse 1.6s ease-in-out infinite;
+}
+@keyframes dotPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(61,107,126,.55);}
+  50%{box-shadow:0 0 0 6px rgba(61,107,126,0);}
+}
+
 /* ─── CARD ESPECIAL LIVRO (destaque com logos e imagem) ─── */
 .bio-card-livro{
   display:flex;flex-direction:row;align-items:stretch;
-  background:linear-gradient(135deg,#152535 0%,#1a2e3d 100%);
+  background:linear-gradient(135deg,#C47830 0%,#A55F20 100%);
   border-radius:16px;overflow:hidden;
-  border:1px solid rgba(212,196,158,.15);
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 10px 30px rgba(196,120,48,.18);
   text-decoration:none;color:inherit;
   transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;
   position:relative;
@@ -329,25 +351,25 @@ body{background:var(--bio-bege);}
 .bio-card-livro::before{
   content:"";position:absolute;top:-40px;right:-40px;
   width:160px;height:160px;
-  background:radial-gradient(circle,rgba(212,196,158,.18) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(255,255,255,.16) 0%,transparent 70%);
   border-radius:50%;pointer-events:none;
 }
 .bio-card-livro:hover{
   transform:translateY(-4px);
-  box-shadow:0 22px 48px rgba(0,0,0,.22);
-  border-color:rgba(212,196,158,.4);
+  box-shadow:0 22px 48px rgba(196,120,48,.32);
+  border-color:rgba(255,255,255,.35);
 }
 .bio-card-livro-side{
   width:130px;flex-shrink:0;
-  background:rgba(212,196,158,.08);
+  background:rgba(255,255,255,.1);
   display:flex;flex-direction:column;align-items:center;justify-content:space-between;
   padding:1.2rem .6rem;
-  border-right:1px solid rgba(212,196,158,.1);
+  border-right:1px solid rgba(255,255,255,.12);
   position:relative;
 }
 .bio-card-livro-num{
   font-family:var(--heading);font-size:2.2rem;font-weight:700;
-  color:var(--bio-dourado-c);line-height:1;letter-spacing:-.02em;
+  color:#fff;line-height:1;letter-spacing:-.02em;
 }
 .bio-card-livro-img{
   width:100%;max-width:100px;height:auto;
@@ -366,8 +388,8 @@ body{background:var(--bio-bege);}
 .bio-card-livro-logos{
   display:flex;gap:1.1rem;align-items:center;
   padding:.9rem 0;margin:.3rem 0 .9rem;
-  border-top:1px solid rgba(212,196,158,.12);
-  border-bottom:1px solid rgba(212,196,158,.12);
+  border-top:1px solid rgba(255,255,255,.18);
+  border-bottom:1px solid rgba(255,255,255,.18);
 }
 .bio-card-livro-logos img{
   height:36px;width:auto;
@@ -380,45 +402,45 @@ body{background:var(--bio-bege);}
 .bio-card-livro-badge-ia{
   display:inline-flex;align-items:center;gap:.35rem;
   font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;
-  font-weight:800;color:#152535;
+  font-weight:800;color:#A55F20;
   padding:.32rem .75rem;margin-bottom:.6rem;
-  background:#D4C49E;border-radius:100px;
-  box-shadow:0 4px 14px rgba(212,196,158,.35);
+  background:#fff;border-radius:100px;
+  box-shadow:0 4px 14px rgba(0,0,0,.18);
   animation:goldPulse 1.6s ease-in-out infinite;
   transform-origin:center;
   align-self:flex-start;
 }
 @keyframes goldPulse{
   0%,100%{
-    box-shadow:0 4px 14px rgba(212,196,158,.35), 0 0 0 0 rgba(212,196,158,.55);
+    box-shadow:0 4px 14px rgba(255,255,255,.4), 0 0 0 0 rgba(255,255,255,.55);
     transform:scale(1);
-    background:#D4C49E;
+    background:#fff;
   }
   50%{
-    box-shadow:0 8px 24px rgba(212,196,158,.6), 0 0 0 8px rgba(212,196,158,0);
+    box-shadow:0 8px 24px rgba(255,255,255,.55), 0 0 0 8px rgba(255,255,255,0);
     transform:scale(1.04);
-    background:#E8D9B3;
+    background:#FFF6E8;
   }
 }
 
 .bio-card-livro-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
   padding:.7rem 1.2rem;align-self:flex-start;
-  background:var(--bio-dourado);color:#fff;
+  background:#fff;color:#A55F20;
   border-radius:100px;font-size:.72rem;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;
-  box-shadow:0 6px 18px rgba(184,155,106,.3);
+  box-shadow:0 6px 18px rgba(0,0,0,.18);
   transition:transform .25s,box-shadow .25s;
 }
 .bio-card-livro:hover .bio-card-livro-btn{
   transform:translateX(3px);
-  box-shadow:0 10px 24px rgba(184,155,106,.45);
+  box-shadow:0 10px 24px rgba(0,0,0,.28);
 }
 .bio-card-livro-btn svg{width:12px;height:12px;}
 
 @media(max-width:580px){
   .bio-card-livro{flex-direction:column;}
-  .bio-card-livro-side{width:100%;flex-direction:row;justify-content:space-around;border-right:0;border-bottom:1px solid rgba(212,196,158,.1);padding:1.2rem 1rem;}
+  .bio-card-livro-side{width:100%;flex-direction:row;justify-content:space-around;border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding:1.2rem 1rem;}
   .bio-card-livro-img{max-width:80px;margin-top:0;}
 }
 
@@ -660,10 +682,10 @@ body{background:var(--bio-bege);}
           <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px;"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
           Faça você mesmo + IA
         </span>
-        <span class="bio-card-label" style="color:var(--dourado-c);">Livro</span>
-        <h3 style="color:#EDE8DD;">Livro Marca com <span style="color:var(--dourado-c);">Essência<sup style="font-size:.55em;">©</sup></span></h3>
-        <p style="color:rgba(237,232,221,.9);font-size:.92rem;margin-bottom:.5rem;"><strong style="color:#EDE8DD;">Posicionamento de marca na prática</strong> com Inteligência Artificial trabalhando com você em cada etapa.</p>
-        <p style="color:rgba(237,232,221,.7);font-size:.85rem;margin-bottom:1rem;">Um livro-consultoria que te guia passo a passo para estruturar sua marca, ganhar clareza estratégica e fazê-la ser <strong style="color:var(--dourado-c);">lembrada, desejada e escolhida</strong>.</p>
+        <span class="bio-card-label" style="color:#fff;">Livro</span>
+        <h3 style="color:#fff;">Livro Marca com <span style="color:#FFE9C9;">Essência<sup style="font-size:.55em;">©</sup></span></h3>
+        <p style="color:rgba(255,255,255,.95);font-size:.92rem;margin-bottom:.5rem;"><strong style="color:#fff;">Posicionamento de marca na prática</strong> com Inteligência Artificial trabalhando com você em cada etapa.</p>
+        <p style="color:rgba(255,255,255,.82);font-size:.85rem;margin-bottom:1rem;">Um livro-consultoria que te guia passo a passo para estruturar sua marca, ganhar clareza estratégica e fazê-la ser <strong style="color:#FFE9C9;">lembrada, desejada e escolhida</strong>.</p>
 
         <div class="bio-card-livro-logos">
           <img src="/images/logo-chatgpt.png" alt="ChatGPT" title="Agentes de IA no ChatGPT">
@@ -682,11 +704,11 @@ body{background:var(--bio-bege);}
     <a href="/mentoria" class="bio-card mentoria bio-reveal">
       <div class="bio-card-side">
         <span class="bio-card-num">02</span>
-        <span class="bio-card-badge">Próxima turma 20/05</span>
       </div>
       <div class="bio-card-body">
         <span class="bio-card-label">Mentoria</span>
         <h3>Mentoria Marca com Essência<sup style="font-size:.55em;">©</sup></h3>
+        <span class="bio-card-date">Próxima turma · <strong>20 de Maio</strong></span>
         <p>Em 8 encontros ao vivo, você sai com a sua <strong>marca estruturada, Brand Book completo</strong> e clareza estratégica para atrair os clientes certos, cobrar o que merece e crescer com consistência.</p>
         <span class="bio-card-arrow">Conhecer a mentoria <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </div>
@@ -799,7 +821,6 @@ body{background:var(--bio-bege);}
     <div class="bio-cta-final-btns">
       <a href="/quiz" class="bio-cta-btn bio-cta-btn--diag">
         Diagnóstico gratuito
-        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%20Albert%2C%20como%20vai%3F%20Vim%20atrav%C3%A9s%20do%20link%20da%20bio%20e%20gostaria%20de%20saber%20mais." target="_blank" class="bio-cta-btn bio-cta-btn--whats">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.1 4.6 1.8.8 2.5.8 3.4.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.4A10 10 0 1012 2z"/></svg>
