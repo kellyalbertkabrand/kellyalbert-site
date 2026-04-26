@@ -131,7 +131,7 @@ details summary::marker{display:none}
 </head><body>
 
 <nav class="nav"><div class="nav__inner">
-  <a href="/" class="nav__brand"><img src="/images/logo-ka.png" alt="KA" class="nav__logo"></a>
+  <a href="/" class="nav__brand"><img loading="eager" fetchpriority="high" src="/images/logo-ka.png" alt="KA" class="nav__logo"></a>
   <ul class="nav__links"><li><a href="/">Home</a></li><li><a href="/sobre">Sobre</a></li><li class="nav__dropdown"><a class="nav__dropdown-toggle">Produtos</a><div class="nav__dropdown-menu"><a href="/livro">Livro</a><a href="/mentoria">Mentoria</a><a href="/direcao">Direção</a><a href="/programa">Programa</a></div></li><li><a href="/cases">Cases</a></li><li><a href="/quiz" class="nav__cta">Diagnóstico Gratuito</a></li></ul>
   <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </div></nav>
@@ -437,7 +437,7 @@ details summary::marker{display:none}
       <!-- Foto -->
       <div class="animate-on-scroll scroll-fade delay-1" style="text-align:center;position:relative;display:flex;justify-content:flex-end;">
         <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:85%;height:85%;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.15) 0%,transparent 70%);filter:blur(25px);z-index:0;"></div>
-        <img src="/images/kelly-bio.jpg" alt="Kelly Albert" style="border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.3);width:100%;max-width:380px;max-height:500px;object-fit:cover;object-position:top;position:relative;z-index:1;">
+        <img loading="eager" fetchpriority="high" src="/images/kelly-bio.jpg" alt="Kelly Albert" style="border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.3);width:100%;max-width:380px;max-height:500px;object-fit:cover;object-position:top;position:relative;z-index:1;">
       </div>
 
       <!-- Texto -->
@@ -479,14 +479,14 @@ details summary::marker{display:none}
     <span class="label" style="background:rgba(61,107,126,.08);padding:.35rem 1rem;border-radius:100px;display:inline-block;text-transform:uppercase;font-size:.6rem;letter-spacing:.25em;font-weight:700;color:var(--cta);">EMPRESAS QUE JÁ<br>PASSARAM POR NÓS</span>
     <h2 style="margin-bottom:2rem;">Marcas que confiaram em nosso trabalho</h2>
     <div class="logo-grid" style="border-radius:14px;padding:2rem;">
-      <img src="/images/logos/mcdonalds.jpg" alt="McDonald's" class="logo-grid__item">
-      <img src="/images/logos/atacadao.jpg" alt="Atacadão" class="logo-grid__item">
-      <img src="/images/logos/sebrae.jpg" alt="Sebrae" class="logo-grid__item">
-      <img src="/images/logos/suvinil.jpg" alt="Suvinil" class="logo-grid__item">
-      <img src="/images/logos/ramarim.jpg" alt="Ramarim" class="logo-grid__item">
-      <img src="/images/logos/comfortflex.jpg" alt="ComfortFlex" class="logo-grid__item">
-      <img src="/images/logos/usaflex.jpg" alt="Usaflex" class="logo-grid__item">
-      <img src="/images/logos/bandfm.jpg" alt="Rede Band FM" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/mcdonalds.jpg" alt="McDonald's" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/atacadao.jpg" alt="Atacadão" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/sebrae.jpg" alt="Sebrae" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/suvinil.jpg" alt="Suvinil" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/ramarim.jpg" alt="Ramarim" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/comfortflex.jpg" alt="ComfortFlex" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/usaflex.jpg" alt="Usaflex" class="logo-grid__item">
+      <img loading="lazy" decoding="async" src="/images/logos/bandfm.jpg" alt="Rede Band FM" class="logo-grid__item">
     </div>
   </div>
 </section>
@@ -502,7 +502,7 @@ details summary::marker{display:none}
     <div class="animate-on-scroll scroll-fade prog-grid-3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;">
       <!-- Suvinil -->
       <a href="/casesuvinil" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/suvinil/cover.jpg" alt="Case Suvinil" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/suvinil/cover.jpg" alt="Case Suvinil" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--dourado-c);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Aula de Branding</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">Suvinil</p>
@@ -510,7 +510,7 @@ details summary::marker{display:none}
       </a>
       <!-- Amor de Bicho -->
       <a href="/caseamordebicho" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/amordebicho/cover.jpg" alt="Case Amor de Bicho" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/amordebicho/cover.jpg" alt="Case Amor de Bicho" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--dourado-c);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Posicionamento Completo</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">Amor de Bicho</p>
@@ -518,7 +518,7 @@ details summary::marker{display:none}
       </a>
       <!-- Shapes -->
       <a href="/caseshapes" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/shapes/cover.jpg" alt="Case Shapes" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/shapes/cover.jpg" alt="Case Shapes" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--dourado-c);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Brand Book Completo</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">Shapes</p>
@@ -527,7 +527,7 @@ details summary::marker{display:none}
 
       <!-- YUFIL -->
       <a href="/caseyufil" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/yufil/cover.jpg" alt="Case YUFIL" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/yufil/cover.jpg" alt="Case YUFIL" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--dourado-c);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Estratégia de Marca Completa</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">YUFIL</p>
@@ -535,7 +535,7 @@ details summary::marker{display:none}
       </a>
       <!-- Fernando Beteti -->
       <a href="/casebeteti" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/cases/beteti-capa.png" alt="Fernando Beteti" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/cases/beteti-capa.png" alt="Fernando Beteti" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--cta-light);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Reposicionamento Pessoal</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">Fernando Beteti</p>
@@ -543,7 +543,7 @@ details summary::marker{display:none}
       </a>
       <!-- Ramarim -->
       <a href="/caseramarim" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/ramarim/capa-cases.jpg" alt="Ramarim" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/ramarim/capa-cases.jpg" alt="Ramarim" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--dourado-c);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Posicionamento Estratégico</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">Ramarim</p>
@@ -551,7 +551,7 @@ details summary::marker{display:none}
       </a>
       <!-- ComfortFlex -->
       <a href="/casecomfortflex" target="_blank" style="text-decoration:none;display:block;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.08);border-radius:14px;overflow:hidden;transition:all .4s ease;" onmouseover="this.style.borderColor='rgba(237,232,221,.2)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(237,232,221,.08)';this.style.transform='translateY(0)'">
-        <div style="height:110px;overflow:hidden;"><img src="/images/comfortflex/cover.jpg" alt="ComfortFlex" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div style="height:110px;overflow:hidden;"><img loading="lazy" decoding="async" src="/images/comfortflex/cover.jpg" alt="ComfortFlex" style="width:100%;height:100%;object-fit:cover;"></div>
         <div style="padding:1rem;">
           <p style="font-size:.55rem;color:var(--cta-light);font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 .3rem;">Estratégia de Marca</p>
           <p style="font-family:var(--heading);font-size:.9rem;color:#EDE8DD;font-weight:600;margin:0;">ComfortFlex</p>
@@ -667,7 +667,7 @@ details summary::marker{display:none}
 <footer class="footer"><div class="container">
   <div class="footer__grid-3">
     <div>
-      <div class="footer__brand"><img src="/images/logo-ka.png" alt="KA" class="footer__logo"></div>
+      <div class="footer__brand"><img loading="eager" fetchpriority="high" src="/images/logo-ka.png" alt="KA" class="footer__logo"></div>
       <p class="footer__desc">Porque essência <b>conecta</b><br>e <b>posicionamento</b> faz vender.</p>
     </div>
     <div><h4>Ecossistema</h4><ul class="footer__links"><li><a href="/livro">Livro</a></li><li><a href="/mentoria">Mentoria</a></li><li><a href="/direcao">Direção</a></li><li><a href="/programa">Programa</a></li><li><a href="/cases">Cases</a></li></ul></div>
