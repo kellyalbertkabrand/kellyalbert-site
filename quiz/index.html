@@ -41,6 +41,12 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
 /* Previne auto-zoom do iOS Safari no foco dos inputs (font-size precisa ser >=16px) */
 .quiz-container .form-input{font-size:16px}
 
+/* Cabeçalho com tom levemente mais escuro que o fundo, dando destaque ao logo */
+.quiz-logo-wrap{
+  background:#EDE8DD;
+  border-bottom:1px solid rgba(0,0,0,.04);
+}
+
 @media(max-width:968px){
   .mobile-br{display:inline}
 
@@ -54,21 +60,44 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
   #question-container h2{padding:0}
   .container{padding:0 .8rem!important}
 
-  /* Compactar intro do diagnóstico para caber em uma tela sem scroll */
-  .quiz-logo-wrap{padding:1.2rem 0 0!important}
-  .quiz-logo-wrap img{height:30px!important}
-  .quiz-section{padding-top:.8rem!important;padding-bottom:1rem!important}
-  #step-intro h1{font-size:1.45rem!important;line-height:1.2!important;margin-bottom:.6rem!important}
-  #step-intro .label{font-size:.65rem!important}
-  #step-intro p:nth-of-type(1){font-size:.92rem!important;margin:.9rem auto!important;line-height:1.55!important}
-  #step-intro p:nth-of-type(2){font-size:.82rem!important;margin:0 auto 1.2rem!important;line-height:1.55!important}
-  #step-intro .btn--lg{padding:.85rem 1.4rem!important;font-size:.78rem!important}
-  #step-intro p:last-of-type{font-size:.7rem!important;margin-top:.7rem!important}
+  /* Cabeçalho compacto no mobile */
+  .quiz-logo-wrap{padding:1rem 0!important}
+  .quiz-logo-wrap img{height:28px!important}
 
-  /* Compactar tela de captura de lead */
+  /* Distribui o conteúdo do intro pela altura da tela no mobile */
+  .quiz-section{
+    min-height:calc(100vh - 64px);
+    min-height:calc(100dvh - 64px);
+    padding:1.2rem 0 1.4rem!important;
+    display:flex;align-items:center;
+  }
+  .quiz-section > .container,
+  .quiz-section > .container > .quiz-container{
+    width:100%;
+  }
+  #step-intro{
+    display:flex;flex-direction:column;justify-content:space-between;
+    min-height:calc(100vh - 96px);
+    min-height:calc(100dvh - 96px);
+    padding:.5rem 0;
+  }
+  #step-intro > div:first-of-type{margin-bottom:.5rem!important}
+  #step-intro h1{font-size:1.55rem!important;line-height:1.2!important;margin-bottom:.6rem!important}
+  #step-intro .label{font-size:.65rem!important}
+  #step-intro p:nth-of-type(1){font-size:.92rem!important;margin:1.1rem auto!important;line-height:1.55!important}
+  #step-intro p:nth-of-type(2){font-size:.82rem!important;margin:0 auto 1.2rem!important;line-height:1.55!important}
+  #step-intro .btn--lg{padding:.95rem 1.4rem!important;font-size:.78rem!important}
+  #step-intro p:last-of-type{font-size:.72rem!important;margin-top:.9rem!important}
+
+  /* Distribui o conteúdo da captura de lead */
+  #step-lead{
+    display:flex;flex-direction:column;justify-content:center;
+    min-height:calc(100vh - 110px);
+    min-height:calc(100dvh - 110px);
+  }
   #step-lead h2{font-size:1.4rem!important;margin-bottom:.4rem!important}
   #step-lead p:nth-of-type(1){margin:.9rem auto 1.1rem!important;font-size:.88rem!important}
-  #step-lead .form-input{padding:.8rem 1.1rem!important}
+  #step-lead .form-input{padding:.85rem 1.2rem!important}
 }
 
 
@@ -103,11 +132,11 @@ body{overflow-x:hidden!important;max-width:100vw!important;width:100%!important;
   <input name="whatsapp">
 </form>
 
-<div class="quiz-logo-wrap" style="text-align:center;padding:2.5rem 0 0;">
-  <a href="/"><img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas" style="height:36px;margin:0 auto;"></a>
+<div class="quiz-logo-wrap" style="text-align:center;padding:1.4rem 0;">
+  <a href="/"><img src="/images/logo-ka.png" alt="KA | Inteligência para Marcas" style="height:34px;margin:0 auto;display:inline-block;"></a>
 </div>
 
-<section class="section quiz-section" style="padding-top:2rem;">
+<section class="section quiz-section" style="padding-top:1.5rem;">
   <div class="container">
     <div class="quiz-container" id="quiz-app">
 
