@@ -33,12 +33,14 @@
 }
 
 /* Imagens com estilo editorial do brand book */
-.ci{width:100%;border-radius:0;box-shadow:0 24px 60px rgba(0,0,0,.08);}
+.ci{width:100%;border-radius:0;box-shadow:0 24px 60px rgba(0,0,0,.08);display:block;height:auto;}
+picture.ci,picture.cfull{display:block;}
 .cg{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0;}
-.cg img{width:100%;border-radius:0;box-shadow:0 16px 40px rgba(0,0,0,.07);transition:transform .4s ease;}
+.cg picture{display:block;}
+.cg img{width:100%;height:auto;border-radius:0;box-shadow:0 16px 40px rgba(0,0,0,.07);transition:transform .4s ease;display:block;}
 .cg img:hover{transform:scale(1.015);}
 .cfull{width:100%;margin:2.5rem 0;}
-.cfull img{width:100%;border-radius:0;box-shadow:0 20px 60px rgba(0,0,0,.08);}
+.cfull img{width:100%;height:auto;border-radius:0;box-shadow:0 20px 60px rgba(0,0,0,.08);display:block;}
 
 /* Quote editorial Ramarim - preto + acento cobre sutil */
 .ch{padding:2.5rem 2.8rem;background:var(--ram-cobre-sutil);border-left:3px solid var(--ram-cobre);border-radius:0;margin:2.5rem 0;}
@@ -196,7 +198,10 @@
 
 
     <!-- CAPA BRAND BOOK -->
-    <img loading="lazy" decoding="async" src="/images/ramarim/capa.jpg" alt="Brand Book Ramarim" class="ci animate-on-scroll">
+    <picture class="animate-on-scroll">
+      <source type="image/webp" srcset="/images/ramarim/capa.webp">
+      <img loading="lazy" decoding="async" src="/images/ramarim/capa.jpg" alt="Brand Book Ramarim" class="ci" width="1400" height="788">
+    </picture>
 
     <!-- STATS -->
     <div class="cd animate-on-scroll">
@@ -295,14 +300,65 @@
       <p>Algumas peças do Brand Book desenvolvidas pela <span class="nowrap">VM&nbsp;Rocks&nbsp;Design</span> a partir do posicionamento estratégico entregue pela KA.</p>
     </div>
 
+    <!-- BEM-VINDO / ESSÊNCIA -->
+    <picture class="cfull animate-on-scroll">
+      <source type="image/webp" srcset="/images/ramarim/essencia.webp">
+      <img loading="lazy" decoding="async" src="/images/ramarim/essencia.jpg" alt="Bem-vindo ao Brand Book Ramarim — Ramarize-se" width="1400" height="788">
+    </picture>
+
+    <!-- PROPÓSITO + MISSÃO -->
     <div class="cg animate-on-scroll" style="margin-top:2rem;">
-      <img loading="lazy" decoding="async" src="/images/ramarim/logotipo.jpg" alt="Sistema de logotipo Ramarim">
-      <img loading="lazy" decoding="async" src="/images/ramarim/grafismo.jpg" alt="Grafismos e elementos da identidade visual">
+      <picture>
+        <source type="image/webp" srcset="/images/ramarim/proposito.webp">
+        <img loading="lazy" decoding="async" src="/images/ramarim/proposito.jpg" alt="Nosso propósito — Ramarim" width="1400" height="788">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/ramarim/missao.webp">
+        <img loading="lazy" decoding="async" src="/images/ramarim/missao.jpg" alt="Missão Ramarim" width="1400" height="788">
+      </picture>
     </div>
 
-    <img loading="lazy" decoding="async" src="/images/ramarim/editorial.jpg" alt="Direção fotográfica editorial Ramarim" class="cfull animate-on-scroll">
+    <!-- PILARES + POSICIONAMENTO -->
+    <div class="cg animate-on-scroll">
+      <picture>
+        <source type="image/webp" srcset="/images/ramarim/pilares.webp">
+        <img loading="lazy" decoding="async" src="/images/ramarim/pilares.jpg" alt="Pilares da marca Ramarim" width="1400" height="788">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/ramarim/posicionamento.webp">
+        <img loading="lazy" decoding="async" src="/images/ramarim/posicionamento.jpg" alt="Posicionamento — como a Ramarim é vista" width="1400" height="788">
+      </picture>
+    </div>
 
-    <img loading="lazy" decoding="async" src="/images/ramarim/detalhes.jpg" alt="Detalhes da identidade visual" class="cfull animate-on-scroll">
+    <!-- LOGOTIPO + GRAFISMO -->
+    <div class="cg animate-on-scroll">
+      <picture>
+        <source type="image/webp" srcset="/images/ramarim/logotipo.webp">
+        <img loading="lazy" decoding="async" src="/images/ramarim/logotipo.jpg" alt="Sistema de logotipo Ramarim" width="1400" height="788">
+      </picture>
+      <picture>
+        <source type="image/webp" srcset="/images/ramarim/grafismo.webp">
+        <img loading="lazy" decoding="async" src="/images/ramarim/grafismo.jpg" alt="Grafismos e elementos da identidade visual" width="1400" height="788">
+      </picture>
+    </div>
+
+    <!-- EDITORIAL -->
+    <picture class="cfull animate-on-scroll">
+      <source type="image/webp" srcset="/images/ramarim/editorial.webp">
+      <img loading="lazy" decoding="async" src="/images/ramarim/editorial.jpg" alt="Direção fotográfica editorial — A marca que lança tendências" width="1400" height="788">
+    </picture>
+
+    <!-- A MULHER RAMARIM -->
+    <picture class="cfull animate-on-scroll">
+      <source type="image/webp" srcset="/images/ramarim/mulher.webp">
+      <img loading="lazy" decoding="async" src="/images/ramarim/mulher.jpg" alt="A mulher Ramarim — autoestima e autoconfiança" width="1400" height="788">
+    </picture>
+
+    <!-- DETALHES -->
+    <picture class="cfull animate-on-scroll">
+      <source type="image/webp" srcset="/images/ramarim/detalhes.webp">
+      <img loading="lazy" decoding="async" src="/images/ramarim/detalhes.jpg" alt="Detalhes — qualidade superior e acabamento refinado" width="1400" height="788">
+    </picture>
 
     <!-- ENTREGÁVEIS -->
     <div class="animate-on-scroll" style="margin-top:3rem;">
