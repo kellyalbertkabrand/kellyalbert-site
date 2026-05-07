@@ -55,10 +55,10 @@
   .hero-mentoria{padding:4rem 0 1rem!important;min-height:100vh!important;}
   .hero-mentoria h1{font-size:2.2rem!important;line-height:1.1!important;margin-top:0!important;font-weight:700!important;}
   .hero-mentoria .label{font-size:.6rem!important;}
-  .hero-date-block{margin-top:1rem!important;}
-  .hero-date-main{font-size:1.7rem!important;}
-  .hero-date-day{font-size:.92rem!important;margin-top:.25rem!important;}
-  .hero-date-detail{font-size:.68rem!important;margin-top:.7rem!important;}
+  .hero-date-block{margin-top:.9rem!important;padding:.75rem 1rem!important;border-radius:8px!important;}
+  .hero-date-main{font-size:1.55rem!important;}
+  .hero-date-day{font-size:.88rem!important;margin-top:.2rem!important;}
+  .hero-date-detail{font-size:.65rem!important;margin-top:.55rem!important;}
   .hero-pillars{margin:.95rem auto 0!important;gap:.35rem!important;max-width:320px!important;}
   .hero-pillars > div{padding:.4rem .25rem!important;border-radius:8px!important;}
   .hero-pillars p{font-size:.52rem!important;line-height:1.2!important;}
@@ -124,14 +124,17 @@ details summary::marker{display:none}
   </div>
   <div class="container" style="position:relative;z-index:1;max-width:760px;width:100%;">
     <div class="animate-on-scroll" style="text-align:center;">
-      <h1 style="color:var(--bg-1);line-height:1.1;margin-top:0;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;">Mentoria<br>Marca com <span style="color:#C47830;font-weight:700;">Essência<sup style="font-size:.45em;">©</sup></span></h1>
+      <!-- Wrapper inline-block: caixa da data acompanha a largura do título -->
+      <div class="hero-title-wrap" style="display:inline-block;text-align:center;">
+        <h1 style="color:var(--bg-1);line-height:1.1;margin-top:0;margin-bottom:0;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;">Mentoria<br>Marca com <span style="color:#C47830;font-weight:700;">Essência<sup style="font-size:.45em;">©</sup></span></h1>
 
-      <!-- DATA: tipografia, não botão -->
-      <div class="hero-date-block" style="margin-top:1.6rem;">
-        <p class="hero-date-main" style="font-family:var(--heading);font-size:2.2rem;font-weight:700;color:#C47830;line-height:1.05;margin:0;letter-spacing:.01em;">9 de junho · 2026</p>
-        <p class="hero-date-day" style="font-family:var(--heading);font-size:1.05rem;font-weight:500;color:#EDE8DD;margin:.35rem 0 0;letter-spacing:.04em;">Terça-feira às 19h</p>
-        <p class="hero-date-detail" style="font-size:.8rem;color:rgba(237,232,221,.55);margin:.85rem 0 0;letter-spacing:.03em;">8 encontros · Terças e Quintas · 19h30 às 21h30</p>
+        <!-- DATA: caixa com borda laranja sutil -->
+        <div class="hero-date-block" style="margin-top:1.4rem;border:1px solid rgba(196,120,48,.4);border-radius:10px;padding:1rem 1.2rem;background:transparent;">
+          <p class="hero-date-main" style="font-family:var(--heading);font-size:1.85rem;font-weight:700;color:#C47830;line-height:1.05;margin:0;letter-spacing:.01em;">9 de junho · 2026</p>
+          <p class="hero-date-day" style="font-family:var(--heading);font-size:1rem;font-weight:500;color:#EDE8DD;margin:.3rem 0 0;letter-spacing:.04em;">Terça-feira às 19h</p>
+        </div>
       </div>
+      <p class="hero-date-detail" style="font-size:.8rem;color:rgba(237,232,221,.55);margin:.7rem 0 0;letter-spacing:.03em;">8 encontros · Terças e Quintas · 19h30 às 21h30</p>
 
       <!-- 8 PILARES SUTIS (4x2) -->
       <div class="hero-pillars" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;margin:1.4rem auto 0;max-width:580px;">
