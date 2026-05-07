@@ -4,6 +4,8 @@ Disallow: /blog/
 Disallow: /teste/
 Disallow: /home2/
 Disallow: /sistema/
+Disallow: /gr-mentoria/
+Disallow: /p/
 
 # AI Crawlers - Welcome
 User-agent: GPTBot
