@@ -43,19 +43,62 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el) { obs.observe(el); });
   }
 
-  // Anchor link: pre-reveal animate-on-scroll within target to avoid jumpy
-  // cascade animations when arriving via smooth scroll
+  // Custom anchor smooth scroll: cancellable by user touch/wheel (iOS Safari
+  // briga com scroll-behavior:smooth quando o usuário arrasta durante a animação).
+  // Também pré-revela .animate-on-scroll dentro do alvo para evitar cascata
+  // de animações na chegada.
+  var scrollRaf = null;
+  var scrollAnimating = false;
+  function cancelAnchorScroll() {
+    scrollAnimating = false;
+    if (scrollRaf) { cancelAnimationFrame(scrollRaf); scrollRaf = null; }
+  }
+  window.addEventListener('touchstart', cancelAnchorScroll, { passive: true });
+  window.addEventListener('wheel', cancelAnchorScroll, { passive: true });
+  window.addEventListener('keydown', function(e) {
+    if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].indexOf(e.key) > -1) cancelAnchorScroll();
+  });
+
+  function smoothScrollTo(targetY) {
+    cancelAnchorScroll();
+    scrollAnimating = true;
+    var startY = window.pageYOffset;
+    var diff = targetY - startY;
+    var dist = Math.abs(diff);
+    var duration = Math.min(700, Math.max(280, dist / 2.4));
+    var startTime;
+    function step(t) {
+      if (!scrollAnimating) return;
+      if (!startTime) startTime = t;
+      var progress = Math.min((t - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      window.scrollTo(0, startY + diff * eased);
+      if (progress < 1 && scrollAnimating) {
+        scrollRaf = requestAnimationFrame(step);
+      } else {
+        scrollAnimating = false;
+        scrollRaf = null;
+      }
+    }
+    scrollRaf = requestAnimationFrame(step);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function() {
+    a.addEventListener('click', function(e) {
       var href = a.getAttribute('href');
       if (!href || href.length < 2) return;
       var target;
-      try { target = document.querySelector(href); } catch (e) { return; }
+      try { target = document.querySelector(href); } catch (err) { return; }
       if (!target) return;
+      e.preventDefault();
       if (target.classList.contains('animate-on-scroll')) target.classList.add('visible');
       target.querySelectorAll('.animate-on-scroll').forEach(function(el) {
         el.classList.add('visible');
       });
+      var navHeight = 80;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      smoothScrollTo(Math.max(0, top));
+      if (history.pushState) history.pushState(null, '', href);
     });
   });
 
