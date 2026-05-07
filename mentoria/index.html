@@ -29,6 +29,17 @@
 .encontro-block h4{font-size:1.1rem;font-weight:600;color:#EDE8DD;margin-bottom:.2rem}
 .encontro-block p{font-size:.88rem;color:rgba(237,232,221,.72);margin:0;line-height:1.6}
 
+/* COMO FUNCIONA: 4 steps numerados */
+.how-step{display:flex;align-items:center;gap:1.2rem;background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.2rem 1.5rem;transition:all .3s ease}
+.how-step:hover{border-color:rgba(196,120,48,.35)}
+.how-step__num{font-family:var(--heading);font-size:1.7rem;font-weight:700;color:#C47830;min-width:38px;line-height:1}
+.how-step__logo{flex-shrink:0;width:32px;height:auto;display:block}
+.how-step__body{flex:1}
+.how-step__body h4{font-family:var(--body);font-size:1rem;font-weight:600;color:#EDE8DD;margin:0;line-height:1.3}
+.how-step__body p{font-size:.85rem;color:rgba(237,232,221,.7);margin:.25rem 0 0;line-height:1.5}
+.how-step--final{background:linear-gradient(90deg,rgba(196,120,48,.18),rgba(196,120,48,.06));border-color:rgba(196,120,48,.4)}
+@media(max-width:640px){.how-step{padding:1rem 1.1rem;gap:.9rem}.how-step__num{font-size:1.4rem;min-width:30px}.how-step__logo{width:26px}.how-step__body h4{font-size:.92rem}.how-step__body p{font-size:.8rem}}
+
 /* JORNADA: hierarquia clara Pilar > Encontros */
 .jornada-pilar{margin-bottom:2.5rem}
 .jornada-pilar:last-child{margin-bottom:0}
@@ -239,46 +250,54 @@ details summary::marker{display:none}
   </div>
 </section>
 
-<!-- COMO FUNCIONA com imagem 2 -->
+<!-- COMO FUNCIONA -->
 <section class="section section--dark bg-grid-dark" style="background-color:var(--preto);">
-  <div class="container" style="max-width:800px;">
-    <div class="animate-on-scroll" style="text-align:center;margin-bottom:2.5rem;">
-      <img src="/images/mentoria-turma-meet.jpg" alt="Turma da Mentoria ao vivo no Google Meet com Kelly Albert" class="ment-img-fw" style="width:100%;max-width:480px;display:block;margin:0 auto;border-radius:14px;border:1px solid rgba(237,232,221,.18);box-shadow:0 20px 60px rgba(0,0,0,.25);" loading="lazy">
-      <p style="font-size:.72rem;color:rgba(237,232,221,.55);margin:.9rem auto 0;font-style:italic;">Turma real da Mentoria, encontro ao vivo pelo Google Meet</p>
+  <div class="container" style="max-width:760px;">
+    <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
+      <span class="label" style="color:#C47830;background:rgba(196,120,48,.2);padding:.35rem 1rem;border-radius:100px;">Como funciona</span>
+      <h2 style="color:var(--bg-1);">A mecânica de cada encontro</h2>
+      <p style="font-size:1rem;color:rgba(237,232,221,.82);max-width:540px;margin:1rem auto 0;">Kelly explica ao vivo. Você aplica na hora. Cada exercício gera um relatório. Os 8 relatórios juntos viram o Brand Book.</p>
     </div>
-    <div class="text-center animate-on-scroll">
-      <span class="label" style="color:#C47830;">Como funciona</span>
-      <h2 style="color:var(--bg-1);">Como a Mentoria <span class="hl-gold">funciona</span></h2>
-      <p style="font-size:1rem;color:rgba(237,232,221,.85);max-width:650px;margin:1.5rem auto 0;">A Mentoria é baseada no Método <span class="nowrap">Marca&nbsp;com&nbsp;Essência</span><sup style="font-size:.55em;">©</sup>, criado pela Kelly Albert com mais de 20 anos de experiência em posicionamento de marca. O método usa Inteligência Artificial integrada Agentes de IA exclusivos no ChatGPT, exercícios no Google Docs e áudios no Spotify.</p>
+
+    <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.8rem;max-width:680px;margin:0 auto;">
+      <div class="how-step">
+        <div class="how-step__num">01</div>
+        <img src="/images/logo-googlemeet.svg" alt="Google Meet" width="32" height="27" class="how-step__logo">
+        <div class="how-step__body">
+          <h4>Kelly ao vivo no Google Meet</h4>
+          <p>Conduz a teoria, tira dúvidas e valida suas decisões em tempo real.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-step__num">02</div>
+        <img src="/images/logo-googledocs.svg" alt="Google Docs" width="28" height="32" class="how-step__logo">
+        <div class="how-step__body">
+          <h4>Exercícios no Google Docs</h4>
+          <p>Você responde perguntas estratégicas durante o próprio encontro.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-step__num">03</div>
+        <img src="/images/logo-openai.svg" alt="ChatGPT" width="32" height="32" class="how-step__logo" style="filter:brightness(0) invert(1);opacity:.85;">
+        <div class="how-step__body">
+          <h4>7 Agentes de IA no ChatGPT</h4>
+          <p>Geram insights personalizados a partir das suas respostas.</p>
+        </div>
+      </div>
+      <div class="how-step how-step--final">
+        <div class="how-step__num">04</div>
+        <svg class="how-step__logo" width="28" height="32" viewBox="0 0 22 24" aria-hidden="true"><rect x="3" y="2" width="16" height="20" rx="1.5" fill="none" stroke="#C47830" stroke-width="1.5"/><line x1="6" y1="7" x2="16" y2="7" stroke="#C47830" stroke-width="1.3"/><line x1="6" y1="11" x2="16" y2="11" stroke="#C47830" stroke-width="1.3"/><line x1="6" y1="15" x2="13" y2="15" stroke="#C47830" stroke-width="1.3"/></svg>
+        <div class="how-step__body">
+          <h4 style="color:#fff;">Brand Book completo</h4>
+          <p>Os 8 relatórios reunidos no documento final da sua marca.</p>
+        </div>
+      </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;" class="ment-grid-3">
-      <div class="ment-feature" style="background:rgba(196,120,48,.06);border-color:rgba(196,120,48,.12);">
-        <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .8rem;display:block;"><circle cx="22" cy="22" r="18" fill="none" stroke="#C47830" stroke-width="1.5" opacity=".3"/><circle cx="22" cy="14" r="5" fill="none" stroke="#C47830" stroke-width="1.5" opacity=".5"/><path d="M12 34 C12 26 16 24 22 24 C28 24 32 26 32 34" fill="none" stroke="#C47830" stroke-width="1.5" opacity=".4"/></svg>
-        <h4 style="color:var(--bg-1);">Kelly ao vivo no Google Meet</h4>
-        <p style="color:rgba(237,232,221,.78);">A Kelly Albert conduz cada encontro <strong style="color:#fff;">ao vivo pelo Google Meet</strong>. Ela explica a teoria, tira dúvidas e valida suas decisões em tempo real.</p>
-      </div>
-      <div class="ment-feature">
-        <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .8rem;display:block;"><rect x="8" y="8" width="28" height="28" rx="4" fill="none" stroke="var(--cta)" stroke-width="1.5" opacity=".4"/><circle cx="16" cy="20" r="2.5" fill="none" stroke="var(--cta)" stroke-width="1.2"/><circle cx="22" cy="20" r="2.5" fill="none" stroke="var(--cta)" stroke-width="1.2"/><circle cx="28" cy="20" r="2.5" fill="none" stroke="var(--cta)" stroke-width="1.2"/></svg>
-        <h4 style="color:var(--bg-1);">Exercícios na hora</h4>
-        <p style="color:rgba(237,232,221,.78);">Você abre o QR Code, responde as perguntas estratégicas no Google Docs e roda o Agente de IA durante o encontro.</p>
-      </div>
-      <div class="ment-feature">
-        <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .8rem;display:block;"><rect x="10" y="6" width="24" height="32" rx="3" fill="none" stroke="var(--cta)" stroke-width="1.5" opacity=".4"/><circle cx="30" cy="10" r="4" fill="var(--cta)" opacity=".3"><animate attributeName="opacity" values=".2;.5;.2" dur="2s" repeatCount="indefinite"/></circle><path d="M28 8 L30 11 L34 7" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity=".5"/></svg>
-        <h4 style="color:var(--bg-1);">Relatório em tempo real</h4>
-        <p style="color:rgba(237,232,221,.78);">Cada encontro gera um relatório personalizado. Ao final, todos se unem no Brand Book da sua marca.</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1rem;max-width:540px;margin-left:auto;margin-right:auto;" class="ment-grid-2">
-      <div class="ment-feature" style="background:rgba(196,120,48,.06);border-color:rgba(196,120,48,.12);">
-        <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .8rem;display:block;"><path d="M10 22 C10 12 16 6 22 6 C28 6 34 12 34 22 L34 34 C34 36 32 38 30 38 L14 38 C12 38 10 36 10 34 Z" fill="none" stroke="#C47830" stroke-width="1.5" opacity=".4"/><circle cx="22" cy="22" r="3" fill="#C47830" opacity=".3"><animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/></circle></svg>
-        <h4 style="color:var(--bg-1);">Conteúdo gravado</h4>
-        <p style="color:rgba(237,232,221,.78);">Todas as aulas ficam gravadas. Se não puder participar ao vivo, você pode rever depois.</p>
-      </div>
-      <div class="ment-feature">
-        <svg width="44" height="44" viewBox="0 0 44 44" style="margin:0 auto .8rem;display:block;"><rect x="8" y="4" width="28" height="36" rx="3" fill="none" stroke="var(--cta)" stroke-width="1.5" opacity=".4"/><text x="22" y="18" font-size="6" fill="var(--cta)" text-anchor="middle" font-weight="700" opacity=".5">BRAND</text><text x="22" y="26" font-size="6" fill="var(--cta)" text-anchor="middle" font-weight="700" opacity=".5">BOOK</text></svg>
-        <h4 style="color:var(--bg-1);">Brand Book completo</h4>
-        <p style="color:rgba(237,232,221,.78);">No final, você tem o documento estratégico completo posicionamento, identidade verbal, tom de voz e plano de ação.</p>
-      </div>
+
+    <div class="animate-on-scroll" style="margin-top:1.6rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem 1rem;font-size:.78rem;color:rgba(237,232,221,.55);">
+      <span style="display:inline-flex;align-items:center;gap:.4rem;"><img src="/images/logo-spotify.svg" alt="" width="14" height="14" style="opacity:.8;">Áudios complementares no Spotify</span>
+      <span style="color:rgba(237,232,221,.25);">·</span>
+      <span>Aulas gravadas para rever depois</span>
     </div>
   </div>
 </section>
