@@ -43,6 +43,22 @@ document.addEventListener('DOMContentLoaded', function() {
     els.forEach(function(el) { obs.observe(el); });
   }
 
+  // Anchor link: pre-reveal animate-on-scroll within target to avoid jumpy
+  // cascade animations when arriving via smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function() {
+      var href = a.getAttribute('href');
+      if (!href || href.length < 2) return;
+      var target;
+      try { target = document.querySelector(href); } catch (e) { return; }
+      if (!target) return;
+      if (target.classList.contains('animate-on-scroll')) target.classList.add('visible');
+      target.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    });
+  });
+
   // Active nav link
   var path = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav__links a:not(.nav__cta)').forEach(function(a) {
