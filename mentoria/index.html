@@ -28,6 +28,25 @@
 .encontro-num{font-family:var(--heading);font-size:1.6rem;font-weight:600;color:var(--cta);min-width:36px;line-height:1}
 .encontro-block h4{font-size:1.1rem;font-weight:600;color:#EDE8DD;margin-bottom:.2rem}
 .encontro-block p{font-size:.88rem;color:rgba(237,232,221,.72);margin:0;line-height:1.6}
+
+/* JORNADA — hierarquia clara Pilar > Encontros */
+.jornada-pilar{margin-bottom:2.5rem}
+.jornada-pilar:last-child{margin-bottom:0}
+.jornada-pilar__head{display:flex;align-items:center;gap:1.2rem;padding:1rem 1.4rem;background:rgba(196,120,48,.1);border-left:4px solid #C47830;border-radius:0 12px 12px 0;margin-bottom:1rem}
+.jornada-pilar__num{font-family:var(--heading);font-size:2.4rem;font-weight:700;color:#C47830;line-height:1}
+.jornada-pilar__eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C47830;margin:0;line-height:1.2}
+.jornada-pilar__name{font-family:var(--heading);font-size:1.15rem;font-weight:600;color:#EDE8DD;margin:.2rem 0 0;line-height:1.2}
+.jornada-pilar__items{position:relative;padding-left:1.6rem}
+.jornada-pilar__items::before{content:'';position:absolute;top:.6rem;bottom:.6rem;left:.55rem;width:1px;background:rgba(196,120,48,.25)}
+.jornada-encontro{position:relative;display:flex;gap:1rem;align-items:flex-start;padding:.6rem 0}
+.jornada-encontro::before{content:'';position:absolute;left:-1.35rem;top:1rem;width:9px;height:9px;border-radius:50%;background:#C47830;box-shadow:0 0 0 3px #152535}
+.jornada-encontro__num{font-family:var(--heading);font-size:1.05rem;font-weight:700;color:#C47830;min-width:26px;line-height:1.2;padding-top:.05rem}
+.jornada-encontro__body h4{font-size:1rem;font-weight:600;color:#EDE8DD;margin:0;line-height:1.3}
+.jornada-encontro__body p{font-size:.85rem;color:rgba(237,232,221,.72);margin:.25rem 0 0;line-height:1.5}
+.jornada-pilar--final .jornada-pilar__head{background:linear-gradient(90deg,rgba(196,120,48,.18),rgba(196,120,48,.06));border-left-width:4px}
+.jornada-pilar--final .jornada-encontro__body h4{color:#fff}
+.jornada-pilar--final .jornada-encontro::before{background:#fff;box-shadow:0 0 0 3px #C47830}
+@media(max-width:640px){.jornada-pilar__head{padding:.85rem 1rem;gap:.9rem}.jornada-pilar__num{font-size:2rem}.jornada-pilar__name{font-size:1rem}.jornada-pilar__items{padding-left:1.3rem}.jornada-pilar__items::before{left:.4rem}.jornada-encontro::before{left:-1.05rem}.jornada-encontro__body h4{font-size:.95rem}.jornada-encontro__body p{font-size:.8rem}}
 .hl-gold{color:#C47830!important;font-weight:700;font-style:normal}
 .bg-grid-light{background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:32px 32px}
 .bg-grid-dark{background-image:linear-gradient(rgba(237,232,221,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(237,232,221,.05) 1px,transparent 1px);background-size:32px 32px}
@@ -337,32 +356,73 @@ details summary::marker{display:none}
 
 <!-- 8 ENCONTROS -->
 <section class="section amb-marinho est-dots" style="background-color:#152535;position:relative;overflow:hidden;">
-  <div class="container" style="max-width:750px;">
+  <div class="container" style="max-width:780px;">
     <div class="text-center animate-on-scroll" style="margin-bottom:3rem;">
       <span class="label" style="color:#C47830;background:rgba(196,120,48,.2);padding:.35rem 1rem;border-radius:100px;">A jornada</span>
-      <h2 style="color:#EDE8DD;">08 Encontros. 04 Pilares.<br>De dentro para fora.</h2>
-      <div class="line line--center"></div>
-      <p style="font-size:.95rem;color:rgba(237,232,221,.82);margin-top:1rem;max-width:600px;margin-left:auto;margin-right:auto;">Cada encontro acontece <strong style="color:#C47830;">ao vivo pelo Google Meet</strong>, às <strong style="color:#C47830;">terças e quintas das 19h30 às 21h30</strong>. Dias: <strong style="color:#C47830;">09</strong>, 11, 16, 18, 23, 25, 30 de junho e 02 de julho. A Kelly explica a parte teórica e os participantes fazem os exercícios na hora.</p>
+      <h2 style="color:#EDE8DD;">08 Encontros · 04 Pilares</h2>
+      <p style="font-size:1rem;color:rgba(237,232,221,.82);margin-top:1rem;max-width:520px;margin-left:auto;margin-right:auto;">De dentro para fora — uma sequência guiada para construir o Brand Book da sua marca em 4 semanas.</p>
     </div>
+
     <div class="animate-on-scroll">
-      <p style="font-size:.85rem;color:#C47830;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:1.2rem;text-align:center;">Pilar 01 Consciência &amp; Essência</p>
-      <div class="encontro-block"><div class="encontro-num">01</div><div><h4>Antes da IA: Clareza</h4><p>Por que a maioria das marcas investe no lugar errado. O que sustenta uma marca além do visual.</p></div></div>
-      <div class="encontro-block"><div class="encontro-num">02</div><div><h4>Inteligência Artificial aplicada ao branding</h4><p>Como os Agentes de IA do método funcionam. Todos configuram e testam ao vivo.</p></div></div>
-      <div class="encontro-block"><div class="encontro-num">03</div><div><h4>Autoimagem Estratégica</h4><p>Quem é você no seu negócio? Primeiro exercício completo e primeiro relatório ao vivo.</p></div></div>
-    </div>
-    <div class="animate-on-scroll" style="margin-top:2.5rem;">
-      <p style="font-size:.85rem;color:#C47830;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:1.2rem;text-align:center;">Pilar 02 Estrutura &amp; Posicionamento</p>
-      <div class="encontro-block"><div class="encontro-num">04</div><div><h4>Posicionamento Claro</h4><p>O lugar da sua marca no mercado. Definição de posicionamento e proposta de valor.</p></div></div>
-      <div class="encontro-block"><div class="encontro-num">05</div><div><h4>Personalidade, Voz e Arquitetura</h4><p>Tom de voz, personalidade, pilares estratégicos e organização da oferta.</p></div></div>
-    </div>
-    <div class="animate-on-scroll" style="margin-top:2.5rem;">
-      <p style="font-size:.85rem;color:#C47830;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:1.2rem;text-align:center;">Pilar 03 Expansão &amp; Experiência</p>
-      <div class="encontro-block"><div class="encontro-num">06</div><div><h4>Expressão Visual com Propósito</h4><p>Direção de identidade visual guiada pela essência não por tendência.</p></div></div>
-      <div class="encontro-block"><div class="encontro-num">07</div><div><h4>Proposta de Valor e Comunicação Estratégica</h4><p>Narrativa central, pilares de conteúdo e presença digital.</p></div></div>
-    </div>
-    <div class="animate-on-scroll" style="margin-top:2.5rem;">
-      <p style="font-size:.85rem;color:#C47830;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:1.2rem;text-align:center;">Pilar 04 Gestão Viva &amp; Cultura</p>
-      <div class="encontro-block" style="background:rgba(196,120,48,.06);border-color:rgba(196,120,48,.15);"><div class="encontro-num" style="color:#C47830;">08</div><div><h4>Brand Book e Diagnóstico da Marca</h4><p>O grande final. Todos os relatórios reunidos no Agente do Cap. 11 para gerar o <strong style="color:#C47830;">Brand Book completo</strong> da sua marca.</p></div></div>
+      <!-- PILAR 01 -->
+      <div class="jornada-pilar">
+        <div class="jornada-pilar__head">
+          <span class="jornada-pilar__num">01</span>
+          <div>
+            <p class="jornada-pilar__eyebrow">Pilar 01</p>
+            <h3 class="jornada-pilar__name">Consciência &amp; Essência</h3>
+          </div>
+        </div>
+        <div class="jornada-pilar__items">
+          <div class="jornada-encontro"><span class="jornada-encontro__num">01</span><div class="jornada-encontro__body"><h4>Antes da IA: Clareza</h4><p>Por que a maioria das marcas investe no lugar errado.</p></div></div>
+          <div class="jornada-encontro"><span class="jornada-encontro__num">02</span><div class="jornada-encontro__body"><h4>Inteligência Artificial aplicada ao branding</h4><p>Como os Agentes de IA do método funcionam.</p></div></div>
+          <div class="jornada-encontro"><span class="jornada-encontro__num">03</span><div class="jornada-encontro__body"><h4>Autoimagem Estratégica</h4><p>Quem é você no seu negócio? Primeiro relatório ao vivo.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PILAR 02 -->
+      <div class="jornada-pilar">
+        <div class="jornada-pilar__head">
+          <span class="jornada-pilar__num">02</span>
+          <div>
+            <p class="jornada-pilar__eyebrow">Pilar 02</p>
+            <h3 class="jornada-pilar__name">Estrutura &amp; Posicionamento</h3>
+          </div>
+        </div>
+        <div class="jornada-pilar__items">
+          <div class="jornada-encontro"><span class="jornada-encontro__num">04</span><div class="jornada-encontro__body"><h4>Posicionamento Claro</h4><p>O lugar da sua marca no mercado e a proposta de valor.</p></div></div>
+          <div class="jornada-encontro"><span class="jornada-encontro__num">05</span><div class="jornada-encontro__body"><h4>Personalidade, Voz e Arquitetura</h4><p>Tom de voz, personalidade e organização da oferta.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PILAR 03 -->
+      <div class="jornada-pilar">
+        <div class="jornada-pilar__head">
+          <span class="jornada-pilar__num">03</span>
+          <div>
+            <p class="jornada-pilar__eyebrow">Pilar 03</p>
+            <h3 class="jornada-pilar__name">Expansão &amp; Experiência</h3>
+          </div>
+        </div>
+        <div class="jornada-pilar__items">
+          <div class="jornada-encontro"><span class="jornada-encontro__num">06</span><div class="jornada-encontro__body"><h4>Expressão Visual com Propósito</h4><p>Direção de identidade visual guiada pela essência.</p></div></div>
+          <div class="jornada-encontro"><span class="jornada-encontro__num">07</span><div class="jornada-encontro__body"><h4>Proposta de Valor e Comunicação Estratégica</h4><p>Narrativa central, pilares de conteúdo e presença digital.</p></div></div>
+        </div>
+      </div>
+
+      <!-- PILAR 04 (final, destacado) -->
+      <div class="jornada-pilar jornada-pilar--final">
+        <div class="jornada-pilar__head">
+          <span class="jornada-pilar__num">04</span>
+          <div>
+            <p class="jornada-pilar__eyebrow">Pilar 04 · Final</p>
+            <h3 class="jornada-pilar__name">Gestão Viva &amp; Cultura</h3>
+          </div>
+        </div>
+        <div class="jornada-pilar__items">
+          <div class="jornada-encontro"><span class="jornada-encontro__num">08</span><div class="jornada-encontro__body"><h4>Brand Book e Diagnóstico da Marca</h4><p>O grande final. Todos os relatórios reunidos no <strong style="color:#C47830;">Brand Book completo</strong> da sua marca.</p></div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
