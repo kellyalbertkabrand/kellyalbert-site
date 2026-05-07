@@ -63,7 +63,7 @@ img{max-width:100%;height:auto;width:auto}
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:80px}
 body{font-family:var(--body);color:var(--t-700);background:var(--bg-1);background-image:linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px);background-size:32px 32px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:var(--t-900);text-decoration:none;transition:var(--ease);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
