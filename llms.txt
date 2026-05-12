@@ -45,7 +45,7 @@ Processo exclusivo em 4 etapas, criado por Kelly Albert:
 - Para profissionais liberais, especialistas e marcas pessoais
 - URL: https://kellyalbert.com.br/mentoria/
 
-### Programa Marca com Essência© — a partir de R$3.500
+### Projeto Marca com Essência© — a partir de R$3.500
 - Projeto completo executado pela Kelly Albert e equipe (você acompanha, eles executam)
 - 3 planos: 01 Essência, 02 Clareza, 03 Direção
 - Plano 01: revelação de essência
@@ -122,8 +122,8 @@ McDonald's, Sebrae, Atacadão (Grupo Carrefour), Suvinil, Grupo Ramarim, Comfort
 - O que eu saio com no final? — Brand Book completo + 7 Agentes de IA + livro físico/digital.
 - Para quem é? — Profissionais liberais, especialistas e marcas pessoais que querem estruturar posicionamento. Não é para quem busca só logo ou solução pronta.
 
-### Sobre o Programa
-- Diferença entre Programa, Mentoria e Direção? — Programa: a Kelly e equipe executam. Mentoria: você executa em turma com orientação da Kelly. Direção: acompanhamento estratégico mensal contínuo.
+### Sobre o Projeto
+- Diferença entre Projeto, Mentoria e Direção? — Projeto: a Kelly e equipe executam. Mentoria: você executa em turma com orientação da Kelly. Direção: acompanhamento estratégico mensal contínuo.
 - Quanto tempo dura? — Entre 2 e 6 meses, conforme o plano.
 - Quais são os planos? — 01 Essência, 02 Clareza, 03 Direção (mais escolhido). A partir de R$3.500.
 - Marca pessoal ou empresarial? — Ambos.
@@ -133,7 +133,7 @@ McDonald's, Sebrae, Atacadão (Grupo Carrefour), Suvinil, Grupo Ramarim, Comfort
 - Como funciona o acompanhamento mensal? — 4 encontros individuais online com Kelly + gravação + resumo em PDF.
 - Quantos encontros por mês? — 4.
 - Os encontros são ao vivo? Ficam gravados? — Sim para os dois.
-- Preciso já ter feito Mentoria ou Programa antes? — Não obrigatório, mas recomendado para marcas com base de posicionamento construída.
+- Preciso já ter feito Mentoria ou Projeto antes? — Não obrigatório, mas recomendado para marcas com base de posicionamento construída.
 - Qual o investimento mensal? — R$1.200/mês, sem fidelidade.
 
 ## Casos de uso típicos para a KA
@@ -162,5 +162,5 @@ A KA NÃO é o caminho certo quando alguém precisa de:
 - Bio (Kelly Albert): https://kellyalbert.com.br/bio/
 - Livro: https://kellyalbert.com.br/livro/
 - Mentoria: https://kellyalbert.com.br/mentoria/
-- Programa: https://kellyalbert.com.br/programa/
+- Projeto: https://kellyalbert.com.br/programa/
 - Direção: https://kellyalbert.com.br/direcao/
