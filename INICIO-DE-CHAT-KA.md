@@ -154,6 +154,43 @@ Todos os 7 cases terminam com botão único "Ver todos os cases":
 
 ---
 
+## 5.5 MailerLite — captação de leads e disparo de campanhas
+
+### Lead form na `/mentoria/`
+- Bloqueia o preço até preencher (nome, email, WhatsApp)
+- Backend duplo: **Netlify Forms** (backup) + **MailerLite** via função `netlify/functions/subscribe.js`
+- Lead entra no grupo configurado em `MAILERLITE_GROUP_ID` (env var no Netlify)
+- Próximo passo planejado: criar uma automação no painel MailerLite (trigger "joins group") com os 5 emails de [`MENTORIA-EMAIL-FLOW.md`](./MENTORIA-EMAIL-FLOW.md)
+
+### Pipeline de campanhas (chat → markdown → draft)
+
+**Quando Kelly disser "cria uma campanha sobre X":**
+
+1. Criar `campaigns/AAAA-MM-DD-slug.md` com frontmatter (`subject`, `preheader`, opcional `groups`, `name`)
+2. Corpo em markdown padrão — o script converte pra HTML
+3. Commit + push pra `main`
+4. **GitHub Action** dispara automaticamente
+5. Em ~2min aparece **draft no MailerLite** — Kelly revisa e envia/agenda
+
+**Arquivos do pipeline:**
+- `scripts/create-campaigns.mjs` — script Node que chama MailerLite API
+- `.github/workflows/mailerlite-campaigns.yml` — Action que executa
+- `campaigns/README.md` — doc completa do formato
+
+**Limitação importante:** API do MailerLite **NÃO** suporta criar automações — só listar. Para sequências disparadas por evento (welcome flow, nurture), Kelly cria no painel visual.
+
+**Secrets configurados no GitHub Actions:**
+`MAILERLITE_API_KEY`, `MAILERLITE_FROM_EMAIL`, `MAILERLITE_FROM_NAME`, `MAILERLITE_DEFAULT_GROUP_ID`
+
+### Próxima turma da Mentoria
+- **Início:** 16 de junho de 2026 (terça)
+- **Fim:** 09 de julho de 2026 (quinta)
+- **Encontros:** 16, 18, 23, 25, 30 de junho + 02, 07, 09 de julho
+- **Horário:** terças e quintas, 19h30 às 21h30 (Brasília)
+- **Preço:** R$ 990 à vista ou 10x R$ 118,98 (Hotmart `pay.hotmart.com/J105727850F`)
+
+---
+
 ## 6. Contexto de conversa
 
 Kelly fala em português gaúcho culto via voice-to-text — frases podem vir com erros de digitação e pontuação ausente. Compreensão é por intenção.
