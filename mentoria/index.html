@@ -805,7 +805,7 @@ details summary::marker{display:none}
 </div></footer>
 <script src="/js/main.js"></script>
 <script>
-/* LEAD GATE: bloqueia preço até envio do form (Netlify Forms) */
+/* LEAD GATE: envia para Netlify Forms (backup) + MailerLite via Netlify Function */
 (function(){
   var KEY='ka_mentoria_lead';
   var block=document.getElementById('price-block');
@@ -817,15 +817,31 @@ details summary::marker{display:none}
     overlay.classList.add('hidden');
   }
   try{ if(localStorage.getItem(KEY)==='1') unlock(); }catch(e){}
+
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]');
     if(btn){btn.disabled=true;btn.textContent='Enviando...';}
-    var data=new FormData(form);
-    var body=new URLSearchParams(data).toString();
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
-      .then(function(){try{localStorage.setItem(KEY,'1');}catch(e){} unlock();})
-      .catch(function(){try{localStorage.setItem(KEY,'1');}catch(e){} unlock();});
+
+    var fd=new FormData(form);
+    var nome=fd.get('nome'), email=fd.get('email'), whatsapp=fd.get('whatsapp');
+
+    // 1) Backup: Netlify Forms (mesmo se MailerLite cair, lead fica salvo)
+    var netlifyBody=new URLSearchParams(fd).toString();
+    var netlifyReq=fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:netlifyBody}).catch(function(){});
+
+    // 2) MailerLite via Netlify Function
+    var mlReq=fetch('/.netlify/functions/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-pricegate'})
+    }).catch(function(){});
+
+    // Libera o preço quando o backup (Netlify Forms) responder. MailerLite roda em paralelo.
+    Promise.race([netlifyReq, new Promise(function(r){setTimeout(r,2500);})]).finally(function(){
+      try{localStorage.setItem(KEY,'1');}catch(e){}
+      unlock();
+    });
   });
 })();
 </script>
