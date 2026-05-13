@@ -156,6 +156,21 @@ details summary::marker{display:none}
 .amb-marinho .hl-gold,
 .amb-marinho em{color:#C47830!important}
 .amb-marinho .line{background:#C47830!important}
+/* ─── LEAD GATE: form bloqueia preço até envio ─── */
+.price-locked{filter:blur(10px);pointer-events:none;user-select:none;transition:filter .35s ease}
+.lead-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;padding:1rem}
+.lead-overlay.hidden{display:none!important}
+.lead-form{background:#fff;border-radius:16px;padding:1.7rem 1.5rem;width:100%;max-width:380px;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(196,120,48,.3);text-align:left}
+.lead-form h3{font-family:var(--heading);font-size:1.15rem;color:var(--t-900);margin:0 0 .35rem;line-height:1.25;font-weight:700}
+.lead-form h3 span{color:#C47830}
+.lead-form > p{font-size:.82rem;color:var(--t-600);margin:0 0 1rem;line-height:1.45}
+.lead-form input{display:block;width:100%;padding:.78rem .9rem;margin-bottom:.55rem;font-family:var(--body);font-size:.92rem;border:1px solid rgba(0,0,0,.14);border-radius:8px;box-sizing:border-box;color:var(--t-900);background:#fafafa;transition:border-color .2s,background .2s}
+.lead-form input:focus{outline:none;border-color:#C47830;background:#fff;box-shadow:0 0 0 3px rgba(196,120,48,.12)}
+.lead-form button{display:block;width:100%;padding:.9rem 1rem;margin-top:.7rem;background:#2E8B57;color:#fff;font-size:.82rem;font-weight:700;border:none;border-radius:100px;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
+.lead-form button:hover{background:#267349}
+.lead-form button:disabled{opacity:.65;cursor:wait}
+.lead-form .lead-privacy{font-size:.66rem;color:var(--t-500);margin:.9rem 0 0;text-align:center;line-height:1.5}
+@media(max-width:480px){.lead-form{padding:1.4rem 1.2rem}.lead-form h3{font-size:1.05rem}.lead-form input{font-size:.88rem}}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KA | Inteligência para Marcas">
@@ -725,19 +740,35 @@ details summary::marker{display:none}
       </div>
     </div>
 
-    <!-- PREÇO -->
+    <!-- PREÇO (bloqueado por lead form) -->
     <div class="animate-on-scroll" style="text-align:center;">
-      <div style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.25);border-radius:16px;padding:2.5rem 2rem;max-width:420px;margin:0 auto;box-shadow:0 12px 36px rgba(196,120,48,.15);">
-        <p style="font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(237,232,221,.6);margin:0 0 1.4rem;">Início <strong style="color:#fff;font-weight:800;">16 jun 2026</strong> · vagas limitadas</p>
-        <p style="font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#C47830;margin-bottom:-.5rem;">10x de</p>
-        <div style="display:flex;align-items:flex-start;justify-content:center;gap:.25rem;">
-          <span style="font-family:'Outfit',sans-serif;font-size:1.5rem;color:#fff;font-weight:700;margin-top:1.1rem;opacity:.9;">R$</span>
-          <span style="font-family:'Outfit',sans-serif;font-size:5.6rem;font-weight:800;color:#fff;line-height:1;letter-spacing:-.03em;text-shadow:0 4px 24px rgba(255,255,255,.18);">118</span>
-          <span style="font-family:'Outfit',sans-serif;font-size:1.8rem;color:#fff;font-weight:700;margin-top:1.1rem;opacity:.9;">,98</span>
+      <div id="price-block-wrap" style="position:relative;max-width:420px;margin:0 auto;">
+        <div id="price-block" class="price-locked" style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.25);border-radius:16px;padding:2.5rem 2rem;box-shadow:0 12px 36px rgba(196,120,48,.15);">
+          <p style="font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(237,232,221,.6);margin:0 0 1.4rem;">Início <strong style="color:#fff;font-weight:800;">16 jun 2026</strong> · vagas limitadas</p>
+          <p style="font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#C47830;margin-bottom:-.5rem;">10x de</p>
+          <div style="display:flex;align-items:flex-start;justify-content:center;gap:.25rem;">
+            <span style="font-family:'Outfit',sans-serif;font-size:1.5rem;color:#fff;font-weight:700;margin-top:1.1rem;opacity:.9;">R$</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:5.6rem;font-weight:800;color:#fff;line-height:1;letter-spacing:-.03em;text-shadow:0 4px 24px rgba(255,255,255,.18);">118</span>
+            <span style="font-family:'Outfit',sans-serif;font-size:1.8rem;color:#fff;font-weight:700;margin-top:1.1rem;opacity:.9;">,98</span>
+          </div>
+          <p style="color:rgba(255,255,255,.7);font-size:.9rem;margin:0 0 2rem;font-weight:500;">ou <strong style="color:#fff;">R$ 990</strong> à vista</p>
+          <a href="https://pay.hotmart.com/J105727850F" target="_blank" rel="noopener" style="display:inline-flex;width:100%;justify-content:center;align-items:center;padding:1rem 2rem;background:#2E8B57;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;border-radius:100px;letter-spacing:.05em;transition:all .3s;box-shadow:0 4px 20px rgba(46,139,87,.3);animation:btnPulseGreen 2s ease-in-out infinite;text-transform:uppercase;letter-spacing:.1em;">GARANTIR MINHA VAGA</a>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin-top:1.2rem;margin-bottom:0;">Pagamento via Pix ou cartão de crédito</p>
         </div>
-        <p style="color:rgba(255,255,255,.7);font-size:.9rem;margin:0 0 2rem;font-weight:500;">ou <strong style="color:#fff;">R$ 990</strong> à vista</p>
-        <a href="https://pay.hotmart.com/J105727850F" target="_blank" rel="noopener" style="display:inline-flex;width:100%;justify-content:center;align-items:center;padding:1rem 2rem;background:#2E8B57;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;border-radius:100px;letter-spacing:.05em;transition:all .3s;box-shadow:0 4px 20px rgba(46,139,87,.3);animation:btnPulseGreen 2s ease-in-out infinite;text-transform:uppercase;letter-spacing:.1em;">GARANTIR MINHA VAGA</a>
-        <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin-top:1.2rem;margin-bottom:0;">Pagamento via Pix ou cartão de crédito</p>
+        <!-- Overlay com form -->
+        <div id="lead-overlay" class="lead-overlay">
+          <form id="lead-form" name="mentoria-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="lead-form">
+            <input type="hidden" name="form-name" value="mentoria-lead">
+            <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
+            <h3>Veja o investimento da <span>Mentoria</span></h3>
+            <p>Preencha e libere o valor + condições de pagamento.</p>
+            <input type="text" name="nome" placeholder="Seu nome completo" required autocomplete="name">
+            <input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">
+            <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="tel">
+            <button type="submit">Ver investimento →</button>
+            <p class="lead-privacy">Seus dados ficam só com a equipe da KA. Sem spam.</p>
+          </form>
+        </div>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;">
         <svg width="44" height="30" viewBox="0 0 44 30"><rect x="2" y="2" width="40" height="26" rx="4" fill="none" stroke="#C47830" stroke-width="1.6"/><line x1="2" y1="10" x2="42" y2="10" stroke="#C47830" stroke-width="1.6"/><rect x="6" y="17" width="14" height="3.5" rx="1.5" fill="#C47830" opacity=".5"/></svg>
@@ -773,4 +804,29 @@ details summary::marker{display:none}
   <div class="footer__bottom"><span>Kelly Albert® 2026. CNPJ: 15.096.943/0001-37</span><div class="footer__social"><a href="https://wa.me/5551993163333" target="_blank">WhatsApp</a><a href="https://instagram.com/kellyalbert.brand" target="_blank">Instagram</a><a href="https://www.tiktok.com/@kellyalbertbr" target="_blank">TikTok</a></div></div>
 </div></footer>
 <script src="/js/main.js"></script>
+<script>
+/* LEAD GATE: bloqueia preço até envio do form (Netlify Forms) */
+(function(){
+  var KEY='ka_mentoria_lead';
+  var block=document.getElementById('price-block');
+  var overlay=document.getElementById('lead-overlay');
+  var form=document.getElementById('lead-form');
+  if(!block||!overlay||!form) return;
+  function unlock(){
+    block.classList.remove('price-locked');
+    overlay.classList.add('hidden');
+  }
+  try{ if(localStorage.getItem(KEY)==='1') unlock(); }catch(e){}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=form.querySelector('button[type=submit]');
+    if(btn){btn.disabled=true;btn.textContent='Enviando...';}
+    var data=new FormData(form);
+    var body=new URLSearchParams(data).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+      .then(function(){try{localStorage.setItem(KEY,'1');}catch(e){} unlock();})
+      .catch(function(){try{localStorage.setItem(KEY,'1');}catch(e){} unlock();});
+  });
+})();
+</script>
 </body></html>
