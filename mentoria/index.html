@@ -199,14 +199,16 @@ details summary::marker{display:none}
 
 <!-- HERO CLEAN -->
 <style>
-.hero-mentoria-h1{color:var(--bg-1);line-height:.85;margin:0 0 .35rem;font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:700;}
-.hero-mentoria-pain{font-family:var(--heading);font-size:clamp(1.4rem,2.8vw,1.95rem);font-weight:700;color:#fff;line-height:1.2;margin:0 auto .8rem;max-width:600px;letter-spacing:.005em;}
+.hero-mentoria-h1{color:var(--bg-1);line-height:.78;margin:0 0 .5rem;font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:700;}
+.hero-mentoria-pain{font-family:var(--heading);font-size:clamp(1rem,1.7vw,1.25rem);font-weight:400;color:#fff;line-height:1.3;margin:0 0 .6rem;letter-spacing:.01em;}
+.hero-mentoria-titulo-bloco{display:inline-block;text-align:center;}
 .hero-mentoria-video{border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);border:1px solid rgba(237,232,221,.12);position:relative;padding-bottom:56.25%;height:0;max-width:620px;margin:0 auto;}
 .hero-mentoria-disclaimer{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.75rem;font-size:.72rem;color:rgba(237,232,221,.5);font-style:italic;}
 .hero-segunda-dobra{background-color:#152535;position:relative;overflow:hidden;padding:2.5rem 0 2.5rem;}
 @media(max-width:640px){
   .hero-mentoria-h1{line-height:1.05;margin:0 0 .3rem;}
-  .hero-mentoria-pain{margin:0 auto 1rem;}
+  .hero-mentoria-titulo-bloco{display:block;}
+  .hero-mentoria-pain{font-size:clamp(1.1rem,4vw,1.4rem);margin:0 auto 1rem;}
   .hero-mentoria-video{max-width:100%;}
   .hero-segunda-dobra{padding:.75rem 0 3rem;}
 }
@@ -219,11 +221,11 @@ details summary::marker{display:none}
   <div class="container" style="position:relative;z-index:1;max-width:780px;width:100%;">
     <div class="animate-on-scroll" style="text-align:center;">
 
-      <!-- H1: produto, voz dominante -->
-      <h1 class="hero-mentoria-h1" style="font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:700;"><span style="display:inline-block;white-space:nowrap;">Mentoria</span><br><span style="display:inline-block;white-space:nowrap;">Marca com <span style="color:#C47830;font-weight:700;">Essência<sup style="font-size:.45em;">©</sup></span></span></h1>
-
-      <!-- FRASE DE IMPACTO -->
-      <p class="hero-pain hero-mentoria-pain" style="font-size:clamp(1.4rem,2.8vw,1.95rem);font-weight:700;"><span style="display:inline-block;white-space:nowrap;">Pare de deixar sua marca parecer</span><br><span style="display:inline-block;white-space:nowrap;">menor do que ela é.</span></p>
+      <!-- H1 + FRASE: bloco inline-block para alinhar larguras -->
+      <div class="hero-mentoria-titulo-bloco">
+        <h1 class="hero-mentoria-h1" style="font-size:clamp(2.2rem,5.5vw,3.6rem);font-weight:700;"><span style="display:inline-block;white-space:nowrap;">Mentoria</span><br><span style="display:inline-block;white-space:nowrap;">Marca com <span style="color:#C47830;font-weight:700;">Essência<sup style="font-size:.45em;">©</sup></span></span></h1>
+        <p class="hero-pain hero-mentoria-pain">Pare de deixar sua <strong style="font-weight:800;text-transform:uppercase;letter-spacing:.04em;">marca</strong> parecer <strong style="font-weight:800;text-transform:uppercase;letter-spacing:.04em;">menor do que ela é.</strong></p>
+      </div>
 
       <!-- VÍDEO -->
       <div class="hero-mentoria-video">
@@ -246,7 +248,7 @@ details summary::marker{display:none}
 
       <!-- GRUPO: PROMESSA + DATA -->
       <div class="hero-promise-group">
-        <p class="hero-subhead" style="font-family:var(--body);font-size:clamp(.95rem,1.6vw,1.1rem);line-height:1.6;color:rgba(237,232,221,.6);max-width:520px;margin:0 auto 1.2rem;font-weight:400;">Construa a <span style="color:rgba(196,120,48,.85);font-weight:500;">Base Estratégica da Sua Marca</span><br>em 8 encontros ao vivo e organize o Posicionamento, a Narrativa e a Comunicação que fazem o mercado perceber o valor da sua marca com mais clareza.</p>
+        <p class="hero-subhead" style="font-family:var(--body);font-size:clamp(.95rem,1.6vw,1.1rem);line-height:1.6;color:rgba(237,232,221,.82);max-width:520px;margin:0 auto 1.2rem;font-weight:400;">Construa a <strong style="color:#C47830;font-weight:700;">Base Estratégica da Sua Marca</strong> em 8 encontros ao vivo e organize o <strong style="color:#EDE8DD;font-weight:600;">Posicionamento</strong>, a <strong style="color:#EDE8DD;font-weight:600;">Narrativa</strong> e a <strong style="color:#EDE8DD;font-weight:600;">Comunicação</strong> que fazem o mercado perceber o valor da sua marca com mais clareza.</p>
         <p class="hero-date" style="font-family:var(--heading);font-size:clamp(1.05rem,2.1vw,1.35rem);color:#EDE8DD;margin:0;font-weight:600;letter-spacing:.02em;">Início em <strong style="color:#C47830;font-weight:800;">16 de junho de 2026</strong></p>
       </div>
 
