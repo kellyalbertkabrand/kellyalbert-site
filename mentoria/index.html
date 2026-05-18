@@ -198,10 +198,21 @@ details summary::marker{display:none}
 .ka-ticker__track span{font-size:.7rem;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase;padding-right:4rem;}
 @keyframes ka-ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 /* Tarja abaixo do nav com respiro azul */
-.ka-ticker{top:100px;}
+.ka-ticker{top:100px;transition:opacity .4s ease,transform .4s ease;}
+.ka-ticker.ka-ticker--hidden{opacity:0;transform:translateY(-100%);pointer-events:none;}
 @media(max-width:768px){.ka-ticker{top:90px;}}
 @media(max-width:640px){.ka-ticker{top:92px;}}
 </style>
+<script>
+(function(){
+  var ticker=document.querySelector('.ka-ticker');
+  if(!ticker)return;
+  var hidden=false;
+  window.addEventListener('scroll',function(){
+    if(!hidden&&window.scrollY>10){hidden=true;ticker.classList.add('ka-ticker--hidden');}
+  },{passive:true});
+})();
+</script>
 
 <nav class="nav"><div class="nav__inner">
   <a href="/" class="nav__brand"><img loading="eager" fetchpriority="high" src="/images/logo-ka.png" alt="KA" class="nav__logo" width="1200" height="315"></a>
