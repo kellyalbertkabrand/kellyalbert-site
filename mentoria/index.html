@@ -191,6 +191,26 @@ details summary::marker{display:none}
 <meta name="twitter:image:alt" content="Mentoria Marca com Essência© com Kelly Albert">
 </head><body>
 
+<!-- TARJA TICKER -->
+<style>
+.ka-ticker{position:fixed;top:0;left:0;right:0;z-index:1001;background:#C47830;height:2rem;overflow:hidden;display:flex;align-items:center;}
+.ka-ticker__track{display:flex;white-space:nowrap;animation:ka-ticker-scroll 22s linear infinite;}
+.ka-ticker__track span{font-size:.7rem;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase;padding-right:4rem;}
+@keyframes ka-ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* Empurra o nav para baixo da tarja */
+.nav{top:2rem!important;}
+</style>
+<div class="ka-ticker" aria-label="Próxima turma">
+  <div class="ka-ticker__track" aria-hidden="true">
+    <span>Próxima Turma &nbsp;·&nbsp; 16 de Junho de 2026 às 19h30</span>
+    <span>Próxima Turma &nbsp;·&nbsp; 16 de Junho de 2026 às 19h30</span>
+    <span>Próxima Turma &nbsp;·&nbsp; 16 de Junho de 2026 às 19h30</span>
+    <span>Próxima Turma &nbsp;·&nbsp; 16 de Junho de 2026 às 19h30</span>
+    <span>Próxima Turma &nbsp;·&nbsp; 16 de Junho de 2026 às 19h30</span>
+    <span>Próxima Turma &nbsp;·&nbsp; 16 de Junho de 2026 às 19h30</span>
+  </div>
+</div>
+
 <nav class="nav"><div class="nav__inner">
   <a href="/" class="nav__brand"><img loading="eager" fetchpriority="high" src="/images/logo-ka.png" alt="KA" class="nav__logo" width="1200" height="315"></a>
   <ul class="nav__links"><li><a href="/">Home</a></li><li><a href="/sobre">Sobre</a></li><li class="nav__dropdown"><a class="nav__dropdown-toggle">Produtos</a><div class="nav__dropdown-menu"><a href="/livro">Livro</a><a href="/mentoria">Mentoria</a><a href="/direcao">Direção</a><a href="/programa">Projeto</a></div></li><li><a href="/cases">Cases</a></li><li><a href="/quiz" class="nav__cta">Diagnóstico Gratuito</a></li></ul>
@@ -207,7 +227,7 @@ details summary::marker{display:none}
 .hero-segunda-dobra{background-color:#152535;position:relative;overflow:hidden;padding:.5rem 0 4rem;}
 @media(max-width:768px){
   /* Desfaz o flex do hero no mobile para empilhar naturalmente */
-  .hero-mentoria{padding:4.5rem 0 2rem!important;min-height:unset!important;align-items:center!important;}
+  .hero-mentoria{padding:6.5rem 0 2rem!important;min-height:unset!important;align-items:center!important;}
   .hero-mentoria .container{display:block!important;}
   .hero-mentoria .animate-on-scroll{display:block!important;}
   .hero-mentoria-titulo-bloco{display:block;text-align:center;margin-bottom:.8rem;}
@@ -217,7 +237,7 @@ details summary::marker{display:none}
   .hero-segunda-dobra{padding:1.5rem 0 3rem;}
 }
 </style>
-<section class="hero amb-marinho hero-mentoria" style="background-color:#152535;position:relative;overflow:hidden;display:flex;align-items:center;padding:6.5rem 0 1.5rem;">
+<section class="hero amb-marinho hero-mentoria" style="background-color:#152535;position:relative;overflow:hidden;display:flex;align-items:center;padding:8.5rem 0 1.5rem;">
   <div style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;">
     <div style="position:absolute;top:10%;left:8%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.08) 0%,transparent 70%);"></div>
     <div style="position:absolute;bottom:15%;right:10%;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.05) 0%,transparent 70%);"></div>
