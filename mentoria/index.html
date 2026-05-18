@@ -248,6 +248,8 @@ document.addEventListener('DOMContentLoaded',function(){
   .hero-mentoria .animate-on-scroll{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:0!important;flex:unset!important;}
   .hero-mentoria .animate-on-scroll .hero-mentoria-titulo-bloco{display:block!important;text-align:center!important;width:100%!important;padding-bottom:2rem!important;}
   .hero-mentoria-h1{font-size:2.1rem!important;line-height:1.05!important;}
+  /* Especificidade (0,2,0) para bater .hero-mentoria h1{margin:0!important} (0,1,1) */
+  .hero-mentoria .hero-mentoria-h1{margin-bottom:1.2rem!important;}
   .hero-mentoria-pain{font-size:.9rem!important;line-height:1.3!important;max-width:100%!important;}
   .hero-mentoria .animate-on-scroll .hero-mentoria-video{max-width:100%!important;width:100%!important;}
   /* Disclaimer colado abaixo do vídeo */
