@@ -204,14 +204,14 @@ details summary::marker{display:none}
 @media(max-width:640px){.ka-ticker{top:92px;}}
 </style>
 <script>
-(function(){
+document.addEventListener('DOMContentLoaded',function(){
   var ticker=document.querySelector('.ka-ticker');
   if(!ticker)return;
   var hidden=false;
   window.addEventListener('scroll',function(){
     if(!hidden&&window.scrollY>10){hidden=true;ticker.classList.add('ka-ticker--hidden');}
   },{passive:true});
-})();
+});
 </script>
 
 <nav class="nav"><div class="nav__inner">
