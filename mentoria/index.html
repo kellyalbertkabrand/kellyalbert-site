@@ -227,14 +227,25 @@ details summary::marker{display:none}
 .hero-segunda-dobra{background-color:#152535;position:relative;overflow:hidden;padding:.5rem 0 4rem;}
 @media(max-width:768px){
   /* Desfaz o flex do hero no mobile para empilhar naturalmente */
-  .hero-mentoria{padding:6.5rem 0 2rem!important;min-height:unset!important;align-items:center!important;}
+  .hero-mentoria{padding:7.5rem 0 2rem!important;min-height:unset!important;align-items:center!important;}
   .hero-mentoria .container{display:block!important;}
   .hero-mentoria .animate-on-scroll{display:block!important;}
-  .hero-mentoria-titulo-bloco{display:block;text-align:center;margin-bottom:.8rem;}
-  .hero-mentoria-h1{font-size:2.1rem!important;line-height:1.05!important;margin:0 0 .3rem!important;}
-  .hero-mentoria-pain{font-size:1.45rem!important;line-height:1.2!important;margin:0 auto .8rem!important;max-width:100%!important;}
-  .hero-mentoria-video{max-width:100%;margin:0 auto .5rem;}
-  .hero-segunda-dobra{padding:1.5rem 0 3rem;}
+  /* Título desce mais */
+  .hero-mentoria-titulo-bloco{display:block;text-align:center;margin-top:1.5rem;margin-bottom:.5rem;}
+  .hero-mentoria-h1{font-size:2.1rem!important;line-height:1.05!important;margin:0 0 .4rem!important;}
+  /* Frase menor no mobile */
+  .hero-mentoria-pain{font-size:1.15rem!important;line-height:1.25!important;margin:0 auto .5rem!important;max-width:100%!important;}
+  /* Vídeo desce mais */
+  .hero-mentoria-video{max-width:100%;margin:1.2rem auto .5rem!important;}
+  /* Disclaimer: ícone alinhado */
+  .hero-mentoria-disclaimer{align-items:flex-start;gap:.5rem;text-align:left;padding:0 .5rem;}
+  .hero-mentoria-disclaimer svg{flex-shrink:0;margin-top:2px;}
+  /* Segunda dobra: separa os blocos */
+  .hero-segunda-dobra{padding:2rem 0 3rem;}
+  .hero-promise-group{margin-bottom:0;}
+  .hero-subhead{margin-bottom:1.8rem!important;}
+  .hero-date{margin-bottom:1.8rem!important;}
+  .hero-pillars{margin-top:0!important;margin-bottom:2rem!important;}
 }
 </style>
 <section class="hero amb-marinho hero-mentoria" style="background-color:#152535;position:relative;overflow:hidden;display:flex;align-items:center;padding:8.5rem 0 1.5rem;">
