@@ -245,8 +245,8 @@ document.addEventListener('DOMContentLoaded',function(){
 .ka-ctrl-btn:hover{background:rgba(0,0,0,.85);}
 .ka-video-progress-track{position:absolute;bottom:0;left:0;right:0;height:7px;background:rgba(255,255,255,.15);z-index:10;}
 .ka-video-progress-fill{height:100%;width:0%;background:#C47830;transition:width .5s linear;border-radius:0 2px 2px 0;}
-.ka-btn-fullscreen-mobile{display:none;}
-@media(max-width:768px){.ka-btn-fullscreen-mobile{display:flex;}}
+/* no mobile os controles nativos do YouTube ficam visíveis */
+@media(max-width:768px){.ka-video-controls{display:none!important;}}
 .hero-mentoria-video.ka-fs{position:fixed!important;top:0!important;left:0!important;width:100vw!important;height:100vh!important;max-width:none!important;padding-bottom:0!important;border-radius:0!important;z-index:9999!important;}
 .hero-mentoria-video.ka-fs #ka-yt-player,.hero-mentoria-video.ka-fs #ka-yt-player iframe{width:100%!important;height:100%!important;}
 .hero-mentoria-disclaimer{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.75rem;font-size:.72rem;color:rgba(237,232,221,.5);font-style:italic;}
@@ -976,9 +976,10 @@ var KA_SVG={
   play:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
 };
 function onYouTubeIframeAPIReady(){
+  var mob=window.innerWidth<=768;
   kaPlayer=new YT.Player('ka-yt-player',{
     videoId:'yMepEwUblnY',
-    playerVars:{autoplay:1,mute:1,loop:1,playlist:'yMepEwUblnY',controls:0,modestbranding:1,rel:0,iv_load_policy:3,fs:1,playsinline:1},
+    playerVars:{autoplay:1,mute:1,loop:1,playlist:'yMepEwUblnY',controls:mob?1:0,modestbranding:1,rel:0,iv_load_policy:3,fs:1,playsinline:1},
     events:{onReady:function(e){
       e.target.mute();
       e.target.playVideo();
