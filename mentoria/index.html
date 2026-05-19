@@ -968,7 +968,7 @@ function onYouTubeIframeAPIReady(){
   kaPlayer=new YT.Player('ka-yt-player',{
     videoId:'yMepEwUblnY',
     playerVars:{autoplay:1,mute:1,loop:1,playlist:'yMepEwUblnY',controls:0,modestbranding:1,rel:0,iv_load_policy:3,fs:0,playsinline:1},
-    events:{onReady:function(e){e.target.playVideo();}}
+    events:{onReady:function(e){e.target.mute();e.target.playVideo();}}
   });
 }
 document.addEventListener('DOMContentLoaded',function(){
