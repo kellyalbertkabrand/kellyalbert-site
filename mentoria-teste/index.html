@@ -1012,13 +1012,9 @@ document.addEventListener('DOMContentLoaded',function(){
   if(btnFS) btnFS.addEventListener('click',function(){
     var iframe=document.querySelector('#ka-yt-player iframe');
     var el=iframe||document.getElementById('ka-yt-player');
-    var req=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||el.webkitEnterFullscreen;
+    var req=el&&(el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||el.webkitEnterFullscreen);
     if(req){req.call(el);}
-    else{
-      var w=document.querySelector('.hero-mentoria-video');
-      if(w.classList.contains('ka-fs')){w.classList.remove('ka-fs');}
-      else{w.classList.add('ka-fs');}
-    }
+    else{window.open('https://youtu.be/yMepEwUblnY','_blank');}
   });
 });
 </script>
