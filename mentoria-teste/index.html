@@ -1013,8 +1013,12 @@ document.addEventListener('DOMContentLoaded',function(){
     var el=(kaPlayer&&typeof kaPlayer.getIframe==='function')?kaPlayer.getIframe():document.querySelector('#ka-yt-player iframe');
     if(!el) el=document.getElementById('ka-yt-player');
     var req=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||el.webkitEnterFullscreen;
-    if(req){req.call(el);}
-    else{window.open('https://youtu.be/yMepEwUblnY','_blank');}
+    try{
+      if(req) req.call(el);
+      else throw new Error();
+    }catch(e){
+      window.open('https://youtu.be/yMepEwUblnY','_blank');
+    }
   });
 });
 </script>
