@@ -240,9 +240,11 @@ document.addEventListener('DOMContentLoaded',function(){
 .hero-mentoria-video{border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);border:1px solid rgba(237,232,221,.12);position:relative;padding-bottom:56.25%;height:0;max-width:620px;margin:0 auto;}
 #ka-yt-player{position:absolute;top:0;left:0;width:100%;height:100%;}
 #ka-yt-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
-.ka-video-controls{position:absolute;bottom:10px;right:10px;display:flex;gap:8px;z-index:10;}
+.ka-video-controls{position:absolute;bottom:14px;right:10px;display:flex;gap:8px;z-index:10;}
 .ka-ctrl-btn{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .2s ease;}
 .ka-ctrl-btn:hover{background:rgba(0,0,0,.85);}
+.ka-video-progress-track{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,.15);z-index:10;}
+.ka-video-progress-fill{height:100%;width:0%;background:#C47830;transition:width .5s linear;border-radius:0 2px 2px 0;}
 .hero-mentoria-disclaimer{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.75rem;font-size:.72rem;color:rgba(237,232,221,.5);font-style:italic;}
 .hero-segunda-dobra{background-color:#152535;position:relative;overflow:hidden;padding:.5rem 0 4rem;}
 @keyframes ka-cta-pulse{0%,100%{box-shadow:0 8px 32px rgba(46,139,87,.45),0 0 0 0 rgba(46,139,87,.4)}70%{box-shadow:0 8px 32px rgba(46,139,87,.45),0 0 0 12px rgba(46,139,87,0)}}
@@ -294,9 +296,10 @@ document.addEventListener('DOMContentLoaded',function(){
       <!-- VÍDEO -->
       <div class="hero-mentoria-video">
         <div id="ka-yt-player"></div>
+        <div class="ka-video-progress-track"><div class="ka-video-progress-fill" id="ka-progress-fill"></div></div>
         <div class="ka-video-controls">
-          <button class="ka-ctrl-btn" id="ka-btn-mute" aria-label="Ativar som" title="Som">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <button class="ka-ctrl-btn" id="ka-btn-mute" aria-label="Desativar som" title="Som">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
           <button class="ka-ctrl-btn" id="ka-btn-playpause" aria-label="Pausar" title="Pausar/Continuar">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
@@ -957,7 +960,7 @@ document.addEventListener('DOMContentLoaded',function(){
   s.src='https://www.youtube.com/iframe_api';
   document.head.appendChild(s);
 })();
-var kaPlayer,kaMuted=true,kaPlaying=true;
+var kaPlayer,kaMuted=false,kaPlaying=true;
 var KA_SVG={
   muted:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>',
   sound:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>',
@@ -967,16 +970,25 @@ var KA_SVG={
 function onYouTubeIframeAPIReady(){
   kaPlayer=new YT.Player('ka-yt-player',{
     videoId:'yMepEwUblnY',
-    playerVars:{autoplay:1,mute:1,loop:1,playlist:'yMepEwUblnY',controls:0,modestbranding:1,rel:0,iv_load_policy:3,fs:0,playsinline:1},
-    events:{onReady:function(e){e.target.mute();e.target.playVideo();}}
+    playerVars:{autoplay:1,loop:1,playlist:'yMepEwUblnY',controls:0,modestbranding:1,rel:0,iv_load_policy:3,fs:0,playsinline:1},
+    events:{onReady:function(e){e.target.unMute();e.target.setVolume(80);e.target.playVideo();}}
   });
 }
 document.addEventListener('DOMContentLoaded',function(){
   var btnM=document.getElementById('ka-btn-mute');
   var btnP=document.getElementById('ka-btn-playpause');
+  var fill=document.getElementById('ka-progress-fill');
+  /* barra de progresso */
+  setInterval(function(){
+    if(!kaPlayer||typeof kaPlayer.getCurrentTime!=='function') return;
+    var dur=kaPlayer.getDuration();
+    if(!dur) return;
+    var pct=(kaPlayer.getCurrentTime()/dur)*100;
+    if(fill) fill.style.width=pct+'%';
+  },500);
   if(btnM) btnM.addEventListener('click',function(){
     if(!kaPlayer||typeof kaPlayer.isMuted!=='function') return;
-    if(kaMuted){kaPlayer.unMute();kaMuted=false;btnM.innerHTML=KA_SVG.sound;btnM.setAttribute('aria-label','Desativar som');}
+    if(kaMuted){kaPlayer.unMute();kaPlayer.setVolume(80);kaMuted=false;btnM.innerHTML=KA_SVG.sound;btnM.setAttribute('aria-label','Desativar som');}
     else{kaPlayer.mute();kaMuted=true;btnM.innerHTML=KA_SVG.muted;btnM.setAttribute('aria-label','Ativar som');}
   });
   if(btnP) btnP.addEventListener('click',function(){
