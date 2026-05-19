@@ -1013,9 +1013,10 @@ document.addEventListener('DOMContentLoaded',function(){
   });
   var btnFS=document.getElementById('ka-btn-fullscreen');
   if(btnFS) btnFS.addEventListener('click',function(){
-    var iframe=document.querySelector('#ka-yt-player iframe');
-    var el=iframe||document.getElementById('ka-yt-player');
-    var req=el&&(el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||el.webkitEnterFullscreen);
+    /* getIframe() é o método oficial da API — tem mais permissão que querySelector */
+    var el=(kaPlayer&&typeof kaPlayer.getIframe==='function')?kaPlayer.getIframe():document.querySelector('#ka-yt-player iframe');
+    if(!el) el=document.getElementById('ka-yt-player');
+    var req=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||el.webkitEnterFullscreen;
     if(req){req.call(el);}
     else{window.open('https://youtu.be/yMepEwUblnY','_blank');}
   });
