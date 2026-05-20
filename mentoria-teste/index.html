@@ -925,6 +925,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <script>
 /* LEAD MODAL: popup com form → salva lead → redireciona para Hotmart */
 (function(){
+  function init(){
   var KEY='ka_mentoria_lead';
   var HOTMART='https://pay.hotmart.com/J105727850F';
   var backdrop=document.getElementById('ka-lead-modal');
@@ -936,7 +937,7 @@ document.addEventListener('DOMContentLoaded',function(){
     try{ if(localStorage.getItem(KEY)==='1'){ window.open(HOTMART,'_blank'); return; } }catch(err){}
     backdrop.classList.add('open');
     document.body.style.overflow='hidden';
-    form.querySelector('input[name=nome]').focus();
+    setTimeout(function(){ var f=form.querySelector('input[name=nome]'); if(f) f.focus(); },100);
   };
 
   window.kaCloseModal=function(){
@@ -974,6 +975,12 @@ document.addEventListener('DOMContentLoaded',function(){
       window.location.href=HOTMART;
     },600);
   });
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',init);
+  } else {
+    init();
+  }
 })();
 </script>
 <script>
