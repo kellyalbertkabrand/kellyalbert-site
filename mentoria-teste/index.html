@@ -159,7 +159,7 @@ details summary::marker{display:none}
 .amb-marinho .line{background:#C47830!important}
 /* ─── BOTÃO CTA PADRÃO ─── */
 .ka-cta-main{display:inline-flex;align-items:center;justify-content:center;padding:1.1rem 2.8rem;background:#2E8B57;color:#fff;font-size:.92rem;font-weight:800;text-decoration:none;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 6px 28px rgba(46,139,87,.4);animation:btnPulseGreen 2s ease-in-out infinite;transition:background .2s,transform .15s;}
-.ka-cta-main:hover{background:#267349;transform:translateY(-2px);}
+.ka-cta-main:hover{background:#267349;transform:translateY(-2px);color:#fff!important;}
 .ka-secure{display:flex;align-items:center;justify-content:center;gap:.35rem;font-size:.72rem;color:rgba(237,232,221,.45);margin-top:.65rem;letter-spacing:.03em;}
 /* ─── LEAD MODAL POPUP ─── */
 .ka-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
@@ -377,11 +377,15 @@ document.addEventListener('DOMContentLoaded',function(){
           <p style="font-size:.72rem;color:#C47830;margin:0;font-weight:600;line-height:1.35;">Base Estratégica<br>da sua marca</p>
         </div>
       </div>
-      <p style="font-size:.78rem;color:rgba(237,232,221,.55);line-height:1.65;max-width:500px;margin:0 auto 1rem;font-style:italic;">A Base Estratégica é construída por <strong style="color:rgba(237,232,221,.8);font-style:normal;">você</strong> ao longo dos 8 encontros, com a orientação da Kelly Albert. A mentoria <strong style="color:rgba(237,232,221,.8);font-style:normal;">não inclui criação de identidade visual</strong>.</p>
-      <div style="display:inline-flex;align-items:center;gap:.45rem;background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.22);border-radius:100px;padding:.38rem 1rem;margin-bottom:1.4rem;">
-        <svg width="13" height="15" viewBox="0 0 13 15" aria-hidden="true"><rect x="1.5" y="6" width="10" height="8.5" rx="1.5" fill="none" stroke="#C47830" stroke-width="1.3"/><path d="M3.5 6V4a3 3 0 0 1 6 0v2" fill="none" stroke="#C47830" stroke-width="1.3" stroke-linecap="round"/></svg>
-        <span style="font-size:.65rem;font-weight:700;color:#C47830;letter-spacing:.14em;text-transform:uppercase;">Material-guia: Livro Marca com Essência©</span>
+      <div class="livro-guia animate-on-scroll" style="display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;max-width:660px;margin:0 auto 1.6rem;background:rgba(196,120,48,.06);border:1px solid rgba(196,120,48,.25);border-radius:14px;padding:1.4rem 1.6rem;text-align:left;">
+        <img src="/images/livro-mockup-mesa.jpg" alt="Livro Marca com Essência" style="width:140px;height:140px;object-fit:cover;border-radius:10px;border:1px solid rgba(237,232,221,.18);box-shadow:0 12px 30px rgba(0,0,0,.35);display:block;" loading="lazy">
+        <div>
+          <span class="label" style="color:#C47830;background:rgba(196,120,48,.2);padding:.3rem .8rem;border-radius:100px;display:inline-block;font-size:.6rem;">Material-guia</span>
+          <h4 style="font-family:var(--body);color:#EDE8DD;font-size:1.05rem;line-height:1.3;margin:.65rem 0 .45rem;font-weight:600;">Toda a Mentoria é guiada pelo Livro <span style="color:#C47830;">Marca com Essência<sup style="font-size:.55em;">©</sup></span></h4>
+          <p style="color:rgba(237,232,221,.78);font-size:.82rem;line-height:1.55;margin:0;">Cada encontro acompanha um capítulo. Você recebe a <strong style="color:#fff;">versão digital com acesso imediato</strong> e a <strong style="color:#fff;">versão física pelos Correios</strong>.</p>
+        </div>
       </div>
+      <p style="font-size:.75rem;color:rgba(237,232,221,.45);line-height:1.6;max-width:480px;margin:0 auto 1.4rem;font-style:italic;">A Base Estratégica é construída por <strong style="color:rgba(237,232,221,.65);font-style:normal;">você</strong> ao longo dos 8 encontros, com a orientação da Kelly Albert. A mentoria <strong style="color:rgba(237,232,221,.65);font-style:normal;">não inclui criação de identidade visual</strong>.</p>
       <div>
         <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">Garantir minha vaga &rarr;</a>
         <p class="ka-secure"><svg width="12" height="14" viewBox="0 0 13 15" aria-hidden="true"><rect x="1.5" y="6" width="10" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 6V4a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Compra segura</p>
