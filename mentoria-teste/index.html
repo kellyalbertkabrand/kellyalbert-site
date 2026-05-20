@@ -969,23 +969,26 @@ document.addEventListener('DOMContentLoaded',function(){
     var fd=new FormData(form);
     var nome=fd.get('nome'),email=fd.get('email'),whatsapp=fd.get('whatsapp');
 
-    // 1) Netlify Forms (backup)
+    // 1) Netlify Forms (backup, fire-and-forget)
     var p=new URLSearchParams();
     p.append('form-name','mentoria-lead');
     p.append('nome',nome); p.append('email',email); p.append('whatsapp',whatsapp);
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()}).catch(function(){});
 
-    // 2) MailerLite via Netlify Function
+    function goToCheckout(){
+      try{localStorage.setItem(_KA_KEY,'1');}catch(err){}
+      window.location.href=_KA_HOTMART;
+    }
+
+    // 2) MailerLite via Netlify Function — aguarda antes de redirecionar
     fetch('/.netlify/functions/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-modal'})
-    }).catch(function(){});
+    }).then(function(){ goToCheckout(); }).catch(function(){ goToCheckout(); });
 
-    setTimeout(function(){
-      try{localStorage.setItem(_KA_KEY,'1');}catch(err){}
-      window.location.href=_KA_HOTMART;
-    },600);
+    // fallback: redireciona em 5s mesmo se o fetch travar
+    setTimeout(goToCheckout, 5000);
   });
 });
 </script>
