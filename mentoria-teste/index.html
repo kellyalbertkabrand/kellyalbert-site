@@ -157,19 +157,18 @@ details summary::marker{display:none}
 .amb-marinho .hl-gold,
 .amb-marinho em{color:#C47830!important}
 .amb-marinho .line{background:#C47830!important}
-/* ─── LEAD GATE: form bloqueia preço até envio ─── */
-.price-locked{filter:blur(10px);pointer-events:none;user-select:none;transition:filter .35s ease}
-.lead-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;padding:1rem}
-.lead-overlay.hidden{display:none!important}
-.lead-form{background:#fff;border-radius:16px;padding:1.7rem 1.5rem;width:100%;max-width:380px;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(196,120,48,.3);text-align:left}
-.lead-form h3{font-family:var(--heading);font-size:1.15rem;color:var(--t-900);margin:0 0 .35rem;line-height:1.25;font-weight:700}
-.lead-form h3 span{color:#C47830}
-.lead-form > p{font-size:.82rem;color:var(--t-600);margin:0 0 1rem;line-height:1.45}
-.lead-form input{display:block;width:100%;padding:.78rem .9rem;margin-bottom:.55rem;font-family:var(--body);font-size:.92rem;border:1px solid rgba(0,0,0,.14);border-radius:8px;box-sizing:border-box;color:var(--t-900);background:#fafafa;transition:border-color .2s,background .2s}
-.lead-form input:focus{outline:none;border-color:#C47830;background:#fff;box-shadow:0 0 0 3px rgba(196,120,48,.12)}
-.lead-form button{display:block;width:100%;padding:.9rem 1rem;margin-top:.7rem;background:#2E8B57;color:#fff;font-size:.82rem;font-weight:700;border:none;border-radius:100px;cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:background .2s}
-.lead-form button:hover{background:#267349}
-.lead-form button:disabled{opacity:.65;cursor:wait}
+/* ─── LEAD MODAL POPUP ─── */
+.ka-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.ka-modal-backdrop.open{display:flex}
+.ka-modal{background:#152535;border:1px solid rgba(196,120,48,.3);border-radius:20px;padding:2.4rem 2rem 2rem;max-width:420px;width:100%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.ka-modal__close{position:absolute;top:.9rem;right:.9rem;background:none;border:none;color:rgba(237,232,221,.45);cursor:pointer;font-size:1.6rem;line-height:1;padding:.2rem .5rem;transition:color .2s}
+.ka-modal__close:hover{color:#EDE8DD}
+.ka-modal__form input{display:block;width:100%;padding:.82rem 1rem;margin-bottom:.6rem;font-family:var(--body);font-size:.92rem;border:1px solid rgba(237,232,221,.15);border-radius:10px;box-sizing:border-box;color:#EDE8DD;background:rgba(237,232,221,.06);transition:border-color .2s,background .2s}
+.ka-modal__form input::placeholder{color:rgba(237,232,221,.4)}
+.ka-modal__form input:focus{outline:none;border-color:#C47830;background:rgba(196,120,48,.07);box-shadow:0 0 0 3px rgba(196,120,48,.12)}
+.ka-modal__form button{display:block;width:100%;padding:1rem 1rem;margin-top:.4rem;background:#2E8B57;color:#fff;font-size:.85rem;font-weight:800;border:none;border-radius:100px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .15s;box-shadow:0 6px 24px rgba(46,139,87,.4)}
+.ka-modal__form button:hover{background:#267349;transform:translateY(-1px)}
+.ka-modal__form button:disabled{opacity:.65;cursor:wait;transform:none}
 .lead-form .lead-privacy{font-size:.66rem;color:var(--t-500);margin:.9rem 0 0;text-align:center;line-height:1.5}
 @media(max-width:480px){.lead-form{padding:1.4rem 1.2rem}.lead-form h3{font-size:1.05rem}.lead-form input{font-size:.92rem}}
 </style>
@@ -374,7 +373,7 @@ document.addEventListener('DOMContentLoaded',function(){
           <p style="font-size:.72rem;color:#C47830;margin:0;font-weight:600;line-height:1.35;">Base Estratégica<br>da sua marca</p>
         </div>
       </div>
-      <a href="#investimento" class="hero-cta-vaga ka-cta-pulse" style="display:inline-block;padding:1.15rem 3rem;background:#2E8B57;color:#fff;font-size:.92rem;font-weight:800;text-decoration:none;border-radius:100px;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 32px rgba(46,139,87,.45);transition:transform .3s ease,box-shadow .3s ease;">Garantir minha vaga &rarr;</a>
+      <a href="#" onclick="kaOpenModal(event)" class="hero-cta-vaga ka-cta-pulse" style="display:inline-block;padding:1.15rem 3rem;background:#2E8B57;color:#fff;font-size:.92rem;font-weight:800;text-decoration:none;border-radius:100px;letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 32px rgba(46,139,87,.45);transition:transform .3s ease,box-shadow .3s ease;">Garantir minha vaga &rarr;</a>
     </div>
   </div>
 </section>
@@ -864,7 +863,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <!-- PREÇO (bloqueado por lead form) -->
     <div class="animate-on-scroll" style="text-align:center;">
       <div id="price-block-wrap" style="position:relative;max-width:420px;margin:0 auto;">
-        <div id="price-block" class="price-locked" style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.25);border-radius:16px;padding:2.5rem 2rem;box-shadow:0 12px 36px rgba(196,120,48,.15);">
+        <div id="price-block" style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.25);border-radius:16px;padding:2.5rem 2rem;box-shadow:0 12px 36px rgba(196,120,48,.15);">
           <p style="font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(237,232,221,.6);margin:0 0 1.4rem;">Início <strong style="color:#fff;font-weight:800;">16 jun 2026</strong> · vagas limitadas</p>
           <p style="font-size:.7rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:#C47830;margin-bottom:-.5rem;">10x de</p>
           <div style="display:flex;align-items:flex-start;justify-content:center;gap:.25rem;">
@@ -873,21 +872,8 @@ document.addEventListener('DOMContentLoaded',function(){
             <span style="font-family:'Outfit',sans-serif;font-size:1.8rem;color:#fff;font-weight:700;margin-top:1.1rem;opacity:.9;">,98</span>
           </div>
           <p style="color:rgba(255,255,255,.7);font-size:.9rem;margin:0 0 2rem;font-weight:500;">ou <strong style="color:#fff;">R$ 990</strong> à vista</p>
-          <a href="https://pay.hotmart.com/J105727850F" target="_blank" rel="noopener" style="display:inline-flex;width:100%;justify-content:center;align-items:center;padding:1rem 2rem;background:#2E8B57;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;border-radius:100px;letter-spacing:.05em;transition:all .3s;box-shadow:0 4px 20px rgba(46,139,87,.3);animation:btnPulseGreen 2s ease-in-out infinite;text-transform:uppercase;letter-spacing:.1em;">GARANTIR MINHA VAGA</a>
+          <a href="#" onclick="kaOpenModal(event)" style="display:inline-flex;width:100%;justify-content:center;align-items:center;padding:1rem 2rem;background:#2E8B57;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none;border-radius:100px;letter-spacing:.05em;transition:all .3s;box-shadow:0 4px 20px rgba(46,139,87,.3);animation:btnPulseGreen 2s ease-in-out infinite;text-transform:uppercase;letter-spacing:.1em;">GARANTIR MINHA VAGA</a>
           <p style="font-size:.78rem;color:rgba(255,255,255,.55);margin-top:1.2rem;margin-bottom:0;">Pagamento via Pix ou cartão de crédito</p>
-        </div>
-        <!-- Overlay com form -->
-        <div id="lead-overlay" class="lead-overlay">
-          <form id="lead-form" name="mentoria-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="lead-form">
-            <input type="hidden" name="form-name" value="mentoria-lead">
-            <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
-            <p style="text-align:center;">Preencha e libere o valor + condições de pagamento.</p>
-            <input type="text" name="nome" placeholder="Seu nome completo" required autocomplete="name">
-            <input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">
-            <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="tel">
-            <button type="submit">Ver investimento →</button>
-            <p class="lead-privacy">Seus dados ficam só com a equipe da KA. Sem spam.</p>
-          </form>
         </div>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:2.5rem;">
@@ -937,43 +923,56 @@ document.addEventListener('DOMContentLoaded',function(){
 </div></footer>
 <script src="/js/main.js"></script>
 <script>
-/* LEAD GATE: envia para Netlify Forms (backup) + MailerLite via Netlify Function */
+/* LEAD MODAL: popup com form → salva lead → redireciona para Hotmart */
 (function(){
   var KEY='ka_mentoria_lead';
-  var block=document.getElementById('price-block');
-  var overlay=document.getElementById('lead-overlay');
-  var form=document.getElementById('lead-form');
-  if(!block||!overlay||!form) return;
-  function unlock(){
-    block.classList.remove('price-locked');
-    overlay.classList.add('hidden');
-  }
-  try{ if(localStorage.getItem(KEY)==='1') unlock(); }catch(e){}
+  var HOTMART='https://pay.hotmart.com/J105727850F';
+  var backdrop=document.getElementById('ka-lead-modal');
+  var form=document.getElementById('ka-lead-form');
+  if(!backdrop||!form) return;
+
+  window.kaOpenModal=function(e){
+    if(e){e.preventDefault();}
+    try{ if(localStorage.getItem(KEY)==='1'){ window.open(HOTMART,'_blank'); return; } }catch(err){}
+    backdrop.classList.add('open');
+    document.body.style.overflow='hidden';
+    form.querySelector('input[name=nome]').focus();
+  };
+
+  window.kaCloseModal=function(){
+    backdrop.classList.remove('open');
+    document.body.style.overflow='';
+  };
+
+  backdrop.addEventListener('click',function(e){ if(e.target===backdrop) kaCloseModal(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') kaCloseModal(); });
 
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=form.querySelector('button[type=submit]');
-    if(btn){btn.disabled=true;btn.textContent='Enviando...';}
+    if(btn){btn.disabled=true;btn.textContent='Aguarde...';}
 
     var fd=new FormData(form);
     var nome=fd.get('nome'), email=fd.get('email'), whatsapp=fd.get('whatsapp');
 
-    // 1) Backup: Netlify Forms (mesmo se MailerLite cair, lead fica salvo)
-    var netlifyBody=new URLSearchParams(fd).toString();
-    var netlifyReq=fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:netlifyBody}).catch(function(){});
+    // 1) Netlify Forms (backup)
+    var netlifyFd=new FormData();
+    netlifyFd.append('form-name','mentoria-lead');
+    netlifyFd.append('nome',nome); netlifyFd.append('email',email); netlifyFd.append('whatsapp',whatsapp);
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(netlifyFd).toString()}).catch(function(){});
 
     // 2) MailerLite via Netlify Function
-    var mlReq=fetch('/.netlify/functions/subscribe',{
+    fetch('/.netlify/functions/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-pricegate'})
+      body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-modal'})
     }).catch(function(){});
 
-    // Libera o preço quando o backup (Netlify Forms) responder. MailerLite roda em paralelo.
-    Promise.race([netlifyReq, new Promise(function(r){setTimeout(r,2500);})]).finally(function(){
-      try{localStorage.setItem(KEY,'1');}catch(e){}
-      unlock();
-    });
+    // Redireciona para checkout após breve espera
+    setTimeout(function(){
+      try{localStorage.setItem(KEY,'1');}catch(err){}
+      window.location.href=HOTMART;
+    },600);
   });
 })();
 </script>
@@ -1040,4 +1039,25 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
+<!-- LEAD MODAL POPUP -->
+<div id="ka-lead-modal" class="ka-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-modal-title">
+  <div class="ka-modal">
+    <button class="ka-modal__close" onclick="kaCloseModal()" aria-label="Fechar">×</button>
+    <div style="text-align:center;margin-bottom:1.6rem;">
+      <p style="font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C47830;margin:0 0 .25rem;">Mentoria</p>
+      <h3 id="ka-modal-title" style="font-family:var(--heading);font-size:1.35rem;font-weight:700;color:#EDE8DD;margin:0 0 .6rem;line-height:1.2;">Marca com Essência©</h3>
+      <div style="width:28px;height:2px;background:#C47830;margin:0 auto .9rem;"></div>
+      <p style="font-size:.92rem;color:rgba(237,232,221,.8);line-height:1.6;margin:0;max-width:320px;margin-left:auto;margin-right:auto;">Preencha e garanta sua vaga na próxima turma que inicia em <strong style="color:#C47830;">16 de junho de 2026</strong>.</p>
+    </div>
+    <form id="ka-lead-form" name="mentoria-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="ka-modal__form">
+      <input type="hidden" name="form-name" value="mentoria-lead">
+      <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
+      <input type="text" name="nome" placeholder="Nome completo *" required autocomplete="name">
+      <input type="email" name="email" placeholder="Seu melhor e-mail *" required autocomplete="email">
+      <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD *" required autocomplete="tel" inputmode="numeric">
+      <button type="submit">GARANTIR MINHA VAGA →</button>
+      <p style="text-align:center;font-size:.72rem;color:rgba(237,232,221,.4);margin-top:.9rem;margin-bottom:0;">Seus dados ficam só com a equipe da KA. Sem spam.</p>
+    </form>
+  </div>
+</div>
 </body></html>
