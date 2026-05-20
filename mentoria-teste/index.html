@@ -923,27 +923,27 @@ document.addEventListener('DOMContentLoaded',function(){
 </div></footer>
 <script src="/js/main.js"></script>
 <script>
-/* LEAD MODAL: popup com form → salva lead → redireciona para Hotmart */
-(function(){
-  function init(){
-  var KEY='ka_mentoria_lead';
-  var HOTMART='https://pay.hotmart.com/J105727850F';
+/* LEAD MODAL — funções globais definidas imediatamente */
+var _KA_KEY='ka_mentoria_lead';
+var _KA_HOTMART='https://pay.hotmart.com/J105727850F';
+
+window.kaOpenModal=function(e){
+  if(e){e.preventDefault();}
+  try{ if(localStorage.getItem(_KA_KEY)==='1'){ window.open(_KA_HOTMART,'_blank'); return; } }catch(err){}
+  var m=document.getElementById('ka-lead-modal');
+  if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
+};
+
+window.kaCloseModal=function(){
+  var m=document.getElementById('ka-lead-modal');
+  if(m){ m.classList.remove('open'); }
+  document.body.style.overflow='';
+};
+
+document.addEventListener('DOMContentLoaded',function(){
   var backdrop=document.getElementById('ka-lead-modal');
   var form=document.getElementById('ka-lead-form');
   if(!backdrop||!form) return;
-
-  window.kaOpenModal=function(e){
-    if(e){e.preventDefault();}
-    try{ if(localStorage.getItem(KEY)==='1'){ window.open(HOTMART,'_blank'); return; } }catch(err){}
-    backdrop.classList.add('open');
-    document.body.style.overflow='hidden';
-    setTimeout(function(){ var f=form.querySelector('input[name=nome]'); if(f) f.focus(); },100);
-  };
-
-  window.kaCloseModal=function(){
-    backdrop.classList.remove('open');
-    document.body.style.overflow='';
-  };
 
   backdrop.addEventListener('click',function(e){ if(e.target===backdrop) kaCloseModal(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') kaCloseModal(); });
@@ -954,13 +954,13 @@ document.addEventListener('DOMContentLoaded',function(){
     if(btn){btn.disabled=true;btn.textContent='Aguarde...';}
 
     var fd=new FormData(form);
-    var nome=fd.get('nome'), email=fd.get('email'), whatsapp=fd.get('whatsapp');
+    var nome=fd.get('nome'),email=fd.get('email'),whatsapp=fd.get('whatsapp');
 
     // 1) Netlify Forms (backup)
-    var netlifyFd=new FormData();
-    netlifyFd.append('form-name','mentoria-lead');
-    netlifyFd.append('nome',nome); netlifyFd.append('email',email); netlifyFd.append('whatsapp',whatsapp);
-    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(netlifyFd).toString()}).catch(function(){});
+    var p=new URLSearchParams();
+    p.append('form-name','mentoria-lead');
+    p.append('nome',nome); p.append('email',email); p.append('whatsapp',whatsapp);
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()}).catch(function(){});
 
     // 2) MailerLite via Netlify Function
     fetch('/.netlify/functions/subscribe',{
@@ -969,19 +969,12 @@ document.addEventListener('DOMContentLoaded',function(){
       body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-modal'})
     }).catch(function(){});
 
-    // Redireciona para checkout após breve espera
     setTimeout(function(){
-      try{localStorage.setItem(KEY,'1');}catch(err){}
-      window.location.href=HOTMART;
+      try{localStorage.setItem(_KA_KEY,'1');}catch(err){}
+      window.location.href=_KA_HOTMART;
     },600);
   });
-  }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',init);
-  } else {
-    init();
-  }
-})();
+});
 </script>
 <script>
 // YouTube IFrame API — player customizado com só volume e pausa
