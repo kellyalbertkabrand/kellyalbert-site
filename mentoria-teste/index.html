@@ -624,24 +624,36 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 
     <!-- NUVEM VISUAL -->
-    <div id="ka-nuvem" class="animate-on-scroll" style="display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;align-items:center;max-width:780px;margin:0 auto 2.4rem;">
+    <div id="ka-nuvem" class="animate-on-scroll" style="display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;align-items:center;max-width:820px;margin:0 auto 2.4rem;">
 
-      <!-- Destaques principais — maiores, mais fortes -->
-      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Percepção abaixo da entrega</span>
-      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Comunicação genérica</span>
-      <span style="font-size:.95rem;font-weight:700;color:rgba(237,232,221,.82);background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.1);border-radius:100px;padding:.5rem 1.1rem;letter-spacing:.02em;">Diferenciais invisíveis</span>
-      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Posicionamento ausente</span>
-      <span style="font-size:.85rem;font-weight:600;color:rgba(237,232,221,.72);background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:100px;padding:.45rem 1rem;letter-spacing:.02em;">Tom de Voz indefinido</span>
-      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Valor percebido baixo</span>
-      <span style="font-size:.85rem;font-weight:600;color:rgba(237,232,221,.72);background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:100px;padding:.45rem 1rem;letter-spacing:.02em;">Conteúdo sem arquitetura</span>
-      <span style="font-size:.95rem;font-weight:700;color:rgba(237,232,221,.82);background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.1);border-radius:100px;padding:.5rem 1.1rem;letter-spacing:.02em;">Improviso na Comunicação</span>
-      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Proposta de Valor confusa</span>
-      <span style="font-size:.85rem;font-weight:600;color:rgba(237,232,221,.72);background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:100px;padding:.45rem 1rem;letter-spacing:.02em;">Autoridade não percebida</span>
-      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Falta de clareza</span>
-      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Arquitetura de Marca frágil</span>
-      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Presença digital sem direção</span>
-      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Oferta mal hierarquizada</span>
+      <!-- TIER 1 — Mega destaque -->
+      <span class="ka-tag-xl">Posicionamento ausente</span>
+      <span class="ka-tag-md">Tom de Voz indefinido</span>
+      <span class="ka-tag-xl">Comunicação genérica</span>
+      <span class="ka-tag-sm">Falta de clareza</span>
+      <span class="ka-tag-lg">Diferenciais invisíveis</span>
+      <span class="ka-tag-md">Improviso na Comunicação</span>
+      <span class="ka-tag-xl">Valor percebido baixo</span>
+      <span class="ka-tag-sm">Proposta de Valor confusa</span>
+      <span class="ka-tag-lg">Percepção abaixo da entrega</span>
+      <span class="ka-tag-md">Autoridade não percebida</span>
+      <span class="ka-tag-sm">Arquitetura de Marca frágil</span>
+      <span class="ka-tag-lg">Presença digital sem direção</span>
+      <span class="ka-tag-md">Conteúdo sem arquitetura</span>
+      <span class="ka-tag-sm">Oferta mal hierarquizada</span>
     </div>
+    <style>
+      .ka-tag-xl{font-family:var(--heading);font-size:1.6rem;font-weight:700;color:#EDE8DD;background:linear-gradient(135deg,rgba(196,120,48,.22),rgba(196,120,48,.12));border:1.5px solid rgba(196,120,48,.55);border-radius:100px;padding:.85rem 1.7rem;letter-spacing:.01em;box-shadow:0 6px 20px rgba(196,120,48,.18);}
+      .ka-tag-lg{font-family:var(--body);font-size:1.15rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.1);border:1px solid rgba(196,120,48,.32);border-radius:100px;padding:.7rem 1.45rem;letter-spacing:.02em;}
+      .ka-tag-md{font-family:var(--body);font-size:.92rem;font-weight:600;color:rgba(237,232,221,.85);background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.14);border-radius:100px;padding:.5rem 1.1rem;letter-spacing:.02em;}
+      .ka-tag-sm{font-family:var(--body);font-size:.72rem;font-weight:500;color:rgba(237,232,221,.55);background:rgba(237,232,221,.02);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.38rem .9rem;letter-spacing:.04em;}
+      @media(max-width:640px){
+        .ka-tag-xl{font-size:1.2rem;padding:.7rem 1.3rem;}
+        .ka-tag-lg{font-size:1rem;padding:.6rem 1.2rem;}
+        .ka-tag-md{font-size:.85rem;padding:.45rem 1rem;}
+        .ka-tag-sm{font-size:.7rem;padding:.35rem .85rem;}
+      }
+    </style>
 
     <!-- FRASE DE FECHAMENTO -->
     <div class="animate-on-scroll" style="max-width:660px;margin:0 auto;">
