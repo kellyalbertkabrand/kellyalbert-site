@@ -189,8 +189,12 @@ details summary::marker{display:none}
   h3{font-size:clamp(1.15rem,4.8vw,1.4rem)!important;line-height:1.25!important;}
   /* H4 — títulos de cards */
   h4{font-size:1rem!important;line-height:1.3!important;}
-  /* Corpo padrão de todas as seções */
-  .section p{font-size:.95rem!important;line-height:1.65!important;}
+  /* Corpo padrão de todas as seções — Montserrat + tamanho único */
+  .section p{
+    font-family:var(--body)!important;
+    font-size:.95rem!important;
+    line-height:1.65!important;
+  }
   /* Exceção: labels, secure e date-sub mantêm seus próprios tamanhos */
   .label,.ka-secure,.ka-date-sub{font-size:inherit!important;}
 
