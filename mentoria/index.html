@@ -1412,13 +1412,71 @@ document.addEventListener('DOMContentLoaded',function(){
   backdrop.addEventListener('click',function(e){ if(e.target===backdrop) kaCloseModal(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') kaCloseModal(); });
 
+  // Lista de domínios populares válidos (para detectar typos)
+  var KNOWN_DOMAINS=['gmail.com','hotmail.com','outlook.com','yahoo.com','yahoo.com.br','uol.com.br','bol.com.br','terra.com.br','icloud.com','live.com','msn.com','globo.com','globomail.com'];
+  // TLDs válidos comuns
+  var VALID_TLDS=['com','br','net','org','io','co','me','info','app','dev','edu','gov'];
+
+  function showFormError(msg){
+    var err=document.getElementById('ka-form-error');
+    if(err){err.textContent=msg;err.style.display='block';}
+  }
+  function hideFormError(){
+    var err=document.getElementById('ka-form-error');
+    if(err){err.style.display='none';err.textContent='';}
+  }
+  function validateEmail(email){
+    email=(email||'').trim().toLowerCase();
+    // Formato básico
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return 'Digite um e-mail válido (ex: nome@exemplo.com)';
+    var parts=email.split('@');
+    var domain=parts[1];
+    var domainParts=domain.split('.');
+    var tld=domainParts[domainParts.length-1];
+    // TLD precisa ter pelo menos 2 chars
+    if(tld.length<2) return 'O domínio do e-mail parece incompleto';
+    // Detecta typos comuns no TLD
+    var TLD_TYPOS={con:'com',cmo:'com',vom:'com',bom:'com',cim:'com',br1:'br'};
+    if(TLD_TYPOS[tld]){
+      return 'O e-mail parece ter um erro. Você quis dizer "...'+domainParts.slice(0,-1).join('.')+'.'+TLD_TYPOS[tld]+'"?';
+    }
+    // Detecta typos comuns em provedores conhecidos
+    var DOMAIN_TYPOS={
+      'gmail.con':'gmail.com','gmial.com':'gmail.com','gnail.com':'gmail.com','gmal.com':'gmail.com',
+      'hotmial.com':'hotmail.com','hotmil.com':'hotmail.com','hotmai.com':'hotmail.com','hotmail.con':'hotmail.com',
+      'outlok.com':'outlook.com','outloo.com':'outlook.com','outlook.con':'outlook.com',
+      'yaho.com':'yahoo.com','yahooo.com':'yahoo.com','yahoo.con':'yahoo.com',
+      'uol.com':'uol.com.br','uol.con':'uol.com.br',
+      'icloud.con':'icloud.com','iclod.com':'icloud.com',
+      'globomail.con':'globomail.com'
+    };
+    if(DOMAIN_TYPOS[domain]){
+      return 'Seu e-mail parece ter um erro de digitação. Você quis dizer "'+parts[0]+'@'+DOMAIN_TYPOS[domain]+'"?';
+    }
+    return null;
+  }
+  function validateWhatsApp(w){
+    var digits=(w||'').replace(/\D/g,'');
+    if(digits.length<10) return 'WhatsApp deve ter DDD + número (mínimo 10 dígitos)';
+    if(digits.length>13) return 'WhatsApp parece longo demais. Verifique se digitou corretamente.';
+    return null;
+  }
+
   form.addEventListener('submit',function(e){
     e.preventDefault();
+    hideFormError();
+    var fd=new FormData(form);
+    var nome=(fd.get('nome')||'').trim(),email=(fd.get('email')||'').trim(),whatsapp=(fd.get('whatsapp')||'').trim();
+
+    // Validações
+    if(nome.length<2){showFormError('Digite seu nome completo');form.querySelector('[name=nome]').focus();return;}
+    var emailErr=validateEmail(email);
+    if(emailErr){showFormError(emailErr);form.querySelector('[name=email]').focus();return;}
+    var waErr=validateWhatsApp(whatsapp);
+    if(waErr){showFormError(waErr);form.querySelector('[name=whatsapp]').focus();return;}
+
     var btn=form.querySelector('button[type=submit]');
     if(btn){btn.disabled=true;btn.textContent='Aguarde...';}
-
-    var fd=new FormData(form);
-    var nome=fd.get('nome'),email=fd.get('email'),whatsapp=fd.get('whatsapp');
 
     // 1) Netlify Forms (backup)
     var p=new URLSearchParams();
@@ -1522,14 +1580,15 @@ document.addEventListener('DOMContentLoaded',function(){
       <div style="width:28px;height:2px;background:#C47830;margin:0 auto .9rem;"></div>
       <p style="font-size:.95rem;color:rgba(237,232,221,.8);line-height:1.6;margin:0;max-width:320px;margin-left:auto;margin-right:auto;">Preencha e garanta sua vaga na próxima turma que inicia em <strong style="color:#C47830;">16 de junho de 2026.</strong></p>
     </div>
-    <form id="ka-lead-form" name="mentoria-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="ka-modal__form">
+    <form id="ka-lead-form" name="mentoria-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="ka-modal__form" novalidate>
       <input type="hidden" name="form-name" value="mentoria-lead">
       <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
-      <div class="ka-modal__field"><p class="ka-modal__label">Nome completo</p><input type="text" name="nome" placeholder="Como posso te chamar?" required autocomplete="name"></div>
-      <div class="ka-modal__field"><p class="ka-modal__label">E-mail</p><input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email"></div>
-      <div class="ka-modal__field"><p class="ka-modal__label">WhatsApp</p><input type="tel" name="whatsapp" placeholder="DDD + número" required autocomplete="tel" inputmode="numeric"></div>
+      <div class="ka-modal__field"><p class="ka-modal__label">Nome completo *</p><input type="text" name="nome" placeholder="Como posso te chamar?" required minlength="2" autocomplete="name"></div>
+      <div class="ka-modal__field"><p class="ka-modal__label">E-mail *</p><input type="email" name="email" placeholder="seunome@exemplo.com" required autocomplete="email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" title="Digite um e-mail válido (exemplo@dominio.com)"></div>
+      <div class="ka-modal__field"><p class="ka-modal__label">WhatsApp *</p><input type="tel" name="whatsapp" placeholder="(DDD) 9 9999-9999" required autocomplete="tel" inputmode="numeric" minlength="10" pattern="[0-9 ()+\-]{10,}" title="Digite WhatsApp com DDD (mínimo 10 dígitos)"></div>
+      <p id="ka-form-error" style="display:none;color:#ef4444;font-size:.85rem;text-align:center;margin:.6rem 0 0;padding:.6rem .8rem;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;"></p>
       <button type="submit">GARANTIR MINHA VAGA →</button>
-      <p style="text-align:center;font-size:.7rem;color:rgba(237,232,221,.4);margin-top:.9rem;margin-bottom:0;">Seus dados ficam só com a equipe da KA. Sem spam.</p>
+      <p style="text-align:center;font-size:.7rem;color:rgba(237,232,221,.4);margin-top:.9rem;margin-bottom:0;">* Todos os campos obrigatórios. Seus dados ficam só com a equipe da KA.</p>
     </form>
   </div>
 </div>
