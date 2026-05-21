@@ -221,6 +221,21 @@ details summary::marker{display:none}
 }
 
 /* ═══════════════════════════════════════════════════════
+   MOBILE PERFORMANCE — desabilita efeitos caros para scroll fluido
+   ═══════════════════════════════════════════════════════ */
+@media(max-width:640px){
+  /* Remove halos com filter:blur (composite layers caros no mobile) */
+  .section [style*="filter:blur"]{filter:none!important;display:none!important;}
+  /* Desabilita animações infinitas decorativas (mantém pulses dos CTAs) */
+  .ka-date-badge{animation:none!important;}
+  .ka-date-dot{animation:none!important;}
+  /* Hero video sem float infinite */
+  .hero-mentoria video{animation:none!important;}
+  /* Otimização: pula renderização de seções fora da viewport */
+  section{content-visibility:auto;contain-intrinsic-size:auto 800px;}
+}
+
+/* ═══════════════════════════════════════════════════════
    MOBILE VISUAL DESIGN — diferenciação e impacto por seção
    ═══════════════════════════════════════════════════════ */
 @media(max-width:640px){

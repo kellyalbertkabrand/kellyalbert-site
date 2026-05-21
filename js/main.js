@@ -27,9 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Nav scroll effect
   var nav = document.querySelector('.nav');
   if (nav) {
+    var navTicking = false;
     window.addEventListener('scroll', function() {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
+      if (navTicking) return;
+      navTicking = true;
+      requestAnimationFrame(function() {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+        navTicking = false;
+      });
+    }, { passive: true });
   }
 
   // Scroll animations
