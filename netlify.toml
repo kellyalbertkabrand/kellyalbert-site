@@ -104,5 +104,10 @@
 
 [[redirects]]
   from = "/mentoria-teste"
-  to = "/mentoria-teste/index.html"
-  status = 200
+  to = "/mentoria/"
+  status = 301
+
+[[redirects]]
+  from = "/mentoria-teste/*"
+  to = "/mentoria/"
+  status = 301

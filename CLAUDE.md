@@ -61,11 +61,11 @@ Esse arquivo contém:
 
 ---
 
-## Frente ativa: página `/mentoria-teste/`
+## Frente ativa: página `/mentoria/`
 
-**Arquivo:** `mentoria-teste/index.html`
-**URL:** `kellyalbert.com.br/mentoria-teste/`
-**Objetivo:** página de vendas alternativa da Mentoria Marca com Essência© — sendo refinada em copy, design e mobile antes de substituir a `/mentoria/`.
+**Arquivo:** `mentoria/index.html`
+**URL:** `kellyalbert.com.br/mentoria/`
+**Objetivo:** página de vendas oficial da Mentoria Marca com Essência©. Substituiu a versão antiga em 2026-05-21 (conteúdo veio da `/mentoria-teste/` após refinamento de copy, design e mobile). Redirect 301 `/mentoria-teste/*` → `/mentoria/` configurado no `netlify.toml`.
 
 ### Decisões técnicas já implementadas
 
