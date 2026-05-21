@@ -289,6 +289,15 @@ details summary::marker{display:none}
   /* ── SEÇÃO NUVEM: padding ajustado ── */
   #mob-nuvem [style*="border-radius:16px"] { padding: 1.5rem 1.2rem !important; }
 
+  /* ── SEÇÃO PARA QUEM É: imagem em bleed full-width ── */
+  .paraquem-img{
+    width:calc(100% + 2.4rem)!important;
+    max-width:none!important;
+    margin-left:-1.2rem!important;
+    margin-right:-1.2rem!important;
+    border-radius:0!important;
+  }
+
   /* ── SEÇÃO PARA QUEM É: ajustes mobile ── */
   #mob-paraquem [style*="border-radius:14px"] {
     border-radius: 0 14px 14px 0 !important;
@@ -710,7 +719,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <div style="position:absolute;top:15%;right:8%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.08) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="max-width:700px;position:relative;z-index:1;">
     <div class="text-center animate-on-scroll" style="margin-bottom:2rem;">
-      <img src="/images/mentoria-turma-meet-grid.jpg" alt="Mentoria ao vivo pelo Google Meet com Kelly Albert e a turma" loading="lazy" style="display:block;width:100%;max-width:900px;height:auto;margin:0 auto 1.8rem;border-radius:8px;box-shadow:0 18px 48px rgba(0,0,0,.35);">
+      <img src="/images/mentoria-turma-meet-grid.jpg" alt="Mentoria ao vivo pelo Google Meet com Kelly Albert e a turma" loading="lazy" class="paraquem-img" style="display:block;width:100%;max-width:900px;height:auto;margin:0 auto 1.8rem;border-radius:8px;box-shadow:0 18px 48px rgba(0,0,0,.35);">
       <span class="label" style="color:#C47830;">Para quem é</span>
       <h2 style="color:#EDE8DD;">A Mentoria <span style="color:#C47830;">Marca com Essência©</span></h2>
     </div>
