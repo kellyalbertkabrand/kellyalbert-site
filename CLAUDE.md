@@ -19,6 +19,7 @@ Esse arquivo contém:
 - Deploy: **Netlify** (branch `main` → produção automática)
 - Workflow: edita → commit → push pra `main` → deploy
 - Não usar ZIP nem `--no-verify` em commits
+- **Preferência da Kelly:** sempre publicar direto em produção sem perguntar. Quando estiver num branch de feature, mergear/fast-forward pra `main` ao final do ajuste e dar push. Não precisa abrir PR nem pedir confirmação.
 
 ### 2. Lead form na página `/mentoria/`
 - Form em popup que **bloqueia o preço** até preenchimento (nome, email, WhatsApp)
