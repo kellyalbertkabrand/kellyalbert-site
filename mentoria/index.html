@@ -245,8 +245,8 @@ details summary::marker{display:none}
   /* Desabilita transição opacity/transform do animate-on-scroll
      — exibe direto, evita re-render durante scroll */
   .animate-on-scroll{opacity:1!important;transform:none!important;transition:none!important;}
-  /* Promove o body a uma camada própria de compositor */
-  body{transform:translateZ(0);-webkit-overflow-scrolling:touch;}
+  /* iOS momentum scroll nativo (NÃO usar transform no body — quebra position:fixed do modal) */
+  body{-webkit-overflow-scrolling:touch;}
 }
 
 /* ═══════════════════════════════════════════════════════
