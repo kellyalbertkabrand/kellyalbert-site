@@ -158,8 +158,9 @@ details summary::marker{display:none}
 .amb-marinho em{color:#C47830!important}
 .amb-marinho .line{background:#C47830!important}
 /* ─── BOTÃO CTA PADRÃO ─── */
-.ka-cta-main{display:inline-flex;align-items:center;justify-content:center;padding:1.1rem 2.8rem;background:#2E8B57;color:#fff;font-size:.92rem;font-weight:800;text-decoration:none;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 6px 28px rgba(46,139,87,.4);animation:btnPulseGreen 2s ease-in-out infinite;transition:background .2s,transform .15s;}
-.ka-cta-main:hover{background:#267349;transform:translateY(-2px);color:#fff!important;}
+.ka-cta-main{display:inline-flex;align-items:center;justify-content:center;padding:1.1rem 2.8rem;background:#25D366;color:#fff;font-size:.92rem;font-weight:800;text-decoration:none;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 6px 28px rgba(37,211,102,.4);animation:btnPulseGreen 2s ease-in-out infinite;transition:background .2s,transform .15s;}
+.ka-cta-main:hover{background:#1FBC5A;transform:translateY(-2px);color:#fff!important;}
+@media(max-width:600px){.ka-cta-main{width:100%;max-width:360px;box-sizing:border-box;}}
 .ka-secure{display:flex;align-items:center;justify-content:center;gap:.35rem;font-size:.72rem;color:rgba(237,232,221,.45);margin-top:.65rem;letter-spacing:.03em;}
 /* ─── LEAD MODAL POPUP ─── */
 .ka-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
@@ -175,6 +176,220 @@ details summary::marker{display:none}
 .ka-modal__form button:disabled{opacity:.65;cursor:wait;transform:none}
 .lead-form .lead-privacy{font-size:.66rem;color:var(--t-500);margin:.9rem 0 0;text-align:center;line-height:1.5}
 @media(max-width:480px){.lead-form{padding:1.4rem 1.2rem}.lead-form h3{font-size:1.05rem}.lead-form input{font-size:.92rem}}
+
+/* ─── MOBILE GLOBAL ─── */
+@media(max-width:640px){
+  /* Títulos h2 não estouram na tela */
+  h2{font-size:clamp(1.4rem,6vw,2rem)!important;line-height:1.15!important;}
+  h3{font-size:clamp(1.1rem,5vw,1.5rem)!important;}
+
+  /* Quem conduz: foto acima do texto no mobile */
+  #mob-kelly .grid-2{display:flex!important;flex-direction:column!important;}
+  #mob-kelly .grid-2 .animate-on-scroll:first-child{order:1;}
+  #mob-kelly .grid-2 .animate-on-scroll:last-child{order:2;}
+
+  /* Nuvem de reconhecimento: pílulas menores no mobile */
+  #ka-nuvem span{font-size:.75rem!important;padding:.4rem .85rem!important;}
+
+  /* Seções com max-width inline não causam scroll horizontal */
+  .section,.container{overflow-x:hidden;}
+
+  /* Modal: mais compacto em tela pequena */
+  .ka-modal{padding:1.8rem 1.4rem 1.6rem!important;border-radius:16px!important;}
+
+  /* Cards de investimento (schedule): empilha em 1 coluna */
+  .schedule-grid{grid-template-columns:1fr!important;}
+
+  /* Textos de apoio nas seções: tamanho confortável */
+  .section p{font-size:.9rem!important;line-height:1.65!important;}
+  /* Exceção: não reduzir labels e tags */
+  .label,.ka-secure,.ka-date-sub{font-size:inherit!important;}
+}
+
+@media(max-width:400px){
+  /* Telas muito pequenas (iPhone SE) */
+  h2{font-size:1.3rem!important;}
+  .ka-cta-main{font-size:.8rem!important;padding:1rem 1.5rem!important;}
+  .ka-date-badge{padding:.5rem 1rem!important;}
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE VISUAL DESIGN — diferenciação e impacto por seção
+   ═══════════════════════════════════════════════════════ */
+@media(max-width:640px){
+
+  /* ── BACKGROUNDS DIFERENCIADOS ── */
+  #mob-s2          { background: linear-gradient(180deg,#152535 0%,#1a3040 100%) !important; border-top: 4px solid rgba(196,120,48,.5) !important; }
+  #mob-nuvem       { background: linear-gradient(160deg,#08131d 0%,#0F1E2B 50%,#0a1825 100%) !important; border-top: 4px solid #C47830 !important; }
+  #mob-paraquem    { background: linear-gradient(160deg,#1e3650 0%,#152d42 100%) !important; border-top: 4px solid #3D6B7E !important; }
+  #mob-porquefazer { background: linear-gradient(160deg,#1c3448 0%,#152535 100%) !important; border-top: 4px solid rgba(196,120,48,.6) !important; }
+  #mob-base        { background: linear-gradient(160deg,#1A2E3D 0%,#142438 100%) !important; border-top: 4px solid rgba(196,120,48,.5) !important; }
+  #mob-como        { background: linear-gradient(160deg,#152535 0%,#1b3245 100%) !important; border-top: 4px solid #3D6B7E !important; }
+  #mob-construir   { background: linear-gradient(160deg,#1D3045 0%,#162840 100%) !important; border-top: 4px solid rgba(196,120,48,.5) !important; }
+  #mob-incluso     { background: linear-gradient(160deg,#0e1e2e 0%,#152535 100%) !important; border-top: 4px solid #3D6B7E !important; }
+  #mob-naoe        { background: linear-gradient(160deg,#1f1520 0%,#1A2535 100%) !important; border-top: 4px solid rgba(239,68,68,.6) !important; }
+  #mob-kelly       { background: linear-gradient(160deg,#1e3348 0%,#152535 100%) !important; border-top: 4px solid #C47830 !important; }
+  #mob-turma       { background: linear-gradient(160deg,#152535 0%,#1a2e3d 100%) !important; border-top: 4px solid rgba(196,120,48,.6) !important; }
+
+  /* ── LABELS: pílulas com fundo e borda visíveis ── */
+  .label {
+    font-size: .62rem !important;
+    letter-spacing: .28em !important;
+    padding: .42rem 1.2rem !important;
+    border-radius: 100px !important;
+    background: rgba(196,120,48,.18) !important;
+    border: 1px solid rgba(196,120,48,.45) !important;
+    color: #C47830 !important;
+    display: inline-block !important;
+    margin-bottom: .6rem !important;
+  }
+
+  /* ── H2: tamanho dramático com espaçamento ── */
+  .section h2, section h2 {
+    font-size: clamp(1.5rem,7vw,2.1rem) !important;
+    line-height: 1.15 !important;
+    margin-top: .5rem !important;
+    margin-bottom: 1.8rem !important;
+  }
+
+  /* ── SEÇÃO NUVEM: destaque máximo ── */
+  #mob-nuvem h2 { font-size: clamp(1.3rem,6.5vw,1.8rem) !important; line-height: 1.2 !important; }
+  #mob-nuvem [style*="border-radius:16px"] { padding: 1.5rem 1.2rem !important; }
+
+  /* ── SEÇÃO PARA QUEM É: cards com borda esquerda ── */
+  #mob-paraquem [style*="border-radius:14px"] {
+    border-left: 3px solid rgba(196,120,48,.5) !important;
+    border-radius: 0 14px 14px 0 !important;
+    padding: 1.2rem 1.4rem !important;
+  }
+  #mob-paraquem [style*="rgba(196,120,48,.07)"] {
+    border-left: 3px solid #C47830 !important;
+    background: rgba(196,120,48,.1) !important;
+  }
+
+  /* ── SEÇÃO POR QUE FAZER: quote dramático ── */
+  #mob-porquefazer [style*="border-left:3px solid #C47830"] {
+    font-size: 1.05rem !important;
+    padding: 1.4rem 1.4rem 1.4rem 1.6rem !important;
+    border-left-width: 4px !important;
+  }
+
+  /* ── SEÇÃO BASE ESTRATÉGICA: números grandes ── */
+  #mob-base [style*='"01"'], #mob-base [style*='"02"'],
+  #mob-base [style*='"03"'], #mob-base [style*='"04"'],
+  #mob-base [style*='"05"'], #mob-base [style*='"06"'],
+  #mob-base [style*='"07"'] {
+    font-size: 1.4rem !important;
+  }
+
+  /* ── SEÇÃO COMO FUNCIONA: steps com mais impacto ── */
+  .how-step { border-left: 3px solid rgba(196,120,48,.35) !important; border-radius: 0 10px 10px 0 !important; }
+  .how-step__num { font-size: 2rem !important; color: rgba(196,120,48,.5) !important; min-width: 2.2rem !important; }
+
+  /* ── SEÇÃO O QUE VOCÊ CONSTRÓI: cards destacados ── */
+  #mob-construir [style*="border-radius:12px"] {
+    padding: 1.1rem 1.2rem !important;
+  }
+
+  /* ── SEÇÃO O QUE ESTÁ INCLUSO: itens com borda laranja ── */
+  #mob-incluso [style*="display:flex;gap:1rem"] {
+    border-left: 3px solid rgba(196,120,48,.45) !important;
+    border-radius: 0 12px 12px 0 !important;
+    padding-left: 1.1rem !important;
+  }
+  /* Item destaque (Base Estratégica) */
+  #mob-incluso [style*="border:2px solid"] {
+    border-left: 4px solid #C47830 !important;
+    border-radius: 0 12px 12px 0 !important;
+  }
+
+  /* ── SEÇÃO PARA QUEM NÃO É: cards vermelhos com borda esquerda ── */
+  #mob-naoe [style*="rgba(239,68,68,.07)"] {
+    border-left: 3px solid rgba(239,68,68,.6) !important;
+    border-radius: 0 12px 12px 0 !important;
+  }
+  #mob-naoe h2 { color: #EDE8DD !important; }
+  #mob-naoe h2 span { color: #ef4444 !important; }
+
+  /* ── SEÇÃO KELLY: foto maior + nome em destaque ── */
+  #mob-kelly img {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 340px !important;
+    border-radius: 14px !important;
+    object-position: top center !important;
+  }
+  #mob-kelly h2 { font-size: 2rem !important; color: #C47830 !important; margin-bottom: .3rem !important; }
+
+  /* ── SEÇÃO PRÓXIMA TURMA: datas em destaque ── */
+  #mob-turma h2 { color: #EDE8DD !important; font-size: 1.9rem !important; }
+  #mob-turma [style*="font-size:1.1rem"] { font-size: 1.3rem !important; }
+  #mob-turma .schedule-grid { grid-template-columns: 1fr !important; }
+
+  /* ── BOTÃO CTA: mais impacto no mobile ── */
+  .ka-cta-main {
+    font-size: .9rem !important;
+    padding: 1.15rem 2.2rem !important;
+    letter-spacing: .13em !important;
+    box-shadow: 0 10px 36px rgba(46,139,87,.55) !important;
+  }
+  /* Espaçamento após botão */
+  .ka-secure { margin-top: .8rem !important; }
+
+  /* ── SEÇÃO INVESTIMENTO: grid de ícones 2-col ── */
+  #investimento .invest-grid { grid-template-columns: repeat(2,1fr) !important; }
+
+  /* ── FAQ: fundo claro já diferencia ── */
+  section[style*="#F7F3EA"] { padding: 3.5rem 1.2rem !important; }
+  section[style*="#F7F3EA"] details summary {
+    font-size: .95rem !important;
+    padding: 1.1rem 1.2rem !important;
+  }
+}
+
+/* ═══ DESIGN SYSTEM — componentes aplicados ═══ */
+
+/* H2 underline laranja — seções escuras com header centralizado */
+.section--dark .text-center h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: #C47830;
+  margin: .55rem auto 0;
+}
+
+/* WhatsApp flutuante — acompanha o scroll na lateral direita */
+.ka-float-whats {
+  position: fixed;
+  right: 22px;
+  bottom: 28px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,.22);
+  z-index: 998;
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+}
+.ka-float-whats:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.45); }
+.ka-float-whats svg { width: 54px; height: 54px; display: block; }
+
+/* Modal form — labels acima dos inputs */
+.ka-modal__label {
+  display: block;
+  font-size: .58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: rgba(237,232,221,.5);
+  margin: .5rem 0 .2rem;
+}
+.ka-modal__field { margin-bottom: 0; }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KA | Inteligência para Marcas">
@@ -324,42 +539,43 @@ document.addEventListener('DOMContentLoaded',function(){
 </section>
 
 <!-- SEGUNDA DOBRA -->
-<section style="background-color:#152535;position:relative;overflow:hidden;padding:3rem 0 4rem;">
+<section id="mob-s2" style="background-color:#152535;position:relative;overflow:hidden;padding:3rem 0 4rem;">
   <div class="container" style="max-width:780px;width:100%;">
     <div class="animate-on-scroll" style="text-align:center;">
       <div class="ka-date-badge" style="display:inline-flex;flex-direction:column;align-items:center;gap:.1rem;border:1.5px solid rgba(196,120,48,.45);border-radius:12px;padding:.65rem 1.6rem;margin:0 auto 2rem;animation:ka-badge-glow 2.4s ease-in-out infinite;text-align:center;">
         <p class="ka-date-main" style="display:flex;align-items:center;justify-content:center;gap:.55rem;font-family:var(--heading);font-size:clamp(1.1rem,2.2vw,1.4rem);color:#EDE8DD;font-weight:600;letter-spacing:.02em;margin:0;"><span class="ka-date-dot" aria-hidden="true"></span>Início em <strong style="color:#C47830;font-weight:800;">16 de junho de 2026</strong></p>
         <p class="ka-date-sub" style="font-family:var(--heading);font-size:clamp(.8rem,1.4vw,1rem);color:rgba(237,232,221,.65);font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin:0;">Terça-feira às 19h30</p>
       </div>
-      <p style="font-size:.95rem;line-height:1.8;color:rgba(237,232,221,.8);max-width:580px;margin:0 auto 1rem;">Construa a <strong style="color:#C47830;font-weight:700;">Base Estratégica da Sua Marca</strong> com o <strong style="color:#EDE8DD;font-weight:700;">Livro Marca com Essência©</strong>, escrito por Kelly Albert, encontros ao vivo e agentes de IA.</p>
-      <p style="font-size:.95rem;line-height:1.8;color:rgba(237,232,221,.8);max-width:580px;margin:0 auto 2.5rem;">Uma mentoria 100% prática para transformar valor, história, experiência e diferenciais em <strong style="color:#EDE8DD;font-weight:700;">clareza de marca</strong>. Em 8 encontros, você vai organizar <strong style="color:#EDE8DD;font-weight:700;">Posicionamento</strong>, <strong style="color:#EDE8DD;font-weight:700;">Narrativa</strong> e <strong style="color:#EDE8DD;font-weight:700;">Comunicação</strong> e construir relatórios estratégicos personalizados sobre a sua própria marca.</p>
+      <p style="font-size:.95rem;line-height:1.8;color:rgba(237,232,221,.8);max-width:580px;margin:0 auto 1rem;">Construa a <strong style="color:#C47830;font-weight:700;">Base Estratégica da Sua Marca</strong> em uma mentoria 100% prática, guiada pelo <strong style="color:#EDE8DD;font-weight:700;">Livro Marca com Essência©</strong>, escrito por Kelly Albert, com inteligência artificial integrada.</p>
+      <p style="font-size:.95rem;line-height:1.8;color:rgba(237,232,221,.8);max-width:580px;margin:0 auto 1rem;">Transforme valor, história, experiência e diferenciais em <strong style="color:#EDE8DD;font-weight:700;">clareza de marca</strong>.</p>
+      <p style="font-size:.95rem;line-height:1.8;color:rgba(237,232,221,.8);max-width:580px;margin:0 auto 2.5rem;">Em <strong style="color:#EDE8DD;font-weight:700;">8 encontros ao vivo</strong>, você vai estruturar <strong style="color:#EDE8DD;font-weight:700;">Posicionamento</strong>, <strong style="color:#EDE8DD;font-weight:700;">Narrativa</strong> e <strong style="color:#EDE8DD;font-weight:700;">Comunicação</strong> com exercícios estratégicos, agentes de IA exclusivos e relatórios personalizados.</p>
       <!-- GRID DE ENTREGAS -->
       <style>.dobra-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:680px;margin:0 auto 2.5rem;}@media(max-width:600px){.dobra-grid{grid-template-columns:repeat(2,1fr);}}</style>
       <div class="dobra-grid">
-        <!-- 1. 8 encontros ao vivo -->
+        <!-- 1. Kelly Albert ensinando e tirando dúvidas ao vivo -->
+        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
+          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
+        </div>
+        <!-- 2. 8 encontros ao vivo -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googlemeet.svg" alt="Google Meet" width="24" height="20" style="width:24px;height:20px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">8 encontros<br>ao vivo</p>
         </div>
-        <!-- 2. Exercícios no Google Docs -->
+        <!-- 3. Exercícios no Google Docs -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googledocs.svg" alt="Google Docs" width="20" height="22" style="width:20px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Exercícios no<br>Google Docs</p>
         </div>
-        <!-- 3. 7 Agentes de IA no ChatGPT -->
+        <!-- 4. 7 Agentes de IA no ChatGPT -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-openai.svg" alt="ChatGPT" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;filter:brightness(0) invert(1);opacity:.85;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">7 Agentes de IA<br>no ChatGPT</p>
         </div>
-        <!-- 4. Áudios no Spotify -->
+        <!-- 5. Áudios no Spotify -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-spotify.svg" alt="Spotify" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Áudios no<br>Spotify</p>
-        </div>
-        <!-- 5. Kelly Albert ensinando e tirando dúvidas ao vivo -->
-        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
-          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
         </div>
         <!-- 6. Método Marca com Essência© -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
@@ -387,210 +603,325 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
       <p style="font-size:.75rem;color:rgba(237,232,221,.45);line-height:1.6;max-width:480px;margin:0 auto 1.4rem;font-style:italic;">A Base Estratégica é construída por <strong style="color:rgba(237,232,221,.65);font-style:normal;">você</strong> ao longo dos 8 encontros, com a orientação da Kelly Albert. A mentoria <strong style="color:rgba(237,232,221,.65);font-style:normal;">não inclui criação de identidade visual</strong>.</p>
       <div>
-        <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">Garantir minha vaga &rarr;</a>
+        <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">GARANTIR MINHA VAGA &rarr;</a>
         <p class="ka-secure"><svg width="12" height="14" viewBox="0 0 13 15" aria-hidden="true"><rect x="1.5" y="6" width="10" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 6V4a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Compra segura</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUVEM DE RECONHECIMENTO -->
+<section id="mob-nuvem" class="section section--dark" style="background-color:#0F1E2B;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.04) 0%,transparent 65%);pointer-events:none;"></div>
+  <div class="container" style="max-width:820px;position:relative;z-index:1;">
+    <div class="text-center animate-on-scroll" style="margin-bottom:2.4rem;">
+      <h2 style="color:#EDE8DD;max-width:640px;margin:0 auto .9rem;">O Que Pode Estar Impedindo Sua Marca de Ser Percebida com Mais Valor?</h2>
+      <p style="font-size:.95rem;color:rgba(237,232,221,.72);line-height:1.7;max-width:560px;margin:0 auto;">Muitas marcas já têm qualidade, história, experiência e entrega.<br>Mas alguns pontos ainda deixam essa força pouco clara para o mercado.</p>
+    </div>
+
+    <!-- NUVEM VISUAL -->
+    <div id="ka-nuvem" class="animate-on-scroll" style="display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;align-items:center;max-width:780px;margin:0 auto 2.4rem;">
+
+      <!-- Destaques principais — maiores, mais fortes -->
+      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Percepção abaixo da entrega</span>
+      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Comunicação genérica</span>
+      <span style="font-size:.88rem;font-weight:700;color:rgba(237,232,221,.82);background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.1);border-radius:100px;padding:.5rem 1.1rem;letter-spacing:.02em;">Diferenciais invisíveis</span>
+      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Posicionamento ausente</span>
+      <span style="font-size:.82rem;font-weight:600;color:rgba(237,232,221,.72);background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:100px;padding:.45rem 1rem;letter-spacing:.02em;">Tom de Voz indefinido</span>
+      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Valor percebido baixo</span>
+      <span style="font-size:.82rem;font-weight:600;color:rgba(237,232,221,.72);background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:100px;padding:.45rem 1rem;letter-spacing:.02em;">Conteúdo sem arquitetura</span>
+      <span style="font-size:.88rem;font-weight:700;color:rgba(237,232,221,.82);background:rgba(237,232,221,.05);border:1px solid rgba(237,232,221,.1);border-radius:100px;padding:.5rem 1.1rem;letter-spacing:.02em;">Improviso na Comunicação</span>
+      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Proposta de Valor confusa</span>
+      <span style="font-size:.82rem;font-weight:600;color:rgba(237,232,221,.72);background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:100px;padding:.45rem 1rem;letter-spacing:.02em;">Autoridade não percebida</span>
+      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Falta de clareza</span>
+      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Arquitetura de Marca frágil</span>
+      <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Presença digital sem direção</span>
+      <span style="font-size:.78rem;font-weight:500;color:rgba(237,232,221,.6);background:rgba(237,232,221,.03);border:1px solid rgba(237,232,221,.07);border-radius:100px;padding:.4rem .95rem;letter-spacing:.02em;">Oferta mal hierarquizada</span>
+    </div>
+
+    <!-- FRASE DE FECHAMENTO -->
+    <div class="animate-on-scroll" style="max-width:660px;margin:0 auto;">
+      <div style="position:relative;background:linear-gradient(135deg,rgba(196,120,48,.1) 0%,rgba(196,120,48,.05) 100%);border:1px solid rgba(196,120,48,.4);border-radius:16px;padding:2rem 2.2rem 1.8rem;text-align:center;overflow:hidden;">
+        <!-- Brilho de fundo sutil -->
+        <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:300px;height:150px;background:radial-gradient(ellipse,rgba(196,120,48,.12) 0%,transparent 70%);pointer-events:none;"></div>
+        <!-- Badge ATENÇÃO -->
+        <div style="display:inline-flex;align-items:center;gap:.45rem;background:rgba(196,120,48,.18);border:1px solid rgba(196,120,48,.5);border-radius:100px;padding:.35rem 1rem;margin-bottom:1.2rem;">
+          <svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1L15 14H1L8 1Z" fill="none" stroke="#C47830" stroke-width="1.6" stroke-linejoin="round"/><line x1="8" y1="6" x2="8" y2="10" stroke="#C47830" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="12.5" r=".8" fill="#C47830"/></svg>
+          <span style="font-size:.6rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:#C47830;">ATENÇÃO</span>
+        </div>
+        <!-- Linha separadora -->
+        <div style="width:40px;height:1.5px;background:rgba(196,120,48,.4);margin:0 auto 1.2rem;"></div>
+        <!-- Texto principal -->
+        <p style="font-size:1.05rem;color:rgba(237,232,221,.9);line-height:1.8;margin:0;position:relative;z-index:1;">Se algum desses pontos faz parte da realidade da sua marca, a <strong style="color:#EDE8DD;">Mentoria Marca com Essência©</strong> foi criada para ajudar você a <strong style="color:#C47830;font-size:1.1rem;letter-spacing:.04em;">ORGANIZAR ESSA BASE</strong>.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PARA QUEM É -->
-<section class="section section--dark bg-grid-dark" style="background-color:rgba(21,37,53,.97);position:relative;overflow:hidden;">
+<section id="mob-paraquem" class="section section--dark bg-grid-dark" style="background-color:rgba(21,37,53,.97);position:relative;overflow:hidden;">
   <div style="position:absolute;top:15%;right:8%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.08) 0%,transparent 70%);pointer-events:none;"></div>
-  <div class="container" style="max-width:780px;position:relative;z-index:1;">
-    <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
+  <div class="container" style="max-width:700px;position:relative;z-index:1;">
+    <div class="text-center animate-on-scroll" style="margin-bottom:2rem;">
       <span class="label" style="color:#C47830;">Para quem é</span>
-      <h2 style="color:#EDE8DD;">Mentoria <span style="color:#C47830;">Marca com Essência©</span></h2>
-      <p style="font-size:1rem;color:rgba(237,232,221,.8);margin-top:1.2rem;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;">Se você sente que sua marca entrega mais valor do que parece, esta mentoria é para você.</p>
+      <h2 style="color:#EDE8DD;">A Mentoria <span style="color:#C47830;">Marca com Essência©</span></h2>
     </div>
-    <div class="animate-on-scroll ment-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;max-width:720px;margin:0 auto 2rem;">
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:12px;padding:1.2rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
-        <svg width="20" height="20" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Empresário, empreendedor ou profissional liberal que precisa estruturar ou reposicionar a marca</p>
+    <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.9rem;max-width:680px;margin:0 auto;">
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
+        <p style="font-size:.97rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para <strong style="color:#EDE8DD;">empresários, empreendedores, profissionais liberais, especialistas, marcas pessoais e marcas empresariais</strong> que querem construir uma marca mais <strong style="color:#C47830;">clara, estratégica e bem percebida</strong>.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:12px;padding:1.2rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
-        <svg width="20" height="20" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Quer construir posicionamento com orientação profissional, não sozinho</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
+        <p style="font-size:.97rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para quem precisa organizar <strong style="color:#EDE8DD;">o que a marca é, o que entrega, o que a diferencia</strong> e como deve se comunicar.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:12px;padding:1.2rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
-        <svg width="20" height="20" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Tem dificuldade de explicar seu diferencial de forma clara e convincente</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
+        <p style="font-size:.97rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para quem quer transformar <strong style="color:#C47830;">história, experiência, reputação, método e diferenciais</strong> em <strong style="color:#EDE8DD;">Posicionamento, Narrativa e Comunicação</strong>.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:12px;padding:1.2rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
-        <svg width="20" height="20" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Comunica no improviso e quer ter uma estratégia documentada</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
+        <p style="font-size:.97rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para quem deseja sair do improviso e construir a <strong style="color:#C47830;">Base Estratégica da Sua Marca</strong> com <strong style="color:#EDE8DD;">orientação ao vivo, exercícios estratégicos e agentes de IA exclusivos</strong>.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:12px;padding:1.2rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
-        <svg width="20" height="20" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Quer usar IA no branding mas precisa de clareza estratégica antes</p>
+      <div style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.3);border-radius:14px;padding:1.3rem 1.8rem;">
+        <p style="font-size:.97rem;color:#EDE8DD;margin:0;line-height:1.75;">Ao final, você terá uma base real para comunicar com mais <strong style="color:#C47830;letter-spacing:.03em;">CLAREZA, CONSISTÊNCIA, AUTORIDADE E VALOR</strong>.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:12px;padding:1.2rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
-        <svg width="20" height="20" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Quer sair com um documento estratégico real, construído sobre a sua marca</p>
-      </div>
-    </div>
-    <div class="animate-on-scroll" style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.25);border-radius:12px;padding:1.3rem 1.6rem;max-width:720px;margin:0 auto;display:flex;gap:.9rem;align-items:flex-start;">
-      <svg width="22" height="22" viewBox="0 0 16 16" style="flex-shrink:0;margin-top:2px;" aria-hidden="true"><circle cx="8" cy="8" r="7.5" fill="#C47830"/><path d="M4.5 8.3 L7 10.6 L11.5 5.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <p style="font-size:.92rem;color:#EDE8DD;margin:0;line-height:1.6;">Usar o <strong style="color:#C47830;">Livro Marca com Essência©</strong>, escrito por Kelly Albert, exercícios estratégicos e agentes de IA para construir a Base Estratégica da Sua Marca.</p>
     </div>
   </div>
 </section>
 
 <!-- POR QUE FAZER -->
-<section class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
+<section id="mob-porquefazer" class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
   <div style="position:absolute;bottom:10%;left:5%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.06) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="max-width:760px;position:relative;z-index:1;">
-    <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
+
+    <!-- Título -->
+    <div class="text-center animate-on-scroll" style="margin-bottom:2.4rem;">
       <span class="label" style="color:#C47830;">Por que fazer</span>
-      <h2 style="color:#EDE8DD;">Sua marca entrega mais do que parece</h2>
-      <p style="font-size:1rem;color:rgba(237,232,221,.82);margin-top:1.2rem;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;">A maioria das marcas investe em identidade visual e conteúdo antes de responder à pergunta mais importante: <strong style="color:#C47830;">quem eu sou e o que me diferencia?</strong></p>
-      <p style="font-size:.95rem;color:rgba(237,232,221,.72);margin-top:.8rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7;">Sem essa clareza, tudo vira improviso. Sua comunicação muda toda hora. Seu público não entende o que você entrega. E você continua atraindo clientes que pedem desconto.</p>
+      <h2 style="color:#EDE8DD;">Por Que Fazer Essa Mentoria</h2>
+      <p style="font-size:1rem;color:rgba(237,232,221,.82);margin-top:1.2rem;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.8;">Porque uma marca pode ter qualidade, entrega, história e reputação, mas ainda assim ser comunicada de forma <strong style="color:#C47830;">confusa, genérica ou pouco estratégica</strong>.</p>
     </div>
-    <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.7rem;max-width:680px;margin:0 auto 2.5rem;">
-      <div style="display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
-        <span style="color:#C47830;font-size:1.1rem;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
-        <p style="font-size:.9rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Posicionamento construído com método, não com achismo</p>
+
+    <!-- Lista de dores elegante -->
+    <div class="animate-on-scroll" style="max-width:640px;margin:0 auto 2.4rem;display:flex;flex-direction:column;gap:.5rem;">
+      <div style="display:flex;align-items:baseline;gap:.9rem;padding:.75rem 1.1rem;border-left:2px solid rgba(196,120,48,.3);background:rgba(237,232,221,.03);">
+        <span style="color:rgba(196,120,48,.6);font-size:.75rem;flex-shrink:0;">—</span>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.8);margin:0;line-height:1.6;">Pode ter <strong style="color:rgba(237,232,221,.95);">diferenciais reais</strong>, mas não conseguir expressá-los com clareza.</p>
       </div>
-      <div style="display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
-        <span style="color:#C47830;font-size:1.1rem;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
-        <p style="font-size:.9rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Diferencial real documentado e comunicável</p>
+      <div style="display:flex;align-items:baseline;gap:.9rem;padding:.75rem 1.1rem;border-left:2px solid rgba(196,120,48,.3);background:rgba(237,232,221,.03);">
+        <span style="color:rgba(196,120,48,.6);font-size:.75rem;flex-shrink:0;">—</span>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.8);margin:0;line-height:1.6;">Pode ter <strong style="color:rgba(237,232,221,.95);">autoridade</strong>, mas não transformar essa autoridade em percepção.</p>
       </div>
-      <div style="display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
-        <span style="color:#C47830;font-size:1.1rem;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
-        <p style="font-size:.9rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Personalidade e tom de voz definidos para orientar toda a comunicação</p>
+      <div style="display:flex;align-items:baseline;gap:.9rem;padding:.75rem 1.1rem;border-left:2px solid rgba(196,120,48,.3);background:rgba(237,232,221,.03);">
+        <span style="color:rgba(196,120,48,.6);font-size:.75rem;flex-shrink:0;">—</span>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.8);margin:0;line-height:1.6;">Pode ter <strong style="color:rgba(237,232,221,.95);">conteúdo</strong>, mas sem arquitetura.</p>
       </div>
-      <div style="display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
-        <span style="color:#C47830;font-size:1.1rem;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
-        <p style="font-size:.9rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Narrativa que conecta e faz o mercado perceber o valor que você entrega</p>
+      <div style="display:flex;align-items:baseline;gap:.9rem;padding:.75rem 1.1rem;border-left:2px solid rgba(196,120,48,.3);background:rgba(237,232,221,.03);">
+        <span style="color:rgba(196,120,48,.6);font-size:.75rem;flex-shrink:0;">—</span>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.8);margin:0;line-height:1.6;">Pode ter <strong style="color:rgba(237,232,221,.95);">ofertas boas</strong>, mas mal organizadas.</p>
       </div>
-      <div style="display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
-        <span style="color:#C47830;font-size:1.1rem;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
-        <p style="font-size:.9rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Relatórios estratégicos personalizados gerados por agentes de IA exclusivos</p>
+      <div style="display:flex;align-items:baseline;gap:.9rem;padding:.75rem 1.1rem;border-left:2px solid rgba(196,120,48,.3);background:rgba(237,232,221,.03);">
+        <span style="color:rgba(196,120,48,.6);font-size:.75rem;flex-shrink:0;">—</span>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.8);margin:0;line-height:1.6;">Pode ter <strong style="color:rgba(237,232,221,.95);">presença digital</strong>, mas sem direção.</p>
       </div>
-      <div style="display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.2rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
-        <span style="color:#C47830;font-size:1.1rem;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
-        <p style="font-size:.9rem;color:rgba(237,232,221,.88);margin:0;line-height:1.55;">Base Estratégica da Sua Marca: um documento que orienta decisões, conteúdo e crescimento</p>
-      </div>
-    </div>
-    <div class="animate-on-scroll" style="max-width:680px;margin:0 auto;">
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:12px;padding:1.4rem 1.8rem;text-align:center;">
-        <p style="font-size:1rem;color:rgba(237,232,221,.88);line-height:1.7;margin:0;">O objetivo não é <strong style="color:#EDE8DD;">criar uma marca do zero</strong>. É <strong style="color:#C47830;">revelar, organizar e documentar</strong> o que sua marca já é, e fazer o mercado <strong style="color:#EDE8DD;">perceber isso com mais clareza</strong>.</p>
+      <div style="display:flex;align-items:baseline;gap:.9rem;padding:.75rem 1.1rem;border-left:2px solid rgba(196,120,48,.5);background:rgba(196,120,48,.04);">
+        <span style="color:#C47830;font-size:.75rem;flex-shrink:0;">—</span>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.6;">Pode ter <strong style="color:#EDE8DD;">valor</strong>, mas ainda ser comparada por preço.</p>
       </div>
     </div>
+
+    <!-- Pivot -->
+    <div class="animate-on-scroll" style="max-width:640px;margin:0 auto 2.4rem;">
+      <div style="background:rgba(196,120,48,.1);border:1px solid rgba(196,120,48,.35);border-radius:14px;padding:1.5rem 1.8rem;text-align:center;">
+        <p style="font-size:1.05rem;color:#EDE8DD;margin:0 0 .5rem;line-height:1.7;font-weight:600;">A Mentoria Marca com Essência© foi criada para organizar essa base.</p>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.78);margin:0;line-height:1.7;">Para transformar o que hoje está disperso, invisível ou mal comunicado em <strong style="color:#C47830;">clareza estratégica</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Na prática -->
+    <div class="animate-on-scroll" style="max-width:640px;margin:0 auto 2rem;">
+      <p style="font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C47830;margin:0 0 1rem;text-align:center;">Na prática, você vai entender</p>
+      <div class="ment-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.85);margin:0;line-height:1.5;">O que sua marca é</p>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.85);margin:0;line-height:1.5;">O que ela entrega</p>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.85);margin:0;line-height:1.5;">O que a diferencia</p>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.85);margin:0;line-height:1.5;">Que lugar ocupa no mercado</p>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.85);margin:0;line-height:1.5;">Como deve se comunicar</p>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.08);border-radius:10px;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.85);margin:0;line-height:1.5;">Como organizar sua oferta</p>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.85rem 1rem;background:rgba(196,120,48,.06);border:1px solid rgba(196,120,48,.2);border-radius:10px;grid-column:1/-1;">
+          <span style="color:#C47830;font-size:.9rem;flex-shrink:0;margin-top:2px;">✦</span>
+          <p style="font-size:.88rem;color:rgba(237,232,221,.88);margin:0;line-height:1.5;">Como transformar história, experiência e reputação em <strong style="color:#C47830;">autoridade percebida</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fechamento -->
+    <div class="animate-on-scroll" style="max-width:640px;margin:0 auto;">
+      <div style="border-left:3px solid #C47830;padding:1.1rem 1.5rem;background:rgba(237,232,221,.03);border-radius:0 12px 12px 0;">
+        <p style="font-size:.95rem;color:rgba(237,232,221,.75);line-height:1.75;margin:0 0 .5rem;">O objetivo não é <strong style="color:rgba(237,232,221,.9);">inventar uma marca artificial</strong>.</p>
+        <p style="font-size:1rem;color:#EDE8DD;line-height:1.75;margin:0;font-weight:600;">É <strong style="color:#C47830;">revelar, organizar e comunicar melhor</strong> o que já existe, para que sua marca seja entendida, lembrada e escolhida com mais clareza.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- BASE ESTRATÉGICA -->
-<section class="section section--dark bg-grid-dark" style="background-color:#1A2E3D;position:relative;overflow:hidden;">
+<section id="mob-base" class="section section--dark bg-grid-dark" style="background-color:#1A2E3D;position:relative;overflow:hidden;">
   <div style="position:absolute;top:0;right:5%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.06) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="max-width:820px;position:relative;z-index:1;">
-    <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
+
+    <!-- Título + intro -->
+    <div class="text-center animate-on-scroll" style="margin-bottom:2.4rem;">
       <span class="label" style="color:#C47830;">A entrega final</span>
-      <h2 style="color:#EDE8DD;">O que é a Base Estratégica da Sua Marca</h2>
-      <p style="font-size:1rem;color:rgba(237,232,221,.82);margin-top:1.2rem;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.7;">Ao final dos 8 encontros, você terá construído e documentado tudo que sustenta a forma como o mercado percebe o valor da sua marca.</p>
+      <h2 style="color:#EDE8DD;">O Que É a Base Estratégica da Sua Marca</h2>
+      <p style="font-size:1rem;color:rgba(237,232,221,.82);margin-top:1.2rem;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.8;">É o documento que organiza as decisões essenciais que sustentam a forma como sua marca se <strong style="color:#EDE8DD;">posiciona, se comunica e é percebida</strong> pelo mercado.</p>
+      <p style="font-size:.95rem;color:rgba(237,232,221,.7);margin-top:.7rem;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.75;">Ela ajuda sua marca a deixar de depender de improviso e passar a ter uma <strong style="color:#C47830;">direção clara</strong> para comunicação, conteúdo, oferta e presença digital.</p>
     </div>
-    <div class="animate-on-scroll base-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:720px;margin:0 auto 2.5rem;">
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">01</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Essência da Marca</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">Quem sua marca é na essência: crenças, valores, propósito e o que a move de verdade.</p>
+
+    <!-- Cards 2 colunas -->
+    <div class="animate-on-scroll base-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:720px;margin:0 auto 2.4rem;">
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">01</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Essência da Marca</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">Quem sua marca é, o que sustenta sua história, seus valores e sua direção.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">02</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Posicionamento</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">O lugar que sua marca ocupa no mercado e como ela se diferencia da concorrência.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">02</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Posicionamento</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">O lugar que sua marca quer ocupar na mente do público.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">03</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Diferenciais Reais</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">O que torna sua marca única, inimitável e relevante para o público certo.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">03</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Diferenciais Reais</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">O que torna sua marca relevante, específica e mais difícil de substituir.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">04</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Proposta de Valor</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">O valor que sua marca entrega e por que o cliente deve escolher você.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">04</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Proposta de Valor</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">O valor que sua marca entrega e precisa comunicar com clareza.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">05</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Personalidade e Tom de Voz</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">Como sua marca fala, se comporta e se expressa em qualquer canal.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">05</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Personalidade e Tom de Voz</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">Como sua marca fala, se comporta e constrói reconhecimento.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">06</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Narrativa e Comunicação</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">As mensagens, os pilares de conteúdo e a história que conecta sua marca ao mercado.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">06</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Narrativa e Comunicação</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">As mensagens, os pilares e os caminhos para comunicar com consistência.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">07</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Arquitetura de Marca</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">Como organizar produtos, serviços e ofertas de forma coerente com a essência da marca.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">07</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Arquitetura de Marca</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">Como organizar produtos, serviços, ofertas e caminhos de compra.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.18);border-radius:12px;padding:1.1rem 1.3rem;">
-        <p style="font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C47830;margin:0 0 .4rem;">08</p>
-        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .35rem;line-height:1.3;">Direção de Presença Digital</h4>
-        <p style="font-size:.82rem;color:rgba(237,232,221,.7);margin:0;line-height:1.55;">Como orientar conteúdos, canais e comunicação digital com base na estratégia da marca.</p>
+      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.2rem 1.4rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .45rem;">08</p>
+        <h4 style="font-size:1rem;font-weight:700;color:#EDE8DD;margin:0 0 .4rem;line-height:1.25;">Presença Digital com Direção</h4>
+        <p style="font-size:.83rem;color:rgba(237,232,221,.68);margin:0;line-height:1.55;">Como orientar conteúdos, canais e pontos de contato com mais estratégia.</p>
       </div>
     </div>
-    <div class="animate-on-scroll" style="text-align:center;max-width:660px;margin:0 auto;">
-      <p style="font-family:var(--heading);font-size:1rem;font-style:italic;color:rgba(237,232,221,.82);line-height:1.65;margin:0;padding:1.4rem 1.6rem;border-left:3px solid #C47830;text-align:left;background:rgba(196,120,48,.05);border-radius:0 10px 10px 0;">A Base Estratégica da Sua Marca é o que ajuda sua marca a deixar de comunicar no improviso e passar a comunicar com clareza, coerência e valor.</p>
+
+    <!-- Frase final em destaque -->
+    <div class="animate-on-scroll" style="max-width:700px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg,rgba(196,120,48,.14) 0%,rgba(196,120,48,.06) 100%);border:1px solid rgba(196,120,48,.4);border-radius:16px;padding:1.8rem 2rem;text-align:center;">
+        <p style="font-family:var(--heading);font-size:1.1rem;font-weight:600;color:#EDE8DD;line-height:1.7;margin:0;">A Base Estratégica da Sua Marca transforma <strong style="color:#C47830;">clareza, diferenciação, autoridade e comunicação</strong> em uma estrutura prática para sua marca ser percebida com mais valor.</p>
+      </div>
     </div>
+
   </div>
 </section>
 
 <!-- COMO FUNCIONA -->
-<section class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
+<section id="mob-como" class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
   <div class="container" style="max-width:760px;">
-    <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
+
+    <!-- Livro com fundo transparente -->
+    <div class="animate-on-scroll" style="text-align:center;margin-bottom:1.2rem;">
+      <img src="/images/livro-transparente.png" alt="Livro Marca com Essência© — Kelly Albert" loading="lazy" style="width:100%;max-width:280px;height:auto;display:inline-block;filter:drop-shadow(0 20px 40px rgba(196,120,48,.25));">
+    </div>
+
+    <!-- Título -->
+    <div class="text-center animate-on-scroll" style="margin-bottom:2.4rem;">
       <span class="label" style="color:#C47830;">Como funciona</span>
-      <h3 style="color:#EDE8DD;margin-top:.6rem;">A mentoria é guiada pelo Livro Marca com Essência©</h3>
+      <h2 style="color:#EDE8DD;">Como Funciona na Prática</h2>
+      <p style="font-size:1rem;color:rgba(237,232,221,.82);margin-top:1rem;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.8;">A mentoria é guiada pelo <strong style="color:#EDE8DD;">Livro Marca com Essência©</strong>, escrito por Kelly Albert.</p>
+      <p style="font-size:.95rem;color:rgba(237,232,221,.65);margin-top:.5rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;font-style:italic;">Os encontros não serão uma leitura coletiva do livro.</p>
     </div>
-    <div class="animate-on-scroll ment-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:680px;margin:0 auto 2.5rem;">
-      <div style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.2);border-radius:12px;padding:1.5rem;">
-        <p style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cta-light);margin:0 0 .6rem;">1. Teoria curta e objetiva</p>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.82);margin:0;line-height:1.6;">Kelly apresenta o conceito do encontro com clareza, contexto e exemplos reais. Sem enrolação.</p>
+
+    <!-- 2 partes -->
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C47830;text-align:center;margin:0 0 1rem;">Cada Encontro Terá Duas Partes</p>
+    <div class="animate-on-scroll ment-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:680px;margin:0 auto 2.4rem;">
+      <div style="background:rgba(61,107,126,.1);border:1px solid rgba(61,107,126,.25);border-radius:12px;padding:1.5rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#3D6B7E;margin:0 0 .65rem;">1. Teoria Curta e Objetiva</p>
+        <p style="font-size:.92rem;color:rgba(237,232,221,.85);margin:0;line-height:1.65;">Kelly explica o conceito central da etapa e mostra como ele se aplica à construção da marca.</p>
       </div>
-      <div style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.2);border-radius:12px;padding:1.5rem;">
-        <p style="font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .6rem;">2. Aplicação prática</p>
-        <p style="font-size:.92rem;color:rgba(237,232,221,.82);margin:0;line-height:1.6;">Você responde os exercícios estratégicos no Google Docs e usa os Agentes de IA para gerar relatórios personalizados.</p>
+      <div style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.25);border-radius:12px;padding:1.5rem;">
+        <p style="font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#C47830;margin:0 0 .65rem;">2. Aplicação Prática</p>
+        <p style="font-size:.92rem;color:rgba(237,232,221,.85);margin:0;line-height:1.65;">Você responde exercícios estratégicos, usa os agentes de IA do livro e gera relatórios personalizados sobre a sua marca.</p>
       </div>
     </div>
-    <!-- 5-STEP FLOW -->
-    <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.7rem;max-width:680px;margin:0 auto 2.5rem;">
+
+    <!-- 6-STEP FLOW -->
+    <p style="font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C47830;text-align:center;margin:0 0 1rem;">Na Prática, Você Vai</p>
+    <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.7rem;max-width:680px;margin:0 auto 2.4rem;">
       <div class="how-step">
         <div class="how-step__num">01</div>
-        <div class="how-step__body"><h4>Participar do encontro ao vivo</h4><p>Kelly conduz ao vivo no Google Meet, tira dúvidas em tempo real.</p></div>
+        <div class="how-step__body"><h4>Participar do Encontro ao Vivo</h4><p>Kelly conduz ao vivo no Google Meet, tira dúvidas em tempo real.</p></div>
       </div>
       <div class="how-step">
         <div class="how-step__num">02</div>
-        <div class="how-step__body"><h4>Responder os exercícios estratégicos</h4><p>No Google Docs, durante o próprio encontro, sobre a sua marca.</p></div>
+        <div class="how-step__body"><h4>Responder às Perguntas Estratégicas no Google Docs</h4><p>Exercícios aplicados à sua própria marca, durante o próprio encontro.</p></div>
       </div>
       <div class="how-step">
         <div class="how-step__num">03</div>
-        <div class="how-step__body"><h4>Usar o Agente de IA exclusivo</h4><p>Cada encontro tem um agente no ChatGPT que transforma suas respostas em insights.</p></div>
+        <div class="how-step__body"><h4>Colar suas Respostas no Agente de IA Correspondente</h4><p>Cada encontro tem um agente exclusivo no ChatGPT configurado para aquela etapa.</p></div>
       </div>
       <div class="how-step">
         <div class="how-step__num">04</div>
-        <div class="how-step__body"><h4>Receber relatórios personalizados</h4><p>A IA gera um relatório estratégico sobre a sua marca a cada encontro.</p></div>
+        <div class="how-step__body"><h4>Receber um Relatório Personalizado da Etapa</h4><p>A IA gera um relatório estratégico específico sobre a sua marca.</p></div>
+      </div>
+      <div class="how-step">
+        <div class="how-step__num">05</div>
+        <div class="how-step__body"><h4>Usar os Relatórios Anteriores nas Etapas Seguintes</h4><p>Cada encontro se conecta ao anterior — a construção é progressiva.</p></div>
       </div>
       <div class="how-step how-step--final">
-        <div class="how-step__num">05</div>
-        <div class="how-step__body"><h4 style="color:#fff;">Construir a Base Estratégica da Sua Marca</h4><p>Os 8 relatórios reunidos no documento final: seu maior entregável.</p></div>
+        <div class="how-step__num">06</div>
+        <div class="how-step__body"><h4 style="color:#fff;">Consolidar Tudo na Base Estratégica da Sua Marca</h4><p>Os 8 relatórios reunidos no documento final: seu maior entregável.</p></div>
       </div>
     </div>
+
+    <!-- Fechamento -->
     <div class="animate-on-scroll" style="max-width:680px;margin:0 auto;">
       <div style="background:rgba(196,120,48,.06);border:1px solid rgba(196,120,48,.25);border-radius:14px;padding:1.6rem 1.8rem;text-align:center;">
-        <p style="font-family:var(--heading);font-size:1.15rem;font-weight:700;color:#EDE8DD;line-height:1.8;margin:0;">Você aprende.<br>Você responde.<br>Você usa a IA.<br>Você recebe relatórios.<br><span style="color:#C47830;">Você constrói a base da sua marca.</span></p>
+        <p style="font-family:var(--heading);font-size:1.15rem;font-weight:700;color:#EDE8DD;line-height:2;margin:0;">Você aprende.<br>Você responde.<br>Você usa a IA.<br>Você recebe relatórios.<br><span style="color:#C47830;font-size:1.2rem;letter-spacing:.02em;">VOCÊ CONSTRÓI A BASE DA SUA MARCA.</span></p>
       </div>
     </div>
+
     <div class="animate-on-scroll" style="text-align:center;margin-top:2.2rem;">
-      <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">Garantir minha vaga &rarr;</a>
+      <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">GARANTIR MINHA VAGA &rarr;</a>
       <p class="ka-secure"><svg width="12" height="14" viewBox="0 0 13 15" aria-hidden="true"><rect x="1.5" y="6" width="10" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 6V4a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Compra segura</p>
     </div>
   </div>
 </section>
 
 <!-- O QUE VOCÊ VAI CONSTRUIR -->
-<section class="section section--dark bg-grid-dark" style="background-color:#1D3045;position:relative;overflow:hidden;">
+<section id="mob-construir" class="section section--dark bg-grid-dark" style="background-color:#1D3045;position:relative;overflow:hidden;">
   <div style="position:absolute;top:10%;right:8%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.06) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="max-width:820px;position:relative;z-index:1;">
     <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
@@ -646,18 +977,18 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
     </div>
     <div class="animate-on-scroll" style="text-align:center;margin-top:2.2rem;">
-      <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">Garantir minha vaga &rarr;</a>
+      <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">GARANTIR MINHA VAGA &rarr;</a>
       <p class="ka-secure"><svg width="12" height="14" viewBox="0 0 13 15" aria-hidden="true"><rect x="1.5" y="6" width="10" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 6V4a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Compra segura</p>
     </div>
   </div>
 </section>
 
 <!-- O QUE ESTÁ INCLUSO -->
-<section class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
+<section id="mob-incluso" class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
   <div class="container" style="max-width:760px;position:relative;z-index:1;">
     <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
       <span class="label" style="color:#C47830;">Incluso</span>
-      <h2 style="color:#EDE8DD;">O que está incluso</h2>
+      <h2 style="color:#EDE8DD;">O Que Está Incluso</h2>
     </div>
     <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.75rem;max-width:680px;margin:0 auto;">
       <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.4rem;background:rgba(237,232,221,.04);border:1px solid rgba(196,120,48,.15);border-radius:12px;">
@@ -701,12 +1032,12 @@ document.addEventListener('DOMContentLoaded',function(){
 </section>
 
 <!-- PARA QUEM NÃO É -->
-<section class="section amb-marinho" style="background-color:#1A2535;position:relative;overflow:hidden;border-top:1px solid rgba(196,120,48,.15);">
+<section id="mob-naoe" class="section amb-marinho" style="background-color:#1A2535;position:relative;overflow:hidden;border-top:1px solid rgba(196,120,48,.15);">
   <div style="position:absolute;top:20%;right:8%;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(239,68,68,.06) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="max-width:760px;position:relative;z-index:1;">
     <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
       <span class="label" style="color:#ef4444;background:rgba(239,68,68,.12);padding:.35rem 1rem;border-radius:100px;display:inline-block;">Atenção</span>
-      <h2 style="color:#EDE8DD;">Para quem <span style="color:#ef4444;">não é</span> a Mentoria</h2>
+      <h2 style="color:#EDE8DD;">Para Quem <span style="color:#ef4444;">Não É</span> a Mentoria</h2>
     </div>
     <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.7rem;max-width:680px;margin:0 auto 2.5rem;">
       <div style="background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.22);border-radius:12px;padding:1.1rem 1.4rem;display:flex;gap:.8rem;align-items:flex-start;">
@@ -731,7 +1062,7 @@ document.addEventListener('DOMContentLoaded',function(){
       </div>
     </div>
     <div style="border-top:1px solid rgba(237,232,221,.1);padding-top:2rem;max-width:680px;margin:0 auto;">
-      <h2 style="color:#EDE8DD;text-align:center;margin:0 0 1.4rem;">A proposta é prática</h2>
+      <h2 style="color:#EDE8DD;text-align:center;margin:0 0 1.4rem;">A Proposta É Prática</h2>
       <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.5rem;">
         <div style="display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;border-radius:8px;background:rgba(237,232,221,.04);">
           <span style="font-family:var(--heading);font-size:1.7rem;font-weight:700;color:#C47830;min-width:38px;line-height:1;text-align:right;">01</span>
@@ -759,7 +1090,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </section>
 
 <!-- QUEM CONDUZ -->
-<section class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
+<section id="mob-kelly" class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
   <div style="position:absolute;top:10%;left:8%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(61,107,126,.08) 0%,transparent 70%);pointer-events:none;"></div>
   <div style="position:absolute;bottom:15%;right:5%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.05) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="position:relative;z-index:1;">
@@ -782,11 +1113,11 @@ document.addEventListener('DOMContentLoaded',function(){
 </section>
 
 <!-- PRÓXIMA TURMA -->
-<section class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
+<section id="mob-turma" class="section section--dark bg-grid-dark" style="background-color:#152535;position:relative;overflow:hidden;">
   <div style="position:absolute;top:0;right:0;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(196,120,48,.08) 0%,transparent 70%);pointer-events:none;"></div>
   <div class="container" style="max-width:720px;position:relative;z-index:1;">
     <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
-      <h2 style="color:#EDE8DD;">Próxima turma</h2>
+      <h2 style="color:#EDE8DD;">Próxima Turma</h2>
     </div>
     <div class="animate-on-scroll schedule-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;max-width:600px;margin:0 auto 2rem;">
       <div style="background:rgba(237,232,221,.06);border:1px solid rgba(196,120,48,.25);border-radius:12px;padding:1.2rem;text-align:center;">
@@ -830,30 +1161,30 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="animate-on-scroll" style="margin:2.5rem 0 1.5rem;">
       <p style="font-size:.7rem;color:#C47830;font-weight:800;letter-spacing:.3em;text-transform:uppercase;text-align:center;margin-bottom:1.4rem;">Tudo que você recebe</p>
       <div class="invest-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:680px;margin:0 auto;">
-        <!-- 1. 8 encontros ao vivo -->
+        <!-- 1. Kelly Albert ensinando e tirando dúvidas ao vivo -->
+        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
+          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
+        </div>
+        <!-- 2. 8 encontros ao vivo -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googlemeet.svg" alt="Google Meet" width="24" height="20" style="width:24px;height:20px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">8 encontros<br>ao vivo</p>
         </div>
-        <!-- 2. Exercícios no Google Docs -->
+        <!-- 3. Exercícios no Google Docs -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googledocs.svg" alt="Google Docs" width="20" height="22" style="width:20px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Exercícios no<br>Google Docs</p>
         </div>
-        <!-- 3. 7 Agentes IA -->
+        <!-- 4. 7 Agentes IA -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-openai.svg" alt="ChatGPT" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;filter:brightness(0) invert(1);opacity:.85;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">7 Agentes de IA<br>no ChatGPT</p>
         </div>
-        <!-- 4. Áudios no Spotify -->
+        <!-- 5. Áudios no Spotify -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-spotify.svg" alt="Spotify" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Áudios no<br>Spotify</p>
-        </div>
-        <!-- 5. Kelly Albert ensinando e tirando dúvidas ao vivo -->
-        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
-          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
         </div>
         <!-- 6. Método Marca com Essência© -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
@@ -892,7 +1223,7 @@ document.addEventListener('DOMContentLoaded',function(){
         <div id="price-block" style="text-align:center;padding:1rem 0;">
           <a href="#" onclick="kaOpenModal(event)" class="ka-cta-main">GARANTIR MINHA VAGA</a>
           <p class="ka-secure"><svg width="12" height="14" viewBox="0 0 13 15" aria-hidden="true"><rect x="1.5" y="6" width="10" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 6V4a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Compra segura</p>
-        </div>
+            </div>
       </div>
     </div>
   </div>
@@ -903,7 +1234,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <div class="container" style="max-width:750px;">
     <div class="text-center animate-on-scroll" style="margin-bottom:2.5rem;">
       <span class="label">Dúvidas</span>
-      <h2>Perguntas frequentes</h2>
+      <h2>Perguntas Frequentes</h2>
     </div>
     <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.8rem;">
       <details style="background:var(--bg-0);border:1px solid var(--border-light);border-radius:12px;overflow:hidden;"><summary style="padding:1.2rem 1.5rem;cursor:pointer;font-family:var(--heading);font-size:1.05rem;font-weight:600;color:var(--t-800);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;"><span>A mentoria é ao vivo?</span><svg width="16" height="16" viewBox="0 0 16 16" style="flex-shrink:0;transition:transform .3s;"><path d="M4 6 L8 10 L12 6" fill="none" stroke="var(--cta)" stroke-width="1.5" stroke-linecap="round"/></svg></summary><div style="padding:0 1.5rem 1.2rem;"><p style="font-size:.92rem;color:var(--t-600);margin:0;line-height:1.65;">Sim. Todos os encontros acontecem ao vivo, pelo <strong style="color:#C47830;">Google Meet</strong>, em grupo, com condução de Kelly Albert.</p></div></details>
@@ -975,17 +1306,26 @@ document.addEventListener('DOMContentLoaded',function(){
     p.append('nome',nome); p.append('email',email); p.append('whatsapp',whatsapp);
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()}).catch(function(){});
 
-    // 2) MailerLite via Netlify Function
-    fetch('/.netlify/functions/subscribe',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-modal'})
-    }).catch(function(){});
-
-    setTimeout(function(){
+    function goToCheckout(){
       try{localStorage.setItem(_KA_KEY,'1');}catch(err){}
       window.location.href=_KA_HOTMART;
-    },600);
+    }
+
+    // 2) MailerLite direto (mesmo padrão do /quiz/)
+    fetch('https://connect.mailerlite.com/api/subscribers',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNDIwYTNkY2E5ZmM1Y2JiZWFlNmFlMDFiMmVhMjNlYjQwZjg0ZWI5ZTA2NjA1ZjFiNzMyYWU0NmMzZDY1ODI1NzEzODE2N2E0NzE3NDQ0MGUiLCJpYXQiOjE3NzkzMTc4MDYuMTkxMzM5LCJuYmYiOjE3NzkzMTc4MDYuMTkxMzQxLCJleHAiOjQ5MzQ5OTE0MDYuMTg3MTg1LCJzdWIiOiIyMjUxMjA1Iiwic2NvcGVzIjpbXX0.dHeitQmB_eiHom8Tc79K7TvGK-iWBvV0j9AS_sNdR_QlDbHczSHrAdwDxQqu6Vc2_i1JnA76b2yYU-z3r86-P6PzQijpCLygqAPkvQFeuSGYD7jIo9ftjp2MPBd5M2V2dFvpPBXfOeVNcphiTlzw82utY-byT9lG1MoZlwbF_yN4TKt7RRaHlMMfP21HlEcHDbf2htqG1Zvn9FyzgOELUi1KNXZ4q48-Pgeq5PRbUynkK5QY5464nvxITwgf3k23j3CpqgNERFwaM9U5Eg3j8KmeBAjObHERdZ7Br2Jxg3fG9KDY7xdQwZXCQqFaTjyiel1fdvhI3z3x1_lq_2eU5rYsNZAPZILIXLXLWSflaCpp2p5TsfaijspiL9oJP7xWZNeTcDoBZMUfHS1VENj-d5ClcInW1dBeolzSjD1wnW5eY-1cFP84cdkC1FF1SMedspUdnVMlUKWkCJ5XgH1LW3P7CfrssWcp3ImzCHFwpPtzVnHCmSjUmDNBJv2Yvld559rKSjOyBZGiIMPTeo3BGcYjQt5vfqPxlmdVDUhIwtUB02EXchqGSUKc9Vby4IPbSU5rLLU3cVz8zQuVZGfO6TJTZHH1TjJbBPPOn43uoetXacQKm7VSVqooijGarD6NgaVep7wYIpXx9YHJtPi-HumSaEoeyhQRDc0y5HJxMb4'
+      },
+      body:JSON.stringify({
+        email:email,
+        fields:{name:nome,last_name:'',phone:whatsapp},
+        groups:['187386066189157525']
+      })
+    }).then(function(){ goToCheckout(); }).catch(function(){ goToCheckout(); });
+
+    setTimeout(goToCheckout,5000);
   });
 });
 </script>
@@ -1065,12 +1405,19 @@ document.addEventListener('DOMContentLoaded',function(){
     <form id="ka-lead-form" name="mentoria-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="ka-modal__form">
       <input type="hidden" name="form-name" value="mentoria-lead">
       <p style="display:none;"><label>Não preencha: <input name="bot-field"></label></p>
-      <input type="text" name="nome" placeholder="Nome completo *" required autocomplete="name">
-      <input type="email" name="email" placeholder="Seu melhor e-mail *" required autocomplete="email">
-      <input type="tel" name="whatsapp" placeholder="WhatsApp com DDD *" required autocomplete="tel" inputmode="numeric">
+      <div class="ka-modal__field"><p class="ka-modal__label">Nome completo</p><input type="text" name="nome" placeholder="Como posso te chamar?" required autocomplete="name"></div>
+      <div class="ka-modal__field"><p class="ka-modal__label">E-mail</p><input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email"></div>
+      <div class="ka-modal__field"><p class="ka-modal__label">WhatsApp</p><input type="tel" name="whatsapp" placeholder="DDD + número" required autocomplete="tel" inputmode="numeric"></div>
       <button type="submit">GARANTIR MINHA VAGA →</button>
       <p style="text-align:center;font-size:.72rem;color:rgba(237,232,221,.4);margin-top:.9rem;margin-bottom:0;">Seus dados ficam só com a equipe da KA. Sem spam.</p>
     </form>
   </div>
 </div>
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5551993163333" onclick="this.href='https://wa.me/5551993163333?text='+encodeURIComponent('Olá! Vim pela página da Mentoria Marca com Essência e gostaria de mais informações.')" target="_blank" rel="noopener" class="ka-float-whats" aria-label="Fale no WhatsApp">
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="50" fill="#25D366"/>
+    <path fill="#fff" d="M71.8 28.2C66.1 22.4 58.4 19.2 50.2 19.2c-16.9 0-30.6 13.7-30.6 30.6 0 5.4 1.4 10.7 4.1 15.3L19.2 80.8l16.2-4.2c4.5 2.4 9.5 3.7 14.7 3.7h.01c16.9 0 30.6-13.7 30.6-30.6 0-8.2-3.2-15.8-8.91-21.5zM50.2 74.2c-4.6 0-9.1-1.2-13-3.5l-.9-.6-9.6 2.5 2.6-9.4-.6-.97C26.3 58.7 25 54 25 49.1c0-13.9 11.3-25.2 25.2-25.2 6.7 0 13 2.6 17.7 7.4 4.7 4.7 7.3 11 7.3 17.7.01 13.9-11.2 25.2-25.0 25.2zm13.8-18.9c-.76-.38-4.5-2.2-5.2-2.46-.7-.26-1.2-.38-1.7.38-.5.76-1.96 2.46-2.4 2.97-.44.5-.88.57-1.64.19-4.56-2.28-7.55-4.07-10.54-9.25-.8-1.37.8-1.27 2.28-4.22.25-.5.13-.94-.07-1.32-.19-.38-1.7-4.1-2.33-5.62-.6-1.47-1.23-1.27-1.7-1.3-.44-.02-.94-.02-1.44-.02s-1.32.19-2.02.94c-.69.76-2.64 2.58-2.64 6.3s2.7 7.3 3.08 7.8c.38.5 5.33 8.13 12.9 11.4 4.8 2.07 6.68 2.24 9.08 1.89 1.46-.22 4.5-1.84 5.13-3.62.63-1.78.63-3.3.44-3.62-.18-.31-.69-.5-1.45-.87z"/>
+  </svg>
+</a>
 </body></html>
