@@ -180,15 +180,16 @@ details summary::marker{display:none}
 /* ─── MOBILE GLOBAL ─── */
 @media(max-width:640px){
   /* ─── TIPOGRAFIA MOBILE UNIFICADA ─── */
-  /* H2 — títulos de seção */
+  /* H2 — títulos de seção (grandes, podem quebrar em múltiplas linhas) */
   h2,.section h2,section h2{
-    font-size:clamp(1.5rem,6.5vw,2rem)!important;
-    line-height:1.2!important;
+    font-size:clamp(2.2rem,9.5vw,3rem)!important;
+    line-height:1.15!important;
+    letter-spacing:-.01em!important;
   }
   /* H3 — subtítulos */
-  h3{font-size:clamp(1.15rem,4.8vw,1.4rem)!important;line-height:1.25!important;}
+  h3{font-size:clamp(1.6rem,6.5vw,2.1rem)!important;line-height:1.2!important;}
   /* H4 — títulos de cards */
-  h4{font-size:1rem!important;line-height:1.3!important;}
+  h4{font-size:1.1rem!important;line-height:1.3!important;}
   /* Corpo padrão de todas as seções — Montserrat + tamanho único */
   .section p{
     font-family:var(--body)!important;
