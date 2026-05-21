@@ -228,8 +228,9 @@ details summary::marker{display:none}
    MOBILE PERFORMANCE — desabilita efeitos caros para scroll fluido
    ═══════════════════════════════════════════════════════ */
 @media(max-width:640px){
-  /* Remove halos com filter:blur (composite layers caros no mobile) */
-  .section [style*="filter:blur"]{filter:none!important;display:none!important;}
+  /* Remove halos decorativos (radial-gradient + filter:blur) — caros pro GPU */
+  .section [style*="filter:blur"],
+  .section [style*="radial-gradient"]{display:none!important;}
   /* Desabilita animações infinitas decorativas (mantém pulses dos CTAs) */
   .ka-date-badge{animation:none!important;}
   .ka-date-dot{animation:none!important;}
@@ -237,8 +238,10 @@ details summary::marker{display:none}
   .hero-mentoria video{animation:none!important;}
   /* Remove o padrão de grade no fundo (causa repaint a cada scroll) */
   .bg-grid-dark{background-image:none!important;}
-  /* Reduz drasticamente blur das box-shadow no mobile */
+  /* Simplifica box-shadow no mobile */
   .section img,.livro-guia,.how-step{box-shadow:0 4px 12px rgba(0,0,0,.25)!important;}
+  /* Tags da nuvem: sem gradient nem box-shadow no mobile */
+  .ka-tag-xl{background:rgba(196,120,48,.18)!important;box-shadow:none!important;}
   /* Desabilita transição opacity/transform do animate-on-scroll
      — exibe direto, evita re-render durante scroll */
   .animate-on-scroll{opacity:1!important;transform:none!important;transition:none!important;}
