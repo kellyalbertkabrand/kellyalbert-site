@@ -176,6 +176,41 @@ details summary::marker{display:none}
 .ka-modal__form button:disabled{opacity:.65;cursor:wait;transform:none}
 .lead-form .lead-privacy{font-size:.66rem;color:var(--t-500);margin:.9rem 0 0;text-align:center;line-height:1.5}
 @media(max-width:480px){.lead-form{padding:1.4rem 1.2rem}.lead-form h3{font-size:1.05rem}.lead-form input{font-size:.92rem}}
+
+/* ─── MOBILE GLOBAL ─── */
+@media(max-width:640px){
+  /* Títulos h2 não estouram na tela */
+  h2{font-size:clamp(1.4rem,6vw,2rem)!important;line-height:1.15!important;}
+  h3{font-size:clamp(1.1rem,5vw,1.5rem)!important;}
+
+  /* Quem conduz: texto antes da foto no mobile */
+  .grid-2 .animate-on-scroll:first-child{order:2;}
+  .grid-2 .animate-on-scroll:last-child{order:1;}
+
+  /* Nuvem de reconhecimento: pílulas menores no mobile */
+  #ka-nuvem span{font-size:.75rem!important;padding:.4rem .85rem!important;}
+
+  /* Seções com max-width inline não causam scroll horizontal */
+  .section,.container{overflow-x:hidden;}
+
+  /* Modal: mais compacto em tela pequena */
+  .ka-modal{padding:1.8rem 1.4rem 1.6rem!important;border-radius:16px!important;}
+
+  /* Cards de investimento (schedule): empilha em 1 coluna */
+  .schedule-grid{grid-template-columns:1fr!important;}
+
+  /* Textos de apoio nas seções: tamanho confortável */
+  .section p{font-size:.9rem!important;line-height:1.65!important;}
+  /* Exceção: não reduzir labels e tags */
+  .label,.ka-secure,.ka-date-sub{font-size:inherit!important;}
+}
+
+@media(max-width:400px){
+  /* Telas muito pequenas (iPhone SE) */
+  h2{font-size:1.3rem!important;}
+  .ka-cta-main{font-size:.8rem!important;padding:1rem 1.5rem!important;}
+  .ka-date-badge{padding:.5rem 1rem!important;}
+}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KA | Inteligência para Marcas">
@@ -406,7 +441,7 @@ document.addEventListener('DOMContentLoaded',function(){
     </div>
 
     <!-- NUVEM VISUAL -->
-    <div class="animate-on-scroll" style="display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;align-items:center;max-width:780px;margin:0 auto 2.4rem;">
+    <div id="ka-nuvem" class="animate-on-scroll" style="display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;align-items:center;max-width:780px;margin:0 auto 2.4rem;">
 
       <!-- Destaques principais — maiores, mais fortes -->
       <span style="font-size:.95rem;font-weight:700;color:#EDE8DD;background:rgba(196,120,48,.14);border:1px solid rgba(196,120,48,.35);border-radius:100px;padding:.6rem 1.3rem;letter-spacing:.02em;">Percepção abaixo da entrega</span>
