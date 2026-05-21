@@ -256,15 +256,19 @@ details summary::marker{display:none}
   #mob-nuvem h2 { font-size: clamp(1.3rem,6.5vw,1.8rem) !important; line-height: 1.2 !important; }
   #mob-nuvem [style*="border-radius:16px"] { padding: 1.5rem 1.2rem !important; }
 
-  /* ── SEÇÃO PARA QUEM É: cards com borda esquerda ── */
+  /* ── SEÇÃO PARA QUEM É: ajustes mobile ── */
   #mob-paraquem [style*="border-radius:14px"] {
-    border-left: 3px solid rgba(196,120,48,.5) !important;
     border-radius: 0 14px 14px 0 !important;
-    padding: 1.2rem 1.4rem !important;
+    padding: 1rem 1.1rem !important;
+    gap: .8rem !important;
   }
-  #mob-paraquem [style*="rgba(196,120,48,.07)"] {
-    border-left: 3px solid #C47830 !important;
-    background: rgba(196,120,48,.1) !important;
+  #mob-paraquem [style*="border-radius:14px"] > div:first-child {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  #mob-paraquem [style*="border-radius:14px"] > div:first-child svg {
+    width: 22px !important;
+    height: 22px !important;
   }
 
   /* ── SEÇÃO POR QUE FAZER: quote dramático ── */
@@ -666,21 +670,60 @@ document.addEventListener('DOMContentLoaded',function(){
       <span class="label" style="color:#C47830;">Para quem é</span>
       <h2 style="color:#EDE8DD;">A Mentoria <span style="color:#C47830;">Marca com Essência©</span></h2>
     </div>
-    <div class="animate-on-scroll" style="display:flex;flex-direction:column;gap:.9rem;max-width:680px;margin:0 auto;">
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
-        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para <strong style="color:#EDE8DD;">empresários, empreendedores, profissionais liberais, especialistas, marcas pessoais e marcas empresariais</strong> que querem construir uma marca mais <strong style="color:#C47830;">clara, estratégica e bem percebida.</strong></p>
+    <div class="animate-on-scroll paraquem-grid" style="display:flex;flex-direction:column;gap:.9rem;max-width:680px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-left:4px solid #3D6B7E;border-radius:14px;padding:1.3rem 1.6rem;">
+        <div style="width:54px;height:54px;border-radius:50%;background:rgba(61,107,126,.15);border:1px solid rgba(61,107,126,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="10" cy="11" r="3.5" stroke="#3D6B7E" stroke-width="1.6"/>
+            <circle cx="22" cy="11" r="3.5" stroke="#3D6B7E" stroke-width="1.6"/>
+            <circle cx="16" cy="20" r="3.5" stroke="#C47830" stroke-width="1.6"/>
+            <path d="M4 26c0-3 2.5-5 6-5M28 26c0-3-2.5-5-6-5M10 28c0-3 2.7-5 6-5s6 2 6 5" stroke="#3D6B7E" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.7;">É para <strong style="color:#EDE8DD;">empresários, empreendedores, profissionais liberais, especialistas, marcas pessoais e marcas empresariais</strong> que querem construir uma marca mais <strong style="color:#C47830;">clara, estratégica e bem percebida.</strong></p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
-        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para quem precisa organizar <strong style="color:#EDE8DD;">o que a marca é, o que entrega, o que a diferencia</strong> e como deve se comunicar.</p>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-left:4px solid #C47830;border-radius:14px;padding:1.3rem 1.6rem;">
+        <div style="width:54px;height:54px;border-radius:50%;background:rgba(196,120,48,.1);border:1px solid rgba(196,120,48,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="10" height="10" rx="1.5" stroke="#C47830" stroke-width="1.6"/>
+            <rect x="18" y="4" width="10" height="10" rx="1.5" stroke="#3D6B7E" stroke-width="1.6"/>
+            <rect x="4" y="18" width="10" height="10" rx="1.5" stroke="#3D6B7E" stroke-width="1.6"/>
+            <rect x="18" y="18" width="10" height="10" rx="1.5" stroke="#C47830" stroke-width="1.6"/>
+            <circle cx="9" cy="9" r="1.6" fill="#C47830"/>
+            <circle cx="23" cy="23" r="1.6" fill="#C47830"/>
+          </svg>
+        </div>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.7;">É para quem precisa organizar <strong style="color:#EDE8DD;">o que a marca é, o que entrega, o que a diferencia</strong> e como deve se comunicar.</p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
-        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para quem quer transformar <strong style="color:#C47830;">história, experiência, reputação, método e diferenciais</strong> em <strong style="color:#EDE8DD;">Posicionamento, Narrativa e Comunicação.</strong></p>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-left:4px solid #3D6B7E;border-radius:14px;padding:1.3rem 1.6rem;">
+        <div style="width:54px;height:54px;border-radius:50%;background:rgba(61,107,126,.15);border:1px solid rgba(61,107,126,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M5 16h7M20 16h7" stroke="#3D6B7E" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M18 12l4 4-4 4M14 20l-4-4 4-4" stroke="#C47830" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="6" cy="16" r="1.6" fill="#3D6B7E"/>
+            <circle cx="26" cy="16" r="1.6" fill="#3D6B7E"/>
+          </svg>
+        </div>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.7;">É para quem quer transformar <strong style="color:#C47830;">história, experiência, reputação, método e diferenciais</strong> em <strong style="color:#EDE8DD;">Posicionamento, Narrativa e Comunicação.</strong></p>
       </div>
-      <div style="background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-radius:14px;padding:1.3rem 1.8rem;">
-        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.75;">É para quem deseja sair do improviso e construir a <strong style="color:#C47830;">Base Estratégica da Sua Marca</strong> com <strong style="color:#EDE8DD;">orientação ao vivo, exercícios estratégicos e agentes de IA exclusivos.</strong></p>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;background:rgba(237,232,221,.04);border:1px solid rgba(237,232,221,.1);border-left:4px solid #C47830;border-radius:14px;padding:1.3rem 1.6rem;">
+        <div style="width:54px;height:54px;border-radius:50%;background:rgba(196,120,48,.1);border:1px solid rgba(196,120,48,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M6 26h20" stroke="#C47830" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="8" y="18" width="5" height="8" stroke="#C47830" stroke-width="1.5" fill="none"/>
+            <rect x="13.5" y="13" width="5" height="13" stroke="#3D6B7E" stroke-width="1.5" fill="none"/>
+            <rect x="19" y="8" width="5" height="18" stroke="#C47830" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <p style="font-size:.95rem;color:rgba(237,232,221,.88);margin:0;line-height:1.7;">É para quem deseja sair do improviso e construir a <strong style="color:#C47830;">Base Estratégica da Sua Marca</strong> com <strong style="color:#EDE8DD;">orientação ao vivo, exercícios estratégicos e agentes de IA exclusivos.</strong></p>
       </div>
-      <div style="background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.3);border-radius:14px;padding:1.3rem 1.8rem;">
-        <p style="font-size:.95rem;color:#EDE8DD;margin:0;line-height:1.75;">Ao final, você terá uma base real para comunicar com mais <strong style="color:#C47830;letter-spacing:.03em;">CLAREZA, CONSISTÊNCIA, AUTORIDADE E VALOR.</strong></p>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center;background:rgba(196,120,48,.08);border:1px solid rgba(196,120,48,.3);border-left:4px solid #C47830;border-radius:14px;padding:1.3rem 1.6rem;">
+        <div style="width:54px;height:54px;border-radius:50%;background:rgba(196,120,48,.18);border:1px solid #C47830;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 3l3.4 7 7.6 1.1-5.5 5.3 1.3 7.6L16 20.4 9.2 24l1.3-7.6L5 11.1l7.6-1.1L16 3z" stroke="#C47830" stroke-width="1.6" stroke-linejoin="round" fill="rgba(196,120,48,.15)"/>
+          </svg>
+        </div>
+        <p style="font-size:.95rem;color:#EDE8DD;margin:0;line-height:1.7;">Ao final, você terá uma base real para comunicar com mais <strong style="color:#C47830;letter-spacing:.03em;">CLAREZA, CONSISTÊNCIA, AUTORIDADE E VALOR.</strong></p>
       </div>
     </div>
   </div>
