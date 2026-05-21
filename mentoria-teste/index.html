@@ -969,7 +969,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var fd=new FormData(form);
     var nome=fd.get('nome'),email=fd.get('email'),whatsapp=fd.get('whatsapp');
 
-    // 1) Netlify Forms (backup, fire-and-forget)
+    // 1) Netlify Forms (backup)
     var p=new URLSearchParams();
     p.append('form-name','mentoria-lead');
     p.append('nome',nome); p.append('email',email); p.append('whatsapp',whatsapp);
@@ -980,15 +980,21 @@ document.addEventListener('DOMContentLoaded',function(){
       window.location.href=_KA_HOTMART;
     }
 
-    // 2) MailerLite via Netlify Function — aguarda antes de redirecionar
-    fetch('/.netlify/functions/subscribe',{
+    // 2) MailerLite direto (mesmo padrão do /quiz/)
+    fetch('https://connect.mailerlite.com/api/subscribers',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nome:nome,email:email,whatsapp:whatsapp,origem:'mentoria-modal'})
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNDIwYTNkY2E5ZmM1Y2JiZWFlNmFlMDFiMmVhMjNlYjQwZjg0ZWI5ZTA2NjA1ZjFiNzMyYWU0NmMzZDY1ODI1NzEzODE2N2E0NzE3NDQ0MGUiLCJpYXQiOjE3NzkzMTc4MDYuMTkxMzM5LCJuYmYiOjE3NzkzMTc4MDYuMTkxMzQxLCJleHAiOjQ5MzQ5OTE0MDYuMTg3MTg1LCJzdWIiOiIyMjUxMjA1Iiwic2NvcGVzIjpbXX0.dHeitQmB_eiHom8Tc79K7TvGK-iWBvV0j9AS_sNdR_QlDbHczSHrAdwDxQqu6Vc2_i1JnA76b2yYU-z3r86-P6PzQijpCLygqAPkvQFeuSGYD7jIo9ftjp2MPBd5M2V2dFvpPBXfOeVNcphiTlzw82utY-byT9lG1MoZlwbF_yN4TKt7RRaHlMMfP21HlEcHDbf2htqG1Zvn9FyzgOELUi1KNXZ4q48-Pgeq5PRbUynkK5QY5464nvxITwgf3k23j3CpqgNERFwaM9U5Eg3j8KmeBAjObHERdZ7Br2Jxg3fG9KDY7xdQwZXCQqFaTjyiel1fdvhI3z3x1_lq_2eU5rYsNZAPZILIXLXLWSflaCpp2p5TsfaijspiL9oJP7xWZNeTcDoBZMUfHS1VENj-d5ClcInW1dBeolzSjD1wnW5eY-1cFP84cdkC1FF1SMedspUdnVMlUKWkCJ5XgH1LW3P7CfrssWcp3ImzCHFwpPtzVnHCmSjUmDNBJv2Yvld559rKSjOyBZGiIMPTeo3BGcYjQt5vfqPxlmdVDUhIwtUB02EXchqGSUKc9Vby4IPbSU5rLLU3cVz8zQuVZGfO6TJTZHH1TjJbBPPOn43uoetXacQKm7VSVqooijGarD6NgaVep7wYIpXx9YHJtPi-HumSaEoeyhQRDc0y5HJxMb4'
+      },
+      body:JSON.stringify({
+        email:email,
+        fields:{name:nome,last_name:'',phone:whatsapp},
+        groups:['187386066189157525']
+      })
     }).then(function(){ goToCheckout(); }).catch(function(){ goToCheckout(); });
 
-    // fallback: redireciona em 5s mesmo se o fetch travar
-    setTimeout(goToCheckout, 5000);
+    setTimeout(goToCheckout,5000);
   });
 });
 </script>
