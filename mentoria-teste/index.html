@@ -231,8 +231,15 @@ details summary::marker{display:none}
   .ka-date-dot{animation:none!important;}
   /* Hero video sem float infinite */
   .hero-mentoria video{animation:none!important;}
-  /* Otimização: pula renderização de seções fora da viewport */
-  section{content-visibility:auto;contain-intrinsic-size:auto 800px;}
+  /* Remove o padrão de grade no fundo (causa repaint a cada scroll) */
+  .bg-grid-dark{background-image:none!important;}
+  /* Reduz drasticamente blur das box-shadow no mobile */
+  .section img,.livro-guia,.how-step{box-shadow:0 4px 12px rgba(0,0,0,.25)!important;}
+  /* Desabilita transição opacity/transform do animate-on-scroll
+     — exibe direto, evita re-render durante scroll */
+  .animate-on-scroll{opacity:1!important;transform:none!important;transition:none!important;}
+  /* Promove o body a uma camada própria de compositor */
+  body{transform:translateZ(0);-webkit-overflow-scrolling:touch;}
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -924,7 +931,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="text-center animate-on-scroll" style="margin-bottom:1.8rem;">
       <div style="max-width:560px;margin:0 auto 1.8rem;position:relative;">
         <div style="position:relative;border-radius:18px;overflow:hidden;background:rgba(15,25,35,.4);padding:6px;box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 0 1px rgba(196,120,48,.3);">
-          <video autoplay muted loop playsinline preload="metadata" poster="/videos/livro-hero-poster.jpg" style="width:100%;display:block;border-radius:12px;background:#1a1a1a;">
+          <video autoplay muted loop playsinline preload="none" poster="/videos/livro-hero-poster.jpg" style="width:100%;display:block;border-radius:12px;background:#1a1a1a;">
             <source src="/videos/livro-hero.mp4" type="video/mp4">
           </video>
         </div>
