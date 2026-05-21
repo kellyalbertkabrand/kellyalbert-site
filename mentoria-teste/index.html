@@ -179,17 +179,25 @@ details summary::marker{display:none}
 
 /* ─── MOBILE GLOBAL ─── */
 @media(max-width:640px){
-  /* Títulos h2 não estouram na tela */
-  h2{font-size:clamp(1.4rem,6vw,2rem)!important;line-height:1.15!important;}
-  h3{font-size:clamp(1.1rem,5vw,1.5rem)!important;}
+  /* ─── TIPOGRAFIA MOBILE UNIFICADA ─── */
+  /* H2 — títulos de seção */
+  h2,.section h2,section h2{
+    font-size:clamp(1.5rem,6.5vw,2rem)!important;
+    line-height:1.2!important;
+  }
+  /* H3 — subtítulos */
+  h3{font-size:clamp(1.15rem,4.8vw,1.4rem)!important;line-height:1.25!important;}
+  /* H4 — títulos de cards */
+  h4{font-size:1rem!important;line-height:1.3!important;}
+  /* Corpo padrão de todas as seções */
+  .section p{font-size:.95rem!important;line-height:1.65!important;}
+  /* Exceção: labels, secure e date-sub mantêm seus próprios tamanhos */
+  .label,.ka-secure,.ka-date-sub{font-size:inherit!important;}
 
   /* Quem conduz: foto acima do texto no mobile */
   #mob-kelly .grid-2{display:flex!important;flex-direction:column!important;}
   #mob-kelly .grid-2 .animate-on-scroll:first-child{order:1;}
   #mob-kelly .grid-2 .animate-on-scroll:last-child{order:2;}
-
-  /* Nuvem de reconhecimento: pílulas menores no mobile */
-  #ka-nuvem span{font-size:.7rem!important;padding:.4rem .85rem!important;}
 
   /* Seções com max-width inline não causam scroll horizontal */
   .section,.container{overflow-x:hidden;}
@@ -199,16 +207,10 @@ details summary::marker{display:none}
 
   /* Cards de investimento (schedule): empilha em 1 coluna */
   .schedule-grid{grid-template-columns:1fr!important;}
-
-  /* Textos de apoio nas seções: tamanho confortável */
-  .section p{font-size:.95rem!important;line-height:1.65!important;}
-  /* Exceção: não reduzir labels e tags */
-  .label,.ka-secure,.ka-date-sub{font-size:inherit!important;}
 }
 
 @media(max-width:400px){
-  /* Telas muito pequenas (iPhone SE) */
-  h2{font-size:1.3rem!important;}
+  /* Telas muito pequenas (iPhone SE) — só ajusta CTA, deixa clamp lidar com tipo */
   .ka-cta-main{font-size:.85rem!important;padding:1rem 1.5rem!important;}
   .ka-date-badge{padding:.5rem 1rem!important;}
 }
@@ -244,16 +246,13 @@ details summary::marker{display:none}
     margin-bottom: .6rem !important;
   }
 
-  /* ── H2: tamanho dramático com espaçamento ── */
+  /* ── H2: espaçamento mobile (tamanho já definido na regra unificada acima) ── */
   .section h2, section h2 {
-    font-size: clamp(1.5rem,7vw,2.1rem) !important;
-    line-height: 1.15 !important;
     margin-top: .5rem !important;
     margin-bottom: 1.8rem !important;
   }
 
-  /* ── SEÇÃO NUVEM: destaque máximo ── */
-  #mob-nuvem h2 { font-size: clamp(1.3rem,6.5vw,1.8rem) !important; line-height: 1.2 !important; }
+  /* ── SEÇÃO NUVEM: padding ajustado ── */
   #mob-nuvem [style*="border-radius:16px"] { padding: 1.5rem 1.2rem !important; }
 
   /* ── SEÇÃO PARA QUEM É: ajustes mobile ── */
@@ -271,9 +270,8 @@ details summary::marker{display:none}
     height: 22px !important;
   }
 
-  /* ── SEÇÃO POR QUE FAZER: quote dramático ── */
+  /* ── SEÇÃO POR QUE FAZER: quote com padding maior ── */
   #mob-porquefazer [style*="border-left:3px solid #C47830"] {
-    font-size: 1.05rem !important;
     padding: 1.4rem 1.4rem 1.4rem 1.6rem !important;
     border-left-width: 4px !important;
   }
@@ -323,11 +321,10 @@ details summary::marker{display:none}
     border-radius: 14px !important;
     object-position: top center !important;
   }
-  #mob-kelly h2 { font-size: 2rem !important; color: #EDE8DD !important; margin-bottom: .3rem !important; }
+  #mob-kelly h2 { color: #EDE8DD !important; margin-bottom: .3rem !important; }
 
   /* ── SEÇÃO PRÓXIMA TURMA: datas em destaque ── */
-  #mob-turma h2 { color: #EDE8DD !important; font-size: 1.9rem !important; }
-  #mob-turma [style*="font-size:1.15rem"] { font-size: 1.3rem !important; }
+  #mob-turma h2 { color: #EDE8DD !important; }
   #mob-turma .schedule-grid { grid-template-columns: 1fr !important; }
 
   /* ── BOTÃO CTA: mais impacto no mobile ── */
