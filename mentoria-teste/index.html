@@ -160,6 +160,7 @@ details summary::marker{display:none}
 /* ─── BOTÃO CTA PADRÃO ─── */
 .ka-cta-main{display:inline-flex;align-items:center;justify-content:center;padding:1.1rem 2.8rem;background:#2E8B57;color:#fff;font-size:.92rem;font-weight:800;text-decoration:none;border-radius:100px;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 6px 28px rgba(46,139,87,.4);animation:btnPulseGreen 2s ease-in-out infinite;transition:background .2s,transform .15s;}
 .ka-cta-main:hover{background:#267349;transform:translateY(-2px);color:#fff!important;}
+@media(max-width:600px){.ka-cta-main{width:100%;max-width:360px;box-sizing:border-box;}}
 .ka-secure{display:flex;align-items:center;justify-content:center;gap:.35rem;font-size:.72rem;color:rgba(237,232,221,.45);margin-top:.65rem;letter-spacing:.03em;}
 /* ─── LEAD MODAL POPUP ─── */
 .ka-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
@@ -337,30 +338,30 @@ document.addEventListener('DOMContentLoaded',function(){
       <!-- GRID DE ENTREGAS -->
       <style>.dobra-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:680px;margin:0 auto 2.5rem;}@media(max-width:600px){.dobra-grid{grid-template-columns:repeat(2,1fr);}}</style>
       <div class="dobra-grid">
-        <!-- 1. 8 encontros ao vivo -->
+        <!-- 1. Kelly Albert ensinando e tirando dúvidas ao vivo -->
+        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
+          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
+        </div>
+        <!-- 2. 8 encontros ao vivo -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googlemeet.svg" alt="Google Meet" width="24" height="20" style="width:24px;height:20px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">8 encontros<br>ao vivo</p>
         </div>
-        <!-- 2. Exercícios no Google Docs -->
+        <!-- 3. Exercícios no Google Docs -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googledocs.svg" alt="Google Docs" width="20" height="22" style="width:20px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Exercícios no<br>Google Docs</p>
         </div>
-        <!-- 3. 7 Agentes de IA no ChatGPT -->
+        <!-- 4. 7 Agentes de IA no ChatGPT -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-openai.svg" alt="ChatGPT" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;filter:brightness(0) invert(1);opacity:.85;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">7 Agentes de IA<br>no ChatGPT</p>
         </div>
-        <!-- 4. Áudios no Spotify -->
+        <!-- 5. Áudios no Spotify -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-spotify.svg" alt="Spotify" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Áudios no<br>Spotify</p>
-        </div>
-        <!-- 5. Kelly Albert ensinando e tirando dúvidas ao vivo -->
-        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
-          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
         </div>
         <!-- 6. Método Marca com Essência© -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
@@ -831,30 +832,30 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="animate-on-scroll" style="margin:2.5rem 0 1.5rem;">
       <p style="font-size:.7rem;color:#C47830;font-weight:800;letter-spacing:.3em;text-transform:uppercase;text-align:center;margin-bottom:1.4rem;">Tudo que você recebe</p>
       <div class="invest-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;max-width:680px;margin:0 auto;">
-        <!-- 1. 8 encontros ao vivo -->
+        <!-- 1. Kelly Albert ensinando e tirando dúvidas ao vivo -->
+        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
+          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
+        </div>
+        <!-- 2. 8 encontros ao vivo -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googlemeet.svg" alt="Google Meet" width="24" height="20" style="width:24px;height:20px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">8 encontros<br>ao vivo</p>
         </div>
-        <!-- 2. Exercícios no Google Docs -->
+        <!-- 3. Exercícios no Google Docs -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-googledocs.svg" alt="Google Docs" width="20" height="22" style="width:20px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Exercícios no<br>Google Docs</p>
         </div>
-        <!-- 3. 7 Agentes IA -->
+        <!-- 4. 7 Agentes IA -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-openai.svg" alt="ChatGPT" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;filter:brightness(0) invert(1);opacity:.85;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">7 Agentes de IA<br>no ChatGPT</p>
         </div>
-        <!-- 4. Áudios no Spotify -->
+        <!-- 5. Áudios no Spotify -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
           <img src="/images/logo-spotify.svg" alt="Spotify" width="22" height="22" style="width:22px;height:22px;margin:0 auto .5rem;display:block;" loading="lazy">
           <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Áudios no<br>Spotify</p>
-        </div>
-        <!-- 5. Kelly Albert ensinando e tirando dúvidas ao vivo -->
-        <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
-          <svg width="22" height="22" viewBox="0 0 26 26" style="margin:0 auto .5rem;display:block;opacity:.78;" aria-hidden="true"><circle cx="13" cy="9" r="4" fill="none" stroke="#EDE8DD" stroke-width="1.5"/><path d="M5 22 C5 16 9 14 13 14 C17 14 21 16 21 22" fill="none" stroke="#EDE8DD" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p style="font-size:.72rem;color:rgba(237,232,221,.85);margin:0;font-weight:500;letter-spacing:.02em;line-height:1.35;">Kelly Albert ensinando<br>e tirando dúvidas ao vivo</p>
         </div>
         <!-- 6. Método Marca com Essência© -->
         <div style="border:1px solid rgba(237,232,221,.1);border-radius:10px;padding:1rem .6rem;text-align:center;">
