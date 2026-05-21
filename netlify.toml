@@ -101,3 +101,8 @@
   from = "/link"
   to = "/link/index.html"
   status = 200
+
+[[redirects]]
+  from = "/mentoria-teste"
+  to = "/mentoria-teste/index.html"
+  status = 200
