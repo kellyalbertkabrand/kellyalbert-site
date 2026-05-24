@@ -1,16 +1,64 @@
-# CLAUDE.md — Memória do projeto KA
+# CLAUDE.md
 
-> Este arquivo é lido automaticamente em **toda nova sessão**. Não apagar.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+> Memória viva do projeto KA. Lido automaticamente em toda sessão. Não apagar.
 
 ## Comece por aqui
 
-**LEIA SEMPRE PRIMEIRO:** [`INICIO-DE-CHAT-KA.md`](./INICIO-DE-CHAT-KA.md)
+**LEIA SEMPRE PRIMEIRO:** [`INICIO-DE-CHAT-KA.md`](./INICIO-DE-CHAT-KA.md), depois [`REGRAS-PROJETO.md`](./REGRAS-PROJETO.md), [`DECISOES.md`](./DECISOES.md) e [`PENDENCIAS.md`](./PENDENCIAS.md).
 
-Esse arquivo contém:
-- Quem é a Kelly Albert e o contexto do projeto
-- Estado atual do site
-- Regras visuais que NUNCA podem ser quebradas
-- Como ela trabalha (gaúcha, voz-para-texto, valida antes de implementar)
+Esses arquivos contêm: quem é a Kelly Albert, estado atual do site, regras visuais inegociáveis, histórico de decisões e itens abertos. Sem esse contexto, não edite.
+
+## Arquitetura do repositório
+
+**Site estático puro.** Sem build step, sem framework, sem bundler. Cada pasta na raiz é uma rota servida pelo Netlify direto do filesystem.
+
+- **Páginas** = `index.html` dentro de cada pasta (`/mentoria/`, `/livro/`, `/sobre/`, `/bio/`, `/programa/`, `/direcao/`, `/cases/`, `/quiz/`, `/blog/`, `/link/`, `/sistema/`, `/metodo/`, `/produtos/`, `/teste/`, `/home2/`)
+- **Cases individuais** = pastas `case<nome>/` (suvinil, amordebicho, shapes, yufil, beteti, ramarim, comfortflex, sabre)
+- **CSS global compartilhado** = `css/style.css` (tipografia Playfair+Montserrat, classes `amb-*` para fundos escuros, `est-*` para texturas, design tokens)
+- **JS** = `js/` (interações pontuais, sem framework)
+- **Imagens** = `images/` (organizadas por seção/case)
+- **Redirects e rotas bonitas** = `netlify.toml` — cada pasta nova precisa de uma entrada lá pra funcionar sem `/index.html`
+- **Functions Netlify** = `netlify/functions/subscribe.js` (lead form `/mentoria/` faz fallback, mas o caminho preferido hoje chama MailerLite direto do browser, igual `/quiz/`)
+- **Componentes/Templates reutilizáveis** = `_components/` e `_templates/` (snippets HTML referência, não há includes — copia/cola consciente)
+- **Pipeline de campanhas** = `campaigns/*.md` + `scripts/create-campaigns.mjs` + `.github/workflows/mailerlite-campaigns.yml` (push em `main` cria draft no MailerLite). Detalhes em [`campaigns/README.md`](./campaigns/README.md).
+
+**Padrões visuais que o CSS impõe** (ver `REGRAS-PROJETO.md`):
+- Toda seção com fundo escuro **precisa** da classe `amb-*` (`amb-marinho`, `amb-preto`, `amb-cobre`, `amb-essencia`, `amb-escuro`) — são as únicas que garantem contraste de texto via `!important`
+- Texturas via `est-grid` / `est-dots` / `est-diamond` / `est-verticais`
+- Hero dos cases é a única exceção: fundo `#f8f7f2` + pontos diagonais inline, **sem** `amb-*` nem `est-*`
+- Proibido: `text-decoration: underline`, marker dourado com gradient, Pitanga `#ED4E2C`, fundo branco puro em `<section>`
+
+## Comandos essenciais
+
+```bash
+# Validação obrigatória antes de qualquer push (regras visuais + links + imagens)
+python3 lint-project.py            # checks A–G; precisa sair com exit 0
+python3 lint-contrast.py           # subset focado em contraste
+
+# Dev local — qualquer servidor estático serve (não há build)
+python3 -m http.server 8000        # depois abre http://localhost:8000
+# ou, se precisar testar a function de subscribe:
+netlify dev                        # roda functions + redirects do netlify.toml
+
+# Pipeline de campanhas MailerLite (debug local — normalmente roda em CI)
+cd scripts && npm install
+MAILERLITE_API_KEY=xxx MAILERLITE_FROM_EMAIL=... MAILERLITE_FROM_NAME=... \
+  MAILERLITE_DEFAULT_GROUP_ID=... node create-campaigns.mjs
+
+# Geração de OG images (script auxiliar)
+node scripts/generate-og-images.js
+```
+
+**Para ignorar linha específica no linter:** `<!-- lint-ignore -->` (regras gerais) ou `<!-- lint-ignore-contrast -->` (só contraste) na mesma linha do elemento.
+
+## Deploy
+
+- **Netlify** conectado ao GitHub. Branch `main` → produção automática em `kellyalbert.com.br`.
+- Workflow: edita → `lint-project.py` passa → commit → push pra `main` → deploy roda sozinho.
+- **Não usar ZIP manual** (modelo antigo, descontinuado). **Não usar `--no-verify`** em commits.
+- **Preferência da Kelly:** publicar direto em produção. Em branch de feature, fast-forward pra `main` ao final do ajuste e push — sem PR, sem perguntar.
 
 ## Frentes ativas
 
