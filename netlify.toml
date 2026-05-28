@@ -103,6 +103,11 @@
   status = 200
 
 [[redirects]]
+  from = "/mentoria-gab"
+  to = "/mentoria-gab/index.html"
+  status = 200
+
+[[redirects]]
   from = "/mentoria-teste"
   to = "/mentoria/"
   status = 301
