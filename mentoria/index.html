@@ -502,10 +502,12 @@ document.addEventListener('DOMContentLoaded',function(){
 .hero-mentoria-video{border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);border:1px solid rgba(237,232,221,.12);position:relative;padding-bottom:56.25%;height:0;max-width:620px;margin:0 auto;}
 #ka-yt-player{position:absolute;top:0;left:0;width:100%;height:100%;}
 #ka-yt-player iframe{position:absolute;top:0;left:0;width:100%;height:100%;}
-.ka-video-controls{position:absolute;bottom:14px;right:10px;display:flex;gap:8px;z-index:10;}
+/* Camada que oculta título/avatar/logo do YouTube e captura clique para play/pausa */
+.ka-video-cover{position:absolute;top:0;left:0;right:0;bottom:0;z-index:6;cursor:pointer;background:transparent;}
+.ka-video-controls{position:absolute;bottom:14px;right:10px;display:flex;gap:8px;z-index:12;}
 .ka-ctrl-btn{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .2s ease;}
 .ka-ctrl-btn:hover{background:rgba(0,0,0,.85);}
-.ka-video-progress-track{position:absolute;bottom:0;left:0;right:0;height:8px;background:rgba(255,255,255,.18);z-index:11;cursor:pointer;}
+.ka-video-progress-track{position:absolute;bottom:0;left:0;right:0;height:8px;background:rgba(255,255,255,.18);z-index:13;cursor:pointer;}
 .ka-video-progress-track:hover{height:11px;}
 .ka-video-progress-fill{height:100%;width:0%;background:#C47830;transition:width .25s linear;border-radius:0 2px 2px 0;pointer-events:none;}
 @media(max-width:768px){.ka-ctrl-btn{width:34px;height:34px;}}
@@ -560,6 +562,7 @@ document.addEventListener('DOMContentLoaded',function(){
       <!-- VÍDEO -->
       <div class="hero-mentoria-video">
         <div id="ka-yt-player"></div>
+        <div class="ka-video-cover" id="ka-video-cover" aria-hidden="true"></div>
         <div class="ka-video-progress-track" id="ka-progress-track" role="slider" aria-label="Progresso do vídeo" tabindex="0"><div class="ka-video-progress-fill" id="ka-progress-fill"></div></div>
         <div class="ka-video-controls">
           <button class="ka-ctrl-btn" id="ka-btn-mute" aria-label="Desativar som" title="Som">
@@ -1554,6 +1557,11 @@ document.addEventListener('DOMContentLoaded',function(){
     if(!kaPlayer||typeof kaPlayer.getPlayerState!=='function') return;
     if(kaPlaying){kaPlayer.pauseVideo();kaPlaying=false;btnP.innerHTML=KA_SVG.play;btnP.setAttribute('aria-label','Continuar');}
     else{kaPlayer.playVideo();kaPlaying=true;btnP.innerHTML=KA_SVG.pause;btnP.setAttribute('aria-label','Pausar');}
+  });
+  // Camada cobre o vídeo: clique alterna play/pausa e impede chrome do YouTube
+  var cover=document.getElementById('ka-video-cover');
+  if(cover) cover.addEventListener('click',function(){
+    if(btnP) btnP.click();
   });
   // Barra de progresso clicável/arrastável (seek)
   var track=document.getElementById('ka-progress-track');
