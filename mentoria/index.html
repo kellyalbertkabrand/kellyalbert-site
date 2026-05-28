@@ -505,9 +505,10 @@ document.addEventListener('DOMContentLoaded',function(){
 .ka-video-controls{position:absolute;bottom:14px;right:10px;display:flex;gap:8px;z-index:10;}
 .ka-ctrl-btn{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;transition:background .2s ease;}
 .ka-ctrl-btn:hover{background:rgba(0,0,0,.85);}
-.ka-video-progress-track{position:absolute;bottom:0;left:0;right:0;height:7px;background:rgba(255,255,255,.15);z-index:10;}
-.ka-video-progress-fill{height:100%;width:0%;background:#C47830;transition:width .5s linear;border-radius:0 2px 2px 0;}
-@media(max-width:768px){.ka-video-controls{display:none!important;}}
+.ka-video-progress-track{position:absolute;bottom:0;left:0;right:0;height:8px;background:rgba(255,255,255,.18);z-index:11;cursor:pointer;}
+.ka-video-progress-track:hover{height:11px;}
+.ka-video-progress-fill{height:100%;width:0%;background:#C47830;transition:width .25s linear;border-radius:0 2px 2px 0;pointer-events:none;}
+@media(max-width:768px){.ka-ctrl-btn{width:34px;height:34px;}}
 .hero-mentoria-disclaimer{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.75rem;font-size:.7rem;color:rgba(237,232,221,.5);font-style:italic;}
 .hero-segunda-dobra{background-color:#152535;position:relative;overflow:hidden;padding:.5rem 0 4rem;}
 @keyframes ka-cta-pulse{0%,100%{box-shadow:0 8px 32px rgba(46,139,87,.45),0 0 0 0 rgba(46,139,87,.4)}70%{box-shadow:0 8px 32px rgba(46,139,87,.45),0 0 0 12px rgba(46,139,87,0)}}
@@ -559,16 +560,13 @@ document.addEventListener('DOMContentLoaded',function(){
       <!-- VÍDEO -->
       <div class="hero-mentoria-video">
         <div id="ka-yt-player"></div>
-        <div class="ka-video-progress-track"><div class="ka-video-progress-fill" id="ka-progress-fill"></div></div>
+        <div class="ka-video-progress-track" id="ka-progress-track" role="slider" aria-label="Progresso do vídeo" tabindex="0"><div class="ka-video-progress-fill" id="ka-progress-fill"></div></div>
         <div class="ka-video-controls">
           <button class="ka-ctrl-btn" id="ka-btn-mute" aria-label="Desativar som" title="Som">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
           </button>
           <button class="ka-ctrl-btn" id="ka-btn-playpause" aria-label="Pausar" title="Pausar/Continuar">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-          </button>
-          <button class="ka-ctrl-btn ka-btn-fullscreen-mobile" id="ka-btn-fullscreen" aria-label="Tela cheia" title="Tela cheia">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
           </button>
         </div>
       </div>
@@ -1526,7 +1524,7 @@ function onYouTubeIframeAPIReady(){
   var mob=window.innerWidth<=768;
   kaPlayer=new YT.Player('ka-yt-player',{
     videoId:'Z083jJY9RO4',
-    playerVars:{autoplay:1,mute:1,loop:1,playlist:'Z083jJY9RO4',controls:mob?1:0,modestbranding:1,rel:0,iv_load_policy:3,fs:1,playsinline:1},
+    playerVars:{autoplay:1,mute:1,loop:1,playlist:'Z083jJY9RO4',controls:0,disablekb:1,modestbranding:1,rel:0,iv_load_policy:3,fs:0,playsinline:1},
     events:{onReady:function(e){
       e.target.mute();e.target.playVideo();
       setTimeout(function(){
@@ -1557,18 +1555,26 @@ document.addEventListener('DOMContentLoaded',function(){
     if(kaPlaying){kaPlayer.pauseVideo();kaPlaying=false;btnP.innerHTML=KA_SVG.play;btnP.setAttribute('aria-label','Continuar');}
     else{kaPlayer.playVideo();kaPlaying=true;btnP.innerHTML=KA_SVG.pause;btnP.setAttribute('aria-label','Pausar');}
   });
-  var btnFS=document.getElementById('ka-btn-fullscreen');
-  if(btnFS) btnFS.addEventListener('click',function(){
-    var el=(kaPlayer&&typeof kaPlayer.getIframe==='function')?kaPlayer.getIframe():document.querySelector('#ka-yt-player iframe');
-    if(!el) el=document.getElementById('ka-yt-player');
-    var req=el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||el.msRequestFullscreen||el.webkitEnterFullscreen;
-    try{
-      if(req) req.call(el);
-      else throw new Error();
-    }catch(e){
-      window.open('https://youtu.be/Z083jJY9RO4','_blank');
-    }
-  });
+  // Barra de progresso clicável/arrastável (seek)
+  var track=document.getElementById('ka-progress-track');
+  function seekFromEvent(ev){
+    if(!kaPlayer||typeof kaPlayer.getDuration!=='function') return;
+    var dur=kaPlayer.getDuration();if(!dur) return;
+    var rect=track.getBoundingClientRect();
+    var x=(ev.touches?ev.touches[0].clientX:ev.clientX)-rect.left;
+    var pct=Math.min(Math.max(x/rect.width,0),1);
+    kaPlayer.seekTo(pct*dur,true);
+    if(fill) fill.style.width=(pct*100)+'%';
+  }
+  if(track){
+    track.addEventListener('click',seekFromEvent);
+    var dragging=false;
+    track.addEventListener('mousedown',function(){dragging=true;});
+    document.addEventListener('mousemove',function(ev){if(dragging)seekFromEvent(ev);});
+    document.addEventListener('mouseup',function(){dragging=false;});
+    track.addEventListener('touchstart',seekFromEvent,{passive:true});
+    track.addEventListener('touchmove',seekFromEvent,{passive:true});
+  }
 });
 </script>
 <!-- LEAD MODAL POPUP -->
