@@ -344,6 +344,9 @@ body{
   width:220px;
   scroll-snap-align:start;
   text-decoration:none;color:var(--text);
+  background:transparent;border:0;padding:0;
+  font-family:inherit;cursor:pointer;text-align:left;
+  display:block;
 }
 .prod-card__img{
   width:100%;aspect-ratio:1/1;
@@ -371,6 +374,95 @@ body{
   background:#0a1119;color:var(--text);
   border:1px solid rgba(237,232,221,.12);
 }
+
+/* PRODUCT DETAIL PAGE (modal fullscreen) */
+.pdp-backdrop{
+  position:fixed;inset:0;
+  background:#0d1620;
+  z-index:9998;
+  display:none;flex-direction:column;
+  overflow-y:auto;
+  animation:kaBackdropIn .28s ease-out;
+}
+.pdp-backdrop.open{display:flex;}
+.pdp-head{
+  position:sticky;top:0;z-index:2;
+  background:rgba(13,22,32,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(237,232,221,.08);
+  padding:.8rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.8rem;
+}
+.pdp-head__url{
+  font-size:.85rem;color:var(--text-2);
+  display:flex;align-items:center;gap:.4rem;
+}
+.pdp-head__url svg{width:14px;height:14px;}
+.pdp-close{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(237,232,221,.08);border:0;
+  color:var(--text);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;line-height:1;padding:0;
+}
+.pdp-close:hover{background:rgba(237,232,221,.16);}
+.pdp-content{
+  max-width:520px;width:100%;
+  margin:0 auto;padding:1rem 1.2rem 2.5rem;
+}
+.pdp-img{
+  width:100%;aspect-ratio:1/1;
+  border-radius:18px;overflow:hidden;
+  background:#152535;
+  margin-bottom:1.4rem;
+}
+.pdp-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.pdp-img--icon{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#152535,#1a3040);}
+.pdp-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.75rem;font-weight:700;
+  margin:0 0 .35rem;line-height:1.15;
+  color:#fff;letter-spacing:-.01em;
+}
+.pdp-price{
+  font-size:1.4rem;font-weight:800;color:var(--accent);
+  margin:0 0 1.2rem;line-height:1.1;
+}
+.pdp-price small{font-size:.9rem;font-weight:600;color:var(--text-2);}
+.pdp-desc{
+  font-size:.95rem;color:var(--text);opacity:.85;
+  line-height:1.7;margin:0 0 1.5rem;
+}
+.pdp-feats{
+  list-style:none;padding:0;margin:0 0 1.8rem;
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.pdp-feats li{
+  display:flex;gap:.7rem;align-items:flex-start;
+  font-size:.9rem;color:var(--text);opacity:.9;line-height:1.5;
+}
+.pdp-feats li::before{
+  content:'';flex-shrink:0;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:2px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+  background-size:12px 12px;background-repeat:no-repeat;background-position:center;
+}
+.pdp-cta{
+  display:block;width:100%;
+  padding:1.1rem;
+  background:var(--accent);color:#fff;text-decoration:none;
+  border-radius:100px;text-align:center;
+  font-size:.85rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 10px 28px rgba(196,120,48,.45);
+  transition:transform .15s,background .2s;
+  margin-bottom:.8rem;
+}
+.pdp-cta:hover{transform:translateY(-2px);background:#b16b28;}
+.pdp-cta--whats{background:#25D366;box-shadow:0 10px 28px rgba(37,211,102,.45);}
+.pdp-cta--whats:hover{background:#22bd5c;}
 
 /* MINI CARDS (podcast/livro row) */
 .mini-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.2rem;}
@@ -578,33 +670,33 @@ body{
   <!-- COMO POSSO TE AJUDAR HOJE -->
   <p class="sec-label">Como posso te ajudar hoje:</p>
   <div class="carousel">
-    <a href="/livro" class="prod-card">
+    <button type="button" class="prod-card" onclick="kaPdpOpen('livro')">
       <div class="prod-card__img"><img src="/images/livro-mockup-hands.jpg" alt="Livro Marca com Essência©" loading="lazy"></div>
       <p class="prod-card__title">LIVRO<br>MARCA COM ESSÊNCIA©</p>
       <span class="prod-card__btn">Ver detalhes</span>
-    </a>
-    <a href="/mentoria" class="prod-card">
+    </button>
+    <button type="button" class="prod-card" onclick="kaPdpOpen('mentoria')">
       <div class="prod-card__img"><img src="/images/mentoria-turma-meet-12.jpg" alt="Mentoria Marca com Essência©" loading="lazy"></div>
       <p class="prod-card__title">MENTORIA<br>Turma ao vivo · 8 encontros</p>
       <span class="prod-card__btn">Ver detalhes</span>
-    </a>
-    <a href="/programa" class="prod-card">
+    </button>
+    <button type="button" class="prod-card" onclick="kaPdpOpen('projeto')">
       <div class="prod-card__img"><img src="/images/kelly-bio.jpg" alt="Projeto Marca com Essência©" loading="lazy"></div>
       <p class="prod-card__title">PROJETO<br>Branding completo com a KA</p>
       <span class="prod-card__btn">Ver detalhes</span>
-    </a>
-    <a href="/direcao" class="prod-card">
+    </button>
+    <button type="button" class="prod-card" onclick="kaPdpOpen('direcao')">
       <div class="prod-card__img"><img src="/images/kelly-hero.jpg" alt="Direção Estratégica" loading="lazy"></div>
       <p class="prod-card__title">DIREÇÃO<br>Acompanhamento mensal</p>
       <span class="prod-card__btn">Ver detalhes</span>
-    </a>
-    <a href="/quiz" class="prod-card">
+    </button>
+    <button type="button" class="prod-card" onclick="kaPdpOpen('diagnostico')">
       <div class="prod-card__img" style="background:linear-gradient(135deg,#152535,#1a3040);display:flex;align-items:center;justify-content:center;">
         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#C47830" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
       </div>
       <p class="prod-card__title">DIAGNÓSTICO<br>Gratuito · quiz de marca</p>
-      <span class="prod-card__btn">Fazer agora</span>
-    </a>
+      <span class="prod-card__btn">Ver detalhes</span>
+    </button>
   </div>
 
   <!-- MINI CARDS -->
@@ -744,6 +836,134 @@ body{
   </footer>
 
 </div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div id="ka-pdp" class="pdp-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-pdp-title">
+  <div class="pdp-head">
+    <div class="pdp-head__url">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      kellyalbert.com.br
+    </div>
+    <button type="button" class="pdp-close" onclick="kaPdpClose()" aria-label="Fechar">×</button>
+  </div>
+  <div class="pdp-content" id="ka-pdp-content"></div>
+</div>
+
+<script>
+(function(){
+  var PDP = {
+    livro:{
+      title:'Livro Marca com Essência©',
+      price:'R$ 117',
+      priceSub:'à vista ou parcelado',
+      img:'/images/livro-mockup-hands.jpg',
+      desc:'Livro-consultoria de 126 páginas que te guia passo a passo para estruturar sua marca, ganhar Clareza Estratégica e fazê-la ser Lembrada, Desejada e Escolhida.',
+      feats:[
+        '11 capítulos com Agentes de IA exclusivos no ChatGPT',
+        'Exercícios estratégicos no Google Docs',
+        'Áudios complementares no Spotify',
+        'Versão digital com acesso imediato'
+      ],
+      cta:'Comprar o livro',
+      url:'/livro'
+    },
+    mentoria:{
+      title:'Mentoria Marca com Essência©',
+      price:'R$ 990',
+      priceSub:'à vista ou 10x R$ 118,98',
+      img:'/images/mentoria-turma-meet-12.jpg',
+      desc:'8 encontros ao vivo pelo Google Meet com Kelly Albert. Você constrói a Base Estratégica da Sua Marca com orientação em tempo real, exercícios estratégicos e Agentes de IA exclusivos.',
+      feats:[
+        '8 encontros ao vivo (terças e quintas, 19h30)',
+        'Próxima turma: 16 de junho de 2026',
+        '7 Agentes de IA exclusivos no ChatGPT',
+        'Livro Marca com Essência© incluso (digital) + 50% off na física'
+      ],
+      cta:'Garantir minha vaga',
+      url:'/mentoria'
+    },
+    projeto:{
+      title:'Projeto Marca com Essência©',
+      price:'A partir de R$ 3.500',
+      priceSub:'sob consulta',
+      img:'/images/kelly-bio.jpg',
+      desc:'Projeto completo conduzido por Kelly Albert e a equipe da KA. Da revelação da essência ao posicionamento estratégico, identidade verbal e Agentes de IA exclusivos para a sua marca.',
+      feats:[
+        'Posicionamento e essência da marca',
+        'Identidade verbal e tom de voz',
+        'Arquitetura de marca e narrativa',
+        'Agentes de IA personalizados'
+      ],
+      cta:'Falar com a Kelly',
+      url:'https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%21%20Quero%20saber%20sobre%20o%20Projeto%20Marca%20com%20Ess%C3%AAncia.',
+      whats:true
+    },
+    direcao:{
+      title:'Direção Estratégica',
+      price:'A partir de R$ 990',
+      priceSub:'mensal, sob consulta',
+      img:'/images/kelly-hero.jpg',
+      desc:'Acompanhamento estratégico mensal em Branding, Comunicação e Marketing com a Kelly Albert. Direção contínua para sua marca e seu negócio.',
+      feats:[
+        'Reuniões mensais estratégicas com a Kelly',
+        'Direção em branding, comunicação e marketing',
+        'Suporte contínuo por WhatsApp',
+        'Ideal para quem já tem marca estruturada'
+      ],
+      cta:'Falar com a Kelly',
+      url:'https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%21%20Quero%20saber%20sobre%20a%20Dire%C3%A7%C3%A3o%20Estrat%C3%A9gica.',
+      whats:true
+    },
+    diagnostico:{
+      title:'Diagnóstico de Marca',
+      price:'Gratuito',
+      priceSub:'quiz de 5 minutos',
+      icon:'<svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#C47830" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>',
+      desc:'Um quiz gratuito para você descobrir o que está impedindo sua marca de ser Lembrada, Desejada e Escolhida — e receber um caminho estratégico personalizado.',
+      feats:[
+        'Diagnóstico personalizado da sua marca',
+        'Recomendação estratégica',
+        '100% gratuito e sem compromisso',
+        'Resultado imediato'
+      ],
+      cta:'Fazer diagnóstico agora',
+      url:'/quiz'
+    }
+  };
+
+  window.kaPdpOpen=function(key){
+    var p=PDP[key];if(!p) return;
+    var c=document.getElementById('ka-pdp-content');
+    var imgHtml=p.icon
+      ? '<div class="pdp-img pdp-img--icon">'+p.icon+'</div>'
+      : '<div class="pdp-img"><img src="'+p.img+'" alt="'+p.title+'"></div>';
+    var feats=(p.feats||[]).map(function(f){return '<li>'+f+'</li>';}).join('');
+    var isExt=p.url.indexOf('http')===0;
+    var ctaClass='pdp-cta'+(p.whats?' pdp-cta--whats':'');
+    var ctaAttrs=isExt?' target="_blank" rel="noopener"':'';
+    c.innerHTML=
+      imgHtml+
+      '<h2 id="ka-pdp-title" class="pdp-title">'+p.title+'</h2>'+
+      '<p class="pdp-price">'+p.price+' <small>'+(p.priceSub||'')+'</small></p>'+
+      '<p class="pdp-desc">'+p.desc+'</p>'+
+      (feats?'<ul class="pdp-feats">'+feats+'</ul>':'')+
+      '<a href="'+p.url+'" class="'+ctaClass+'"'+ctaAttrs+'>'+p.cta+' →</a>';
+    var b=document.getElementById('ka-pdp');
+    b.classList.add('open');
+    document.body.style.overflow='hidden';
+    b.scrollTop=0;
+  };
+  window.kaPdpClose=function(){
+    var b=document.getElementById('ka-pdp');
+    b.classList.remove('open');
+    document.body.style.overflow='';
+  };
+  document.addEventListener('keydown',function(e){
+    var pdp=document.getElementById('ka-pdp');
+    if(e.key==='Escape'&&pdp&&pdp.classList.contains('open')) kaPdpClose();
+  });
+})();
+</script>
 
 <!-- CHAT MODAL -->
 <div id="ka-chat" class="chat-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-chat-title">
