@@ -79,37 +79,238 @@ body{
 .socials a:hover{background:rgba(237,232,221,.16);transform:translateY(-2px);}
 .socials svg{width:22px;height:22px;}
 
-/* CTA QUIZ */
+/* CTA QUIZ (BLINK/PULSE HIGH IMPACT) */
 .quiz-cta{
   display:flex;align-items:center;gap:1rem;
-  background:#0a1119;
-  border:1px solid rgba(237,232,221,.06);
+  background:linear-gradient(135deg,#0a1119 0%,#12212f 100%);
+  border:1.5px solid rgba(196,120,48,.55);
   border-radius:22px;
-  padding:1.15rem 1.2rem;
+  padding:1.25rem 1.2rem;
   text-decoration:none;color:var(--text);
   margin-bottom:2.2rem;
-  transition:border-color .2s,transform .15s;
+  cursor:pointer;
+  width:100%;text-align:left;
+  font-family:inherit;
+  position:relative;
+  animation:kaCtaPulse 2s ease-in-out infinite;
+  transition:transform .15s;
 }
-.quiz-cta:hover{border-color:var(--accent);transform:translateY(-2px);}
+.quiz-cta:hover{transform:translateY(-2px);}
+@keyframes kaCtaPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(196,120,48,.55),0 8px 24px rgba(196,120,48,.15);border-color:rgba(196,120,48,.55);}
+  50%{box-shadow:0 0 0 12px rgba(196,120,48,0),0 8px 32px rgba(196,120,48,.4);border-color:rgba(196,120,48,.9);}
+}
 .quiz-cta__icon{
   flex-shrink:0;
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(237,232,221,.08);
+  width:46px;height:46px;border-radius:50%;
+  background:var(--accent);
   display:flex;align-items:center;justify-content:center;
-  color:var(--accent);
+  color:#fff;
+  animation:kaIconPulse 1.4s ease-in-out infinite;
+}
+@keyframes kaIconPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.08);}
 }
 .quiz-cta__body{flex:1;min-width:0;}
 .quiz-cta__title{
-  font-size:1.02rem;font-weight:700;margin:0 0 .18rem;line-height:1.2;
+  font-size:1.05rem;font-weight:700;margin:0 0 .18rem;line-height:1.2;color:#fff;
 }
 .quiz-cta__desc{font-size:.85rem;color:var(--text-2);margin:0;line-height:1.4;}
 .quiz-cta__arrow{
   flex-shrink:0;
   width:36px;height:36px;border-radius:50%;
-  border:1px solid rgba(237,232,221,.18);
+  background:var(--accent);
   display:flex;align-items:center;justify-content:center;
-  color:var(--text);
+  color:#fff;
 }
+
+/* CHAT MODAL */
+.chat-backdrop{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(6px);
+  z-index:9999;
+  display:none;align-items:flex-end;justify-content:center;
+  animation:kaBackdropIn .25s ease-out;
+}
+.chat-backdrop.open{display:flex;}
+@keyframes kaBackdropIn{from{opacity:0;}to{opacity:1;}}
+@media(min-width:640px){.chat-backdrop{align-items:center;padding:1.5rem;}}
+.chat-modal{
+  width:100%;max-width:560px;
+  height:92vh;
+  background:#0d1620;
+  border:1px solid rgba(237,232,221,.08);
+  border-radius:22px 22px 0 0;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  animation:kaModalIn .3s cubic-bezier(.2,.9,.3,1.15);
+}
+@media(min-width:640px){
+  .chat-modal{border-radius:22px;height:min(680px,90vh);}
+}
+@keyframes kaModalIn{from{transform:translateY(30px);opacity:.5;}to{transform:translateY(0);opacity:1;}}
+.chat-head{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.9rem 1rem;
+  border-bottom:1px solid rgba(237,232,221,.08);
+  background:#12202e;
+}
+.chat-head__avatar{
+  width:44px;height:44px;border-radius:50%;
+  object-fit:cover;object-position:top center;
+  border:2px solid rgba(237,232,221,.15);
+}
+.chat-head__t{margin:0;font-size:.98rem;font-weight:700;line-height:1.1;}
+.chat-head__s{
+  margin:.15rem 0 0;font-size:.72rem;color:var(--text-2);
+  display:flex;align-items:center;gap:.35rem;line-height:1.1;
+}
+.chat-head__dot{
+  width:8px;height:8px;border-radius:50%;background:#25D366;
+  box-shadow:0 0 8px rgba(37,211,102,.5);
+  animation:kaDot 1.6s ease-in-out infinite;
+}
+@keyframes kaDot{0%,100%{opacity:1;}50%{opacity:.55;}}
+.chat-head__close{
+  margin-left:auto;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(237,232,221,.08);border:0;
+  color:var(--text);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;line-height:1;padding:0;
+}
+.chat-head__close:hover{background:rgba(237,232,221,.16);}
+.chat-body{
+  flex:1;overflow-y:auto;
+  padding:1rem;
+  display:flex;flex-direction:column;gap:.7rem;
+  scroll-behavior:smooth;
+}
+.chat-bubble{
+  max-width:88%;
+  padding:.75rem 1rem;
+  border-radius:18px;
+  font-size:.92rem;line-height:1.45;
+  animation:kaBubble .3s ease-out;
+}
+@keyframes kaBubble{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.chat-bubble--bot{
+  background:rgba(237,232,221,.06);
+  color:var(--text);
+  align-self:flex-start;
+  border-bottom-left-radius:6px;
+}
+.chat-bubble--user{
+  background:var(--accent);
+  color:#fff;font-weight:600;
+  align-self:flex-end;
+  border-bottom-right-radius:6px;
+}
+.chat-typing{
+  display:inline-flex;gap:4px;padding:.9rem 1rem;
+  background:rgba(237,232,221,.06);
+  border-radius:18px;border-bottom-left-radius:6px;
+  align-self:flex-start;
+}
+.chat-typing span{
+  width:7px;height:7px;border-radius:50%;background:rgba(237,232,221,.55);
+  animation:kaTyping 1.2s ease-in-out infinite;
+}
+.chat-typing span:nth-child(2){animation-delay:.15s;}
+.chat-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes kaTyping{0%,60%,100%{transform:translateY(0);opacity:.5;}30%{transform:translateY(-5px);opacity:1;}}
+.chat-options{
+  display:flex;flex-direction:column;gap:.5rem;
+  padding:0 1rem 1rem;
+  animation:kaBubble .35s ease-out;
+}
+.chat-opt{
+  background:rgba(237,232,221,.05);
+  border:1px solid rgba(237,232,221,.14);
+  color:var(--text);
+  padding:.9rem 1.1rem;
+  border-radius:14px;
+  cursor:pointer;text-align:left;
+  font-family:inherit;font-size:.9rem;font-weight:500;
+  transition:background .18s,border-color .18s,transform .1s;
+}
+.chat-opt:hover{background:rgba(196,120,48,.15);border-color:var(--accent);}
+.chat-opt:active{transform:scale(.98);}
+.chat-form{
+  padding:.5rem 1rem 1rem;
+  display:flex;flex-direction:column;gap:.5rem;
+}
+.chat-form input{
+  width:100%;
+  background:rgba(237,232,221,.06);
+  border:1px solid rgba(237,232,221,.14);
+  color:var(--text);
+  padding:.9rem 1rem;
+  border-radius:12px;
+  font-family:inherit;font-size:.95rem;
+  outline:none;box-sizing:border-box;
+  transition:border-color .18s,background .18s;
+}
+.chat-form input::placeholder{color:rgba(237,232,221,.4);}
+.chat-form input:focus{border-color:var(--accent);background:rgba(196,120,48,.06);}
+.chat-form__err{
+  display:none;color:#ef4444;font-size:.82rem;
+  padding:.5rem .8rem;border-radius:10px;
+  background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);
+  margin:0;
+}
+.chat-form__btn{
+  padding:1rem;background:#25D366;color:#fff;
+  border:0;border-radius:100px;
+  font-family:inherit;font-size:.88rem;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;
+  margin-top:.3rem;
+  box-shadow:0 6px 20px rgba(37,211,102,.35);
+  transition:background .2s,transform .1s;
+}
+.chat-form__btn:hover{background:#22bd5c;}
+.chat-form__btn:active{transform:scale(.98);}
+.chat-form__btn:disabled{opacity:.6;cursor:wait;}
+.chat-form__hint{
+  font-size:.72rem;color:var(--text-3);
+  margin:.3rem 0 0;text-align:center;
+}
+.chat-result{
+  padding:1rem;
+  animation:kaBubble .4s ease-out;
+}
+.chat-result__card{
+  background:linear-gradient(135deg,rgba(196,120,48,.18),rgba(196,120,48,.06));
+  border:1.5px solid rgba(196,120,48,.55);
+  border-radius:18px;
+  padding:1.3rem 1.2rem;
+  text-align:center;
+}
+.chat-result__eyebrow{
+  font-size:.7rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 .5rem;
+}
+.chat-result__title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;color:#fff;
+  margin:0 0 .55rem;line-height:1.15;
+}
+.chat-result__desc{
+  font-size:.9rem;color:rgba(237,232,221,.85);
+  line-height:1.5;margin:0 0 1.2rem;
+}
+.chat-result__btn{
+  display:block;padding:.95rem 1.6rem;
+  background:var(--accent);color:#fff;text-decoration:none;
+  border-radius:100px;
+  font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(196,120,48,.4);
+  transition:transform .15s;
+}
+.chat-result__btn:hover{transform:translateY(-2px);}
 
 /* SECTION LABEL */
 .sec-label{
@@ -308,8 +509,25 @@ body{
 .ig-post__badge svg{width:14px;height:14px;color:#fff;}
 
 /* FOOTER */
-.foot{text-align:center;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);}
-.foot__b{font-size:.9rem;font-weight:700;margin:0 0 .15rem;color:var(--text);}
+.foot{text-align:center;margin-top:3rem;}
+.foot__socials{
+  display:flex;gap:.7rem;justify-content:center;
+  margin-bottom:1.5rem;
+}
+.foot__socials a{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(237,232,221,.07);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text);text-decoration:none;
+  border:1px solid var(--border);
+  transition:background .2s,transform .15s;
+}
+.foot__socials a:hover{background:rgba(237,232,221,.14);transform:translateY(-2px);}
+.foot__socials svg{width:19px;height:19px;}
+.foot__b{
+  font-size:.9rem;font-weight:700;margin:0 0 .15rem;color:var(--text);
+  padding-top:1.5rem;border-top:1px solid var(--border);
+}
 .foot__s{font-size:.72rem;color:var(--text-3);margin:0;}
 
 @media(min-width:600px){
@@ -344,18 +562,18 @@ body{
   </div>
 
   <!-- CTA DIAGNÓSTICO -->
-  <a href="/quiz" class="quiz-cta">
+  <button type="button" onclick="kaChatOpen()" class="quiz-cta" aria-label="Iniciar chat com Kelly">
     <div class="quiz-cta__icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
     </div>
     <div class="quiz-cta__body">
       <p class="quiz-cta__title">Como posso ajudar sua marca?</p>
-      <p class="quiz-cta__desc">Responda 3 perguntas e receba o caminho ideal pra sua marca hoje.</p>
+      <p class="quiz-cta__desc">Responda 6 perguntas e receba o caminho ideal pra sua marca hoje.</p>
     </div>
     <div class="quiz-cta__arrow">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </div>
-  </a>
+  </button>
 
   <!-- COMO POSSO TE AJUDAR HOJE -->
   <p class="sec-label">Como posso te ajudar hoje:</p>
@@ -507,9 +725,322 @@ body{
 
   <!-- FOOTER -->
   <footer class="foot">
+    <div class="foot__socials">
+      <a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@kellyalbertbr" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.34a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.35z"/></svg>
+      </a>
+      <a href="https://open.spotify.com" target="_blank" rel="noopener" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm4.59 14.44a.62.62 0 0 1-.86.21 12.86 12.86 0 0 0-7.5-1.94.62.62 0 1 1-.21-1.23 14.09 14.09 0 0 1 8.36 2.11.62.62 0 0 1 .21.85zm1.23-2.75a.78.78 0 0 1-1.07.26 15.13 15.13 0 0 0-8.66-2.16.78.78 0 1 1-.24-1.54 16.7 16.7 0 0 1 9.71 2.37.78.78 0 0 1 .26 1.07zm.11-2.87a.93.93 0 0 1-1.28.31 17.36 17.36 0 0 0-9.85-2.29.93.93 0 1 1-.28-1.84 19.24 19.24 0 0 1 10.9 2.54.93.93 0 0 1 .51 1.28z"/></svg>
+      </a>
+      <a href="#" onclick="kaChatOpen();return false;" aria-label="Diagnóstico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </a>
+    </div>
     <p class="foot__b">KA | Inteligência para Marcas</p>
-    <p class="foot__s">Uma marca Kelly Albert · kellyalbert.com.br</p>
+    <p class="foot__s">www.kellyalbert.com.br</p>
   </footer>
 
 </div>
+
+<!-- CHAT MODAL -->
+<div id="ka-chat" class="chat-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-chat-title">
+  <div class="chat-modal">
+    <div class="chat-head">
+      <img src="/images/kelly-hero.jpg" alt="Kelly Albert" class="chat-head__avatar">
+      <div>
+        <p class="chat-head__t" id="ka-chat-title">Kelly Albert</p>
+        <p class="chat-head__s"><span class="chat-head__dot"></span>Online agora</p>
+      </div>
+      <button type="button" class="chat-head__close" onclick="kaChatClose()" aria-label="Fechar chat">×</button>
+    </div>
+    <div class="chat-body" id="ka-chat-body"></div>
+    <div id="ka-chat-footer"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ─── FLUXO DE PERGUNTAS ─────────────────────────────────
+  // score: quanto essa resposta pontua pra cada produto (l=livro, m=mentoria, p=projeto, d=direcao)
+  var QUESTIONS = [
+    {
+      bot:'Olá! Que bom te ver por aqui 💛 Vou te fazer 6 perguntas rápidas pra entender o momento da sua marca e te indicar o melhor caminho.',
+      auto:true
+    },
+    {
+      bot:'Primeiro, em que momento sua marca está agora?',
+      opts:[
+        {t:'Estou começando do zero',s:{l:3,m:1}},
+        {t:'Já tenho a marca mas está desorganizada',s:{l:1,m:3,p:1}},
+        {t:'Preciso reposicionar completamente',s:{m:2,p:3}},
+        {t:'Quero escalar o que já funciona',s:{p:2,d:3}}
+      ]
+    },
+    {
+      bot:'Sua marca é...',
+      opts:[
+        {t:'Pessoal (eu = a marca)',s:{l:1,m:2,p:1}},
+        {t:'Empresarial',s:{m:1,p:2,d:1}},
+        {t:'Ambas / ainda não sei',s:{l:2,m:1}}
+      ]
+    },
+    {
+      bot:'O que mais te trava hoje?',
+      opts:[
+        {t:'Não sei quem é minha marca / o que representa',s:{l:3,m:2}},
+        {t:'Sei quem é mas não comunico com clareza',s:{m:3,p:1}},
+        {t:'Comunico mas o valor percebido é baixo',s:{p:3,d:1}},
+        {t:'Já tenho tudo, quero direção contínua',s:{d:3}}
+      ]
+    },
+    {
+      bot:'Como você prefere aprender/aplicar?',
+      opts:[
+        {t:'Sozinha, no meu ritmo',s:{l:3}},
+        {t:'Em grupo, ao vivo, com apoio da Kelly',s:{m:3}},
+        {t:'Quero que a Kelly e a equipe façam por mim',s:{p:3}},
+        {t:'Já sei fazer, só quero direcionamento mensal',s:{d:3}}
+      ]
+    },
+    {
+      bot:'Quanto você pode investir agora pra construir sua marca?',
+      opts:[
+        {t:'Até R$ 200',s:{l:3}},
+        {t:'Entre R$ 500 e R$ 1.500',s:{m:3}},
+        {t:'A partir de R$ 3.500',s:{p:3}},
+        {t:'Investimento mensal recorrente',s:{d:3}}
+      ]
+    },
+    {
+      bot:'Última pergunta: qual sua urgência?',
+      opts:[
+        {t:'Quero começar agora',s:{l:1,m:2,p:1}},
+        {t:'Tenho até 2-3 meses',s:{m:2,p:2}},
+        {t:'Estou pesquisando ainda',s:{l:2}},
+        {t:'Preciso de acompanhamento contínuo',s:{d:3}}
+      ]
+    }
+  ];
+
+  var PRODUCTS = {
+    l:{
+      key:'livro',
+      eyebrow:'Seu caminho ideal',
+      title:'Livro Marca com Essência©',
+      desc:'Você quer aplicar o método no seu ritmo. O livro é seu ponto de partida perfeito: 126 páginas, 11 capítulos com Agentes de IA no ChatGPT, exercícios no Google Docs e áudios no Spotify.',
+      cta:'Conhecer o Livro',
+      url:'/livro'
+    },
+    m:{
+      key:'mentoria',
+      eyebrow:'Seu caminho ideal',
+      title:'Mentoria Marca com Essência©',
+      desc:'Você aprende melhor em grupo, ao vivo, com a Kelly guiando. Em 8 encontros você constrói a Base Estratégica da Sua Marca com orientação em tempo real e Agentes de IA exclusivos.',
+      cta:'Conhecer a Mentoria',
+      url:'/mentoria'
+    },
+    p:{
+      key:'projeto',
+      eyebrow:'Seu caminho ideal',
+      title:'Projeto Marca com Essência©',
+      desc:'Você quer que a Kelly e a equipe da KA construam a base estratégica com você. O Projeto é conduzido de ponta a ponta: posicionamento, identidade verbal, arquitetura de marca e comunicação.',
+      cta:'Conhecer o Projeto',
+      url:'/programa'
+    },
+    d:{
+      key:'direcao',
+      eyebrow:'Seu caminho ideal',
+      title:'Direção Estratégica',
+      desc:'Você já tem a base e precisa de acompanhamento estratégico contínuo. Direção é um acompanhamento mensal em branding, comunicação e marketing com a Kelly.',
+      cta:'Conhecer a Direção',
+      url:'/direcao'
+    }
+  };
+
+  var step=0, scores={l:0,m:0,p:0,d:0};
+  var body=null, footer=null, opened=false;
+
+  function scrollBot(){
+    if(!body) return;
+    setTimeout(function(){body.scrollTop=body.scrollHeight;},50);
+  }
+
+  function botMsg(text,cb){
+    if(!body) return;
+    // typing indicator
+    var typing=document.createElement('div');
+    typing.className='chat-typing';
+    typing.innerHTML='<span></span><span></span><span></span>';
+    body.appendChild(typing);
+    scrollBot();
+    setTimeout(function(){
+      typing.remove();
+      var b=document.createElement('div');
+      b.className='chat-bubble chat-bubble--bot';
+      b.textContent=text;
+      body.appendChild(b);
+      scrollBot();
+      if(cb) cb();
+    },700);
+  }
+
+  function userMsg(text){
+    var b=document.createElement('div');
+    b.className='chat-bubble chat-bubble--user';
+    b.textContent=text;
+    body.appendChild(b);
+    scrollBot();
+  }
+
+  function showOptions(opts){
+    var wrap=document.createElement('div');
+    wrap.className='chat-options';
+    opts.forEach(function(o){
+      var btn=document.createElement('button');
+      btn.type='button';btn.className='chat-opt';
+      btn.textContent=o.t;
+      btn.addEventListener('click',function(){
+        // aplica score
+        if(o.s){Object.keys(o.s).forEach(function(k){scores[k]+=o.s[k];});}
+        // remove opções
+        wrap.remove();
+        // user bubble
+        userMsg(o.t);
+        // próxima
+        next();
+      });
+      wrap.appendChild(btn);
+    });
+    footer.appendChild(wrap);
+    scrollBot();
+  }
+
+  function pickProduct(){
+    var best='l',bestV=-1;
+    Object.keys(scores).forEach(function(k){if(scores[k]>bestV){bestV=scores[k];best=k;}});
+    return PRODUCTS[best];
+  }
+
+  function showForm(){
+    var prod=pickProduct();
+    botMsg('Baseado nas suas respostas, encontrei o caminho ideal pra sua marca.',function(){
+      botMsg('Antes de te mostrar, deixa eu registrar seu contato pra você receber esse material completo:',function(){
+        var f=document.createElement('form');
+        f.className='chat-form';
+        f.innerHTML=
+          '<input type="text" name="nome" placeholder="Nome completo" required autocomplete="name">'+
+          '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">'+
+          '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric">'+
+          '<p class="chat-form__err" id="ka-chat-err"></p>'+
+          '<button type="submit" class="chat-form__btn">Ver meu caminho ideal →</button>'+
+          '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
+        f.addEventListener('submit',function(e){e.preventDefault();submitForm(f,prod);});
+        footer.appendChild(f);
+        scrollBot();
+      });
+    });
+  }
+
+  // Validações reaproveitando o mesmo padrão da /mentoria/
+  function validateEmail(email){
+    email=(email||'').trim().toLowerCase();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return 'Digite um e-mail válido (ex: nome@exemplo.com)';
+    var parts=email.split('@'),domain=parts[1],domainParts=domain.split('.'),tld=domainParts[domainParts.length-1];
+    var TLD_TYPOS={con:'com',cmo:'com',vom:'com',bom:'com',cim:'com'};
+    if(TLD_TYPOS[tld]) return 'Seu e-mail parece ter um erro. Você quis dizer "...'+domainParts.slice(0,-1).join('.')+'.'+TLD_TYPOS[tld]+'"?';
+    var DOMAIN_TYPOS={'gmail.con':'gmail.com','gmial.com':'gmail.com','gnail.com':'gmail.com','hotmial.com':'hotmail.com','hotmail.con':'hotmail.com','outlok.com':'outlook.com','yahoo.con':'yahoo.com','uol.con':'uol.com.br','icloud.con':'icloud.com'};
+    if(DOMAIN_TYPOS[domain]) return 'Seu e-mail parece ter erro de digitação. Você quis dizer "'+parts[0]+'@'+DOMAIN_TYPOS[domain]+'"?';
+    return null;
+  }
+  function validateWA(w){
+    var d=(w||'').replace(/\D/g,'');
+    if(d.length<10) return 'WhatsApp precisa ter DDD + número (mín 10 dígitos)';
+    if(d.length>13) return 'WhatsApp parece longo demais';
+    return null;
+  }
+
+  function submitForm(f,prod){
+    var err=document.getElementById('ka-chat-err');err.style.display='none';err.textContent='';
+    var fd=new FormData(f);
+    var nome=(fd.get('nome')||'').trim(),email=(fd.get('email')||'').trim(),wa=(fd.get('whatsapp')||'').trim();
+    if(nome.length<2){err.textContent='Digite seu nome completo';err.style.display='block';return;}
+    var eE=validateEmail(email);if(eE){err.textContent=eE;err.style.display='block';return;}
+    var wE=validateWA(wa);if(wE){err.textContent=wE;err.style.display='block';return;}
+
+    var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Enviando...';
+
+    // MailerLite direto (mesmo padrão da /mentoria/)
+    try{
+      fetch('https://connect.mailerlite.com/api/subscribers',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNDIwYTNkY2E5ZmM1Y2JiZWFlNmFlMDFiMmVhMjNlYjQwZjg0ZWI5ZTA2NjA1ZjFiNzMyYWU0NmMzZDY1ODI1NzEzODE2N2E0NzE3NDQ0MGUiLCJpYXQiOjE3NzkzMTc4MDYuMTkxMzM5LCJuYmYiOjE3NzkzMTc4MDYuMTkxMzQxLCJleHAiOjQ5MzQ5OTE0MDYuMTg3MTg1LCJzdWIiOiIyMjUxMjA1Iiwic2NvcGVzIjpbXX0.dHeitQmB_eiHom8Tc79K7TvGK-iWBvV0j9AS_sNdR_QlDbHczSHrAdwDxQqu6Vc2_i1JnA76b2yYU-z3r86-P6PzQijpCLygqAPkvQFeuSGYD7jIo9ftjp2MPBd5M2V2dFvpPBXfOeVNcphiTlzw82utY-byT9lG1MoZlwbF_yN4TKt7RRaHlMMfP21HlEcHDbf2htqG1Zvn9FyzgOELUi1KNXZ4q48-Pgeq5PRbUynkK5QY5464nvxITwgf3k23j3CpqgNERFwaM9U5Eg3j8KmeBAjObHERdZ7Br2Jxg3fG9KDY7xdQwZXCQqFaTjyiel1fdvhI3z3x1_lq_2eU5rYsNZAPZILIXLXLWSflaCpp2p5TsfaijspiL9oJP7xWZNeTcDoBZMUfHS1VENj-d5ClcInW1dBeolzSjD1wnW5eY-1cFP84cdkC1FF1SMedspUdnVMlUKWkCJ5XgH1LW3P7CfrssWcp3ImzCHFwpPtzVnHCmSjUmDNBJv2Yvld559rKSjOyBZGiIMPTeo3BGcYjQt5vfqPxlmdVDUhIwtUB02EXchqGSUKc9Vby4IPbSU5rLLU3cVz8zQuVZGfO6TJTZHH1TjJbBPPOn43uoetXacQKm7VSVqooijGarD6NgaVep7wYIpXx9YHJtPi-HumSaEoeyhQRDc0y5HJxMb4'
+        },
+        body:JSON.stringify({
+          email:email,
+          fields:{name:nome,last_name:'',phone:wa,origem_bio:'bio-v2-chat',caminho_recomendado:prod.key},
+          groups:['187386066189157525']
+        })
+      }).catch(function(){});
+    }catch(err){}
+
+    setTimeout(function(){
+      f.remove();
+      showResult(prod);
+    },400);
+  }
+
+  function showResult(prod){
+    var wrap=document.createElement('div');
+    wrap.className='chat-result';
+    wrap.innerHTML=
+      '<div class="chat-result__card">'+
+        '<p class="chat-result__eyebrow">'+prod.eyebrow+'</p>'+
+        '<h3 class="chat-result__title">'+prod.title+'</h3>'+
+        '<p class="chat-result__desc">'+prod.desc+'</p>'+
+        '<a href="'+prod.url+'" class="chat-result__btn">'+prod.cta+' →</a>'+
+      '</div>';
+    footer.appendChild(wrap);
+    botMsg('Pronto! Aqui está a minha recomendação pra você 👆 Clica no botão pra conhecer os detalhes. Qualquer dúvida chama no WhatsApp!');
+  }
+
+  function next(){
+    if(step>=QUESTIONS.length){showForm();return;}
+    var q=QUESTIONS[step];step++;
+    botMsg(q.bot,function(){
+      if(q.auto){setTimeout(next,400);return;}
+      if(q.opts) showOptions(q.opts);
+    });
+  }
+
+  window.kaChatOpen=function(){
+    var backdrop=document.getElementById('ka-chat');
+    body=document.getElementById('ka-chat-body');
+    footer=document.getElementById('ka-chat-footer');
+    // reset
+    body.innerHTML='';footer.innerHTML='';
+    step=0;scores={l:0,m:0,p:0,d:0};
+    backdrop.classList.add('open');
+    document.body.style.overflow='hidden';
+    opened=true;
+    setTimeout(next,350);
+  };
+  window.kaChatClose=function(){
+    var backdrop=document.getElementById('ka-chat');
+    backdrop.classList.remove('open');
+    document.body.style.overflow='';
+    opened=false;
+  };
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var backdrop=document.getElementById('ka-chat');
+    backdrop.addEventListener('click',function(e){if(e.target===backdrop) kaChatClose();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&opened) kaChatClose();});
+  });
+})();
+</script>
 </body></html>
