@@ -328,17 +328,46 @@ body{
 }
 
 /* PRODUCT CAROUSEL */
+.carousel-wrap{position:relative;margin:0 -1.2rem 2.2rem;}
 .carousel{
   display:flex;gap:.85rem;
   overflow-x:auto;overflow-y:hidden;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   padding-bottom:.5rem;
-  margin:0 -1.2rem 2.2rem;
   padding-left:1.2rem;padding-right:1.2rem;
   scrollbar-width:none;
+  scroll-behavior:smooth;
 }
 .carousel::-webkit-scrollbar{display:none;}
+.carousel-nav{
+  position:absolute;top:38%;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(13,22,32,.88);
+  border:1px solid rgba(237,232,221,.16);
+  color:var(--text);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;z-index:5;
+  transform:translateY(-50%);
+  backdrop-filter:blur(6px);
+  box-shadow:0 4px 16px rgba(0,0,0,.4);
+  opacity:0;pointer-events:none;
+  transition:opacity .25s,background .2s,transform .15s;
+}
+.carousel-nav.visible{opacity:1;pointer-events:auto;}
+.carousel-nav:hover{background:var(--accent);border-color:var(--accent);}
+.carousel-nav--prev{left:.5rem;}
+.carousel-nav--next{right:.5rem;}
+.carousel-nav svg{width:20px;height:20px;}
+/* Fade nas bordas para indicar scroll */
+.carousel-wrap::before,.carousel-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:32px;
+  pointer-events:none;z-index:4;
+  opacity:0;transition:opacity .25s;
+}
+.carousel-wrap::before{left:0;background:linear-gradient(90deg,#0d1620,transparent);}
+.carousel-wrap::after{right:0;background:linear-gradient(-90deg,#0d1620,transparent);}
+.carousel-wrap.can-prev::before,.carousel-wrap.can-next::after{opacity:1;}
 .prod-card{
   flex-shrink:0;
   width:220px;
@@ -680,7 +709,14 @@ a.foot__s:hover{color:var(--accent);}
 
   <!-- COMO POSSO TE AJUDAR HOJE -->
   <p class="sec-label">Como posso te ajudar hoje:</p>
-  <div class="carousel">
+  <div class="carousel-wrap" id="ka-carousel-wrap">
+  <button type="button" class="carousel-nav carousel-nav--prev" id="ka-car-prev" aria-label="Anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button type="button" class="carousel-nav carousel-nav--next" id="ka-car-next" aria-label="Próximo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div class="carousel" id="ka-carousel">
     <button type="button" class="prod-card" onclick="kaPdpOpen('livro')">
       <div class="prod-card__img"><img src="/images/livro-mockup-hands.jpg" alt="Livro Marca com Essência©" loading="lazy"></div>
       <p class="prod-card__title">LIVRO<br>MARCA COM ESSÊNCIA©</p>
@@ -708,6 +744,7 @@ a.foot__s:hover{color:var(--accent);}
       <p class="prod-card__title">DIAGNÓSTICO<br>Gratuito · quiz de marca</p>
       <span class="prod-card__btn">Ver detalhes</span>
     </button>
+  </div>
   </div>
 
   <!-- MINI CARDS -->
@@ -848,6 +885,36 @@ a.foot__s:hover{color:var(--accent);}
   </footer>
 
 </div>
+
+<script>
+// Setas de navegação do carrossel de produtos
+(function(){
+  var carousel=document.getElementById('ka-carousel');
+  var wrap=document.getElementById('ka-carousel-wrap');
+  var prev=document.getElementById('ka-car-prev');
+  var next=document.getElementById('ka-car-next');
+  if(!carousel||!prev||!next) return;
+  function update(){
+    var canPrev=carousel.scrollLeft>10;
+    var canNext=carousel.scrollLeft+carousel.clientWidth<carousel.scrollWidth-10;
+    prev.classList.toggle('visible',canPrev);
+    next.classList.toggle('visible',canNext);
+    wrap.classList.toggle('can-prev',canPrev);
+    wrap.classList.toggle('can-next',canNext);
+  }
+  function scrollBy(dir){
+    var card=carousel.querySelector('.prod-card');
+    var step=card?card.offsetWidth+14:240;
+    carousel.scrollBy({left:dir*step,behavior:'smooth'});
+  }
+  prev.addEventListener('click',function(){scrollBy(-1);});
+  next.addEventListener('click',function(){scrollBy(1);});
+  carousel.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  document.addEventListener('DOMContentLoaded',update);
+  setTimeout(update,300);
+})();
+</script>
 
 <!-- PRODUCT DETAIL MODAL -->
 <div id="ka-pdp" class="pdp-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-pdp-title">
