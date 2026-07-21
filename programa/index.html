@@ -141,8 +141,10 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1159280306206203');
-fbq('track', 'PageView');
+window.KA_PIXEL_ID='1159280306206203';
 </script>
+<script src="/js/ka-meta.js" defer></script>
+<script>window.addEventListener('DOMContentLoaded',function(){if(window.kaMetaTrack)kaMetaTrack('PageView');else if(typeof fbq==='function')fbq('track','PageView');});</script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1159280306206203&ev=PageView&noscript=1"
 /></noscript>
@@ -150,11 +152,12 @@ src="https://www.facebook.com/tr?id=1159280306206203&ev=PageView&noscript=1"
 </head><body>
 
 <script>
-// Meta Pixel — evento Lead em qualquer clique em botão WhatsApp
+// Meta Pixel + CAPI — evento Lead em qualquer clique em botão WhatsApp
 document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){
     el.addEventListener('click',function(){
-      if(typeof fbq==='function') fbq('track','Lead');
+      if(typeof kaMetaTrack==='function') kaMetaTrack('Lead',{content_name:'WhatsApp Programa'});
+      else if(typeof fbq==='function') fbq('track','Lead');
     });
   });
 });
