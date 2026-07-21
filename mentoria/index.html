@@ -471,6 +471,17 @@ src="https://www.facebook.com/tr?id=831975195273318&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head><body>
 
+<script>
+// Meta Pixel — evento Lead em qualquer clique em botão WhatsApp
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){
+    el.addEventListener('click',function(){
+      if(typeof fbq==='function') fbq('track','Lead');
+    });
+  });
+});
+</script>
+
 <!-- TARJA TICKER -->
 <style>
 .ka-ticker{position:fixed;top:0;left:0;right:0;z-index:1001;background:#C47830;height:2rem;overflow:hidden;display:flex;align-items:center;}
@@ -1496,6 +1507,9 @@ document.addEventListener('DOMContentLoaded',function(){
 
     var btn=form.querySelector('button[type=submit]');
     if(btn){btn.disabled=true;btn.textContent='Aguarde...';}
+
+    // Meta Pixel — dispara evento Lead ao converter no formulário
+    if(typeof fbq==='function') fbq('track','Lead');
 
     // 1) Netlify Forms (backup)
     var p=new URLSearchParams();
