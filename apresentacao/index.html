@@ -1,0 +1,945 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Apresentação KA | Inteligência para Marcas · VM Rocks</title>
+<meta name="description" content="Apresentação institucional KA | Inteligência para Marcas e VM Rocks. Projeto Marca com Essência©: posicionamento, identidade verbal e identidade visual em 4 fases.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://kellyalbert.com.br/apresentacao/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Apresentação KA · Marca com Essência©">
+<meta property="og:description" content="KA | Inteligência para Marcas + VM Rocks · Projeto Marca com Essência© em 4 fases.">
+<meta property="og:image" content="https://kellyalbert.com.br/images/og/og-home.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Montserrat',system-ui,-apple-system,sans-serif;
+  color:#1a1a1a;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  /* textura sutil de papel via SVG data URI (fibras) */
+  background-color:#f5f2ed;
+  background-image:
+    linear-gradient(180deg,rgba(255,255,255,.35) 0%,rgba(0,0,0,.02) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .52  0 0 0 0 .46  0 0 0 .10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/></svg>");
+}
+
+:root{
+  --paper:#f5f2ed;
+  --paper-2:#eeead9;
+  --beige-lt:#f2ecd7;
+  --beige:#e8e3ca;
+  --beige-md:#d8d4bc;
+  --olive:#a9a48f;
+  --ink:#1a1a1a;
+  --ink-2:#3a3a3a;
+  --ink-3:#6b6b6b;
+  --line:rgba(26,26,26,.9);
+  --border-soft:rgba(26,26,26,.15);
+}
+
+/* ── SLIDE ── */
+.slide{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  padding:4rem 5rem 6rem;
+  display:flex;
+  align-items:center;
+  scroll-snap-align:start;
+  border-bottom:1px solid rgba(26,26,26,.06);
+}
+.slide-inner{
+  width:100%;
+  max-width:1220px;
+  margin:0 auto;
+}
+.slide h1,.slide h2,.slide h3{
+  font-family:'Montserrat',sans-serif;
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:-.005em;
+  margin:0;
+  line-height:1.05;
+}
+.slide h1{font-size:clamp(2.4rem,6vw,5rem);}
+.slide h2{font-size:clamp(2rem,4.5vw,3.4rem);}
+.slide h3{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;}
+.slide p{font-size:1.02rem;color:var(--ink-2);margin:0 0 .9rem;line-height:1.65;}
+.slide strong{font-weight:700;color:var(--ink);}
+.slide ul{margin:.5rem 0 0;padding:0 0 0 1.15rem;}
+.slide li{font-size:1rem;color:var(--ink-2);margin-bottom:.55rem;line-height:1.55;}
+
+/* ── FOOTER de slide (branding fixo) ── */
+.slide-foot{
+  position:absolute;
+  left:5rem;right:5rem;bottom:1.6rem;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:1rem;
+}
+.slide-foot__method{
+  font-size:.7rem;letter-spacing:.24em;color:var(--ink-3);
+  font-weight:500;text-transform:uppercase;
+  line-height:1.5;
+}
+.slide-foot__method strong{color:var(--ink);font-weight:800;}
+.slide-foot__logos{display:flex;align-items:center;gap:1rem;}
+.logo-ka{display:inline-flex;align-items:center;gap:.55rem;}
+.logo-ka__mark{
+  font-family:'Playfair Display',serif;
+  font-size:1.35rem;font-weight:700;color:var(--ink);line-height:1;
+}
+.logo-ka__txt{
+  font-size:.5rem;letter-spacing:.06em;color:var(--ink);
+  line-height:1.2;text-transform:uppercase;font-weight:600;
+  border-left:1px solid var(--ink);padding-left:.35rem;
+}
+.logo-vm{display:inline-flex;align-items:center;gap:.35rem;}
+.logo-vm__mark{
+  font-family:'Brush Script MT','Bradley Hand',cursive;
+  font-size:1.15rem;font-weight:700;color:var(--ink);
+  transform:rotate(-2deg);
+}
+.logo-vm__txt{
+  font-size:.42rem;letter-spacing:.14em;color:var(--ink);
+  line-height:1;text-transform:uppercase;font-weight:600;
+}
+.logo-sep{
+  width:1px;height:26px;background:var(--ink);
+  opacity:.6;
+}
+
+/* ── SLIDE COVER (título centralizado) ── */
+.cover{
+  text-align:left;
+  display:flex;flex-direction:column;justify-content:center;
+  gap:.5rem;
+}
+.cover--center{text-align:center;align-items:center;}
+.cover__eyebrow{
+  font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin-bottom:.6rem;
+}
+.cover__logos{
+  display:flex;align-items:center;justify-content:center;gap:2.5rem;
+  margin:2rem 0 0;
+}
+.cover__logo-big{transform:scale(1.7);transform-origin:center;}
+
+/* ── LAYOUT 2 COLUNAS (texto + imagem/card) ── */
+.two-col{
+  display:grid;grid-template-columns:1.15fr 1fr;
+  gap:3.5rem;align-items:center;
+}
+.two-col--flip{grid-template-columns:1fr 1.15fr;}
+.two-col__img{
+  width:100%;height:auto;border-radius:6px;
+  display:block;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+/* ── HEADER de slide (título grande em cima) ── */
+.slide-title{
+  font-size:clamp(2.2rem,4.8vw,3.6rem);
+  font-weight:800;line-height:1.02;
+  margin:0 0 .3rem;color:var(--ink);
+}
+.slide-subtitle{
+  font-size:1rem;color:var(--ink-3);font-weight:500;
+  letter-spacing:.02em;margin:0 0 1.6rem;
+}
+.slide-rule{
+  width:100%;height:1px;background:var(--line);
+  margin:0 0 1.5rem;
+}
+
+/* ── CAIXA (bege) ── */
+.box{
+  background:#fff;
+  border:1px solid var(--border-soft);
+  border-radius:4px;
+  padding:2.2rem 2.4rem;
+}
+.box--beige{background:var(--beige-lt);}
+.box--olive{background:var(--olive);color:#fff;}
+.box--olive p,.box--olive li{color:rgba(255,255,255,.9);}
+.box--olive strong{color:#fff;}
+
+/* ── TRIPÉ (Base Estratégica) ── */
+.tripe{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin-top:2rem;
+}
+.tripe__col{
+  background:var(--beige-lt);
+  border-radius:12px;padding:1.6rem 1.4rem;
+  text-align:center;
+  border:1px solid rgba(0,0,0,.05);
+}
+.tripe__col:nth-child(2){background:var(--beige);}
+.tripe__col:nth-child(3){background:var(--olive);color:#fff;}
+.tripe__col:nth-child(3) .tripe__desc{color:rgba(255,255,255,.9);}
+.tripe__label{
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:.4rem;font-weight:500;
+}
+.tripe__col:nth-child(3) .tripe__label{color:rgba(255,255,255,.7);}
+.tripe__name{
+  font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;
+  margin:0 0 .8rem;color:var(--ink);line-height:1.1;
+}
+.tripe__col:nth-child(3) .tripe__name{color:#fff;}
+.tripe__desc{
+  font-size:.88rem;color:var(--ink-2);line-height:1.5;margin:0;
+}
+.tripe__top{
+  background:var(--beige);
+  border-radius:12px;padding:1.2rem;text-align:center;
+  margin-bottom:2rem;
+  font-size:1.02rem;color:var(--ink);font-weight:500;
+}
+
+/* ── TIMELINE 4 FASES ── */
+.fases{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:.5rem;margin-top:2.5rem;position:relative;
+}
+.fase{
+  padding:1.8rem 1.4rem;
+  border-radius:6px;text-align:center;
+  position:relative;
+}
+.fase:nth-child(1){background:var(--beige-lt);}
+.fase:nth-child(2){background:var(--beige);}
+.fase:nth-child(3){background:var(--beige-md);}
+.fase:nth-child(4){background:var(--olive);color:#fff;}
+.fase__topic{
+  font-size:.9rem;font-weight:600;color:var(--ink);
+  margin:0 0 1.2rem;line-height:1.35;min-height:3em;
+}
+.fase:nth-child(4) .fase__topic{color:#fff;}
+.fase__num{
+  font-size:1.5rem;font-weight:800;color:var(--ink);
+  letter-spacing:.02em;margin:0;line-height:1;
+}
+.fase:nth-child(4) .fase__num{color:#fff;}
+.fase__label{
+  font-size:.92rem;color:var(--ink-2);margin:.3rem 0 0;
+}
+.fase:nth-child(4) .fase__label{color:rgba(255,255,255,.85);}
+
+/* ── FASE DETALHE (arrow header) ── */
+.fase-detail{
+  position:relative;
+}
+.fase-detail__head{
+  background:var(--beige-lt);
+  padding:1.4rem 2rem 1.4rem 2rem;
+  display:flex;align-items:center;gap:1.4rem;
+  margin-bottom:2.2rem;
+  clip-path:polygon(0 0, calc(100% - 60px) 0, 100% 50%, calc(100% - 60px) 100%, 0 100%);
+}
+.fase-detail__head--02{background:var(--beige);}
+.fase-detail__head--03{background:var(--beige-md);}
+.fase-detail__head--04{background:var(--olive);color:#fff;}
+.fase-detail__num{
+  font-size:1.05rem;font-weight:800;line-height:1;
+  color:var(--ink);
+}
+.fase-detail__num small{
+  display:block;font-weight:500;font-size:.75rem;
+  color:var(--ink-3);letter-spacing:.02em;margin-top:.15rem;
+}
+.fase-detail__head--04 .fase-detail__num,
+.fase-detail__head--04 .fase-detail__num small{color:#fff;}
+.fase-detail__dots{
+  color:var(--ink-3);letter-spacing:.4em;font-size:.5rem;
+}
+.fase-detail__title{
+  font-size:1.6rem;font-weight:800;color:var(--ink);
+  letter-spacing:.01em;line-height:1.1;margin:0;
+}
+.fase-detail__head--04 .fase-detail__title{color:#fff;}
+.fase-cols{
+  display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;
+}
+.fase-cols__col h4{
+  font-size:1.02rem;font-weight:700;margin:0 0 .5rem;color:var(--ink);
+}
+.fase-cols__col p{font-size:.95rem;color:var(--ink-2);}
+
+/* ── CLIENTES (grid tipográfico) ── */
+.clientes-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.9rem 2rem;
+  margin-top:.7rem;
+}
+.cliente-item{
+  padding:.8rem 1rem;
+  background:#fff;
+  border:1px solid var(--border-soft);
+  border-radius:3px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:600;font-size:.92rem;
+  color:var(--ink);text-align:center;
+  letter-spacing:.02em;
+  transition:transform .2s;
+}
+.cliente-item:hover{transform:translateY(-1px);}
+
+/* ── FRASE / QUOTE ── */
+.pull{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-style:italic;
+  color:var(--ink);line-height:1.35;
+  padding:1.4rem 0 0;
+  border-top:1px solid var(--border-soft);
+  margin-top:1.5rem;
+}
+
+/* ── HOW WE WORK (dividido em 2 blocos) ── */
+.how-blocks{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  margin-top:2rem;
+}
+.how-block{
+  padding:2rem 2rem;
+  border-radius:4px;
+  border:1px solid var(--border-soft);
+  background:#fff;
+}
+.how-block--ka{background:var(--beige-lt);}
+.how-block--vm{background:#fff;border:1.5px solid var(--olive);}
+.how-block__logo{
+  display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1rem;
+}
+.how-block h3{font-size:1.15rem;margin:0 0 .8rem;letter-spacing:.02em;text-transform:uppercase;}
+.how-block p{font-size:.92rem;color:var(--ink-2);margin:0;}
+.how-block__resp{
+  margin-top:1.2rem;padding-top:1.2rem;
+  border-top:1px solid var(--border-soft);
+  font-size:.9rem;color:var(--ink);font-weight:600;
+}
+
+/* ── CASES gallery ── */
+.cases-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;
+  margin-top:1.8rem;
+}
+.case-card{
+  border-radius:6px;overflow:hidden;
+  background:#fff;
+  border:1px solid var(--border-soft);
+  display:flex;flex-direction:column;
+}
+.case-card__img{
+  width:100%;aspect-ratio:16/10;object-fit:cover;
+  display:block;
+}
+.case-card__body{padding:1rem 1.2rem 1.2rem;}
+.case-card__brand{
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 .3rem;
+}
+.case-card__t{
+  font-size:.95rem;font-weight:700;color:var(--ink);margin:0;line-height:1.3;
+}
+
+/* ── CTA fechamento ── */
+.cta-final{
+  text-align:center;
+}
+.cta-final__pre{
+  font-size:1.05rem;color:var(--ink-2);
+  max-width:640px;margin:0 auto 1.6rem;line-height:1.6;
+}
+.cta-final__mid{
+  font-size:1.4rem;color:var(--ink);font-weight:600;
+  margin:0 0 1.4rem;
+}
+.cta-final__big{
+  font-size:clamp(2.4rem,6vw,4.2rem);
+  font-weight:800;color:var(--ink);
+  letter-spacing:-.01em;margin:0 0 2.5rem;
+  line-height:1;
+}
+
+/* ── PROGRESS BAR (topo) ── */
+.progress{
+  position:fixed;top:0;left:0;height:3px;
+  background:var(--olive);width:0%;z-index:100;
+  transition:width .1s linear;
+}
+
+/* ── NAV BUTTONS (fixed side) ── */
+.nav-btns{
+  position:fixed;right:1.2rem;bottom:1.2rem;
+  display:flex;flex-direction:column;gap:.5rem;
+  z-index:50;
+}
+.nav-btns button{
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid var(--border-soft);
+  background:rgba(255,255,255,.9);backdrop-filter:blur(6px);
+  color:var(--ink);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .15s;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+.nav-btns button:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px);}
+.nav-btns svg{width:18px;height:18px;}
+
+/* ═══════════ MOBILE ═══════════ */
+@media(max-width:900px){
+  .slide{padding:3rem 1.5rem 5rem;min-height:auto;}
+  .slide-foot{left:1.5rem;right:1.5rem;bottom:1rem;}
+  .slide h1{font-size:2.4rem;}
+  .slide h2{font-size:2rem;}
+  .slide h3{font-size:1.4rem;}
+  .slide-title{font-size:2rem;}
+  .two-col,.two-col--flip{grid-template-columns:1fr;gap:2rem;}
+  .tripe{grid-template-columns:1fr;}
+  .fases{grid-template-columns:1fr;}
+  .fase-cols{grid-template-columns:1fr;gap:1.4rem;}
+  .how-blocks{grid-template-columns:1fr;}
+  .cases-grid{grid-template-columns:1fr;}
+  .clientes-grid{grid-template-columns:1fr 1fr;}
+  .fase-detail__head{
+    padding:1.2rem 1.5rem;
+    clip-path:none;
+    border-radius:6px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.5rem;
+  }
+  .fase-detail__dots{display:none;}
+  .cover__logos{flex-direction:column;gap:1.5rem;}
+  .cover__logo-big{transform:scale(1.2);}
+  .box{padding:1.5rem 1.4rem;}
+  .pull{font-size:1.2rem;}
+  .nav-btns{display:none;}
+  .slide-foot__method{font-size:.6rem;letter-spacing:.18em;}
+}
+@media(max-width:640px){
+  .slide{padding:2.5rem 1.2rem 4.5rem;}
+  .slide-foot{left:1.2rem;right:1.2rem;flex-direction:column;gap:.6rem;text-align:center;}
+}
+</style>
+</head><body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ═══════ SLIDE 1 — CAPA (logos KA + VM) ═══════ -->
+<section class="slide" id="s1">
+  <div class="slide-inner cover cover--center" style="justify-content:center;min-height:80vh;">
+    <div class="cover__logos">
+      <div class="logo-ka cover__logo-big">
+        <span class="logo-ka__mark">KA</span>
+        <span class="logo-ka__txt">Inteligência<br>Para Marcas</span>
+      </div>
+      <div class="logo-sep" style="height:60px;"></div>
+      <div class="logo-vm cover__logo-big">
+        <div>
+          <div class="logo-vm__mark" style="font-size:1.7rem;">VM Rocks</div>
+          <div class="logo-vm__txt" style="font-size:.55rem;">Design &amp; Visual Merchandising</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 2 — TÍTULO ═══════ -->
+<section class="slide" id="s2">
+  <div class="slide-inner cover cover--center" style="justify-content:center;min-height:70vh;">
+    <h1 style="font-size:clamp(3rem,8vw,6rem);line-height:1;">APRESENTAÇÃO<br>INSTITUCIONAL</h1>
+    <div style="width:100%;max-width:760px;margin:2.5rem auto 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1px 1.4fr;">
+      <div style="padding:1.2rem 1rem;">
+        <p style="font-size:.85rem;font-weight:700;margin:0 0 .3rem;letter-spacing:.02em;">QUEM SOMOS:</p>
+        <p style="font-size:.85rem;margin:0;color:var(--ink-2);">KA · Kelly Albert<br>VM Rocks · Gabi Lucato</p>
+      </div>
+      <div style="background:var(--line);"></div>
+      <div style="padding:1.2rem 1rem;">
+        <p style="font-size:.85rem;font-weight:700;margin:0 0 .3rem;letter-spacing:.02em;">O QUE FAZEMOS:</p>
+        <p style="font-size:.85rem;margin:0;color:var(--ink-2);">Posicionamento Estratégico de Marca,<br>Identidade Verbal e Identidade Visual</p>
+      </div>
+    </div>
+    <div style="margin-top:2rem;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-3);font-weight:600;">
+      MÉTODO MARCA COM ESSÊNCIA<sup>©</sup>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 3 — SOBRE A KA (divisor) ═══════ -->
+<section class="slide" id="s3">
+  <div class="slide-inner cover" style="min-height:70vh;justify-content:center;">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:3rem;">
+      <div style="text-align:right;">
+        <p style="font-size:1.6rem;font-weight:600;color:var(--ink);margin:0;letter-spacing:.02em;">SOBRE A</p>
+        <h2 style="font-size:clamp(2.4rem,5vw,3.6rem);margin:0;">KELLY ALBERT</h2>
+      </div>
+      <div style="width:1px;height:120px;background:var(--line);"></div>
+      <div class="logo-ka" style="transform:scale(2);transform-origin:left center;">
+        <span class="logo-ka__mark" style="font-size:2rem;">KA</span>
+        <span class="logo-ka__txt">Inteligência<br>Para Marcas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 4 — KELLY ALBERT ═══════ -->
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <h2 style="font-size:clamp(2.8rem,6vw,4.5rem);margin-bottom:1.8rem;">KELLY ALBERT</h2>
+    <div class="two-col" style="align-items:flex-start;">
+      <div>
+        <p><strong>Fundadora da KA | Inteligência para Marcas</strong>, um escritório de branding especializado em posicionamento e reposicionamento de marcas, que transforma empresas e negócios com base na essência, na clareza e, acima de tudo, na verdade de cada marca.</p>
+        <p>Trabalhou junto a marcas renomadas como <strong>McDonald's, Sebrae, Atacadão do Grupo Carrefour, SUVINIL, Grupo Ramarim, Band FM</strong> entre outras.</p>
+        <p>Com mais de <strong>20 anos de experiência</strong>, publicitária de formação, com MBA em Gestão Estratégica de Negócios pela <strong>FGV/SP</strong> e especializações pela <strong>ESPM/SP</strong>, Kelly sempre buscou unir profundidade, técnica e visão estratégica para transformar marcas a partir do que elas realmente são.</p>
+      </div>
+      <div>
+        <img src="/images/kelly-bio.jpg" alt="Kelly Albert" class="two-col__img" style="max-width:340px;margin-left:auto;display:block;">
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;">
+      <h3 style="font-size:1.5rem;margin-bottom:.4rem;">EMPRESAS QUE JÁ AJUDOU</h3>
+      <div class="slide-rule" style="margin-bottom:1.2rem;"></div>
+      <div class="clientes-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="cliente-item">McDonald's</div>
+        <div class="cliente-item">Atacadão</div>
+        <div class="cliente-item">SEBRAE</div>
+        <div class="cliente-item">Suvinil</div>
+        <div class="cliente-item">Ramarim</div>
+        <div class="cliente-item">ComfortFlex</div>
+        <div class="cliente-item">Usaflex</div>
+        <div class="cliente-item">Band FM</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 5 — SOBRE A VM ROCKS ═══════ -->
+<section class="slide" id="s5">
+  <div class="slide-inner cover" style="min-height:70vh;justify-content:center;">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:3rem;">
+      <div style="text-align:right;">
+        <p style="font-size:1.6rem;font-weight:600;color:var(--ink);margin:0;letter-spacing:.02em;">SOBRE A</p>
+        <h2 style="font-size:clamp(2.4rem,5vw,3.6rem);margin:0;">GABI LUCATO</h2>
+      </div>
+      <div style="width:1px;height:120px;background:var(--line);"></div>
+      <div class="logo-vm" style="transform:scale(2);transform-origin:left center;">
+        <div>
+          <div class="logo-vm__mark" style="font-size:1.6rem;">VM Rocks</div>
+          <div class="logo-vm__txt" style="font-size:.52rem;">Design &amp; Visual Merchandising</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 6 — GABI LUCATO ═══════ -->
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <h2 style="font-size:clamp(2.8rem,6vw,4.5rem);margin-bottom:1.8rem;">GABI LUCATO</h2>
+    <div class="two-col" style="align-items:flex-start;">
+      <div>
+        <p><strong>Fundadora da VM Rocks</strong>, uma consultoria de Visual Merchandising e Design. Gabi Lucato atua como designer e VM, com olhar apurado para comunicação de marcas e como estas se manifestam nos ambientes comerciais.</p>
+        <p>Com <strong>20 anos de experiência</strong>, trabalhou com marcas renomadas como <strong>Grupo Boticário, Grendene, Racco Cosméticos, Grupo Ramarim</strong>. Sua expertise vai desde comunicação de marca, design gráfico, a projetos de lojas tendo como foco a jornada do cliente.</p>
+        <div class="pull">"Garantir que a marca se manifeste com todo o seu potencial, trazendo a construção dessa imagem através dos elementos, cores, arte e técnica" — é o seu objetivo principal.</div>
+      </div>
+      <div>
+        <div style="max-width:340px;margin-left:auto;">
+          <h3 style="font-size:1.5rem;margin-bottom:.4rem;">EMPRESAS QUE JÁ AJUDOU</h3>
+          <div class="slide-rule" style="margin-bottom:1.2rem;"></div>
+          <div class="clientes-grid">
+            <div class="cliente-item">Grupo Boticário</div>
+            <div class="cliente-item">Grendene</div>
+            <div class="cliente-item">Lumen Design</div>
+            <div class="cliente-item">Moncloa</div>
+            <div class="cliente-item" style="grid-column:1/-1;">Grupo Ramarim</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 7 — COMO TRABALHAMOS JUNTAS ═══════ -->
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <h2 class="slide-title">COMO TRABALHAMOS JUNTAS</h2>
+    <div class="slide-rule"></div>
+    <p style="max-width:820px;font-size:1.05rem;">A parceria entre <strong>KA | Inteligência para Marcas</strong> e <strong>VM Rocks</strong> une <strong>estratégia e estética</strong> em um único movimento: primeiro revelamos a essência e a base estratégica da marca; em seguida, traduzimos tudo isso em expressão visual coerente com o posicionamento construído.</p>
+    <div class="how-blocks">
+      <div class="how-block how-block--ka">
+        <div class="how-block__logo"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+        <h3>Base Estratégica &amp; Identidade Verbal</h3>
+        <p>Sob a gestão de <strong>Kelly Albert</strong>, a KA é responsável pela essência, propósito, valores, personalidade, arquétipo, narrativa, mensagens-chave, direcionadores estratégicos e linguagem verbal — a base que orientará todas as futuras decisões de posicionamento e comunicação.</p>
+        <div class="how-block__resp">Essência · Posicionamento · Identidade Verbal · Narrativa</div>
+      </div>
+      <div class="how-block how-block--vm">
+        <div class="how-block__logo"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+        <h3>Direção Criativa &amp; Identidade Visual</h3>
+        <p>Sob a gestão de <strong>Gabi Lucato</strong>, a VM Rocks fica responsável pela direção criativa, moodboard estratégico e identidade visual — desenvolvendo os elementos gráficos e estéticos que traduzem a essência da marca em sua expressão visual.</p>
+        <div class="how-block__resp">Moodboard · Logo · Paleta · Tipografia · Aplicações</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+      <div class="logo-sep"></div>
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 8 — PROJETO MARCA COM ESSÊNCIA (capa) ═══════ -->
+<section class="slide" id="s8">
+  <div class="slide-inner cover" style="min-height:70vh;justify-content:center;">
+    <p style="font-size:1.1rem;color:var(--ink-3);margin:0 0 .8rem;font-weight:500;letter-spacing:.02em;">O PROJETO DE POSICIONAMENTO ESTRATÉGICO DE MARCA:</p>
+    <h1 style="font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.01em;line-height:1;">MARCA COM<br>ESSÊNCIA<sup style="font-size:.5em;">©</sup></h1>
+    <div class="pull" style="max-width:720px;margin:2rem 0 0;border-top:none;padding:0;font-size:1.3rem;">"Uma marca não se constrói pela aparência.<br>Ela se revela pela essência."</div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 9 — MÉTODO / BASE ESTRATÉGICA (TRIPÉ) ═══════ -->
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <h2 class="slide-title" style="text-align:center;">BASE ESTRATÉGICA DA MARCA</h2>
+    <p style="text-align:center;color:var(--ink-3);margin-bottom:1rem;font-size:.95rem;letter-spacing:.02em;">Fundamentada no Método <strong>MARCA COM ESSÊNCIA<sup>©</sup></strong></p>
+    <div class="tripe__top">Construída a partir do tripé abaixo</div>
+    <div class="tripe">
+      <div class="tripe__col">
+        <p class="tripe__label">Tripé</p>
+        <h3 class="tripe__name">ESSÊNCIA</h3>
+        <p class="tripe__desc">O que a marca é na sua raiz — o alicerce que sustenta tudo o que vem depois.</p>
+      </div>
+      <div class="tripe__col">
+        <p class="tripe__label">Tripé</p>
+        <h3 class="tripe__name">CLAREZA</h3>
+        <p class="tripe__desc">O que a marca representa e como se posiciona diante do mercado.</p>
+      </div>
+      <div class="tripe__col">
+        <p class="tripe__label">Tripé</p>
+        <h3 class="tripe__name">DIREÇÃO</h3>
+        <p class="tripe__desc">Como a marca vai se expressar no mundo com coerência e potência.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+      <div class="logo-sep"></div>
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 10 — AS 4 FASES ═══════ -->
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <h2 class="slide-title" style="text-align:center;">DIVIDIMOS O PROJETO EM <span style="color:var(--olive);">04 FASES</span></h2>
+    <div class="slide-rule" style="max-width:200px;margin:.5rem auto 2rem;background:var(--olive);height:2px;"></div>
+    <div class="fases">
+      <div class="fase">
+        <p class="fase__topic">Revelação da Essência<br><em style="font-weight:400;font-size:.82rem;">(Alicerce)</em></p>
+        <p class="fase__num">FASE 01</p>
+        <p class="fase__label">Essência</p>
+      </div>
+      <div class="fase">
+        <p class="fase__topic">Base Estratégica da Marca, Posicionamento e Identidade Verbal</p>
+        <p class="fase__num">FASE 02</p>
+        <p class="fase__label">Clareza + Direção</p>
+      </div>
+      <div class="fase">
+        <p class="fase__topic">Direção Criativa, Moodboard e Identidade Visual</p>
+        <p class="fase__num">FASE 03</p>
+        <p class="fase__label">Clareza + Direção</p>
+      </div>
+      <div class="fase">
+        <p class="fase__topic">Plano de Comunicação<br><em style="font-weight:400;font-size:.82rem;">(Apresentação)</em></p>
+        <p class="fase__num">FASE 04</p>
+        <p class="fase__label">Direção</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+      <div class="logo-sep"></div>
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 11 — FASE 01 ═══════ -->
+<section class="slide" id="s11">
+  <div class="slide-inner fase-detail">
+    <div class="fase-detail__head">
+      <div class="fase-detail__num">FASE 01<small>Essência</small></div>
+      <span class="fase-detail__dots">•••</span>
+      <h3 class="fase-detail__title">REVELAÇÃO DA ESSÊNCIA</h3>
+    </div>
+    <p style="max-width:900px;">A Revelação de Essência é a etapa que revela o que sustenta a marca por dentro — é o <strong>alicerce</strong>. Sem ela, qualquer identidade vira aparência. Com ela, tudo o que vem depois ganha <strong>coerência, clareza e potência</strong>.</p>
+    <p style="font-weight:700;margin-top:1.5rem;">O PROCESSO ACONTECE EM DUAS ETAPAS COMPLEMENTARES:</p>
+    <div class="fase-cols" style="margin-top:1.5rem;">
+      <div class="fase-cols__col">
+        <h4>1. IKIGAI Empresarial</h4>
+        <p style="font-style:italic;color:var(--ink-3);margin-bottom:.6rem;">(Coleta de Dados por Formulário)</p>
+        <p>É um conceito japonês que significa "a razão de ser". Através dele mapeamos, junto a cada um dos fundadores: <strong>O que ama</strong> (paixão), <strong>No que é bom</strong> (vocação), <strong>O que o mundo precisa</strong> (missão) e <strong>Pelo que pode ser recompensado</strong> (profissão).</p>
+      </div>
+      <div class="fase-cols__col" style="border-left:1px solid var(--border-soft);padding-left:2.5rem;">
+        <h4>2. Mergulho Estratégico</h4>
+        <p style="font-style:italic;color:var(--ink-3);margin-bottom:.6rem;">(Coleta de Dados por Entrevista)</p>
+        <ul>
+          <li>Entrevista com os sócios fundadores para entender a história pessoal e profissional de cada um</li>
+          <li>Transcrição e interpretação estratégica</li>
+        </ul>
+        <p style="margin-top:.8rem;">Transformamos a trajetória do fundador ou da liderança em <strong>matéria-prima estratégica</strong>: crenças, ciclos, visões de mundo e as transformações que desejam provocar.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 12 — FASE 02 ═══════ -->
+<section class="slide" id="s12">
+  <div class="slide-inner fase-detail">
+    <div class="fase-detail__head fase-detail__head--02">
+      <div class="fase-detail__num">FASE 02<small>Clareza + Direção</small></div>
+      <span class="fase-detail__dots">•••</span>
+      <h3 class="fase-detail__title">BASE ESTRATÉGICA DA MARCA<br>E IDENTIDADE VERBAL</h3>
+    </div>
+    <div class="fase-cols">
+      <div class="fase-cols__col">
+        <p>A Base Estratégica é o documento que reúne <strong>toda a inteligência da marca</strong>, transformando informações profundas em diretrizes claras, utilizáveis e replicáveis em qualquer frente de comunicação, marketing ou identidade visual.</p>
+        <p style="margin-top:1rem;">A coleta de dados pode ser realizada por <strong>formulário</strong> ou <strong>entrevistas online</strong>.</p>
+      </div>
+      <div class="fase-cols__col" style="border-left:1px solid var(--border-soft);padding-left:2.5rem;">
+        <h4 style="margin-bottom:1rem;">CONTEMPLA</h4>
+        <ul>
+          <li>Causa, liderança e tribo</li>
+          <li>Golden Circle (Porquê / Como / O quê)</li>
+          <li>Arquétipos de marca</li>
+          <li>Pilares estratégicos da marca</li>
+          <li>História da marca</li>
+          <li>Posicionamento</li>
+          <li>Público-alvo e personas</li>
+          <li>Manifesto institucional</li>
+          <li><strong>Identidade Verbal</strong> (Tom de voz, Vocabulário, Fraseado)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 13 — FASE 03 ═══════ -->
+<section class="slide" id="s13">
+  <div class="slide-inner fase-detail">
+    <div class="fase-detail__head fase-detail__head--03">
+      <div class="fase-detail__num">FASE 03<small>Clareza + Direção</small></div>
+      <span class="fase-detail__dots">•••</span>
+      <h3 class="fase-detail__title">IDENTIDADE VISUAL</h3>
+    </div>
+    <p style="max-width:900px;">A etapa de Direção Criativa e Identidade Visual traduz a Base Estratégica da Marca em <strong>expressão estética</strong>, garantindo coerência entre essência, posicionamento e percepção visual.</p>
+    <p style="font-weight:700;margin-top:1.2rem;">ELA É COMPOSTA POR QUATRO MOMENTOS: <em style="font-weight:400;">PESQUISA, REUNIÃO DE ALINHAMENTO, CRIAÇÃO E APRESENTAÇÃO FINAL.</em></p>
+    <div class="fase-cols" style="margin-top:1.5rem;">
+      <div class="fase-cols__col">
+        <div style="margin-bottom:1rem;"><h4>1. Pesquisa e Curadoria de Referências</h4></div>
+        <div style="margin-bottom:1rem;"><h4>2. Reunião de Direção Criativa</h4></div>
+        <div><h4>3. Desenvolvimento da Identidade Visual</h4>
+        <p style="margin-top:.4rem;">Propostas de logo e elementos de marca, entregues em um <strong>guia de marca</strong>.</p>
+        </div>
+      </div>
+      <div class="fase-cols__col" style="border-left:1px solid var(--border-soft);padding-left:2.5rem;">
+        <h4 style="margin-bottom:1rem;">ENTREGÁVEIS</h4>
+        <ul>
+          <li>Logo e aplicações</li>
+          <li>Paleta de Cores, tipografia e elementos de apoio</li>
+          <li>Proposta de linguagem Instagram (5 peças) entregues em Canva como templates</li>
+          <li>Documento em PDF editável + logos em versões PNG para diversas aplicações</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 14 — FASE 04 ═══════ -->
+<section class="slide" id="s14">
+  <div class="slide-inner fase-detail">
+    <div class="fase-detail__head fase-detail__head--04">
+      <div class="fase-detail__num">FASE 04<small>Direção</small></div>
+      <span class="fase-detail__dots">•••</span>
+      <h3 class="fase-detail__title">PLANO DE COMUNICAÇÃO</h3>
+    </div>
+    <p style="max-width:900px;">Nesta etapa, desenhamos um plano de comunicação completo, com <strong>pilares temáticos, formatos, calendário e direcionamento editorial</strong>. A intenção é garantir consistência mesmo com diferentes mãos executando.</p>
+    <p style="font-weight:700;margin-top:1.5rem;">O PROCESSO ENVOLVE</p>
+    <div class="fase-cols" style="margin-top:1rem;">
+      <div class="fase-cols__col">
+        <ul>
+          <li>Definição dos pilares editoriais da marca</li>
+          <li>Mapeamento de formatos de conteúdo (Reels, carrosséis, vídeos, texto)</li>
+          <li>Elaboração de temas prontos por semana/mês</li>
+          <li>Documento de orientação com diretrizes práticas para equipe ou parceiros</li>
+        </ul>
+      </div>
+      <div class="fase-cols__col" style="border-left:1px solid var(--border-soft);padding-left:2.5rem;">
+        <ul>
+          <li><strong>Agentes de Inteligência Artificial para Conteúdo</strong> (para redes sociais)</li>
+          <li><strong>Agentes de Inteligência Artificial Institucional</strong> da marca</li>
+          <li><strong>Resultado:</strong> uma comunicação viva, clara e intencional com base, estrutura e propósito.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 15 — ALGUNS CASES ═══════ -->
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <h2 class="slide-title">ALGUNS CASES</h2>
+    <div class="slide-rule"></div>
+    <p style="max-width:820px;">Marcas reais transformadas pelo <strong>Método Marca com Essência<sup>©</sup></strong>, desde o posicionamento estratégico até a expressão visual completa.</p>
+    <div class="cases-grid">
+      <a class="case-card" href="/casesuvinil" target="_blank">
+        <img src="/images/livro-mockup-mesa.jpg" alt="Case Suvinil" class="case-card__img">
+        <div class="case-card__body">
+          <p class="case-card__brand">Suvinil</p>
+          <p class="case-card__t">Branding para pintores profissionais — "Pintou Parceria"</p>
+        </div>
+      </a>
+      <a class="case-card" href="/caseramarim" target="_blank">
+        <img src="/images/mentoria-turma-meet-12.jpg" alt="Case Ramarim" class="case-card__img">
+        <div class="case-card__body">
+          <p class="case-card__brand">Ramarim</p>
+          <p class="case-card__t">Reposicionamento estratégico + Brandbook com Kelly Albert</p>
+        </div>
+      </a>
+      <a class="case-card" href="/casecomfortflex" target="_blank">
+        <img src="/images/kelly-hero.jpg" alt="Case ComfortFlex" class="case-card__img">
+        <div class="case-card__body">
+          <p class="case-card__brand">ComfortFlex</p>
+          <p class="case-card__t">Brandbook completo — identidade verbal e visual</p>
+        </div>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:.92rem;color:var(--ink-3);">Ver todos os cases em <a href="/cases" style="color:var(--ink);font-weight:600;">kellyalbert.com.br/cases</a></p>
+  </div>
+  <div class="slide-foot">
+    <div class="slide-foot__method">MÉTODO MARCA<br><strong>COM ESSÊNCIA<sup>©</sup></strong></div>
+    <div class="slide-foot__logos">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+      <div class="logo-sep"></div>
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SLIDE 16 — FECHAMENTO / OBRIGADA ═══════ -->
+<section class="slide" id="s16">
+  <div class="slide-inner cta-final" style="min-height:75vh;justify-content:center;display:flex;flex-direction:column;">
+    <p class="cta-final__pre">Esse plano tem ajudado marcas a se posicionarem<br>de forma <strong>estratégica e assertiva</strong> no mercado alvo.</p>
+    <p class="cta-final__mid">Vamos nessa?</p>
+    <h1 class="cta-final__big">MUITO OBRIGADA!</h1>
+    <div class="cover__logos" style="margin-top:1rem;">
+      <div class="logo-ka"><span class="logo-ka__mark">KA</span><span class="logo-ka__txt">Inteligência<br>Para Marcas</span></div>
+      <div class="logo-sep" style="height:40px;"></div>
+      <div class="logo-vm"><div><div class="logo-vm__mark">VM Rocks</div><div class="logo-vm__txt">Design &amp; Visual Merchandising</div></div></div>
+    </div>
+    <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border-soft);max-width:520px;margin-left:auto;margin-right:auto;">
+      <p style="font-size:.82rem;color:var(--ink-3);margin:0;line-height:1.7;">
+        <strong style="color:var(--ink);">Kelly Albert</strong> · kelly@kellyalbert.com.br · <a href="https://kellyalbert.com.br" style="color:var(--ink);">kellyalbert.com.br</a><br>
+        <strong style="color:var(--ink);">Gabi Lucato</strong> · gabriela.lucato@gmail.com
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ NAV FLUTUANTE ═══════ -->
+<div class="nav-btns">
+  <button onclick="kaNav(-1)" aria-label="Slide anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <button onclick="kaNav(1)" aria-label="Próximo slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+</div>
+
+<script>
+// Progresso de leitura + navegação por setas do teclado
+(function(){
+  var slides=document.querySelectorAll('.slide');
+  var progress=document.getElementById('progress');
+  function updateProgress(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var p=(window.scrollY/h)*100;
+    if(progress) progress.style.width=Math.min(100,Math.max(0,p))+'%';
+  }
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  updateProgress();
+
+  window.kaNav=function(dir){
+    var y=window.scrollY;
+    var target=null;
+    if(dir>0){
+      for(var i=0;i<slides.length;i++){
+        if(slides[i].offsetTop>y+20){target=slides[i];break;}
+      }
+    }else{
+      for(var i=slides.length-1;i>=0;i--){
+        if(slides[i].offsetTop<y-20){target=slides[i];break;}
+      }
+    }
+    if(target) window.scrollTo({top:target.offsetTop,behavior:'smooth'});
+  };
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){e.preventDefault();kaNav(1);}
+    else if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();kaNav(-1);}
+  });
+})();
+</script>
+</body></html>
