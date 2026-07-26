@@ -397,38 +397,100 @@ body{
 
 /* ═══════════ MOBILE ═══════════ */
 @media(max-width:900px){
-  .slide{padding:3rem 1.5rem 5rem;min-height:auto;}
-  .slide-foot{left:1.5rem;right:1.5rem;bottom:1rem;}
+  .slide{padding:3rem 1.4rem 5.5rem;min-height:auto;}
+  .slide-foot{left:1.4rem;right:1.4rem;bottom:1rem;}
   .slide h1{font-size:2.4rem;}
   .slide h2{font-size:2rem;}
-  .slide h3{font-size:1.4rem;}
-  .slide-title{font-size:2rem;}
-  .two-col,.two-col--flip{grid-template-columns:1fr;gap:2rem;}
-  .tripe{grid-template-columns:1fr;}
-  .fases{grid-template-columns:1fr;}
-  .fase-cols{grid-template-columns:1fr;gap:1.4rem;}
-  .how-blocks{grid-template-columns:1fr;}
-  .cases-grid{grid-template-columns:1fr;}
-  .clientes-grid{grid-template-columns:1fr 1fr;}
+  .slide h3{font-size:1.35rem;}
+  .slide-title{font-size:1.9rem;line-height:1.05;}
+  .slide-subtitle{font-size:.9rem;margin-bottom:1.2rem;}
+  .slide p{font-size:.95rem;}
+  .slide li{font-size:.9rem;margin-bottom:.5rem;}
+  .two-col,.two-col--flip{grid-template-columns:1fr;gap:1.8rem;}
+  .two-col__img{max-width:280px!important;margin:0 auto!important;}
+  .tripe{grid-template-columns:1fr;gap:.9rem;}
+  .tripe__col{padding:1.4rem 1.2rem;}
+  .tripe__name{font-size:1.25rem;}
+  .tripe__desc{font-size:.85rem;}
+  .fases{grid-template-columns:1fr;gap:.6rem;}
+  .fase{padding:1.3rem 1.2rem;text-align:left;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:center;}
+  .fase__topic{font-size:.88rem;min-height:0;margin:0;order:2;text-align:left;}
+  .fase__num{font-size:1.15rem;order:1;text-align:left;white-space:nowrap;}
+  .fase__label{display:none;}
+  .fase-cols{grid-template-columns:1fr;gap:1.2rem;}
+  .fase-cols__col:nth-child(2){border-left:0!important;padding-left:0!important;border-top:1px solid var(--border-soft);padding-top:1.2rem!important;}
+  .how-blocks{grid-template-columns:1fr;gap:1rem;}
+  .how-block{padding:1.5rem 1.4rem;}
+  .how-block h3{font-size:1.02rem;}
+  .how-block p{font-size:.88rem;}
+  .cases-grid{grid-template-columns:1fr;gap:.9rem;}
+  .case-card__img{aspect-ratio:16/9;}
+  .clientes-grid{grid-template-columns:1fr 1fr!important;gap:.6rem 1rem;}
+  .cliente-item{font-size:.82rem;padding:.65rem .5rem;}
   .fase-detail__head{
-    padding:1.2rem 1.5rem;
-    clip-path:none;
+    padding:1rem 1.3rem;
+    clip-path:none!important;
     border-radius:6px;
     flex-direction:column;
     align-items:flex-start;
-    gap:.5rem;
+    gap:.4rem;
+    margin-bottom:1.6rem;
   }
+  .fase-detail__num{font-size:.9rem;}
+  .fase-detail__num small{font-size:.68rem;}
+  .fase-detail__title{font-size:1.3rem;line-height:1.15;}
   .fase-detail__dots{display:none;}
   .cover__logos{flex-direction:column;gap:1.5rem;}
-  .cover__logo-big{transform:scale(1.2);}
-  .box{padding:1.5rem 1.4rem;}
-  .pull{font-size:1.2rem;}
+  .cover__logos .logo-sep{width:60px!important;height:1px!important;}
+  .cover__logo-big{transform:scale(1)!important;}
+  .box{padding:1.4rem 1.3rem;}
+  .pull{font-size:1.1rem;padding-top:1rem;margin-top:1rem;}
   .nav-btns{display:none;}
-  .slide-foot__method{font-size:.6rem;letter-spacing:.18em;}
+  .slide-foot__method{font-size:.55rem;letter-spacing:.16em;line-height:1.4;}
+  .slide-foot__logos{gap:.7rem;}
+  .logo-ka__mark{font-size:1.1rem;}
+  .logo-ka__txt{font-size:.42rem;letter-spacing:.05em;}
+  .logo-vm__mark{font-size:.95rem;}
+  .logo-vm__txt{font-size:.35rem;letter-spacing:.12em;}
+  .logo-sep{height:22px;}
+  /* Slides divisores (3, 5) — reorganizar em coluna limpa */
+  #s3 .slide-inner > div,#s5 .slide-inner > div{grid-template-columns:1fr!important;gap:1.5rem!important;text-align:center!important;}
+  #s3 .slide-inner > div > div:first-child,#s5 .slide-inner > div > div:first-child{text-align:center!important;}
+  #s3 .slide-inner > div > div:nth-child(2),#s5 .slide-inner > div > div:nth-child(2){width:80px!important;height:1px!important;margin:0 auto!important;}
+  #s3 .slide-inner > div > div:last-child,#s5 .slide-inner > div > div:last-child{transform:none!important;display:flex!important;justify-content:center!important;}
+  /* Slide 2 título — QUEM SOMOS/O QUE FAZEMOS empilha */
+  #s2 .slide-inner > div{grid-template-columns:1fr!important;}
+  #s2 .slide-inner > div > div:nth-child(2){display:none!important;}
+  #s2 .slide-inner > div > div{border-bottom:1px solid var(--line);padding:1rem 0!important;}
+  #s2 .slide-inner > div > div:last-child{border-bottom:0;}
+  /* CTA final */
+  .cta-final__pre{font-size:.95rem;}
+  .cta-final__mid{font-size:1.1rem;}
+  .cta-final__big{font-size:2.6rem;margin-bottom:2rem;}
+  /* Slide 8 — capa Projeto */
+  #s8 h1{font-size:2.6rem!important;}
+  #s8 .pull{font-size:1.1rem!important;}
 }
 @media(max-width:640px){
-  .slide{padding:2.5rem 1.2rem 4.5rem;}
-  .slide-foot{left:1.2rem;right:1.2rem;flex-direction:column;gap:.6rem;text-align:center;}
+  .slide{padding:2.5rem 1.1rem 5.5rem;}
+  .slide h1{font-size:2.1rem;}
+  .slide h2{font-size:1.75rem;}
+  .slide-title{font-size:1.65rem;}
+  .slide-foot{left:1.1rem;right:1.1rem;flex-direction:column;gap:.55rem;text-align:center;}
+  .slide-foot__logos{justify-content:center;}
+  .cta-final__big{font-size:2.2rem;}
+  .fase{grid-template-columns:1fr;gap:.3rem;text-align:center;}
+  .fase__num,.fase__topic{text-align:center;}
+  .cover__logos{gap:1.2rem;}
+  .clientes-grid{gap:.5rem;}
+  .cliente-item{font-size:.78rem;padding:.55rem .4rem;}
+}
+@media(max-width:400px){
+  .slide{padding:2rem 1rem 5rem;}
+  .slide h1{font-size:1.9rem;}
+  .slide h2{font-size:1.55rem;}
+  .cta-final__big{font-size:1.9rem;}
+  .fase-detail__title{font-size:1.15rem;}
 }
 </style>
 </head><body>
