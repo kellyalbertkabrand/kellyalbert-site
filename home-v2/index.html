@@ -11,68 +11,70 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&display=swap');
 
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0;overflow-x:hidden;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Montserrat',system-ui,-apple-system,sans-serif;
-  color:#1a1a1a;
-  background:#fdfbf6;
-  line-height:1.65;
+  font-family:'Outfit',system-ui,-apple-system,sans-serif;
+  color:#0d0d0d;
+  background:#fff;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
   font-weight:400;
+  letter-spacing:-.005em;
 }
 
-/* ═══════ PALETA KA ═══════ */
 :root{
-  --ink:#1a1a1a;
+  --ink:#0d0d0d;
   --ink-2:#3a3a3a;
-  --ink-3:#767676;
+  --ink-3:#6e6e6e;
   --ink-4:#a0a0a0;
-  --line:#e8e2d3;
+  --line:#e6e2d9;
   --line-soft:#f0ebde;
-  --paper:#fdfbf6;
-  --cream:#f5efdf;
-  --cream-2:#eee6d0;
+  --paper:#ffffff;
+  --cream:#f8f4ec;
   --caramelo:#C47830;
   --caramelo-dk:#9c5f22;
   --caramelo-lt:#e2b787;
-  --caramelo-soft:rgba(196,120,48,.1);
   --marinho:#152535;
-  --marinho-lt:#1e344b;
   --azul:#3D6B7E;
-  --azul-lt:#5b8ba0;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'Montserrat',system-ui,sans-serif;
+  --amarelo:#e5b83e;
+  --magenta:#c45a8e;
 }
 
-/* ═══════ NAV limpo ═══════ */
+/* Balance headlines: quebras naturais automáticas */
+h1,h2,h3,h4{text-wrap:balance;}
+
+/* ═══════ NAV ═══════ */
 .nav{
   position:sticky;top:0;z-index:80;
-  background:rgba(253,251,246,.92);
+  background:rgba(255,255,255,.94);
   backdrop-filter:blur(14px) saturate(150%);
-  border-bottom:1px solid rgba(26,26,26,.06);
+  border-bottom:1px solid rgba(0,0,0,.05);
 }
 .nav__inner{
-  max-width:1320px;margin:0 auto;
-  padding:1rem 2.4rem;
+  max-width:1360px;margin:0 auto;
+  padding:1.15rem 2.4rem;
   display:flex;align-items:center;justify-content:space-between;gap:2rem;
 }
-.nav__brand{
-  display:flex;align-items:center;gap:.6rem;
+.nav__logo{
+  display:inline-flex;align-items:baseline;gap:.5rem;
   text-decoration:none;color:var(--ink);
+  font-family:'Outfit',sans-serif;
 }
-.nav__mark{
-  font-family:var(--serif);
-  font-size:1.65rem;font-weight:700;line-height:.9;
+.nav__logo-mark{
+  font-size:1.65rem;font-weight:700;line-height:1;
+  letter-spacing:-.02em;
 }
-.nav__txt{
-  font-size:.53rem;letter-spacing:.06em;line-height:1.15;
-  text-transform:uppercase;font-weight:600;
-  border-left:1px solid var(--ink);padding-left:.42rem;
-  font-family:var(--sans);
+.nav__logo-sep{
+  color:var(--caramelo);font-weight:400;
+  font-size:1.3rem;line-height:1;
+}
+.nav__logo-txt{
+  font-size:.68rem;letter-spacing:.14em;line-height:1;
+  text-transform:uppercase;font-weight:500;color:var(--ink-2);
 }
 .nav__links{
   display:flex;gap:2.4rem;align-items:center;
@@ -80,94 +82,74 @@ body{
 }
 .nav__links a{
   color:var(--ink);text-decoration:none;
-  font-size:.88rem;font-weight:500;
-  letter-spacing:.01em;
+  font-size:.95rem;font-weight:400;
   transition:opacity .2s;
 }
 .nav__links a:hover{opacity:.55;}
-.nav__cta{
-  padding:.85rem 1.7rem;background:var(--ink);color:#fff;
-  border-radius:100px;text-decoration:none;
-  font-size:.82rem;font-weight:600;
-  letter-spacing:.03em;
-  transition:transform .15s,background .2s;
-  display:inline-block;
+.nav__burger{
+  display:none;background:none;border:0;cursor:pointer;padding:.4rem;
 }
-.nav__cta:hover{transform:translateY(-1px);background:var(--caramelo);}
-.nav__burger{display:none;background:none;border:0;cursor:pointer;padding:.4rem;}
 .nav__burger span{
-  display:block;width:22px;height:2px;background:var(--ink);
-  margin:5px 0;
+  display:block;width:24px;height:1.5px;background:var(--ink);
+  margin:6px 0;
 }
 
 /* ═══════ SECTIONS ═══════ */
 .sec{padding:7rem 2.4rem;}
-.sec--tight{padding:5rem 2.4rem;}
-.sec__inner{max-width:1220px;margin:0 auto;}
+.sec__inner{max-width:1160px;margin:0 auto;}
 .sec--paper{background:var(--paper);}
 .sec--cream{background:var(--cream);}
-.sec--dark{background:var(--marinho);color:rgba(237,232,221,.9);}
-.sec--dark p,.sec--dark li{color:rgba(237,232,221,.75);}
+.sec--dark{background:var(--ink);color:#fff;}
 
-/* ═══════ EYEBROW label estilo KA ═══════ */
+/* ═══════ EYEBROW (barra colorida em cima) ═══════ */
 .eyebrow{
-  display:inline-flex;align-items:center;gap:.7rem;
-  font-family:var(--sans);
-  font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--caramelo);font-weight:700;
-  margin-bottom:1.4rem;
-}
-.eyebrow::before{
-  content:'';width:32px;height:1px;background:var(--caramelo);
   display:inline-block;
+  padding-top:1rem;
+  border-top:2.5px solid var(--caramelo);
+  font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:500;
+  margin-bottom:1.5rem;
 }
-.eyebrow--dark{color:var(--caramelo-lt);}
-.eyebrow--dark::before{background:var(--caramelo-lt);}
-.eyebrow--center{
-  justify-content:center;display:flex;width:100%;
-}
+.eyebrow--amarelo{border-top-color:var(--amarelo);}
+.eyebrow--magenta{border-top-color:var(--magenta);}
+.eyebrow--azul{border-top-color:var(--azul);}
+.eyebrow--marinho{border-top-color:var(--marinho);}
+.eyebrow--dark{color:rgba(255,255,255,.7);}
 
-/* ═══════ SECTION TITLES — Playfair KA ═══════ */
+/* ═══════ TITLES ═══════ */
 .title{
-  font-family:var(--serif);
-  font-size:clamp(2.4rem,5.5vw,4.4rem);
-  font-weight:700;letter-spacing:-.008em;line-height:1.05;
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(2.4rem,5.2vw,4.3rem);
+  font-weight:400;letter-spacing:-.025em;line-height:1.04;
   color:var(--ink);margin:0 0 1.5rem;
-  max-width:1000px;
+  max-width:22ch;
 }
-.title em{font-style:italic;color:var(--caramelo);}
-.title--center{text-align:center;margin-left:auto;margin-right:auto;}
-.title--dark{color:#fff;}
-.title-under{
-  width:60px;height:2px;background:var(--caramelo);
-  margin:1rem 0 2rem;
+.title strong{font-weight:800;}
+.title-lg{
+  font-size:clamp(2.6rem,6vw,5rem);
+  font-weight:400;
 }
-.title-under--center{margin-left:auto;margin-right:auto;}
-
 .lead{
-  font-family:var(--sans);
-  font-size:1.08rem;color:var(--ink-2);
-  max-width:720px;line-height:1.75;
-  margin:0 0 1.2rem;font-weight:400;
+  font-size:clamp(1rem,1.15vw,1.15rem);
+  color:var(--ink-2);
+  max-width:52ch;line-height:1.65;
+  margin:0 0 1.2rem;font-weight:300;
 }
 .lead strong{color:var(--ink);font-weight:600;}
-.lead--center{margin-left:auto;margin-right:auto;text-align:center;}
 
 /* ═══════ BUTTONS ═══════ */
 .btn{
-  display:inline-flex;align-items:center;gap:.5rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
   padding:1.1rem 2.2rem;
   border-radius:100px;text-decoration:none;
-  font-family:var(--sans);
-  font-size:.85rem;font-weight:600;letter-spacing:.06em;
-  text-transform:uppercase;
-  transition:transform .15s,background .25s;
+  font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:500;letter-spacing:-.005em;
+  transition:transform .15s,background .25s,color .25s;
   cursor:pointer;border:0;
+  min-height:56px;
 }
 .btn--dark{background:var(--ink);color:#fff;}
 .btn--dark:hover{transform:translateY(-1px);background:var(--caramelo);}
-.btn--caramelo{background:var(--caramelo);color:#fff;}
-.btn--caramelo:hover{transform:translateY(-1px);background:var(--caramelo-dk);}
 .btn--outline{
   background:transparent;color:var(--ink);
   border:1.5px solid var(--ink);
@@ -175,118 +157,83 @@ body{
 .btn--outline:hover{background:var(--ink);color:#fff;}
 .btn--outline-light{
   background:transparent;color:#fff;
-  border:1.5px solid rgba(255,255,255,.4);
+  border:1.5px solid rgba(255,255,255,.5);
 }
-.btn--outline-light:hover{background:#fff;color:var(--marinho);border-color:#fff;}
-.btn svg{width:14px;height:14px;transition:transform .2s;}
-.btn:hover svg{transform:translateX(3px);}
+.btn--outline-light:hover{background:#fff;color:var(--ink);border-color:#fff;}
 
 /* ═══════ HERO ═══════ */
 .hero{
   padding:5rem 2.4rem 7rem;
-  min-height:88vh;
+  min-height:auto;
   display:flex;align-items:center;
-  position:relative;
   background:var(--paper);
+  position:relative;
 }
-.hero__inner{max-width:1320px;margin:0 auto;width:100%;position:relative;z-index:2;}
-.hero__eyebrow{
-  font-family:var(--sans);
-  font-size:.72rem;letter-spacing:.36em;text-transform:uppercase;
-  color:var(--caramelo);font-weight:700;
+.hero__inner{max-width:1360px;margin:0 auto;width:100%;position:relative;z-index:2;}
+.hero__accent{
+  width:130px;height:3px;
+  background:linear-gradient(90deg,var(--caramelo) 0%,var(--marinho) 100%);
   margin-bottom:2.5rem;
-  display:inline-flex;align-items:center;gap:.9rem;
-}
-.hero__eyebrow::before{
-  content:'';width:40px;height:1px;background:var(--caramelo);
-  display:inline-block;
 }
 .hero__title{
-  font-family:var(--serif);
-  font-size:clamp(3.4rem,10vw,9.5rem);
-  font-weight:700;letter-spacing:-.028em;line-height:.96;
-  color:var(--ink);margin:0 0 2.8rem;
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(3.4rem,10vw,9rem);
+  font-weight:400;letter-spacing:-.045em;line-height:.98;
+  color:var(--ink);margin:0 0 3rem;
+  max-width:14ch;
 }
 .hero__title span{display:block;}
-.hero__title-1{color:var(--ink);}
-.hero__title-2{color:var(--ink-3);}
-.hero__title-3{color:var(--caramelo);font-style:italic;font-weight:700;}
+.hero__title-3{font-weight:800;}
 .hero__sub{
-  font-family:var(--sans);
-  font-size:clamp(1.05rem,1.35vw,1.22rem);
-  max-width:640px;
+  font-size:clamp(1.05rem,1.3vw,1.2rem);
+  max-width:44ch;
   color:var(--ink-2);
-  margin:0 0 2.6rem;line-height:1.6;font-weight:400;
+  margin:0 0 2.8rem;line-height:1.55;font-weight:300;
 }
-.hero__actions{display:flex;gap:1rem;flex-wrap:wrap;}
-
-/* Ornamento hero */
-.hero__ornament{
-  position:absolute;top:5rem;right:2.4rem;
-  width:180px;text-align:right;
-  font-family:var(--serif);font-size:.75rem;
-  color:var(--ink-3);font-style:italic;
-  line-height:1.5;
-}
-.hero__ornament::before{
-  content:'';display:block;width:60px;height:1px;background:var(--caramelo);
-  margin-left:auto;margin-bottom:.8rem;
-}
-
+.hero__actions{display:flex;gap:.9rem;flex-wrap:wrap;}
 .hero__dots{
-  display:flex;gap:.6rem;margin-top:4rem;
+  display:flex;gap:.7rem;margin-top:4rem;
   align-items:center;
 }
 .hero__dots span{
-  width:9px;height:9px;background:var(--ink);
+  width:11px;height:11px;background:var(--ink);
   display:inline-block;
 }
 .hero__dots span:nth-child(2){transform:rotate(45deg);background:var(--caramelo);}
-.hero__dots span:nth-child(3){border-radius:50%;background:var(--marinho);}
+.hero__dots span:nth-child(3){border-radius:50%;background:var(--azul);}
 
-/* ═══════ FILOSOFIA CNPJ/CPF ═══════ */
-.philo-title{
-  font-family:var(--serif);
-  font-size:clamp(2.6rem,6vw,5.2rem);
-  font-weight:700;letter-spacing:-.015em;line-height:1;
-  color:var(--ink);margin:0 0 2rem;max-width:1000px;
+/* ═══════ PERGUNTA ═══════ */
+.question-title{
+  font-size:clamp(2.4rem,5.5vw,4.6rem);
+  font-weight:400;letter-spacing:-.03em;line-height:1.02;
+  color:var(--ink);margin:0 0 2rem;
+  max-width:24ch;
 }
-.philo-title em{color:var(--caramelo);font-style:italic;}
-.philo-title strong{font-weight:700;}
-.philo__pull{
-  font-family:var(--serif);font-style:italic;
-  font-size:clamp(1.5rem,2.5vw,2.05rem);
-  color:var(--ink);max-width:720px;margin-top:2.5rem;line-height:1.35;
-  border-left:3px solid var(--caramelo);padding-left:1.8rem;
-  font-weight:500;
-}
+.question-title strong{font-weight:800;}
 
 /* ═══════ FLUXO — de dentro para fora ═══════ */
-.flow-wrap{
-  max-width:1120px;margin:3.5rem auto 0;
-  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+.flow-block{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;margin-top:3rem;
 }
-.flow-wrap__note{
-  font-size:1.02rem;color:var(--ink-2);line-height:1.75;
-  margin:0 0 1rem;
+.flow-note{
+  font-size:1.05rem;color:var(--ink-2);line-height:1.7;
+  margin:0 0 1rem;font-weight:300;
 }
-.flow-wrap__note strong{color:var(--ink);font-weight:600;}
-.flow-wrap__foot{
-  font-family:var(--serif);font-style:italic;
+.flow-note strong{color:var(--ink);font-weight:600;}
+.flow-note--small{
   font-size:.9rem;color:var(--ink-3);
-  margin-top:1.2rem;line-height:1.5;
   padding-top:1rem;border-top:1px solid var(--line);
+  margin-top:1rem;
 }
 .flow{
   display:flex;flex-direction:column;gap:.6rem;
 }
 .flow__step{
-  padding:1.5rem 2rem;
-  border-radius:4px;
+  padding:1.4rem 2rem;
   color:#fff;
-  font-family:var(--sans);
-  font-size:1.02rem;font-weight:600;
-  text-align:center;letter-spacing:.01em;
+  font-size:1.05rem;font-weight:500;
+  text-align:center;letter-spacing:-.005em;
 }
 .flow__step--1{background:var(--caramelo);}
 .flow__step--2{background:var(--caramelo-dk);}
@@ -298,228 +245,185 @@ body{
   letter-spacing:.4em;
 }
 
-/* ═══════ MÉTODO — 4 pilares ═══════ */
-.method-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1rem;margin-top:3rem;
-}
-.method-card{
-  background:#fff;
-  padding:2rem 1.8rem 2.2rem;
-  border:1px solid var(--line);
-  position:relative;
-  transition:transform .25s,box-shadow .25s;
-}
-.method-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;
-  height:3px;background:var(--caramelo);
-}
-.method-card:nth-child(2)::before{background:var(--caramelo-dk);}
-.method-card:nth-child(3)::before{background:var(--azul);}
-.method-card:nth-child(4)::before{background:var(--marinho);}
-.method-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.06);}
-.method-card__num{
-  font-family:var(--serif);
-  font-size:1.9rem;color:var(--caramelo);font-weight:700;
-  margin:0 0 .8rem;line-height:1;font-style:italic;
-}
-.method-card:nth-child(2) .method-card__num{color:var(--caramelo-dk);}
-.method-card:nth-child(3) .method-card__num{color:var(--azul);}
-.method-card:nth-child(4) .method-card__num{color:var(--marinho);}
-.method-card__name{
-  font-family:var(--sans);
-  font-size:1.02rem;font-weight:700;color:var(--ink);
-  margin:0 0 .7rem;letter-spacing:-.005em;line-height:1.25;
-}
-.method-card__desc{
-  font-size:.9rem;color:var(--ink-2);line-height:1.55;margin:0;
-}
-
-/* ═══════ SOLUÇÕES ═══════ */
-.sol-group{margin-top:3.5rem;}
-.sol-group__label{
-  display:flex;align-items:center;gap:1.2rem;
-  font-family:var(--sans);
-  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--caramelo);font-weight:700;
-  margin-bottom:1.8rem;
-}
-.sol-group__label::before,.sol-group__label::after{
-  content:'';flex:1;height:1px;background:var(--line);
-  display:inline-block;
-}
-.sol-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;
-}
-.sol-grid--2{grid-template-columns:1fr 1fr;}
-.sol-card{
-  padding:2.2rem 2rem 2.4rem;
-  background:#fff;
-  border:1px solid var(--line);
-  position:relative;
-  display:flex;flex-direction:column;
-  transition:box-shadow .25s,transform .2s;
-}
-.sol-card::before{
-  content:'';position:absolute;top:0;left:0;
-  width:52px;height:3px;background:var(--caramelo);
-}
-.sol-card:nth-child(2)::before{background:var(--caramelo-dk);width:60px;}
-.sol-card:nth-child(3)::before{background:var(--marinho);width:70px;}
-.sol-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06);}
-.sol-card__num{
-  font-family:var(--sans);
-  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--ink-3);font-weight:700;
-  margin:1.2rem 0 .8rem;
-}
-.sol-card__title{
-  font-family:var(--serif);
-  font-size:2rem;font-weight:700;color:var(--ink);
-  letter-spacing:-.01em;line-height:1;margin:0 0 .35rem;
-}
-.sol-card__title small{
-  display:block;font-family:var(--sans);
-  font-size:.72rem;font-weight:500;letter-spacing:.05em;
-  color:var(--ink-3);text-transform:uppercase;margin-top:.4rem;
-}
-.sol-card__mode{
-  font-family:var(--serif);font-style:italic;
-  font-size:1.08rem;color:var(--caramelo);
-  margin:.8rem 0 1.3rem;font-weight:500;
-}
-.sol-card:nth-child(2) .sol-card__mode{color:var(--caramelo-dk);}
-.sol-card:nth-child(3) .sol-card__mode{color:var(--marinho);}
-.sol-card__desc{
-  font-size:.93rem;color:var(--ink-2);line-height:1.6;
-  margin:0 0 1.4rem;flex:1;
-}
-.sol-card__list{
-  list-style:none;padding:0;margin:0 0 1.5rem;
-  display:flex;flex-direction:column;gap:.45rem;
-}
-.sol-card__list li{
-  font-size:.85rem;color:var(--ink-2);line-height:1.4;
-  padding-left:1.2rem;position:relative;
-}
-.sol-card__list li::before{
-  content:'—';position:absolute;left:0;top:0;
-  color:var(--caramelo);font-weight:700;
-}
-.sol-card__price-block{
-  padding:1.2rem 0;
-  border-top:1px dashed var(--line);
-}
-.sol-card__price{
-  font-family:var(--serif);
-  font-size:1.6rem;font-weight:700;color:var(--ink);
-  letter-spacing:-.015em;margin:0;line-height:1.1;
-}
-.sol-card__price-sub{
-  font-family:var(--sans);
-  font-size:.72rem;color:var(--ink-3);
-  font-weight:400;margin:.3rem 0 0;line-height:1.4;
-}
-.sol-card__cta{
-  margin-top:auto;
-  display:inline-flex;align-items:center;gap:.55rem;
-  color:var(--ink);text-decoration:none;
-  font-family:var(--sans);
-  font-size:.75rem;font-weight:700;letter-spacing:.16em;
-  text-transform:uppercase;
-  padding-bottom:.4rem;
-  border-bottom:2px solid var(--caramelo);
-  align-self:flex-start;
-  transition:gap .2s,color .2s;
-}
-.sol-card__cta:hover{gap:.9rem;color:var(--caramelo);}
-.sol-card__cta svg{width:14px;height:14px;transition:transform .2s;}
-
-/* ═══════ DIFERENÇA ═══════ */
-.diff-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1rem;margin-top:3rem;max-width:900px;
-  margin-left:auto;margin-right:auto;
-}
-.diff-card{
-  padding:2.5rem 1.6rem;text-align:center;
-  border-radius:4px;color:#fff;
-  position:relative;
-}
-.diff-card--1{background:var(--caramelo-lt);color:var(--marinho);}
-.diff-card--2{background:var(--caramelo);color:#fff;}
-.diff-card--3{background:var(--marinho);color:#fff;}
-.diff-card__num{
-  font-family:var(--serif);font-style:italic;
-  font-size:1.5rem;font-weight:500;margin:0 0 .8rem;
-  opacity:.85;
-}
-.diff-card__t{
-  font-family:var(--serif);
-  font-size:1.9rem;font-weight:700;margin:0 0 .7rem;
-  letter-spacing:-.01em;line-height:1;
-}
-.diff-card__s{
-  font-family:var(--sans);
-  font-size:.88rem;line-height:1.4;margin:0;
-  opacity:.92;font-weight:400;
-}
-
 /* ═══════ NÚMEROS ═══════ */
 .stats-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:2rem;margin-top:3rem;
+  gap:2.5rem;margin-top:3rem;
 }
-.stat{
-  padding-top:1.4rem;
-  border-top:2px solid var(--caramelo);
-  position:relative;
+.stat__bar{
+  width:100%;height:2.5px;background:var(--amarelo);
+  margin-bottom:1.4rem;
 }
-.stat:nth-child(2){border-top-color:var(--caramelo-dk);}
-.stat:nth-child(3){border-top-color:var(--marinho);}
+.stat:nth-child(2) .stat__bar{background:var(--caramelo);}
+.stat:nth-child(3) .stat__bar{background:var(--magenta);}
 .stat__num{
-  font-family:var(--serif);
-  font-size:clamp(3.2rem,5.5vw,4.8rem);
-  font-weight:700;letter-spacing:-.02em;line-height:.95;
-  color:var(--ink);margin:0 0 .6rem;
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(3.4rem,6vw,5.2rem);
+  font-weight:400;letter-spacing:-.045em;line-height:.95;
+  color:var(--ink);margin:0 0 .8rem;
 }
-.stat__num em{font-style:italic;color:var(--caramelo);}
 .stat__label{
-  font-family:var(--sans);
-  font-size:.92rem;color:var(--ink-2);margin:0;line-height:1.45;
+  font-size:.98rem;color:var(--ink-2);margin:0;line-height:1.4;font-weight:300;
+  max-width:28ch;
 }
 
 /* ═══════ CLIENTES ═══════ */
 .clients{
-  padding:4.5rem 2.4rem;
-  background:var(--cream);
+  padding:4rem 2.4rem;
+  background:var(--paper);
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
 }
 .clients__inner{max-width:1280px;margin:0 auto;}
 .clients__t{
-  font-family:var(--sans);
-  font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--caramelo);font-weight:700;text-align:center;margin:0 0 2.5rem;
-  display:flex;align-items:center;justify-content:center;gap:1rem;
-}
-.clients__t::before,.clients__t::after{
-  content:'';width:32px;height:1px;background:var(--caramelo);
+  font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500;text-align:center;margin:0 0 2.2rem;
 }
 .clients__grid{
   display:grid;grid-template-columns:repeat(5,1fr);
-  gap:.5rem 2.2rem;text-align:center;
+  gap:.8rem 2.5rem;text-align:center;align-items:center;
 }
 .clients__item{
-  font-family:var(--serif);
-  font-size:1.2rem;color:var(--ink);font-weight:600;
+  font-size:1.15rem;color:var(--ink);font-weight:500;
   padding:.7rem .3rem;
-  letter-spacing:.005em;
+  letter-spacing:-.005em;
+}
+
+/* ═══════ SOLUÇÕES ═══════ */
+.sol-group{margin-top:4rem;}
+.sol-group__label{
+  display:flex;align-items:center;gap:1.2rem;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--caramelo);font-weight:600;
+  margin-bottom:2rem;
+}
+.sol-group__label::after{
+  content:'';flex:1;height:1px;background:var(--line);
+  display:inline-block;
+}
+.sol-list{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;
+}
+.sol-list--2{grid-template-columns:1fr 1fr;}
+.sol-item{
+  padding:2rem 0;
+  border-top:1px solid var(--line);
+  display:flex;flex-direction:column;
+}
+.sol-item__bar{
+  width:44px;height:3px;background:var(--caramelo);
+  margin:0 0 1.5rem;
+}
+.sol-item:nth-child(2) .sol-item__bar{background:var(--amarelo);}
+.sol-item:nth-child(3) .sol-item__bar{background:var(--magenta);}
+.sol-item--dark .sol-item__bar{background:var(--marinho);}
+.sol-item--azul .sol-item__bar{background:var(--azul);}
+.sol-item__name{
+  font-size:2rem;font-weight:800;color:var(--ink);
+  letter-spacing:-.02em;line-height:1;margin:0 0 .3rem;
+}
+.sol-item__cat{
+  font-size:.95rem;color:var(--caramelo);
+  margin:0 0 1.2rem;font-weight:500;
+}
+.sol-item:nth-child(2) .sol-item__cat{color:var(--amarelo);}
+.sol-item:nth-child(3) .sol-item__cat{color:var(--magenta);}
+.sol-item--dark .sol-item__cat{color:var(--marinho);}
+.sol-item--azul .sol-item__cat{color:var(--azul);}
+.sol-item__desc{
+  font-size:.98rem;color:var(--ink-2);line-height:1.6;
+  margin:0 0 1.4rem;flex:1;font-weight:300;
+}
+.sol-item__list{
+  list-style:none;padding:0;margin:0 0 1.5rem;
+  display:flex;flex-direction:column;gap:.4rem;
+}
+.sol-item__list li{
+  font-size:.9rem;color:var(--ink-2);line-height:1.4;font-weight:300;
+}
+.sol-item__price-block{
+  padding-top:1.2rem;margin-top:auto;
+  border-top:1px solid var(--line);
+}
+.sol-item__price{
+  font-size:1.55rem;font-weight:700;color:var(--ink);
+  letter-spacing:-.015em;margin:0;line-height:1.1;
+}
+.sol-item__price-sub{
+  font-size:.78rem;color:var(--ink-3);
+  font-weight:300;margin:.3rem 0 0;line-height:1.4;
+}
+.sol-item__price-plus{
+  font-size:1.15rem;font-weight:600;color:var(--caramelo);
+  margin:.4rem 0 0;
+}
+.sol-item__cta{
+  margin-top:1.4rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  color:var(--ink);text-decoration:none;
+  font-size:.95rem;font-weight:500;
+  transition:gap .2s,color .2s;
+}
+.sol-item__cta:hover{gap:.8rem;color:var(--caramelo);}
+.sol-item__cta-icon{
+  display:inline-block;
+  font-size:1.2rem;font-weight:400;line-height:1;
+  transition:transform .2s;
+}
+
+/* ═══════ DIFERENÇA ═══════ */
+.diff-block{margin-top:3rem;}
+.diff-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1rem;max-width:960px;margin:0 auto;
+}
+.diff-card{
+  padding:2.5rem 1.6rem;text-align:center;
+  color:#fff;
+}
+.diff-card--1{background:var(--caramelo-lt);color:var(--marinho);}
+.diff-card--2{background:var(--caramelo);color:#fff;}
+.diff-card--3{background:var(--marinho);color:#fff;}
+.diff-card__num{
+  font-size:1.15rem;font-weight:400;margin:0 0 .8rem;
+  opacity:.75;
+}
+.diff-card__t{
+  font-size:1.9rem;font-weight:800;margin:0 0 .7rem;
+  letter-spacing:-.02em;line-height:1;
+}
+.diff-card__s{
+  font-size:.95rem;line-height:1.4;margin:0;
+  opacity:.9;font-weight:400;
+}
+
+/* ═══════ MÉTODO ═══════ */
+.method-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2rem;margin-top:3rem;
+}
+.method-card{
+  padding:2rem 0 0;
+  border-top:2.5px solid var(--caramelo);
+}
+.method-card:nth-child(2){border-top-color:var(--caramelo-dk);}
+.method-card:nth-child(3){border-top-color:var(--azul);}
+.method-card:nth-child(4){border-top-color:var(--marinho);}
+.method-card__num{
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:0 0 .8rem;
+}
+.method-card__name{
+  font-size:1.4rem;font-weight:700;color:var(--ink);
+  letter-spacing:-.015em;line-height:1.15;margin:0 0 .8rem;
+}
+.method-card__desc{
+  font-size:.95rem;color:var(--ink-2);line-height:1.55;margin:0;font-weight:300;
 }
 
 /* ═══════ KELLY ═══════ */
 .kelly{
-  display:grid;grid-template-columns:1fr 1.3fr;
+  display:grid;grid-template-columns:1fr 1.35fr;
   gap:5rem;align-items:center;
 }
 .kelly__photo{
@@ -527,134 +431,113 @@ body{
   aspect-ratio:4/5;object-fit:cover;object-position:top;
 }
 .kelly__name{
-  font-family:var(--serif);
-  font-size:clamp(2.6rem,5vw,4.2rem);font-weight:700;
-  letter-spacing:-.02em;line-height:1;margin:0 0 .5rem;
+  font-size:clamp(2.6rem,5vw,4rem);font-weight:800;
+  letter-spacing:-.03em;line-height:1;margin:0 0 .5rem;
 }
 .kelly__role{
-  font-family:var(--serif);font-style:italic;
-  font-size:1.15rem;color:var(--caramelo);
+  font-size:1.05rem;color:var(--caramelo);
   margin:0 0 1.8rem;font-weight:500;
 }
 .kelly__bio{
-  font-family:var(--sans);
-  font-size:1rem;color:var(--ink-2);line-height:1.75;margin:0 0 1.1rem;
+  font-size:1.05rem;color:var(--ink-2);line-height:1.7;margin:0 0 1.1rem;
+  font-weight:300;
 }
 .kelly__bio strong{color:var(--ink);font-weight:600;}
 .kelly__link{
   display:inline-flex;align-items:center;gap:.5rem;
   color:var(--ink);text-decoration:none;
-  font-family:var(--sans);
-  font-weight:700;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
-  margin-top:1.2rem;padding-bottom:.3rem;
+  font-weight:500;font-size:1rem;
+  margin-top:1rem;padding-bottom:.3rem;
   border-bottom:2px solid var(--caramelo);
   transition:gap .15s;
 }
 .kelly__link:hover{gap:.9rem;}
-.kelly__link svg{width:14px;height:14px;}
 
 /* ═══════ CTA FINAL ═══════ */
 .cta{
   padding:8rem 2.4rem;text-align:center;
-  background:var(--marinho);color:#fff;
-  position:relative;overflow:hidden;
+  background:var(--ink);color:#fff;
+  position:relative;
 }
-.cta::before{
-  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:60px;height:2px;background:var(--caramelo);
-}
-.cta__eyebrow{
-  font-family:var(--sans);
-  font-size:.68rem;letter-spacing:.36em;text-transform:uppercase;
-  color:var(--caramelo);font-weight:700;margin-bottom:2rem;
-  display:inline-flex;align-items:center;gap:.9rem;
-}
-.cta__eyebrow::before,.cta__eyebrow::after{
-  content:'';width:32px;height:1px;background:var(--caramelo);
+.cta__accent{
+  width:130px;height:3px;
+  background:linear-gradient(90deg,var(--caramelo) 0%,var(--magenta) 100%);
+  margin:0 auto 2.5rem;
 }
 .cta__title{
-  font-family:var(--serif);
-  font-size:clamp(2.6rem,5.5vw,4.6rem);font-weight:700;
-  letter-spacing:-.02em;line-height:1.05;
-  max-width:900px;margin:0 auto 1.8rem;
+  font-size:clamp(2.6rem,5vw,4.4rem);font-weight:400;
+  letter-spacing:-.03em;line-height:1.05;
+  max-width:22ch;margin:0 auto 1.8rem;
   color:#fff;
 }
-.cta__title em{font-style:italic;color:var(--caramelo);}
+.cta__title strong{font-weight:800;color:var(--caramelo-lt);}
 .cta__sub{
-  font-family:var(--sans);
-  font-size:1.08rem;color:rgba(237,232,221,.75);
-  max-width:600px;margin:0 auto 2.8rem;line-height:1.7;
+  font-size:1.08rem;color:rgba(255,255,255,.65);
+  max-width:52ch;margin:0 auto 2.8rem;line-height:1.6;font-weight:300;
 }
 .cta__actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.cta__actions .btn--caramelo{background:var(--caramelo);color:#fff;}
-.cta__actions .btn--caramelo:hover{background:#fff;color:var(--marinho);}
+.cta__actions .btn--dark{background:#fff;color:var(--ink);}
+.cta__actions .btn--dark:hover{background:var(--caramelo);color:#fff;}
 
 /* ═══════ FOOTER ═══════ */
 .foot{
-  padding:3rem 2.4rem;background:var(--ink);color:rgba(255,255,255,.55);
-  font-size:.83rem;
+  padding:2.5rem 2.4rem;background:#000;color:rgba(255,255,255,.55);
+  font-size:.88rem;font-weight:300;
 }
 .foot__inner{
-  max-width:1320px;margin:0 auto;
+  max-width:1360px;margin:0 auto;
   display:flex;justify-content:space-between;align-items:center;
   gap:1.5rem;flex-wrap:wrap;
 }
-.foot a{color:#fff;text-decoration:none;font-weight:500;}
-.foot__brand{
-  display:inline-flex;align-items:center;gap:.5rem;
-}
-.foot__brand .nav__mark{font-size:1.35rem;color:#fff;}
-.foot__brand .nav__txt{color:#fff;border-left-color:#fff;}
+.foot a{color:#fff;text-decoration:none;font-weight:400;}
+.foot a:hover{color:var(--caramelo-lt);}
 
 /* ═══════ MOBILE ═══════ */
 @media(max-width:900px){
-  .nav__inner{padding:.9rem 1.3rem;}
+  .nav__inner{padding:1rem 1.3rem;}
   .nav__links{display:none;}
   .nav__burger{display:block;}
-  .nav__cta{padding:.7rem 1.2rem;font-size:.72rem;}
+  .nav__logo-txt{display:none;}
+  .nav__logo-mark{font-size:1.5rem;}
+  .nav__logo-sep{display:none;}
   .sec{padding:4rem 1.3rem;}
-  .sec--tight{padding:3rem 1.3rem;}
   .hero{padding:3rem 1.3rem 5rem;min-height:auto;}
-  .hero__eyebrow{font-size:.62rem;letter-spacing:.28em;margin-bottom:1.8rem;}
-  .hero__eyebrow::before{width:24px;}
-  .hero__ornament{display:none;}
-  .hero__actions{flex-direction:column;align-items:stretch;}
-  .hero__actions .btn{justify-content:center;text-align:center;}
-  .hero__title{font-size:clamp(3.2rem,15vw,5.5rem);}
+  .hero__accent{width:100px;margin-bottom:2rem;}
+  .hero__title{
+    font-size:clamp(3.2rem,15vw,5.2rem);
+    max-width:100%;
+    margin-bottom:2rem;
+  }
+  .hero__sub{max-width:100%;font-size:1.05rem;margin-bottom:2rem;}
+  .hero__actions{flex-direction:column;align-items:stretch;width:100%;}
+  .hero__actions .btn{width:100%;}
   .hero__dots{margin-top:2.5rem;}
-  .philo-title{font-size:2.2rem;}
-  .philo__pull{font-size:1.2rem;padding-left:1.2rem;}
-  .flow-wrap{grid-template-columns:1fr;gap:2.5rem;}
-  .method-grid{grid-template-columns:1fr 1fr;gap:.7rem;}
-  .method-card{padding:1.4rem 1.2rem;}
-  .method-card__num{font-size:1.5rem;}
-  .method-card__name{font-size:.92rem;}
-  .method-card__desc{font-size:.82rem;}
-  .sol-grid,.sol-grid--2{grid-template-columns:1fr;gap:1rem;}
-  .sol-card{padding:1.8rem 1.5rem;}
-  .sol-card__title{font-size:1.65rem;}
-  .diff-grid{grid-template-columns:1fr;}
-  .diff-card__t{font-size:1.6rem;}
-  .stats-grid{grid-template-columns:1fr 1fr;gap:1.5rem;}
-  .stat__num{font-size:2.8rem;}
+  .question-title{font-size:2.2rem;max-width:100%;}
+  .flow-block{grid-template-columns:1fr;gap:2.5rem;}
+  .stats-grid{grid-template-columns:1fr;gap:2rem;}
+  .stat__num{font-size:3.2rem;}
+  .stat__label{max-width:100%;}
   .clients{padding:2.5rem 1.3rem;}
-  .clients__grid{grid-template-columns:1fr 1fr;gap:.3rem 1rem;}
+  .clients__grid{grid-template-columns:1fr 1fr;gap:.4rem 1.2rem;}
   .clients__item{font-size:1rem;padding:.55rem .2rem;}
-  .kelly{grid-template-columns:1fr;gap:2rem;}
-  .kelly__photo{max-width:300px;margin:0 auto;}
-  .kelly__name{font-size:2.4rem;}
+  .sol-list,.sol-list--2{grid-template-columns:1fr;gap:0;}
+  .sol-item{padding:2rem 0 2.5rem;}
+  .sol-item__name{font-size:1.75rem;}
+  .diff-grid{grid-template-columns:1fr;max-width:100%;}
+  .method-grid{grid-template-columns:1fr;gap:2rem;}
+  .kelly{grid-template-columns:1fr;gap:2.5rem;}
+  .kelly__photo{max-width:320px;margin:0 auto;}
+  .kelly__name{font-size:2.4rem;text-align:left;}
   .cta{padding:5rem 1.3rem;}
-  .cta__title{font-size:2rem;}
-  .foot__inner{flex-direction:column;text-align:center;}
-  .title{font-size:2.1rem;}
-  .title--center{text-align:left;}
-  .title-under--center{margin-left:0;}
+  .cta__title{font-size:2.2rem;max-width:100%;}
+  .foot__inner{flex-direction:column;text-align:center;gap:1rem;}
+  .title,.title-lg{font-size:2rem;max-width:100%;}
+  .btn{min-height:50px;font-size:.95rem;padding:1rem 1.8rem;}
 }
 @media(max-width:600px){
-  .hero__title{font-size:clamp(2.8rem,17vw,4.5rem);}
-  .stats-grid{grid-template-columns:1fr;}
-  .stat__num{font-size:3rem;}
-  .clients__grid{grid-template-columns:1fr;}
+  .clients__grid{grid-template-columns:1fr;gap:.3rem;}
+  .diff-card{padding:2rem 1.3rem;}
+  .diff-card__t{font-size:1.7rem;}
 }
 </style>
 </head><body>
@@ -662,17 +545,18 @@ body{
 <!-- ═══════ NAV ═══════ -->
 <nav class="nav">
   <div class="nav__inner">
-    <a href="/home-v2/" class="nav__brand">
-      <span class="nav__mark">KA</span>
-      <span class="nav__txt">Inteligência<br>Para Marcas</span>
+    <a href="/home-v2/" class="nav__logo">
+      <span class="nav__logo-mark">ka</span>
+      <span class="nav__logo-sep">|</span>
+      <span class="nav__logo-txt">inteligência<br>para marcas</span>
     </a>
     <ul class="nav__links">
       <li><a href="#filosofia">Como pensamos</a></li>
-      <li><a href="#metodo">Método</a></li>
       <li><a href="#solucoes">Soluções</a></li>
+      <li><a href="#metodo">Método</a></li>
       <li><a href="#kelly">Kelly</a></li>
+      <li><a href="/cases">Cases</a></li>
     </ul>
-    <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%21%20Vim%20pelo%20site." target="_blank" rel="noopener" class="nav__cta">Falar com a Kelly</a>
     <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -680,7 +564,7 @@ body{
 <!-- ═══════ HERO ═══════ -->
 <header class="hero">
   <div class="hero__inner">
-    <p class="hero__eyebrow">KA · Inteligência para Marcas</p>
+    <div class="hero__accent" aria-hidden="true"></div>
     <h1 class="hero__title">
       <span class="hero__title-1">Essência.</span>
       <span class="hero__title-2">Clareza.</span>
@@ -688,251 +572,46 @@ body{
     </h1>
     <p class="hero__sub">Projetos de posicionamento de marca e educação corporativa para a sua empresa.</p>
     <div class="hero__actions">
-      <a href="#solucoes" class="btn btn--dark">Conheça as soluções
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <a href="#solucoes" class="btn btn--dark">Conheça nossas soluções</a>
       <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%21%20Vim%20pelo%20site." target="_blank" rel="noopener" class="btn btn--outline">Falar com a Kelly</a>
     </div>
     <div class="hero__dots" aria-hidden="true"><span></span><span></span><span></span></div>
   </div>
-  <div class="hero__ornament">
-    Método<br>Marca com Essência<sup>©</sup>
-  </div>
 </header>
 
-<!-- ═══════ FILOSOFIA ═══════ -->
-<section class="sec sec--paper" id="filosofia">
+<!-- ═══════ FILOSOFIA — PERGUNTA ═══════ -->
+<section class="sec sec--cream" id="filosofia">
   <div class="sec__inner">
-    <p class="eyebrow">Nosso ponto de partida</p>
-    <h2 class="philo-title">Por trás de todo <em>CNPJ</em><br>existe um <em>CPF</em>.</h2>
+    <div class="eyebrow eyebrow--magenta">Nosso ponto de partida</div>
+    <h2 class="question-title">Por trás de todo CNPJ<br><strong>existe um CPF.</strong></h2>
     <p class="lead">A marca nasce de quem a criou. <strong>O que o fundador valoriza, o jeito como ele decide e a postura que ele tem</strong> viram, com o tempo, a cultura da empresa e a percepção que o mercado tem da marca.</p>
     <p class="lead">O fundador é o líder da tribo. <strong>Quando ele não tem clareza, a marca também não tem.</strong></p>
-    <p class="philo__pull">Por isso o nosso processo não começa no logo.<br>Começa nele.</p>
+    <p class="lead" style="font-weight:500;color:var(--ink);max-width:38ch;">Por isso o nosso processo não começa no logo. <strong>Começa nele.</strong></p>
   </div>
 </section>
 
-<!-- ═══════ FLUXO — de dentro para fora ═══════ -->
-<section class="sec sec--cream">
-  <div class="sec__inner">
-    <p class="eyebrow">Como pensamos marca</p>
-    <h2 class="philo-title">A gente constrói<br><em>de dentro para fora.</em></h2>
-
-    <div class="flow-wrap">
-      <div>
-        <p class="flow-wrap__note">O cliente primeiro <strong>sente</strong> a marca, depois escolhe. Por isso não começamos pela parte visível — a identidade visual, logotipos, cores e fontes.</p>
-        <p class="flow-wrap__note">Nosso trabalho é revelar o que sustenta a marca por dentro e traduzir isso em uma expressão que o mercado percebe com coerência.</p>
-        <p class="flow-wrap__foot">A parte visível é consequência da essência, não o ponto de partida.</p>
-      </div>
-      <div class="flow">
-        <div class="flow__step flow__step--1">Essência dos fundadores</div>
-        <p class="flow__arrow">↓</p>
-        <div class="flow__step flow__step--2">Cultura da empresa</div>
-        <p class="flow__arrow">↓</p>
-        <div class="flow__step flow__step--3">Cultura da marca</div>
-        <p class="flow__arrow">↓</p>
-        <div class="flow__step flow__step--4">Percepção do mercado</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ MÉTODO — 4 pilares ═══════ -->
-<section class="sec sec--paper" id="metodo">
-  <div class="sec__inner">
-    <p class="eyebrow">Método exclusivo</p>
-    <h2 class="philo-title">Marca com <em>Essência</em><sup style="font-size:.4em;">©</sup></h2>
-    <p class="lead" style="max-width:820px;">Um processo que começa pela <strong>revelação da essência dos fundadores</strong> e pela leitura do quanto ela está, ou não, refletida na marca hoje. Estruturado em 4 etapas complementares.</p>
-
-    <div class="method-grid">
-      <article class="method-card">
-        <p class="method-card__num">01</p>
-        <h3 class="method-card__name">Revelação de essência</h3>
-        <p class="method-card__desc">A raiz do negócio: fundadores, cultura e padrões reais.</p>
-      </article>
-      <article class="method-card">
-        <p class="method-card__num">02</p>
-        <h3 class="method-card__name">Construção de clareza</h3>
-        <p class="method-card__desc">Posicionamento, proposta de valor e identidade verbal.</p>
-      </article>
-      <article class="method-card">
-        <p class="method-card__num">03</p>
-        <h3 class="method-card__name">Definição de direção</h3>
-        <p class="method-card__desc">Identidade visual, esteira de produtos e plano de comunicação.</p>
-      </article>
-      <article class="method-card">
-        <p class="method-card__num">04</p>
-        <h3 class="method-card__name">Posicionamento no mercado</h3>
-        <p class="method-card__desc">A marca pronta para ser percebida, desejada e escolhida.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ SOLUÇÕES ═══════ -->
-<section class="sec sec--cream" id="solucoes">
-  <div class="sec__inner">
-    <p class="eyebrow">Nossas soluções</p>
-    <h2 class="philo-title">5 caminhos para construir,<br>aplicar e sustentar o<br><em>posicionamento da sua marca.</em></h2>
-    <p class="lead" style="max-width:820px;">Todas as nossas soluções nascem do mesmo método. <strong>O que muda é a profundidade e quem coloca a mão na massa.</strong></p>
-
-    <!-- GRUPO 1 -->
-    <div class="sol-group">
-      <p class="sol-group__label">Para posicionar ou reposicionar</p>
-      <div class="sol-grid">
-
-        <article class="sol-card">
-          <p class="sol-card__num">Solução 01</p>
-          <h3 class="sol-card__title">Livro <small>Marca com Essência©</small></h3>
-          <p class="sol-card__mode">Faça você mesmo.</p>
-          <p class="sol-card__desc">Um livro-consultoria que te guia passo a passo para posicionar a sua marca. Agentes de IA treinados com o método, áudios e exercícios estruturados em cada capítulo.</p>
-          <ul class="sol-card__list">
-            <li>Físico + digital</li>
-            <li>Integrações Spotify, Google Docs e ChatGPT</li>
-            <li>Não contempla identidade visual</li>
-          </ul>
-          <div class="sol-card__price-block">
-            <p class="sol-card__price">R$ 117</p>
-            <p class="sol-card__price-sub">*Valores válidos até dezembro de 2026</p>
-          </div>
-          <a href="/livro" class="sol-card__cta">Conhecer o livro
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </article>
-
-        <article class="sol-card">
-          <p class="sol-card__num">Solução 02</p>
-          <h3 class="sol-card__title">Mentoria <small>Marca com Essência©</small></h3>
-          <p class="sol-card__mode">Faça com a nossa ajuda.</p>
-          <p class="sol-card__desc">Você constrói, com direção estratégica. Aqui você continua no comando — eu conduzo o processo, você constrói a sua marca.</p>
-          <ul class="sol-card__list">
-            <li>4 encontros individuais de 1 hora</li>
-            <li>Livro físico e digital inclusos</li>
-            <li>Método aplicado passo a passo</li>
-            <li>Não contempla identidade visual</li>
-          </ul>
-          <div class="sol-card__price-block">
-            <p class="sol-card__price">3x de R$ 1.100</p>
-            <p class="sol-card__price-sub">Sem juros no cartão · ou 12x com juros da plataforma. *até dez/2026</p>
-          </div>
-          <a href="/mentoria" class="sol-card__cta">Conhecer a mentoria
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </article>
-
-        <article class="sol-card">
-          <p class="sol-card__num">Solução 03</p>
-          <h3 class="sol-card__title">Projeto <small>Marca com Essência©</small></h3>
-          <p class="sol-card__mode">A gente faz por você.</p>
-          <p class="sol-card__desc">Estruturação completa. Um processo profundo, conduzido da essência à presença no mercado, com a nossa equipe ao lado da sua.</p>
-          <ul class="sol-card__list">
-            <li>01 Imersão nos fundadores</li>
-            <li>02 Base estratégica + identidade verbal</li>
-            <li>03 Identidade visual e brand book</li>
-            <li>04 Comunicação e agentes de IA</li>
-          </ul>
-          <div class="sol-card__price-block">
-            <p class="sol-card__price">Sob consulta</p>
-            <p class="sol-card__price-sub">Orçamento personalizado após diagnóstico</p>
-          </div>
-          <a href="/programa" class="sol-card__cta">Falar sobre o projeto
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </article>
-      </div>
-    </div>
-
-    <!-- GRUPO 2 -->
-    <div class="sol-group">
-      <p class="sol-group__label">Para sustentar e difundir</p>
-      <div class="sol-grid sol-grid--2">
-
-        <article class="sol-card">
-          <p class="sol-card__num">Solução 04</p>
-          <h3 class="sol-card__title">Estúdio de Marca</h3>
-          <p class="sol-card__mode" style="color:var(--marinho);">As publicações da sua marca, já na identidade dela.</p>
-          <p class="sol-card__desc">Um sistema exclusivo, com Inteligência Artificial. A sua equipe troca texto e imagem sem quebrar o padrão. Acesso por login e senha, no celular e no computador.</p>
-          <ul class="sol-card__list">
-            <li>Implementação leva a linha visual da marca para dentro do sistema</li>
-            <li>Uso ilimitado após ativação</li>
-          </ul>
-          <div class="sol-card__price-block">
-            <p class="sol-card__price">3x de R$ 950 <span style="font-size:.7em;font-weight:400;color:var(--ink-3);">implementação</span></p>
-            <p class="sol-card__price" style="margin-top:.4rem;font-size:1.2rem;color:var(--caramelo);">+ R$ 420 <span style="font-size:.7em;font-weight:400;color:var(--ink-3);">por mês, após a ativação</span></p>
-            <p class="sol-card__price-sub">Sem juros no cartão · *até dez/2026</p>
-          </div>
-          <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Quero%20saber%20sobre%20o%20Est%C3%BAdio%20de%20Marca." target="_blank" rel="noopener" class="sol-card__cta">Falar sobre o Estúdio
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </article>
-
-        <article class="sol-card">
-          <p class="sol-card__num">Solução 05</p>
-          <h3 class="sol-card__title">Palestras e workshops</h3>
-          <p class="sol-card__mode">Para abrir consciência sobre o tema.</p>
-          <p class="sol-card__desc">Para empresas, eventos e equipes. Levamos o Método Marca com Essência© para dentro de organizações que querem discutir posicionamento estratégico com profundidade.</p>
-          <ul class="sol-card__list">
-            <li>Formato palestra ou workshop</li>
-            <li>Presencial ou online</li>
-            <li>Conteúdo personalizado para o público</li>
-          </ul>
-          <div class="sol-card__price-block">
-            <p class="sol-card__price">Sob consulta</p>
-            <p class="sol-card__price-sub">Orçamento por evento</p>
-          </div>
-          <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Quero%20contratar%20uma%20palestra%20ou%20workshop." target="_blank" rel="noopener" class="sol-card__cta">Contratar palestra
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </article>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ DIFERENÇA — quem conduz ═══════ -->
+<!-- ═══════ SOMOS A KA + NÚMEROS ═══════ -->
 <section class="sec sec--paper">
   <div class="sec__inner">
-    <p class="eyebrow eyebrow--center" style="justify-content:center;">A diferença entre elas</p>
-    <h2 class="philo-title title--center" style="text-align:center;">O método é o mesmo.<br><em>O que muda é quem conduz.</em></h2>
-
-    <div class="diff-grid">
-      <div class="diff-card diff-card--1">
-        <p class="diff-card__num">01</p>
-        <h3 class="diff-card__t">Livro</h3>
-        <p class="diff-card__s">Você conduz sozinho</p>
-      </div>
-      <div class="diff-card diff-card--2">
-        <p class="diff-card__num">02</p>
-        <h3 class="diff-card__t">Mentoria</h3>
-        <p class="diff-card__s">Eu conduzo, você constrói</p>
-      </div>
-      <div class="diff-card diff-card--3">
-        <p class="diff-card__num">03</p>
-        <h3 class="diff-card__t">Projeto</h3>
-        <p class="diff-card__s">A nossa equipe constrói junto com a sua</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ NÚMEROS ═══════ -->
-<section class="sec sec--cream">
-  <div class="sec__inner">
-    <p class="eyebrow">Somos a KA</p>
-    <h2 class="philo-title">Transformamos marcas a partir<br>da <em>essência</em> de quem as criou.</h2>
+    <div class="eyebrow">Somos a KA</div>
+    <h2 class="title-lg">Transformamos marcas a partir da <strong>essência</strong> de quem as criou.</h2>
+    <p class="lead" style="max-width:50ch;">Escritório de branding especializado em <strong>posicionamento e reposicionamento estratégico de marcas</strong>. Desenvolvemos o Método <strong>Marca com Essência©</strong> — um processo que revela o que sustenta a marca por dentro e traduz isso em clareza, direção e resultado no mercado.</p>
 
     <div class="stats-grid">
       <div class="stat">
-        <p class="stat__num"><em>20+</em></p>
-        <p class="stat__label">Anos de experiência em branding, posicionamento e reposicionamento de marcas</p>
+        <div class="stat__bar"></div>
+        <p class="stat__num">20+</p>
+        <p class="stat__label">Anos em branding, posicionamento e reposicionamento de marcas</p>
       </div>
       <div class="stat">
+        <div class="stat__bar"></div>
         <p class="stat__num">08</p>
-        <p class="stat__label">Cases publicados de reposicionamento estratégico com o Método Marca com Essência©</p>
+        <p class="stat__label">Cases publicados com o Método Marca com Essência©</p>
       </div>
       <div class="stat">
+        <div class="stat__bar"></div>
         <p class="stat__num">05</p>
-        <p class="stat__label">Soluções ativas: do livro-consultoria ao Estúdio de Marca com IA</p>
+        <p class="stat__label">Soluções ativas — do livro-consultoria ao Estúdio de Marca com IA</p>
       </div>
     </div>
   </div>
@@ -957,20 +636,190 @@ body{
   </div>
 </section>
 
+<!-- ═══════ NOSSAS SOLUÇÕES ═══════ -->
+<section class="sec sec--paper" id="solucoes">
+  <div class="eyebrow">Nossas soluções</div>
+  <div class="sec__inner">
+    <h2 class="title-lg">5 caminhos para construir, aplicar e sustentar o <strong>posicionamento da sua marca.</strong></h2>
+    <p class="lead" style="max-width:50ch;">Todas as nossas soluções nascem do mesmo método. <strong>O que muda é a profundidade e quem coloca a mão na massa.</strong></p>
+
+    <!-- GRUPO 1 -->
+    <div class="sol-group">
+      <p class="sol-group__label">Para posicionar ou reposicionar</p>
+      <div class="sol-list">
+
+        <article class="sol-item">
+          <div class="sol-item__bar"></div>
+          <h3 class="sol-item__name">Livro</h3>
+          <p class="sol-item__cat">Marca com Essência©</p>
+          <p class="sol-item__desc">Um livro-consultoria que te guia passo a passo para posicionar a sua marca. Agentes de IA treinados com o método, áudios e exercícios estruturados em cada capítulo.</p>
+          <ul class="sol-item__list">
+            <li>— Físico + digital</li>
+            <li>— Spotify · Google Docs · ChatGPT</li>
+            <li>— Não contempla identidade visual</li>
+          </ul>
+          <div class="sol-item__price-block">
+            <p class="sol-item__price">R$ 117</p>
+            <p class="sol-item__price-sub">Faça você mesmo · *valores válidos até dez/2026</p>
+          </div>
+          <a href="/livro" class="sol-item__cta">Conhecer o livro <span class="sol-item__cta-icon">→</span></a>
+        </article>
+
+        <article class="sol-item">
+          <div class="sol-item__bar"></div>
+          <h3 class="sol-item__name">Mentoria</h3>
+          <p class="sol-item__cat">Marca com Essência©</p>
+          <p class="sol-item__desc">Você constrói, com direção estratégica. Aqui você continua no comando — eu conduzo o processo, você constrói a sua marca.</p>
+          <ul class="sol-item__list">
+            <li>— 4 encontros individuais de 1h</li>
+            <li>— Livro físico e digital inclusos</li>
+            <li>— Método aplicado passo a passo</li>
+            <li>— Não contempla identidade visual</li>
+          </ul>
+          <div class="sol-item__price-block">
+            <p class="sol-item__price">3x de R$ 1.100</p>
+            <p class="sol-item__price-sub">Faça com a nossa ajuda · sem juros no cartão</p>
+          </div>
+          <a href="/mentoria" class="sol-item__cta">Conhecer a mentoria <span class="sol-item__cta-icon">→</span></a>
+        </article>
+
+        <article class="sol-item">
+          <div class="sol-item__bar"></div>
+          <h3 class="sol-item__name">Projeto</h3>
+          <p class="sol-item__cat">Marca com Essência©</p>
+          <p class="sol-item__desc">Estruturação completa. Um processo profundo, conduzido da essência à presença no mercado, com a nossa equipe ao lado da sua.</p>
+          <ul class="sol-item__list">
+            <li>— 01 Imersão nos fundadores</li>
+            <li>— 02 Base estratégica + identidade verbal</li>
+            <li>— 03 Identidade visual e brand book</li>
+            <li>— 04 Comunicação e agentes de IA</li>
+          </ul>
+          <div class="sol-item__price-block">
+            <p class="sol-item__price">Sob consulta</p>
+            <p class="sol-item__price-sub">A gente faz por você · orçamento personalizado</p>
+          </div>
+          <a href="/programa" class="sol-item__cta">Falar sobre o projeto <span class="sol-item__cta-icon">→</span></a>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- GRUPO 2 -->
+    <div class="sol-group">
+      <p class="sol-group__label">Para sustentar e difundir</p>
+      <div class="sol-list sol-list--2">
+
+        <article class="sol-item sol-item--dark">
+          <div class="sol-item__bar"></div>
+          <h3 class="sol-item__name">Estúdio de Marca</h3>
+          <p class="sol-item__cat">Sistema com IA</p>
+          <p class="sol-item__desc">As publicações da sua marca, já na identidade dela. Um sistema exclusivo, com Inteligência Artificial. A sua equipe troca texto e imagem sem quebrar o padrão. Acesso por login e senha, no celular e no computador.</p>
+          <ul class="sol-item__list">
+            <li>— Implementação leva a linha visual da marca para dentro do sistema</li>
+            <li>— Uso ilimitado após ativação</li>
+          </ul>
+          <div class="sol-item__price-block">
+            <p class="sol-item__price">3x de R$ 950</p>
+            <p class="sol-item__price-sub">Implementação · sem juros no cartão</p>
+            <p class="sol-item__price-plus">+ R$ 420 <span style="font-size:.68em;font-weight:400;color:var(--ink-3);">por mês, após a ativação</span></p>
+          </div>
+          <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Quero%20saber%20sobre%20o%20Est%C3%BAdio%20de%20Marca." target="_blank" rel="noopener" class="sol-item__cta">Falar sobre o Estúdio <span class="sol-item__cta-icon">→</span></a>
+        </article>
+
+        <article class="sol-item sol-item--azul">
+          <div class="sol-item__bar"></div>
+          <h3 class="sol-item__name">Palestras e workshops</h3>
+          <p class="sol-item__cat">Educação corporativa</p>
+          <p class="sol-item__desc">Para empresas, eventos e equipes. Levamos o Método Marca com Essência© para dentro de organizações que querem discutir posicionamento estratégico com profundidade.</p>
+          <ul class="sol-item__list">
+            <li>— Formato palestra ou workshop</li>
+            <li>— Presencial ou online</li>
+            <li>— Conteúdo personalizado para o público</li>
+          </ul>
+          <div class="sol-item__price-block">
+            <p class="sol-item__price">Sob consulta</p>
+            <p class="sol-item__price-sub">Para abrir consciência · orçamento por evento</p>
+          </div>
+          <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Quero%20contratar%20uma%20palestra%20ou%20workshop." target="_blank" rel="noopener" class="sol-item__cta">Contratar palestra <span class="sol-item__cta-icon">→</span></a>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DIFERENÇA ═══════ -->
+<section class="sec sec--cream">
+  <div class="sec__inner" style="text-align:center;">
+    <div class="eyebrow eyebrow--marinho" style="margin:0 auto 1.5rem;">A diferença entre elas</div>
+    <h2 class="question-title" style="margin-left:auto;margin-right:auto;">O método é o mesmo. <strong>O que muda é quem conduz.</strong></h2>
+
+    <div class="diff-block">
+      <div class="diff-grid">
+        <div class="diff-card diff-card--1">
+          <p class="diff-card__num">01</p>
+          <h3 class="diff-card__t">Livro</h3>
+          <p class="diff-card__s">Você conduz sozinho</p>
+        </div>
+        <div class="diff-card diff-card--2">
+          <p class="diff-card__num">02</p>
+          <h3 class="diff-card__t">Mentoria</h3>
+          <p class="diff-card__s">Eu conduzo, você constrói</p>
+        </div>
+        <div class="diff-card diff-card--3">
+          <p class="diff-card__num">03</p>
+          <h3 class="diff-card__t">Projeto</h3>
+          <p class="diff-card__s">A nossa equipe constrói junto com a sua</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MÉTODO ═══════ -->
+<section class="sec sec--paper" id="metodo">
+  <div class="sec__inner">
+    <div class="eyebrow eyebrow--azul">Método exclusivo</div>
+    <h2 class="title-lg">Marca com Essência<sup style="font-size:.4em;font-weight:400;">©</sup></h2>
+    <p class="lead" style="max-width:60ch;">Um processo que começa pela <strong>revelação da essência dos fundadores</strong> e pela leitura do quanto ela está, ou não, refletida na marca hoje. Estruturado em 4 etapas complementares.</p>
+
+    <div class="method-grid">
+      <article class="method-card">
+        <p class="method-card__num">Etapa 01</p>
+        <h3 class="method-card__name">Revelação de essência</h3>
+        <p class="method-card__desc">A raiz do negócio: fundadores, cultura e padrões reais.</p>
+      </article>
+      <article class="method-card">
+        <p class="method-card__num">Etapa 02</p>
+        <h3 class="method-card__name">Construção de clareza</h3>
+        <p class="method-card__desc">Posicionamento, proposta de valor e identidade verbal.</p>
+      </article>
+      <article class="method-card">
+        <p class="method-card__num">Etapa 03</p>
+        <h3 class="method-card__name">Definição de direção</h3>
+        <p class="method-card__desc">Identidade visual, esteira de produtos e plano de comunicação.</p>
+      </article>
+      <article class="method-card">
+        <p class="method-card__num">Etapa 04</p>
+        <h3 class="method-card__name">Posicionamento no mercado</h3>
+        <p class="method-card__desc">A marca pronta para ser percebida, desejada e escolhida.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════ KELLY ═══════ -->
-<section class="sec sec--paper" id="kelly">
+<section class="sec sec--cream" id="kelly">
   <div class="sec__inner">
     <div class="kelly">
       <div><img src="/images/kelly-bio.jpg" alt="Kelly Albert" class="kelly__photo"></div>
       <div>
-        <p class="eyebrow">Quem conduz</p>
+        <div class="eyebrow">Quem conduz</div>
         <h2 class="kelly__name">Kelly Albert</h2>
         <p class="kelly__role">Fundadora da KA · Estrategista de Marcas</p>
         <p class="kelly__bio"><strong>Mais de 20 anos de experiência em posicionamento e reposicionamento de marcas.</strong> Publicitária de formação, com MBA em Gestão Estratégica de Negócios pela FGV/SP e especializações pela ESPM/SP.</p>
         <p class="kelly__bio">Já trabalhou com marcas como <strong>McDonald's, Sebrae, Atacadão (Grupo Carrefour), Suvinil, Grupo Ramarim e Band FM</strong>. Criadora do Método <strong>Marca com Essência©</strong>.</p>
-        <a href="/sobre" class="kelly__link">Conheça a Kelly
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <a href="/sobre" class="kelly__link">Conheça a Kelly →</a>
       </div>
     </div>
   </div>
@@ -978,13 +827,11 @@ body{
 
 <!-- ═══════ CTA FINAL ═══════ -->
 <section class="cta">
-  <p class="cta__eyebrow">Vamos conversar</p>
-  <h2 class="cta__title">A marca da sua empresa merece<br><em>clareza estratégica.</em></h2>
+  <div class="cta__accent"></div>
+  <h2 class="cta__title">A marca da sua empresa merece <strong>clareza estratégica.</strong></h2>
   <p class="cta__sub">Se você quer posicionar, reposicionar ou sustentar a sua marca com direção estratégica — vamos conversar.</p>
   <div class="cta__actions">
-    <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%21%20Vim%20pelo%20site%20e%20quero%20conversar." target="_blank" rel="noopener" class="btn btn--caramelo">Falar no WhatsApp
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
+    <a href="https://wa.me/5551993163333?text=Ol%C3%A1%20Kelly%21%20Vim%20pelo%20site%20e%20quero%20conversar." target="_blank" rel="noopener" class="btn btn--dark">Falar com a Kelly</a>
     <a href="/quiz" class="btn btn--outline-light">Fazer diagnóstico gratuito</a>
   </div>
 </section>
@@ -992,11 +839,7 @@ body{
 <!-- ═══════ FOOTER ═══════ -->
 <footer class="foot">
   <div class="foot__inner">
-    <div class="foot__brand">
-      <span class="nav__mark">KA</span>
-      <span class="nav__txt">Inteligência<br>Para Marcas</span>
-    </div>
-    <div>© 2026 Kelly Albert · Todos os direitos reservados</div>
+    <div>© 2026 <a href="/">KA | Inteligência para Marcas</a></div>
     <div>
       <a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener">Instagram</a>
       · <a href="https://www.tiktok.com/@kellyalbertbr" target="_blank" rel="noopener">TikTok</a>
