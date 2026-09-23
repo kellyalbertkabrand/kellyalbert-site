@@ -103,6 +103,11 @@
   status = 200
 
 [[redirects]]
+  from = "/home-v2"
+  to = "/home-v2/index.html"
+  status = 200
+
+[[redirects]]
   from = "/apresentacao"
   to = "/apresentacao/index.html"
   status = 200
