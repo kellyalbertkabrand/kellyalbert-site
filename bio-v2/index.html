@@ -44,7 +44,7 @@ body{
 .wrap{max-width:520px;margin:0 auto;padding:2.4rem 1.2rem 3rem;}
 
 /* HEADER */
-.hdr{text-align:center;margin-bottom:1.6rem;}
+.hdr{text-align:center;margin-bottom:2rem;}
 .hdr__avatar{
   width:130px;height:130px;border-radius:50%;
   object-fit:cover;object-position:top center;
@@ -496,61 +496,69 @@ body{
 /* MINI CARDS (podcast/livro row) */
 .mini-list{display:flex;flex-direction:column;gap:.7rem;margin-bottom:2.2rem;}
 
-/* HERO DO PROJETO — card gigante clicável ocupando todo espaço de imagem */
+/* HERO DO PROJETO — card gigante clicável com mosaico de cases */
 .hero-prod{
   display:block;position:relative;overflow:hidden;
   border-radius:18px;text-decoration:none;color:#fff;
   margin:0 0 2.2rem;
-  aspect-ratio:4/5;
   background:#152535;
   transition:transform .3s ease;
   box-shadow:0 20px 50px rgba(0,0,0,.5);
 }
 .hero-prod:hover{transform:translateY(-3px);}
-.hero-prod__img{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;z-index:1;
+.hero-prod__mosaic{
+  display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;
+  gap:3px;position:relative;
+  aspect-ratio:3/2;
+  background:#0a1119;
 }
-.hero-prod__overlay{
-  position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg,
-    rgba(13,22,32,.1) 0%,
-    rgba(13,22,32,.4) 50%,
-    rgba(13,22,32,.95) 100%);
+.hero-prod__mosaic img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(1.05);
 }
 .hero-prod__content{
-  position:absolute;left:0;right:0;bottom:0;z-index:3;
-  padding:1.8rem 1.6rem 2rem;
+  padding:1.9rem 1.6rem 2.1rem;
+  background:linear-gradient(180deg,#152535 0%,#0d1620 100%);
+  position:relative;
 }
 .hero-prod__eyebrow{
-  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
-  font-weight:700;color:#C47830;margin:0 0 .7rem;
-  display:inline-block;padding:.4rem .9rem;
-  background:rgba(196,120,48,.18);
-  border:1px solid rgba(196,120,48,.4);
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:700;color:#C47830;margin:0 0 .55rem;
+  display:inline-block;padding:.5rem 1rem;
+  background:rgba(196,120,48,.14);
+  border:1px solid rgba(196,120,48,.45);
   border-radius:100px;
 }
 .hero-prod__title{
   font-family:var(--heading);
-  font-size:1.95rem;font-weight:700;color:#fff;
-  margin:0 0 .6rem;line-height:1.08;letter-spacing:-.015em;
+  font-size:2.6rem;font-weight:700;color:#fff;
+  margin:.7rem 0 .55rem;line-height:1;letter-spacing:-.02em;
+}
+.hero-prod__subtitle{
+  font-family:var(--heading);
+  font-size:1.35rem;font-weight:600;color:rgba(237,232,221,.78);
+  margin:0 0 1rem;line-height:1.15;letter-spacing:-.01em;
+  font-style:italic;
 }
 .hero-prod__desc{
-  font-size:.95rem;color:rgba(237,232,221,.88);
-  margin:0 0 1.2rem;line-height:1.5;
-  max-width:30ch;
+  font-size:.95rem;color:rgba(237,232,221,.75);
+  margin:0 0 1.3rem;line-height:1.55;
 }
 .hero-prod__btn{
   display:inline-flex;align-items:center;gap:.5rem;
-  padding:.85rem 1.4rem;
+  padding:.95rem 1.5rem;
   background:#C47830;color:#fff;
-  border-radius:100px;font-size:.85rem;font-weight:700;
+  border-radius:100px;font-size:.88rem;font-weight:700;
   letter-spacing:.03em;
   transition:background .25s,transform .15s;
 }
 .hero-prod__btn svg{width:14px;height:14px;transition:transform .2s;}
 .hero-prod:hover .hero-prod__btn{background:#d88e45;}
 .hero-prod:hover .hero-prod__btn svg{transform:translateX(3px);}
+@media(max-width:420px){
+  .hero-prod__title{font-size:2.1rem;}
+  .hero-prod__subtitle{font-size:1.15rem;}
+}
 
 /* LISTA SIMPLES DE LINKS (livro, mentoria, direção, cases) */
 .link-list{
@@ -775,22 +783,6 @@ a.foot__s:hover{color:var(--accent);}
     <p class="hdr__tag">Responda 6 perguntas e descubra <strong>o melhor caminho</strong> pra construir sua marca ↓</p>
   </header>
 
-  <!-- SOCIAL ICONS -->
-  <div class="socials">
-    <a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-    </a>
-    <a href="https://www.tiktok.com/@kellyalbertbr" target="_blank" rel="noopener" aria-label="TikTok">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.34a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.35z"/></svg>
-    </a>
-    <a href="https://open.spotify.com" target="_blank" rel="noopener" aria-label="Spotify">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm4.59 14.44a.62.62 0 0 1-.86.21 12.86 12.86 0 0 0-7.5-1.94.62.62 0 1 1-.21-1.23 14.09 14.09 0 0 1 8.36 2.11.62.62 0 0 1 .21.85zm1.23-2.75a.78.78 0 0 1-1.07.26 15.13 15.13 0 0 0-8.66-2.16.78.78 0 1 1-.24-1.54 16.7 16.7 0 0 1 9.71 2.37.78.78 0 0 1 .26 1.07zm.11-2.87a.93.93 0 0 1-1.28.31 17.36 17.36 0 0 0-9.85-2.29.93.93 0 1 1-.28-1.84 19.24 19.24 0 0 1 10.9 2.54.93.93 0 0 1 .51 1.28z"/></svg>
-    </a>
-    <a href="/quiz" aria-label="Diagnóstico">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-    </a>
-  </div>
-
   <!-- CTA DIAGNÓSTICO -->
   <button type="button" onclick="kaChatOpen()" class="quiz-cta" aria-label="Iniciar chat com Kelly">
     <div class="quiz-cta__icon">
@@ -805,13 +797,20 @@ a.foot__s:hover{color:var(--accent);}
     </div>
   </button>
 
-  <!-- HERO DO PROJETO — card gigante clicável que leva para /programa/ -->
-  <a href="/programa" class="hero-prod" aria-label="Conhecer o Projeto Marca com Essência©">
-    <img src="/images/kelly-bio.jpg" alt="Projeto Marca com Essência©" class="hero-prod__img" loading="lazy">
-    <div class="hero-prod__overlay"></div>
+  <!-- HERO DO PROJETO — mosaico de cases + título em destaque -->
+  <a href="/programa" class="hero-prod" aria-label="Projeto de Posicionamento de Marca · Marca com Essência">
+    <div class="hero-prod__mosaic">
+      <img src="/images/suvinil/cover.jpg" alt="Case Suvinil" loading="lazy">
+      <img src="/images/shapes/cover.jpg" alt="Case Shapes" loading="lazy">
+      <img src="/images/ramarim/capa.jpg" alt="Case Ramarim" loading="lazy">
+      <img src="/images/yufil/cover.jpg" alt="Case Yufil" loading="lazy">
+      <img src="/images/comfortflex/cover.jpg" alt="Case ComfortFlex" loading="lazy">
+      <img src="/images/amordebicho/cover.jpg" alt="Case Amor de Bicho" loading="lazy">
+    </div>
     <div class="hero-prod__content">
-      <span class="hero-prod__eyebrow">Nossa solução principal</span>
-      <h2 class="hero-prod__title">Projeto Marca<br>com Essência<sup style="font-size:.55em;">©</sup></h2>
+      <span class="hero-prod__eyebrow">Projeto de Posicionamento de Marca</span>
+      <h2 class="hero-prod__title">Marca com Essência<sup style="font-size:.4em;vertical-align:super;">©</sup></h2>
+      <p class="hero-prod__subtitle">Nossa solução principal</p>
       <p class="hero-prod__desc">Posicionamento estratégico + identidade verbal e visual + agentes de IA. Conduzido pela equipe da KA.</p>
       <span class="hero-prod__btn">Conhecer o Projeto
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
