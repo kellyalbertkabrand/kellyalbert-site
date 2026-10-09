@@ -646,6 +646,37 @@ body{
   aspect-ratio:16/9;
   background:#0d1620;
 }
+.link-feat__slot{
+  position:relative;overflow:hidden;
+  width:100%;aspect-ratio:16/9;
+  background:#0d1620;
+}
+.link-feat__slot img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;display:block;
+  opacity:0;
+  animation:livroFade 27s infinite;
+}
+.link-feat__slot img:nth-child(1){animation-delay:-0.5s;}
+.link-feat__slot img:nth-child(2){animation-delay:2.5s;}
+.link-feat__slot img:nth-child(3){animation-delay:5.5s;}
+.link-feat__slot img:nth-child(4){animation-delay:8.5s;}
+.link-feat__slot img:nth-child(5){animation-delay:11.5s;}
+.link-feat__slot img:nth-child(6){animation-delay:14.5s;}
+.link-feat__slot img:nth-child(7){animation-delay:17.5s;}
+.link-feat__slot img:nth-child(8){animation-delay:20.5s;}
+.link-feat__slot img:nth-child(9){animation-delay:23.5s;}
+@keyframes livroFade {
+  0%{opacity:0;}
+  1.85%{opacity:1;}
+  9.26%{opacity:1;}
+  11.11%{opacity:0;}
+  100%{opacity:0;}
+}
+@media (prefers-reduced-motion:reduce){
+  .link-feat__slot img{animation:none;}
+  .link-feat__slot img:nth-child(1){opacity:1;}
+}
 .link-feat__row{
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
   padding:1.1rem 1.3rem;
@@ -900,9 +931,19 @@ a.foot__s:hover{color:var(--accent);}
 
   <!-- LISTA SIMPLES DE OUTROS LINKS -->
   <div class="link-list">
-    <!-- Livro em card medio com imagem destacada -->
+    <!-- Livro em card medio com carrossel rotativo de imagens -->
     <a href="/livro" class="link-feat">
-      <img src="/images/livro-lifestyle.jpg" alt="Livro Marca com Essência©" class="link-feat__img" loading="lazy">
+      <div class="link-feat__slot" aria-hidden="true">
+        <img src="/images/livro-lifestyle/01-pilha-topo.jpg" alt="">
+        <img src="/images/livro-lifestyle/08-mulher-segurando.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/03-cenario-bege.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/09-sofa.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/06-pedestal-laranja.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/07-mesa-estante.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/04-caixa.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/05-pedestal-bege.jpg" alt="" loading="lazy">
+        <img src="/images/livro-lifestyle/02-pilha-preto.jpg" alt="" loading="lazy">
+      </div>
       <div class="link-feat__row">
         <span class="link-feat__text">
           <span class="link-feat__eyebrow">Livro</span>
