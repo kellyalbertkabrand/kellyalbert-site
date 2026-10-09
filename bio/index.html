@@ -110,7 +110,8 @@ body{
 .quiz-cta--diag{
   background:linear-gradient(135deg,#10B981 0%,#FBBF24 100%);
   border-color:rgba(251,191,36,.9);
-  margin-bottom:1.6rem;
+  margin:0 auto 1.6rem;
+  max-width:88%;
   animation:kaCtaPulseDiag 1.6s ease-in-out infinite;
   color:#0d1620;
 }
@@ -1672,7 +1673,7 @@ a.foot__s:hover{color:var(--accent);}
       fd.append('email',email);
       fd.append('whatsapp',wa);
       fd.append('caminho_recomendado',caminho);
-      fd.append('origem","bio-chat');
+      fd.append('origem','bio-2-chat');
       fetch('/',{method:'POST',body:fd})
         .then(function(r){console.log('[Netlify Forms]',r.ok?'ok':'erro '+r.status);})
         .catch(function(e){console.error('[Netlify Forms] erro:',e);});
