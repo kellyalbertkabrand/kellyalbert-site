@@ -1516,14 +1516,70 @@ a.foot__s:hover{color:var(--accent);}
       mostrarDiagnostico(data.diagnostico,prod,primeiroNome);
     })
     .catch(function(e){
-      // fallback: usa scoring local
-      console.warn('IA indisponivel, usando fallback:',e);
+      // fallback adaptativo baseado nas respostas
+      console.warn('%c[DIAGNOSTICO] IA nao respondeu. Verifique OPENAI_API_KEY no Netlify. Erro:','color:#C47830;font-weight:bold',e);
       var prod=pickProductFallback();
       enviarMailerLite(nome,email,wa,prod.key);
       f.remove();
-      var fb='Pelo que você respondeu, sua marca está num momento clássico de passagem. Existe muita coisa boa sendo entregue, mas o mercado ainda não consegue traduzir isso em <strong>percepção de valor</strong>. Isso costuma acontecer quando a essência da marca já existe (você sente), mas ainda não foi nomeada, estruturada e distribuída de forma consistente.\n\nO risco de ficar aqui é continuar competindo pelo preço em vez do significado. Isso drena energia, caixa e tempo. Quanto mais tempo levar, mais o seu posicionamento vira ruído.\n\nO caminho abaixo é o próximo passo mais estratégico pra você sair desse ponto cego e começar a construir uma marca lembrada, desejada e escolhida.';
+      var fb=montarFallback(primeiroNome,answers,prod.key);
       mostrarDiagnostico(fb,prod,primeiroNome);
     });
+  }
+
+  // Fallback adaptativo — monta diagnostico a partir das respostas reais
+  function montarFallback(nome,respostas,produtoKey){
+    var momento='', trava='', aprendizado='', urgencia='', investimento='';
+    respostas.forEach(function(r){
+      var p=(r.pergunta||'').toLowerCase(), v=(r.resposta||'').toLowerCase();
+      if(p.indexOf('momento')>=0 && p.indexOf('marca')>=0) momento=r.resposta;
+      else if(p.indexOf('sua marca')===0 || p.indexOf('tipo')>=0) ; // ignora
+      else if(p.indexOf('trava')>=0) trava=r.resposta;
+      else if(p.indexOf('aprender')>=0 || p.indexOf('aplicar')>=0) aprendizado=r.resposta;
+      else if(p.indexOf('investir')>=0) investimento=r.resposta;
+      else if(p.indexOf('urgência')>=0 || p.indexOf('urgencia')>=0) urgencia=r.resposta;
+    });
+
+    var p1='', p2='', p3='';
+    var momL=momento.toLowerCase();
+
+    // Paragrafo 1: nomeia o momento com base nas respostas reais
+    if(momL.indexOf('começando')>=0 || momL.indexOf('comecando')>=0 || momL.indexOf('zero')>=0){
+      p1=nome+', pelo que você respondeu, sua marca está no <strong>momento de origem</strong>. Esse é o estágio onde tudo precisa ser decidido do zero: quem é a sua marca, pra quem ela fala, o que ela representa e por que o mercado deveria se importar. É um momento potente, mas confuso. Você sente que tem algo pra dizer, mas ainda não achou a forma.';
+    } else if(momL.indexOf('desorganizada')>=0 || momL.indexOf('desorganizado')>=0){
+      p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reorganização</strong>. Já existe operação, cliente e entrega, mas falta estrutura. É aquele estágio em que a marca cresceu rápido e deixou o posicionamento pra trás. Hoje você tem matéria-prima, mas ainda não tem a construção estratégica que amarra tudo.';
+    } else if(momL.indexOf('reposicionar')>=0){
+      p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reposicionamento</strong>. Existe trajetória, autoridade e caixa, mas a percepção que o mercado tem hoje não é mais a que você precisa. Reposicionar é mais difícil do que começar, porque você precisa romper com uma leitura que já se consolidou na cabeça do público.';
+    } else if(momL.indexOf('escalar')>=0){
+      p1=nome+', pelo que você respondeu, sua marca já funciona e agora precisa <strong>escalar com clareza</strong>. É o estágio em que a base existe, o modelo prova resultado, e o próximo salto é consistência. Nesse momento, cada decisão de comunicação, cada entrada em novo canal, cada contratação, carrega mais peso do que no começo.';
+    } else {
+      p1=nome+', pelo que você respondeu, sua marca está num momento de <strong>construção estratégica</strong>. Existe entrega real, mas o mercado ainda não enxerga você da forma como você precisa ser enxergada.';
+    }
+
+    // Paragrafo 2: nomeia o risco com base no que trava
+    var travaL=trava.toLowerCase();
+    if(travaL.indexOf('não sei quem')>=0 || travaL.indexOf('nao sei quem')>=0 || travaL.indexOf('representa')>=0){
+      p2='A trava central é identidade. Sem saber quem a marca é e o que ela representa, qualquer comunicação vira ruído. O risco é passar os próximos meses produzindo conteúdo, posts e campanhas que não constroem percepção, apenas gastam energia.';
+    } else if(travaL.indexOf('clareza')>=0 || travaL.indexOf('comunico')>=0){
+      p2='A trava central é tradução. A marca existe internamente, mas não encontra as palavras pra existir no mercado. O risco é continuar entregando valor que não é percebido, e isso naturalmente puxa você pra guerra de preço.';
+    } else if(travaL.indexOf('valor percebido')>=0 || travaL.indexOf('valor baixo')>=0){
+      p2='A trava central é <strong>percepção de valor</strong>. Você comunica, mas o preço ainda vira o critério principal da decisão. Isso significa que o cliente não enxerga a diferença entre o que você entrega e o que o concorrente mais barato oferece.';
+    } else if(travaL.indexOf('direção')>=0 || travaL.indexOf('direcao')>=0 || travaL.indexOf('contínua')>=0 || travaL.indexOf('continua')>=0){
+      p2='A trava central já não é fundação, é consistência. Sem direção estratégica contínua, decisões importantes acabam acontecendo no improviso. Com o tempo, isso desalinha a marca de dentro pra fora.';
+    } else {
+      p2='O risco de ficar nesse estágio é ver o tempo passar sem avanço real de percepção. Marca que não é lembrada, não é desejada. E marca que não é desejada só vende no preço.';
+    }
+
+    // Paragrafo 3: justifica o produto recomendado
+    var ap=aprendizado.toLowerCase(), inv=investimento.toLowerCase();
+    if(produtoKey==='livro'){
+      p3='Pelo seu ritmo ('+(ap||'aplicar sozinha')+') e pela faixa de investimento que você escolheu ('+(inv||'inicial')+'), o <strong>Livro Marca com Essência</strong> é o passo mais inteligente agora. Ele dá a estrutura completa do método, com agentes de IA e exercícios práticos, pra você construir a base da sua marca sem depender de ninguém.';
+    } else if(produtoKey==='projeto'){
+      p3='Pelo momento em que você está e pela faixa de investimento ('+(inv||'a partir de R$ 9.900')+'), o <strong>Projeto Marca com Essência</strong> é o caminho estratégico. A equipe da KA constrói a base junto com você: posicionamento, identidade verbal, identidade visual e agentes de IA. É a construção completa, feita a quatro mãos.';
+    } else {
+      p3='Pelo estágio da sua marca e pela sua necessidade de <strong>direção contínua</strong>, o programa de Direção Estratégica é o caminho certo. Acompanhamento executivo mensal com a Kelly em branding, comunicação e marketing. Clareza no mês, não só no início.';
+    }
+
+    return p1+'\n\n'+p2+'\n\n'+p3;
   }
 
   function enviarMailerLite(nome,email,wa,caminho){
