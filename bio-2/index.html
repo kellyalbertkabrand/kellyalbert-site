@@ -1754,6 +1754,10 @@ a.foot__s:hover{color:var(--accent);}
     var backdrop=document.getElementById('ka-chat');
     backdrop.addEventListener('click',function(e){if(e.target===backdrop) kaChatClose();});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&opened) kaChatClose();});
+    // Abre o chat automaticamente se a URL tiver #diagnostico (link do CTA Diagnostico Gratuito)
+    if(location.hash==='#diagnostico'||location.hash==='#chat'){
+      setTimeout(function(){ try{ kaChatOpen(); }catch(e){} },300);
+    }
   });
 })();
 </script>
