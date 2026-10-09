@@ -305,6 +305,48 @@ body{
   padding:1.3rem 1.2rem;
   text-align:center;
 }
+
+/* DIAGNOSTIC CARD — destaque pra análise da IA */
+.diag-card{
+  margin:1rem;
+  padding:1.6rem 1.4rem;
+  background:#EDE8DD;
+  color:#152535;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 0 1px rgba(196,120,48,.3);
+  animation:kaBubble .4s ease-out;
+  position:relative;
+}
+.diag-card::before{
+  content:'DIAGNÓSTICO';
+  display:inline-block;
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:#C47830;color:#fff;
+  font-size:.6rem;font-weight:800;letter-spacing:.22em;
+  padding:.3rem .9rem;border-radius:100px;
+  box-shadow:0 4px 12px rgba(196,120,48,.5);
+}
+.diag-card__hi{
+  font-size:.78rem;font-weight:700;color:#C47830;
+  letter-spacing:.1em;text-transform:uppercase;
+  margin:.4rem 0 .9rem;text-align:center;
+}
+.diag-card__body{
+  font-size:.98rem;line-height:1.65;color:#152535;
+  margin:0;white-space:pre-wrap;
+}
+.diag-card__body strong{color:#152535;font-weight:700;}
+.diag-card__scroll{
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  margin:1.2rem 0 .2rem;font-size:.75rem;
+  color:rgba(21,37,53,.6);font-weight:600;
+  letter-spacing:.06em;
+}
+.diag-card__scroll svg{width:14px;height:14px;animation:kaArrowDown 1.6s ease-in-out infinite;}
+@keyframes kaArrowDown{
+  0%,100%{transform:translateY(0);opacity:.5;}
+  50%{transform:translateY(4px);opacity:1;}
+}
 .chat-result__eyebrow{
   font-size:.7rem;font-weight:700;letter-spacing:.22em;
   text-transform:uppercase;color:var(--accent);margin:0 0 .5rem;
@@ -1376,21 +1418,19 @@ a.foot__s:hover{color:var(--accent);}
   }
 
   function showForm(){
-    botMsg('Pronto, terminou! 🎯 Agora vou analisar as suas respostas e te mandar um diagnóstico personalizado.',function(){
-      botMsg('Antes, me deixa seus dados pra eu te enviar uma cópia no e-mail:',function(){
-        var f=document.createElement('form');
-        f.className='chat-form';
-        f.innerHTML=
-          '<input type="text" name="nome" placeholder="Nome completo" required autocomplete="name">'+
-          '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">'+
-          '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric">'+
-          '<p class="chat-form__err" id="ka-chat-err"></p>'+
-          '<button type="submit" class="chat-form__btn">Ver meu diagnóstico →</button>'+
-          '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
-        f.addEventListener('submit',function(e){e.preventDefault();submitForm(f);});
-        footer.appendChild(f);
-        scrollBot();
-      });
+    botMsg('Pronto, terminou! 🎯 Preenche abaixo pra eu liberar seu diagnóstico personalizado:',function(){
+      var f=document.createElement('form');
+      f.className='chat-form';
+      f.innerHTML=
+        '<input type="text" name="nome" placeholder="Nome completo" required autocomplete="name">'+
+        '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">'+
+        '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric">'+
+        '<p class="chat-form__err" id="ka-chat-err"></p>'+
+        '<button type="submit" class="chat-form__btn">Ver meu diagnóstico →</button>'+
+        '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
+      f.addEventListener('submit',function(e){e.preventDefault();submitForm(f);});
+      footer.appendChild(f);
+      scrollBot();
     });
   }
 
@@ -1434,7 +1474,7 @@ a.foot__s:hover{color:var(--accent);}
       var prod=productByKey(data.produto);
       enviarMailerLite(nome,email,wa,prod.key);
       f.remove();
-      mostrarDiagnostico(data.diagnostico,prod);
+      mostrarDiagnostico(data.diagnostico,prod,primeiroNome);
     })
     .catch(function(e){
       // fallback: usa scoring local
@@ -1442,7 +1482,8 @@ a.foot__s:hover{color:var(--accent);}
       var prod=pickProductFallback();
       enviarMailerLite(nome,email,wa,prod.key);
       f.remove();
-      mostrarDiagnostico('Pelas suas respostas, você está num momento de construção que pede clareza no que vem primeiro. O caminho abaixo é o mais estratégico pra sua marca sair do operacional e virar algo que o mercado reconhece.',prod);
+      var fb='Pelo que você respondeu, sua marca está num momento clássico de passagem: existe muita coisa boa sendo entregue, mas o mercado ainda não consegue traduzir isso em percepção de valor. Isso costuma acontecer quando a essência da marca já existe (você sente), mas ainda não foi nomeada, estruturada e distribuída de forma consistente.\n\nO risco de ficar aqui é continuar competindo pelo preço em vez do significado — e isso drena energia, caixa e tempo. O caminho abaixo é o próximo passo mais estratégico pra você sair desse ponto cego e começar a construir uma marca lembrada, desejada e escolhida.';
+      mostrarDiagnostico(fb,prod,primeiroNome);
     });
   }
 
@@ -1463,12 +1504,22 @@ a.foot__s:hover{color:var(--accent);}
     }catch(err){}
   }
 
-  function mostrarDiagnostico(diagnostico,prod){
-    botMsg(diagnostico,function(){
-      botMsg('Baseado nisso, esse é o caminho ideal pra você agora:',function(){
-        showResult(prod);
-      });
-    });
+  function mostrarDiagnostico(diagnostico,prod,primeiroNome){
+    // Card de diagnostico destacado (fundo gelo, borda caramelo)
+    var card=document.createElement('div');
+    card.className='diag-card';
+    var saudacao=primeiroNome?('<p class="diag-card__hi">'+primeiroNome+', aqui está sua análise 👇</p>'):'';
+    card.innerHTML=
+      saudacao+
+      '<div class="diag-card__body">'+diagnostico.replace(/\n/g,'<br><br>')+'</div>'+
+      '<div class="diag-card__scroll"><span>Role pra ver seu caminho ideal</span>'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'+
+      '</div>';
+    body.appendChild(card);
+    scrollBot();
+    setTimeout(function(){
+      showResult(prod);
+    },1200);
   }
 
   function showResult(prod){
