@@ -369,6 +369,17 @@ body{
   transition:transform .15s;
 }
 .chat-result__btn:hover{transform:translateY(-2px);}
+.chat-result__wa{
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+  margin:.9rem 0 .2rem;padding:.9rem 1.4rem;
+  background:#25D366;color:#fff;text-decoration:none;
+  border-radius:100px;
+  font-size:.88rem;font-weight:700;letter-spacing:.02em;
+  box-shadow:0 8px 24px rgba(37,211,102,.35);
+  transition:transform .15s,background .2s;
+}
+.chat-result__wa:hover{transform:translateY(-2px);background:#2ae076;}
+.chat-result__wa svg{width:18px;height:18px;}
 
 /* SECTION LABEL */
 .sec-label{
@@ -1539,6 +1550,8 @@ a.foot__s:hover{color:var(--accent);}
   }
 
   function showResult(prod){
+    var waMsg='Oi Kelly! Fiz o diagnóstico no site e meu caminho ideal foi *'+prod.title.replace(/<[^>]+>/g,'')+'*. Queria conversar com você.';
+    var waUrl='https://wa.me/5551993163333?text='+encodeURIComponent(waMsg);
     var wrap=document.createElement('div');
     wrap.className='chat-result';
     wrap.innerHTML=
@@ -1547,7 +1560,11 @@ a.foot__s:hover{color:var(--accent);}
         '<h3 class="chat-result__title">'+prod.title+'</h3>'+
         '<p class="chat-result__desc">'+prod.desc+'</p>'+
         '<a href="'+prod.url+'" class="chat-result__btn">'+prod.cta+' →</a>'+
-      '</div>';
+      '</div>'+
+      '<a href="'+waUrl+'" target="_blank" rel="noopener" class="chat-result__wa">'+
+        '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>'+
+        'Falar com a equipe no WhatsApp'+
+      '</a>';
     // Agora vai PARA O BODY (nao mais o footer), pra pessoa precisar rolar depois do diagnostico
     body.appendChild(wrap);
     // Nao auto-scroll aqui — a pessoa esta lendo o diagnostico, deixa ela rolar quando quiser
