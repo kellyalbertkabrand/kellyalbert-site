@@ -12,13 +12,13 @@ exports.handler = async function(event){
   try { payload = JSON.parse(event.body || '{}'); }
   catch(e){ return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) }; }
 
-  const { nome, email, whatsapp, origem } = payload;
+  const { nome, email, whatsapp, origem, groupId: customGroupId, extraFields } = payload;
   if(!email || !nome){
     return { statusCode: 400, body: JSON.stringify({ error: 'nome e email são obrigatórios' }) };
   }
 
   const apiKey = process.env.MAILERLITE_API_KEY;
-  const groupId = process.env.MAILERLITE_GROUP_ID;
+  const groupId = customGroupId || process.env.MAILERLITE_GROUP_ID;
   if(!apiKey){
     return { statusCode: 500, body: JSON.stringify({ error: 'MAILERLITE_API_KEY não configurada' }) };
   }
@@ -33,6 +33,9 @@ exports.handler = async function(event){
   };
   if(groupId){ body.groups = [groupId]; }
   if(origem){ body.fields.origem = origem; }
+  if(extraFields && typeof extraFields === 'object'){
+    Object.keys(extraFields).forEach(function(k){ body.fields[k] = extraFields[k]; });
+  }
 
   try{
     const resp = await fetch('https://connect.mailerlite.com/api/subscribers', {
