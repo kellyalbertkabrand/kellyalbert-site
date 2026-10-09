@@ -1433,14 +1433,38 @@ a.foot__s:hover{color:var(--accent);}
     scrollBot();
   }
 
-  function pickProductFallback(){
-    var best='l',bestV=-1;
-    Object.keys(scores).forEach(function(k){if(scores[k]>bestV){bestV=scores[k];best=k;}});
-    return best==='l'?PRODUCTS.l:(best==='p'?PRODUCTS.p:PRODUCTS.d);
+  function pickProductsFallback(){
+    // Monta array de 1 ou 2 produtos com base nas respostas
+    var investimento='',aprendizado='',momento='';
+    answers.forEach(function(r){
+      var p=(r.pergunta||'').toLowerCase();
+      if(p.indexOf('investir')>=0) investimento=r.resposta;
+      else if(p.indexOf('aprender')>=0||p.indexOf('aplicar')>=0) aprendizado=r.resposta;
+      else if(p.indexOf('momento')>=0&&p.indexOf('marca')>=0) momento=r.resposta;
+    });
+    var invL=investimento.toLowerCase(),apL=aprendizado.toLowerCase(),moL=momento.toLowerCase();
+
+    // Investimento alto (R$ 19.900+): combinar projeto ou livro + direcao
+    if(invL.indexOf('19')>=0||invL.indexOf('19.9')>=0){
+      if(apL.indexOf('sozinha')>=0||apL.indexOf('ritmo')>=0) return ['livro','direcao'];
+      if(apL.indexOf('equipe fa')>=0||apL.indexOf('fazer por')>=0) return ['projeto','direcao'];
+      return ['projeto','direcao'];
+    }
+    // Investimento R$ 9.900: projeto solo (talvez + livro de base)
+    if(invL.indexOf('9.9')>=0||invL.indexOf('9900')>=0){
+      return ['projeto'];
+    }
+    // Investimento R$ 1.200: livro (base) + possivel direcao se marca ja existe
+    if(invL.indexOf('1.2')>=0||invL.indexOf('1200')>=0){
+      if(moL.indexOf('escalar')>=0||moL.indexOf('consolidada')>=0) return ['livro','direcao'];
+      return ['livro'];
+    }
+    // Default (R$ 200): livro apenas
+    return ['livro'];
   }
   function productByKey(k){
-    if(k==='projeto') return PRODUCTS.p;
-    if(k==='direcao') return PRODUCTS.d;
+    if(k==='projeto'||k==='p') return PRODUCTS.p;
+    if(k==='direcao'||k==='d') return PRODUCTS.d;
     return PRODUCTS.l;
   }
 
@@ -1510,19 +1534,22 @@ a.foot__s:hover{color:var(--accent);}
     })
     .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
     .then(function(data){
-      var prod=productByKey(data.produto);
-      enviarMailerLite(nome,email,wa,prod.key);
+      // Suporta array 'produtos' (novo) ou 'produto' unico (retrocompat)
+      var keys=Array.isArray(data.produtos)&&data.produtos.length?data.produtos:[data.produto||'livro'];
+      var prods=keys.map(productByKey).filter(Boolean);
+      enviarMailerLite(nome,email,wa,prods.map(function(p){return p.key;}).join('+'));
       f.remove();
-      mostrarDiagnostico(data.diagnostico,prod,primeiroNome);
+      mostrarDiagnostico(data.diagnostico,prods,primeiroNome);
     })
     .catch(function(e){
       // fallback adaptativo baseado nas respostas
       console.warn('%c[DIAGNOSTICO] IA nao respondeu. Verifique OPENAI_API_KEY no Netlify. Erro:','color:#C47830;font-weight:bold',e);
-      var prod=pickProductFallback();
-      enviarMailerLite(nome,email,wa,prod.key);
+      var fbKeys=pickProductsFallback();
+      var prods=fbKeys.map(productByKey);
+      enviarMailerLite(nome,email,wa,prods.map(function(p){return p.key;}).join('+'));
       f.remove();
-      var fb=montarFallback(primeiroNome,answers,prod.key);
-      mostrarDiagnostico(fb,prod,primeiroNome);
+      var fb=montarFallback(primeiroNome,answers,prods);
+      mostrarDiagnostico(fb,prods,primeiroNome);
     });
   }
 
@@ -1569,14 +1596,24 @@ a.foot__s:hover{color:var(--accent);}
       p2='O risco de ficar nesse estágio é ver o tempo passar sem avanço real de percepção. Marca que não é lembrada, não é desejada. E marca que não é desejada só vende no preço.';
     }
 
-    // Paragrafo 3: justifica o produto recomendado
+    // Paragrafo 3: justifica o(s) produto(s) recomendado(s)
+    // produtoKey agora pode ser array de PRODUCT objects, string key, ou vazio
+    var keys=[];
+    if(Array.isArray(produtoKey)) keys=produtoKey.map(function(x){return x.key||x;});
+    else if(typeof produtoKey==='string') keys=[produtoKey];
+    else if(produtoKey&&produtoKey.key) keys=[produtoKey.key];
     var ap=aprendizado.toLowerCase(), inv=investimento.toLowerCase();
-    if(produtoKey==='livro'){
-      p3='Pelo seu ritmo ('+(ap||'aplicar sozinha')+') e pela faixa de investimento que você escolheu ('+(inv||'inicial')+'), o <strong>Livro Marca com Essência</strong> é o passo mais inteligente agora. Ele dá a estrutura completa do método, com agentes de IA e exercícios práticos, pra você construir a base da sua marca sem depender de ninguém.';
-    } else if(produtoKey==='projeto'){
+
+    if(keys.length===2 && keys.indexOf('livro')>=0 && keys.indexOf('direcao')>=0){
+      p3='Pelo seu perfil ('+(ap||'aprender aplicando')+') e pelo orçamento que você escolheu, a combinação mais estratégica é <strong>Livro + Direção Estratégica</strong>. O Livro te entrega a base metodológica completa pra aplicar no seu ritmo. A Direção garante o acompanhamento executivo mensal com a Kelly, pra que a construção não perca o fio estratégico.';
+    } else if(keys.length===2 && keys.indexOf('projeto')>=0 && keys.indexOf('direcao')>=0){
+      p3='Pelo momento da sua marca e pelo investimento disponível, a combinação mais estratégica é <strong>Projeto + Direção Estratégica</strong>. O Projeto entrega a base construída de ponta a ponta pela equipe da KA. A Direção faz a continuidade: acompanhamento mensal com a Kelly pra que a base não se perca na operação do dia a dia.';
+    } else if(keys[0]==='projeto'){
       p3='Pelo momento em que você está e pela faixa de investimento ('+(inv||'a partir de R$ 9.900')+'), o <strong>Projeto Marca com Essência</strong> é o caminho estratégico. A equipe da KA constrói a base junto com você: posicionamento, identidade verbal, identidade visual e agentes de IA. É a construção completa, feita a quatro mãos.';
-    } else {
+    } else if(keys[0]==='direcao'){
       p3='Pelo estágio da sua marca e pela sua necessidade de <strong>direção contínua</strong>, o programa de Direção Estratégica é o caminho certo. Acompanhamento executivo mensal com a Kelly em branding, comunicação e marketing. Clareza no mês, não só no início.';
+    } else {
+      p3='Pelo seu ritmo ('+(ap||'aplicar sozinha')+') e pela faixa de investimento que você escolheu ('+(inv||'inicial')+'), o <strong>Livro Marca com Essência</strong> é o passo mais inteligente agora. Ele dá a estrutura completa do método, com agentes de IA e exercícios práticos, pra você construir a base da sua marca sem depender de ninguém.';
     }
 
     return p1+'\n\n'+p2+'\n\n'+p3;
@@ -1626,23 +1663,26 @@ a.foot__s:hover{color:var(--accent);}
     });
   }
 
-  function mostrarDiagnostico(diagnostico,prod,primeiroNome){
+  function mostrarDiagnostico(diagnostico,prods,primeiroNome){
+    // prods pode ser 1 produto (objeto) ou array de produtos (compat)
+    var produtos=Array.isArray(prods)?prods:[prods];
     // Card de diagnostico destacado (fundo gelo, borda caramelo)
     var card=document.createElement('div');
     card.className='diag-card';
     var saudacao=primeiroNome?('<p class="diag-card__hi">'+primeiroNome+', aqui está sua análise 👇</p>'):'';
     // Normaliza: remove travessoes (—) e separa em paragrafos
     var textoLimpo=diagnostico
-      .replace(/—/g,',')         // em-dash → virgula
-      .replace(/–/g,',')         // en-dash → virgula
-      .replace(/\s*,\s*,\s*/g,', ') // limpa virgulas duplas
+      .replace(/—/g,',')
+      .replace(/–/g,',')
+      .replace(/\s*,\s*,\s*/g,', ')
       .replace(/\s+/g,function(m){return m.indexOf('\n')>=0?m:' ';});
     var paragrafos=textoLimpo.split(/\n{2,}|\n/).filter(function(p){return p.trim().length;});
     var bodyHtml=paragrafos.map(function(p){return '<p>'+p.trim()+'</p>';}).join('');
+    var scrollLabel=produtos.length>1?'Role pra ver seus caminhos ideais':'Role pra ver seu caminho ideal';
     card.innerHTML=
       saudacao+
       '<div class="diag-card__body">'+bodyHtml+'</div>'+
-      '<div class="diag-card__scroll"><span>Role pra ver seu caminho ideal</span>'+
+      '<div class="diag-card__scroll"><span>'+scrollLabel+'</span>'+
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'+
       '</div>';
     body.appendChild(card);
@@ -1650,31 +1690,40 @@ a.foot__s:hover{color:var(--accent);}
     setTimeout(function(){
       card.scrollIntoView({behavior:'smooth',block:'start'});
     },100);
-    // Produto aparece abaixo mas sem forcar scroll (pessoa descobre ao rolar)
-    setTimeout(function(){
-      showResult(prod);
-    },1400);
+    // Produtos aparecem abaixo (sequencialmente, com stagger)
+    produtos.forEach(function(prod,i){
+      setTimeout(function(){
+        showResult(prod,i,produtos.length);
+      },1400+i*300);
+    });
   }
 
-  function showResult(prod){
+  function showResult(prod,index,total){
+    var isPrincipal=(index===0||index===undefined);
+    var isCombo=(total>1);
+    var eyebrow=prod.eyebrow||'Seu caminho ideal';
+    if(isCombo){
+      eyebrow=isPrincipal?'Caminho principal':'Complemento estratégico';
+    }
     var waMsg='Oi Kelly! Fiz o diagnóstico no site e meu caminho ideal foi *'+prod.title.replace(/<[^>]+>/g,'')+'*. Queria conversar com você.';
     var waUrl='https://wa.me/5551993163333?text='+encodeURIComponent(waMsg);
     var wrap=document.createElement('div');
     wrap.className='chat-result';
+    // Botao WhatsApp so no PRIMEIRO card (ou no unico)
+    var waHtml=(isPrincipal)?
+      '<a href="'+waUrl+'" target="_blank" rel="noopener" class="chat-result__wa">'+
+        '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>'+
+        'Falar com a equipe no WhatsApp'+
+      '</a>':'';
     wrap.innerHTML=
       '<div class="chat-result__card">'+
-        '<p class="chat-result__eyebrow">'+prod.eyebrow+'</p>'+
+        '<p class="chat-result__eyebrow">'+eyebrow+'</p>'+
         '<h3 class="chat-result__title">'+prod.title+'</h3>'+
         '<p class="chat-result__desc">'+prod.desc+'</p>'+
         '<a href="'+prod.url+'" class="chat-result__btn">'+prod.cta+' →</a>'+
       '</div>'+
-      '<a href="'+waUrl+'" target="_blank" rel="noopener" class="chat-result__wa">'+
-        '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>'+
-        'Falar com a equipe no WhatsApp'+
-      '</a>';
-    // Agora vai PARA O BODY (nao mais o footer), pra pessoa precisar rolar depois do diagnostico
+      waHtml;
     body.appendChild(wrap);
-    // Nao auto-scroll aqui — a pessoa esta lendo o diagnostico, deixa ela rolar quando quiser
   }
 
   function next(){
