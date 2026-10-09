@@ -112,43 +112,6 @@ body{
   margin-bottom:1.6rem;
 }
 .quiz-cta--diag .quiz-cta__icon{background:#C47830;}
-
-/* MODAL do Diagnostico (iframe fullscreen) */
-.diag-modal{
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(13,22,32,.95);
-  backdrop-filter:blur(8px);
-  display:none;
-  align-items:stretch;justify-content:center;
-}
-.diag-modal.open{display:flex;}
-.diag-modal__frame{
-  position:relative;
-  width:100%;height:100%;max-width:900px;
-  background:#fff;
-  display:flex;flex-direction:column;
-}
-.diag-modal__header{
-  padding:.9rem 1rem;
-  background:#152535;color:#fff;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
-}
-.diag-modal__title{
-  font-size:.9rem;font-weight:600;letter-spacing:.02em;margin:0;
-}
-.diag-modal__close{
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(237,232,221,.14);
-  border:0;color:#fff;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s;
-}
-.diag-modal__close:hover{background:rgba(237,232,221,.28);}
-.diag-modal__iframe{
-  flex:1;width:100%;height:100%;border:0;background:#fff;
-}
-body.diag-open{overflow:hidden;}
 @keyframes kaCtaPulseWa{
   0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 8px 24px rgba(37,211,102,.15);border-color:rgba(37,211,102,.55);}
   50%{box-shadow:0 0 0 12px rgba(37,211,102,0),0 8px 32px rgba(37,211,102,.45);border-color:rgba(37,211,102,.95);}
@@ -951,14 +914,14 @@ a.foot__s:hover{color:var(--accent);}
     <p class="hdr__tag">Estrategista de Marcas<br><strong>KA | Inteligência para Marcas</strong></p>
   </header>
 
-  <!-- CTA DIAGNOSTICO (abre quiz em modal) -->
-  <button type="button" onclick="kaDiagOpen()" class="quiz-cta quiz-cta--diag" aria-label="Fazer meu Diagnóstico de Marca">
+  <!-- CTA DIAGNOSTICO (abre chat conversacional) -->
+  <button type="button" onclick="kaChatOpen()" class="quiz-cta quiz-cta--diag" aria-label="Fazer meu Diagnóstico de Marca">
     <div class="quiz-cta__icon">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
     </div>
     <div class="quiz-cta__body">
       <p class="quiz-cta__title">Faça seu Diagnóstico de Marca</p>
-      <p class="quiz-cta__desc">Responda em 3 minutos e descubra o que está impedindo sua marca de ser escolhida.</p>
+      <p class="quiz-cta__desc">Responda 6 perguntas e descubra o melhor caminho pra sua marca.</p>
     </div>
     <div class="quiz-cta__arrow">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1463,7 +1426,7 @@ a.foot__s:hover{color:var(--accent);}
         body:JSON.stringify({
           email:email,
           fields:{name:nome,last_name:'',phone:wa,origem_bio:'bio-2-chat',caminho_recomendado:prod.key},
-          groups:['187386066189157525']
+          groups:['183324004183967092']
         })
       }).catch(function(){});
     }catch(err){}
@@ -1524,37 +1487,4 @@ a.foot__s:hover{color:var(--accent);}
 })();
 </script>
 
-<!-- MODAL DO DIAGNOSTICO -->
-<div class="diag-modal" id="ka-diag" role="dialog" aria-modal="true" aria-labelledby="ka-diag-title">
-  <div class="diag-modal__frame">
-    <div class="diag-modal__header">
-      <p class="diag-modal__title" id="ka-diag-title">Diagnóstico Estratégico de Marca</p>
-      <button type="button" class="diag-modal__close" onclick="kaDiagClose()" aria-label="Fechar">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <iframe id="ka-diag-iframe" class="diag-modal__iframe" title="Diagnóstico de Marca" loading="lazy"></iframe>
-  </div>
-</div>
-<script>
-(function(){
-  var modal=document.getElementById('ka-diag');
-  var iframe=document.getElementById('ka-diag-iframe');
-  window.kaDiagOpen=function(){
-    if(!iframe.src) iframe.src='/quiz/';
-    modal.classList.add('open');
-    document.body.classList.add('diag-open');
-  };
-  window.kaDiagClose=function(){
-    modal.classList.remove('open');
-    document.body.classList.remove('diag-open');
-  };
-  modal.addEventListener('click',function(e){
-    if(e.target===modal) kaDiagClose();
-  });
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&modal.classList.contains('open')) kaDiagClose();
-  });
-})();
-</script>
 </body></html>
