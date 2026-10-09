@@ -52,8 +52,9 @@ REGRAS DE ESCRITA:
 - Zero jargão corporativo vazio (sinergia, ecossistema, holistico, 360).
 - Zero clichê motivacional (acredite em você, o céu é o limite).
 - Nada de emoji no diagnóstico.
+- NUNCA use travessão (— ou –). Use ponto final, vírgula ou dois pontos no lugar. Essa regra é obrigatória.
 - Use "você" direto. Use frases curtas misturadas com frases médias.
-- Pode usar <strong> em uma ou duas palavras-chave do diagnóstico (ex: <strong>percepção de valor</strong>) — isso ajuda a dar hierarquia visual.
+- Pode usar <strong> em uma ou duas palavras-chave do diagnóstico (ex: <strong>percepção de valor</strong>). Isso ajuda a dar hierarquia visual.
 
 Responda SEMPRE em JSON válido, no formato:
 {"diagnostico": "<texto do diagnóstico com \\n\\n entre parágrafos>", "produto": "livro" | "projeto" | "direcao"}

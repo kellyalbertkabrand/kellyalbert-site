@@ -112,6 +112,19 @@ body{
   margin-bottom:1.6rem;
 }
 .quiz-cta--diag .quiz-cta__icon{background:#C47830;}
+
+/* Botao pill verde WhatsApp (igual ao do chat) */
+.bio-wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  margin:0 0 2.2rem;padding:1rem 1.5rem;
+  background:#25D366;color:#fff;text-decoration:none;
+  border-radius:100px;
+  font-size:.95rem;font-weight:700;letter-spacing:.02em;
+  box-shadow:0 8px 24px rgba(37,211,102,.35);
+  transition:transform .15s,background .2s;
+}
+.bio-wa-btn:hover{transform:translateY(-2px);background:#2ae076;}
+.bio-wa-btn svg{width:20px;height:20px;flex-shrink:0;}
 @keyframes kaCtaPulseWa{
   0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 8px 24px rgba(37,211,102,.15);border-color:rgba(37,211,102,.55);}
   50%{box-shadow:0 0 0 12px rgba(37,211,102,0),0 8px 32px rgba(37,211,102,.45);border-color:rgba(37,211,102,.95);}
@@ -333,8 +346,10 @@ body{
 }
 .diag-card__body{
   font-size:.98rem;line-height:1.65;color:#152535;
-  margin:0;white-space:pre-wrap;
+  margin:0;
 }
+.diag-card__body p{margin:0 0 .9rem;}
+.diag-card__body p:last-child{margin-bottom:0;}
 .diag-card__body strong{color:#152535;font-weight:700;}
 .diag-card__scroll{
   display:flex;align-items:center;justify-content:center;gap:.4rem;
@@ -1049,18 +1064,10 @@ a.foot__s:hover{color:var(--accent);}
     </a>
   </div>
 
-  <!-- CTA FALE CONOSCO (WhatsApp) — ao final da lista -->
-  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="quiz-cta quiz-cta--wa" aria-label="Fale conosco no WhatsApp">
-    <div class="quiz-cta__icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
-    </div>
-    <div class="quiz-cta__body">
-      <p class="quiz-cta__title">Fale conosco</p>
-      <p class="quiz-cta__desc">Tire dúvidas ou agende uma conversa com a equipe da KA.</p>
-    </div>
-    <div class="quiz-cta__arrow">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </div>
+  <!-- CTA FALE CONOSCO (botao pill verde, igual ao do chat de diagnostico) -->
+  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="bio-wa-btn" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
+    Fale conosco no WhatsApp
   </a>
 
   <!-- FOOTER -->
@@ -1242,6 +1249,15 @@ a.foot__s:hover{color:var(--accent);}
 </script>
 
 <!-- CHAT MODAL -->
+<!-- Netlify Forms: form oculto para captura de leads (backup) -->
+<form name="diagnostico-bio2" netlify netlify-honeypot="bot-field" hidden>
+  <input name="nome">
+  <input name="email">
+  <input name="whatsapp">
+  <input name="caminho_recomendado">
+  <input name="origem">
+</form>
+
 <div id="ka-chat" class="chat-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-chat-title">
   <div class="chat-modal">
     <div class="chat-head">
@@ -1505,13 +1521,27 @@ a.foot__s:hover{color:var(--accent);}
       var prod=pickProductFallback();
       enviarMailerLite(nome,email,wa,prod.key);
       f.remove();
-      var fb='Pelo que você respondeu, sua marca está num momento clássico de passagem: existe muita coisa boa sendo entregue, mas o mercado ainda não consegue traduzir isso em percepção de valor. Isso costuma acontecer quando a essência da marca já existe (você sente), mas ainda não foi nomeada, estruturada e distribuída de forma consistente.\n\nO risco de ficar aqui é continuar competindo pelo preço em vez do significado — e isso drena energia, caixa e tempo. O caminho abaixo é o próximo passo mais estratégico pra você sair desse ponto cego e começar a construir uma marca lembrada, desejada e escolhida.';
+      var fb='Pelo que você respondeu, sua marca está num momento clássico de passagem. Existe muita coisa boa sendo entregue, mas o mercado ainda não consegue traduzir isso em <strong>percepção de valor</strong>. Isso costuma acontecer quando a essência da marca já existe (você sente), mas ainda não foi nomeada, estruturada e distribuída de forma consistente.\n\nO risco de ficar aqui é continuar competindo pelo preço em vez do significado. Isso drena energia, caixa e tempo. Quanto mais tempo levar, mais o seu posicionamento vira ruído.\n\nO caminho abaixo é o próximo passo mais estratégico pra você sair desse ponto cego e começar a construir uma marca lembrada, desejada e escolhida.';
       mostrarDiagnostico(fb,prod,primeiroNome);
     });
   }
 
   function enviarMailerLite(nome,email,wa,caminho){
-    // Usa Netlify Function (server-side) — token fica seguro em env var
+    // 1) Netlify Forms (backup — leads sempre caem aqui, independente do MailerLite)
+    try{
+      var fd=new FormData();
+      fd.append('form-name','diagnostico-bio2');
+      fd.append('nome',nome);
+      fd.append('email',email);
+      fd.append('whatsapp',wa);
+      fd.append('caminho_recomendado',caminho);
+      fd.append('origem','bio-2-chat');
+      fetch('/',{method:'POST',body:fd})
+        .then(function(r){console.log('[Netlify Forms]',r.ok?'ok':'erro '+r.status);})
+        .catch(function(e){console.error('[Netlify Forms] erro:',e);});
+    }catch(e){console.error('[Netlify Forms] excecao:',e);}
+
+    // 2) MailerLite via Netlify Function (server-side)
     return fetch('/.netlify/functions/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -1545,9 +1575,17 @@ a.foot__s:hover{color:var(--accent);}
     var card=document.createElement('div');
     card.className='diag-card';
     var saudacao=primeiroNome?('<p class="diag-card__hi">'+primeiroNome+', aqui está sua análise 👇</p>'):'';
+    // Normaliza: remove travessoes (—) e separa em paragrafos
+    var textoLimpo=diagnostico
+      .replace(/—/g,',')         // em-dash → virgula
+      .replace(/–/g,',')         // en-dash → virgula
+      .replace(/\s*,\s*,\s*/g,', ') // limpa virgulas duplas
+      .replace(/\s+/g,function(m){return m.indexOf('\n')>=0?m:' ';});
+    var paragrafos=textoLimpo.split(/\n{2,}|\n/).filter(function(p){return p.trim().length;});
+    var bodyHtml=paragrafos.map(function(p){return '<p>'+p.trim()+'</p>';}).join('');
     card.innerHTML=
       saudacao+
-      '<div class="diag-card__body">'+diagnostico.replace(/\n/g,'<br><br>')+'</div>'+
+      '<div class="diag-card__body">'+bodyHtml+'</div>'+
       '<div class="diag-card__scroll"><span>Role pra ver seu caminho ideal</span>'+
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'+
       '</div>';
