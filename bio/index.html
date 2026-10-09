@@ -554,17 +554,30 @@ body{
   font-size:.95rem;color:rgba(237,232,221,.75);
   margin:0 0 1.3rem;line-height:1.55;
 }
+.hero-prod__actions{
+  display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;
+}
 .hero-prod__btn{
   display:inline-flex;align-items:center;gap:.5rem;
   padding:.95rem 1.5rem;
   background:#C47830;color:#fff;
   border-radius:100px;font-size:.88rem;font-weight:700;
-  letter-spacing:.03em;
+  letter-spacing:.03em;cursor:pointer;
   transition:background .25s,transform .15s;
 }
-.hero-prod__btn svg{width:14px;height:14px;transition:transform .2s;}
-.hero-prod:hover .hero-prod__btn{background:#d88e45;}
-.hero-prod:hover .hero-prod__btn svg{transform:translateX(3px);}
+.hero-prod__btn svg{width:14px;height:14px;transition:transform .2s;flex-shrink:0;}
+.hero-prod:hover .hero-prod__btn:not(.hero-prod__btn--wa){background:#d88e45;}
+.hero-prod:hover .hero-prod__btn:not(.hero-prod__btn--wa) svg:last-child{transform:translateX(3px);}
+.hero-prod__btn--wa{
+  background:#25D366;color:#fff;
+  box-shadow:0 0 0 0 rgba(37,211,102,.5);
+  animation:kaBtnWaPulse 2s ease-in-out infinite;
+}
+.hero-prod__btn--wa:hover{background:#2ae076;}
+@keyframes kaBtnWaPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5);}
+  50%{box-shadow:0 0 0 10px rgba(37,211,102,0);}
+}
 @media(max-width:420px){
   .hero-prod__title{font-size:2.1rem;}
   .hero-prod__subtitle{font-size:1.15rem;}
@@ -796,22 +809,8 @@ a.foot__s:hover{color:var(--accent);}
   <header class="hdr">
     <img src="/images/kelly-hero.jpg" alt="Kelly Albert" class="hdr__avatar" width="130" height="130">
     <h1 class="hdr__name">Kelly Albert</h1>
-    <p class="hdr__tag">Estrategista de Marcas · <strong>KA | Inteligência para Marcas</strong></p>
+    <p class="hdr__tag">Estrategista de Marcas<br><strong>KA | Inteligência para Marcas</strong></p>
   </header>
-
-  <!-- CTA FALE CONOSCO (WhatsApp) -->
-  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="quiz-cta quiz-cta--wa" aria-label="Fale conosco no WhatsApp">
-    <div class="quiz-cta__icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
-    </div>
-    <div class="quiz-cta__body">
-      <p class="quiz-cta__title">Fale conosco</p>
-      <p class="quiz-cta__desc">Tire dúvidas ou agende uma conversa com a equipe da KA.</p>
-    </div>
-    <div class="quiz-cta__arrow">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </div>
-  </a>
 
   <!-- HERO DO PROJETO — mosaico de cases + título em destaque -->
   <a href="/programa" class="hero-prod" aria-label="Projeto de Posicionamento de Marca · Marca com Essência">
@@ -828,9 +827,29 @@ a.foot__s:hover{color:var(--accent);}
       <h2 class="hero-prod__title">Marca com Essência<sup style="font-size:.4em;vertical-align:super;">©</sup></h2>
       <p class="hero-prod__subtitle">Nossa solução principal</p>
       <p class="hero-prod__desc">Posicionamento estratégico + identidade verbal e visual + agentes de IA. Conduzido pela equipe da KA.</p>
-      <span class="hero-prod__btn">Conhecer o Projeto
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </span>
+      <div class="hero-prod__actions">
+        <span class="hero-prod__btn">Conhecer o Projeto
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+        <span class="hero-prod__btn hero-prod__btn--wa" onclick="event.preventDefault();event.stopPropagation();window.open('https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20sobre%20o%20Projeto%20Marca%20com%20Ess%C3%AAncia.','_blank','noopener');return false;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
+          Fale Conosco
+        </span>
+      </div>
+    </div>
+  </a>
+
+  <!-- CTA FALE CONOSCO (WhatsApp) -->
+  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="quiz-cta quiz-cta--wa" aria-label="Fale conosco no WhatsApp">
+    <div class="quiz-cta__icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
+    </div>
+    <div class="quiz-cta__body">
+      <p class="quiz-cta__title">Fale conosco</p>
+      <p class="quiz-cta__desc">Tire dúvidas ou agende uma conversa com a equipe da KA.</p>
+    </div>
+    <div class="quiz-cta__arrow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </div>
   </a>
 
