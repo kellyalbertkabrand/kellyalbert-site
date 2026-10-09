@@ -517,14 +517,33 @@ body{
 }
 .hero-prod:hover{transform:translateY(-3px);}
 .hero-prod__mosaic{
-  display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;
-  gap:3px;position:relative;
-  aspect-ratio:3/2;
+  position:relative;overflow:hidden;
+  aspect-ratio:16/10;
   background:#0a1119;
 }
 .hero-prod__mosaic img{
+  position:absolute;inset:0;
   width:100%;height:100%;object-fit:cover;display:block;
   filter:saturate(1.05);
+  opacity:0;
+  animation:caseFade 18s infinite;
+}
+.hero-prod__mosaic img:nth-child(1){animation-delay:-0.5s;}
+.hero-prod__mosaic img:nth-child(2){animation-delay:2.5s;}
+.hero-prod__mosaic img:nth-child(3){animation-delay:5.5s;}
+.hero-prod__mosaic img:nth-child(4){animation-delay:8.5s;}
+.hero-prod__mosaic img:nth-child(5){animation-delay:11.5s;}
+.hero-prod__mosaic img:nth-child(6){animation-delay:14.5s;}
+@keyframes caseFade {
+  0%{opacity:0;}
+  2.8%{opacity:1;}
+  16.7%{opacity:1;}
+  19.4%{opacity:0;}
+  100%{opacity:0;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-prod__mosaic img{animation:none;}
+  .hero-prod__mosaic img:nth-child(1){opacity:1;}
 }
 .hero-prod__content{
   padding:1.9rem 1.6rem 2.1rem;
@@ -851,13 +870,13 @@ a.foot__s:hover{color:var(--accent);}
 
   <!-- HERO DO PROJETO — mosaico de cases + título em destaque -->
   <a href="/programa" class="hero-prod" aria-label="Projeto de Posicionamento de Marca · Marca com Essência">
-    <div class="hero-prod__mosaic">
-      <img src="/images/suvinil/cover.jpg" alt="Case Suvinil" loading="lazy">
-      <img src="/images/shapes/cover.jpg" alt="Case Shapes" loading="lazy">
-      <img src="/images/ramarim/capa.jpg" alt="Case Ramarim" loading="lazy">
-      <img src="/images/yufil/cover.jpg" alt="Case Yufil" loading="lazy">
+    <div class="hero-prod__mosaic" aria-hidden="true">
+      <img src="/images/suvinil/cover.jpg" alt="Case Suvinil · Pintou Parceria">
+      <img src="/images/ramarim/capa.jpg" alt="Case Ramarim Calçados" loading="lazy">
       <img src="/images/comfortflex/cover.jpg" alt="Case ComfortFlex" loading="lazy">
       <img src="/images/amordebicho/cover.jpg" alt="Case Amor de Bicho" loading="lazy">
+      <img src="/images/shapes/cover.jpg" alt="Case Shapes" loading="lazy">
+      <img src="/images/yufil/cover.jpg" alt="Case Yufil" loading="lazy">
     </div>
     <div class="hero-prod__content">
       <span class="hero-prod__eyebrow">Projeto de Posicionamento de Marca</span>
