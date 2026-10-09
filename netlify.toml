@@ -123,6 +123,11 @@
   status = 200
 
 [[redirects]]
+  from = "/bio-2"
+  to = "/bio-2/index.html"
+  status = 200
+
+[[redirects]]
   from = "/mentoria-gab"
   to = "/mentoria-gab/index.html"
   status = 200
