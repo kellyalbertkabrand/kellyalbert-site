@@ -1303,7 +1303,8 @@ a.foot__s:hover{color:var(--accent);}
     }
   };
 
-  var step=0, scores={l:0,m:0,p:0,d:0};
+  var step=0, scores={l:0,p:0,d:0};
+  var answers=[]; // {pergunta, resposta}
   var body=null, footer=null, opened=false;
 
   function scrollBot(){
@@ -1338,7 +1339,7 @@ a.foot__s:hover{color:var(--accent);}
     scrollBot();
   }
 
-  function showOptions(opts){
+  function showOptions(opts,perguntaTexto){
     var wrap=document.createElement('div');
     wrap.className='chat-options';
     opts.forEach(function(o){
@@ -1346,8 +1347,10 @@ a.foot__s:hover{color:var(--accent);}
       btn.type='button';btn.className='chat-opt';
       btn.textContent=o.t;
       btn.addEventListener('click',function(){
-        // aplica score
-        if(o.s){Object.keys(o.s).forEach(function(k){scores[k]+=o.s[k];});}
+        // aplica score (apenas l,p,d — mentoria removida)
+        if(o.s){Object.keys(o.s).forEach(function(k){if(scores[k]!==undefined) scores[k]+=o.s[k];});}
+        // registra resposta para enviar pra IA
+        answers.push({pergunta:perguntaTexto,resposta:o.t});
         // remove opções
         wrap.remove();
         // user bubble
@@ -1361,16 +1364,20 @@ a.foot__s:hover{color:var(--accent);}
     scrollBot();
   }
 
-  function pickProduct(){
+  function pickProductFallback(){
     var best='l',bestV=-1;
     Object.keys(scores).forEach(function(k){if(scores[k]>bestV){bestV=scores[k];best=k;}});
-    return PRODUCTS[best];
+    return best==='l'?PRODUCTS.l:(best==='p'?PRODUCTS.p:PRODUCTS.d);
+  }
+  function productByKey(k){
+    if(k==='projeto') return PRODUCTS.p;
+    if(k==='direcao') return PRODUCTS.d;
+    return PRODUCTS.l;
   }
 
   function showForm(){
-    var prod=pickProduct();
-    botMsg('Baseado nas suas respostas, encontrei o caminho ideal pra sua marca.',function(){
-      botMsg('Antes de te mostrar, deixa eu registrar seu contato pra você receber esse material completo:',function(){
+    botMsg('Pronto, terminou! 🎯 Agora vou analisar as suas respostas e te mandar um diagnóstico personalizado.',function(){
+      botMsg('Antes, me deixa seus dados pra eu te enviar uma cópia no e-mail:',function(){
         var f=document.createElement('form');
         f.className='chat-form';
         f.innerHTML=
@@ -1378,9 +1385,9 @@ a.foot__s:hover{color:var(--accent);}
           '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">'+
           '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric">'+
           '<p class="chat-form__err" id="ka-chat-err"></p>'+
-          '<button type="submit" class="chat-form__btn">Ver meu caminho ideal →</button>'+
+          '<button type="submit" class="chat-form__btn">Ver meu diagnóstico →</button>'+
           '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
-        f.addEventListener('submit',function(e){e.preventDefault();submitForm(f,prod);});
+        f.addEventListener('submit',function(e){e.preventDefault();submitForm(f);});
         footer.appendChild(f);
         scrollBot();
       });
@@ -1405,7 +1412,7 @@ a.foot__s:hover{color:var(--accent);}
     return null;
   }
 
-  function submitForm(f,prod){
+  function submitForm(f){
     var err=document.getElementById('ka-chat-err');err.style.display='none';err.textContent='';
     var fd=new FormData(f);
     var nome=(fd.get('nome')||'').trim(),email=(fd.get('email')||'').trim(),wa=(fd.get('whatsapp')||'').trim();
@@ -1413,9 +1420,33 @@ a.foot__s:hover{color:var(--accent);}
     var eE=validateEmail(email);if(eE){err.textContent=eE;err.style.display='block';return;}
     var wE=validateWA(wa);if(wE){err.textContent=wE;err.style.display='block';return;}
 
-    var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Enviando...';
+    var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Analisando sua marca...';
 
-    // MailerLite direto (mesmo padrão da /mentoria/)
+    // 1) Chama a IA para analisar as respostas
+    var primeiroNome=nome.split(' ')[0];
+    fetch('/.netlify/functions/analisar-marca',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nome:primeiroNome,respostas:answers})
+    })
+    .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+    .then(function(data){
+      var prod=productByKey(data.produto);
+      enviarMailerLite(nome,email,wa,prod.key);
+      f.remove();
+      mostrarDiagnostico(data.diagnostico,prod);
+    })
+    .catch(function(e){
+      // fallback: usa scoring local
+      console.warn('IA indisponivel, usando fallback:',e);
+      var prod=pickProductFallback();
+      enviarMailerLite(nome,email,wa,prod.key);
+      f.remove();
+      mostrarDiagnostico('Pelas suas respostas, você está num momento de construção que pede clareza no que vem primeiro. O caminho abaixo é o mais estratégico pra sua marca sair do operacional e virar algo que o mercado reconhece.',prod);
+    });
+  }
+
+  function enviarMailerLite(nome,email,wa,caminho){
     try{
       fetch('https://connect.mailerlite.com/api/subscribers',{
         method:'POST',
@@ -1425,16 +1456,19 @@ a.foot__s:hover{color:var(--accent);}
         },
         body:JSON.stringify({
           email:email,
-          fields:{name:nome,last_name:'',phone:wa,origem_bio:'bio-2-chat',caminho_recomendado:prod.key},
+          fields:{name:nome,last_name:'',phone:wa,origem_bio:'bio-2-chat',caminho_recomendado:caminho},
           groups:['183324004183967092']
         })
       }).catch(function(){});
     }catch(err){}
+  }
 
-    setTimeout(function(){
-      f.remove();
-      showResult(prod);
-    },400);
+  function mostrarDiagnostico(diagnostico,prod){
+    botMsg(diagnostico,function(){
+      botMsg('Baseado nisso, esse é o caminho ideal pra você agora:',function(){
+        showResult(prod);
+      });
+    });
   }
 
   function showResult(prod){
@@ -1448,7 +1482,8 @@ a.foot__s:hover{color:var(--accent);}
         '<a href="'+prod.url+'" class="chat-result__btn">'+prod.cta+' →</a>'+
       '</div>';
     footer.appendChild(wrap);
-    botMsg('Pronto! Aqui está a minha recomendação pra você 👆 Clica no botão pra conhecer os detalhes. Qualquer dúvida chama no WhatsApp!');
+    scrollBot();
+    botMsg('Qualquer dúvida chama no WhatsApp! Vou te enviar também uma cópia do diagnóstico no e-mail 💛');
   }
 
   function next(){
@@ -1456,7 +1491,7 @@ a.foot__s:hover{color:var(--accent);}
     var q=QUESTIONS[step];step++;
     botMsg(q.bot,function(){
       if(q.auto){setTimeout(next,400);return;}
-      if(q.opts) showOptions(q.opts);
+      if(q.opts) showOptions(q.opts,q.bot);
     });
   }
 
@@ -1466,7 +1501,7 @@ a.foot__s:hover{color:var(--accent);}
     footer=document.getElementById('ka-chat-footer');
     // reset
     body.innerHTML='';footer.innerHTML='';
-    step=0;scores={l:0,m:0,p:0,d:0};
+    step=0;scores={l:0,p:0,d:0};answers=[];
     backdrop.classList.add('open');
     document.body.style.overflow='hidden';
     opened=true;
