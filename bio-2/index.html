@@ -1433,35 +1433,27 @@ a.foot__s:hover{color:var(--accent);}
     scrollBot();
   }
 
-  function pickProductsFallback(){
-    // Monta array de 1 ou 2 produtos com base nas respostas
-    var investimento='',aprendizado='',momento='';
+  // REGRA FIXA de produto baseada no investimento (nao e opcional, nao e sugerido pela IA)
+  function escolherProdutos(){
+    var investimento='';
     answers.forEach(function(r){
       var p=(r.pergunta||'').toLowerCase();
       if(p.indexOf('investir')>=0) investimento=r.resposta;
-      else if(p.indexOf('aprender')>=0||p.indexOf('aplicar')>=0) aprendizado=r.resposta;
-      else if(p.indexOf('momento')>=0&&p.indexOf('marca')>=0) momento=r.resposta;
     });
-    var invL=investimento.toLowerCase(),apL=aprendizado.toLowerCase(),moL=momento.toLowerCase();
-
-    // Investimento alto (R$ 19.900+): combinar projeto ou livro + direcao
-    if(invL.indexOf('19')>=0||invL.indexOf('19.9')>=0){
-      if(apL.indexOf('sozinha')>=0||apL.indexOf('ritmo')>=0) return ['livro','direcao'];
-      if(apL.indexOf('equipe fa')>=0||apL.indexOf('fazer por')>=0) return ['projeto','direcao'];
-      return ['projeto','direcao'];
-    }
-    // Investimento R$ 9.900: projeto solo (talvez + livro de base)
-    if(invL.indexOf('9.9')>=0||invL.indexOf('9900')>=0){
-      return ['projeto'];
-    }
-    // Investimento R$ 1.200: livro (base) + possivel direcao se marca ja existe
-    if(invL.indexOf('1.2')>=0||invL.indexOf('1200')>=0){
-      if(moL.indexOf('escalar')>=0||moL.indexOf('consolidada')>=0) return ['livro','direcao'];
-      return ['livro'];
-    }
-    // Default (R$ 200): livro apenas
+    var invL=investimento.toLowerCase();
+    // Até R$ 200 → so Livro
+    if(invL.indexOf('200')>=0 && invL.indexOf('1.2')<0 && invL.indexOf('1200')<0) return ['livro'];
+    // A partir de R$ 1.200 → Livro + Direcao
+    if(invL.indexOf('1.2')>=0||invL.indexOf('1200')>=0) return ['livro','direcao'];
+    // A partir de R$ 9.900 → Projeto
+    if(invL.indexOf('9.9')>=0||invL.indexOf('9900')>=0) return ['projeto'];
+    // A partir de R$ 19.900 → Projeto (ou Projeto + Direcao se preferir expandir)
+    if(invL.indexOf('19')>=0) return ['projeto'];
+    // Default seguro
     return ['livro'];
   }
+  // Mantido por retrocompat (nao usado mais no caminho principal)
+  function pickProductsFallback(){ return escolherProdutos(); }
   function productByKey(k){
     if(k==='projeto'||k==='p') return PRODUCTS.p;
     if(k==='direcao'||k==='d') return PRODUCTS.d;
@@ -1525,28 +1517,28 @@ a.foot__s:hover{color:var(--accent);}
 
     var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Analisando sua marca...';
 
-    // 1) Chama a IA para analisar as respostas
+    // 1) PRODUTO E DECIDIDO LOCALMENTE (regra fixa por investimento). IA so escreve a analise.
     var primeiroNome=nome.split(' ')[0];
+    var produtosKeys=escolherProdutos();
+    var prods=produtosKeys.map(productByKey);
+    enviarMailerLite(nome,email,wa,produtosKeys.join('+'));
+
     fetch('/.netlify/functions/analisar-marca',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nome:primeiroNome,respostas:answers})
+      body:JSON.stringify({
+        nome:primeiroNome,
+        respostas:answers,
+        produtosRecomendados:produtosKeys
+      })
     })
     .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
     .then(function(data){
-      // Suporta array 'produtos' (novo) ou 'produto' unico (retrocompat)
-      var keys=Array.isArray(data.produtos)&&data.produtos.length?data.produtos:[data.produto||'livro'];
-      var prods=keys.map(productByKey).filter(Boolean);
-      enviarMailerLite(nome,email,wa,prods.map(function(p){return p.key;}).join('+'));
       f.remove();
       mostrarDiagnostico(data.diagnostico,prods,primeiroNome);
     })
     .catch(function(e){
-      // fallback adaptativo baseado nas respostas
       console.warn('%c[DIAGNOSTICO] IA nao respondeu. Verifique OPENAI_API_KEY no Netlify. Erro:','color:#C47830;font-weight:bold',e);
-      var fbKeys=pickProductsFallback();
-      var prods=fbKeys.map(productByKey);
-      enviarMailerLite(nome,email,wa,prods.map(function(p){return p.key;}).join('+'));
       f.remove();
       var fb=montarFallback(primeiroNome,answers,prods);
       mostrarDiagnostico(fb,prods,primeiroNome);
@@ -1573,7 +1565,7 @@ a.foot__s:hover{color:var(--accent);}
     if(momL.indexOf('começando')>=0 || momL.indexOf('comecando')>=0 || momL.indexOf('zero')>=0){
       p1=nome+', pelo que você respondeu, sua marca está no <strong>momento de origem</strong>. Esse é o estágio onde tudo precisa ser decidido do zero: quem é a sua marca, pra quem ela fala, o que ela representa e por que o mercado deveria se importar. É um momento potente, mas confuso. Você sente que tem algo pra dizer, mas ainda não achou a forma.';
     } else if(momL.indexOf('desorganizada')>=0 || momL.indexOf('desorganizado')>=0){
-      p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reorganização</strong>. Já existe operação, cliente e entrega, mas falta estrutura. É aquele estágio em que a marca cresceu rápido e deixou o posicionamento pra trás. Hoje você tem matéria-prima, mas ainda não tem a construção estratégica que amarra tudo.';
+      p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reorganização</strong>. Já existe operação, cliente e entrega, mas falta estrutura. É aquele estágio em que a marca cresceu rápido e deixou o posicionamento pra trás. Hoje a essência está presente no dia a dia, mas ainda não foi traduzida em uma construção estratégica que amarre tudo.';
     } else if(momL.indexOf('reposicionar')>=0){
       p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reposicionamento</strong>. Existe trajetória, autoridade e caixa, mas a percepção que o mercado tem hoje não é mais a que você precisa. Reposicionar é mais difícil do que começar, porque você precisa romper com uma leitura que já se consolidou na cabeça do público.';
     } else if(momL.indexOf('escalar')>=0){
@@ -1670,11 +1662,15 @@ a.foot__s:hover{color:var(--accent);}
     var card=document.createElement('div');
     card.className='diag-card';
     var saudacao=primeiroNome?('<p class="diag-card__hi">'+primeiroNome+', aqui está sua análise 👇</p>'):'';
-    // Normaliza: remove travessoes (—) e separa em paragrafos
+    // Normaliza: remove travessoes (—), separa em paragrafos, corrige R$
     var textoLimpo=diagnostico
       .replace(/—/g,',')
       .replace(/–/g,',')
       .replace(/\s*,\s*,\s*/g,', ')
+      // Corrige "r$" minusculo para "R$"
+      .replace(/(^|[^A-Za-z])r\$/g,'$1R$')
+      // Garante espaco inquebravel entre R$ e o valor (nao quebra linha)
+      .replace(/R\$\s*(\d)/g,'R$ $1')
       .replace(/\s+/g,function(m){return m.indexOf('\n')>=0?m:' ';});
     var paragrafos=textoLimpo.split(/\n{2,}|\n/).filter(function(p){return p.trim().length;});
     var bodyHtml=paragrafos.map(function(p){return '<p>'+p.trim()+'</p>';}).join('');

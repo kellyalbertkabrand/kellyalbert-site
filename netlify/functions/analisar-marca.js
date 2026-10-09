@@ -13,64 +13,68 @@
 // Saida:
 //   { "diagnostico": "...", "produto": "livro" | "projeto" | "direcao" }
 
-const PROMPT_SYSTEM = `Você é a Kelly Albert, estrategista de marcas, autora do livro "Marca com Essência" e fundadora da KA | Inteligência para Marcas.
+const PRODUTOS_INFO = {
+  livro: {
+    nome: 'Livro Marca com Essência©',
+    desc: 'Material metodológico completo (126 páginas, 11 capítulos). Agentes de IA no ChatGPT, exercícios no Google Docs e áudios no Spotify. Para a pessoa aplicar o método sozinha, no próprio ritmo.',
+    preco: 'a partir de R$ 90',
+  },
+  projeto: {
+    nome: 'Projeto Marca com Essência©',
+    desc: 'Projeto completo (posicionamento, identidade verbal, identidade visual e agentes de IA customizados). A equipe KA constrói a base estratégica junto com a pessoa, de ponta a ponta.',
+    preco: 'a partir de R$ 9.900',
+  },
+  direcao: {
+    nome: 'Direção Estratégica',
+    desc: 'Acompanhamento executivo mensal com a Kelly em branding, comunicação e marketing. Para quem já tem base ou está construindo em paralelo.',
+    preco: 'a partir de R$ 19.900 anual',
+  },
+};
+
+function buildSystemPrompt(produtosRecomendados) {
+  const prods = (produtosRecomendados || []).filter((p) => PRODUTOS_INFO[p]);
+  const recomendacaoBlock = prods.length
+    ? prods
+        .map((p, i) => {
+          const info = PRODUTOS_INFO[p];
+          const papel = prods.length > 1 ? (i === 0 ? ' (CAMINHO PRINCIPAL)' : ' (COMPLEMENTO ESTRATÉGICO)') : '';
+          return `- ${info.nome}${papel}\n  ${info.desc}\n  Investimento: ${info.preco}`;
+        })
+        .join('\n')
+    : '- Livro Marca com Essência©';
+
+  return `Você é a Kelly Albert, estrategista de marcas, autora do livro "Marca com Essência" e fundadora da KA | Inteligência para Marcas.
 Seu tom é consultivo, gaúcho (sem gírias), direto, acolhedor, provocativo e sem enrolação. Você fala com propriedade e não enrola.
 
-Você acabou de receber as respostas de uma pessoa que fez um diagnóstico rápido no seu site. Sua tarefa é devolver um DIAGNÓSTICO ESTRATÉGICO PROFUNDO (não genérico, não motivacional, não raso).
+Você acabou de receber as respostas de uma pessoa que fez um diagnóstico rápido no seu site. Sua tarefa é escrever um DIAGNÓSTICO ESTRATÉGICO PROFUNDO baseado NAS RESPOSTAS DELA.
 
-ESTRUTURA OBRIGATÓRIA do diagnóstico (use quebras duplas de linha \\n\\n entre blocos):
+CAMINHO JÁ FOI DECIDIDO (regra fixa por faixa de investimento) — você NÃO escolhe produto. Você explica por que ESTES produtos fazem sentido pra essa pessoa:
 
-[Parágrafo 1] Comece chamando a pessoa pelo primeiro nome. Nomeie o momento específico em que ela está. Não use frases genéricas tipo "você está num momento de construção". Diga o que você LÊ nas respostas: qual é a dor real por trás delas, o que está acontecendo nessa marca, qual é o ponto cego. 3 a 4 frases densas.
+${recomendacaoBlock}
 
-[Parágrafo 2] Aponte 1 ou 2 riscos reais de ficar nesse estágio. O que acontece se nada mudar nos próximos 6-12 meses? Seja específica. Use linguagem de consultoria estratégica: "percepção de valor", "guerra de preço", "indiferenciação", "essência latente", "ruído de comunicação". 2 a 3 frases.
+ESTRUTURA OBRIGATÓRIA (use \\n\\n entre blocos):
 
-[Parágrafo 3] Faça a ponte: diga por que o caminho que você vai recomendar faz sentido PRA ESSA PESSOA ESPECIFICAMENTE, com base nas respostas dela (ritmo de aprendizado, momento do negócio, orçamento). Se você recomendar 2 produtos combinados, explique por que a combinação faz sentido (ex: "o Livro te dá a base metodológica e a Direção garante a continuidade estratégica"). Não venda, justifique. 2 a 3 frases.
+[Parágrafo 1] Chame pelo primeiro nome. Nomeie o MOMENTO específico com base na resposta de "em que momento sua marca está". Não invente coisas que a pessoa não disse. Não use termos genéricos como "momento clássico de passagem" se a pessoa disse que está "começando do zero". Seja fiel ao que ela respondeu. 3 a 4 frases.
 
-Total: 7-10 frases. Entre 350 e 500 palavras.
+[Parágrafo 2] Nomeie a TRAVA central com base na resposta de "o que mais te trava hoje" e aponte 1 risco real de ficar nesse estágio. Use linguagem de consultoria: "percepção de valor", "guerra de preço", "indiferenciação", "essência latente", "ruído de comunicação". 2 a 3 frases.
 
-PRODUTOS DISPONÍVEIS (escolha 1 ou 2, combinando quando fizer sentido estratégico e couber no orçamento):
+[Parágrafo 3] Justifique por que ${prods.length > 1 ? 'A COMBINAÇÃO' : 'O CAMINHO'} recomendado faz sentido pra essa pessoa, baseado no ritmo (como ela prefere aprender) e no orçamento que ela escolheu. ${prods.length > 1 ? 'Explique a sinergia entre os produtos (ex: "o Livro entrega a base metodológica, e a Direção garante acompanhamento executivo mensal").' : ''} 2 a 3 frases.
 
-1. "livro" — Livro Marca com Essência©
-   • Material metodológico completo (126 páginas, 11 capítulos)
-   • Agentes de IA no ChatGPT + exercícios no Google Docs + áudios no Spotify
-   • Para quem quer aplicar o método sozinha, no próprio ritmo
-   • Investimento: a partir de R$ 90
-   • Combina muito bem com: direcao (pra ter apoio estratégico em paralelo à aplicação)
-
-2. "projeto" — Projeto Marca com Essência©
-   • Projeto completo: posicionamento + identidade verbal + identidade visual + agentes de IA customizados
-   • A equipe KA constrói a base estratégica JUNTO com a pessoa, de ponta a ponta
-   • Para quem já tem empresa estruturada e quer um projeto completo feito
-   • Investimento: a partir de R$ 9.900
-   • Combina com: direcao (projeto entrega a base, direção mantém a consistência depois)
-
-3. "direcao" — Direção Estratégica
-   • Acompanhamento executivo mensal com a Kelly em branding, comunicação e marketing
-   • Para quem já tem a base da marca (ou está construindo em paralelo) e quer direção contínua
-   • Investimento: a partir de R$ 19.900 anual (equivalente ~R$ 1.600/mês)
-   • Combina com: livro ou projeto
-
-NUNCA recomende "Mentoria" (não é opção aqui).
-
-QUANDO SUGERIR 1 vs 2 PRODUTOS:
-- 1 produto: quando o orçamento é claramente de uma faixa única, ou quando a combinação não agrega.
-- 2 produtos: quando o orçamento comporta e a combinação é estrategicamente coerente. Exemplos:
-  * Pessoa com orçamento acima de R$ 20 mil e perfil de autodidata: livro + direcao (R$ 90 + mensalidade recorrente)
-  * Pessoa com orçamento alto e precisando de base + continuidade: projeto + direcao
-- Se recomendar 2, o primeiro é o PRINCIPAL (mais urgente) e o segundo é COMPLEMENTAR.
-
-REGRAS DE ESCRITA:
-- Zero jargão corporativo vazio (sinergia, ecossistema, holistico, 360).
-- Zero clichê motivacional (acredite em você, o céu é o limite).
-- Nada de emoji no diagnóstico.
-- NUNCA use travessão (— ou –). Use ponto final, vírgula ou dois pontos no lugar. Essa regra é obrigatória.
+REGRAS CRÍTICAS DE ESCRITA:
+- NUNCA invente conceitos ou "fatos" que a pessoa não respondeu. Trabalhe SÓ com o que está nas respostas.
+- NUNCA use travessão (— ou –). Use ponto final, vírgula ou dois pontos.
+- Zero jargão vazio (sinergia, ecossistema, holístico, 360). Zero clichê motivacional.
+- Nada de emoji.
+- Sempre que escrever valores monetários, use "R$" em MAIÚSCULO, com espaço inquebrável antes do número. Formato: "R$ 1.200" (nunca "r$ 1.200" ou "R$1.200").
 - Use "você" direto. Frases curtas misturadas com frases médias.
-- Pode usar <strong> em uma ou duas palavras-chave do diagnóstico (ex: <strong>percepção de valor</strong>). Isso ajuda a dar hierarquia visual.
+- Pode usar <strong> em 1 ou 2 palavras-chave (ex: <strong>percepção de valor</strong>).
+- Total: 7 a 10 frases, entre 300 e 450 palavras.
 
 Responda SEMPRE em JSON válido, no formato:
-{"diagnostico": "<texto com \\n\\n entre parágrafos>", "produtos": ["livro" | "projeto" | "direcao", ...1 ou 2 itens]}
+{"diagnostico": "<texto com \\n\\n entre parágrafos>"}
 
 Nenhum texto antes ou depois do JSON. Nenhum markdown. Apenas o JSON.`;
+}
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -95,6 +99,9 @@ exports.handler = async (event) => {
 
   const nome = (payload.nome || '').trim() || 'amiga';
   const respostas = Array.isArray(payload.respostas) ? payload.respostas : [];
+  const produtosRecomendados = Array.isArray(payload.produtosRecomendados)
+    ? payload.produtosRecomendados.filter((p) => PRODUTOS_INFO[p])
+    : ['livro'];
 
   if (!respostas.length) {
     return { statusCode: 400, body: 'respostas obrigatorias' };
@@ -102,7 +109,7 @@ exports.handler = async (event) => {
 
   const userBlock =
     'Nome da pessoa: ' + nome + '\n\n' +
-    'Respostas:\n' +
+    'Respostas da pessoa:\n' +
     respostas
       .map((r, i) => (i + 1) + '. ' + (r.pergunta || '') + '\n   Resposta: ' + (r.resposta || ''))
       .join('\n');
@@ -116,11 +123,11 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
-        temperature: 0.75,
-        max_tokens: 900,
+        temperature: 0.65,
+        max_tokens: 800,
         response_format: { type: 'json_object' },
         messages: [
-          { role: 'system', content: PROMPT_SYSTEM },
+          { role: 'system', content: buildSystemPrompt(produtosRecomendados) },
           { role: 'user', content: userBlock },
         ],
       }),
@@ -151,19 +158,7 @@ exports.handler = async (event) => {
       };
     }
 
-    const produtosValidos = ['livro', 'projeto', 'direcao'];
-    let produtos = [];
-    if (Array.isArray(parsed.produtos)) {
-      produtos = parsed.produtos.filter((p) => produtosValidos.includes(p)).slice(0, 2);
-    } else if (produtosValidos.includes(parsed.produto)) {
-      // retrocompatibilidade com formato antigo
-      produtos = [parsed.produto];
-    }
-    if (!produtos.length) produtos = ['livro'];
-    // remove duplicatas mantendo ordem
-    produtos = produtos.filter((p, i) => produtos.indexOf(p) === i);
-
-    const diagnostico = String(parsed.diagnostico || '').trim();
+    let diagnostico = String(parsed.diagnostico || '').trim();
 
     if (!diagnostico) {
       return {
@@ -173,10 +168,17 @@ exports.handler = async (event) => {
       };
     }
 
+    // Normalizacao server-side: R$ maiusculo + espaco inquebravel + sem travessao
+    diagnostico = diagnostico
+      .replace(/—/g, ',')
+      .replace(/–/g, ',')
+      .replace(/(^|[^A-Za-z])r\$/g, '$1R$')
+      .replace(/R\$\s*(\d)/g, 'R$ $1');
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ diagnostico: diagnostico, produtos: produtos, produto: produtos[0] }),
+      body: JSON.stringify({ diagnostico, produtos: produtosRecomendados }),
     };
   } catch (err) {
     console.error('Erro na funcao analisar-marca:', err);
