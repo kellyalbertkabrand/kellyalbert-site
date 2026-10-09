@@ -100,6 +100,16 @@ body{
   0%,100%{box-shadow:0 0 0 0 rgba(196,120,48,.55),0 8px 24px rgba(196,120,48,.15);border-color:rgba(196,120,48,.55);}
   50%{box-shadow:0 0 0 12px rgba(196,120,48,0),0 8px 32px rgba(196,120,48,.4);border-color:rgba(196,120,48,.9);}
 }
+.quiz-cta--wa{
+  background:linear-gradient(135deg,#1a3324 0%,#0f1f17 100%);
+  border-color:rgba(37,211,102,.6);
+  animation:kaCtaPulseWa 2s ease-in-out infinite;
+}
+.quiz-cta--wa .quiz-cta__icon{background:#25D366;}
+@keyframes kaCtaPulseWa{
+  0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 8px 24px rgba(37,211,102,.15);border-color:rgba(37,211,102,.55);}
+  50%{box-shadow:0 0 0 12px rgba(37,211,102,0),0 8px 32px rgba(37,211,102,.45);border-color:rgba(37,211,102,.95);}
+}
 .quiz-cta__icon{
   flex-shrink:0;
   width:46px;height:46px;border-radius:50%;
@@ -577,7 +587,13 @@ body{
 .link-item:hover{border-color:rgba(196,120,48,.5);transform:translateY(-1px);background:#0c131b;}
 .link-item__text{
   font-size:1rem;font-weight:600;
-  letter-spacing:.02em;
+  letter-spacing:.02em;flex:1;min-width:0;
+}
+.link-item__thumb{
+  width:48px;height:48px;border-radius:10px;
+  object-fit:cover;flex-shrink:0;
+  background:#0d1620;
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
 }
 .link-item__arrow{
   width:30px;height:30px;border-radius:50%;
@@ -780,22 +796,22 @@ a.foot__s:hover{color:var(--accent);}
   <header class="hdr">
     <img src="/images/kelly-hero.jpg" alt="Kelly Albert" class="hdr__avatar" width="130" height="130">
     <h1 class="hdr__name">Kelly Albert</h1>
-    <p class="hdr__tag">Responda 6 perguntas e descubra <strong>o melhor caminho</strong> pra construir sua marca ↓</p>
+    <p class="hdr__tag">Estrategista de Marcas · <strong>KA | Inteligência para Marcas</strong></p>
   </header>
 
-  <!-- CTA DIAGNÓSTICO -->
-  <button type="button" onclick="kaChatOpen()" class="quiz-cta" aria-label="Iniciar chat com Kelly">
+  <!-- CTA FALE CONOSCO (WhatsApp) -->
+  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="quiz-cta quiz-cta--wa" aria-label="Fale conosco no WhatsApp">
     <div class="quiz-cta__icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
     </div>
     <div class="quiz-cta__body">
-      <p class="quiz-cta__title">Como posso ajudar sua marca?</p>
-      <p class="quiz-cta__desc">Responda 6 perguntas e receba o caminho ideal pra sua marca hoje.</p>
+      <p class="quiz-cta__title">Fale conosco</p>
+      <p class="quiz-cta__desc">Tire dúvidas ou agende uma conversa com a equipe da KA.</p>
     </div>
     <div class="quiz-cta__arrow">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </div>
-  </button>
+  </a>
 
   <!-- HERO DO PROJETO — mosaico de cases + título em destaque -->
   <a href="/programa" class="hero-prod" aria-label="Projeto de Posicionamento de Marca · Marca com Essência">
@@ -821,13 +837,8 @@ a.foot__s:hover{color:var(--accent);}
   <!-- LISTA SIMPLES DE OUTROS LINKS -->
   <div class="link-list">
     <a href="/livro" class="link-item">
+      <img src="/images/livro-mockup.jpg" alt="Livro Marca com Essência©" class="link-item__thumb" loading="lazy">
       <span class="link-item__text">Livro Marca com Essência©</span>
-      <span class="link-item__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </span>
-    </a>
-    <a href="/mentoria" class="link-item">
-      <span class="link-item__text">Mentoria Marca com Essência©</span>
       <span class="link-item__arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </span>
