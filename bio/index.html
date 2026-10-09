@@ -106,6 +106,25 @@ body{
   animation:kaCtaPulseWa 2s ease-in-out infinite;
 }
 .quiz-cta--wa .quiz-cta__icon{background:#25D366;}
+.quiz-cta--diag{
+  background:linear-gradient(135deg,#3D2817 0%,#1a1109 100%);
+  border-color:rgba(196,120,48,.7);
+  margin-bottom:1.6rem;
+}
+.quiz-cta--diag .quiz-cta__icon{background:#C47830;}
+
+/* Botao pill verde WhatsApp (igual ao do chat) */
+.bio-wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:.6rem;
+  margin:0 0 2.2rem;padding:1rem 1.5rem;
+  background:#25D366;color:#fff;text-decoration:none;
+  border-radius:100px;
+  font-size:.95rem;font-weight:700;letter-spacing:.02em;
+  box-shadow:0 8px 24px rgba(37,211,102,.35);
+  transition:transform .15s,background .2s;
+}
+.bio-wa-btn:hover{transform:translateY(-2px);background:#2ae076;}
+.bio-wa-btn svg{width:20px;height:20px;flex-shrink:0;}
 @keyframes kaCtaPulseWa{
   0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.55),0 8px 24px rgba(37,211,102,.15);border-color:rgba(37,211,102,.55);}
   50%{box-shadow:0 0 0 12px rgba(37,211,102,0),0 8px 32px rgba(37,211,102,.45);border-color:rgba(37,211,102,.95);}
@@ -299,6 +318,50 @@ body{
   padding:1.3rem 1.2rem;
   text-align:center;
 }
+
+/* DIAGNOSTIC CARD — destaque pra análise da IA */
+.diag-card{
+  margin:1rem;
+  padding:1.6rem 1.4rem;
+  background:#EDE8DD;
+  color:#152535;
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 0 1px rgba(196,120,48,.3);
+  animation:kaBubble .4s ease-out;
+  position:relative;
+}
+.diag-card::before{
+  content:'DIAGNÓSTICO';
+  display:inline-block;
+  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:#C47830;color:#fff;
+  font-size:.6rem;font-weight:800;letter-spacing:.22em;
+  padding:.3rem .9rem;border-radius:100px;
+  box-shadow:0 4px 12px rgba(196,120,48,.5);
+}
+.diag-card__hi{
+  font-size:.78rem;font-weight:700;color:#C47830;
+  letter-spacing:.1em;text-transform:uppercase;
+  margin:.4rem 0 .9rem;text-align:center;
+}
+.diag-card__body{
+  font-size:.98rem;line-height:1.65;color:#152535;
+  margin:0;
+}
+.diag-card__body p{margin:0 0 .9rem;}
+.diag-card__body p:last-child{margin-bottom:0;}
+.diag-card__body strong{color:#152535;font-weight:700;}
+.diag-card__scroll{
+  display:flex;align-items:center;justify-content:center;gap:.4rem;
+  margin:1.2rem 0 .2rem;font-size:.75rem;
+  color:rgba(21,37,53,.6);font-weight:600;
+  letter-spacing:.06em;
+}
+.diag-card__scroll svg{width:14px;height:14px;animation:kaArrowDown 1.6s ease-in-out infinite;}
+@keyframes kaArrowDown{
+  0%,100%{transform:translateY(0);opacity:.5;}
+  50%{transform:translateY(4px);opacity:1;}
+}
 .chat-result__eyebrow{
   font-size:.7rem;font-weight:700;letter-spacing:.22em;
   text-transform:uppercase;color:var(--accent);margin:0 0 .5rem;
@@ -321,6 +384,17 @@ body{
   transition:transform .15s;
 }
 .chat-result__btn:hover{transform:translateY(-2px);}
+.chat-result__wa{
+  display:flex;align-items:center;justify-content:center;gap:.55rem;
+  margin:.9rem 0 .2rem;padding:.9rem 1.4rem;
+  background:#25D366;color:#fff;text-decoration:none;
+  border-radius:100px;
+  font-size:.88rem;font-weight:700;letter-spacing:.02em;
+  box-shadow:0 8px 24px rgba(37,211,102,.35);
+  transition:transform .15s,background .2s;
+}
+.chat-result__wa:hover{transform:translateY(-2px);background:#2ae076;}
+.chat-result__wa svg{width:18px;height:18px;}
 
 /* SECTION LABEL */
 .sec-label{
@@ -908,6 +982,20 @@ a.foot__s:hover{color:var(--accent);}
     <p class="hdr__tag">Estrategista de Marcas<br><strong>KA | Inteligência para Marcas</strong></p>
   </header>
 
+  <!-- CTA DIAGNOSTICO (abre chat conversacional) -->
+  <button type="button" onclick="kaChatOpen()" class="quiz-cta quiz-cta--diag" aria-label="Fazer meu Diagnóstico de Marca">
+    <div class="quiz-cta__icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <div class="quiz-cta__body">
+      <p class="quiz-cta__title">Faça seu Diagnóstico de Marca</p>
+      <p class="quiz-cta__desc">Responda 6 perguntas e descubra o melhor caminho pra sua marca.</p>
+    </div>
+    <div class="quiz-cta__arrow">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </div>
+  </button>
+
   <!-- HERO DO PROJETO — mosaico de cases + título em destaque -->
   <a href="/programa" class="hero-prod" aria-label="Projeto de Posicionamento de Marca · Marca com Essência">
     <div class="hero-prod__mosaic" aria-hidden="true">
@@ -976,18 +1064,10 @@ a.foot__s:hover{color:var(--accent);}
     </a>
   </div>
 
-  <!-- CTA FALE CONOSCO (WhatsApp) — ao final da lista -->
-  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="quiz-cta quiz-cta--wa" aria-label="Fale conosco no WhatsApp">
-    <div class="quiz-cta__icon">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
-    </div>
-    <div class="quiz-cta__body">
-      <p class="quiz-cta__title">Fale conosco</p>
-      <p class="quiz-cta__desc">Tire dúvidas ou agende uma conversa com a equipe da KA.</p>
-    </div>
-    <div class="quiz-cta__arrow">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </div>
+  <!-- CTA FALE CONOSCO (botao pill verde, igual ao do chat de diagnostico) -->
+  <a href="https://wa.me/5551993163333?text=Ol%C3%A1%21%20Vim%20pela%20bio%20e%20queria%20falar%20com%20a%20equipe%20da%20KA." target="_blank" rel="noopener" class="bio-wa-btn" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>
+    Fale conosco no WhatsApp
   </a>
 
   <!-- FOOTER -->
@@ -1169,6 +1249,15 @@ a.foot__s:hover{color:var(--accent);}
 </script>
 
 <!-- CHAT MODAL -->
+<!-- Netlify Forms: form oculto para captura de leads (backup) -->
+<form name="diagnostico-bio" netlify netlify-honeypot="bot-field" hidden>
+  <input name="nome">
+  <input name="email">
+  <input name="whatsapp">
+  <input name="caminho_recomendado">
+  <input name="origem">
+</form>
+
 <div id="ka-chat" class="chat-backdrop" role="dialog" aria-modal="true" aria-labelledby="ka-chat-title">
   <div class="chat-modal">
     <div class="chat-head">
@@ -1232,9 +1321,9 @@ a.foot__s:hover{color:var(--accent);}
       bot:'Quanto você pode investir agora pra construir sua marca?',
       opts:[
         {t:'Até R$ 200',s:{l:3}},
-        {t:'Entre R$ 500 e R$ 1.500',s:{m:3}},
-        {t:'A partir de R$ 3.500',s:{p:3}},
-        {t:'Investimento mensal recorrente',s:{d:3}}
+        {t:'A partir de R$ 1.200',s:{l:1,p:1}},
+        {t:'A partir de R$ 9.900',s:{p:3}},
+        {t:'A partir de R$ 19.900',s:{p:2,d:3}}
       ]
     },
     {
@@ -1283,7 +1372,8 @@ a.foot__s:hover{color:var(--accent);}
     }
   };
 
-  var step=0, scores={l:0,m:0,p:0,d:0};
+  var step=0, scores={l:0,p:0,d:0};
+  var answers=[]; // {pergunta, resposta}
   var body=null, footer=null, opened=false;
 
   function scrollBot(){
@@ -1318,7 +1408,7 @@ a.foot__s:hover{color:var(--accent);}
     scrollBot();
   }
 
-  function showOptions(opts){
+  function showOptions(opts,perguntaTexto){
     var wrap=document.createElement('div');
     wrap.className='chat-options';
     opts.forEach(function(o){
@@ -1326,8 +1416,10 @@ a.foot__s:hover{color:var(--accent);}
       btn.type='button';btn.className='chat-opt';
       btn.textContent=o.t;
       btn.addEventListener('click',function(){
-        // aplica score
-        if(o.s){Object.keys(o.s).forEach(function(k){scores[k]+=o.s[k];});}
+        // aplica score (apenas l,p,d — mentoria removida)
+        if(o.s){Object.keys(o.s).forEach(function(k){if(scores[k]!==undefined) scores[k]+=o.s[k];});}
+        // registra resposta para enviar pra IA
+        answers.push({pergunta:perguntaTexto,resposta:o.t});
         // remove opções
         wrap.remove();
         // user bubble
@@ -1341,29 +1433,54 @@ a.foot__s:hover{color:var(--accent);}
     scrollBot();
   }
 
-  function pickProduct(){
-    var best='l',bestV=-1;
-    Object.keys(scores).forEach(function(k){if(scores[k]>bestV){bestV=scores[k];best=k;}});
-    return PRODUCTS[best];
+  // REGRA FIXA de produto baseada no investimento (nao e opcional, nao e sugerido pela IA)
+  function escolherProdutos(){
+    var investimento='';
+    answers.forEach(function(r){
+      var p=(r.pergunta||'').toLowerCase();
+      if(p.indexOf('investir')>=0) investimento=r.resposta;
+    });
+    var invL=investimento.toLowerCase();
+    // Até R$ 200 → so Livro
+    if(invL.indexOf('200')>=0 && invL.indexOf('1.2')<0 && invL.indexOf('1200')<0) return ['livro'];
+    // A partir de R$ 1.200 → Livro + Direcao
+    if(invL.indexOf('1.2')>=0||invL.indexOf('1200')>=0) return ['livro','direcao'];
+    // A partir de R$ 9.900 → Projeto
+    if(invL.indexOf('9.9')>=0||invL.indexOf('9900')>=0) return ['projeto'];
+    // A partir de R$ 19.900 → Projeto (ou Projeto + Direcao se preferir expandir)
+    if(invL.indexOf('19')>=0) return ['projeto'];
+    // Default seguro
+    return ['livro'];
+  }
+  // Mantido por retrocompat (nao usado mais no caminho principal)
+  function pickProductsFallback(){ return escolherProdutos(); }
+  function productByKey(k){
+    if(k==='projeto'||k==='p') return PRODUCTS.p;
+    if(k==='direcao'||k==='d') return PRODUCTS.d;
+    return PRODUCTS.l;
   }
 
   function showForm(){
-    var prod=pickProduct();
-    botMsg('Baseado nas suas respostas, encontrei o caminho ideal pra sua marca.',function(){
-      botMsg('Antes de te mostrar, deixa eu registrar seu contato pra você receber esse material completo:',function(){
-        var f=document.createElement('form');
-        f.className='chat-form';
-        f.innerHTML=
-          '<input type="text" name="nome" placeholder="Nome completo" required autocomplete="name">'+
-          '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">'+
-          '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric">'+
-          '<p class="chat-form__err" id="ka-chat-err"></p>'+
-          '<button type="submit" class="chat-form__btn">Ver meu caminho ideal →</button>'+
-          '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
-        f.addEventListener('submit',function(e){e.preventDefault();submitForm(f,prod);});
-        footer.appendChild(f);
-        scrollBot();
-      });
+    botMsg('Pronto, terminou! 🎯 Preenche abaixo pra eu liberar seu diagnóstico personalizado:',function(){
+      // Recupera dados salvos (se a pessoa fechou e voltou)
+      var saved={};
+      try{saved=JSON.parse(localStorage.getItem('ka_bio_lead')||'{}');}catch(e){}
+      var vn=(saved.nome||'').replace(/"/g,'&quot;');
+      var ve=(saved.email||'').replace(/"/g,'&quot;');
+      var vw=(saved.wa||'').replace(/"/g,'&quot;');
+
+      var f=document.createElement('form');
+      f.className='chat-form';
+      f.innerHTML=
+        '<input type="text" name="nome" placeholder="Nome e sobrenome" required autocomplete="name" value="'+vn+'">'+
+        '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email" value="'+ve+'">'+
+        '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric" value="'+vw+'">'+
+        '<p class="chat-form__err" id="ka-chat-err"></p>'+
+        '<button type="submit" class="chat-form__btn">Ver meu diagnóstico →</button>'+
+        '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
+      f.addEventListener('submit',function(e){e.preventDefault();submitForm(f);});
+      footer.appendChild(f);
+      scrollBot();
     });
   }
 
@@ -1385,50 +1502,224 @@ a.foot__s:hover{color:var(--accent);}
     return null;
   }
 
-  function submitForm(f,prod){
+  function submitForm(f){
     var err=document.getElementById('ka-chat-err');err.style.display='none';err.textContent='';
     var fd=new FormData(f);
-    var nome=(fd.get('nome')||'').trim(),email=(fd.get('email')||'').trim(),wa=(fd.get('whatsapp')||'').trim();
-    if(nome.length<2){err.textContent='Digite seu nome completo';err.style.display='block';return;}
+    var nome=(fd.get('nome')||'').trim().replace(/\s+/g,' '),email=(fd.get('email')||'').trim(),wa=(fd.get('whatsapp')||'').trim();
+    if(nome.length<2){err.textContent='Digite seu nome e sobrenome';err.style.display='block';return;}
+    var partesNome=nome.split(' ').filter(function(p){return p.length>=2;});
+    if(partesNome.length<2){err.textContent='Digite seu nome e sobrenome (ex: Maria Silva)';err.style.display='block';return;}
     var eE=validateEmail(email);if(eE){err.textContent=eE;err.style.display='block';return;}
     var wE=validateWA(wa);if(wE){err.textContent=wE;err.style.display='block';return;}
 
-    var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Enviando...';
+    // Salva no localStorage pra pre-preencher na proxima
+    try{localStorage.setItem('ka_bio_lead',JSON.stringify({nome:nome,email:email,wa:wa}));}catch(e){}
 
-    // MailerLite direto (mesmo padrão da /mentoria/)
-    try{
-      fetch('https://connect.mailerlite.com/api/subscribers',{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNDIwYTNkY2E5ZmM1Y2JiZWFlNmFlMDFiMmVhMjNlYjQwZjg0ZWI5ZTA2NjA1ZjFiNzMyYWU0NmMzZDY1ODI1NzEzODE2N2E0NzE3NDQ0MGUiLCJpYXQiOjE3NzkzMTc4MDYuMTkxMzM5LCJuYmYiOjE3NzkzMTc4MDYuMTkxMzQxLCJleHAiOjQ5MzQ5OTE0MDYuMTg3MTg1LCJzdWIiOiIyMjUxMjA1Iiwic2NvcGVzIjpbXX0.dHeitQmB_eiHom8Tc79K7TvGK-iWBvV0j9AS_sNdR_QlDbHczSHrAdwDxQqu6Vc2_i1JnA76b2yYU-z3r86-P6PzQijpCLygqAPkvQFeuSGYD7jIo9ftjp2MPBd5M2V2dFvpPBXfOeVNcphiTlzw82utY-byT9lG1MoZlwbF_yN4TKt7RRaHlMMfP21HlEcHDbf2htqG1Zvn9FyzgOELUi1KNXZ4q48-Pgeq5PRbUynkK5QY5464nvxITwgf3k23j3CpqgNERFwaM9U5Eg3j8KmeBAjObHERdZ7Br2Jxg3fG9KDY7xdQwZXCQqFaTjyiel1fdvhI3z3x1_lq_2eU5rYsNZAPZILIXLXLWSflaCpp2p5TsfaijspiL9oJP7xWZNeTcDoBZMUfHS1VENj-d5ClcInW1dBeolzSjD1wnW5eY-1cFP84cdkC1FF1SMedspUdnVMlUKWkCJ5XgH1LW3P7CfrssWcp3ImzCHFwpPtzVnHCmSjUmDNBJv2Yvld559rKSjOyBZGiIMPTeo3BGcYjQt5vfqPxlmdVDUhIwtUB02EXchqGSUKc9Vby4IPbSU5rLLU3cVz8zQuVZGfO6TJTZHH1TjJbBPPOn43uoetXacQKm7VSVqooijGarD6NgaVep7wYIpXx9YHJtPi-HumSaEoeyhQRDc0y5HJxMb4'
-        },
-        body:JSON.stringify({
-          email:email,
-          fields:{name:nome,last_name:'',phone:wa,origem_bio:'bio-chat',caminho_recomendado:prod.key},
-          groups:['187386066189157525']
-        })
-      }).catch(function(){});
-    }catch(err){}
+    var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Analisando sua marca...';
 
-    setTimeout(function(){
+    // 1) PRODUTO E DECIDIDO LOCALMENTE (regra fixa por investimento). IA so escreve a analise.
+    var primeiroNome=nome.split(' ')[0];
+    var produtosKeys=escolherProdutos();
+    var prods=produtosKeys.map(productByKey);
+    enviarMailerLite(nome,email,wa,produtosKeys.join('+'));
+
+    fetch('/.netlify/functions/analisar-marca',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        nome:primeiroNome,
+        respostas:answers,
+        produtosRecomendados:produtosKeys
+      })
+    })
+    .then(function(r){return r.ok?r.json():Promise.reject(r.status);})
+    .then(function(data){
       f.remove();
-      showResult(prod);
-    },400);
+      mostrarDiagnostico(data.diagnostico,prods,primeiroNome);
+    })
+    .catch(function(e){
+      console.warn('%c[DIAGNOSTICO] IA nao respondeu. Verifique OPENAI_API_KEY no Netlify. Erro:','color:#C47830;font-weight:bold',e);
+      f.remove();
+      var fb=montarFallback(primeiroNome,answers,prods);
+      mostrarDiagnostico(fb,prods,primeiroNome);
+    });
   }
 
-  function showResult(prod){
+  // Fallback adaptativo — monta diagnostico a partir das respostas reais
+  function montarFallback(nome,respostas,produtoKey){
+    var momento='', trava='', aprendizado='', urgencia='', investimento='';
+    respostas.forEach(function(r){
+      var p=(r.pergunta||'').toLowerCase(), v=(r.resposta||'').toLowerCase();
+      if(p.indexOf('momento')>=0 && p.indexOf('marca')>=0) momento=r.resposta;
+      else if(p.indexOf('sua marca')===0 || p.indexOf('tipo')>=0) ; // ignora
+      else if(p.indexOf('trava')>=0) trava=r.resposta;
+      else if(p.indexOf('aprender')>=0 || p.indexOf('aplicar')>=0) aprendizado=r.resposta;
+      else if(p.indexOf('investir')>=0) investimento=r.resposta;
+      else if(p.indexOf('urgência')>=0 || p.indexOf('urgencia')>=0) urgencia=r.resposta;
+    });
+
+    var p1='', p2='', p3='';
+    var momL=momento.toLowerCase();
+
+    // Paragrafo 1: nomeia o momento com base nas respostas reais
+    if(momL.indexOf('começando')>=0 || momL.indexOf('comecando')>=0 || momL.indexOf('zero')>=0){
+      p1=nome+', pelo que você respondeu, sua marca está no <strong>momento de origem</strong>. Esse é o estágio onde tudo precisa ser decidido do zero: quem é a sua marca, pra quem ela fala, o que ela representa e por que o mercado deveria se importar. É um momento potente, mas confuso. Você sente que tem algo pra dizer, mas ainda não achou a forma.';
+    } else if(momL.indexOf('desorganizada')>=0 || momL.indexOf('desorganizado')>=0){
+      p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reorganização</strong>. Já existe operação, cliente e entrega, mas falta estrutura. É aquele estágio em que a marca cresceu rápido e deixou o posicionamento pra trás. Hoje a essência está presente no dia a dia, mas ainda não foi traduzida em uma construção estratégica que amarre tudo.';
+    } else if(momL.indexOf('reposicionar')>=0){
+      p1=nome+', pelo que você respondeu, sua marca está num <strong>momento de reposicionamento</strong>. Existe trajetória, autoridade e caixa, mas a percepção que o mercado tem hoje não é mais a que você precisa. Reposicionar é mais difícil do que começar, porque você precisa romper com uma leitura que já se consolidou na cabeça do público.';
+    } else if(momL.indexOf('escalar')>=0){
+      p1=nome+', pelo que você respondeu, sua marca já funciona e agora precisa <strong>escalar com clareza</strong>. É o estágio em que a base existe, o modelo prova resultado, e o próximo salto é consistência. Nesse momento, cada decisão de comunicação, cada entrada em novo canal, cada contratação, carrega mais peso do que no começo.';
+    } else {
+      p1=nome+', pelo que você respondeu, sua marca está num momento de <strong>construção estratégica</strong>. Existe entrega real, mas o mercado ainda não enxerga você da forma como você precisa ser enxergada.';
+    }
+
+    // Paragrafo 2: nomeia o risco com base no que trava
+    var travaL=trava.toLowerCase();
+    if(travaL.indexOf('não sei quem')>=0 || travaL.indexOf('nao sei quem')>=0 || travaL.indexOf('representa')>=0){
+      p2='A trava central é identidade. Sem saber quem a marca é e o que ela representa, qualquer comunicação vira ruído. O risco é passar os próximos meses produzindo conteúdo, posts e campanhas que não constroem percepção, apenas gastam energia.';
+    } else if(travaL.indexOf('clareza')>=0 || travaL.indexOf('comunico')>=0){
+      p2='A trava central é tradução. A marca existe internamente, mas não encontra as palavras pra existir no mercado. O risco é continuar entregando valor que não é percebido, e isso naturalmente puxa você pra guerra de preço.';
+    } else if(travaL.indexOf('valor percebido')>=0 || travaL.indexOf('valor baixo')>=0){
+      p2='A trava central é <strong>percepção de valor</strong>. Você comunica, mas o preço ainda vira o critério principal da decisão. Isso significa que o cliente não enxerga a diferença entre o que você entrega e o que o concorrente mais barato oferece.';
+    } else if(travaL.indexOf('direção')>=0 || travaL.indexOf('direcao')>=0 || travaL.indexOf('contínua')>=0 || travaL.indexOf('continua')>=0){
+      p2='A trava central já não é fundação, é consistência. Sem direção estratégica contínua, decisões importantes acabam acontecendo no improviso. Com o tempo, isso desalinha a marca de dentro pra fora.';
+    } else {
+      p2='O risco de ficar nesse estágio é ver o tempo passar sem avanço real de percepção. Marca que não é lembrada, não é desejada. E marca que não é desejada só vende no preço.';
+    }
+
+    // Paragrafo 3: justifica o(s) produto(s) recomendado(s)
+    // produtoKey agora pode ser array de PRODUCT objects, string key, ou vazio
+    var keys=[];
+    if(Array.isArray(produtoKey)) keys=produtoKey.map(function(x){return x.key||x;});
+    else if(typeof produtoKey==='string') keys=[produtoKey];
+    else if(produtoKey&&produtoKey.key) keys=[produtoKey.key];
+    var ap=aprendizado.toLowerCase(), inv=investimento.toLowerCase();
+
+    if(keys.length===2 && keys.indexOf('livro')>=0 && keys.indexOf('direcao')>=0){
+      p3='Pelo seu perfil ('+(ap||'aprender aplicando')+') e pelo orçamento que você escolheu, a combinação mais estratégica é <strong>Livro + Direção Estratégica</strong>. O Livro te entrega a base metodológica completa pra aplicar no seu ritmo. A Direção garante o acompanhamento executivo mensal com a Kelly, pra que a construção não perca o fio estratégico.';
+    } else if(keys.length===2 && keys.indexOf('projeto')>=0 && keys.indexOf('direcao')>=0){
+      p3='Pelo momento da sua marca e pelo investimento disponível, a combinação mais estratégica é <strong>Projeto + Direção Estratégica</strong>. O Projeto entrega a base construída de ponta a ponta pela equipe da KA. A Direção faz a continuidade: acompanhamento mensal com a Kelly pra que a base não se perca na operação do dia a dia.';
+    } else if(keys[0]==='projeto'){
+      p3='Pelo momento em que você está e pela faixa de investimento ('+(inv||'a partir de R$ 9.900')+'), o <strong>Projeto Marca com Essência</strong> é o caminho estratégico. A equipe da KA constrói a base junto com você: posicionamento, identidade verbal, identidade visual e agentes de IA. É a construção completa, feita a quatro mãos.';
+    } else if(keys[0]==='direcao'){
+      p3='Pelo estágio da sua marca e pela sua necessidade de <strong>direção contínua</strong>, o programa de Direção Estratégica é o caminho certo. Acompanhamento executivo mensal com a Kelly em branding, comunicação e marketing. Clareza no mês, não só no início.';
+    } else {
+      p3='Pelo seu ritmo ('+(ap||'aplicar sozinha')+') e pela faixa de investimento que você escolheu ('+(inv||'inicial')+'), o <strong>Livro Marca com Essência</strong> é o passo mais inteligente agora. Ele dá a estrutura completa do método, com agentes de IA e exercícios práticos, pra você construir a base da sua marca sem depender de ninguém.';
+    }
+
+    return p1+'\n\n'+p2+'\n\n'+p3;
+  }
+
+  function enviarMailerLite(nome,email,wa,caminho){
+    // 1) Netlify Forms (backup — leads sempre caem aqui, independente do MailerLite)
+    try{
+      var fd=new FormData();
+      fd.append('form-name','diagnostico-bio');
+      fd.append('nome',nome);
+      fd.append('email',email);
+      fd.append('whatsapp',wa);
+      fd.append('caminho_recomendado',caminho);
+      fd.append('origem','bio-2-chat');
+      fetch('/',{method:'POST',body:fd})
+        .then(function(r){console.log('[Netlify Forms]',r.ok?'ok':'erro '+r.status);})
+        .catch(function(e){console.error('[Netlify Forms] erro:',e);});
+    }catch(e){console.error('[Netlify Forms] excecao:',e);}
+
+    // 2) MailerLite via Netlify Function (server-side)
+    return fetch('/.netlify/functions/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        nome:nome,
+        email:email,
+        whatsapp:wa,
+        origem:'bio-chat',
+        groupId:'183324004183967092',
+        extraFields:{caminho_recomendado:caminho,origem_bio:'bio-chat'}
+      })
+    })
+    .then(function(r){
+      return r.json().then(function(j){return {ok:r.ok,status:r.status,data:j};});
+    })
+    .then(function(res){
+      if(!res.ok){
+        console.error('[MailerLite] erro HTTP',res.status,res.data);
+      } else {
+        console.log('[MailerLite] subscriber adicionado:',res.data);
+      }
+      return res;
+    })
+    .catch(function(err){
+      console.error('[MailerLite] erro de rede:',err);
+    });
+  }
+
+  function mostrarDiagnostico(diagnostico,prods,primeiroNome){
+    // prods pode ser 1 produto (objeto) ou array de produtos (compat)
+    var produtos=Array.isArray(prods)?prods:[prods];
+    // Card de diagnostico destacado (fundo gelo, borda caramelo)
+    var card=document.createElement('div');
+    card.className='diag-card';
+    var saudacao=primeiroNome?('<p class="diag-card__hi">'+primeiroNome+', aqui está sua análise 👇</p>'):'';
+    // Normaliza: remove travessoes (—), separa em paragrafos, corrige R$
+    var textoLimpo=diagnostico
+      .replace(/—/g,',')
+      .replace(/–/g,',')
+      .replace(/\s*,\s*,\s*/g,', ')
+      // Corrige "r$" minusculo para "R$"
+      .replace(/(^|[^A-Za-z])r\$/g,'$1R$')
+      // Garante espaco inquebravel entre R$ e o valor (nao quebra linha)
+      .replace(/R\$\s*(\d)/g,'R$ $1')
+      .replace(/\s+/g,function(m){return m.indexOf('\n')>=0?m:' ';});
+    var paragrafos=textoLimpo.split(/\n{2,}|\n/).filter(function(p){return p.trim().length;});
+    var bodyHtml=paragrafos.map(function(p){return '<p>'+p.trim()+'</p>';}).join('');
+    var scrollLabel=produtos.length>1?'Role pra ver seus caminhos ideais':'Role pra ver seu caminho ideal';
+    card.innerHTML=
+      saudacao+
+      '<div class="diag-card__body">'+bodyHtml+'</div>'+
+      '<div class="diag-card__scroll"><span>'+scrollLabel+'</span>'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'+
+      '</div>';
+    body.appendChild(card);
+    // Scroll suave para o TOPO do card (nao o fim), pra pessoa ler desde o inicio
+    setTimeout(function(){
+      card.scrollIntoView({behavior:'smooth',block:'start'});
+    },100);
+    // Produtos aparecem abaixo (sequencialmente, com stagger)
+    produtos.forEach(function(prod,i){
+      setTimeout(function(){
+        showResult(prod,i,produtos.length);
+      },1400+i*300);
+    });
+  }
+
+  function showResult(prod,index,total){
+    var isPrincipal=(index===0||index===undefined);
+    var isCombo=(total>1);
+    var eyebrow=prod.eyebrow||'Seu caminho ideal';
+    if(isCombo){
+      eyebrow=isPrincipal?'Caminho principal':'Complemento estratégico';
+    }
+    var waMsg='Oi Kelly! Fiz o diagnóstico no site e meu caminho ideal foi *'+prod.title.replace(/<[^>]+>/g,'')+'*. Queria conversar com você.';
+    var waUrl='https://wa.me/5551993163333?text='+encodeURIComponent(waMsg);
     var wrap=document.createElement('div');
     wrap.className='chat-result';
+    // Botao WhatsApp so no PRIMEIRO card (ou no unico)
+    var waHtml=(isPrincipal)?
+      '<a href="'+waUrl+'" target="_blank" rel="noopener" class="chat-result__wa">'+
+        '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.75-.87-2.03-.97-.27-.1-.47-.15-.66.15s-.76.97-.93 1.16-.35.22-.65.07a8.15 8.15 0 0 1-2.4-1.48 8.87 8.87 0 0 1-1.66-2.06c-.17-.3-.02-.46.13-.6s.3-.35.44-.52a2 2 0 0 0 .3-.5.55.55 0 0 0 0-.52c-.07-.15-.66-1.6-.9-2.19s-.48-.5-.66-.5h-.57a1.1 1.1 0 0 0-.8.37 3.33 3.33 0 0 0-1.04 2.48 5.78 5.78 0 0 0 1.21 3.07 13.24 13.24 0 0 0 5.06 4.47 17.06 17.06 0 0 0 1.69.62 4.06 4.06 0 0 0 1.87.12 3.06 3.06 0 0 0 2-1.4 2.47 2.47 0 0 0 .17-1.4c-.07-.13-.27-.2-.57-.35zM12 2A10 10 0 0 0 3.35 17.06L2 22l5.09-1.33A9.98 9.98 0 1 0 12 2z"/></svg>'+
+        'Falar com a equipe no WhatsApp'+
+      '</a>':'';
     wrap.innerHTML=
       '<div class="chat-result__card">'+
-        '<p class="chat-result__eyebrow">'+prod.eyebrow+'</p>'+
+        '<p class="chat-result__eyebrow">'+eyebrow+'</p>'+
         '<h3 class="chat-result__title">'+prod.title+'</h3>'+
         '<p class="chat-result__desc">'+prod.desc+'</p>'+
         '<a href="'+prod.url+'" class="chat-result__btn">'+prod.cta+' →</a>'+
-      '</div>';
-    footer.appendChild(wrap);
-    botMsg('Pronto! Aqui está a minha recomendação pra você 👆 Clica no botão pra conhecer os detalhes. Qualquer dúvida chama no WhatsApp!');
+      '</div>'+
+      waHtml;
+    body.appendChild(wrap);
   }
 
   function next(){
@@ -1436,7 +1727,7 @@ a.foot__s:hover{color:var(--accent);}
     var q=QUESTIONS[step];step++;
     botMsg(q.bot,function(){
       if(q.auto){setTimeout(next,400);return;}
-      if(q.opts) showOptions(q.opts);
+      if(q.opts) showOptions(q.opts,q.bot);
     });
   }
 
@@ -1446,7 +1737,7 @@ a.foot__s:hover{color:var(--accent);}
     footer=document.getElementById('ka-chat-footer');
     // reset
     body.innerHTML='';footer.innerHTML='';
-    step=0;scores={l:0,m:0,p:0,d:0};
+    step=0;scores={l:0,p:0,d:0};answers=[];
     backdrop.classList.add('open');
     document.body.style.overflow='hidden';
     opened=true;
@@ -1463,7 +1754,12 @@ a.foot__s:hover{color:var(--accent);}
     var backdrop=document.getElementById('ka-chat');
     backdrop.addEventListener('click',function(e){if(e.target===backdrop) kaChatClose();});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&opened) kaChatClose();});
+    // Abre o chat automaticamente se a URL tiver #diagnostico (link do CTA Diagnostico Gratuito)
+    if(location.hash==='#diagnostico'||location.hash==='#chat'){
+      setTimeout(function(){ try{ kaChatOpen(); }catch(e){} },300);
+    }
   });
 })();
 </script>
+
 </body></html>
