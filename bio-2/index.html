@@ -1419,12 +1419,19 @@ a.foot__s:hover{color:var(--accent);}
 
   function showForm(){
     botMsg('Pronto, terminou! 🎯 Preenche abaixo pra eu liberar seu diagnóstico personalizado:',function(){
+      // Recupera dados salvos (se a pessoa fechou e voltou)
+      var saved={};
+      try{saved=JSON.parse(localStorage.getItem('ka_bio2_lead')||'{}');}catch(e){}
+      var vn=(saved.nome||'').replace(/"/g,'&quot;');
+      var ve=(saved.email||'').replace(/"/g,'&quot;');
+      var vw=(saved.wa||'').replace(/"/g,'&quot;');
+
       var f=document.createElement('form');
       f.className='chat-form';
       f.innerHTML=
-        '<input type="text" name="nome" placeholder="Nome completo" required autocomplete="name">'+
-        '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email">'+
-        '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric">'+
+        '<input type="text" name="nome" placeholder="Nome e sobrenome" required autocomplete="name" value="'+vn+'">'+
+        '<input type="email" name="email" placeholder="Seu melhor e-mail" required autocomplete="email" value="'+ve+'">'+
+        '<input type="tel" name="whatsapp" placeholder="WhatsApp com DDD" required autocomplete="tel" inputmode="numeric" value="'+vw+'">'+
         '<p class="chat-form__err" id="ka-chat-err"></p>'+
         '<button type="submit" class="chat-form__btn">Ver meu diagnóstico →</button>'+
         '<p class="chat-form__hint">Seus dados ficam só com a KA. Sem spam.</p>';
@@ -1455,10 +1462,15 @@ a.foot__s:hover{color:var(--accent);}
   function submitForm(f){
     var err=document.getElementById('ka-chat-err');err.style.display='none';err.textContent='';
     var fd=new FormData(f);
-    var nome=(fd.get('nome')||'').trim(),email=(fd.get('email')||'').trim(),wa=(fd.get('whatsapp')||'').trim();
-    if(nome.length<2){err.textContent='Digite seu nome completo';err.style.display='block';return;}
+    var nome=(fd.get('nome')||'').trim().replace(/\s+/g,' '),email=(fd.get('email')||'').trim(),wa=(fd.get('whatsapp')||'').trim();
+    if(nome.length<2){err.textContent='Digite seu nome e sobrenome';err.style.display='block';return;}
+    var partesNome=nome.split(' ').filter(function(p){return p.length>=2;});
+    if(partesNome.length<2){err.textContent='Digite seu nome e sobrenome (ex: Maria Silva)';err.style.display='block';return;}
     var eE=validateEmail(email);if(eE){err.textContent=eE;err.style.display='block';return;}
     var wE=validateWA(wa);if(wE){err.textContent=wE;err.style.display='block';return;}
+
+    // Salva no localStorage pra pre-preencher na proxima
+    try{localStorage.setItem('ka_bio2_lead',JSON.stringify({nome:nome,email:email,wa:wa}));}catch(e){}
 
     var btn=f.querySelector('button');btn.disabled=true;btn.textContent='Analisando sua marca...';
 
@@ -1516,10 +1528,14 @@ a.foot__s:hover{color:var(--accent);}
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'+
       '</div>';
     body.appendChild(card);
-    scrollBot();
+    // Scroll suave para o TOPO do card (nao o fim), pra pessoa ler desde o inicio
+    setTimeout(function(){
+      card.scrollIntoView({behavior:'smooth',block:'start'});
+    },100);
+    // Produto aparece abaixo mas sem forcar scroll (pessoa descobre ao rolar)
     setTimeout(function(){
       showResult(prod);
-    },1200);
+    },1400);
   }
 
   function showResult(prod){
@@ -1532,9 +1548,9 @@ a.foot__s:hover{color:var(--accent);}
         '<p class="chat-result__desc">'+prod.desc+'</p>'+
         '<a href="'+prod.url+'" class="chat-result__btn">'+prod.cta+' →</a>'+
       '</div>';
-    footer.appendChild(wrap);
-    scrollBot();
-    botMsg('Qualquer dúvida chama no WhatsApp! Vou te enviar também uma cópia do diagnóstico no e-mail 💛');
+    // Agora vai PARA O BODY (nao mais o footer), pra pessoa precisar rolar depois do diagnostico
+    body.appendChild(wrap);
+    // Nao auto-scroll aqui — a pessoa esta lendo o diagnostico, deixa ela rolar quando quiser
   }
 
   function next(){
