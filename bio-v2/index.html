@@ -603,11 +603,48 @@ body{
   letter-spacing:.02em;flex:1;min-width:0;
 }
 .link-item__thumb{
-  width:48px;height:48px;border-radius:10px;
+  width:56px;height:56px;border-radius:12px;
   object-fit:cover;flex-shrink:0;
   background:#0d1620;
   box-shadow:0 4px 12px rgba(0,0,0,.4);
 }
+
+/* LINK FEAT — card medio com imagem grande em cima (ex: Livro) */
+.link-feat{
+  display:block;position:relative;overflow:hidden;
+  background:#0a1119;
+  border:1px solid rgba(237,232,221,.08);
+  border-radius:16px;
+  text-decoration:none;color:#EDE8DD;
+  transition:border-color .25s,transform .15s,background .2s;
+}
+.link-feat:hover{border-color:rgba(196,120,48,.55);transform:translateY(-2px);background:#0c131b;}
+.link-feat__img{
+  width:100%;display:block;object-fit:cover;
+  aspect-ratio:16/9;
+  background:#0d1620;
+}
+.link-feat__row{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.1rem 1.3rem;
+}
+.link-feat__text{
+  font-size:1.05rem;font-weight:600;letter-spacing:.02em;line-height:1.25;
+  flex:1;min-width:0;
+}
+.link-feat__eyebrow{
+  display:block;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:700;color:#C47830;margin-bottom:.25rem;
+}
+.link-feat__arrow{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(237,232,221,.08);
+  display:flex;align-items:center;justify-content:center;
+  color:#EDE8DD;flex-shrink:0;
+  transition:background .25s;
+}
+.link-feat:hover .link-feat__arrow{background:#C47830;}
+.link-feat__arrow svg{width:14px;height:14px;}
 .link-item__arrow{
   width:30px;height:30px;border-radius:50%;
   background:rgba(237,232,221,.08);
@@ -855,20 +892,28 @@ a.foot__s:hover{color:var(--accent);}
 
   <!-- LISTA SIMPLES DE OUTROS LINKS -->
   <div class="link-list">
-    <a href="/livro" class="link-item">
-      <img src="/images/livro-mockup.jpg" alt="Livro Marca com Essência©" class="link-item__thumb" loading="lazy">
-      <span class="link-item__text">Livro Marca com Essência©</span>
-      <span class="link-item__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </span>
+    <!-- Livro em card medio com imagem destacada -->
+    <a href="/livro" class="link-feat">
+      <img src="/images/livro-lifestyle.jpg" alt="Livro Marca com Essência©" class="link-feat__img" loading="lazy">
+      <div class="link-feat__row">
+        <span class="link-feat__text">
+          <span class="link-feat__eyebrow">Livro</span>
+          Marca com Essência©
+        </span>
+        <span class="link-feat__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
     </a>
     <a href="/direcao" class="link-item">
+      <img src="/images/kelly-bio.jpg" alt="Direção Estratégica" class="link-item__thumb" loading="lazy">
       <span class="link-item__text">Direção Estratégica</span>
       <span class="link-item__arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </span>
     </a>
     <a href="/cases" class="link-item">
+      <img src="/images/suvinil/cover.jpg" alt="Cases" class="link-item__thumb" loading="lazy">
       <span class="link-item__text">Cases</span>
       <span class="link-item__arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
