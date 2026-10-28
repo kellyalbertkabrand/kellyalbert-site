@@ -13,7 +13,8 @@ export default async (req) => {
   if (!registro || registro.token !== token || registro.status !== "gerando") return;
 
   try {
-    const resultado = await gerarDiagnostico(registro.perfil, registro.respostas);
+    const prints = (await store.get(`${id}-prints`, { type: "json" })) ?? [];
+    const resultado = await gerarDiagnostico(registro.perfil, registro.respostas, prints);
     const notaGeral = Math.round(resultado.dimensoes.reduce((s, d) => s + d.nota, 0) / resultado.dimensoes.length);
     const faixa = faixaDaNota(notaGeral);
     await store.setJSON(String(id), {

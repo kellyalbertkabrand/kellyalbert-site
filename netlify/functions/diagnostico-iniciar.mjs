@@ -2,7 +2,7 @@
 // Também serve para tentar de novo quando uma geração falhou (sem gastar outro uso do código).
 import { randomUUID } from "node:crypto";
 import { diagnosticos, dispararGeracao, json, normalizarCodigo, registrarUso, situacaoDoCodigo } from "../diagnostico/armazenamento.mjs";
-import { validarRespostas } from "../diagnostico/conteudo.mjs";
+import { lerPrints, validarRespostas } from "../diagnostico/conteudo.mjs";
 import { VERSAO_RESULTADO } from "../diagnostico/ia.mjs";
 
 const DEZ_MINUTOS = 10 * 60 * 1000;
@@ -46,7 +46,12 @@ export default async (req) => {
   const problemas = validarRespostas(corpo.perfil, corpo.respostas);
   if (problemas.length) return json({ erro: "há respostas faltando", problemas }, 400);
 
+  const { prints, erro: erroPrints } = lerPrints(corpo.prints);
+  if (erroPrints) return json({ erro: "prints inválidos", problemas: ["prints"] }, 400);
+
   const id = randomUUID();
+  // Os prints ficam num registro separado, para o resultado continuar leve.
+  if (prints.length) await store.setJSON(`${id}-prints`, prints);
   const token = randomUUID();
   const agora = new Date().toISOString();
   await store.setJSON(id, {

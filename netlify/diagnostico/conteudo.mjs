@@ -109,6 +109,7 @@ export const PERFIL = [
   { id: "site", rotulo: "Site da empresa", obrigatorio: false, link: true, exemplo: "www.suamarca.com.br" },
   { id: "instagram", rotulo: "Instagram da marca", obrigatorio: false, link: true, exemplo: "@suamarca" },
   { id: "outras_redes", rotulo: "Outras redes (LinkedIn, TikTok, YouTube…)", obrigatorio: false, link: true, exemplo: "linkedin.com/company/suamarca" },
+  { id: "redes_texto", rotulo: "Bio e legendas das redes", obrigatorio: false, longo: true, exemplo: "Cole aqui a bio do Instagram e as legendas de 2 ou 3 posts recentes." },
 ];
 
 // Transforma o que a pessoa digitou em links visitáveis (aceita "@perfil", "www…", vírgulas).
@@ -191,13 +192,27 @@ export function conteudoPublico() {
   };
 }
 
+// Prints das redes: até 6 imagens (JPEG, PNG ou WebP) enviadas como data URL, até ~1 MB cada.
+export const MAX_PRINTS = 6;
+export function lerPrints(lista) {
+  if (lista == null) return { prints: [], erro: null };
+  if (!Array.isArray(lista) || lista.length > MAX_PRINTS) return { prints: [], erro: "prints" };
+  const prints = [];
+  for (const item of lista) {
+    const m = /^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$/.exec(String(item));
+    if (!m || m[2].length > 1_400_000) return { prints: [], erro: "prints" };
+    prints.push({ media_type: m[1], data: m[2] });
+  }
+  return { prints, erro: null };
+}
+
 // Valida as respostas recebidas. Devolve a lista de problemas (vazia = tudo certo).
 export function validarRespostas(perfil, respostas) {
   const problemas = [];
   for (const campo of PERFIL) {
     const v = perfil?.[campo.id];
     if (campo.obrigatorio && (typeof v !== "string" || !v.trim())) problemas.push(`perfil.${campo.id}`);
-    if (typeof v === "string" && v.length > 300) problemas.push(`perfil.${campo.id}`);
+    if (typeof v === "string" && v.length > (campo.longo ? 4000 : 300)) problemas.push(`perfil.${campo.id}`);
   }
   for (const d of DIMENSOES) {
     const lista = respostas?.[d.id];

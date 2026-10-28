@@ -10,6 +10,80 @@
   var conteudo = null;
   var perguntas = []; // lista achatada: { dim, indice, texto }
   var estado = { codigo: "", perfil: {}, respostas: {}, atual: 0, id: null };
+  var CHAVE_PRINTS = "ka_diagnostico_prints_v1";
+  var MAX_PRINTS = 6;
+  var prints = []; // data URLs JPEG já reduzidas
+  var printsSoNaMemoria = false;
+
+  function lerPrints() {
+    try { prints = JSON.parse(localStorage.getItem(CHAVE_PRINTS)) || []; } catch (e) { prints = []; }
+  }
+  function salvarPrints() {
+    try { localStorage.setItem(CHAVE_PRINTS, JSON.stringify(prints)); printsSoNaMemoria = false; }
+    catch (e) { printsSoNaMemoria = true; }
+  }
+
+  // Reduz a imagem para no máximo 1280 px e JPEG, para o envio ficar leve.
+  function reduzirImagem(arquivo) {
+    return new Promise(function (ok, falha) {
+      var leitor = new FileReader();
+      leitor.onerror = falha;
+      leitor.onload = function () {
+        var img = new Image();
+        img.onerror = falha;
+        img.onload = function () {
+          var escala = Math.min(1, 1280 / Math.max(img.width, img.height));
+          var tela = document.createElement("canvas");
+          tela.width = Math.round(img.width * escala);
+          tela.height = Math.round(img.height * escala);
+          tela.getContext("2d").drawImage(img, 0, 0, tela.width, tela.height);
+          ok(tela.toDataURL("image/jpeg", 0.8));
+        };
+        img.src = leitor.result;
+      };
+      leitor.readAsDataURL(arquivo);
+    });
+  }
+
+  function montarPrints(caixa) {
+    var miniaturas = el("div", { class: "dg-prints" });
+    var aviso = el("p", { class: "dg-suave dg-pequeno" });
+    var entrada = el("input", { type: "file", accept: "image/*", multiple: "multiple", class: "dg-oculto" });
+    var botao = el("button", { class: "dg-botao dg-botao-contorno", type: "button", texto: "Adicionar prints" });
+
+    function desenhar() {
+      miniaturas.innerHTML = "";
+      prints.forEach(function (src, i) {
+        var tirar = el("button", { type: "button", class: "dg-print-tirar", "aria-label": "Remover print " + (i + 1), texto: "×" });
+        tirar.addEventListener("click", function () { prints.splice(i, 1); salvarPrints(); desenhar(); });
+        miniaturas.appendChild(el("div", { class: "dg-print" }, el("img", { src: src, alt: "Print " + (i + 1) }), tirar));
+      });
+      botao.classList.toggle("dg-oculto", prints.length >= MAX_PRINTS);
+      aviso.textContent = prints.length
+        ? prints.length + " de " + MAX_PRINTS + " prints." + (printsSoNaMemoria ? " Atenção: os prints não couberam na memória do navegador e ficam guardados só enquanto esta página estiver aberta." : "")
+        : "Até " + MAX_PRINTS + " imagens.";
+    }
+
+    botao.addEventListener("click", function () { entrada.click(); });
+    entrada.addEventListener("change", function () {
+      var arquivos = Array.prototype.slice.call(entrada.files, 0, MAX_PRINTS - prints.length);
+      botao.disabled = true;
+      Promise.all(arquivos.map(reduzirImagem)).then(function (novos) {
+        prints = prints.concat(novos).slice(0, MAX_PRINTS);
+        salvarPrints();
+      }).catch(function () {
+        aviso.textContent = "Não conseguimos ler uma das imagens. Tente outro arquivo.";
+      }).then(function () { botao.disabled = false; entrada.value = ""; desenhar(); });
+    });
+
+    caixa.appendChild(el("label", { texto: "Prints das redes (opcional)" }));
+    caixa.appendChild(el("p", { class: "dg-suave dg-pequeno", style: "margin-top: -4px;", texto: "Ex.: a página inicial do Instagram com a bio e o feed, um post importante, o perfil do LinkedIn. A Inteligência Artificial vê as imagens e avalia também o visual da marca." }));
+    caixa.appendChild(miniaturas);
+    caixa.appendChild(el("p", {}, botao));
+    caixa.appendChild(entrada);
+    caixa.appendChild(aviso);
+    desenhar();
+  }
   var acompanhando = null;
 
   // ---------- utilidades ----------
@@ -87,15 +161,18 @@
         tituloLinks = true;
         caixa.appendChild(el("div", { class: "dg-aviso", style: "margin-top: 8px;" },
           el("strong", { texto: "Site e redes sociais (opcional)" }),
-          el("p", { style: "margin: 4px 0 0;", texto: "A Inteligência Artificial visita esses endereços e compara o que você responder com o que a sua marca mostra para o mercado. Algumas redes, como o Instagram, às vezes bloqueiam o acesso; quando isso acontecer, o diagnóstico avisa." })));
+          el("p", { style: "margin: 4px 0 0;", texto: "A Inteligência Artificial compara o que você responder com o que a sua marca mostra para o mercado. O site ela visita sozinha. As redes sociais costumam bloquear esse acesso, então, para elas, envie prints ou cole a bio e algumas legendas." })));
       }
       caixa.appendChild(el("label", { for: id, texto: campo.rotulo + (campo.obrigatorio ? "" : " (opcional)") }));
-      var input = el("input", { id: id, type: "text", maxlength: "300" });
+      var input = campo.longo
+        ? el("textarea", { id: id, maxlength: "4000", style: "min-height: 140px;" })
+        : el("input", { id: id, type: "text", maxlength: "300" });
       if (campo.exemplo) input.placeholder = "Ex.: " + campo.exemplo;
       input.value = estado.perfil[campo.id] || "";
       if (campo.obrigatorio) input.required = true;
       caixa.appendChild(input);
     });
+    montarPrints(caixa);
     $("codigo").value = estado.codigo || "";
     mostrarTela("inicio");
   }
@@ -198,6 +275,8 @@
     if (!confirm("Apagar as respostas deste aparelho e recomeçar?")) return;
     estado = { codigo: "", perfil: {}, respostas: {}, atual: 0, id: null };
     salvarEstado();
+    prints = [];
+    salvarPrints();
     telaInicio();
   });
 
@@ -205,7 +284,7 @@
   function enviar() {
     for (var i = 0; i < perguntas.length; i++) if (!respondida(perguntas[i])) return telaPergunta(i);
     mostrarTela("gerando");
-    api("/api/diagnostico/iniciar", { codigo: estado.codigo, perfil: estado.perfil, respostas: estado.respostas }).then(function (r) {
+    api("/api/diagnostico/iniciar", { codigo: estado.codigo, perfil: estado.perfil, respostas: estado.respostas, prints: prints }).then(function (r) {
       if (!r.ok) {
         if (r.status === 403 || r.status === 429) return telaErro("O código de acesso não é mais válido para gerar um diagnóstico. Fale com a gente pelo WhatsApp que a gente resolve.", false);
         if (r.dados.problemas && r.dados.problemas.length) return telaInicio();
@@ -329,7 +408,10 @@
       res.presenca_digital ? el("div", { class: "dg-cartao dg-cartao-borda" },
         el("span", { class: "dg-rotulo", texto: "O que a sua presença digital mostra" }),
         paragrafos(res.presenca_digital),
-        el("p", { class: "dg-suave dg-pequeno", texto: "Endereços avaliados: " + (res.links_avaliados || []).join(" · ") })) : null
+        el("p", { class: "dg-suave dg-pequeno", texto: "Fontes avaliadas: " + [
+          (res.links_avaliados || []).join(" · "),
+          res.prints_avaliados ? res.prints_avaliados + " print(s)" : "",
+          res.texto_redes_avaliado ? "bio e legendas coladas" : ""].filter(Boolean).join(" · ") })) : null
     )));
 
     var blocos = el("div", { class: "dg-wrap" }, el("span", { class: "dg-rotulo", texto: "Dimensão por dimensão" }));
@@ -453,6 +535,7 @@
 
   // ---------- partida ----------
   lerEstado();
+  lerPrints();
   var idNaUrl = new URLSearchParams(location.search).get("id");
   if (idNaUrl) { acompanhar(idNaUrl); return; }
   if (estado.id) {
