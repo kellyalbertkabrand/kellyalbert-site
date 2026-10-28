@@ -77,6 +77,8 @@
     .dg-progresso span { display: block; height: 100%; background: var(--caramelo); transition: width .3s; }
     .dg-cap { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--suave); }
     .dg-pergunta { font-size: clamp(23px, 5.5vw, 30px); line-height: 1.3; margin: 10px 0 22px; }
+    .dg-salvo-aviso { background: var(--essencia); color: var(--papel); border-radius: 14px; padding: 16px 18px; margin: 0 0 28px; font-size: 15px; line-height: 1.5; }
+    .dg-salvo-aviso strong { display: block; font-size: 16px; margin-bottom: 2px; }
     .dg-contagem { display: flex; justify-content: space-between; font-size: 13px; color: var(--suave); margin: -10px 0 18px; }
     .dg-navegacao { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 
@@ -165,6 +167,10 @@
     <!-- Pergunta -->
     <section class="dg-secao dg-oculto" data-tela="pergunta">
       <div class="dg-wrap" style="max-width: 640px;">
+        <div class="dg-salvo-aviso amb-essencia" id="p-aviso" role="status">
+          <strong id="p-aviso-titulo"></strong>
+          <span id="p-aviso-texto"></span>
+        </div>
         <div class="dg-cap" id="p-cap"></div>
         <div class="dg-progresso" aria-hidden="true"><span id="p-barra"></span></div>
         <p class="dg-suave dg-pequeno" id="p-numero"></p>
@@ -176,6 +182,7 @@
           <button class="dg-botao-texto" id="p-voltar" type="button">Voltar</button>
           <button class="dg-botao" id="p-avancar" type="button">Avançar</button>
         </div>
+        <p class="dg-centro" style="margin-top: 28px;"><button class="dg-botao-texto" id="p-depois" type="button">Parar e continuar depois</button></p>
       </div>
     </section>
 

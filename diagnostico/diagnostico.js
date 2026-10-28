@@ -117,6 +117,17 @@
   });
 
   // ---------- perguntas ----------
+  var voltando = false; // true quando a pessoa reabre a página com respostas já salvas
+
+  function avisoSalvo(titulo, texto) {
+    $("p-aviso-titulo").textContent = titulo;
+    $("p-aviso-texto").textContent = texto;
+  }
+
+  function horaAgora() {
+    return new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  }
+
   function telaPergunta(indice) {
     estado.atual = indice;
     salvarEstado();
@@ -129,6 +140,17 @@
     $("p-texto").textContent = item.texto;
     area.maxLength = conteudo.maxCaracteres;
     area.value = resposta(item);
+    $("p-salvo").textContent = "Salvo neste aparelho";
+
+    if (voltando) {
+      var primeiro = (estado.perfil.nome || "").split(" ")[0];
+      avisoSalvo("Que bom te ver de volta" + (primeiro ? ", " + primeiro : "") + ".",
+        "Você parou na pergunta " + (indice + 1) + " de " + perguntas.length + ". As suas respostas anteriores estão salvas.");
+      voltando = false;
+    } else {
+      avisoSalvo("As suas respostas são salvas automaticamente.",
+        "Pode fechar a página quando quiser. Ao voltar a kellyalbert.com.br/diagnostico, neste mesmo aparelho e navegador, você continua de onde parou.");
+    }
 
     function atualizar() {
       $("p-avancar").disabled = !respondida(item);
@@ -138,6 +160,7 @@
       if (!estado.respostas[item.dim.id]) estado.respostas[item.dim.id] = [];
       estado.respostas[item.dim.id][item.indice] = area.value;
       salvarEstado();
+      $("p-salvo").textContent = "Salvo às " + horaAgora();
       atualizar();
     };
 
@@ -146,6 +169,12 @@
     $("p-avancar").onclick = function () {
       if (!respondida(item)) return;
       if (ultima) enviar(); else telaPergunta(indice + 1);
+    };
+    $("p-depois").onclick = function () {
+      salvarEstado();
+      avisoSalvo("Pronto, está tudo salvo.",
+        "Você parou na pergunta " + (indice + 1) + " de " + perguntas.length + ". Para continuar, abra kellyalbert.com.br/diagnostico neste mesmo aparelho e navegador. Pode fechar esta página.");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
     $("p-voltar").onclick = function () { if (indice === 0) telaInicio(); else telaPergunta(indice - 1); };
     atualizar();
@@ -308,6 +337,10 @@
   }
   carregarConteudo().then(function () {
     var perfilOk = conteudo.perfil.every(function (c) { return !c.obrigatorio || (estado.perfil[c.id] || "").trim(); });
+    var jaRespondeu = Object.keys(estado.respostas).some(function (k) {
+      return (estado.respostas[k] || []).some(function (r) { return (r || "").trim(); });
+    });
+    voltando = jaRespondeu;
     if (estado.codigo && perfilOk) telaPergunta(Math.min(estado.atual || 0, perguntas.length - 1));
     else telaInicio();
   }).catch(function () {
