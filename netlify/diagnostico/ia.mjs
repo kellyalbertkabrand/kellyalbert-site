@@ -95,7 +95,8 @@ function semTravessao(texto) {
 }
 
 export async function gerarDiagnostico(perfil, respostas) {
-  const client = new Anthropic({ apiKey: Netlify.env.get("ANTHROPIC_API_KEY") });
+  // trim(): protege contra espaço ou quebra de linha colados junto com a chave.
+  const client = new Anthropic({ apiKey: (Netlify.env.get("ANTHROPIC_API_KEY") ?? "").trim() });
 
   const resposta = await client.beta.messages.parse({
     model: MODELO,
