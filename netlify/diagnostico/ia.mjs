@@ -170,9 +170,10 @@ export async function gerarDiagnostico(perfil, respostas) {
   const client = new Anthropic({ apiKey: (Netlify.env.get("ANTHROPIC_API_KEY") ?? "").trim() });
   const presenca = await analisarPresencaDigital(client, perfil);
 
-  const resposta = await client.beta.messages.parse({
+  // Resposta longa: usa streaming e um limite folgado, para o texto nunca ser cortado no meio.
+  const stream = client.beta.messages.stream({
     model: MODELO,
-    max_tokens: 16000,
+    max_tokens: 64000,
     betas: ["server-side-fallback-2026-07-01"],
     // Se o modelo principal recusar, a própria API tenta de novo com o modelo recomendado.
     fallbacks: "default",
@@ -180,11 +181,18 @@ export async function gerarDiagnostico(perfil, respostas) {
     system: SISTEMA,
     messages: [{ role: "user", content: montarPedido(perfil, respostas, presenca) }],
   });
+  const resposta = await stream.finalMessage();
 
   if (resposta.stop_reason === "refusal") throw new Error("A Inteligência Artificial recusou gerar o diagnóstico.");
   if (resposta.stop_reason === "max_tokens") throw new Error("O diagnóstico foi cortado por limite de tamanho.");
-  const leitura = resposta.parsed_output;
-  if (!leitura) throw new Error("A Inteligência Artificial não devolveu um diagnóstico válido.");
+  const texto = resposta.content.filter((b) => b.type === "text").map((b) => b.text).join("");
+  let leitura;
+  try {
+    leitura = LeituraSchema.parse(JSON.parse(texto));
+  } catch (erro) {
+    throw new Error("A Inteligência Artificial não devolveu um diagnóstico válido: " + erro);
+  }
+  console.log("Diagnóstico gerado", { tokens_saida: resposta.usage?.output_tokens, tokens_entrada: resposta.usage?.input_tokens });
 
   // Monta as dimensões na ordem oficial, com nota limitada a 0–100.
   const porId = Object.fromEntries(leitura.dimensoes.map((d) => [d.id, d]));
