@@ -1,0 +1,53 @@
+# Atualiza um Diagnóstico Marca com Essência© já respondido para a versão mais recente,
+# acrescentando site e redes para a Inteligência Artificial avaliar.
+# Uso: Actions → "Diagnóstico: atualizar resultado" → Run workflow.
+name: "Diagnóstico: atualizar resultado"
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Identificador do diagnóstico (o que vem depois de ?id= no link)"
+        required: true
+      site:
+        description: "Site da empresa"
+        required: false
+      instagram:
+        description: "Instagram da marca"
+        required: false
+      outras_redes:
+        description: "Outras redes (separadas por espaço)"
+        required: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pedir a atualização ao site
+        env:
+          ID: ${{ inputs.id }}
+          SITE: ${{ inputs.site }}
+          INSTAGRAM: ${{ inputs.instagram }}
+          OUTRAS: ${{ inputs.outras_redes }}
+        run: |
+          corpo=$(jq -n --arg id "$ID" --arg site "$SITE" --arg ig "$INSTAGRAM" --arg outras "$OUTRAS" \
+            '{id: $id, atualizar: true, links: {site: $site, instagram: $ig, outras_redes: $outras}}')
+          curl -sS --fail-with-body -X POST https://kellyalbert.com.br/api/diagnostico/iniciar \
+            -H "content-type: application/json" -d "$corpo"
+          echo
+      - name: Acompanhar até ficar pronto (até 8 minutos)
+        env:
+          ID: ${{ inputs.id }}
+        run: |
+          for i in $(seq 1 48); do
+            sleep 10
+            status=$(curl -sS "https://kellyalbert.com.br/api/diagnostico/resultado?id=$ID" | jq -r '.status')
+            echo "Situação: $status"
+            if [ "$status" = "pronto" ]; then
+              curl -sS "https://kellyalbert.com.br/api/diagnostico/resultado?id=$ID" \
+                | jq '{versao: .resultado.versao, links_avaliados: .resultado.links_avaliados, presenca_digital: .resultado.presenca_digital}'
+              exit 0
+            fi
+            if [ "$status" = "erro" ]; then exit 1; fi
+          done
+          exit 1
