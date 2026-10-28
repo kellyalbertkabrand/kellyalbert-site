@@ -6,6 +6,8 @@ import { z } from "zod";
 import { BIBLIOGRAFIA, DIMENSOES } from "./conteudo.mjs";
 
 export const MODELO = "claude-opus-5-5";
+// Sobe quando o formato do resultado muda; resultados antigos podem ser atualizados.
+export const VERSAO_RESULTADO = 2;
 
 const LeituraSchema = z.object({
   frase_sintese: z.string().describe("Uma frase forte que resume a leitura da marca."),
@@ -19,9 +21,11 @@ const LeituraSchema = z.object({
       ponto_forte: z.string(),
       ponto_cego: z.string(),
       primeiro_passo: z.string().describe("Uma ação prática e concreta para começar esta semana."),
+      recomendacao: z.string().describe("Recomendação do capítulo: 2 a 4 frases sobre como evoluir esta dimensão nos próximos 30 a 90 dias."),
     }),
   ),
   prioridades: z.array(z.string()).describe("As 3 prioridades, em ordem, para evoluir o posicionamento."),
+  recomendacao_final: z.string().describe("Recomendação completa e resumida: um parágrafo de 4 a 6 frases que fecha o diagnóstico."),
   bibliografia: z.array(
     z.object({
       id: z.string().describe("Id de um livro da lista fornecida."),
@@ -65,6 +69,8 @@ Como escrever:
 - Não use emojis. Nunca use travessão; use vírgula, ponto ou dois-pontos.
 - Não aborde sustentabilidade, ESG, ativismo ou pautas políticas, nem cite outras marcas como exemplo.
 - Em "dimensoes", inclua exatamente uma entrada para cada uma das 7 dimensões, usando os ids fornecidos.
+- Em cada dimensão, "primeiro_passo" é a ação imediata desta semana; "recomendacao" é a orientação do capítulo para os próximos 30 a 90 dias: o que mudar, o que decidir e onde chegar. Não repita o primeiro passo. Quando fizer sentido, indique o capítulo do Livro MARCA COM ESSÊNCIA© correspondente.
+- "recomendacao_final" fecha o diagnóstico: um parágrafo de 4 a 6 frases, como uma estrategista falando com o fundador ao final da sessão. Resuma o caminho completo, em ordem, conectando as dimensões. Não repita listas; costure.
 - Em "bibliografia", indique de 3 a 5 livros, somente com ids da lista fornecida, priorizando as dimensões com notas mais baixas. Inclua sempre o livro "mce", dizendo qual capítulo é mais útil para esta marca agora.`;
 
 function montarPedido(perfil, respostas) {
@@ -127,6 +133,7 @@ export async function gerarDiagnostico(perfil, respostas) {
       ponto_forte: semTravessao(l.ponto_forte),
       ponto_cego: semTravessao(l.ponto_cego),
       primeiro_passo: semTravessao(l.primeiro_passo),
+      recomendacao: semTravessao(l.recomendacao),
     };
   });
 
@@ -143,8 +150,10 @@ export async function gerarDiagnostico(perfil, respostas) {
     leitura_geral: semTravessao(leitura.leitura_geral),
     coerencia: semTravessao(leitura.coerencia),
     prioridades: leitura.prioridades.map(semTravessao),
+    recomendacao_final: semTravessao(leitura.recomendacao_final),
     dimensoes,
     livros,
     modelo: MODELO,
+    versao: VERSAO_RESULTADO,
   };
 }

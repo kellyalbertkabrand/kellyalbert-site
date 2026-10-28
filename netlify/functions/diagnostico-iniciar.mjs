@@ -3,6 +3,7 @@
 import { randomUUID } from "node:crypto";
 import { diagnosticos, dispararGeracao, json, normalizarCodigo, registrarUso, situacaoDoCodigo } from "../diagnostico/armazenamento.mjs";
 import { validarRespostas } from "../diagnostico/conteudo.mjs";
+import { VERSAO_RESULTADO } from "../diagnostico/ia.mjs";
 
 const DEZ_MINUTOS = 10 * 60 * 1000;
 
@@ -18,7 +19,9 @@ export default async (req) => {
     const registro = await store.get(String(corpo.id), { type: "json" });
     if (!registro) return json({ erro: "diagnóstico não encontrado" }, 404);
     const travado = registro.status === "gerando" && Date.now() - new Date(registro.iniciadoEm).getTime() > DEZ_MINUTOS;
-    if (registro.status !== "erro" && !travado) return json({ id: corpo.id, status: registro.status });
+    const desatualizado = corpo.atualizar === true && registro.status === "pronto" &&
+      (registro.resultado?.versao ?? 1) < VERSAO_RESULTADO;
+    if (registro.status !== "erro" && !travado && !desatualizado) return json({ id: corpo.id, status: registro.status });
     registro.status = "gerando";
     registro.iniciadoEm = new Date().toISOString();
     registro.token = randomUUID();

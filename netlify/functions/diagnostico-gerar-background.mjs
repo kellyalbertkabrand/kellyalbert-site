@@ -27,6 +27,8 @@ export default async (req) => {
     });
   } catch (erro) {
     console.error("Falha ao gerar diagnóstico", id, erro);
-    await store.setJSON(String(id), { ...registro, status: "erro", token: null, erro: String(erro) });
+    // Numa atualização que falhou, o resultado anterior continua disponível.
+    const voltaAoAnterior = registro.resultado ? "pronto" : "erro";
+    await store.setJSON(String(id), { ...registro, status: voltaAoAnterior, token: null, erro: String(erro) });
   }
 };

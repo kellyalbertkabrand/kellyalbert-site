@@ -288,10 +288,6 @@
     var res = r.resultado || {};
     var marca = (r.perfil && r.perfil.marca) || "a sua marca";
 
-    var botaoTopo = el("p", { class: "dg-nao-imprimir", style: "margin-top: 24px;" },
-      el("button", { class: "dg-botao", type: "button", texto: "Baixar o diagnóstico em PDF" }));
-    botaoTopo.firstChild.addEventListener("click", function () { imprimir("diagnostico", marca); });
-
     var nota = el("div", { class: "dg-nota", texto: String(r.notaGeral) });
     nota.appendChild(el("small", { texto: "/100" }));
     raiz.appendChild(el("section", { class: "dg-secao amb-marinho dg-reticula" }, el("div", { class: "dg-wrap" },
@@ -299,8 +295,7 @@
       nota,
       el("h2", { texto: (r.faixa && r.faixa.nome) || "" }),
       el("p", { class: "dg-suave", texto: (r.faixa && r.faixa.resumo) || "" }),
-      el("p", { class: "dg-sintese", texto: res.frase_sintese || "" }),
-      botaoTopo
+      el("p", { class: "dg-sintese", texto: res.frase_sintese || "" })
     )));
 
     var mapa = el("div", { class: "dg-wrap" }, el("span", { class: "dg-rotulo", texto: "Mapa da sua marca" }));
@@ -330,7 +325,9 @@
         el("p", { style: "margin-top: 12px;", texto: d.leitura }),
         el("h4", { texto: "Ponto forte" }), el("p", { texto: d.ponto_forte }),
         el("h4", { texto: "Ponto cego" }), el("p", { texto: d.ponto_cego }),
-        el("h4", { texto: "Primeiro passo" }), el("p", { texto: d.primeiro_passo })));
+        el("h4", { texto: "Primeiro passo" }), el("p", { texto: d.primeiro_passo }),
+        d.recomendacao ? el("div", { class: "dg-recomendacao" },
+          el("h4", { texto: "Recomendação do capítulo" }), el("p", { texto: d.recomendacao })) : null));
     });
     raiz.appendChild(el("section", { class: "dg-secao dg-painel" }, blocos));
 
@@ -347,6 +344,25 @@
         el("p", { texto: b.motivo })));
     });
     raiz.appendChild(el("section", { class: "dg-secao" }, livros));
+
+    if (res.recomendacao_final) {
+      raiz.appendChild(el("section", { class: "dg-secao amb-marinho dg-reticula" }, el("div", { class: "dg-wrap" },
+        el("span", { class: "dg-rotulo", texto: "Recomendação final" }),
+        el("h2", { texto: "O caminho da " + marca + "." }),
+        paragrafos(res.recomendacao_final))));
+    } else {
+      // Resultado gerado antes desta versão: oferece atualizar sem refazer as respostas.
+      var atualizar = el("button", { class: "dg-botao", type: "button", texto: "Atualizar o meu diagnóstico" });
+      atualizar.addEventListener("click", function () {
+        var id = new URLSearchParams(location.search).get("id") || estado.id;
+        atualizar.disabled = true;
+        api("/api/diagnostico/iniciar", { id: id, atualizar: true }).then(function () { acompanhar(id); });
+      });
+      raiz.appendChild(el("section", { class: "dg-secao dg-painel dg-nao-imprimir" }, el("div", { class: "dg-wrap dg-centro" },
+        el("h2", { texto: "Há uma versão mais completa deste diagnóstico." }),
+        el("p", { texto: "Ela traz uma recomendação ao final de cada capítulo e uma recomendação final resumida. As suas respostas são aproveitadas, não precisa responder nada de novo." }),
+        atualizar)));
+    }
 
     var copiar = el("button", { class: "dg-botao-texto", type: "button", texto: "Copiar o link deste resultado" });
     copiar.addEventListener("click", function () {
