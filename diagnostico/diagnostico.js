@@ -3,6 +3,8 @@
   "use strict";
 
   var CHAVE = "ka_diagnostico_v1";
+  var VERSAO_RESULTADO = 3; // igual à do servidor (netlify/diagnostico/ia.mjs)
+  var SITUACOES = { tem: "Tem", tem_em_parte: "Tem em parte", ainda_nao_tem: "Ainda não tem" };
   var WHATSAPP = "https://wa.me/5551993163333?text=" + encodeURIComponent("Oi, Kelly! Fiz o Diagnóstico Marca com Essência© e quero conversar sobre o resultado.");
 
   var conteudo = null;
@@ -63,7 +65,7 @@
       conteudo = c;
       perguntas = [];
       c.dimensoes.forEach(function (d) {
-        d.perguntas.forEach(function (texto, i) { perguntas.push({ dim: d, indice: i, texto: texto }); });
+        d.perguntas.forEach(function (p, i) { perguntas.push({ dim: d, indice: i, texto: p.texto, ajuda: p.ajuda || "" }); });
       });
     });
   }
@@ -78,10 +80,18 @@
   function telaInicio() {
     var caixa = $("campos-perfil");
     caixa.innerHTML = "";
+    var tituloLinks = false;
     conteudo.perfil.forEach(function (campo) {
       var id = "perfil-" + campo.id;
+      if (campo.link && !tituloLinks) {
+        tituloLinks = true;
+        caixa.appendChild(el("div", { class: "dg-aviso", style: "margin-top: 8px;" },
+          el("strong", { texto: "Site e redes sociais (opcional)" }),
+          el("p", { style: "margin: 4px 0 0;", texto: "A Inteligência Artificial visita esses endereços e compara o que você responder com o que a sua marca mostra para o mercado. Algumas redes, como o Instagram, às vezes bloqueiam o acesso; quando isso acontecer, o diagnóstico avisa." })));
+      }
       caixa.appendChild(el("label", { for: id, texto: campo.rotulo + (campo.obrigatorio ? "" : " (opcional)") }));
-      var input = el("input", { id: id, type: "text", maxlength: "200" });
+      var input = el("input", { id: id, type: "text", maxlength: "300" });
+      if (campo.exemplo) input.placeholder = "Ex.: " + campo.exemplo;
       input.value = estado.perfil[campo.id] || "";
       if (campo.obrigatorio) input.required = true;
       caixa.appendChild(input);
@@ -138,6 +148,8 @@
     $("p-barra").style.width = Math.round((indice / perguntas.length) * 100) + "%";
     $("p-numero").textContent = "Pergunta " + (indice + 1) + " de " + perguntas.length;
     $("p-texto").textContent = item.texto;
+    $("p-ajuda").textContent = item.ajuda;
+    $("p-ajuda").classList.toggle("dg-oculto", !item.ajuda);
     area.maxLength = conteudo.maxCaracteres;
     area.value = resposta(item);
     $("p-salvo").textContent = "Salvo neste aparelho";
@@ -274,7 +286,7 @@
       d.perguntas.forEach(function (pergunta, i) {
         var lista = (r.respostas && r.respostas[d.id]) || [];
         bloco.appendChild(el("div", { class: "dg-resp-item" },
-          el("p", { class: "dg-resp-pergunta", texto: (i + 1) + ". " + pergunta }),
+          el("p", { class: "dg-resp-pergunta", texto: (i + 1) + ". " + pergunta.texto }),
           el("p", { class: "dg-resp-texto", texto: lista[i] || "" })));
       });
       wrap.appendChild(bloco);
@@ -313,7 +325,11 @@
       paragrafos(res.leitura_geral),
       el("div", { class: "dg-cartao dg-cartao-borda", style: "margin-top: 24px;" },
         el("span", { class: "dg-rotulo", texto: "O que as suas palavras revelam" }),
-        paragrafos(res.coerencia))
+        paragrafos(res.coerencia)),
+      res.presenca_digital ? el("div", { class: "dg-cartao dg-cartao-borda" },
+        el("span", { class: "dg-rotulo", texto: "O que a sua presença digital mostra" }),
+        paragrafos(res.presenca_digital),
+        el("p", { class: "dg-suave dg-pequeno", texto: "Endereços avaliados: " + (res.links_avaliados || []).join(" · ") })) : null
     )));
 
     var blocos = el("div", { class: "dg-wrap" }, el("span", { class: "dg-rotulo", texto: "Dimensão por dimensão" }));
@@ -322,12 +338,18 @@
         el("p", { class: "dg-cap", texto: "Cap. " + String(d.capitulo).padStart(2, "0") }),
         el("h3", { texto: d.nome }),
         el("div", { class: "dg-nota-dim", texto: String(d.nota) }),
+        d.conceito ? el("div", { class: "dg-conceito" },
+          el("h4", { texto: "O que é " + d.conceito_nome + "?" }), el("p", { texto: d.conceito })) : null,
+        d.situacao ? el("p", { class: "dg-situacao" },
+          el("span", { class: "dg-selo dg-selo-" + d.situacao, texto: "A sua marca: " + (SITUACOES[d.situacao] || d.situacao) })) : null,
+        d.situacao_explicacao ? el("p", { texto: d.situacao_explicacao }) : null,
         el("p", { style: "margin-top: 12px;", texto: d.leitura }),
         el("h4", { texto: "Ponto forte" }), el("p", { texto: d.ponto_forte }),
         el("h4", { texto: "Ponto cego" }), el("p", { texto: d.ponto_cego }),
         el("h4", { texto: "Primeiro passo" }), el("p", { texto: d.primeiro_passo }),
         d.recomendacao ? el("div", { class: "dg-recomendacao" },
-          el("h4", { texto: "Recomendação do capítulo" }), el("p", { texto: d.recomendacao })) : null));
+          el("h4", { texto: d.situacao && d.situacao !== "tem" ? "Recomendação: como ter" : "Recomendação do capítulo" }),
+          el("p", { texto: d.recomendacao })) : null));
     });
     raiz.appendChild(el("section", { class: "dg-secao dg-painel" }, blocos));
 
@@ -350,17 +372,27 @@
         el("span", { class: "dg-rotulo", texto: "Recomendação final" }),
         el("h2", { texto: "O caminho da " + marca + "." }),
         paragrafos(res.recomendacao_final))));
-    } else {
+    }
+    if ((res.versao || 1) < VERSAO_RESULTADO) {
       // Resultado gerado antes desta versão: oferece atualizar sem refazer as respostas.
       var atualizar = el("button", { class: "dg-botao", type: "button", texto: "Atualizar o meu diagnóstico" });
       atualizar.addEventListener("click", function () {
         var id = new URLSearchParams(location.search).get("id") || estado.id;
         atualizar.disabled = true;
-        api("/api/diagnostico/iniciar", { id: id, atualizar: true }).then(function () { acompanhar(id); });
+        var links = {};
+        ["site", "instagram", "outras_redes"].forEach(function (k) { links[k] = $("atualizar-" + k).value.trim(); });
+        api("/api/diagnostico/iniciar", { id: id, atualizar: true, links: links }).then(function () { acompanhar(id); });
+      });
+      var camposLinks = el("div", { style: "text-align: left; margin: 20px 0;" });
+      [["site", "Site da empresa", "www.suamarca.com.br"], ["instagram", "Instagram da marca", "@suamarca"],
+        ["outras_redes", "Outras redes (LinkedIn, TikTok, YouTube…)", "linkedin.com/company/suamarca"]].forEach(function (c) {
+        camposLinks.appendChild(el("label", { for: "atualizar-" + c[0], texto: c[1] + " (opcional)" }));
+        camposLinks.appendChild(el("input", { id: "atualizar-" + c[0], type: "text", maxlength: "300", placeholder: "Ex.: " + c[2] }));
       });
       raiz.appendChild(el("section", { class: "dg-secao dg-painel dg-nao-imprimir" }, el("div", { class: "dg-wrap dg-centro" },
         el("h2", { texto: "Há uma versão mais completa deste diagnóstico." }),
-        el("p", { texto: "Ela traz uma recomendação ao final de cada capítulo e uma recomendação final resumida. As suas respostas são aproveitadas, não precisa responder nada de novo." }),
+        el("p", { texto: "Ela explica cada conceito, diz se a sua marca tem ou não tem cada um e como ter, traz uma recomendação por capítulo e uma recomendação final. Se quiser, informe também o site e as redes para a Inteligência Artificial avaliar. As suas respostas são aproveitadas." }),
+        camposLinks,
         atualizar)));
     }
 

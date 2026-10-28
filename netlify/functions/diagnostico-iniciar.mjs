@@ -22,6 +22,13 @@ export default async (req) => {
     const desatualizado = corpo.atualizar === true && registro.status === "pronto" &&
       (registro.resultado?.versao ?? 1) < VERSAO_RESULTADO;
     if (registro.status !== "erro" && !travado && !desatualizado) return json({ id: corpo.id, status: registro.status });
+    // Na atualização, a pessoa pode informar site e redes que não tinha informado antes.
+    if (desatualizado && corpo.links && typeof corpo.links === "object") {
+      for (const k of ["site", "instagram", "outras_redes"]) {
+        const v = corpo.links[k];
+        if (typeof v === "string" && v.trim() && v.length <= 300) registro.perfil[k] = v.trim();
+      }
+    }
     registro.status = "gerando";
     registro.iniciadoEm = new Date().toISOString();
     registro.token = randomUUID();
