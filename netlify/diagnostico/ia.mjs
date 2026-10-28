@@ -7,7 +7,7 @@ import { BIBLIOGRAFIA, DIMENSOES, linksDoPerfil } from "./conteudo.mjs";
 
 export const MODELO = "claude-opus-5-5";
 // Sobe quando o formato do resultado muda; resultados antigos podem ser atualizados.
-export const VERSAO_RESULTADO = 3;
+export const VERSAO_RESULTADO = 4;
 
 // Conceito-chave de cada dimensão, explicado no resultado ("O que é").
 const CONCEITOS = {
@@ -44,7 +44,8 @@ const LeituraSchema = z.object({
   bibliografia: z.array(
     z.object({
       id: z.string().describe("Id de um livro da lista fornecida."),
-      motivo: z.string().describe("Por que este livro, para esta marca, agora."),
+      problema: z.string().describe("O problema específico encontrado neste diagnóstico que o livro ajuda a resolver, em poucas palavras."),
+      motivo: z.string().describe("Como o livro ajuda a resolver esse problema nesta marca, e o que ler ou aplicar primeiro."),
     }),
   ),
 });
@@ -89,7 +90,7 @@ Como escrever:
 - Se houver análise da presença digital, use-a: compare o que a pessoa diz com o que a marca mostra (promessa, público, tom, estética, ofertas) e aponte onde o discurso e a prática se encontram ou se afastam. Diga com clareza quais links não puderam ser vistos. Sem análise, devolva "presenca_digital" vazio.
 - Em cada dimensão, "primeiro_passo" é a ação imediata desta semana; "recomendacao" é a orientação do capítulo para os próximos 30 a 90 dias: o que mudar, o que decidir e onde chegar. Não repita o primeiro passo. Quando fizer sentido, indique o capítulo do Livro MARCA COM ESSÊNCIA© correspondente.
 - "recomendacao_final" fecha o diagnóstico: um parágrafo de 4 a 6 frases, como uma estrategista falando com o fundador ao final da sessão. Resuma o caminho completo, em ordem, conectando as dimensões. Não repita listas; costure.
-- Em "bibliografia", indique de 3 a 5 livros, somente com ids da lista fornecida, priorizando as dimensões com notas mais baixas. Inclua sempre o livro "mce", dizendo qual capítulo é mais útil para esta marca agora.`;
+- Em "bibliografia", indique de 4 a 6 livros, somente com ids da lista fornecida. Cada livro precisa estar ligado a um problema concreto que este diagnóstico encontrou (ponto cego, dimensão com nota baixa, incoerência entre discurso e presença digital). Em "problema", nomeie esse problema em poucas palavras, com as palavras do diagnóstico. Em "motivo", diga como o livro ajuda a resolver isso nesta marca e o que ler ou aplicar primeiro. Comece pelos problemas mais graves. Não repita o mesmo problema em dois livros. Inclua sempre o livro "mce", dizendo qual capítulo resolve qual problema.`;
 
 function montarPedido(perfil, respostas, presenca) {
   const blocos = DIMENSOES.map((d) => {
@@ -210,7 +211,7 @@ export async function gerarDiagnostico(perfil, respostas) {
   const livros = leitura.bibliografia
     .map((b) => {
       const livro = BIBLIOGRAFIA.find((l) => l.id === b.id);
-      return livro ? { titulo: livro.titulo, autor: livro.autor, motivo: semTravessao(b.motivo) } : null;
+      return livro ? { titulo: livro.titulo, autor: livro.autor, problema: semTravessao(b.problema), motivo: semTravessao(b.motivo) } : null;
     })
     .filter(Boolean);
 

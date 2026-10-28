@@ -168,6 +168,12 @@ export const BIBLIOGRAFIA = [
   { id: "sharp", titulo: "How Brands Grow", autor: "Byron Sharp" },
   { id: "cialdini", titulo: "As Armas da Persuasão", autor: "Robert Cialdini" },
   { id: "kahneman", titulo: "Rápido e Devagar", autor: "Daniel Kahneman" },
+  { id: "oceano_azul", titulo: "A Estratégia do Oceano Azul", autor: "W. Chan Kim e Renée Mauborgne" },
+  { id: "essencialismo", titulo: "Essencialismo", autor: "Greg McKeown" },
+  { id: "ideias_que_colam", titulo: "Ideias que Colam (Made to Stick)", autor: "Chip Heath e Dan Heath" },
+  { id: "vaca_roxa", titulo: "A Vaca Roxa", autor: "Seth Godin" },
+  { id: "marketing_4", titulo: "Marketing 4.0", autor: "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan" },
+  { id: "economia_experiencia", titulo: "A Economia da Experiência", autor: "B. Joseph Pine II e James H. Gilmore" },
 ];
 
 // Limites das respostas (protegem custo e qualidade).

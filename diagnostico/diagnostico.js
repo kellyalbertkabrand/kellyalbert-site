@@ -3,7 +3,7 @@
   "use strict";
 
   var CHAVE = "ka_diagnostico_v1";
-  var VERSAO_RESULTADO = 3; // igual à do servidor (netlify/diagnostico/ia.mjs)
+  var VERSAO_RESULTADO = 4; // igual à do servidor (netlify/diagnostico/ia.mjs)
   var SITUACOES = { tem: "Tem", tem_em_parte: "Tem em parte", ainda_nao_tem: "Ainda não tem" };
   var WHATSAPP = "https://wa.me/5551993163333?text=" + encodeURIComponent("Oi, Kelly! Fiz o Diagnóstico Marca com Essência© e quero conversar sobre o resultado.");
 
@@ -358,20 +358,26 @@
     raiz.appendChild(el("section", { class: "dg-secao dg-azul2" }, el("div", { class: "dg-wrap" },
       el("span", { class: "dg-rotulo", texto: "Suas 3 prioridades" }), lista)));
 
-    var livros = el("div", { class: "dg-wrap" }, el("span", { class: "dg-rotulo", texto: "Bibliografia indicada para a sua marca" }));
-    (res.livros || []).forEach(function (b) {
-      livros.appendChild(el("div", { class: "dg-cartao dg-cartao-borda" },
-        el("h3", { texto: b.titulo }),
-        el("p", { class: "dg-suave dg-pequeno", texto: b.autor }),
-        el("p", { texto: b.motivo })));
-    });
-    raiz.appendChild(el("section", { class: "dg-secao" }, livros));
-
     if (res.recomendacao_final) {
       raiz.appendChild(el("section", { class: "dg-secao amb-marinho dg-reticula" }, el("div", { class: "dg-wrap" },
         el("span", { class: "dg-rotulo", texto: "Recomendação final" }),
         el("h2", { texto: "O caminho da " + marca + "." }),
         paragrafos(res.recomendacao_final))));
+    }
+
+    // Bibliografia no fim: cada livro ligado a um problema encontrado no diagnóstico.
+    if ((res.livros || []).length) {
+      var livros = el("div", { class: "dg-wrap" },
+        el("span", { class: "dg-rotulo", texto: "Leituras para os pontos do seu diagnóstico" }),
+        el("p", { class: "dg-suave", texto: "Cada livro abaixo foi escolhido para um problema que apareceu na leitura da sua marca." }));
+      res.livros.forEach(function (b) {
+        livros.appendChild(el("div", { class: "dg-cartao dg-cartao-borda" },
+          b.problema ? el("p", { class: "dg-livro-problema", texto: "Para: " + b.problema }) : null,
+          el("h3", { texto: b.titulo }),
+          el("p", { class: "dg-suave dg-pequeno", texto: b.autor }),
+          el("p", { texto: b.motivo })));
+      });
+      raiz.appendChild(el("section", { class: "dg-secao" }, livros));
     }
     if ((res.versao || 1) < VERSAO_RESULTADO) {
       // Resultado gerado antes desta versão: oferece atualizar sem refazer as respostas.
