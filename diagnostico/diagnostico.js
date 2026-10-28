@@ -243,11 +243,54 @@
   }
 
   // ---------- resultado ----------
+  // Gera um dos dois PDFs (pela janela de impressão do navegador: "Salvar como PDF").
+  function imprimir(tipo, marca) {
+    var tituloOriginal = document.title;
+    document.body.setAttribute("data-imprimir", tipo);
+    document.title = (tipo === "respostas" ? "Perguntas e respostas" : "Diagnostico Marca com Essencia") + " - " + marca;
+    function restaurar() {
+      document.body.removeAttribute("data-imprimir");
+      document.title = tituloOriginal;
+      window.removeEventListener("afterprint", restaurar);
+    }
+    window.addEventListener("afterprint", restaurar);
+    window.print();
+  }
+
+  // Documento com as 35 perguntas e as respostas da pessoa (aparece só no PDF de respostas).
+  function documentoRespostas(r) {
+    var p = r.perfil || {};
+    var data = r.geradoEm ? new Date(r.geradoEm).toLocaleDateString("pt-BR") : "";
+    var wrap = el("div", { class: "dg-wrap" },
+      el("div", { class: "dg-resp-cabecalho" },
+        el("span", { class: "dg-rotulo", texto: "Diagnóstico Marca com Essência©" }),
+        el("h2", { texto: "Perguntas e respostas" }),
+        el("p", { texto: [p.marca, p.segmento].filter(Boolean).join(" · ") }),
+        el("p", { class: "dg-suave dg-pequeno", texto: "Respondido por " + (p.nome || "") + (p.tempo ? " · Marca com " + p.tempo : "") + (data ? " · " + data : "") })));
+    conteudo.dimensoes.forEach(function (d) {
+      var bloco = el("div", { class: "dg-resp-dim" },
+        el("p", { class: "dg-cap", texto: "Cap. " + String(d.capitulo).padStart(2, "0") }),
+        el("h3", { texto: d.nome }));
+      d.perguntas.forEach(function (pergunta, i) {
+        var lista = (r.respostas && r.respostas[d.id]) || [];
+        bloco.appendChild(el("div", { class: "dg-resp-item" },
+          el("p", { class: "dg-resp-pergunta", texto: (i + 1) + ". " + pergunta }),
+          el("p", { class: "dg-resp-texto", texto: lista[i] || "" })));
+      });
+      wrap.appendChild(bloco);
+    });
+    return el("section", { class: "dg-secao dg-doc-resp" }, wrap);
+  }
+
   function renderResultado(r) {
     var raiz = $("resultado");
     raiz.innerHTML = "";
     var res = r.resultado || {};
     var marca = (r.perfil && r.perfil.marca) || "a sua marca";
+
+    var botaoTopo = el("p", { class: "dg-nao-imprimir", style: "margin-top: 24px;" },
+      el("button", { class: "dg-botao", type: "button", texto: "Baixar o diagnóstico em PDF" }));
+    botaoTopo.firstChild.addEventListener("click", function () { imprimir("diagnostico", marca); });
 
     var nota = el("div", { class: "dg-nota", texto: String(r.notaGeral) });
     nota.appendChild(el("small", { texto: "/100" }));
@@ -256,7 +299,8 @@
       nota,
       el("h2", { texto: (r.faixa && r.faixa.nome) || "" }),
       el("p", { class: "dg-suave", texto: (r.faixa && r.faixa.resumo) || "" }),
-      el("p", { class: "dg-sintese", texto: res.frase_sintese || "" })
+      el("p", { class: "dg-sintese", texto: res.frase_sintese || "" }),
+      botaoTopo
     )));
 
     var mapa = el("div", { class: "dg-wrap" }, el("span", { class: "dg-rotulo", texto: "Mapa da sua marca" }));
@@ -304,8 +348,6 @@
     });
     raiz.appendChild(el("section", { class: "dg-secao" }, livros));
 
-    var pdf = el("button", { class: "dg-botao", type: "button", texto: "Salvar em PDF" });
-    pdf.addEventListener("click", function () { window.print(); });
     var copiar = el("button", { class: "dg-botao-texto", type: "button", texto: "Copiar o link deste resultado" });
     copiar.addEventListener("click", function () {
       var link = location.origin + "/diagnostico/?id=" + encodeURIComponent(new URLSearchParams(location.search).get("id") || estado.id);
@@ -313,15 +355,44 @@
         function () { copiar.textContent = "Link copiado"; },
         function () { prompt("Copie o link do seu resultado:", link); });
     });
+
+    var btnDiag = el("button", { class: "dg-botao dg-botao-largo", type: "button", texto: "Baixar diagnóstico" });
+    btnDiag.addEventListener("click", function () { imprimir("diagnostico", marca); });
+    var btnResp = el("button", { class: "dg-botao dg-botao-contorno dg-botao-largo", type: "button", texto: "Baixar perguntas e respostas" });
+    btnResp.addEventListener("click", function () { imprimir("respostas", marca); });
+    var cartaoResp = el("div", { class: "dg-cartao dg-cartao-borda" },
+      el("h3", { texto: "Suas perguntas e respostas" }),
+      el("p", { class: "dg-suave", texto: "As 35 perguntas com as suas respostas, organizadas por capítulo. Bom para revisitar e ver a sua evolução." }),
+      btnResp);
+
     var data = r.geradoEm ? new Date(r.geradoEm).toLocaleDateString("pt-BR") : "";
+    raiz.appendChild(el("section", { class: "dg-secao dg-nao-imprimir" }, el("div", { class: "dg-wrap" },
+      el("span", { class: "dg-rotulo", texto: "Seus arquivos em PDF" }),
+      el("div", { class: "dg-arquivos" },
+        el("div", { class: "dg-cartao dg-cartao-borda" },
+          el("h3", { texto: "Diagnóstico completo" }),
+          el("p", { class: "dg-suave", texto: "A leitura da sua marca: notas, leitura geral, dimensões, prioridades e bibliografia." }),
+          btnDiag),
+        cartaoResp),
+      el("p", { class: "dg-suave dg-pequeno", texto: "Na janela que abrir, escolha \u201cSalvar como PDF\u201d como destino." })
+    )));
+
     raiz.appendChild(el("section", { class: "dg-secao dg-painel dg-nao-imprimir" }, el("div", { class: "dg-wrap dg-centro" },
       el("h2", { texto: "Quer transformar esta leitura em direção?" }),
       el("p", { texto: "O diagnóstico mostra onde a sua marca está. O próximo passo é decidir para onde ela vai." }),
-      pdf,
-      el("p", { style: "margin-top: 16px;" }, el("a", { class: "dg-botao dg-botao-contorno", href: WHATSAPP, target: "_blank", rel: "noopener", texto: "Falar com a KA" })),
+      el("p", {}, el("a", { class: "dg-botao", href: WHATSAPP, target: "_blank", rel: "noopener", texto: "Falar com a KA" })),
       el("p", {}, copiar),
       el("p", { class: "dg-suave dg-pequeno", texto: data ? "Gerado em " + data : "" })
     )));
+
+    // Todas as seções acima são o diagnóstico; o documento de respostas é montado à parte.
+    Array.prototype.forEach.call(raiz.children, function (secao) { secao.classList.add("dg-doc-diag"); });
+    if (r.respostas) {
+      carregarConteudo().then(function () { raiz.appendChild(documentoRespostas(r)); })
+        .catch(function () { cartaoResp.classList.add("dg-oculto"); });
+    } else {
+      cartaoResp.classList.add("dg-oculto");
+    }
 
     mostrarTela("resultado");
   }

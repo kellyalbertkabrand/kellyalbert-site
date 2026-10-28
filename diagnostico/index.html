@@ -100,7 +100,20 @@
 
     footer.dg-rodape { padding: 32px 0 48px; font-size: 13px; color: var(--suave); text-align: center; letter-spacing: .04em; }
 
+    .dg-doc-resp { display: none; }
+    .dg-resp-cabecalho { border-bottom: 1px solid var(--linha); padding-bottom: 18px; margin-bottom: 28px; }
+    .dg-resp-dim { margin-bottom: 32px; }
+    .dg-resp-item { margin-bottom: 20px; break-inside: avoid; }
+    .dg-resp-pergunta { font-weight: 600; margin-bottom: 6px; }
+    .dg-resp-texto { white-space: pre-wrap; margin: 0; padding-left: 14px; border-left: 3px solid var(--caramelo); }
+    .dg-arquivos { display: grid; gap: 16px; text-align: left; margin-bottom: 8px; }
+    @media (min-width: 640px) { .dg-arquivos { grid-template-columns: 1fr 1fr; } }
+    .dg-arquivos .dg-cartao { display: flex; flex-direction: column; margin: 0; }
+    .dg-arquivos .dg-cartao p { flex: 1; }
+
     @media print {
+      body[data-imprimir="respostas"] .dg-doc-diag { display: none !important; }
+      body[data-imprimir="respostas"] .dg-doc-resp { display: block !important; }
       .dg-nav, .dg-nao-imprimir, footer.dg-rodape { display: none !important; }
       body { background: #fdfdfb; }
       .dg-secao { padding: 20px 0; }

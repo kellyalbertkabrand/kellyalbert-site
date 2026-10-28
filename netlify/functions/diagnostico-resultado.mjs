@@ -7,9 +7,17 @@ export default async (req) => {
   const registro = await diagnosticos().get(id, { type: "json" });
   if (!registro) return json({ erro: "diagnóstico não encontrado" }, 404);
 
-  const { status, perfil, notaGeral, faixa, resultado, geradoEm } = registro;
+  const { status, perfil, respostas, notaGeral, faixa, resultado, geradoEm } = registro;
   if (status !== "pronto") return json({ status });
-  return json({ status, perfil: { nome: perfil.nome, marca: perfil.marca, segmento: perfil.segmento }, notaGeral, faixa, resultado, geradoEm });
+  return json({
+    status,
+    perfil: { nome: perfil.nome, marca: perfil.marca, segmento: perfil.segmento, tempo: perfil.tempo || "" },
+    respostas,
+    notaGeral,
+    faixa,
+    resultado,
+    geradoEm,
+  });
 };
 
 export const config = { path: "/api/diagnostico/resultado" };
