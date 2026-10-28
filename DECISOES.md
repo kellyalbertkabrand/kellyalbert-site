@@ -4,6 +4,14 @@
 
 ---
 
+## Diagnóstico Marca com Essência© · Outubro 2026
+
+- **Nova ferramenta paga em `/diagnostico/`** (fora do menu e do Google por enquanto, `noindex`).
+  - A pessoa informa código de acesso, nome, marca e segmento e responde **35 perguntas abertas** (7 dimensões = capítulos 4 a 10 do Livro MARCA COM ESSÊNCIA©, 5 perguntas cada).
+  - A Inteligência Artificial (Claude, `ANTHROPIC_API_KEY`) lê as respostas e devolve nota por dimensão, nota geral com faixa, leitura geral, pontos fortes e cegos, 3 prioridades e bibliografia (lista fechada).
+  - Acesso provisório por código (`DIAGNOSTICO_CODIGOS`, 2 usos por código). Próxima etapa: login com e-mail e senha criado a partir da venda na Hotmart.
+  - Visual no sistema KA v2026.09 (Outfit, azuis, caramelo em gotas, retícula). Conteúdo e instruções da IA em `netlify/diagnostico/`.
+
 ## v81 · Abril 2026
 
 - **Página /bio/ — hierarquia do diagnóstico refinada** conforme feedback Kelly:
