@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagnóstico Marca com Essência© · Kelly Albert</title>
+  <meta name="description" content="Responda 35 perguntas sobre a sua marca, com as suas palavras, e receba uma leitura estratégica feita com Inteligência Artificial no método Marca com Essência©.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Sistema visual KA v2026.09: só Outfit, azuis dominam, papel como cor clara, caramelo em gotas, retícula como única textura. */
+    :root {
+      --marinho: #152535; --azul2: #223A52; --essencia: #3D6B7E;
+      --papel: #F8F7F2; --papel2: #EEECE4; --caramelo: #C47830; --caramelo-claro: #E8B27A;
+      --linha: rgba(21, 37, 53, .14); --suave: rgba(21, 37, 53, .72);
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--papel); color: var(--marinho); font: 300 17px/1.6 "Outfit", system-ui, sans-serif; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    strong { font-weight: 600; }
+    .dg-wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+    .dg-nav { background: var(--papel); border-bottom: 1px solid var(--linha); }
+    .dg-nav .dg-wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    .dg-marca { font-size: 13px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; }
+    .dg-nav-acao { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--suave); background: none; border: 0; cursor: pointer; font-family: inherit; }
+
+    h1, h2, h3 { font-weight: 300; line-height: 1.15; margin: 0 0 18px; letter-spacing: -.01em; }
+    h1 { font-size: clamp(34px, 8vw, 54px); font-weight: 200; }
+    h2 { font-size: clamp(26px, 5.5vw, 36px); }
+    h3 { font-size: 22px; }
+    h1 strong, h2 strong { font-weight: 600; color: var(--caramelo); }
+    p { margin: 0 0 16px; }
+
+    .dg-rotulo { display: block; font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; margin-bottom: 14px; }
+    .dg-rotulo::before { content: "|"; color: var(--caramelo); margin-right: 10px; }
+
+    .dg-secao { padding: 56px 0; position: relative; }
+    .amb-marinho, .dg-azul2 { color: var(--papel); overflow: hidden; --linha: rgba(248, 247, 242, .16); --suave: rgba(248, 247, 242, .75); }
+    .amb-marinho { background: var(--marinho); }
+    .dg-azul2 { background: var(--azul2); }
+    .amb-marinho h1 strong, .amb-marinho h2 strong, .dg-azul2 h2 strong,
+    .amb-marinho .dg-rotulo::before, .dg-azul2 .dg-rotulo::before { color: var(--caramelo-claro); }
+    .dg-painel { background: var(--papel2); }
+    .dg-reticula { padding-bottom: 150px; }
+    .dg-reticula::after { content: ""; position: absolute; right: 0; bottom: 0; width: min(48vw, 380px); height: min(48vw, 380px); background: url("/images/diagnostico/reticula-marinho.svg") no-repeat right bottom / contain; pointer-events: none; }
+    .dg-reticula-papel::after { background-image: url("/images/diagnostico/reticula-papel.svg"); }
+
+    .dg-botao { display: inline-block; background: var(--caramelo); color: var(--papel); border: 0; border-radius: 100px; padding: 16px 32px; font: 600 14px/1.2 "Outfit", sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; text-align: center; }
+    .dg-botao:disabled { opacity: .4; cursor: default; }
+    .dg-botao-largo { display: block; width: 100%; }
+    .dg-botao-contorno { background: transparent; color: var(--marinho); border: 1.5px solid var(--marinho); }
+    .dg-botao-texto { background: none; border: 0; color: inherit; font: 600 13px "Outfit", sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; padding: 10px 0; opacity: .75; }
+
+    label { display: block; font-weight: 600; margin-bottom: 8px; }
+    input[type="text"], textarea { width: 100%; font: 400 17px/1.5 "Outfit", sans-serif; color: var(--marinho); background: #fdfdfb; border: 1.5px solid var(--linha); border-radius: 14px; padding: 14px 16px; margin-bottom: 18px; }
+    textarea { min-height: 200px; resize: vertical; }
+    input:focus, textarea:focus { outline: 2px solid var(--essencia); border-color: transparent; }
+    .dg-aviso { padding: 14px 16px; border-radius: 14px; background: var(--papel2); border-left: 4px solid var(--caramelo); margin-bottom: 18px; }
+    .dg-oculto { display: none !important; }
+    .dg-centro { text-align: center; }
+    .dg-suave { color: var(--suave); }
+    .dg-pequeno { font-size: 14px; }
+
+    .dg-lista { list-style: none; padding: 0; margin: 0 0 24px; }
+    .dg-lista li { padding: 14px 0; border-bottom: 1px solid var(--linha); }
+    .dg-passos { list-style: none; padding: 0; margin: 0 0 24px; counter-reset: p; }
+    .dg-passos li { counter-increment: p; padding: 12px 0 12px 52px; position: relative; border-bottom: 1px solid var(--linha); }
+    .dg-passos li::before { content: counter(p, decimal-leading-zero); position: absolute; left: 0; top: 6px; font-weight: 800; font-size: 26px; color: var(--caramelo); }
+    .dg-azul2 .dg-passos li::before { color: var(--caramelo-claro); }
+
+    .dg-progresso { height: 4px; background: var(--linha); border-radius: 4px; overflow: hidden; margin: 10px 0 28px; }
+    .dg-progresso span { display: block; height: 100%; background: var(--caramelo); transition: width .3s; }
+    .dg-cap { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--suave); }
+    .dg-pergunta { font-size: clamp(23px, 5.5vw, 30px); line-height: 1.3; margin: 10px 0 22px; }
+    .dg-contagem { display: flex; justify-content: space-between; font-size: 13px; color: var(--suave); margin: -10px 0 18px; }
+    .dg-navegacao { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+    .dg-nota { font-weight: 800; font-size: 104px; line-height: 1; letter-spacing: -.03em; }
+    .dg-nota small { font-size: 28px; font-weight: 300; }
+    .dg-sintese { font-size: clamp(22px, 5vw, 30px); line-height: 1.35; }
+    .dg-barra { margin-bottom: 14px; }
+    .dg-barra-topo { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .dg-trilho { height: 10px; background: rgba(248, 247, 242, .16); border-radius: 10px; overflow: hidden; }
+    .dg-trilho span { display: block; height: 100%; background: var(--caramelo-claro); border-radius: 10px; }
+    .dg-cartao { background: var(--papel); border-radius: 18px; padding: 24px; margin-bottom: 16px; }
+    .dg-cartao-borda { border: 1px solid var(--linha); }
+    .dg-cartao h4 { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; margin: 18px 0 6px; }
+    .dg-nota-dim { font-weight: 800; font-size: 44px; line-height: 1; color: var(--essencia); }
+    .dg-texto p:last-child { margin-bottom: 0; }
+
+    .dg-girando { width: 44px; height: 44px; border: 3px solid var(--linha); border-top-color: var(--caramelo); border-radius: 50%; margin: 0 auto 24px; animation: dg-gira 1s linear infinite; }
+    @keyframes dg-gira { to { transform: rotate(360deg); } }
+
+    footer.dg-rodape { padding: 32px 0 48px; font-size: 13px; color: var(--suave); text-align: center; letter-spacing: .04em; }
+
+    @media print {
+      .dg-nav, .dg-nao-imprimir, footer.dg-rodape { display: none !important; }
+      body { background: #fdfdfb; }
+      .dg-secao { padding: 20px 0; }
+      .amb-marinho, .dg-azul2 { background: #fdfdfb !important; color: var(--marinho); --suave: rgba(21, 37, 53, .72); --linha: rgba(21, 37, 53, .14); }
+      .dg-reticula::after { display: none; }
+      .dg-trilho { background: var(--linha); }
+      .dg-trilho span { background: var(--caramelo); }
+      .dg-cartao { break-inside: avoid; border: 1px solid var(--linha); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="dg-nav">
+    <div class="dg-wrap">
+      <a class="dg-marca" href="/">Kelly Albert</a>
+      <button class="dg-nav-acao dg-oculto" id="recomecar" type="button">Recomeçar</button>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Carregando -->
+    <section class="dg-secao dg-centro" data-tela="carregando">
+      <div class="dg-wrap"><div class="dg-girando"></div><p class="dg-suave">Carregando…</p></div>
+    </section>
+
+    <!-- Abertura: código de acesso + dados da marca -->
+    <div class="dg-oculto" data-tela="inicio">
+      <section class="dg-secao amb-marinho dg-reticula">
+        <div class="dg-wrap">
+          <span class="dg-rotulo">Diagnóstico Marca com Essência©</span>
+          <h1>Se a sua marca parar de anunciar hoje, <strong>ela continua sendo lembrada?</strong></h1>
+          <p>Essa é uma pergunta que você precisa saber responder. E a resposta não está no seu feed. Está no posicionamento.</p>
+          <p>Você vai responder 35 perguntas sobre a sua marca, com as suas palavras. Daí a Inteligência Artificial lê tudo com o método do Livro MARCA COM ESSÊNCIA© e devolve uma leitura estratégica da sua marca.</p>
+        </div>
+      </section>
+
+      <section class="dg-secao dg-azul2">
+        <div class="dg-wrap">
+          <span class="dg-rotulo">Como funciona</span>
+          <ol class="dg-passos">
+            <li>São 7 dimensões da sua marca, uma para cada capítulo do método. Cada uma tem 5 perguntas.</li>
+            <li>Responda com calma e com verdade. Quanto mais concreta a resposta, mais precisa a leitura.</li>
+            <li>Tudo fica salvo neste aparelho. Dá para parar e voltar depois, tá?</li>
+            <li>No final, você recebe a nota de cada dimensão, a leitura geral, as prioridades e uma bibliografia indicada para a sua marca.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="dg-secao">
+        <div class="dg-wrap" style="max-width: 560px;">
+          <span class="dg-rotulo">Vamos começar</span>
+          <h2>Conta um pouco sobre <strong>você e a sua marca.</strong></h2>
+          <div id="aviso-inicio" class="dg-aviso dg-oculto" role="alert"></div>
+          <form id="form-inicio">
+            <label for="codigo">Código de acesso</label>
+            <input id="codigo" type="text" autocomplete="off" autocapitalize="characters" required placeholder="O código que você recebeu">
+            <div id="campos-perfil"></div>
+            <button class="dg-botao dg-botao-largo" type="submit">Começar o diagnóstico</button>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- Pergunta -->
+    <section class="dg-secao dg-oculto" data-tela="pergunta">
+      <div class="dg-wrap" style="max-width: 640px;">
+        <div class="dg-cap" id="p-cap"></div>
+        <div class="dg-progresso" aria-hidden="true"><span id="p-barra"></span></div>
+        <p class="dg-suave dg-pequeno" id="p-numero"></p>
+        <div class="dg-pergunta" id="p-texto"></div>
+        <label for="p-resposta" class="dg-oculto">Sua resposta</label>
+        <textarea id="p-resposta" placeholder="Escreva com as suas palavras. Quanto mais verdade, melhor a leitura."></textarea>
+        <div class="dg-contagem"><span id="p-salvo">Salvo neste aparelho</span><span id="p-caracteres"></span></div>
+        <div class="dg-navegacao">
+          <button class="dg-botao-texto" id="p-voltar" type="button">Voltar</button>
+          <button class="dg-botao" id="p-avancar" type="button">Avançar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gerando -->
+    <section class="dg-secao dg-centro dg-oculto" data-tela="gerando">
+      <div class="dg-wrap" style="max-width: 520px;">
+        <div class="dg-girando"></div>
+        <h2>Lendo a <strong>sua marca.</strong></h2>
+        <p class="dg-suave">A Inteligência Artificial está cruzando as suas 35 respostas com o método Marca com Essência©. Isso leva de 1 a 3 minutos. Pode deixar esta tela aberta.</p>
+      </div>
+    </section>
+
+    <!-- Erro -->
+    <section class="dg-secao dg-oculto" data-tela="erro">
+      <div class="dg-wrap" style="max-width: 520px;">
+        <h2>Algo não saiu como esperado.</h2>
+        <p id="erro-texto">Não conseguimos gerar o seu diagnóstico agora. As suas respostas estão salvas.</p>
+        <button class="dg-botao" id="tentar-de-novo" type="button">Tentar de novo</button>
+      </div>
+    </section>
+
+    <!-- Resultado -->
+    <div class="dg-oculto" data-tela="resultado" id="resultado"></div>
+  </main>
+
+  <footer class="dg-rodape">
+    <div class="dg-wrap">KA | Inteligência para Marcas · CNPJ 15.096.943/0001-37 · @kellyalbert.brand</div>
+  </footer>
+
+  <script src="/diagnostico/diagnostico.js" defer></script>
+</body>
+</html>

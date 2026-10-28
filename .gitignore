@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 *.log
 scripts/package-lock.json
+
+# Local Netlify folder
+.netlify
