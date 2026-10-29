@@ -6,7 +6,8 @@
   <title>Diagnóstico Marca com Essência© · Kelly Albert</title>
   <meta name="description" content="Responda 35 perguntas sobre a sua marca, com as suas palavras, e receba uma leitura estratégica feita com Inteligência Artificial no método Marca com Essência©.">
   <meta name="robots" content="noindex">
-  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/diagnostico/ka-icone-32.png">
+  <link rel="apple-touch-icon" href="/images/diagnostico/ka-icone-180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;800&display=swap" rel="stylesheet">
@@ -14,7 +15,7 @@
     /* Sistema visual KA v2026.09: só Outfit, azuis dominam, papel como cor clara, caramelo em gotas, retícula como única textura. */
     :root {
       --marinho: #152535; --azul2: #223A52; --essencia: #3D6B7E;
-      --papel: #F8F7F2; --papel2: #EEECE4; --caramelo: #C47830; --caramelo-claro: #E8B27A;
+      --papel: #F8F7F2; --papel2: #EEECE4; --caramelo: #D86F2A; --caramelo-claro: #EFA43A;
       --linha: rgba(21, 37, 53, .14); --suave: rgba(21, 37, 53, .72);
     }
     * { box-sizing: border-box; }
@@ -26,7 +27,9 @@
 
     .dg-nav { background: var(--papel); border-bottom: 1px solid var(--linha); }
     .dg-nav .dg-wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
-    .dg-marca { font-size: 13px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; }
+    .dg-marca { display: block; line-height: 0; }
+    .dg-marca img { height: 34px; width: auto; display: block; }
+    .dg-logo-impressao { display: none; }
     .dg-nav-acao { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--suave); background: none; border: 0; cursor: pointer; font-family: inherit; }
 
     h1, h2, h3 { font-weight: 300; line-height: 1.15; margin: 0 0 18px; letter-spacing: -.01em; }
@@ -129,6 +132,12 @@
     .dg-arquivos .dg-cartao p { flex: 1; }
 
     @media print {
+      .dg-logo-impressao { display: block; padding: 8px 20px 0; max-width: 720px; margin: 0 auto; }
+      .dg-logo-impressao img { height: 40px; width: auto; }
+      /* No papel, os destaques âmbar (feitos para o azul) viram caramelo vivo. */
+      .amb-marinho h1 strong, .amb-marinho h2 strong, .dg-azul2 h2 strong,
+      .amb-marinho .dg-rotulo::before, .dg-azul2 .dg-rotulo::before,
+      .dg-azul2 .dg-passos li::before { color: var(--caramelo) !important; }
       body[data-imprimir="respostas"] .dg-doc-diag { display: none !important; }
       body[data-imprimir="respostas"] .dg-doc-resp { display: block !important; }
       .dg-nav, .dg-nao-imprimir, footer.dg-rodape { display: none !important; }
@@ -145,12 +154,14 @@
 <body>
   <nav class="dg-nav">
     <div class="dg-wrap">
-      <a class="dg-marca" href="/">Kelly Albert</a>
+      <a class="dg-marca" href="/"><img src="/images/diagnostico/ka-logo-horizontal-marinho.svg" alt="KA | Inteligência para Marcas" width="173" height="34"></a>
       <button class="dg-nav-acao dg-oculto" id="recomecar" type="button">Recomeçar</button>
     </div>
   </nav>
 
   <main>
+    <!-- Logo no topo dos PDFs (o menu não sai na impressão) -->
+    <div class="dg-logo-impressao"><img src="/images/diagnostico/ka-logo-horizontal-marinho.svg" alt="KA | Inteligência para Marcas" width="204" height="40"></div>
     <!-- Carregando -->
     <section class="dg-secao dg-centro" data-tela="carregando">
       <div class="dg-wrap"><div class="dg-girando"></div><p class="dg-suave">Carregando…</p></div>
