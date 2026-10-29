@@ -174,6 +174,10 @@
     });
     montarPrints(caixa);
     $("codigo").value = estado.codigo || "";
+    // Sem exigência de código (modo de testes): o campo some.
+    var semCodigo = conteudo.exigeCodigo === false;
+    $("campo-codigo").classList.toggle("dg-oculto", semCodigo);
+    $("codigo").required = !semCodigo;
     mostrarTela("inicio");
   }
 
@@ -376,6 +380,7 @@
   function renderResultado(r) {
     var raiz = $("resultado");
     raiz.innerHTML = "";
+    raiz.classList.add("dg-resultado");
     var res = r.resultado || {};
     var marca = (r.perfil && r.perfil.marca) || "a sua marca";
 
@@ -416,19 +421,24 @@
 
     var blocos = el("div", { class: "dg-wrap" }, el("span", { class: "dg-rotulo", texto: "Dimensão por dimensão" }));
     (res.dimensoes || []).forEach(function (d) {
-      blocos.appendChild(el("div", { class: "dg-cartao" },
-        el("p", { class: "dg-cap", texto: "Cap. " + String(d.capitulo).padStart(2, "0") }),
-        el("h3", { texto: d.nome }),
-        el("div", { class: "dg-nota-dim", texto: String(d.nota) }),
+      var cabecalho = el("div", { class: "dg-dim-topo" },
+        el("div", {},
+          el("p", { class: "dg-cap", texto: "Cap. " + String(d.capitulo).padStart(2, "0") }),
+          el("h3", { texto: d.nome }),
+          d.situacao ? el("span", { class: "dg-selo dg-selo-" + d.situacao, texto: SITUACOES[d.situacao] || d.situacao }) : null),
+        el("div", { class: "dg-nota-dim", texto: String(d.nota) }));
+      var trio = el("div", { class: "dg-trio" },
+        el("div", {}, el("h4", { texto: "Ponto forte" }), el("p", { texto: d.ponto_forte })),
+        el("div", {}, el("h4", { texto: "Ponto cego" }), el("p", { texto: d.ponto_cego })),
+        el("div", {}, el("h4", { texto: "Primeiro passo" }), el("p", { texto: d.primeiro_passo })));
+      blocos.appendChild(el("div", { class: "dg-cartao dg-dim" },
+        cabecalho,
         d.conceito ? el("div", { class: "dg-conceito" },
           el("h4", { texto: "O que é " + d.conceito_nome + "?" }), el("p", { texto: d.conceito })) : null,
-        d.situacao ? el("p", { class: "dg-situacao" },
-          el("span", { class: "dg-selo dg-selo-" + d.situacao, texto: "A sua marca: " + (SITUACOES[d.situacao] || d.situacao) })) : null,
-        d.situacao_explicacao ? el("p", { texto: d.situacao_explicacao }) : null,
-        el("p", { style: "margin-top: 12px;", texto: d.leitura }),
-        el("h4", { texto: "Ponto forte" }), el("p", { texto: d.ponto_forte }),
-        el("h4", { texto: "Ponto cego" }), el("p", { texto: d.ponto_cego }),
-        el("h4", { texto: "Primeiro passo" }), el("p", { texto: d.primeiro_passo }),
+        d.situacao_explicacao ? el("p", { class: "dg-explica", texto: d.situacao_explicacao }) : null,
+        el("p", { texto: d.leitura }),
+        d.lente ? el("p", { class: "dg-lente" }, el("span", { texto: "Lente" }), document.createTextNode(d.lente)) : null,
+        trio,
         d.recomendacao ? el("div", { class: "dg-recomendacao" },
           el("h4", { texto: d.situacao && d.situacao !== "tem" ? "Recomendação: como ter" : "Recomendação do capítulo" }),
           el("p", { texto: d.recomendacao })) : null));
@@ -549,7 +559,7 @@
       return (estado.respostas[k] || []).some(function (r) { return (r || "").trim(); });
     });
     voltando = jaRespondeu;
-    if (estado.codigo && perfilOk) telaPergunta(Math.min(estado.atual || 0, perguntas.length - 1));
+    if ((estado.codigo || conteudo.exigeCodigo === false) && perfilOk) telaPergunta(Math.min(estado.atual || 0, perguntas.length - 1));
     else telaInicio();
   }).catch(function () {
     telaErro("Não conseguimos carregar o diagnóstico. Atualize a página para tentar de novo.", false);

@@ -7,7 +7,18 @@ import { BIBLIOGRAFIA, DIMENSOES, linksDoPerfil } from "./conteudo.mjs";
 
 export const MODELO = "claude-opus-5-5";
 // Sobe quando o formato do resultado muda; resultados antigos podem ser atualizados.
-export const VERSAO_RESULTADO = 4;
+export const VERSAO_RESULTADO = 5;
+
+// Lentes das principais autoridades mundiais em branding, por dimensão.
+const LENTES = {
+  autoimagem: "Simon Sinek (Golden Circle: começar pelo porquê); Edgar Schein (a cultura nasce dos pressupostos do fundador); Jean-Noël Kapferer (prisma de identidade: cultura e autoimagem).",
+  posicionamento: "Al Ries e Jack Trout (ocupar uma palavra na mente; foco exige sacrifício); Marty Neumeier (onlyness: \"somos os únicos que...\"; Zag); Byron Sharp (disponibilidade mental); W. Chan Kim e Renée Mauborgne (oceano azul).",
+  voz: "Margaret Mark e Carol Pearson (arquétipos); Jean-Noël Kapferer (prisma de identidade: personalidade e relação); Donald Miller (o cliente é o herói, a marca é o guia).",
+  arquitetura: "David Aaker (arquitetura de marca e papel de cada oferta no portfólio); Kevin Lane Keller (hierarquia de marca).",
+  visual: "Alina Wheeler (identidade como sistema consistente); Byron Sharp (ativos distintivos); Wally Olins (a identidade expressa o que a organização é).",
+  proposta: "Alexander Osterwalder (dores e ganhos do cliente); Donald Miller (StoryBrand); Robert McKee (história com conflito verdadeiro); Simon Sinek (propósito).",
+  presenca: "Kevin Lane Keller (pirâmide de valor de marca: da lembrança à ressonância); B. Joseph Pine II e James H. Gilmore (economia da experiência); Seth Godin (ser notável para o público certo); Byron Sharp (lembrança e alcance).",
+};
 
 // Conceito-chave de cada dimensão, explicado no resultado ("O que é").
 const CONCEITOS = {
@@ -21,31 +32,32 @@ const CONCEITOS = {
 };
 
 const LeituraSchema = z.object({
-  frase_sintese: z.string().describe("Uma frase forte que resume a leitura da marca."),
-  leitura_geral: z.string().describe("3 a 5 parágrafos curtos, separados por linha em branco."),
-  coerencia: z.string().describe("Onde as respostas se contradizem ou se confirmam entre as dimensões, citando as palavras da pessoa."),
-  presenca_digital: z.string().describe("Comparação entre o que a pessoa respondeu e o que o site e as redes mostram. Texto vazio se não houver análise da presença digital."),
+  frase_sintese: z.string().describe("Uma frase forte que resume a leitura da marca. Até 20 palavras."),
+  leitura_geral: z.string().describe("2 ou 3 parágrafos curtos, separados por linha em branco. Até 120 palavras no total."),
+  coerencia: z.string().describe("A tensão central entre as respostas, citando as palavras da pessoa. Até 70 palavras."),
+  presenca_digital: z.string().describe("Comparação entre o que a pessoa respondeu e o que o site e as redes mostram. Até 120 palavras. Texto vazio se não houver análise da presença digital."),
   dimensoes: z.array(
     z.object({
       id: z.string(),
       nota: z.number().int().describe("Nota de 0 a 100, seguindo a régua."),
-      conceito: z.string().describe("O que é o conceito-chave desta dimensão, em 1 ou 2 frases simples, com um exemplo do dia a dia."),
+      conceito: z.string().describe("O que é o conceito-chave desta dimensão, em linguagem simples, com um exemplo do dia a dia. Até 30 palavras."),
+      lente: z.string().describe("A lente de autoridade aplicada: nome do autor, o conceito dele e o que ele revela nesta marca. Uma frase, até 35 palavras."),
       situacao: z.enum(["tem", "tem_em_parte", "ainda_nao_tem"]).describe("Se a marca tem este conceito definido hoje."),
-      situacao_explicacao: z.string().describe("Por que a marca tem, tem em parte ou ainda não tem, citando as respostas."),
-      leitura: z.string().describe("2 a 3 frases sobre o que esta dimensão revela."),
-      ponto_forte: z.string(),
-      ponto_cego: z.string(),
-      primeiro_passo: z.string().describe("Uma ação prática e concreta para começar esta semana."),
-      recomendacao: z.string().describe("Recomendação do capítulo: 2 a 4 frases sobre como evoluir esta dimensão nos próximos 30 a 90 dias."),
+      situacao_explicacao: z.string().describe("Por que a marca tem, tem em parte ou ainda não tem, citando as respostas. Até 35 palavras."),
+      leitura: z.string().describe("O que esta dimensão revela: a causa, não o sintoma. Até 45 palavras."),
+      ponto_forte: z.string().describe("Até 25 palavras."),
+      ponto_cego: z.string().describe("Até 25 palavras."),
+      primeiro_passo: z.string().describe("Uma ação prática e concreta para começar esta semana. Até 25 palavras."),
+      recomendacao: z.string().describe("Recomendação do capítulo para os próximos 30 a 90 dias. Até 50 palavras."),
     }),
   ),
-  prioridades: z.array(z.string()).describe("As 3 prioridades, em ordem, para evoluir o posicionamento."),
-  recomendacao_final: z.string().describe("Recomendação completa e resumida: um parágrafo de 4 a 6 frases que fecha o diagnóstico."),
+  prioridades: z.array(z.string()).describe("As 3 prioridades, em ordem, para evoluir o posicionamento. Até 20 palavras cada."),
+  recomendacao_final: z.string().describe("Recomendação completa e resumida que fecha o diagnóstico. Um parágrafo, até 90 palavras."),
   bibliografia: z.array(
     z.object({
       id: z.string().describe("Id de um livro da lista fornecida."),
       problema: z.string().describe("O problema específico encontrado neste diagnóstico que o livro ajuda a resolver, em poucas palavras."),
-      motivo: z.string().describe("Como o livro ajuda a resolver esse problema nesta marca, e o que ler ou aplicar primeiro."),
+      motivo: z.string().describe("Como o livro ajuda a resolver esse problema nesta marca, e o que ler ou aplicar primeiro. Até 35 palavras."),
     }),
   ),
 });
@@ -53,6 +65,8 @@ const LeituraSchema = z.object({
 const SISTEMA = `Você é a inteligência do Diagnóstico Marca com Essência©, criado por Kelly Albert, estrategista de marca com mais de 20 anos de experiência e autora do Livro MARCA COM ESSÊNCIA©.
 
 Seu papel é ser um espelho estratégico, não um terapeuta e não um bajulador: devolver com precisão o que a pessoa ainda não conseguiu organizar sozinha sobre a própria marca.
+
+Você pensa como as maiores autoridades mundiais em branding e posicionamento: David Aaker, Jean-Noël Kapferer, Kevin Lane Keller, Marty Neumeier, Al Ries e Jack Trout, Alina Wheeler, Byron Sharp, Simon Sinek, Margaret Mark e Carol Pearson, Wally Olins, Seth Godin, Donald Miller e Edgar Schein. Use os conceitos delas como lentes para enxergar o que a pessoa não vê, sempre a serviço do método Marca com Essência©.
 
 Princípios do método Marca com Essência©:
 - Essência conecta e posicionamento faz vender. A maior parte de uma marca é invisível.
@@ -62,8 +76,8 @@ Princípios do método Marca com Essência©:
 - O cliente não separa canais: ele sente o todo.
 - A pergunta que guia tudo: se a marca parar de anunciar hoje, ela continua sendo lembrada?
 
-As 7 dimensões correspondem aos capítulos 4 a 10 do livro:
-${DIMENSOES.map((d) => `- ${d.id} (Cap. ${d.capitulo}, ${d.nome}): ${d.descricao}`).join("\n")}
+As 7 dimensões correspondem aos capítulos 4 a 10 do livro. Para cada uma, as lentes de autoridade mais úteis:
+${DIMENSOES.map((d) => `- ${d.id} (Cap. ${d.capitulo}, ${d.nome}): ${d.descricao}\n  Lentes: ${LENTES[d.id]}`).join("\n")}
 
 Régua de notas (0 a 100) para cada dimensão. Avalie o que as respostas demonstram, não o quanto a marca é boa:
 - Clareza: a pessoa consegue nomear com precisão, ou fica no vago?
@@ -71,6 +85,13 @@ Régua de notas (0 a 100) para cada dimensão. Avalie o que as respostas demonst
 - Decisão: aparecem escolhas e renúncias, ou a marca tenta ser tudo para todos?
 - Coerência: as respostas desta dimensão se sustentam entre si e com o resto?
 Faixas: 0 a 39 = respostas vagas, genéricas ou contraditórias; 40 a 69 = há verdade e algumas definições, mas com lacunas importantes; 70 a 84 = claro, específico e com decisões, faltando consistência; 85 a 100 = claro, específico, decidido e coerente. Seja exigente: 85 ou mais é raro. Respostas muito curtas ou evasivas puxam a nota para baixo.
+
+Profundidade com concisão:
+- Escreva menos e diga mais. Cada frase precisa revelar algo que a pessoa ainda não tinha percebido; se só descreve o que ela disse, corte.
+- Mostre a causa, não o sintoma. Nomeie a tensão central da marca e conecte as dimensões entre si.
+- Respeite os limites de palavras de cada campo. Frases curtas. Nada de introduções, nada de repetir o que já foi dito em outro campo.
+- Em cada dimensão, escolha a lente de autoridade que mais revela algo sobre esta marca e aplique-a no campo "lente": o autor, o conceito dele explicado em poucas palavras e o que ele mostra aqui. Nos outros campos, cite um autor só quando o conceito dele realmente iluminar o ponto.
+- Nunca invente citações nem coloque entre aspas frases atribuídas a um autor. Use os conceitos, não frases inventadas.
 
 Como escrever:
 - Português do Brasil, falando diretamente com a pessoa ("você", "a sua marca"). Use "a gente", nunca "nós".
@@ -226,6 +247,7 @@ export async function gerarDiagnostico(perfil, respostas, prints = []) {
       nota: Math.max(0, Math.min(100, Math.round(Number(l.nota) || 0))),
       conceito_nome: CONCEITOS[d.id],
       conceito: semTravessao(l.conceito),
+      lente: semTravessao(l.lente),
       situacao: l.situacao ?? "",
       situacao_explicacao: semTravessao(l.situacao_explicacao),
       leitura: semTravessao(l.leitura),

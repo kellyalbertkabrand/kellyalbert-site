@@ -24,8 +24,23 @@ function limiteDeUsos() {
   return Number(Netlify.env.get("DIAGNOSTICO_USOS_POR_CODIGO") ?? "2");
 }
 
+// Modo aberto (testes): DIAGNOSTICO_ABERTO=sim dispensa o código de acesso.
+// Por segurança, limita o total de diagnósticos por dia (DIAGNOSTICO_LIMITE_DIA, padrão 30).
+export function acessoAberto() {
+  return (Netlify.env.get("DIAGNOSTICO_ABERTO") ?? "").trim().toLowerCase() === "sim";
+}
+
+function chaveDoDia() {
+  return "ABERTO-" + new Date().toISOString().slice(0, 10);
+}
+
 // Diz se o código existe e quantos diagnósticos ainda podem ser gerados com ele.
 export async function situacaoDoCodigo(codigo) {
+  if (acessoAberto()) {
+    const limite = Number(Netlify.env.get("DIAGNOSTICO_LIMITE_DIA") ?? "30");
+    const registro = (await usosDeCodigo().get(chaveDoDia(), { type: "json" })) ?? { usos: 0 };
+    return { valido: true, restantes: Math.max(0, limite - registro.usos), aberto: true };
+  }
   const c = normalizarCodigo(codigo);
   if (!c || !codigosValidos().includes(c)) return { valido: false, restantes: 0 };
   const registro = (await usosDeCodigo().get(c, { type: "json" })) ?? { usos: 0 };
@@ -33,7 +48,7 @@ export async function situacaoDoCodigo(codigo) {
 }
 
 export async function registrarUso(codigo) {
-  const c = normalizarCodigo(codigo);
+  const c = acessoAberto() ? chaveDoDia() : normalizarCodigo(codigo);
   const store = usosDeCodigo();
   const registro = (await store.get(c, { type: "json" })) ?? { usos: 0 };
   registro.usos += 1;

@@ -120,6 +120,32 @@
     .dg-print { position: relative; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; background: var(--papel2); }
     .dg-print img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .dg-print-tirar { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: var(--marinho); color: var(--papel); font-size: 18px; line-height: 28px; cursor: pointer; padding: 0; }
+    /* Resultado: tipografia menor e mais enxuta, cartões compactos */
+    .dg-resultado { font-size: 15.5px; line-height: 1.6; }
+    .dg-resultado .dg-wrap { max-width: 860px; }
+    .dg-resultado .dg-secao { padding: 44px 0; }
+    .dg-resultado h2 { font-size: clamp(22px, 4.5vw, 28px); }
+    .dg-resultado h3 { font-size: 19px; margin-bottom: 8px; }
+    .dg-resultado p { margin-bottom: 12px; }
+    .dg-resultado .dg-nota { font-size: 84px; }
+    .dg-resultado .dg-sintese { font-size: clamp(19px, 4vw, 24px); max-width: 640px; }
+    .dg-resultado .dg-cartao { padding: 20px; border-radius: 16px; }
+    .dg-resultado .dg-cartao h4 { font-size: 11px; margin: 0 0 4px; }
+    .dg-resultado .dg-barra-topo { font-size: 13px; }
+    .dg-dim-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+    .dg-dim-topo .dg-cap { margin: 0 0 2px; }
+    .dg-resultado .dg-nota-dim { font-size: 34px; }
+    .dg-resultado .dg-conceito { margin: 0 0 12px; padding: 12px 14px; font-size: 14.5px; }
+    .dg-explica { color: var(--suave); font-size: 14.5px; }
+    .dg-lente { font-size: 14.5px; border-left: 3px solid var(--essencia); padding-left: 12px; }
+    .dg-lente span { display: block; font-size: 11px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--essencia); margin-bottom: 2px; }
+    .dg-trio { display: grid; gap: 12px; margin: 14px 0 4px; padding-top: 14px; border-top: 1px solid var(--linha); }
+    .dg-trio p { margin: 0; font-size: 14.5px; }
+    @media (min-width: 720px) { .dg-trio { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+    .dg-resultado .dg-recomendacao { margin-top: 14px; padding: 12px 14px; font-size: 14.5px; }
+    .dg-resultado .dg-selo { margin-top: 6px; font-size: 11px; padding: 4px 10px; }
+    .dg-resultado .dg-passos li { padding: 10px 0 10px 46px; }
+    .dg-resultado .dg-passos li::before { font-size: 22px; }
     .dg-doc-resp { display: none; }
     .dg-resp-cabecalho { border-bottom: 1px solid var(--linha); padding-bottom: 18px; margin-bottom: 28px; }
     .dg-resp-dim { margin-bottom: 32px; }
@@ -172,21 +198,33 @@
       <section class="dg-secao amb-marinho dg-reticula">
         <div class="dg-wrap">
           <span class="dg-rotulo">Diagnóstico Marca com Essência©</span>
-          <h1>Se a sua marca parar de anunciar hoje, <strong>ela continua sendo lembrada?</strong></h1>
-          <p>Essa é uma pergunta que você precisa saber responder. E a resposta não está no seu feed. Está no posicionamento.</p>
-          <p>Você vai responder 35 perguntas sobre a sua marca, com as suas palavras. Daí a Inteligência Artificial lê tudo com o método do Livro MARCA COM ESSÊNCIA© e devolve uma leitura estratégica da sua marca.</p>
+          <h1>Boas-vindas ao seu <strong>diagnóstico.</strong></h1>
+          <p>Que bom ter você aqui. A partir de agora, a gente vai olhar para a sua marca com profundidade: o que ela é, o lugar que ocupa e o que ainda está invisível para quem compra de você.</p>
+          <p>A leitura é feita com Inteligência Artificial, a partir do método do Livro MARCA COM ESSÊNCIA© e das maiores referências mundiais em posicionamento de marca.</p>
         </div>
       </section>
 
       <section class="dg-secao dg-azul2">
         <div class="dg-wrap">
-          <span class="dg-rotulo">Como funciona</span>
+          <span class="dg-rotulo">Passo a passo</span>
           <ol class="dg-passos">
-            <li>São 7 dimensões da sua marca, uma para cada capítulo do método. Cada uma tem 5 perguntas.</li>
-            <li>Responda com calma e com verdade. Quanto mais concreta a resposta, mais precisa a leitura.</li>
-            <li>Tudo fica salvo neste aparelho. Dá para parar e voltar depois, tá?</li>
-            <li>No final, você recebe a nota de cada dimensão, a leitura geral, as prioridades e uma bibliografia indicada para a sua marca.</li>
+            <li><strong>Preencha os seus dados e os da sua marca.</strong> Nome, marca e segmento, logo abaixo.</li>
+            <li><strong>Mostre a sua presença digital (opcional).</strong> Informe o site e envie prints das redes. A leitura fica mais precisa.</li>
+            <li><strong>Responda as 35 perguntas com as suas palavras.</strong> São 7 dimensões da marca, com 5 perguntas cada. Abaixo de cada pergunta há uma explicação e um exemplo.</li>
+            <li><strong>Pare e continue quando quiser.</strong> Tudo fica salvo neste aparelho e neste navegador.</li>
+            <li><strong>Receba o seu diagnóstico.</strong> Fica pronto em 2 a 4 minutos, com PDF para baixar.</li>
           </ol>
+        </div>
+      </section>
+
+      <section class="dg-secao dg-painel">
+        <div class="dg-wrap">
+          <span class="dg-rotulo">Antes de começar</span>
+          <ul class="dg-lista">
+            <li><strong>Reserve uns 40 minutos</strong>, num momento sem interrupção.</li>
+            <li><strong>Responda com verdade</strong>, não com o que soa bonito. O diagnóstico só enxerga o que você escreve.</li>
+            <li><strong>Seja concreto.</strong> Exemplos, nomes e situações reais deixam a leitura mais precisa.</li>
+          </ul>
         </div>
       </section>
 
@@ -196,8 +234,10 @@
           <h2>Conta um pouco sobre <strong>você e a sua marca.</strong></h2>
           <div id="aviso-inicio" class="dg-aviso dg-oculto" role="alert"></div>
           <form id="form-inicio">
-            <label for="codigo">Código de acesso</label>
-            <input id="codigo" type="text" autocomplete="off" autocapitalize="characters" required placeholder="O código que você recebeu">
+            <div id="campo-codigo">
+              <label for="codigo">Código de acesso</label>
+              <input id="codigo" type="text" autocomplete="off" autocapitalize="characters" required placeholder="O código que você recebeu">
+            </div>
             <div id="campos-perfil"></div>
             <button class="dg-botao dg-botao-largo" type="submit">Começar o diagnóstico</button>
           </form>
