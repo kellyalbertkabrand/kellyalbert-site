@@ -38,6 +38,11 @@
   status = 200
 
 [[redirects]]
+  from = "/autodiagnostico"
+  to = "/autodiagnostico/index.html"
+  status = 200
+
+[[redirects]]
   from = "/quiz"
   to = "/quiz/index.html"
   status = 200
