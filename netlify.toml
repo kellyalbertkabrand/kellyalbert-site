@@ -43,6 +43,11 @@
   status = 200
 
 [[redirects]]
+  from = "/raio-x"
+  to = "/raio-x/index.html"
+  status = 200
+
+[[redirects]]
   from = "/quiz"
   to = "/quiz/index.html"
   status = 200
