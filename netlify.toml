@@ -48,9 +48,22 @@
   status = 200
 
 [[redirects]]
-  from = "/raio-x-marca"
-  to = "/raio-x-marca/index.html"
+  from = "/valorpercebido"
+  to = "/valorpercebido/index.html"
   status = 200
+
+# endereço antigo do teste: leva para o novo
+[[redirects]]
+  from = "/raio-x-marca"
+  to = "/valorpercebido"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/raio-x-marca/*"
+  to = "/valorpercebido"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/quiz"
