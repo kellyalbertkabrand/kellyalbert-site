@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Raio-X · O que você entrega × o que o cliente enxerga · Kelly Albert</title>
+<meta name="description" content="Ferramenta gratuita: 10 perguntas e cerca de 5 minutos para descobrir a distância entre o que a sua empresa entrega e o que o seu cliente enxerga. Campanha Marca Forte Atravessa Crise, da KA | Inteligência para Marcas.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kellyalbert.com.br/raio-x-marca/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Raio-X · O que você entrega × o que o cliente enxerga">
+<meta property="og:description" content="Na crise, o cliente fica com a marca que ele valoriza. Descubra em 5 minutos a distância entre o que você entrega e o que o seu cliente enxerga.">
+<meta property="og:image" content="https://kellyalbert.com.br/images/og/og-bio.jpg">
+<meta property="og:url" content="https://kellyalbert.com.br/raio-x-marca/">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#152535">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap">
+<style>
+/* Raio-X · sistema visual KA v2026.10: Outfit, marinho, papel, laranja de campanha #F0873A, retícula só num canto. */
+:root{
+  --marinho:#152535;
+  --azul2:#223A52;
+  --papel:#F8F7F2;
+  --papel-70:rgba(248,247,242,.72);
+  --papel-50:rgba(248,247,242,.5);
+  --papel-20:rgba(248,247,242,.2);
+  --papel-08:rgba(248,247,242,.08);
+  --laranja:#F0873A;
+  --laranja-claro:#F2914A;
+  --whats:#25D366;
+  --fonte:'Outfit','Helvetica Neue',Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{font-family:var(--fonte);background:var(--marinho);color:var(--papel);font-weight:300;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+b,strong{font-weight:600;color:var(--papel)}
+button,input{font-family:inherit}
+:focus-visible{outline:2px solid var(--laranja);outline-offset:3px}
+
+.reticula{position:absolute;top:0;right:0;width:min(420px,70vw);height:auto;opacity:.9;pointer-events:none;z-index:0}
+
+.app{position:relative;z-index:1;max-width:560px;margin:0 auto;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:0 16px}
+
+/* Topo */
+.topo{padding:22px 4px 14px;display:grid;gap:14px}
+.topo__logo{width:150px;height:auto;display:block}
+.rotulo{display:inline-flex;align-items:center;gap:.6em;font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--laranja-claro)}
+.rotulo::before{content:'';width:2px;height:1.3em;background:var(--laranja)}
+.topo__titulo{margin:0;font-weight:300;font-size:clamp(1.6rem,6vw,2.1rem);line-height:1.1;letter-spacing:-.01em;text-wrap:balance}
+.topo__titulo b{font-weight:600}
+
+/* Cabeçalho do chat */
+.chat{flex:1;display:flex;flex-direction:column;background:rgba(34,58,82,.35);border:1px solid var(--papel-08);border-radius:22px;overflow:hidden;margin-bottom:16px;min-height:62vh}
+.chat-head{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--papel-08);background:rgba(21,37,53,.6)}
+.chat-head__avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--papel-20);flex:none}
+.chat-head__t{margin:0;font-size:1rem;font-weight:600;line-height:1.1}
+.chat-head__s{margin:2px 0 0;font-size:.78rem;color:var(--papel-50)}
+.progresso{margin-left:auto;text-align:right;flex:none;min-width:84px}
+.progresso__txt{font-size:.72rem;color:var(--papel-50);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.progresso__barra{height:4px;border-radius:4px;background:var(--papel-08);margin-top:5px;overflow:hidden}
+.progresso__barra i{display:block;height:100%;width:0;background:var(--laranja);transition:width .4s ease}
+
+/* Mensagens */
+.chat-body{flex:1;padding:16px 14px 8px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+.bolha{max-width:86%;padding:12px 15px;border-radius:18px;font-size:1rem;line-height:1.45;animation:entra .25s ease}
+.bolha--bot{background:var(--azul2);border-bottom-left-radius:6px;align-self:flex-start}
+.bolha--user{background:var(--laranja);color:var(--marinho);font-weight:600;border-bottom-right-radius:6px;align-self:flex-end}
+.bolha--bloco{align-self:center;max-width:100%;background:none;padding:6px 0;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro)}
+.digitando{align-self:flex-start;background:var(--azul2);border-radius:18px;border-bottom-left-radius:6px;padding:14px 16px;display:flex;gap:5px}
+.digitando span{width:7px;height:7px;border-radius:50%;background:var(--papel-50);animation:pulsa 1s infinite}
+.digitando span:nth-child(2){animation-delay:.15s}.digitando span:nth-child(3){animation-delay:.3s}
+@keyframes pulsa{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes entra{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Rodapé do chat: opções e formulário */
+.chat-footer{padding:10px 14px 16px;display:grid;gap:9px}
+.opcao{min-height:52px;width:100%;text-align:left;padding:13px 16px;border-radius:14px;background:transparent;border:1.5px solid var(--papel-20);color:var(--papel);font-size:1rem;font-weight:400;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.opcao:hover{border-color:var(--laranja)}
+.opcao:active,.opcao.escolhida{background:var(--laranja);border-color:var(--laranja);color:var(--marinho);font-weight:600}
+.btn{min-height:54px;width:100%;border:0;border-radius:100px;padding:15px 20px;font-size:.9rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.98)}
+.btn--laranja{background:var(--laranja);color:var(--marinho)}
+.btn--laranja:hover{background:#F59B57}
+.btn--contorno{background:transparent;color:var(--papel);border:1.5px solid var(--papel-20)}
+.btn--contorno:hover{border-color:var(--papel)}
+.btn--whats{background:var(--whats);color:#0B2615}
+.btn[disabled]{opacity:.6;cursor:wait}
+
+.form{display:grid;gap:10px}
+.campo label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--papel-70);margin:0 0 5px}
+.campo input{width:100%;min-height:52px;padding:13px 15px;border-radius:12px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-size:1rem}
+.campo input::placeholder{color:var(--papel-50)}
+.campo input:focus{outline:none;border-color:var(--laranja)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--papel-70);line-height:1.4;cursor:pointer}
+.consent input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--laranja)}
+.erro{display:none;margin:0;padding:10px 12px;border-radius:10px;background:rgba(240,135,58,.14);color:var(--papel);font-size:.88rem}
+.dica{margin:0;font-size:.78rem;color:var(--papel-50);text-align:center}
+
+/* Resultado */
+.res{display:grid;gap:14px;margin-top:6px;animation:entra .3s ease}
+.cartao{background:var(--azul2);border-radius:18px;padding:18px 16px;display:grid;gap:12px}
+.cartao h3{margin:0;font-weight:600;font-size:1.15rem;line-height:1.2}
+.cartao p{margin:0;font-size:.98rem;color:var(--papel-70)}
+.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro);margin:0}
+.barra{display:grid;gap:6px}
+.barra__topo{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.95rem}
+.barra__topo strong{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums}
+.barra__trilho{height:14px;border-radius:14px;background:rgba(21,37,53,.7);overflow:hidden}
+.barra__fill{height:100%;width:0;border-radius:14px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.barra__fill--entrega{background:var(--papel)}
+.barra__fill--enxerga{background:var(--laranja)}
+.distancia{font-size:1rem;color:var(--papel)}
+.distancia strong{font-weight:800;font-size:1.25rem;color:var(--laranja-claro)}
+.perfil{border-left:3px solid var(--laranja);padding-left:14px}
+.acoes{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.acoes li{background:rgba(21,37,53,.55);border-radius:14px;padding:13px 14px;display:grid;gap:5px}
+.acoes__o{font-weight:600;color:var(--papel);font-size:.98rem}
+.acoes__a{font-size:.92rem;color:var(--papel-70)}
+.acoes__a b{color:var(--papel)}
+.convite{background:var(--papel);color:var(--marinho);border-radius:18px;padding:20px 16px;display:grid;gap:12px}
+.convite p{margin:0;font-size:.98rem;line-height:1.5}
+.convite b,.convite strong{color:var(--marinho)}
+.convite .eyebrow{color:#C9601D}
+.convite .btn--contorno{color:var(--marinho);border-color:rgba(21,37,53,.25)}
+.links{display:grid;gap:10px;justify-items:center;text-align:center;padding:4px 0 10px}
+.links a{color:var(--papel-70);font-size:.92rem;text-decoration:none}
+.links a b{color:var(--papel)}
+.copiado{font-size:.82rem;color:var(--laranja-claro);text-align:center;min-height:1.2em;margin:0}
+
+.rodape{text-align:center;font-size:.72rem;color:var(--papel-50);letter-spacing:.06em;padding:8px 0 22px}
+.rodape a{color:var(--papel-70);text-decoration:none}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head><body>
+
+<!-- Netlify Forms: backup dos leads (o formulário real fica no chat) -->
+<form name="raio-x-marca" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="nome"><input name="empresa"><input name="email"><input name="whatsapp">
+  <input name="consentimento"><input name="entrega"><input name="enxerga"><input name="distancia"><input name="perfil">
+  <input name="respostas"><input name="origem"><input name="utm_source"><input name="utm_medium"><input name="utm_campaign">
+</form>
+
+<img class="reticula" src="/images/diagnostico/reticula-marinho.svg" alt="" aria-hidden="true">
+
+<main class="app">
+  <header class="topo">
+    <a href="/" aria-label="KA | Inteligência para Marcas"><img class="topo__logo" src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas" width="150" height="29"></a>
+    <span class="rotulo">Marca Forte Atravessa Crise</span>
+    <h1 class="topo__titulo">Raio-X · <b>O que você entrega</b> × <b>o que o cliente enxerga</b></h1>
+  </header>
+
+  <section class="chat" aria-label="Raio-X da sua marca">
+    <div class="chat-head">
+      <img class="chat-head__avatar" src="/images/kelly-hero.jpg" alt="" width="44" height="44">
+      <div>
+        <p class="chat-head__t">Assistente da Kelly</p>
+        <p class="chat-head__s">Raio-X gratuito · 10 perguntas</p>
+      </div>
+      <div class="progresso" aria-hidden="true">
+        <div class="progresso__txt" id="rx-prog-txt">0 de 10</div>
+        <div class="progresso__barra"><i id="rx-prog"></i></div>
+      </div>
+    </div>
+    <div class="chat-body" id="rx-body" aria-live="polite"></div>
+    <div class="chat-footer" id="rx-footer"></div>
+  </section>
+
+  <p class="rodape">KA | Inteligência para Marcas · <a href="https://www.instagram.com/kellyalbert.brand" target="_blank" rel="noopener">@kellyalbert.brand</a> · <a href="/">kellyalbert.com.br</a></p>
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
+  var CONFIG = {
+    linkAula: '',                       // PENDENTE: link de pagamento da aula (R$ 360). Vazio = botão abre o WhatsApp.
+    precoAula: 'R$ 360',
+    whatsapp: '5551993163333',
+    instagram: 'https://www.instagram.com/kellyalbert.brand',
+    mailerliteGroupId: null,            // PENDENTE: id do grupo no MailerLite. null = entra sem grupo.
+    origem: 'raio-x-marca',
+    storageKey: 'ka_raiox_marca_v1',
+    leadKey: 'ka_raiox_marca_lead'
+  };
+
+  // ─── TEXTOS E PERGUNTAS (editar aqui) ──────────────────────────
+  var TEXTOS = {
+    abertura: [
+      'Oi! Aqui é a assistente da Kelly.',
+      'Na crise, o cliente fica com a marca que ele valoriza.',
+      'Vou te fazer 10 perguntas rápidas. No final, você recebe o seu Raio-X: o quanto a sua empresa entrega, o quanto o cliente enxerga e a distância entre os dois. Leva uns 5 minutos.'
+    ],
+    bloco1: 'Primeiro, vamos falar do que a sua empresa entrega de verdade.',
+    bloco2: 'Agora, vamos olhar do lado do cliente: o que ele enxerga da sua marca.',
+    captura: 'Pronto! Para te mostrar o seu Raio-X e te mandar o resultado, me diz:',
+    retomar: 'Que bom te ver de novo! Quer continuar de onde parou?'
+  };
+  var PONTOS = [10, 6, 3, 0];
+
+  var BLOCO1 = [
+    {id:'P1', q:'Os seus clientes voltam a comprar ou indicam você?', r:['Quase todos','Muitos','Poucos','Raramente']},
+    {id:'P2', q:'Quando o cliente usa o seu produto ou serviço, ele fica satisfeito?', r:['Elogia sempre','Na maioria das vezes','Às vezes reclama','Reclama com frequência']},
+    {id:'P3', q:'Existe algo que você faz melhor ou diferente do concorrente?', r:['Sim, várias coisas','Sim, uma ou duas','Talvez','Não sei']},
+    {id:'P4', q:'Há quanto tempo a sua empresa entrega com qualidade?', r:['Mais de 10 anos','De 3 a 10 anos','De 1 a 3 anos','Menos de 1 ano']},
+    {id:'P5', q:'Você tem resultados ou histórias de clientes que provam o seu trabalho?', r:['Muitas','Algumas','Poucas','Nenhuma']}
+  ];
+  var BLOCO2 = [
+    {id:'P6', q:'Quando o cliente diz "está caro", o que acontece?', r:['Ele entende o valor e fecha','Às vezes eu dou desconto','Quase sempre eu dou desconto','Eu perco a venda']},
+    {id:'P7', q:'Você consegue explicar em uma frase por que os clientes escolhem você?', r:['Sim, e todos na empresa falam igual','Sim, mas cada um fala de um jeito','Fica genérico, tipo "qualidade e bom atendimento"','Não sei explicar']},
+    {id:'P8', q:'Na comparação com o concorrente, o cliente vê alguma diferença além do preço?', r:['Uma diferença clara','Uma diferença pequena','Quase nenhuma','Não sei']},
+    {id:'P9', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que você entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']},
+    {id:'P10', q:'Se o seu preço subir, o seu cliente continua com você?', r:['Sim','A maioria sim','Tenho medo de perder muitos','Perderia a maioria']}
+  ];
+  var PERGUNTAS = BLOCO1.concat(BLOCO2);
+
+  var ACOES = {
+    P6:{o:'O cliente ainda decide pelo preço.', a:'Liste 3 coisas que você entrega e o concorrente não, e use na próxima proposta.'},
+    P7:{o:'Você ainda não tem uma frase que explique por que é escolhido.', a:'Complete a frase "As pessoas me escolhem porque…" e teste com 3 clientes.'},
+    P8:{o:'O cliente não vê diferença entre você e o concorrente.', a:'Escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias.'},
+    P9:{o:'A sua imagem diminui o valor do que você entrega.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é.'},
+    P10:{o:'O cliente ainda não confia o suficiente para pagar mais.', a:'Reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço.'}
+  };
+  var ACAO_ENTREGA = {o:'A entrega ainda precisa de base.', a:'Antes de comunicar, pergunte a 5 clientes "por que você continua comprando de mim?" e use as respostas para fortalecer a entrega.'};
+
+  var PERFIS = {
+    valor_escondido:{nome:'Valor escondido', txt:'Você entrega muito, mas o cliente não enxerga. Na crise, é quem mais perde para o concorrente mais barato. A boa notícia: o valor já existe. Falta o cliente perceber.'},
+    atravessa:{nome:'Marca que atravessa', txt:'O que você entrega é reconhecido pelo cliente. Essa é a marca que atravessa qualquer crise. Agora é proteger esse valor e crescer.'},
+    promessa_maior:{nome:'Promessa maior que a entrega', txt:'A sua imagem está à frente da sua entrega. Cuidado: com o tempo, o cliente percebe. Fortaleça a entrega para sustentar o que a marca promete.'},
+    base:{nome:'Base em construção', txt:'Antes de comunicar mais, é preciso fortalecer a entrega e definir o que torna você diferente.'}
+  };
+
+  // ─── ESTADO ─────────────────────────────────────────────────────
+  var body = document.getElementById('rx-body');
+  var footer = document.getElementById('rx-footer');
+  var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DIGITANDO = reduz ? 0 : 600;
+  var estado = {passo:0, respostas:{}, concluido:false};
+  var utm = lerUTM();
+
+  function salvar(){ try{ localStorage.setItem(CONFIG.storageKey, JSON.stringify(estado)); }catch(e){} }
+  function carregar(){ try{ return JSON.parse(localStorage.getItem(CONFIG.storageKey)||'null'); }catch(e){ return null; } }
+  function limpar(){ try{ localStorage.removeItem(CONFIG.storageKey); }catch(e){} }
+
+  function lerUTM(){
+    var p = new URLSearchParams(location.search), o = {};
+    ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ if(p.get(k)) o[k]=p.get(k); });
+    try{
+      if(Object.keys(o).length) sessionStorage.setItem('ka_rx_utm', JSON.stringify(o));
+      else o = JSON.parse(sessionStorage.getItem('ka_rx_utm')||'{}');
+    }catch(e){}
+    return o;
+  }
+
+  // Métricas: usa o pixel/gtag se existirem; sempre registra no console
+  function evento(nome, dados){
+    try{ if(window.fbq) window.fbq('trackCustom', 'RaioX_'+nome, dados||{}); }catch(e){}
+    try{ if(window.gtag) window.gtag('event', 'raiox_'+nome, dados||{}); }catch(e){}
+    if(window.console) console.log('[raio-x]', nome, dados||'');
+  }
+
+  function progresso(){
+    var n = Object.keys(estado.respostas).length;
+    document.getElementById('rx-prog-txt').textContent = Math.min(n,10)+' de 10';
+    document.getElementById('rx-prog').style.width = (Math.min(n,10)*10)+'%';
+  }
+
+  // ─── MENSAGENS ─────────────────────────────────────────────────
+  function rolar(el){ setTimeout(function(){ (el||footer).scrollIntoView({behavior: reduz?'auto':'smooth', block:'end'}); }, 40); }
+
+  function bot(texto, cb, html){
+    var d = document.createElement('div'); d.className='digitando'; d.innerHTML='<span></span><span></span><span></span>';
+    body.appendChild(d); rolar(d);
+    setTimeout(function(){
+      d.remove();
+      var b = document.createElement('div'); b.className='bolha bolha--bot';
+      if(html) b.innerHTML = texto; else b.textContent = texto;
+      body.appendChild(b); rolar(b);
+      if(cb) cb();
+    }, DIGITANDO);
+  }
+  function bots(lista, cb){
+    var i = 0;
+    (function prox(){ if(i>=lista.length){ if(cb) cb(); return; } bot(lista[i++], prox); })();
+  }
+  function usuario(texto){ var b=document.createElement('div'); b.className='bolha bolha--user'; b.textContent=texto; body.appendChild(b); rolar(b); }
+  function marcaBloco(texto){ var b=document.createElement('div'); b.className='bolha bolha--bloco'; b.textContent=texto; body.appendChild(b); }
+
+  function botoes(lista){
+    footer.innerHTML='';
+    lista.forEach(function(item){
+      var bt=document.createElement('button'); bt.type='button'; bt.className=item.classe||'opcao'; bt.textContent=item.t;
+      bt.addEventListener('click', function(){ item.f(bt); });
+      footer.appendChild(bt);
+    });
+    var primeiro = footer.querySelector('button'); if(primeiro && !reduz) primeiro.focus({preventScroll:true});
+    rolar();
+  }
+
+  // ─── FLUXO ─────────────────────────────────────────────────────
+  function iniciar(){
+    var salvo = carregar();
+    if(salvo && !salvo.concluido && Object.keys(salvo.respostas||{}).length){
+      estado = salvo; progresso();
+      bot(TEXTOS.retomar, function(){
+        botoes([
+          {t:'Continuar de onde parei', classe:'btn btn--laranja', f:function(){ footer.innerHTML=''; usuario('Continuar de onde parei'); evento('retomou',{passo:estado.passo}); perguntar(); }},
+          {t:'Começar de novo', classe:'btn btn--contorno', f:function(){ footer.innerHTML=''; usuario('Começar de novo'); estado={passo:0,respostas:{},concluido:false}; salvar(); progresso(); perguntar(); }}
+        ]);
+      });
+      return;
+    }
+    bots(TEXTOS.abertura, function(){
+      botoes([{t:'Começar', classe:'btn btn--laranja', f:function(){ footer.innerHTML=''; usuario('Começar'); evento('inicio'); perguntar(); }}]);
+    });
+  }
+
+  function perguntar(){
+    if(estado.passo >= PERGUNTAS.length){ capturar(); return; }
+    var q = PERGUNTAS[estado.passo];
+    var antes = function(cb){ cb(); };
+    if(q.id==='P1'){ antes = function(cb){ marcaBloco('Bloco 1 · O que você entrega'); bot(TEXTOS.bloco1, cb); }; }
+    if(q.id==='P6'){ antes = function(cb){ evento('bloco1_concluido'); marcaBloco('Bloco 2 · O que o cliente enxerga'); bot(TEXTOS.bloco2, cb); }; }
+    antes(function(){
+      bot(q.q, function(){
+        botoes(q.r.map(function(texto, i){
+          return {t:texto, f:function(bt){
+            bt.classList.add('escolhida');
+            estado.respostas[q.id] = {i:i, pontos:PONTOS[i], resposta:texto};
+            estado.passo++; salvar(); progresso();
+            setTimeout(function(){ footer.innerHTML=''; usuario(texto); perguntar(); }, reduz?0:160);
+          }};
+        }));
+      });
+    });
+  }
+
+  function capturar(){
+    evento('bloco2_concluido');
+    var salvo = {}; try{ salvo = JSON.parse(localStorage.getItem(CONFIG.leadKey)||'{}'); }catch(e){}
+    function v(k){ return (salvo[k]||'').replace(/"/g,'&quot;'); }
+    bot(TEXTOS.captura, function(){
+      footer.innerHTML =
+        '<form class="form" id="rx-form" novalidate>'+
+          '<div class="campo"><label for="rx-nome">Nome</label><input id="rx-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" value="'+v('nome')+'" required></div>'+
+          '<div class="campo"><label for="rx-empresa">Nome da empresa</label><input id="rx-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Sua empresa" value="'+v('empresa')+'" required></div>'+
+          '<div class="campo"><label for="rx-email">E-mail</label><input id="rx-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" value="'+v('email')+'" required></div>'+
+          '<div class="campo"><label for="rx-wa">WhatsApp com DDD</label><input id="rx-wa" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" placeholder="(00) 00000-0000" value="'+v('whatsapp')+'" required></div>'+
+          '<label class="consent"><input id="rx-consent" type="checkbox" name="consentimento" required> <span>Aceito receber o meu resultado e contato da KA por e-mail e WhatsApp.</span></label>'+
+          '<p class="erro" id="rx-erro" role="alert"></p>'+
+          '<button type="submit" class="btn btn--laranja">Ver o meu Raio-X</button>'+
+          '<p class="dica">Seus dados ficam só com a KA. Sem spam.</p>'+
+        '</form>';
+      var wa = document.getElementById('rx-wa');
+      wa.addEventListener('input', function(){ wa.value = mascara(wa.value); });
+      document.getElementById('rx-form').addEventListener('submit', enviar);
+      rolar();
+      var n = document.getElementById('rx-nome'); if(!reduz) n.focus({preventScroll:true});
+    });
+  }
+
+  function mascara(v){
+    var d = v.replace(/\D/g,'').slice(0,11);
+    if(d.length<=2) return d.length?'('+d:'';
+    if(d.length<=6) return '('+d.slice(0,2)+') '+d.slice(2);
+    if(d.length<=10) return '('+d.slice(0,2)+') '+d.slice(2,6)+'-'+d.slice(6);
+    return '('+d.slice(0,2)+') '+d.slice(2,7)+'-'+d.slice(7);
+  }
+  function validaEmail(e){
+    e=(e||'').trim().toLowerCase();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)) return 'Digite um e-mail válido (ex.: nome@exemplo.com).';
+    var dom=e.split('@')[1];
+    var TYPO={'gmail.con':'gmail.com','gmial.com':'gmail.com','gnail.com':'gmail.com','hotmial.com':'hotmail.com','hotmail.con':'hotmail.com','outlok.com':'outlook.com','yahoo.con':'yahoo.com','icloud.con':'icloud.com'};
+    if(TYPO[dom]) return 'Seu e-mail parece ter um erro. Você quis dizer "'+e.split('@')[0]+'@'+TYPO[dom]+'"?';
+    return null;
+  }
+
+  function enviar(ev){
+    ev.preventDefault();
+    var f = ev.target, err = document.getElementById('rx-erro');
+    function falha(msg){ err.textContent=msg; err.style.display='block'; }
+    err.style.display='none';
+    var nome = f.nome.value.trim().replace(/\s+/g,' ');
+    var empresa = f.empresa.value.trim();
+    var email = f.email.value.trim();
+    var whatsapp = f.whatsapp.value.trim();
+    if(nome.split(' ').filter(function(p){return p.length>=2;}).length<2) return falha('Digite o seu nome e sobrenome.');
+    if(empresa.length<2) return falha('Digite o nome da sua empresa.');
+    var eE = validaEmail(email); if(eE) return falha(eE);
+    var d = whatsapp.replace(/\D/g,''); if(d.length<10||d.length>11) return falha('Digite o WhatsApp com DDD, por exemplo (51) 99999-9999.');
+    if(!f.consentimento.checked) return falha('Para ver o resultado, marque que aceita receber o contato da KA.');
+
+    var lead = {nome:nome, empresa:empresa, email:email, whatsapp:whatsapp};
+    try{ localStorage.setItem(CONFIG.leadKey, JSON.stringify(lead)); }catch(e){}
+    var btn = f.querySelector('button'); btn.disabled=true; btn.textContent='Montando o seu Raio-X…';
+
+    var r = calcular();
+    enviarLead(lead, r);
+    estado.concluido = true; salvar();
+    evento('lead_enviado',{perfil:r.perfil});
+
+    setTimeout(function(){ footer.innerHTML=''; usuario('Ver o meu Raio-X'); mostrarResultado(lead, r); }, 300);
+  }
+
+  // ─── CÁLCULO ───────────────────────────────────────────────────
+  function soma(lista){ return lista.reduce(function(s,q){ return s+((estado.respostas[q.id]||{}).pontos||0); },0); }
+  function calcular(){
+    var entrega = soma(BLOCO1)*2, enxerga = soma(BLOCO2)*2, distancia = entrega-enxerga;
+    var ea = entrega>=60, xa = enxerga>=60;
+    var perfil = ea&&!xa ? 'valor_escondido' : ea&&xa ? 'atravessa' : !ea&&xa ? 'promessa_maior' : 'base';
+    var piores = BLOCO2.map(function(q,ordem){ return {id:q.id, p:(estado.respostas[q.id]||{}).pontos||0, ordem:ordem}; })
+      .sort(function(a,b){ return a.p-b.p || a.ordem-b.ordem; }).slice(0,3).map(function(x){ return x.id; });
+    var acoes = piores.map(function(id){ return ACOES[id]; });
+    if(perfil==='base'||perfil==='promessa_maior') acoes.push(ACAO_ENTREGA);
+    return {entrega:entrega, enxerga:enxerga, distancia:distancia, perfil:perfil, piores:piores, acoes:acoes};
+  }
+
+  // ─── ENVIO DO LEAD ─────────────────────────────────────────────
+  function enviarLead(lead, r){
+    var respostas = PERGUNTAS.map(function(q){ var x=estado.respostas[q.id]||{}; return q.id+': '+(x.resposta||'')+' ('+(x.pontos||0)+')'; }).join(' | ');
+    // 1) Netlify Forms (backup: sempre cai no painel do Netlify)
+    try{
+      var fd = new URLSearchParams();
+      fd.append('form-name','raio-x-marca');
+      fd.append('nome',lead.nome); fd.append('empresa',lead.empresa); fd.append('email',lead.email); fd.append('whatsapp',lead.whatsapp);
+      fd.append('consentimento','sim');
+      fd.append('entrega',r.entrega+'%'); fd.append('enxerga',r.enxerga+'%'); fd.append('distancia',String(r.distancia)); fd.append('perfil',PERFIS[r.perfil].nome);
+      fd.append('respostas',respostas); fd.append('origem',CONFIG.origem);
+      fd.append('utm_source',utm.utm_source||''); fd.append('utm_medium',utm.utm_medium||''); fd.append('utm_campaign',utm.utm_campaign||'');
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fd.toString()}).catch(function(e){ console.warn('[Netlify Forms]',e); });
+    }catch(e){}
+    // 2) MailerLite (Netlify Function existente)
+    try{
+      fetch('/.netlify/functions/subscribe',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nome:lead.nome, email:lead.email, whatsapp:lead.whatsapp, origem:CONFIG.origem, groupId:CONFIG.mailerliteGroupId})
+      }).then(function(res){ if(!res.ok) console.warn('[MailerLite] HTTP', res.status); }).catch(function(e){ console.warn('[MailerLite]',e); });
+    }catch(e){}
+  }
+
+  // ─── RESULTADO ─────────────────────────────────────────────────
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function mostrarResultado(lead, r){
+    var primeiro = esc(lead.nome.split(' ')[0]);
+    var p = PERFIS[r.perfil];
+    var frase = r.distancia>0
+      ? '<b>Distância: <strong>'+r.distancia+' pontos.</strong></b> É o que você entrega e o seu cliente ainda não enxerga.'
+      : 'O que o cliente enxerga está à altura do que você entrega.';
+    var convite = r.distancia>0
+      ? 'Você entrega <b>'+r.entrega+'%</b>, mas o seu cliente enxerga <b>'+r.enxerga+'%</b>. Essa distância é o que faz você ser escolhido pelo preço.'
+      : 'Você entrega <b>'+r.entrega+'%</b> e o seu cliente enxerga <b>'+r.enxerga+'%</b>. O próximo passo é proteger esse valor e crescer.';
+    var waAula = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero participar da aula ao vivo.');
+    var waKelly = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero saber mais sobre a aula ao vivo.');
+    var linkAula = CONFIG.linkAula || waAula;
+
+    var wrap = document.createElement('div'); wrap.className='res';
+    wrap.innerHTML =
+      '<div class="cartao">'+
+        '<p class="eyebrow">'+primeiro+', este é o seu Raio-X</p>'+
+        '<div class="barra"><div class="barra__topo"><span>O que você entrega</span><strong>'+r.entrega+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--entrega" data-w="'+r.entrega+'"></div></div></div>'+
+        '<div class="barra"><div class="barra__topo"><span>O que o cliente enxerga</span><strong>'+r.enxerga+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--enxerga" data-w="'+r.enxerga+'"></div></div></div>'+
+        '<p class="distancia">'+frase+'</p>'+
+      '</div>'+
+      '<div class="cartao perfil"><p class="eyebrow">O seu perfil</p><h3>'+p.nome+'</h3><p>'+p.txt+'</p></div>'+
+      '<div class="cartao"><p class="eyebrow">Onde a sua marca está perdendo</p>'+
+        '<ul class="acoes">'+r.acoes.map(function(a){ return '<li><span class="acoes__o">'+a.o+'</span><span class="acoes__a"><b>Primeira ação:</b> '+a.a+'</span></li>'; }).join('')+'</ul>'+
+      '</div>'+
+      '<div class="convite">'+
+        '<p class="eyebrow">Aula ao vivo · vagas limitadas</p>'+
+        '<p>'+convite+'</p>'+
+        '<p>Na <b>aula ao vivo</b>, você faz o <b>Diagnóstico Marca com Essência© completo, com 35 perguntas</b>, recebe a leitura da sua marca na hora e discute o resultado comigo. As vagas são limitadas, para que eu converse com cada participante. Tenha o computador ou o celular em mãos no dia da aula.</p>'+
+        '<a class="btn btn--laranja" id="rx-aula" href="'+linkAula+'" target="_blank" rel="noopener">Quero participar da aula · '+CONFIG.precoAula+'</a>'+
+        '<a class="btn btn--whats" href="'+waKelly+'" target="_blank" rel="noopener">Falar com a Kelly no WhatsApp</a>'+
+        '<button type="button" class="btn btn--contorno" id="rx-copiar">Copiar o meu resultado</button>'+
+        '<p class="copiado" id="rx-copiado" aria-live="polite"></p>'+
+      '</div>'+
+      '<div class="links">'+
+        '<a href="'+CONFIG.instagram+'" target="_blank" rel="noopener">Acompanhe as lives no Instagram: <b>@kellyalbert.brand</b></a>'+
+        '<a href="#" id="rx-refazer">Refazer o Raio-X</a>'+
+      '</div>';
+    body.appendChild(wrap);
+    document.getElementById('rx-prog-txt').textContent='Pronto';
+
+    setTimeout(function(){ wrap.querySelectorAll('.barra__fill').forEach(function(el){ el.style.width = el.getAttribute('data-w')+'%'; }); }, reduz?0:250);
+    setTimeout(function(){ wrap.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 60);
+
+    document.getElementById('rx-aula').addEventListener('click', function(){ evento('clique_aula',{perfil:r.perfil}); });
+    document.getElementById('rx-copiar').addEventListener('click', function(){
+      var txt = 'Meu Raio-X de marca (KA | Inteligência para Marcas)\n'+
+        'O que eu entrego: '+r.entrega+'%\nO que o cliente enxerga: '+r.enxerga+'%\n'+
+        'Perfil: '+p.nome+'\nFaça o seu: https://kellyalbert.com.br/raio-x-marca/';
+      var ok = function(){ document.getElementById('rx-copiado').textContent='Resultado copiado.'; };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, function(){ prompt('Copie o seu resultado:', txt); }); }
+      else { prompt('Copie o seu resultado:', txt); }
+      evento('copiou_resultado');
+    });
+    document.getElementById('rx-refazer').addEventListener('click', function(e){
+      e.preventDefault(); limpar(); location.reload();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', iniciar);
+})();
+</script>
+</body></html>

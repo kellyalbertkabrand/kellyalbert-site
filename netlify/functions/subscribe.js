@@ -18,7 +18,10 @@ exports.handler = async function(event){
   }
 
   const apiKey = process.env.MAILERLITE_API_KEY;
-  const groupId = customGroupId || process.env.MAILERLITE_GROUP_ID;
+  // groupId: null explícito = assina sem grupo (ex.: ferramentas sem grupo definido ainda)
+  const groupId = (Object.prototype.hasOwnProperty.call(payload, 'groupId') && payload.groupId === null)
+    ? null
+    : (customGroupId || process.env.MAILERLITE_GROUP_ID);
   if(!apiKey){
     return { statusCode: 500, body: JSON.stringify({ error: 'MAILERLITE_API_KEY não configurada' }) };
   }
