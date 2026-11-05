@@ -544,7 +544,20 @@ button,input{font-family:inherit}
       fd.append('utm_source',utm.utm_source||''); fd.append('utm_medium',utm.utm_medium||''); fd.append('utm_campaign',utm.utm_campaign||'');
       fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fd.toString()}).catch(function(e){ console.warn('[Netlify Forms]',e); });
     }catch(e){}
-    // 2) MailerLite (Netlify Function existente)
+    // 2) Estúdio de Marca (aba Leads do app da KA) via Netlify Function
+    try{
+      fetch('/.netlify/functions/salvar-lead',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          ferramenta:'Teste Valor real × Valor percebido',
+          nome:lead.nome, email:lead.email, whatsapp:lead.whatsapp, segmento:lead.segmento||'', consentimento:true,
+          valor_real:r.entrega, valor_percebido:r.enxerga, distancia:r.distancia, perfil:PERFIS[r.perfil].nome,
+          respostas:PERGUNTAS.map(function(q){ var x=estado.respostas[q.id]||{}; return {id:q.id, pergunta:q.q, resposta:x.resposta||'', pontos:x.pontos||0}; }),
+          origem:CONFIG.origem, utm_source:utm.utm_source||'', utm_medium:utm.utm_medium||'', utm_campaign:utm.utm_campaign||''
+        })
+      }).then(function(res){ if(!res.ok) console.warn('[Estúdio] HTTP', res.status); }).catch(function(e){ console.warn('[Estúdio]',e); });
+    }catch(e){}
+    // 3) MailerLite (Netlify Function existente)
     try{
       fetch('/.netlify/functions/subscribe',{
         method:'POST', headers:{'Content-Type':'application/json'},
