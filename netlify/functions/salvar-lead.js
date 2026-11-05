@@ -2,13 +2,13 @@
 // (app da KA em estudiodemarca.kellyalbert.com.br), coleção `leads` do
 // Firestore. A aba "Leads" do app lê dessa coleção.
 //
-// Grava pela API REST do Firestore com a chave PÚBLICA do Firebase Web (a
-// mesma que o app usa no navegador; a segurança vem das Regras do Firestore,
-// que permitem `create` público em `leads` e leitura só para a KA).
-// Variáveis opcionais no Netlify: FIRESTORE_PROJECT, FIRESTORE_API_KEY.
+// Grava pela API REST do Firestore. Não precisa de chave: quem decide o que
+// pode é a Regra do Firestore (`create` público em `leads`, leitura só da KA).
+// Sem chave no código também evita que o verificador de segredos do Netlify
+// barre a publicação. Variáveis opcionais: FIRESTORE_PROJECT, FIRESTORE_API_KEY.
 
 const PROJETO = process.env.FIRESTORE_PROJECT || 'estudio-de-marcas-ka';
-const CHAVE = process.env.FIRESTORE_API_KEY || 'AIzaSyB0wvONtPSbE8dleIYlzmWxeylVxfkZGm0';
+const CHAVE = process.env.FIRESTORE_API_KEY || '';
 
 const txt = (v, max = 300) => String(v == null ? '' : v).trim().slice(0, max);
 const num = (v) => (typeof v === 'number' && isFinite(v) ? Math.round(v) : null);
@@ -71,7 +71,7 @@ exports.handler = async function (event) {
     status: 'novo',
   };
 
-  const url = `https://firestore.googleapis.com/v1/projects/${PROJETO}/databases/(default)/documents/leads?key=${CHAVE}`;
+  const url = `https://firestore.googleapis.com/v1/projects/${PROJETO}/databases/(default)/documents/leads${CHAVE ? `?key=${CHAVE}` : ''}`;
   try {
     const resp = await fetch(url, {
       method: 'POST',
