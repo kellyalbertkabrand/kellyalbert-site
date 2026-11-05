@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Raio-X · O que você entrega × o que o cliente enxerga · Kelly Albert</title>
-<meta name="description" content="Ferramenta gratuita: 10 perguntas e cerca de 5 minutos para descobrir a distância entre o que a sua empresa entrega e o que o seu cliente enxerga. Campanha Marca Forte Atravessa Crise, da KA | Inteligência para Marcas.">
+<title>Raio-X · Valor real × Valor percebido · Kelly Albert</title>
+<meta name="description" content="Ferramenta gratuita: 10 perguntas e cerca de 5 minutos para descobrir a distância entre o valor real da sua marca (o que ela entrega) e o valor percebido (o que o cliente enxerga). Campanha Marca Forte Atravessa Crise, da KA | Inteligência para Marcas.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://kellyalbert.com.br/raio-x-marca/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Raio-X · O que você entrega × o que o cliente enxerga">
-<meta property="og:description" content="Na crise, o cliente fica com a marca que ele valoriza. Descubra em 5 minutos a distância entre o que você entrega e o que o seu cliente enxerga.">
+<meta property="og:title" content="Raio-X · Valor real × Valor percebido">
+<meta property="og:description" content="Na crise, o cliente fica com a marca que ele valoriza. Descubra em 5 minutos a distância entre o valor real e o valor percebido da sua marca.">
 <meta property="og:image" content="https://kellyalbert.com.br/images/og/og-bio.jpg">
 <meta property="og:url" content="https://kellyalbert.com.br/raio-x-marca/">
 <meta property="og:locale" content="pt_BR">
@@ -140,7 +140,7 @@ button,input{font-family:inherit}
 <!-- Netlify Forms: backup dos leads (o formulário real fica no chat) -->
 <form name="raio-x-marca" netlify netlify-honeypot="bot-field" hidden>
   <input name="bot-field"><input name="nome"><input name="empresa"><input name="email"><input name="whatsapp">
-  <input name="consentimento"><input name="entrega"><input name="enxerga"><input name="distancia"><input name="perfil">
+  <input name="consentimento"><input name="valor_real"><input name="valor_percebido"><input name="distancia"><input name="perfil">
   <input name="respostas"><input name="origem"><input name="utm_source"><input name="utm_medium"><input name="utm_campaign">
 </form>
 
@@ -150,7 +150,7 @@ button,input{font-family:inherit}
   <header class="topo">
     <a href="/" aria-label="KA | Inteligência para Marcas"><img class="topo__logo" src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas" width="150" height="29"></a>
     <span class="rotulo">Marca Forte Atravessa Crise</span>
-    <h1 class="topo__titulo">Raio-X · <b>O que você entrega</b> × <b>o que o cliente enxerga</b></h1>
+    <h1 class="topo__titulo">Raio-X · <b>Valor real</b> × <b>Valor percebido</b></h1>
   </header>
 
   <section class="chat" aria-label="Raio-X da sua marca">
@@ -193,10 +193,10 @@ button,input{font-family:inherit}
     abertura: [
       'Oi! Aqui é a assistente da Kelly.',
       'Na crise, o cliente fica com a marca que ele valoriza.',
-      'Vou te fazer 10 perguntas rápidas. No final, você recebe o seu Raio-X: o quanto a sua empresa entrega, o quanto o cliente enxerga e a distância entre os dois. Leva uns 5 minutos.'
+      'Vou te fazer 10 perguntas rápidas. No final, você recebe o seu Raio-X: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
     ],
-    bloco1: 'Primeiro, vamos falar do que a sua empresa entrega de verdade.',
-    bloco2: 'Agora, vamos olhar do lado do cliente: o que ele enxerga da sua marca.',
+    bloco1: 'Primeiro, o valor real: o que a sua empresa entrega de verdade.',
+    bloco2: 'Agora, o valor percebido: o que o cliente enxerga da sua marca.',
     captura: 'Pronto! Para te mostrar o seu Raio-X e te mandar o resultado, me diz:',
     retomar: 'Que bom te ver de novo! Quer continuar de onde parou?'
   };
@@ -323,8 +323,8 @@ button,input{font-family:inherit}
     if(estado.passo >= PERGUNTAS.length){ capturar(); return; }
     var q = PERGUNTAS[estado.passo];
     var antes = function(cb){ cb(); };
-    if(q.id==='P1'){ antes = function(cb){ marcaBloco('Bloco 1 · O que você entrega'); bot(TEXTOS.bloco1, cb); }; }
-    if(q.id==='P6'){ antes = function(cb){ evento('bloco1_concluido'); marcaBloco('Bloco 2 · O que o cliente enxerga'); bot(TEXTOS.bloco2, cb); }; }
+    if(q.id==='P1'){ antes = function(cb){ marcaBloco('Bloco 1 · Valor real'); bot(TEXTOS.bloco1, cb); }; }
+    if(q.id==='P6'){ antes = function(cb){ evento('bloco1_concluido'); marcaBloco('Bloco 2 · Valor percebido'); bot(TEXTOS.bloco2, cb); }; }
     antes(function(){
       bot(q.q, function(){
         botoes(q.r.map(function(texto, i){
@@ -428,7 +428,7 @@ button,input{font-family:inherit}
       fd.append('form-name','raio-x-marca');
       fd.append('nome',lead.nome); fd.append('empresa',lead.empresa); fd.append('email',lead.email); fd.append('whatsapp',lead.whatsapp);
       fd.append('consentimento','sim');
-      fd.append('entrega',r.entrega+'%'); fd.append('enxerga',r.enxerga+'%'); fd.append('distancia',String(r.distancia)); fd.append('perfil',PERFIS[r.perfil].nome);
+      fd.append('valor_real',r.entrega+'%'); fd.append('valor_percebido',r.enxerga+'%'); fd.append('distancia',String(r.distancia)); fd.append('perfil',PERFIS[r.perfil].nome);
       fd.append('respostas',respostas); fd.append('origem',CONFIG.origem);
       fd.append('utm_source',utm.utm_source||''); fd.append('utm_medium',utm.utm_medium||''); fd.append('utm_campaign',utm.utm_campaign||'');
       fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fd.toString()}).catch(function(e){ console.warn('[Netlify Forms]',e); });
@@ -449,11 +449,11 @@ button,input{font-family:inherit}
     var primeiro = esc(lead.nome.split(' ')[0]);
     var p = PERFIS[r.perfil];
     var frase = r.distancia>0
-      ? '<b>Distância: <strong>'+r.distancia+' pontos.</strong></b> É o que você entrega e o seu cliente ainda não enxerga.'
-      : 'O que o cliente enxerga está à altura do que você entrega.';
+      ? '<b>Distância: <strong>'+r.distancia+' pontos.</strong></b> É o valor que você entrega e o seu cliente ainda não percebe.'
+      : 'O valor percebido está à altura do valor real da sua marca.';
     var convite = r.distancia>0
-      ? 'Você entrega <b>'+r.entrega+'%</b>, mas o seu cliente enxerga <b>'+r.enxerga+'%</b>. Essa distância é o que faz você ser escolhido pelo preço.'
-      : 'Você entrega <b>'+r.entrega+'%</b> e o seu cliente enxerga <b>'+r.enxerga+'%</b>. O próximo passo é proteger esse valor e crescer.';
+      ? 'O valor real da sua marca é <b>'+r.entrega+'%</b>, mas o valor percebido pelo cliente é <b>'+r.enxerga+'%</b>. Essa distância é o que faz você ser escolhido pelo preço.'
+      : 'O valor real da sua marca é <b>'+r.entrega+'%</b> e o valor percebido é <b>'+r.enxerga+'%</b>. O próximo passo é proteger esse valor e crescer.';
     var waAula = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero participar da aula ao vivo.');
     var waKelly = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero saber mais sobre a aula ao vivo.');
     var linkAula = CONFIG.linkAula || waAula;
@@ -462,8 +462,8 @@ button,input{font-family:inherit}
     wrap.innerHTML =
       '<div class="cartao">'+
         '<p class="eyebrow">'+primeiro+', este é o seu Raio-X</p>'+
-        '<div class="barra"><div class="barra__topo"><span>O que você entrega</span><strong>'+r.entrega+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--entrega" data-w="'+r.entrega+'"></div></div></div>'+
-        '<div class="barra"><div class="barra__topo"><span>O que o cliente enxerga</span><strong>'+r.enxerga+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--enxerga" data-w="'+r.enxerga+'"></div></div></div>'+
+        '<div class="barra"><div class="barra__topo"><span>Valor real <small style="opacity:.6">(o que você entrega)</small></span><strong>'+r.entrega+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--entrega" data-w="'+r.entrega+'"></div></div></div>'+
+        '<div class="barra"><div class="barra__topo"><span>Valor percebido <small style="opacity:.6">(o que o cliente enxerga)</small></span><strong>'+r.enxerga+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--enxerga" data-w="'+r.enxerga+'"></div></div></div>'+
         '<p class="distancia">'+frase+'</p>'+
       '</div>'+
       '<div class="cartao perfil"><p class="eyebrow">O seu perfil</p><h3>'+p.nome+'</h3><p>'+p.txt+'</p></div>'+
@@ -492,7 +492,7 @@ button,input{font-family:inherit}
     document.getElementById('rx-aula').addEventListener('click', function(){ evento('clique_aula',{perfil:r.perfil}); });
     document.getElementById('rx-copiar').addEventListener('click', function(){
       var txt = 'Meu Raio-X de marca (KA | Inteligência para Marcas)\n'+
-        'O que eu entrego: '+r.entrega+'%\nO que o cliente enxerga: '+r.enxerga+'%\n'+
+        'Valor real: '+r.entrega+'%\nValor percebido: '+r.enxerga+'%\n'+
         'Perfil: '+p.nome+'\nFaça o seu: https://kellyalbert.com.br/raio-x-marca/';
       var ok = function(){ document.getElementById('rx-copiado').textContent='Resultado copiado.'; };
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, function(){ prompt('Copie o seu resultado:', txt); }); }
