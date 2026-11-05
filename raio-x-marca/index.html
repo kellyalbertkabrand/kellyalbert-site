@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Raio-X · Valor real × Valor percebido · Kelly Albert</title>
-<meta name="description" content="Ferramenta gratuita: 10 perguntas e cerca de 5 minutos para descobrir a distância entre o valor real da sua marca (o que ela entrega) e o valor percebido (o que o cliente enxerga). Campanha Marca Forte Atravessa Crise, da KA | Inteligência para Marcas.">
+<meta name="description" content="Ferramenta gratuita: 11 perguntas e cerca de 5 minutos para descobrir a distância entre o valor real da sua marca (o que ela entrega) e o valor percebido (o que o cliente enxerga). Campanha Marca Forte Atravessa Crise, da KA | Inteligência para Marcas.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://kellyalbert.com.br/raio-x-marca/">
 <meta property="og:type" content="website">
@@ -66,7 +66,10 @@ button,input{font-family:inherit}
 .bolha{max-width:86%;padding:12px 15px;border-radius:18px;font-size:1rem;line-height:1.45;animation:entra .25s ease}
 .bolha--bot{background:var(--azul2);border-bottom-left-radius:6px;align-self:flex-start}
 .bolha--user{background:var(--laranja);color:var(--marinho);font-weight:600;border-bottom-right-radius:6px;align-self:flex-end}
-.bolha--bloco{align-self:center;max-width:100%;background:none;padding:6px 0;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro)}
+.bloco-marca{align-self:stretch;text-align:center;margin:12px 0 6px;padding:16px 0 4px;border-top:1px solid var(--papel-20);animation:entra .25s ease}
+.bloco-marca small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro)}
+.bloco-marca strong{display:block;margin-top:4px;font-size:1.5rem;font-weight:800;line-height:1.15;color:#fff}
+.bloco-marca span{display:block;margin-top:3px;font-size:.92rem;color:var(--papel-70)}
 .digitando{align-self:flex-start;background:var(--azul2);border-radius:18px;border-bottom-left-radius:6px;padding:14px 16px;display:flex;gap:5px}
 .digitando span{width:7px;height:7px;border-radius:50%;background:var(--papel-50);animation:pulsa 1s infinite}
 .digitando span:nth-child(2){animation-delay:.15s}.digitando span:nth-child(3){animation-delay:.3s}
@@ -89,6 +92,10 @@ button,input{font-family:inherit}
 
 .form{display:grid;gap:10px}
 .campo label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--papel-70);margin:0 0 5px}
+.campo label small{font-weight:400;letter-spacing:0;color:var(--papel-50)}
+.campo select{width:100%;min-height:52px;padding:13px 40px 13px 15px;border-radius:12px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23F8F7F2' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right 16px center;color:var(--papel);font-size:1rem;font-family:inherit;-webkit-appearance:none;appearance:none}
+.campo select:focus{outline:none;border-color:var(--laranja)}
+.campo select option{background:#152535;color:#F8F7F2}
 .campo input{width:100%;min-height:52px;padding:13px 15px;border-radius:12px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-size:1rem}
 .campo input::placeholder{color:var(--papel-50)}
 .campo input:focus{outline:none;border-color:var(--laranja)}
@@ -139,7 +146,7 @@ button,input{font-family:inherit}
 
 <!-- Netlify Forms: backup dos leads (o formulário real fica no chat) -->
 <form name="raio-x-marca" netlify netlify-honeypot="bot-field" hidden>
-  <input name="bot-field"><input name="nome"><input name="empresa"><input name="email"><input name="whatsapp">
+  <input name="bot-field"><input name="nome"><input name="segmento"><input name="email"><input name="whatsapp">
   <input name="consentimento"><input name="valor_real"><input name="valor_percebido"><input name="distancia"><input name="perfil">
   <input name="respostas"><input name="origem"><input name="utm_source"><input name="utm_medium"><input name="utm_campaign">
 </form>
@@ -158,10 +165,10 @@ button,input{font-family:inherit}
       <img class="chat-head__avatar" src="/images/kelly-hero.jpg" alt="" width="44" height="44">
       <div>
         <p class="chat-head__t">Assistente da Kelly</p>
-        <p class="chat-head__s">Raio-X gratuito · 10 perguntas</p>
+        <p class="chat-head__s">Raio-X gratuito · 11 perguntas</p>
       </div>
       <div class="progresso" aria-hidden="true">
-        <div class="progresso__txt" id="rx-prog-txt">0 de 10</div>
+        <div class="progresso__txt" id="rx-prog-txt">0 de 11</div>
         <div class="progresso__barra"><i id="rx-prog"></i></div>
       </div>
     </div>
@@ -184,7 +191,7 @@ button,input{font-family:inherit}
     instagram: 'https://www.instagram.com/kellyalbert.brand',
     mailerliteGroupId: null,            // PENDENTE: id do grupo no MailerLite. null = entra sem grupo.
     origem: 'raio-x-marca',
-    storageKey: 'ka_raiox_marca_v1',
+    storageKey: 'ka_raiox_marca_v2',
     leadKey: 'ka_raiox_marca_lead'
   };
 
@@ -193,37 +200,37 @@ button,input{font-family:inherit}
     abertura: [
       'Oi! Aqui é a assistente da Kelly.',
       'Na crise, o cliente fica com a marca que ele valoriza.',
-      'Vou te fazer 10 perguntas rápidas. No final, você recebe o seu Raio-X: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
+      'Vou te fazer 11 perguntas rápidas. No final, você recebe o seu Raio-X: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
     ],
-    bloco1: 'Primeiro, o valor real: o que a sua empresa entrega de verdade.',
-    bloco2: 'Agora, o valor percebido: o que o cliente enxerga da sua marca.',
     captura: 'Pronto! Para te mostrar o seu Raio-X e te mandar o resultado, me diz:',
     retomar: 'Que bom te ver de novo! Quer continuar de onde parou?'
   };
   var PONTOS = [10, 6, 3, 0];
+  var SEGMENTOS = ['Alimentação e gastronomia','Beleza e estética','Saúde e bem-estar','Moda e acessórios','Varejo e comércio','Serviços profissionais','Educação','Arquitetura, construção e decoração','Indústria','Tecnologia','Turismo e eventos','Pet','Outro'];
 
   var BLOCO1 = [
-    {id:'P1', q:'Os seus clientes voltam a comprar ou indicam você?', r:['Quase todos','Muitos','Poucos','Raramente']},
-    {id:'P2', q:'Quando o cliente usa o seu produto ou serviço, ele fica satisfeito?', r:['Elogia sempre','Na maioria das vezes','Às vezes reclama','Reclama com frequência']},
-    {id:'P3', q:'Existe algo que você faz melhor ou diferente do concorrente?', r:['Sim, várias coisas','Sim, uma ou duas','Talvez','Não sei']},
-    {id:'P4', q:'Há quanto tempo a sua empresa entrega com qualidade?', r:['Mais de 10 anos','De 3 a 10 anos','De 1 a 3 anos','Menos de 1 ano']},
-    {id:'P5', q:'Você tem resultados ou histórias de clientes que provam o seu trabalho?', r:['Muitas','Algumas','Poucas','Nenhuma']}
+    {id:'P1', q:'Os seus clientes voltam a comprar de você?', r:['Quase todos','Muitos','Poucos','Raramente']},
+    {id:'P2', q:'Os seus clientes indicam você para outras pessoas?', r:['Sim, com frequência','Às vezes','Raramente','Nunca ou não sei']},
+    {id:'P3', q:'Quando o cliente usa o seu produto ou serviço, ele fica satisfeito?', r:['Elogia sempre','Na maioria das vezes','Às vezes reclama','Reclama com frequência']},
+    {id:'P4', q:'Existe algo que você faz melhor ou diferente do concorrente?', r:['Sim, várias coisas','Sim, uma ou duas','Talvez','Não sei']},
+    {id:'P5', q:'Há quanto tempo a sua empresa está no mercado?', r:['Mais de 10 anos','De 3 a 10 anos','De 1 a 3 anos','Menos de 1 ano']},
+    {id:'P6', q:'Você tem resultados ou histórias de clientes que provam o seu trabalho?', r:['Muitas','Algumas','Poucas','Nenhuma']}
   ];
   var BLOCO2 = [
-    {id:'P6', q:'Quando o cliente diz "está caro", o que acontece?', r:['Ele entende o valor e fecha','Às vezes eu dou desconto','Quase sempre eu dou desconto','Eu perco a venda']},
-    {id:'P7', q:'Você consegue explicar em uma frase por que os clientes escolhem você?', r:['Sim, e todos na empresa falam igual','Sim, mas cada um fala de um jeito','Fica genérico, tipo "qualidade e bom atendimento"','Não sei explicar']},
-    {id:'P8', q:'Na comparação com o concorrente, o cliente vê alguma diferença além do preço?', r:['Uma diferença clara','Uma diferença pequena','Quase nenhuma','Não sei']},
-    {id:'P9', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que você entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']},
-    {id:'P10', q:'Se o seu preço subir, o seu cliente continua com você?', r:['Sim','A maioria sim','Tenho medo de perder muitos','Perderia a maioria']}
+    {id:'P7', q:'Os seus clientes costumam dizer que o seu preço está caro?', r:['Raramente','Às vezes, mas fecham sem desconto','Com frequência, e eu acabo dando desconto','Quase sempre, e eu perco a venda']},
+    {id:'P8', q:'Você consegue explicar em uma frase por que os clientes escolhem você?', r:['Sim, tenho essa frase pronta','Mais ou menos, cada vez falo de um jeito','Só consigo dizer "qualidade e bom atendimento"','Não sei explicar']},
+    {id:'P9', q:'Na comparação com o concorrente, o cliente vê alguma diferença além do preço?', r:['Uma diferença clara','Uma diferença pequena','Quase nenhuma','Não sei']},
+    {id:'P10', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que você entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']},
+    {id:'P11', q:'Se o seu preço subir, o seu cliente continua com você?', r:['Sim','A maioria sim','Tenho medo de perder muitos','Perderia a maioria']}
   ];
   var PERGUNTAS = BLOCO1.concat(BLOCO2);
 
   var ACOES = {
-    P6:{o:'O cliente ainda decide pelo preço.', a:'Liste 3 coisas que você entrega e o concorrente não, e use na próxima proposta.'},
-    P7:{o:'Você ainda não tem uma frase que explique por que é escolhido.', a:'Complete a frase "As pessoas me escolhem porque…" e teste com 3 clientes.'},
-    P8:{o:'O cliente não vê diferença entre você e o concorrente.', a:'Escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias.'},
-    P9:{o:'A sua imagem diminui o valor do que você entrega.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é.'},
-    P10:{o:'O cliente ainda não confia o suficiente para pagar mais.', a:'Reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço.'}
+    P7:{o:'O cliente ainda decide pelo preço.', a:'Liste 3 coisas que você entrega e o concorrente não, e use na próxima proposta.'},
+    P8:{o:'Você ainda não tem uma frase que explique por que é escolhido.', a:'Complete a frase "As pessoas me escolhem porque…" e teste com 3 clientes.'},
+    P9:{o:'O cliente não vê diferença entre você e o concorrente.', a:'Escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias.'},
+    P10:{o:'A sua imagem diminui o valor do que você entrega.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é.'},
+    P11:{o:'O cliente ainda não confia o suficiente para pagar mais.', a:'Reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço.'}
   };
   var ACAO_ENTREGA = {o:'A entrega ainda precisa de base.', a:'Antes de comunicar, pergunte a 5 clientes "por que você continua comprando de mim?" e use as respostas para fortalecer a entrega.'};
 
@@ -265,7 +272,7 @@ button,input{font-family:inherit}
 
   function progresso(){
     var n = Object.keys(estado.respostas).length;
-    document.getElementById('rx-prog-txt').textContent = Math.min(n,10)+' de 10';
+    document.getElementById('rx-prog-txt').textContent = Math.min(n,PERGUNTAS.length)+' de '+PERGUNTAS.length;
     document.getElementById('rx-prog').style.width = (Math.min(n,10)*10)+'%';
   }
 
@@ -288,7 +295,11 @@ button,input{font-family:inherit}
     (function prox(){ if(i>=lista.length){ if(cb) cb(); return; } bot(lista[i++], prox); })();
   }
   function usuario(texto){ var b=document.createElement('div'); b.className='bolha bolha--user'; b.textContent=texto; body.appendChild(b); rolar(b); }
-  function marcaBloco(texto){ var b=document.createElement('div'); b.className='bolha bolha--bloco'; b.textContent=texto; body.appendChild(b); }
+  function marcaBloco(num, titulo, sub){
+    var b=document.createElement('div'); b.className='bloco-marca'; b.setAttribute('role','heading'); b.setAttribute('aria-level','2');
+    b.innerHTML='<small>Bloco '+num+' de 2</small><strong>'+titulo+'</strong><span>'+sub+'</span>';
+    body.appendChild(b);
+  }
 
   function botoes(lista){
     footer.innerHTML='';
@@ -323,8 +334,8 @@ button,input{font-family:inherit}
     if(estado.passo >= PERGUNTAS.length){ capturar(); return; }
     var q = PERGUNTAS[estado.passo];
     var antes = function(cb){ cb(); };
-    if(q.id==='P1'){ antes = function(cb){ marcaBloco('Bloco 1 · Valor real'); bot(TEXTOS.bloco1, cb); }; }
-    if(q.id==='P6'){ antes = function(cb){ evento('bloco1_concluido'); marcaBloco('Bloco 2 · Valor percebido'); bot(TEXTOS.bloco2, cb); }; }
+    if(q.id===BLOCO1[0].id){ antes = function(cb){ marcaBloco(1, 'Valor real', 'O que a sua empresa entrega'); cb(); }; }
+    if(q.id===BLOCO2[0].id){ antes = function(cb){ evento('bloco1_concluido'); marcaBloco(2, 'Valor percebido', 'O que o cliente enxerga'); cb(); }; }
     antes(function(){
       bot(q.q, function(){
         botoes(q.r.map(function(texto, i){
@@ -346,10 +357,13 @@ button,input{font-family:inherit}
     bot(TEXTOS.captura, function(){
       footer.innerHTML =
         '<form class="form" id="rx-form" novalidate>'+
-          '<div class="campo"><label for="rx-nome">Nome</label><input id="rx-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" value="'+v('nome')+'" required></div>'+
-          '<div class="campo"><label for="rx-empresa">Nome da empresa</label><input id="rx-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Sua empresa" value="'+v('empresa')+'" required></div>'+
-          '<div class="campo"><label for="rx-email">E-mail</label><input id="rx-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" value="'+v('email')+'" required></div>'+
-          '<div class="campo"><label for="rx-wa">WhatsApp com DDD</label><input id="rx-wa" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" placeholder="(00) 00000-0000" value="'+v('whatsapp')+'" required></div>'+
+          '<div class="campo"><label for="rx-nome">Nome <small>*</small></label><input id="rx-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" value="'+v('nome')+'" required></div>'+
+          '<div class="campo"><label for="rx-email">E-mail <small>*</small></label><input id="rx-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" value="'+v('email')+'" required></div>'+
+          '<div class="campo"><label for="rx-wa">WhatsApp com DDD <small>*</small></label><input id="rx-wa" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" placeholder="(00) 00000-0000" value="'+v('whatsapp')+'" required></div>'+
+          '<div class="campo"><label for="rx-seg">Segmento <small>(opcional)</small></label><select id="rx-seg" name="segmento">'+
+            '<option value="">Escolha o seu segmento</option>'+
+            SEGMENTOS.map(function(x){ return '<option'+(salvo.segmento===x?' selected':'')+'>'+x+'</option>'; }).join('')+
+          '</select></div>'+
           '<label class="consent"><input id="rx-consent" type="checkbox" name="consentimento" required> <span>Aceito receber o meu resultado e contato da KA por e-mail e WhatsApp.</span></label>'+
           '<p class="erro" id="rx-erro" role="alert"></p>'+
           '<button type="submit" class="btn btn--laranja">Ver o meu Raio-X</button>'+
@@ -385,16 +399,15 @@ button,input{font-family:inherit}
     function falha(msg){ err.textContent=msg; err.style.display='block'; }
     err.style.display='none';
     var nome = f.nome.value.trim().replace(/\s+/g,' ');
-    var empresa = f.empresa.value.trim();
+    var segmento = f.segmento.value;
     var email = f.email.value.trim();
     var whatsapp = f.whatsapp.value.trim();
     if(nome.split(' ').filter(function(p){return p.length>=2;}).length<2) return falha('Digite o seu nome e sobrenome.');
-    if(empresa.length<2) return falha('Digite o nome da sua empresa.');
     var eE = validaEmail(email); if(eE) return falha(eE);
     var d = whatsapp.replace(/\D/g,''); if(d.length<10||d.length>11) return falha('Digite o WhatsApp com DDD, por exemplo (51) 99999-9999.');
     if(!f.consentimento.checked) return falha('Para ver o resultado, marque que aceita receber o contato da KA.');
 
-    var lead = {nome:nome, empresa:empresa, email:email, whatsapp:whatsapp};
+    var lead = {nome:nome, segmento:segmento, email:email, whatsapp:whatsapp};
     try{ localStorage.setItem(CONFIG.leadKey, JSON.stringify(lead)); }catch(e){}
     var btn = f.querySelector('button'); btn.disabled=true; btn.textContent='Montando o seu Raio-X…';
 
@@ -409,7 +422,7 @@ button,input{font-family:inherit}
   // ─── CÁLCULO ───────────────────────────────────────────────────
   function soma(lista){ return lista.reduce(function(s,q){ return s+((estado.respostas[q.id]||{}).pontos||0); },0); }
   function calcular(){
-    var entrega = soma(BLOCO1)*2, enxerga = soma(BLOCO2)*2, distancia = entrega-enxerga;
+    var entrega = Math.round(soma(BLOCO1)*10/BLOCO1.length), enxerga = Math.round(soma(BLOCO2)*10/BLOCO2.length), distancia = entrega-enxerga;
     var ea = entrega>=60, xa = enxerga>=60;
     var perfil = ea&&!xa ? 'valor_escondido' : ea&&xa ? 'atravessa' : !ea&&xa ? 'promessa_maior' : 'base';
     var piores = BLOCO2.map(function(q,ordem){ return {id:q.id, p:(estado.respostas[q.id]||{}).pontos||0, ordem:ordem}; })
@@ -426,7 +439,7 @@ button,input{font-family:inherit}
     try{
       var fd = new URLSearchParams();
       fd.append('form-name','raio-x-marca');
-      fd.append('nome',lead.nome); fd.append('empresa',lead.empresa); fd.append('email',lead.email); fd.append('whatsapp',lead.whatsapp);
+      fd.append('nome',lead.nome); fd.append('segmento',lead.segmento||''); fd.append('email',lead.email); fd.append('whatsapp',lead.whatsapp);
       fd.append('consentimento','sim');
       fd.append('valor_real',r.entrega+'%'); fd.append('valor_percebido',r.enxerga+'%'); fd.append('distancia',String(r.distancia)); fd.append('perfil',PERFIS[r.perfil].nome);
       fd.append('respostas',respostas); fd.append('origem',CONFIG.origem);
