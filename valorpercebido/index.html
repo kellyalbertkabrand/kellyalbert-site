@@ -459,7 +459,7 @@ button,input{font-family:inherit}
             '<option value="">Escolha o seu segmento</option>'+
             SEGMENTOS.map(function(x){ return '<option'+(salvo.segmento===x?' selected':'')+'>'+x+'</option>'; }).join('')+
           '</select></div>'+
-          '<label class="consent"><input id="rx-consent" type="checkbox" name="consentimento" required> <span>Aceito receber o meu resultado e contato da KA por e-mail e WhatsApp.</span></label>'+
+          '<label class="consent"><input id="rx-consent" type="checkbox" name="consentimento" required> <span>Aceito receber comunicações da KA por e-mail ou WhatsApp.</span></label>'+
           '<p class="erro" id="rx-erro" role="alert"></p>'+
           '<button type="submit" class="btn btn--laranja">Ver o meu resultado</button>'+
           '<p class="dica">Seus dados ficam só com a KA. Sem spam.</p>'+
@@ -501,7 +501,7 @@ button,input{font-family:inherit}
     if(nome.split(' ').filter(function(p){return p.length>=2;}).length<2) return falha('Digite o seu nome e sobrenome.');
     var eE = validaEmail(email); if(eE) return falha(eE);
     var d = whatsapp.replace(/\D/g,''); if(d.length<10||d.length>11) return falha('Digite o WhatsApp com DDD, por exemplo (51) 99999-9999.');
-    if(!f.consentimento.checked) return falha('Para ver o resultado, marque que aceita receber o contato da KA.');
+    if(!f.consentimento.checked) return falha('Para ver o resultado, marque que aceita receber comunicações da KA por e-mail ou WhatsApp.');
 
     var lead = {nome:nome, segmento:segmento, email:email, whatsapp:whatsapp};
     try{ localStorage.setItem(CONFIG.leadKey, JSON.stringify(lead)); }catch(e){}
