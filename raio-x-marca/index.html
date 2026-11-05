@@ -104,32 +104,43 @@ button,input{font-family:inherit}
 .erro{display:none;margin:0;padding:10px 12px;border-radius:10px;background:rgba(240,135,58,.14);color:var(--papel);font-size:.88rem}
 .dica{margin:0;font-size:.78rem;color:var(--papel-50);text-align:center}
 
-/* Resultado */
-.res{display:grid;gap:14px;margin-top:6px;animation:entra .3s ease}
-.cartao{background:var(--azul2);border-radius:18px;padding:18px 16px;display:grid;gap:12px}
-.cartao h3{margin:0;font-weight:600;font-size:1.15rem;line-height:1.2}
-.cartao p{margin:0;font-size:.98rem;color:var(--papel-70)}
+/* Resultado: folha de laudo, diferente dos balões do chat */
+.res{display:grid;gap:16px;margin-top:10px;animation:entra .3s ease}
+.res-cab{text-align:center;padding:18px 0 4px;border-top:1px solid var(--papel-20)}
+.res-cab small{display:block;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro)}
+.res-cab strong{display:block;margin-top:4px;font-size:1.6rem;font-weight:800;line-height:1.15;color:#fff}
+.laudo{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.laudo__sec{padding:20px 18px;border-top:1px solid rgba(21,37,53,.12)}
+.laudo__sec:first-child{border-top:0}
+.laudo .eyebrow{color:#B95A1C}
 .eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro);margin:0}
-.barra{display:grid;gap:6px}
-.barra__topo{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.95rem}
-.barra__topo strong{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums}
-.barra__trilho{height:14px;border-radius:14px;background:rgba(21,37,53,.7);overflow:hidden}
+.laudo__nome{margin:6px 0 0;font-size:1.2rem;font-weight:600;line-height:1.25}
+.notas{display:grid;gap:18px;margin-top:16px}
+.nota__topo{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.nota__rot{font-size:.95rem;font-weight:600;line-height:1.2}
+.nota__rot small{display:block;font-weight:400;font-size:.82rem;color:rgba(21,37,53,.65)}
+.nota__num{font-size:2.6rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.barra__trilho{height:14px;margin-top:8px;border-radius:14px;background:rgba(21,37,53,.1);overflow:hidden}
 .barra__fill{height:100%;width:0;border-radius:14px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
-.barra__fill--entrega{background:var(--papel)}
+.barra__fill--entrega{background:var(--marinho)}
 .barra__fill--enxerga{background:var(--laranja)}
-.distancia{font-size:1rem;color:var(--papel)}
-.distancia strong{font-weight:800;font-size:1.25rem;color:var(--laranja-claro)}
-.perfil{border-left:3px solid var(--laranja);padding-left:14px}
-.acoes{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-.acoes li{background:rgba(21,37,53,.55);border-radius:14px;padding:13px 14px;display:grid;gap:5px}
-.acoes__o{font-weight:600;color:var(--papel);font-size:.98rem}
-.acoes__a{font-size:.92rem;color:var(--papel-70)}
-.acoes__a b{color:var(--papel)}
-.convite{background:var(--papel);color:var(--marinho);border-radius:18px;padding:20px 16px;display:grid;gap:12px}
-.convite p{margin:0;font-size:.98rem;line-height:1.5}
-.convite b,.convite strong{color:var(--marinho)}
-.convite .eyebrow{color:#C9601D}
-.convite .btn--contorno{color:var(--marinho);border-color:rgba(21,37,53,.25)}
+.distancia{margin:18px 0 0;padding:13px 15px;border-radius:14px;background:var(--marinho);color:var(--papel);font-size:.98rem;line-height:1.45}
+.laudo .distancia{color:var(--papel)}
+.distancia b{color:#fff;font-weight:800}
+.perfil__nome{margin:6px 0 8px;font-size:1.55rem;font-weight:800;line-height:1.15}
+.laudo p{margin:0;font-size:1rem;line-height:1.55;color:rgba(21,37,53,.85)}
+.pontos{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:16px;counter-reset:ponto}
+.pontos li{counter-increment:ponto;position:relative;padding-left:32px;font-size:1rem;line-height:1.6;color:rgba(21,37,53,.85)}
+.pontos li::before{content:counter(ponto,decimal-leading-zero);position:absolute;left:0;top:1px;font-weight:800;font-size:1.05rem;color:#B95A1C}
+.pontos li b{color:var(--marinho);font-weight:600}
+.convite{background:var(--marinho);border:1.5px solid var(--laranja);color:var(--papel);border-radius:22px;padding:22px 18px;display:grid;gap:14px}
+.convite p{margin:0;font-size:1rem;line-height:1.55;color:var(--papel-70)}
+.convite b{color:#fff;font-weight:600}
+.convite__tit{font-size:1.4rem;font-weight:800;line-height:1.2;color:#fff;margin:0}
+.aula-info{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.aula-info li{display:flex;justify-content:space-between;gap:12px;padding:11px 14px;border-radius:12px;background:var(--azul2);font-size:.95rem}
+.aula-info span{color:var(--papel-70)}
+.aula-info b{color:#fff;font-weight:600;text-align:right}
 .links{display:grid;gap:10px;justify-items:center;text-align:center;padding:4px 0 10px}
 .links a{color:var(--papel-70);font-size:.92rem;text-decoration:none}
 .links a b{color:var(--papel)}
@@ -185,7 +196,10 @@ button,input{font-family:inherit}
 
   // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
   var CONFIG = {
-    linkAula: '',                       // PENDENTE: link de pagamento da aula (R$ 360). Vazio = botão abre o WhatsApp.
+    // Aula ao vivo: quem tem interesse entra no grupo do WhatsApp
+    linkGrupo: 'https://chat.whatsapp.com/IqiC8pOqtj8GH8ofl8y0OE',
+    aulaData: 'Sábado, 14/11',
+    aulaHorario: 'Das 9h às 12h',
     precoAula: 'R$ 360',
     whatsapp: '5551993163333',
     instagram: 'https://www.instagram.com/kellyalbert.brand',
@@ -226,13 +240,14 @@ button,input{font-family:inherit}
   var PERGUNTAS = BLOCO1.concat(BLOCO2);
 
   var ACOES = {
-    P7:{o:'O cliente ainda decide pelo preço.', a:'Liste 3 coisas que você entrega e o concorrente não, e use na próxima proposta.'},
-    P8:{o:'Você ainda não tem uma frase que explique por que é escolhido.', a:'Complete a frase "As pessoas me escolhem porque…" e teste com 3 clientes.'},
-    P9:{o:'O cliente não vê diferença entre você e o concorrente.', a:'Escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias.'},
-    P10:{o:'A sua imagem diminui o valor do que você entrega.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é.'},
-    P11:{o:'O cliente ainda não confia o suficiente para pagar mais.', a:'Reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço.'}
+    P7:{o:'O cliente ainda decide pelo preço.', t:'Quando ele diz que está caro, o problema não é só o valor. É sinal de que ele ainda não enxerga tudo o que recebe de você. Na crise, essa comparação fica mais dura, e quem não mostra o próprio valor acaba dando desconto para fechar.', a:'liste 3 coisas que você entrega e o concorrente não, e use na próxima proposta, antes de apresentar o preço.'},
+    P8:{o:'Você ainda não tem uma frase que explique por que é escolhido.', t:'Se a sua empresa não consegue dizer isso com clareza, o cliente também não consegue. E o que ele não sabe explicar, ele não defende, não lembra e não indica.', a:'complete a frase "As pessoas me escolhem porque…", teste com 3 clientes e ajuste até ela soar do jeito que eles falam de você.'},
+    P9:{o:'O cliente não vê diferença entre você e o concorrente.', t:'Quando tudo parece igual, o preço vira o único critério de escolha. O seu diferencial pode até existir, mas ainda não aparece nos lugares onde o cliente olha antes de decidir.', a:'escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias: no atendimento, nas propostas, no Instagram e no site.'},
+    P10:{o:'A sua imagem diminui o valor do que você entrega.', t:'O cliente conhece a sua empresa primeiro pelo Instagram, pelo site e pelos materiais. Se eles parecem menores do que a sua empresa é, ele chega esperando pouco e aceita pagar pouco.', a:'olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é. Comece a ajustar pelo que aparece primeiro.'},
+    P11:{o:'O cliente ainda não confia o suficiente para pagar mais.', t:'Ele fica enquanto o preço está bom, mas ainda não tem motivos claros para ficar se o preço subir. Confiança se constrói com prova, e a prova precisa aparecer antes do preço.', a:'reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço, na conversa, na proposta e no Instagram.'}
   };
-  var ACAO_ENTREGA = {o:'A entrega ainda precisa de base.', a:'Antes de comunicar, pergunte a 5 clientes "por que você continua comprando de mim?" e use as respostas para fortalecer a entrega.'};
+  var ACAO_ENTREGA = {o:'A entrega ainda precisa de base.', t:'Antes de investir em comunicação, é preciso ter certeza do que sustenta a sua marca. Comunicar mais sem essa base aumenta a promessa, mas não aumenta a confiança do cliente.', a:'pergunte a 5 clientes "por que você continua comprando de mim?" e use as respostas para fortalecer a entrega e descobrir o seu diferencial.'};
+  var ACAO_PROTEGER = {o:'Nenhum ponto crítico no que o cliente enxerga.', t:'O cliente reconhece o que você entrega. O risco agora é se acomodar: na crise, o concorrente vai tentar ocupar esse espaço.', a:'registre por escrito o que faz o cliente escolher você e garanta que toda a equipe fale a mesma coisa.'};
 
   var PERFIS = {
     valor_escondido:{nome:'Valor escondido', txt:'Você entrega muito, mas o cliente não enxerga. Na crise, é quem mais perde para o concorrente mais barato. A boa notícia: o valor já existe. Falta o cliente perceber.'},
@@ -426,8 +441,10 @@ button,input{font-family:inherit}
     var ea = entrega>=60, xa = enxerga>=60;
     var perfil = ea&&!xa ? 'valor_escondido' : ea&&xa ? 'atravessa' : !ea&&xa ? 'promessa_maior' : 'base';
     var piores = BLOCO2.map(function(q,ordem){ return {id:q.id, p:(estado.respostas[q.id]||{}).pontos||0, ordem:ordem}; })
+      .filter(function(x){ return x.p<10; })
       .sort(function(a,b){ return a.p-b.p || a.ordem-b.ordem; }).slice(0,3).map(function(x){ return x.id; });
     var acoes = piores.map(function(id){ return ACOES[id]; });
+    if(!acoes.length) acoes.push(ACAO_PROTEGER);
     if(perfil==='base'||perfil==='promessa_maior') acoes.push(ACAO_ENTREGA);
     return {entrega:entrega, enxerga:enxerga, distancia:distancia, perfil:perfil, piores:piores, acoes:acoes};
   }
@@ -462,32 +479,45 @@ button,input{font-family:inherit}
     var primeiro = esc(lead.nome.split(' ')[0]);
     var p = PERFIS[r.perfil];
     var frase = r.distancia>0
-      ? '<b>Distância: <strong>'+r.distancia+' pontos.</strong></b> É o valor que você entrega e o seu cliente ainda não percebe.'
+      ? '<b>Distância: '+r.distancia+' pontos.</b> É o valor que você entrega e o seu cliente ainda não percebe.'
       : 'O valor percebido está à altura do valor real da sua marca.';
     var convite = r.distancia>0
       ? 'O valor real da sua marca é <b>'+r.entrega+'%</b>, mas o valor percebido pelo cliente é <b>'+r.enxerga+'%</b>. Essa distância é o que faz você ser escolhido pelo preço.'
       : 'O valor real da sua marca é <b>'+r.entrega+'%</b> e o valor percebido é <b>'+r.enxerga+'%</b>. O próximo passo é proteger esse valor e crescer.';
-    var waAula = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero participar da aula ao vivo.');
-    var waKelly = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero saber mais sobre a aula ao vivo.');
-    var linkAula = CONFIG.linkAula || waAula;
+    var tituloPontos = r.perfil==='atravessa' ? 'Onde a sua marca ainda pode crescer' : 'Onde a sua marca está perdendo';
+    var waKelly = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Raio-X e quero saber mais sobre a aula ao vivo do dia 14/11.');
 
     var wrap = document.createElement('div'); wrap.className='res';
     wrap.innerHTML =
-      '<div class="cartao">'+
-        '<p class="eyebrow">'+primeiro+', este é o seu Raio-X</p>'+
-        '<div class="barra"><div class="barra__topo"><span>Valor real <small style="opacity:.6">(o que você entrega)</small></span><strong>'+r.entrega+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--entrega" data-w="'+r.entrega+'"></div></div></div>'+
-        '<div class="barra"><div class="barra__topo"><span>Valor percebido <small style="opacity:.6">(o que o cliente enxerga)</small></span><strong>'+r.enxerga+'%</strong></div><div class="barra__trilho"><div class="barra__fill barra__fill--enxerga" data-w="'+r.enxerga+'"></div></div></div>'+
-        '<p class="distancia">'+frase+'</p>'+
-      '</div>'+
-      '<div class="cartao perfil"><p class="eyebrow">O seu perfil</p><h3>'+p.nome+'</h3><p>'+p.txt+'</p></div>'+
-      '<div class="cartao"><p class="eyebrow">Onde a sua marca está perdendo</p>'+
-        '<ul class="acoes">'+r.acoes.map(function(a){ return '<li><span class="acoes__o">'+a.o+'</span><span class="acoes__a"><b>Primeira ação:</b> '+a.a+'</span></li>'; }).join('')+'</ul>'+
-      '</div>'+
+      '<div class="res-cab"><small>Resultado</small><strong>O seu Raio-X</strong></div>'+
+      '<article class="laudo" aria-label="O seu Raio-X">'+
+        '<section class="laudo__sec">'+
+          '<p class="eyebrow">Raio-X da marca · KA</p>'+
+          '<p class="laudo__nome">'+primeiro+', este é o retrato da sua marca hoje.</p>'+
+          '<div class="notas">'+
+            '<div class="nota"><div class="nota__topo"><span class="nota__rot">Valor real<small>o que você entrega</small></span><span class="nota__num">'+r.entrega+'%</span></div><div class="barra__trilho"><div class="barra__fill barra__fill--entrega" data-w="'+r.entrega+'"></div></div></div>'+
+            '<div class="nota"><div class="nota__topo"><span class="nota__rot">Valor percebido<small>o que o cliente enxerga</small></span><span class="nota__num">'+r.enxerga+'%</span></div><div class="barra__trilho"><div class="barra__fill barra__fill--enxerga" data-w="'+r.enxerga+'"></div></div></div>'+
+          '</div>'+
+          '<p class="distancia">'+frase+'</p>'+
+        '</section>'+
+        '<section class="laudo__sec"><p class="eyebrow">O seu perfil</p><h3 class="perfil__nome">'+p.nome+'</h3><p>'+p.txt+'</p></section>'+
+        '<section class="laudo__sec"><p class="eyebrow">'+tituloPontos+'</p>'+
+          '<ol class="pontos">'+r.acoes.map(function(a){ return '<li><b>'+a.o+'</b> '+a.t+' <b>Primeira ação:</b> '+a.a+'</li>'; }).join('')+'</ol>'+
+        '</section>'+
+      '</article>'+
       '<div class="convite">'+
         '<p class="eyebrow">Aula ao vivo · vagas limitadas</p>'+
+        '<h3 class="convite__tit">Descubra exatamente onde está a distância da sua marca</h3>'+
         '<p>'+convite+'</p>'+
-        '<p>Na <b>aula ao vivo</b>, você faz o <b>Diagnóstico Marca com Essência© completo, com 35 perguntas</b>, recebe a leitura da sua marca na hora e discute o resultado comigo. As vagas são limitadas, para que eu converse com cada participante. Tenha o computador ou o celular em mãos no dia da aula.</p>'+
-        '<a class="btn btn--laranja" id="rx-aula" href="'+linkAula+'" target="_blank" rel="noopener">Quero participar da aula · '+CONFIG.precoAula+'</a>'+
+        '<p>No <b>sábado, 14/11, das 9h às 12h</b>, eu faço uma <b>aula ao vivo com a ferramenta Diagnóstico da Marca</b>. Você aplica o diagnóstico na sua empresa, recebe as minhas orientações na hora e sai sabendo o que ajustar para o cliente enxergar o seu valor. As vagas são limitadas, para que eu converse com cada participante.</p>'+
+        '<ul class="aula-info">'+
+          '<li><span>Quando</span><b>'+CONFIG.aulaData+'</b></li>'+
+          '<li><span>Horário</span><b>'+CONFIG.aulaHorario+'</b></li>'+
+          '<li><span>Investimento</span><b>'+CONFIG.precoAula+'</b></li>'+
+          '<li><span>Leve</span><b>Computador ou celular</b></li>'+
+        '</ul>'+
+        '<p>Tem interesse? Toque no botão abaixo e entre no grupo da aula no WhatsApp. Lá você recebe todas as informações.</p>'+
+        '<a class="btn btn--laranja" id="rx-aula" href="'+CONFIG.linkGrupo+'" target="_blank" rel="noopener">Quero participar da aula</a>'+
         '<a class="btn btn--whats" href="'+waKelly+'" target="_blank" rel="noopener">Falar com a Kelly no WhatsApp</a>'+
         '<button type="button" class="btn btn--contorno" id="rx-copiar">Copiar o meu resultado</button>'+
         '<p class="copiado" id="rx-copiado" aria-live="polite"></p>'+
@@ -504,10 +534,15 @@ button,input{font-family:inherit}
 
     document.getElementById('rx-aula').addEventListener('click', function(){ evento('clique_aula',{perfil:r.perfil}); });
     document.getElementById('rx-copiar').addEventListener('click', function(){
-      var txt = 'Meu Raio-X de marca (KA | Inteligência para Marcas)\n'+
-        'Valor real: '+r.entrega+'%\nValor percebido: '+r.enxerga+'%\n'+
-        'Perfil: '+p.nome+'\nFaça o seu: https://kellyalbert.com.br/raio-x-marca/';
-      var ok = function(){ document.getElementById('rx-copiado').textContent='Resultado copiado.'; };
+      var txt = 'Meu Raio-X de marca · KA | Inteligência para Marcas\n\n'+
+        'Valor real (o que eu entrego): '+r.entrega+'%\n'+
+        'Valor percebido (o que o cliente enxerga): '+r.enxerga+'%\n'+
+        (r.distancia>0 ? 'Distância: '+r.distancia+' pontos\n' : '')+
+        '\nPerfil: '+p.nome+'\n'+p.txt+'\n\n'+
+        tituloPontos+':\n\n'+
+        r.acoes.map(function(a,i){ return (i+1)+'. '+a.o+' '+a.t+' Primeira ação: '+a.a; }).join('\n\n')+
+        '\n\nFaça o seu: https://kellyalbert.com.br/raio-x-marca/';
+      var ok = function(){ document.getElementById('rx-copiado').textContent='Resultado copiado, com as notas e os pontos.'; };
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok, function(){ prompt('Copie o seu resultado:', txt); }); }
       else { prompt('Copie o seu resultado:', txt); }
       evento('copiou_resultado');
