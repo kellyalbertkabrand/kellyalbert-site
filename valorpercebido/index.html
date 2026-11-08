@@ -124,6 +124,19 @@ button,input{font-family:inherit}
 .consent input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--laranja)}
 .erro{display:none;margin:0;padding:10px 12px;border-radius:10px;background:rgba(240,135,58,.14);color:var(--papel);font-size:.88rem}
 .dica{margin:0;font-size:.78rem;color:var(--papel-50);text-align:center}
+/* Dificuldades: lista para marcar */
+.dif{display:grid;gap:14px}
+.dif__grupo{margin:0;padding:0;border:0;display:grid;gap:8px}
+.dif__grupo legend{padding:0;margin:0 0 2px;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--laranja-claro)}
+.dif__item{display:flex;gap:12px;align-items:flex-start;min-height:52px;padding:12px 14px;border-radius:14px;border:1.5px solid var(--papel-20);cursor:pointer;transition:background .15s,border-color .15s}
+.dif__item:hover{border-color:var(--laranja)}
+.dif__item input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--laranja)}
+.dif__item span{font-size:.95rem;line-height:1.35;color:var(--papel-70)}
+.dif__item b{color:var(--papel)}
+.dif__item:has(input:checked){border-color:var(--laranja);background:rgba(240,135,58,.12)}
+.dif__outra{display:none;width:100%;min-height:48px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-size:1rem}
+.dif__outra.aberta{display:block}
+.dif__nenhuma{margin-top:2px}
 
 /* Resultado: fundo branco e caramelo vivo #D86F2A */
 .res{display:grid;gap:16px;margin-top:14px;animation:entra .3s ease}
@@ -208,7 +221,7 @@ button,input{font-family:inherit}
 <form name="raio-x-marca" netlify netlify-honeypot="bot-field" hidden>
   <input name="bot-field"><input name="nome"><input name="segmento"><input name="email"><input name="whatsapp">
   <input name="consentimento"><input name="valor_real"><input name="valor_percebido"><input name="distancia"><input name="perfil">
-  <input name="respostas"><input name="origem"><input name="utm_source"><input name="utm_medium"><input name="utm_campaign">
+  <input name="respostas"><input name="dificuldades"><input name="origem"><input name="utm_source"><input name="utm_medium"><input name="utm_campaign">
 </form>
 
 <img class="reticula" src="/images/diagnostico/reticula-marinho.svg" alt="" aria-hidden="true">
@@ -259,7 +272,7 @@ button,input{font-family:inherit}
     instagram: 'https://www.instagram.com/kellyalbert.brand',
     mailerliteGroupId: '183324004183967092', // grupo do Diagnóstico: dispara a "Automação Diagnóstico" no MailerLite
     origem: 'valorpercebido',
-    storageKey: 'ka_raiox_marca_v2',
+    storageKey: 'ka_raiox_marca_v3',
     leadKey: 'ka_raiox_marca_lead'
   };
 
@@ -268,7 +281,7 @@ button,input{font-family:inherit}
     abertura: [
       'Oi! Aqui é a assistente da Kelly.',
       'Na crise, o cliente fica com a marca que ele valoriza.',
-      'Vou te fazer 11 perguntas rápidas. No final, você recebe o seu resultado: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
+      'Vou te fazer 11 perguntas rápidas. Na última, você marca as maiores dificuldades da sua marca hoje. No final, você recebe o seu resultado: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
     ],
     captura: 'Pronto! Para te mostrar e te mandar o seu resultado, me diz:',
     retomar: 'Que bom te ver de novo! Quer continuar de onde parou?'
@@ -288,17 +301,47 @@ button,input{font-family:inherit}
     {id:'P7', q:'Os seus clientes costumam dizer que o seu preço está caro?', r:['Raramente','Às vezes, mas fecham sem desconto','Com frequência, e eu acabo dando desconto','Quase sempre, e eu perco a venda']},
     {id:'P8', q:'Você consegue explicar em uma frase por que os clientes escolhem você?', r:['Sim, tenho essa frase pronta','Mais ou menos, cada vez falo de um jeito','Só consigo dizer "qualidade e bom atendimento"','Não sei explicar']},
     {id:'P9', q:'Na comparação com o concorrente, o cliente vê alguma diferença além do preço?', r:['Uma diferença clara','Uma diferença pequena','Quase nenhuma','Não sei']},
-    {id:'P10', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que sua marca entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']},
-    {id:'P11', q:'Se o seu preço subir, o seu cliente continua com você?', r:['Sim','A maioria sim','Tenho medo de perder muitos','Perderia a maioria']}
+    {id:'P10', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que sua marca entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']}
   ];
   var PERGUNTAS = BLOCO1.concat(BLOCO2);
+  // Última etapa antes dos dados: dificuldades ligadas à marca (marca quantas quiser, não entra na nota)
+  var DIFICULDADES = {
+    titulo: 'Hoje, quais são as maiores dificuldades do seu negócio ligadas à marca?',
+    apoio: 'Marque todas que fazem sentido para você. Não existe resposta certa. Quanto mais sincera, mais certeira vai ser a sua leitura.',
+    grupos: [
+      {nome:'Quem a sua marca é', itens:[
+        ['Posicionamento','não está claro que lugar a minha marca ocupa no mercado'],
+        ['Diferencial','não consigo mostrar por que o cliente deve me escolher'],
+        ['Propósito e valores','falta clareza sobre o que a marca defende'],
+        ['Público','não sei bem quem é o meu cliente ideal']]},
+      {nome:'Como a sua marca se apresenta', itens:[
+        ['Identidade visual','logo, cores e materiais não mostram o nível da empresa'],
+        ['Comunicação e tom de voz','cada hora a marca fala de um jeito'],
+        ['Instagram e redes sociais','não sei o que postar ou não traz resultado'],
+        ['Site e presença digital','não tenho site ou ele está desatualizado'],
+        ['Embalagem e ponto de venda','o produto não se destaca na hora da compra']]},
+      {nome:'Como a sua marca é vivida', itens:[
+        ['Experiência do cliente','a jornada de compra não encanta'],
+        ['Atendimento','o atendimento não transmite o valor da marca'],
+        ['Fidelização','o cliente compra uma vez e não volta'],
+        ['Reputação','tenho poucas avaliações, depoimentos ou indicações'],
+        ['Equipe','o meu time não vive nem transmite a marca']]},
+      {nome:'Como a sua marca vende', itens:[
+        ['Preço','o cliente acha caro e eu acabo dando desconto'],
+        ['Concorrência','sou comparado só por preço'],
+        ['Produtos e serviços','o meu portfólio está confuso ou espalhado'],
+        ['Crescimento','a marca não acompanha o tamanho que a empresa quer ter']]}
+    ],
+    nenhuma: 'Nenhuma no momento',
+    aviso: 'Marque pelo menos uma opção para seguir. Se não tiver nenhuma dificuldade agora, marque "Nenhuma no momento".'
+  };
+  var ETAPAS = PERGUNTAS.length + 1;
 
   var ACOES = {
     P7:{o:'O cliente ainda decide pelo preço.', t:'Quando ele diz que está caro, o problema não é só o valor. É sinal de que ele ainda não enxerga tudo o que recebe da sua marca. Na crise, essa comparação fica mais dura, e quem não mostra o próprio valor acaba dando desconto para fechar.', a:'Liste as coisas que sua marca entrega e o concorrente não, e use na próxima proposta, antes de apresentar o preço.'},
     P8:{o:'Você ainda não tem uma frase que explique por que é escolhido.', t:'Se a sua empresa não consegue dizer isso com clareza, o cliente também não consegue. E o que ele não sabe explicar, ele não defende, não lembra e não indica.', a:'Complete a frase "As pessoas me escolhem porque…", teste com 3 clientes e ajuste até ela soar do jeito que eles falam de você.'},
     P9:{o:'O cliente não vê diferença entre você e o concorrente.', t:'Quando tudo parece igual, o preço vira o único critério de escolha. O seu diferencial pode até existir, mas ainda não aparece nos lugares onde o cliente olha antes de decidir.', a:'Escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias: no atendimento, nas propostas, no Instagram e no site.'},
-    P10:{o:'A sua imagem diminui o valor do que sua marca entrega.', t:'O cliente conhece a sua empresa primeiro pelo Instagram, pelo site e pelos materiais. Se eles parecem menores do que a sua empresa é, ele chega esperando pouco e aceita pagar pouco.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é. Comece a ajustar pelo que aparece primeiro.'},
-    P11:{o:'O cliente ainda não confia o suficiente para pagar mais.', t:'Ele fica enquanto o preço está bom, mas ainda não tem motivos claros para ficar se o preço subir. Confiança se constrói com prova, e a prova precisa aparecer antes do preço.', a:'Reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço, na conversa, na proposta e no Instagram.'}
+    P10:{o:'A sua imagem diminui o valor do que sua marca entrega.', t:'O cliente conhece a sua empresa primeiro pelo Instagram, pelo site e pelos materiais. Se eles parecem menores do que a sua empresa é, ele chega esperando pouco e aceita pagar pouco.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é. Comece a ajustar pelo que aparece primeiro.'}
   };
   var ACAO_ENTREGA = {o:'A entrega ainda precisa de base.', t:'Antes de investir em comunicação, é preciso ter certeza do que sustenta a sua marca. Comunicar mais sem essa base aumenta a promessa, mas não aumenta a confiança do cliente.', a:'Pergunte a 5 clientes "por que você continua comprando de mim?" e use as respostas para fortalecer a entrega e descobrir o seu diferencial.'};
   var ACAO_PROTEGER = {o:'Nenhum ponto crítico no que o cliente enxerga.', t:'O cliente reconhece o que sua marca entrega. O risco agora é se acomodar: na crise, o concorrente vai tentar ocupar esse espaço.', a:'Registre por escrito o que faz o cliente escolher você e garanta que toda a equipe fale a mesma coisa.'};
@@ -315,7 +358,7 @@ button,input{font-family:inherit}
   var footer = document.getElementById('rx-footer');
   var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DIGITANDO = reduz ? 0 : 600;
-  var estado = {passo:0, respostas:{}, concluido:false};
+  var estado = {passo:0, respostas:{}, dificuldades:null, concluido:false};
   var utm = lerUTM();
 
   function salvar(){ try{ localStorage.setItem(CONFIG.storageKey, JSON.stringify(estado)); }catch(e){} }
@@ -340,9 +383,9 @@ button,input{font-family:inherit}
   }
 
   function progresso(){
-    var n = Object.keys(estado.respostas).length;
-    document.getElementById('rx-prog-txt').textContent = Math.min(n,PERGUNTAS.length)+' de '+PERGUNTAS.length;
-    document.getElementById('rx-prog').style.width = (Math.min(n,10)*10)+'%';
+    var n = Math.min(Object.keys(estado.respostas).length + (estado.dificuldades ? 1 : 0), ETAPAS);
+    document.getElementById('rx-prog-txt').textContent = n+' de '+ETAPAS;
+    document.getElementById('rx-prog').style.width = Math.round(n*100/ETAPAS)+'%';
   }
 
   // ─── MENSAGENS ─────────────────────────────────────────────────
@@ -375,13 +418,14 @@ button,input{font-family:inherit}
     if(estado.passo<=0) return;
     estado.passo--;
     var q = PERGUNTAS[estado.passo];
-    delete estado.respostas[q.id];
+    if(q) delete estado.respostas[q.id]; else estado.dificuldades = null;
     estado.concluido = false; salvar(); progresso();
-    evento('voltou',{para:q.id});
+    evento('voltou',{para:q ? q.id : 'dificuldades'});
     footer.innerHTML=''; body.innerHTML='';
     TEXTOS.abertura.forEach(bolhaFixa);
     for(var i=0;i<estado.passo;i++){
       var x = PERGUNTAS[i];
+      if(!x){ bolhaFixa(DIFICULDADES.titulo); usuario(textoDificuldades()); continue; }
       if(x.id===BLOCO1[0].id) marcaBloco(1, 'Valor real', 'O que sua marca entrega');
       if(x.id===BLOCO2[0].id) marcaBloco(2, 'Valor percebido', 'O que o cliente enxerga');
       bolhaFixa(x.q); usuario((estado.respostas[x.id]||{}).resposta||'');
@@ -414,7 +458,7 @@ button,input{font-family:inherit}
       bot(TEXTOS.retomar, function(){
         botoes([
           {t:'Continuar de onde parei', classe:'btn btn--laranja', f:function(){ footer.innerHTML=''; usuario('Continuar de onde parei'); evento('retomou',{passo:estado.passo}); perguntar(); }},
-          {t:'Começar de novo', classe:'btn btn--contorno', f:function(){ footer.innerHTML=''; usuario('Começar de novo'); estado={passo:0,respostas:{},concluido:false}; salvar(); progresso(); perguntar(); }}
+          {t:'Começar de novo', classe:'btn btn--contorno', f:function(){ footer.innerHTML=''; usuario('Começar de novo'); estado={passo:0,respostas:{},dificuldades:null,concluido:false}; salvar(); progresso(); perguntar(); }}
         ]);
       });
       return;
@@ -425,7 +469,8 @@ button,input{font-family:inherit}
   }
 
   function perguntar(){
-    if(estado.passo >= PERGUNTAS.length){ capturar(); return; }
+    if(estado.passo === PERGUNTAS.length){ perguntarDificuldades(); return; }
+    if(estado.passo > PERGUNTAS.length){ capturar(); return; }
     var q = PERGUNTAS[estado.passo];
     var antes = function(cb){ cb(); };
     if(q.id===BLOCO1[0].id){ antes = function(cb){ marcaBloco(1, 'Valor real', 'O que sua marca entrega'); cb(); }; }
@@ -445,8 +490,64 @@ button,input{font-family:inherit}
     });
   }
 
-  function capturar(){
+  function textoDificuldades(){
+    var d = estado.dificuldades || [];
+    return d.length ? d.join(', ') : DIFICULDADES.nenhuma;
+  }
+  function perguntarDificuldades(){
     evento('bloco2_concluido');
+    bots([DIFICULDADES.titulo, DIFICULDADES.apoio], function(){
+      var n = 0;
+      footer.innerHTML =
+        '<form class="dif" id="rx-dif" novalidate>'+
+          DIFICULDADES.grupos.map(function(g){
+            return '<fieldset class="dif__grupo"><legend>'+g.nome+'</legend>'+
+              g.itens.map(function(it){ n++;
+                return '<label class="dif__item"><input type="checkbox" name="dif" value="'+it[0]+'"><span><b>'+it[0]+':</b> '+it[1]+'</span></label>';
+              }).join('')+'</fieldset>';
+          }).join('')+
+          '<fieldset class="dif__grupo"><legend>Outras</legend>'+
+            '<label class="dif__item"><input type="checkbox" id="rx-dif-outra-ck" value="Outra"><span><b>Outra:</b> quero escrever a minha</span></label>'+
+            '<input class="dif__outra" id="rx-dif-outra" type="text" maxlength="120" placeholder="Qual é a dificuldade?" aria-label="Qual é a outra dificuldade?">'+
+            '<label class="dif__item dif__nenhuma"><input type="checkbox" id="rx-dif-nenhuma"><span><b>'+DIFICULDADES.nenhuma+'</b></span></label>'+
+          '</fieldset>'+
+          '<p class="erro" id="rx-dif-erro" role="alert"></p>'+
+          '<button type="submit" class="btn btn--laranja">Continuar</button>'+
+        '</form>';
+      var form = document.getElementById('rx-dif');
+      var nenhuma = document.getElementById('rx-dif-nenhuma');
+      var outraCk = document.getElementById('rx-dif-outra-ck');
+      var outra = document.getElementById('rx-dif-outra');
+      var erro = document.getElementById('rx-dif-erro');
+      var marcaveis = function(){ return [].slice.call(form.querySelectorAll('input[name="dif"]')).concat([outraCk]); };
+      form.addEventListener('change', function(e){
+        erro.style.display='none';
+        if(e.target===nenhuma && nenhuma.checked){ marcaveis().forEach(function(c){ c.checked=false; }); }
+        else if(e.target!==nenhuma && e.target.checked){ nenhuma.checked=false; }
+        outra.classList.toggle('aberta', outraCk.checked);
+        if(e.target===outraCk && outraCk.checked && !reduz) outra.focus();
+      });
+      form.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        var lista = [].slice.call(form.querySelectorAll('input[name="dif"]:checked')).map(function(c){ return c.value; });
+        if(outraCk.checked){
+          var t = outra.value.trim().replace(/\s+/g,' ');
+          if(!t){ erro.textContent='Escreva qual é a outra dificuldade ou desmarque "Outra".'; erro.style.display='block'; outra.focus(); return; }
+          lista.push('Outra: '+t);
+        }
+        if(!lista.length && !nenhuma.checked){ erro.textContent=DIFICULDADES.aviso; erro.style.display='block'; return; }
+        estado.dificuldades = lista;
+        estado.passo++; salvar(); progresso();
+        evento('dificuldades',{total:lista.length});
+        footer.innerHTML=''; usuario(textoDificuldades()); perguntar();
+      });
+      botaoVoltar();
+      // A lista é longa: mostra a pergunta no topo da tela, não o fim da lista
+      var pergunta = body.lastElementChild && body.lastElementChild.previousElementSibling;
+      setTimeout(function(){ if(pergunta) pergunta.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 80);
+    });
+  }
+  function capturar(){
     var salvo = {}; try{ salvo = JSON.parse(localStorage.getItem(CONFIG.leadKey)||'{}'); }catch(e){}
     function v(k){ return (salvo[k]||'').replace(/"/g,'&quot;'); }
     bot(TEXTOS.captura, function(){
@@ -540,7 +641,7 @@ button,input{font-family:inherit}
       fd.append('nome',lead.nome); fd.append('segmento',lead.segmento||''); fd.append('email',lead.email); fd.append('whatsapp',lead.whatsapp);
       fd.append('consentimento','sim');
       fd.append('valor_real',r.entrega+'%'); fd.append('valor_percebido',r.enxerga+'%'); fd.append('distancia',String(r.distancia)); fd.append('perfil',PERFIS[r.perfil].nome);
-      fd.append('respostas',respostas); fd.append('origem',CONFIG.origem);
+      fd.append('respostas',respostas); fd.append('dificuldades',textoDificuldades()); fd.append('origem',CONFIG.origem);
       fd.append('utm_source',utm.utm_source||''); fd.append('utm_medium',utm.utm_medium||''); fd.append('utm_campaign',utm.utm_campaign||'');
       fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:fd.toString()}).catch(function(e){ console.warn('[Netlify Forms]',e); });
     }catch(e){}
@@ -552,7 +653,8 @@ button,input{font-family:inherit}
           ferramenta:'Teste Valor real × Valor percebido',
           nome:lead.nome, email:lead.email, whatsapp:lead.whatsapp, segmento:lead.segmento||'', consentimento:true,
           valor_real:r.entrega, valor_percebido:r.enxerga, distancia:r.distancia, perfil:PERFIS[r.perfil].nome,
-          respostas:PERGUNTAS.map(function(q){ var x=estado.respostas[q.id]||{}; return {id:q.id, pergunta:q.q, resposta:x.resposta||'', pontos:x.pontos||0}; }),
+          respostas:PERGUNTAS.map(function(q){ var x=estado.respostas[q.id]||{}; return {id:q.id, pergunta:q.q, resposta:x.resposta||'', pontos:x.pontos||0}; })
+            .concat([{id:'DIF', pergunta:DIFICULDADES.titulo, resposta:textoDificuldades(), pontos:0}]),
           origem:CONFIG.origem, utm_source:utm.utm_source||'', utm_medium:utm.utm_medium||'', utm_campaign:utm.utm_campaign||''
         })
       }).then(function(res){ if(!res.ok) console.warn('[Estúdio] HTTP', res.status); }).catch(function(e){ console.warn('[Estúdio]',e); });
@@ -643,6 +745,7 @@ button,input{font-family:inherit}
         'Valor percebido (o que o cliente enxerga): '+r.enxerga+'%\n'+
         (r.distancia>0 ? 'Distância: '+r.distancia+' pontos\n' : '')+
         '\nPerfil: '+p.nome+'\n'+p.txt+'\n\n'+
+        'Dificuldades que marquei: '+textoDificuldades()+'\n\n'+
         tituloPontos+':\n\n'+
         r.acoes.map(function(a,i){ return (i+1)+'. '+a.o+'\n'+a.t+'\nSugestão de Ação:\n'+a.a; }).join('\n\n')+
         '\n\nFaça o seu: https://kellyalbert.com.br/valorpercebido';

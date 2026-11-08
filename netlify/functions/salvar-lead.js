@@ -93,7 +93,7 @@ exports.handler = async function (event) {
     ? p.respostas.slice(0, 40).map((r) => ({
         id: txt(r && r.id, 10),
         pergunta: txt(r && r.pergunta, 300),
-        resposta: txt(r && r.resposta, 300),
+        resposta: txt(r && r.resposta, 1200),
         pontos: num(r && r.pontos) ?? 0,
       }))
     : [];
