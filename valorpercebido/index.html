@@ -245,7 +245,7 @@ button,input{font-family:inherit}
         <p class="chat-head__s">Teste gratuito · 11 perguntas</p>
       </div>
       <div class="progresso" aria-hidden="true">
-        <div class="progresso__txt" id="rx-prog-txt">0 de 11</div>
+        <div class="progresso__txt" id="rx-prog-txt">0 de 12</div>
         <div class="progresso__barra"><i id="rx-prog"></i></div>
       </div>
     </div>
@@ -281,7 +281,7 @@ button,input{font-family:inherit}
     abertura: [
       'Oi! Aqui é a assistente da Kelly.',
       'Na crise, o cliente fica com a marca que ele valoriza.',
-      'Vou te fazer 11 perguntas rápidas. Na última, você marca as maiores dificuldades da sua marca hoje. No final, você recebe o seu resultado: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
+      'Vou te fazer 11 perguntas rápidas e, depois, você marca as maiores dificuldades da sua marca hoje. No final, você recebe o seu resultado: o valor real da sua marca (o que ela entrega), o valor percebido (o que o cliente enxerga) e a distância entre os dois. Leva uns 5 minutos.'
     ],
     captura: 'Pronto! Para te mostrar e te mandar o seu resultado, me diz:',
     retomar: 'Que bom te ver de novo! Quer continuar de onde parou?'
@@ -301,7 +301,8 @@ button,input{font-family:inherit}
     {id:'P7', q:'Os seus clientes costumam dizer que o seu preço está caro?', r:['Raramente','Às vezes, mas fecham sem desconto','Com frequência, e eu acabo dando desconto','Quase sempre, e eu perco a venda']},
     {id:'P8', q:'Você consegue explicar em uma frase por que os clientes escolhem você?', r:['Sim, tenho essa frase pronta','Mais ou menos, cada vez falo de um jeito','Só consigo dizer "qualidade e bom atendimento"','Não sei explicar']},
     {id:'P9', q:'Na comparação com o concorrente, o cliente vê alguma diferença além do preço?', r:['Uma diferença clara','Uma diferença pequena','Quase nenhuma','Não sei']},
-    {id:'P10', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que sua marca entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']}
+    {id:'P10', q:'O seu Instagram, o seu site e os seus materiais mostram o nível do que sua marca entrega?', r:['Sim','Em parte','Parecem menores do que a minha empresa é','Não tenho ou estão parados']},
+    {id:'P11', q:'Se o seu preço subir, o seu cliente continua com você?', r:['Sim','A maioria sim','Tenho medo de perder muitos','Perderia a maioria']}
   ];
   var PERGUNTAS = BLOCO1.concat(BLOCO2);
   // Última etapa antes dos dados: dificuldades ligadas à marca (marca quantas quiser, não entra na nota)
@@ -341,7 +342,8 @@ button,input{font-family:inherit}
     P7:{o:'O cliente ainda decide pelo preço.', t:'Quando ele diz que está caro, o problema não é só o valor. É sinal de que ele ainda não enxerga tudo o que recebe da sua marca. Na crise, essa comparação fica mais dura, e quem não mostra o próprio valor acaba dando desconto para fechar.', a:'Liste as coisas que sua marca entrega e o concorrente não, e use na próxima proposta, antes de apresentar o preço.'},
     P8:{o:'Você ainda não tem uma frase que explique por que é escolhido.', t:'Se a sua empresa não consegue dizer isso com clareza, o cliente também não consegue. E o que ele não sabe explicar, ele não defende, não lembra e não indica.', a:'Complete a frase "As pessoas me escolhem porque…", teste com 3 clientes e ajuste até ela soar do jeito que eles falam de você.'},
     P9:{o:'O cliente não vê diferença entre você e o concorrente.', t:'Quando tudo parece igual, o preço vira o único critério de escolha. O seu diferencial pode até existir, mas ainda não aparece nos lugares onde o cliente olha antes de decidir.', a:'Escolha um diferencial e mostre ele em todos os pontos de contato por 30 dias: no atendimento, nas propostas, no Instagram e no site.'},
-    P10:{o:'A sua imagem diminui o valor do que sua marca entrega.', t:'O cliente conhece a sua empresa primeiro pelo Instagram, pelo site e pelos materiais. Se eles parecem menores do que a sua empresa é, ele chega esperando pouco e aceita pagar pouco.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é. Comece a ajustar pelo que aparece primeiro.'}
+    P10:{o:'A sua imagem diminui o valor do que sua marca entrega.', t:'O cliente conhece a sua empresa primeiro pelo Instagram, pelo site e pelos materiais. Se eles parecem menores do que a sua empresa é, ele chega esperando pouco e aceita pagar pouco.', a:'Olhe o seu perfil como se fosse um cliente novo e anote tudo o que parece menor do que a sua empresa é. Comece a ajustar pelo que aparece primeiro.'},
+    P11:{o:'O cliente ainda não confia o suficiente para pagar mais.', t:'Ele fica enquanto o preço está bom, mas ainda não tem motivos claros para ficar se o preço subir. Confiança se constrói com prova, e a prova precisa aparecer antes do preço.', a:'Reúna 3 depoimentos ou resultados de clientes e mostre antes de falar de preço, na conversa, na proposta e no Instagram.'}
   };
   var ACAO_ENTREGA = {o:'A entrega ainda precisa de base.', t:'Antes de investir em comunicação, é preciso ter certeza do que sustenta a sua marca. Comunicar mais sem essa base aumenta a promessa, mas não aumenta a confiança do cliente.', a:'Pergunte a 5 clientes "por que você continua comprando de mim?" e use as respostas para fortalecer a entrega e descobrir o seu diferencial.'};
   var ACAO_PROTEGER = {o:'Nenhum ponto crítico no que o cliente enxerga.', t:'O cliente reconhece o que sua marca entrega. O risco agora é se acomodar: na crise, o concorrente vai tentar ocupar esse espaço.', a:'Registre por escrito o que faz o cliente escolher você e garanta que toda a equipe fale a mesma coisa.'};
