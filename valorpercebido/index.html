@@ -7,8 +7,8 @@
 <meta property="og:title" content="Diagnóstico de Percepção de Marca · O que sua marca entrega × O que seu cliente enxerga">
 <meta property="og:description" content="Gratuito, 11 perguntas e 5 minutos. Descubra a distância entre o valor real e o valor percebido da sua marca e receba o resultado na hora.">
 <meta property="og:site_name" content="KA | Inteligência para Marcas">
-<meta property="og:image" content="https://kellyalbert.com.br/images/og/og-valorpercebido.jpg?v=7">
-<meta property="og:image:secure_url" content="https://kellyalbert.com.br/images/og/og-valorpercebido.jpg?v=7">
+<meta property="og:image" content="https://kellyalbert.com.br/images/og/og-valorpercebido.jpg?v=8">
+<meta property="og:image:secure_url" content="https://kellyalbert.com.br/images/og/og-valorpercebido.jpg?v=8">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://kellyalbert.com.br/valorpercebido/">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kellyalbert.com.br/images/og/og-valorpercebido.jpg?v=7">
+<meta name="twitter:image" content="https://kellyalbert.com.br/images/og/og-valorpercebido.jpg?v=8">
 <meta name="theme-color" content="#152535">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -67,7 +67,11 @@ button,input{font-family:inherit}
 .topo__x{flex:none;align-self:flex-start;width:.9em;height:1.88em;margin-top:.26em;overflow:visible}
 .topo__x path{stroke:var(--laranja);stroke-width:5.5;stroke-linecap:butt;fill:none;vector-effect:non-scaling-stroke}
 .topo .rotulo::before{display:none}
-@media (max-width:420px){.topo .rotulo{font-size:.7rem;letter-spacing:.1em;padding:9px 16px 9px 13px}}
+.gratis{display:inline-block;margin-bottom:12px;padding:6px 16px;border-radius:100px;background:var(--laranja);color:var(--marinho);font-size:.8rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+.topo .rotulo{padding:9px 20px}
+.topo__titulo{display:grid;justify-items:center;gap:0}
+.topo__x2{color:var(--laranja);font-weight:600}
+@media (max-width:420px){.topo .rotulo{font-size:.7rem;letter-spacing:.1em;padding:9px 16px}}
 
 /* Cabeçalho do chat */
 .chat{flex:1;display:flex;flex-direction:column;background:rgba(34,58,82,.35);border:1px solid var(--papel-08);border-radius:22px;overflow:hidden;margin-bottom:16px;min-height:62vh}
@@ -233,9 +237,10 @@ button,input{font-family:inherit}
 
 <main class="app">
   <header class="topo">
-    <span class="rotulo"><i aria-hidden="true"></i>Diagnóstico de Percepção de Marca</span>
-    <h1 class="topo__titulo"><span class="topo__linhas"><span class="topo__linha">O que sua marca <b>entrega</b></span><span class="topo__linha">O que seu cliente <b>enxerga</b></span></span><svg class="topo__x" viewBox="0 0 40 100" preserveAspectRatio="none" aria-hidden="true"><path d="M3 0L37 100M37 0L3 100"/></svg></h1>
-    <p class="topo__sub">Gratuito · Resultado na hora</p>
+    <span class="gratis">Gratuito</span>
+    <span class="rotulo">Diagnóstico de Percepção de Marca</span>
+    <h1 class="topo__titulo"><span class="topo__linha">O que sua marca <b>entrega</b> <span class="topo__x2" aria-label="versus">X</span></span><span class="topo__linha">O que seu cliente <b>enxerga</b></span></h1>
+    <p class="topo__sub">Resultado na hora</p>
   </header>
 
   <section class="chat" aria-label="Diagnóstico de Percepção de Marca">
