@@ -72,7 +72,7 @@ Português do Brasil, fale com "você", frases curtas e diretas, linguagem de do
 
 function montarPedido(dados, classe) {
   const linhas = [
-    `Segmento: ${dados.segmento}`,
+    `Segmento: ${dados.segmento.replace(/^Outro: /, "")}`,
     `Principais clientes: ${dados.clientes}`,
     `Frequência de compra: ${dados.compra}`,
     "",

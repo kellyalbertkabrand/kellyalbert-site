@@ -269,7 +269,11 @@ button,input{font-family:inherit}
 .links a b{color:var(--papel)}
 .copiado{font-size:.82rem;color:var(--laranja-claro);text-align:center;min-height:1.2em;margin:0}
 
-.rodape{text-align:center;font-size:.72rem;color:var(--papel-50);letter-spacing:.06em;padding:8px 0 22px}
+.rodape{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:.86rem;color:var(--papel-70);letter-spacing:.04em;padding:10px 0 26px;margin:0}
+.rodape__sep{display:none;color:var(--papel-50)}
+@media (min-width:720px){.rodape{flex-direction:row;justify-content:center;gap:10px;font-size:.82rem}.rodape > *{white-space:nowrap}.rodape__sep{display:inline}}
+.lista-outro{display:none;width:100%;min-height:50px;padding:12px 14px;border-radius:14px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-family:inherit;font-size:1rem}
+.lista-outro.aberta{display:block}
 .rodape a{color:var(--papel-70);text-decoration:none}
 
 @media (prefers-reduced-motion:reduce){
@@ -317,13 +321,13 @@ button,input{font-family:inherit}
     <div class="chat-footer" id="rx-footer"></div>
   </section>
 
-  <p class="rodape">KA | Inteligência para Marcas · <a href="https://www.instagram.com/kellyalbert.brand" target="_blank" rel="noopener">@kellyalbert.brand</a> · <a href="/">kellyalbert.com.br</a></p>
+  <p class="rodape"><span>KA | Inteligência para Marcas</span><span class="rodape__sep" aria-hidden="true">/</span><a href="/">www.kellyalbert.com.br</a><span class="rodape__sep" aria-hidden="true">/</span><a href="https://www.instagram.com/kellyalbert.brand" target="_blank" rel="noopener">@kellyalbert.brand</a></p>
 </main>
 
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=2';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=3';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
@@ -337,7 +341,7 @@ var CONFIG = {
   instagram: 'https://www.instagram.com/kellyalbert.brand',
   mailerliteGroupId: '183324004183967092', // grupo do Diagnóstico: dispara a "Automação Diagnóstico" no MailerLite
   origem: 'valorpercebido',
-  storageKey: 'ka_autoavaliacao_v2',
+  storageKey: 'ka_autoavaliacao_v3',
   leadKey: 'ka_raiox_marca_lead',
   esperaMaxima: 50000 // tempo máximo esperando a análise da Inteligência Artificial antes de mostrar o resultado das regras
 };
@@ -447,7 +451,7 @@ function textoResposta(et){
   if(et.tipo==='dificuldades') return textoDificuldades();
   var v = estado.respostas[et.id];
   if(et.tipo==='opcoes') return et.r[v] || '';
-  if(et.tipo==='lista') return v || '';
+  if(et.tipo==='lista') return String(v||'').replace(/^Outro: /,'');
   return v ? v : 'Pulei';
 }
 function textoDificuldades(){ var d = estado.dificuldades || []; return d.length ? d.join(', ') : DIFICULDADES.nenhuma; }
@@ -527,14 +531,26 @@ function perguntarLista(et){
         '<select id="rx-lista-campo" aria-label="'+esc(et.q)+'"><option value="">Escolha uma opção</option>'+
           et.lista.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('')+
         '</select>'+
+        '<input id="rx-lista-outro" class="lista-outro" type="text" maxlength="60" placeholder="Escreva o seu segmento" aria-label="Qual é o seu segmento?">'+
         '<p class="erro" id="rx-lista-erro" role="alert"></p>'+
         '<button type="submit" class="btn btn--laranja">Continuar</button>'+
       '</form>';
-    var campo = document.getElementById('rx-lista-campo'), err = document.getElementById('rx-lista-erro');
-    campo.addEventListener('change', function(){ err.style.display='none'; });
+    var campo = document.getElementById('rx-lista-campo'), err = document.getElementById('rx-lista-erro'), outro = document.getElementById('rx-lista-outro');
+    campo.addEventListener('change', function(){
+      err.style.display='none';
+      var aberto = campo.value==='Outro';
+      outro.classList.toggle('aberta', aberto);
+      if(aberto && !reduz) outro.focus();
+    });
+    outro.addEventListener('input', function(){ err.style.display='none'; });
     document.getElementById('rx-lista').addEventListener('submit', function(ev){
       ev.preventDefault();
       if(!campo.value){ err.textContent='Escolha uma opção para seguir.'; err.style.display='block'; return; }
+      if(campo.value==='Outro'){
+        var t = outro.value.trim().replace(/\s+/g,' ');
+        if(t.length<2){ err.textContent='Escreva qual é o seu segmento.'; err.style.display='block'; outro.focus(); return; }
+        avancar(et, 'Outro: '+t, t); return;
+      }
       avancar(et, campo.value, campo.value);
     });
     botaoVoltar();
@@ -676,7 +692,7 @@ function enviar(ev){
   function falha(msg){ err.textContent=msg; err.style.display='block'; }
   err.style.display='none';
   var nome = f.nome.value.trim().replace(/\s+/g,' ');
-  var segmento = estado.respostas.segmento || '';
+  var segmento = String(estado.respostas.segmento || '').replace(/^Outro: /,'');
   var email = f.email.value.trim();
   var whatsapp = f.whatsapp.value.trim();
   if(nome.split(' ').filter(function(p){return p.length>=2;}).length<2) return falha('Digite o seu nome e sobrenome.');

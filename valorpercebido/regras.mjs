@@ -55,6 +55,7 @@ export const PERGUNTAS = [
   { id: 'P3', pilar: 1, tema: 'Satisfação',
     q: 'Como sua empresa sabe se os clientes estão satisfeitos?',
     r: [['Fazemos pesquisas e acompanhamos os resultados.', 'A'],
+        ['Pedimos avaliações no Google, LinkedIn ou outras plataformas.', 'A'],
         ['Perguntamos aos clientes, mas não registramos.', 'B'],
         ['Sabemos pelas conversas e comentários.', 'B'],
         ['Não acompanhamos.', 'C']] },
@@ -84,9 +85,9 @@ export const PERGUNTAS = [
         ['Ficamos sem resposta ou perdemos a venda.', 'C'],
         ['Quase nunca acontece.', 'D']] },
   { id: 'P8', pilar: 2, tema: 'Motivo para escolher',
-    q: 'Se um cliente novo pergunta por que escolher sua empresa, a equipe responde:',
-    r: [['Com um motivo claro, que todos sabem explicar.', 'A'],
-        ['Cada um explica de um jeito.', 'B'],
+    q: 'Se um cliente novo pergunta por que escolher sua empresa, você ou sua equipe respondem:',
+    r: [['Com um motivo claro, sempre o mesmo.', 'A'],
+        ['Cada vez explicamos de um jeito.', 'B'],
         ['Falando de qualidade, atendimento ou preço.', 'C'],
         ['Não temos uma resposta pronta.', 'C']] },
   { id: 'P9', pilar: 2, tema: 'Diferenças na comunicação',
@@ -102,12 +103,12 @@ export const PERGUNTAS = [
         ['Eles mostram mais preço e catálogo.', 'C'],
         ['Não sei dizer.', 'D']] },
   { id: 'P11', pilar: 2, tema: 'Comparação com opção mais barata',
-    q: 'Quando comparam sua empresa com alguém mais barato, a equipe:',
-    r: [['Mostra benefícios concretos e provas.', 'A'],
-        ['Explica, mas nem sempre convence.', 'B'],
-        ['Fala de qualidade e atendimento.', 'C'],
-        ['Oferece desconto.', 'C'],
-        ['Não tem orientação para isso.', 'C']] }
+    q: 'Quando comparam sua empresa com alguém mais barato, você ou sua equipe:',
+    r: [['Mostramos benefícios concretos e provas.', 'A'],
+        ['Explicamos, mas nem sempre convence.', 'B'],
+        ['Falamos de qualidade e atendimento.', 'C'],
+        ['Oferecemos desconto.', 'C'],
+        ['Não temos uma resposta definida para isso.', 'C']] }
 ];
 
 export const DIFICULDADES = {
@@ -196,7 +197,7 @@ export function classificar(respostas) {
 const FORTES = {
   P1: 'Você acompanha quantos clientes voltam a comprar. Isso dá base real para entender o que mantém a preferência.',
   P2: 'Você sabe de onde vêm as indicações. Indicação é um dos sinais mais fortes de que a marca é lembrada.',
-  P3: 'Você mede a satisfação e acompanha os resultados, então consegue perceber cedo o que funciona e o que não.',
+  P3: 'Você tem uma rotina para saber se os clientes estão satisfeitos, com pesquisas ou avaliações públicas, e consegue perceber cedo o que funciona e o que não.',
   P4: 'Você identifica um diferencial e tem exemplos que o sustentam, o que dá matéria-prima para a venda.',
   P5: 'Você confere se a empresa entrega o que promete. Promessa cumprida é a base da confiança.',
   P6: 'Você tem provas organizadas da qualidade do trabalho, um recurso que reduz a dúvida de quem ainda não conhece a empresa.',
@@ -297,7 +298,9 @@ export function textosDeReserva(classe, dificuldades) {
 export function validarEntrada(e) {
   const erro = m => ({ ok: false, erro: m });
   if (!e || typeof e !== 'object') return erro('Envio vazio.');
-  const segmento = SEGMENTOS.includes(e.segmento) ? e.segmento : '';
+  const segTexto = String(e.segmento || '').trim().replace(/\s+/g, ' ');
+  const segmento = SEGMENTOS.includes(segTexto) && segTexto !== 'Outro' ? segTexto
+    : (/^Outro: .{2,}/.test(segTexto) ? segTexto.slice(0, 80) : '');
   if (!segmento) return erro('Informe o segmento.');
   const clientes = CONTEXTO[1].r.includes(e.clientes) ? e.clientes : '';
   if (!clientes) return erro('Informe quem são seus principais clientes.');
