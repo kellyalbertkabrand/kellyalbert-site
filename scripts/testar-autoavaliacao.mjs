@@ -2,6 +2,8 @@
 // Uso: node scripts/testar-autoavaliacao.mjs https://kellyalbert.com.br
 const base = process.argv[2] || "https://kellyalbert.com.br";
 const casos = {
+  "Consultoria de branding (respostas otimistas)": { segmento: "Consultoria e gestão", clientes: "Outras empresas", compra: "Normalmente uma vez só",
+    respostas: { P1: 3, P2: 1, P3: 0, P4: 0, P5: 0, P6: 0, P7: 0, P8: 1, P9: 0, P10: 1, P11: 0 }, dificuldades: ["Diferencial", "Posicionamento"] },
   "Loja de roupas femininas": { segmento: "Moda e vestuário", clientes: "Consumidores finais", compra: "Algumas vezes por ano",
     respostas: { P1: 1, P2: 1, P3: 3, P4: 2, P5: 1, P6: 2, P7: 2, P8: 2, P9: 2, P10: 2, P11: 3 }, dificuldades: ["Preço", "Instagram e redes sociais"] },
   "Clínica odontológica": { segmento: "Odontologia", clientes: "Consumidores finais", compra: "Algumas vezes por ano",
@@ -27,6 +29,7 @@ for (const [nome, corpo] of Object.entries(casos)) {
   console.log(`\n===== ${nome} (${((Date.now() - inicio) / 1000).toFixed(1)}s, texto: ${t.fonte}) =====`);
   console.log("Perfil:", final.classe.perfil, JSON.stringify(final.classe.pilares));
   console.log("1. Leitura:", t.leitura);
+  console.log("2. Cada resposta:\n" + (t.respostas || []).map((x) => ` - ${x.id}: ${x.leitura}`).join("\n"));
   console.log("2. Pontos fortes:\n" + (t.pontos_fortes.map((x) => ` - [${x.natureza}] ${x.titulo}: ${x.texto}`).join("\n") || " (nenhum)"));
   console.log("3. Fragilidades:\n" + (t.fragilidades.map((x) => ` - [${x.natureza}] ${x.titulo}: ${x.texto}`).join("\n") || " (nenhuma)"));
   console.log("4. Consequências:\n" + (t.consequencias.map((x) => ` - ${x.area}: ${x.texto}`).join("\n") || " (nenhuma)"));

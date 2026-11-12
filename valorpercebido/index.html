@@ -176,6 +176,23 @@ button,input{font-family:inherit}
 .laudo .orientacao{margin-top:12px;padding:14px 16px;border-radius:14px;background:rgba(216,111,42,.1);border-left:4px solid #D86F2A;color:var(--marinho)}
 .laudo__sec--aviso p{font-size:.86rem!important;color:rgba(21,37,53,.65)!important}
 
+/* O que cada resposta revela */
+.mapa__legenda{margin-top:10px!important;font-size:.86rem!important;line-height:1.9!important;color:rgba(21,37,53,.75)!important}
+.mapa__pilar{margin-top:18px}
+.laudo .mapa__tit{font-size:1.02rem;font-weight:800;color:var(--marinho)}
+.laudo .mapa__sub{margin-top:2px;font-size:.86rem;color:rgba(21,37,53,.6)}
+.resp{margin-top:10px;padding:12px 14px;border-radius:12px;background:#fff;border-left:4px solid rgba(21,37,53,.18)}
+.resp--A{border-left-color:#3D6B7E}.resp--B{border-left-color:#EFA43A}.resp--C{border-left-color:#D86F2A}
+.resp__topo{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.resp__topo b{font-size:.96rem;color:var(--marinho)}
+.laudo .resp__sua{margin-top:4px;font-size:.84rem;font-style:italic;color:rgba(21,37,53,.6)}
+.laudo .resp__leitura{margin-top:6px;font-size:.94rem;line-height:1.5}
+.chip{display:inline-block;flex:none;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:100px;white-space:nowrap;font-style:normal}
+.chip--A{background:rgba(61,107,126,.15);color:#2B4865}
+.chip--B{background:rgba(239,164,58,.2);color:#8A5A12}
+.chip--C{background:rgba(216,111,42,.16);color:#B5561A}
+.chip--D,.chip--NA{background:rgba(21,37,53,.08);color:rgba(21,37,53,.7)}
+
 /* Relatório em cinco partes */
 .laudo .eyebrow .num{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:50%;background:#D86F2A;color:#fff;font-size:.68rem;letter-spacing:0;vertical-align:1px}
 .laudo .leitura{margin-top:12px;font-size:1.06rem;line-height:1.6;color:var(--marinho)}
@@ -327,7 +344,7 @@ button,input{font-family:inherit}
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=3';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=4';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
@@ -343,7 +360,7 @@ var CONFIG = {
   origem: 'valorpercebido',
   storageKey: 'ka_autoavaliacao_v3',
   leadKey: 'ka_raiox_marca_lead',
-  esperaMaxima: 50000 // tempo máximo esperando a análise da Inteligência Artificial antes de mostrar o resultado das regras
+  esperaMaxima: 75000 // tempo máximo esperando a análise da Inteligência Artificial antes de mostrar o resultado das regras
 };
 
 var TEXTOS = {
@@ -354,7 +371,7 @@ var TEXTOS = {
   ],
   captura: 'Pronto! Para te mostrar o seu resultado, me diz:',
   retomar: 'Que bom te ver de novo! Quer continuar de onde parou?',
-  montando: 'Estou cruzando as suas respostas para entender o que elas revelam juntas. Leva uns 20 segundos.'
+  montando: 'Estou cruzando as suas respostas para entender o que elas revelam juntas. Leva cerca de 30 segundos.'
 };
 
 // ─── ETAPAS ─────────────────────────────────────────────────────
@@ -810,19 +827,21 @@ function mostrarResultado(lead, dados, classe, t){
   var msgAula = 'Oi, Kelly! Fiz o Teste de Autoavaliação de Marca e quero participar da aula ao vivo do dia '+CONFIG.aulaDataCurta+'.';
   var linkWhatsAula = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msgAula);
   var fortes = (t.pontos_fortes||[]).slice(0,3), frag = (t.fragilidades||[]).slice(0,3), cons = (t.consequencias||[]).slice(0,3), rec = t.recomendacao || {};
-  var pilar = function(n){
-    var x = classe.pilares[n];
-    var est = {favoravel:'Sinais favoráveis', atencao:'Pede atenção', inconclusivo:'Pouca informação'}[x.estado];
-    return '<div class="pilar">'+
-      '<div class="pilar__topo"><span class="pilar__n">Pilar '+n+'</span><span class="pilar__est pilar__est--'+x.estado+'">'+est+'</span></div>'+
-      '<p class="pilar__nome">'+PILARES[n].nome+'</p>'+
-      '<ul class="contagem">'+
-        '<li><b>'+x.A+'</b>práticas estruturadas</li>'+
-        '<li><b>'+x.B+'</b>práticas informais</li>'+
-        '<li><b>'+x.C+'</b>pontos de atenção</li>'+
-        '<li><b>'+(x.D+x.NA)+'</b>sem informação ou não se aplica</li>'+
-      '</ul></div>';
+  var leituraDe = function(x){
+    var achado = (t.respostas||[]).filter(function(r){ return r.id===x.id && r.leitura; })[0];
+    return achado ? achado.leitura : ((REFLETE[x.id]||{})[x.situacao] || '');
   };
+  var mapa = function(n){
+    return '<div class="mapa__pilar"><p class="mapa__tit">'+PILARES[n].nome+'</p><p class="mapa__sub">'+PILARES[n].sub+'</p>'+
+      classe.itens.filter(function(x){ return x.pilar===n; }).map(function(x){
+        return '<div class="resp resp--'+x.situacao+'">'+
+          '<div class="resp__topo"><b>'+esc(x.tema)+'</b><span class="chip chip--'+x.situacao+'">'+ROTULOS[x.situacao]+'</span></div>'+
+          '<p class="resp__sua">Você respondeu: '+esc(x.resposta)+'</p>'+
+          '<p class="resp__leitura">'+esc(leituraDe(x))+'</p>'+
+        '</div>';
+      }).join('')+'</div>';
+  };
+  var n = 0, numero = function(){ n++; return '<span class="num">'+n+'</span>'; };
   var selo = function(n){ return n && NATUREZA[n] ? '<span class="nat nat--'+n+'">'+NATUREZA[n]+'</span>' : ''; };
   var cartoes = function(itens, vazio){
     return itens.length ? '<div class="cartoes">'+itens.map(function(i){
@@ -837,22 +856,25 @@ function mostrarResultado(lead, dados, classe, t){
         '<p class="eyebrow">Teste de Autoavaliação de Marca</p>'+
         '<p class="laudo__nome">'+primeiro+', este é o seu perfil inicial:</p>'+
         '<h2 class="perfil__nome">'+p.nome+'</h2>'+
-        '<div class="pilares">'+pilar(1)+pilar(2)+'</div>'+
-        '<p class="nota-pilar">Contagem das suas respostas. É o resultado da sua autoavaliação, não uma medida do valor da sua marca.</p>'+
+        '<p>'+p.txt+'</p>'+
       '</section>'+
-      '<section class="laudo__sec"><p class="eyebrow"><span class="num">1</span>Leitura estratégica da marca</p>'+
+      '<section class="laudo__sec"><p class="eyebrow">'+numero()+'Leitura estratégica da marca</p>'+
         '<p class="leitura">'+esc(t.leitura || p.txt)+'</p>'+
       '</section>'+
-      '<section class="laudo__sec"><p class="eyebrow"><span class="num">2</span>Pontos fortes</p>'+
+      '<section class="laudo__sec"><p class="eyebrow">'+numero()+'O que cada resposta revela</p>'+
+        '<p class="mapa__legenda"><span class="chip chip--A">Ponto forte</span> a prática acontece com método. <span class="chip chip--B">Pode melhorar</span> acontece, mas sem acompanhamento. <span class="chip chip--C">Ponto de atenção</span> ainda não acontece ou pesa contra.</p>'+
+        mapa(1)+mapa(2)+
+      '</section>'+
+      '<section class="laudo__sec"><p class="eyebrow">'+numero()+'Pontos fortes</p>'+
         cartoes(fortes, 'Suas respostas ainda não trouxeram práticas estruturadas para destacar. Isso não quer dizer que elas não existam: talvez ainda não sejam acompanhadas.')+
       '</section>'+
-      '<section class="laudo__sec"><p class="eyebrow"><span class="num">3</span>Fragilidades identificadas</p>'+
+      '<section class="laudo__sec"><p class="eyebrow">'+numero()+'Fragilidades identificadas</p>'+
         cartoes(frag, 'Analisadas em conjunto, suas respostas não revelaram fragilidades relevantes.')+
       '</section>'+
-      (cons.length ? '<section class="laudo__sec"><p class="eyebrow"><span class="num">4</span>Consequências para o negócio</p>'+
+      (cons.length ? '<section class="laudo__sec"><p class="eyebrow">'+numero()+'Consequências para o negócio</p>'+
         '<ul class="consequencias">'+cons.map(function(c){ return '<li><span class="area">'+esc(c.area)+'</span><p>'+esc(c.texto)+'</p></li>'; }).join('')+'</ul>'+
       '</section>' : '')+
-      '<section class="laudo__sec"><p class="eyebrow"><span class="num">'+(cons.length?5:4)+'</span>Recomendação estratégica</p>'+
+      '<section class="laudo__sec"><p class="eyebrow">'+numero()+'Recomendação estratégica</p>'+
         '<div class="recomendacao">'+
           '<p class="rec__rot">Prioridade</p><p class="rec__prio">'+esc(rec.prioridade)+'</p>'+
           '<p class="rec__rot">Por que começar por aqui</p><p>'+esc(rec.porque)+'</p>'+
@@ -900,8 +922,9 @@ function mostrarResultado(lead, dados, classe, t){
     var pl = function(n){ var x=classe.pilares[n]; return 'Pilar '+n+', '+PILARES[n].nome+': '+x.A+' estruturadas, '+x.B+' informais, '+x.C+' pontos de atenção, '+(x.D+x.NA)+' sem informação'; };
     var it = function(l){ return l.length ? l.map(function(x){ return '• '+x.titulo+(x.natureza?' ('+NATUREZA[x.natureza]+')':'')+': '+x.texto; }).join('\n') : 'Nenhum item.'; };
     var txt = 'Teste de Autoavaliação de Marca\nKA | Inteligência para Marcas\n\n'+
-      'Perfil inicial: '+p.nome+'\n'+pl(1)+'\n'+pl(2)+'\n\n'+
+      'Perfil inicial: '+p.nome+'\n\n'+
       'Leitura estratégica:\n'+(t.leitura||p.txt)+'\n\n'+
+      'O que cada resposta revela:\n'+classe.itens.map(function(x){ return '• '+x.tema+' ('+ROTULOS[x.situacao]+'): '+leituraDe(x); }).join('\n')+'\n\n'+
       'Pontos fortes:\n'+it(fortes)+'\n\n'+
       'Fragilidades identificadas:\n'+it(frag)+'\n\n'+
       (cons.length ? 'Consequências para o negócio:\n'+cons.map(function(c){ return '• '+c.area+': '+c.texto; }).join('\n')+'\n\n' : '')+

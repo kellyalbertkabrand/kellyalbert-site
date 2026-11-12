@@ -63,6 +63,7 @@ export const PERGUNTAS = [
     q: 'Você consegue dizer o que sua empresa faz melhor que os concorrentes?',
     r: [['Sim, e temos exemplos que provam.', 'A'],
         ['Sim, mas não temos como provar.', 'B'],
+        ['Sim, mas quase não falamos disso para o cliente.', 'B'],
         ['Falamos em qualidade e bom atendimento.', 'C'],
         ['Não vemos uma diferença clara.', 'C']] },
   { id: 'P5', pilar: 1, tema: 'Promessas',
@@ -155,6 +156,57 @@ export const PERFIS = {
     txt: 'Algumas respostas não trouxeram informação suficiente para definir um perfil. Isso também é um sinal: vale começar organizando essas informações.' }
 };
 
+// Como cada situação aparece para o empresário (sem jargão de método).
+export const ROTULOS = {
+  A: 'Ponto forte',
+  B: 'Pode melhorar',
+  C: 'Ponto de atenção',
+  D: 'A verificar',
+  NA: 'Não se aplica'
+};
+
+// O que cada resposta reflete no negócio (resultado de reserva, sem Inteligência Artificial).
+export const REFLETE = {
+  P1: { A: 'Registrar a recompra mostra quanto da receita vem de quem já confia em você. O próximo passo é entender por que esses clientes voltam.',
+        B: 'Os clientes voltam, mas sem registro você não sabe quantos, quais nem por quê. Um sinal bom que ainda não vira informação para decidir.',
+        C: 'Pouca recompra pode ser próprio do negócio ou um sinal de que algo na experiência não convence a voltar. Vale investigar antes de concluir.',
+        NA: 'Como a compra costuma ser única, a confiança precisa ser construída antes da venda, com provas e indicações.' },
+  P2: { A: 'Saber quem indica mostra quais clientes e trabalhos geram mais confiança. É um dos sinais mais fortes de marca lembrada.',
+        B: 'As indicações existem, mas sem registro você não sabe o que as provoca nem como repetir isso com quem ainda não conhece a empresa.',
+        C: 'Poucas indicações podem indicar que a experiência não é marcante a ponto de ser recomendada, ou que ninguém pede. Vale investigar.',
+        D: 'Sem saber de onde vêm os clientes, fica difícil entender o que realmente traz novos negócios.',
+        NA: 'Ainda não há clientes suficientes para avaliar as indicações.' },
+  P3: { A: 'Ouvir o cliente com método permite perceber cedo o que funciona. O próximo nível é usar o que ele diz para decidir e para comunicar.',
+        B: 'A opinião do cliente chega, mas se perde. Sem registro, o que ele valoriza não vira argumento nem melhoria.',
+        C: 'Sem acompanhamento, a empresa só descobre um problema quando ele já custou um cliente. Isso não prova insatisfação: prova falta de informação.' },
+  P4: { A: 'Ter um diferencial com exemplos dá matéria-prima para vender melhor. O ponto é conferir se ele aparece de forma clara em todas as conversas.',
+        B: 'Existe um diferencial, mas ele não chega ao cliente com força: falta prova ou falta falar dele. O que o cliente não vê, ele não valoriza.',
+        C: 'Qualidade e atendimento são o mínimo esperado. Sem uma diferença clara, o cliente tende a comparar pelo preço.' },
+  P5: { A: 'Conferir a entrega sustenta a confiança e evita surpresas. É a base para transformar promessas em provas.',
+        B: 'Há orientação, mas sem conferência não dá para garantir que toda entrega cumpre o que foi prometido.',
+        C: 'Conferir só quando há problema significa descobrir falhas pelo cliente. A promessa fica apoiada só na palavra da empresa.' },
+  P6: { A: 'Provas organizadas reduzem a dúvida de quem ainda não conhece a empresa. O próximo passo é garantir que elas apareçam na venda.',
+        B: 'As provas existem, mas espalhadas ou sem registro. Quando o cliente precisa decidir, elas não estão à mão.',
+        C: 'Sem provas, o cliente precisa acreditar só no que a empresa diz. Isso pesa mais em compras de valor alto ou de compra única.' },
+  P7: { A: 'Investigar o motivo antes de responder mostra segurança no próprio valor e evita descontos desnecessários.',
+        B: 'Explicar benefícios ajuda, mas sem entender o motivo da objeção a resposta pode não tocar no que preocupa o cliente.',
+        C: 'Ceder no preço ou ficar sem resposta indica que falta um argumento claro de valor. Cada desconto reduz a margem e ensina o cliente a pedir mais.',
+        D: 'Como a objeção é rara, não dá para avaliar como a empresa defende o preço. Pode ser sinal de preço baixo demais ou de comparações silenciosas.' },
+  P8: { A: 'Um motivo claro e repetido por todos deixa a marca fácil de entender e de indicar.',
+        B: 'Cada conversa apresenta a empresa de um jeito. O cliente sai sem uma ideia clara do porquê escolher você, e a venda depende de quem atende.',
+        C: 'Sem uma resposta clara e própria, o cliente não tem um motivo para escolher você além do preço ou da conveniência.' },
+  P9: { A: 'Mostrar diferenças com provas ajuda o cliente a comparar pelo valor, e não só pelo preço.',
+        B: 'Falar das diferenças sem provar pode soar como promessa. O cliente tende a desconfiar do que não vê demonstrado.',
+        C: 'Uma comunicação de produtos e preços coloca a empresa na mesma vitrine dos concorrentes. O que torna você diferente fica escondido.' },
+  P10: { A: 'Canais que explicam benefícios ajudam o cliente a decidir antes mesmo de falar com você.',
+         B: 'A experiência muda conforme o canal. Quem chega pelo canal mais fraco pode formar uma ideia menor da empresa.',
+         C: 'Canais com preço e catálogo convidam à comparação pelo valor da etiqueta.',
+         D: 'Sem olhar os próprios canais com os olhos do cliente, fica difícil saber o que ele encontra antes de decidir.' },
+  P11: { A: 'Defender o valor com provas diante de uma opção mais barata protege a margem e reforça a confiança.',
+         B: 'Os argumentos existem, mas nem sempre convencem. Pode faltar prova, clareza ou ligação com o que o cliente valoriza.',
+         C: 'Sem um argumento próprio, a comparação com o mais barato tende a terminar em desconto ou em venda perdida.' }
+};
+
 export const NATUREZA = {
   relato: 'Relato',          // o que o empresário informou
   hipotese: 'Hipótese',      // interpretação a partir da combinação das respostas
@@ -177,9 +229,8 @@ export function classificar(respostas) {
     const c = { A: 0, B: 0, C: 0, D: 0, NA: 0 };
     doPilar.forEach(x => { c[x.situacao]++; });
     const validos = c.A + c.B + c.C;
-    const indice = validos ? (2 * c.A + c.B) / (2 * validos) : 0;
-    // Favorável pede maioria de práticas estruturadas e no máximo um ponto de atenção.
-    const estado = validos < 3 ? 'inconclusivo' : (c.A >= validos / 2 && indice >= 0.65 && c.C <= 1 ? 'favoravel' : 'atencao');
+    // Favorável é exigente: pelo menos 70% de práticas estruturadas e nenhum ponto de atenção.
+    const estado = validos < 3 ? 'inconclusivo' : (c.A / validos >= 0.7 && c.C === 0 ? 'favoravel' : 'atencao');
     pilares[n] = { ...c, validos, estado };
   });
   const p1 = pilares[1].estado, p2 = pilares[2].estado;
@@ -280,6 +331,18 @@ export function textosDeReserva(classe, dificuldades) {
     fragilidades.push({ titulo: 'Informações que faltam', natureza: 'verificar',
       texto: 'Em ' + semInfo.map(x => x.tema.toLowerCase()).join(', ') + ', suas respostas não trouxeram informação suficiente. Esses pontos precisam ser verificados antes de qualquer conclusão.' });
   }
+  // Sempre há o que melhorar: completa com práticas informais e, se tudo for favorável, com o próximo nível.
+  classe.itens.filter(x => x.situacao === 'B').forEach(x => {
+    if (fragilidades.length < 3) fragilidades.push({ titulo: x.tema + ': prática sem método', texto: REFLETE[x.id].B, natureza: 'hipotese' });
+  });
+  if (fragilidades.length < 2) {
+    fragilidades.push({ titulo: 'Respostas que pedem confirmação', natureza: 'verificar',
+      texto: 'Suas respostas são muito favoráveis. Numa autoavaliação, isso pede uma checagem: o que você vê de dentro pode não ser o que o cliente encontra. Vale confirmar com clientes recentes o que eles realmente percebem.' });
+  }
+  if (fragilidades.length < 2) {
+    fragilidades.push({ titulo: 'Consistência em todos os pontos de contato', natureza: 'hipotese',
+      texto: 'Mesmo com boas práticas, o valor pode se perder no canal mais fraco ou na conversa de quem tem menos experiência. O próximo nível é garantir a mesma mensagem e as mesmas provas em todos os contatos.' });
+  }
   const consequencias = [];
   escolhidos.forEach(p => p.consequencias.forEach(([area, texto]) => { if (consequencias.length < 3 && !consequencias.some(c => c.area === area)) consequencias.push({ area, texto }); }));
   const principal = escolhidos[0];
@@ -291,7 +354,8 @@ export function textosDeReserva(classe, dificuldades) {
   const leitura = principal
     ? PERFIS[classe.perfil].txt + ' O ponto que mais chama atenção na combinação das respostas: ' + principal.titulo.toLowerCase() + '.'
     : PERFIS[classe.perfil].txt;
-  return { leitura, pontos_fortes, fragilidades, consequencias, recomendacao };
+  const respostas = classe.itens.map(x => ({ id: x.id, leitura: (REFLETE[x.id] || {})[x.situacao] || '' }));
+  return { leitura, respostas, pontos_fortes, fragilidades: fragilidades.slice(0, 3), consequencias, recomendacao };
 }
 
 // Validação das respostas recebidas pela função (nunca confiar no navegador).
