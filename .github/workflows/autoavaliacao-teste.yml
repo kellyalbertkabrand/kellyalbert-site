@@ -1,0 +1,16 @@
+name: Testar autoavaliação (Inteligência Artificial)
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        description: Endereço do site
+        default: https://kellyalbert.com.br
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/testar-autoavaliacao.mjs "${{ inputs.site }}"

@@ -174,3 +174,10 @@
   from = "/mentoria-teste/*"
   to = "/mentoria/"
   status = 301
+
+# Teste de Autoavaliação de Marca: as regras são carregadas como módulo pela página.
+[[headers]]
+  for = "/valorpercebido/*.mjs"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+    Cache-Control = "public, max-age=300"
