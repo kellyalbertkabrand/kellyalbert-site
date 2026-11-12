@@ -1,91 +1,123 @@
-// Teste de Autoavaliação de Marca · texto do resultado escrito pela Inteligência Artificial.
-// A classificação (situação de cada pergunta, estado de cada pilar e perfil) vem pronta das regras;
-// a Inteligência Artificial só escreve, dentro dos limites do teste gratuito.
+// Teste de Autoavaliação de Marca · análise da Inteligência Artificial.
+// As respostas chegam classificadas pelas regras (situação de cada pergunta, estado dos pilares e perfil).
+// A Inteligência Artificial cruza as 11 respostas e interpreta o que a combinação revela.
 import Anthropic from "@anthropic-ai/sdk";
 import { betaZodOutputFormat } from "@anthropic-ai/sdk/helpers/beta/zod";
 import { z } from "zod";
-import { AVISO, PERFIS, PILARES, SITUACOES } from "../../valorpercebido/regras.mjs";
+import { PERFIS, PILARES, SITUACOES } from "../../valorpercebido/regras.mjs";
 
 export const MODELO = "claude-opus-5-5";
 
-const TextoSchema = z.object({
-  leitura: z.string().describe("Duas ou três frases que explicam o perfil inicial a partir das respostas. Até 45 palavras."),
-  positivos: z.array(z.string()).describe("Zero a dois sinais positivos relatados. Cada um com até 25 palavras."),
-  atencao: z.array(z.string()).describe("Zero a dois pontos de atenção. Cada um com até 30 palavras."),
-  orientacao: z.string().describe("Uma orientação prática inicial ligada ao principal ponto de atenção. Até 45 palavras."),
+const Natureza = z.enum(["relato", "hipotese", "verificar"]);
+
+const AnaliseSchema = z.object({
+  leitura: z.string().describe("Leitura estratégica: o que o conjunto das respostas sugere sobre a situação da empresa. Até 80 palavras."),
+  pontos_fortes: z.array(z.object({
+    titulo: z.string().describe("Até 6 palavras."),
+    texto: z.string().describe("Por que essa prática relatada pode favorecer a escolha e a preferência pela marca, considerando o segmento. Até 40 palavras."),
+    natureza: Natureza,
+  })).describe("De zero a três pontos fortes."),
+  fragilidades: z.array(z.object({
+    titulo: z.string().describe("Até 7 palavras, nomeando a relação entre respostas."),
+    texto: z.string().describe("Quais respostas, combinadas, revelam o possível problema e por quê. Cite as respostas em linguagem simples. Até 55 palavras."),
+    natureza: Natureza,
+  })).describe("De zero a três fragilidades."),
+  consequencias: z.array(z.object({
+    area: z.enum(["Confiança", "Vendas", "Diferenciação", "Descontos"]),
+    texto: z.string().describe("Como as fragilidades podem afetar essa área, no condicional. Até 35 palavras."),
+  })).describe("De zero a três consequências, uma por área."),
+  recomendacao: z.object({
+    prioridade: z.string().describe("O aspecto que merece atenção primeiro. Até 10 palavras."),
+    porque: z.string().describe("Por que esse aspecto vem antes dos outros, ligando à combinação das respostas. Até 45 palavras."),
+    orientacao: z.string().describe("Uma orientação inicial prática para começar a melhorar, específica para o segmento. Até 50 palavras."),
+  }),
 });
 
-const SISTEMA = `Você escreve o resultado do Teste de Autoavaliação de Marca, um teste gratuito da KA | Inteligência para Marcas (Kelly Albert, estrategista de marcas). O teste é uma primeira avaliação: desperta consciência e entrega uma reflexão útil. Ele não é uma análise de posicionamento.
+const SISTEMA = `Você é a Inteligência Artificial da KA | Inteligência para Marcas (Kelly Albert, estrategista de marcas) e analisa o Teste de Autoavaliação de Marca, um teste gratuito. O empresário respondeu 11 perguntas de múltipla escolha em dois pilares:
+- Pilar 1, Sinais de força da marca: recompra, indicações, satisfação, diferencial, cumprimento das promessas e provas de qualidade.
+- Pilar 2, Capacidade de demonstrar valor: objeção de preço, motivo para escolher a empresa, diferenças na comunicação, canais e comparação com opções mais baratas.
 
-O empresário respondeu 11 perguntas em dois pilares:
-- Pilar 1, Sinais de força da marca: recompra, indicações, satisfação, diferenciais, cumprimento das promessas e provas de qualidade.
-- Pilar 2, Capacidade de demonstrar valor: objeções de preço, clareza da proposta de valor, diferenciação na comunicação, canais e argumentos de venda.
+Cada resposta chega classificada (prática estruturada, prática informal, ponto de atenção, informação insuficiente, não se aplica), com o estado de cada pilar e o perfil inicial. O perfil já está decidido: não troque nem crie outro.
 
-Você recebe cada resposta já classificada (prática estruturada, prática informal, ponto de atenção, informação insuficiente, não se aplica), o estado de cada pilar e o perfil inicial. O perfil já está decidido: nunca troque o perfil e nunca crie outro.
+O SEU TRABALHO É CRUZAR AS RESPOSTAS
+Não comente as respostas uma a uma. Interprete o que a combinação delas revela: relações, contradições e tensões. Exemplo do raciocínio esperado: se a empresa relata muitas indicações, não acompanha a satisfação e tem dificuldade para explicar o diferencial, reconheça três coisas: as indicações são um possível sinal positivo; a falta de acompanhamento impede entender o que sustenta essas indicações; a dificuldade de explicar o diferencial pode limitar a capacidade de demonstrar valor a quem ainda não conhece a empresa.
+Procure especialmente:
+- Valor que existe mas não aparece: provas, diferenciais ou boa entrega relatados no Pilar 1 que não chegam à comunicação, aos canais ou à venda no Pilar 2.
+- Discurso sem sustentação: comunicação ou argumentos estruturados no Pilar 2 com pouca prova ou pouca conferência da entrega no Pilar 1.
+- Dependência de desconto: desconto na objeção ou na comparação combinado com diferencial genérico ou falta de motivo claro.
+- Sinais positivos sem compreensão: recompra ou indicações sem acompanhamento de satisfação.
+- Venda que depende da pessoa: cada um explica de um jeito, sem orientação para a comparação.
+- Contradições: por exemplo, dizer que tem diferencial com provas, mas a equipe só fala de qualidade e atendimento.
 
-Como escrever:
-1. Conheça a empresa antes de interpretar: considere o principal produto ou serviço, o tipo de cliente e o segmento. Um negócio de compra única não tem recompra frequente, e isso não é falta de fidelização.
-2. Use só as respostas recebidas. Não invente fatos, números, concorrentes ou situações.
-3. Relato não é comprovação. Escreva "você relata", "suas respostas indicam". Nunca afirme que a empresa tem qualidade, que o diferencial é exclusivo ou que o benefício está comprovado.
-4. Não presuma o que o cliente pensa ou percebe. Não preveja perda de clientes. Não diga que a marca está mal posicionada.
-5. Objeção de preço não prova que o valor é baixo. Falta de acompanhamento da satisfação não prova clientes insatisfeitos: indica informação insuficiente.
-6. Não penalize quem não usa Instagram ou site: fale dos canais que a empresa usa.
-7. As dificuldades marcadas servem para contextualizar e priorizar, nunca como prova de problema.
-8. Positivos: até dois, só de respostas classificadas como prática estruturada (ou, se não houver, prática informal relevante). Se não houver nenhum sinal positivo, devolva a lista vazia.
-9. Pontos de atenção: no máximo dois, escolhidos pela relevância para a escolha e valorização da marca, pelas evidências nas respostas e pelas dificuldades declaradas. Quando faltar informação, diga que o aspecto precisa ser investigado. Se as respostas forem favoráveis, reconheça isso: não force problema para vender a aula. Lista vazia é permitido.
-10. Orientação: uma só, prática, específica para o tipo de negócio, que dê para começar nesta semana. Nada de "melhore sua comunicação" ou "fortaleça sua marca". Não entregue posicionamento, proposta de valor pronta, plano de comunicação, identidade verbal ou planejamento estratégico.
-11. A frase aberta sobre por que escolher a empresa deve ser avaliada pela clareza e especificidade, não como verdade.
+PERSONALIZE PELO SEGMENTO
+Use o segmento, o tipo de cliente e a frequência de compra para interpretar. Um negócio de compra única não tem recompra frequente, e isso não é falha de fidelização. Em vendas para empresas, a proposta e a confiança técnica pesam mais; para consumidor final, a experiência e as avaliações pesam mais. Use exemplos e termos do segmento, sem inventar fatos sobre a empresa.
 
-Tom: português do Brasil, fale com "você", frases curtas e diretas, linguagem simples para um dono de pequeno negócio. Escreva "Inteligência Artificial" por extenso. Nunca use travessão. Evite clichês como "agregar valor", "alavancar", "potencializar", "jornada", "basicamente", "na verdade". Não cite autores. Não use markdown.`;
+EVIDÊNCIA, HIPÓTESE OU A VERIFICAR
+Marque a natureza de cada item:
+- relato: o que o empresário informou diretamente (pontos fortes são quase sempre relatos).
+- hipotese: interpretação sua a partir da combinação das respostas.
+- verificar: falta informação para concluir ("não sabemos dizer", "quase nunca acontece").
+Escreva de acordo: "você relata", "suas respostas sugerem", "pode indicar", "precisa ser verificado". Nunca afirme o que os clientes pensam ou percebem: o teste não ouviu os clientes. Nunca preveja perda de clientes como certeza. Não diga que a marca está mal posicionada. Objeção de preço não prova que o valor é baixo. Falta de acompanhamento não prova insatisfação: indica falta de informação.
+
+PROFUNDO NO RACIOCÍNIO, CURTO NO TAMANHO
+O empresário deve terminar pensando: "agora entendi algo importante sobre a minha empresa que eu ainda não tinha percebido". Prefira uma relação bem explicada a várias observações soltas. Se as respostas forem favoráveis, reconheça e aponte o próximo nível, sem inventar problemas. Listas vazias são permitidas.
+
+RECOMENDAÇÃO
+Uma única prioridade: o aspecto que merece atenção primeiro, por que ele vem antes dos outros e uma orientação inicial concreta, que dê para começar nesta semana. Não entregue plano de implementação, posicionamento, proposta de valor pronta, plano de comunicação, identidade verbal ou planejamento estratégico: isso é aprofundado na aula e nos encontros práticos. Nada de "melhore sua comunicação" ou "fortaleça sua marca".
+
+As dificuldades marcadas pelo empresário servem para contextualizar e priorizar; elas não provam problema.
+
+TOM
+Português do Brasil, fale com "você", frases curtas e diretas, linguagem de dono de pequeno e médio negócio. Escreva "Inteligência Artificial" por extenso. Nunca use travessão. Evite clichês como "agregar valor", "alavancar", "potencializar", "jornada", "basicamente", "na verdade". Não cite autores nem use markdown.`;
 
 function montarPedido(dados, classe) {
-  const linhas = [];
-  linhas.push(`Principal produto ou serviço: ${dados.produto}`);
-  linhas.push(`Principais clientes: ${dados.clientes}`);
-  if (dados.segmento) linhas.push(`Segmento: ${dados.segmento}`);
-  linhas.push("");
+  const linhas = [
+    `Segmento: ${dados.segmento}`,
+    `Principais clientes: ${dados.clientes}`,
+    `Frequência de compra: ${dados.compra}`,
+    "",
+  ];
   for (const n of [1, 2]) {
     const p = classe.pilares[n];
     linhas.push(`PILAR ${n}: ${PILARES[n].nome} (estado: ${p.estado}; estruturadas ${p.A}, informais ${p.B}, atenção ${p.C}, sem informação ${p.D}, não se aplica ${p.NA})`);
     for (const x of classe.itens.filter((i) => i.pilar === n)) {
-      linhas.push(`- ${x.id} ${x.tema}: "${x.pergunta}" Resposta: "${x.resposta || "(sem resposta)"}" Situação: ${SITUACOES[x.situacao]}`);
-      if (x.id === "P4" && dados.respostas.P4b) linhas.push(`  Diferencial informado: "${dados.respostas.P4b}"`);
+      linhas.push(`- ${x.id} ${x.tema}: "${x.pergunta}" Resposta: "${x.resposta}" (${SITUACOES[x.situacao]})`);
     }
     linhas.push("");
   }
-  linhas.push(`Dificuldades marcadas pelo empresário: ${dados.dificuldades.length ? dados.dificuldades.join("; ") : "nenhuma informada"}`);
-  linhas.push("");
+  linhas.push(`Dificuldades marcadas: ${dados.dificuldades.length ? dados.dificuldades.join("; ") : "nenhuma informada"}`);
   linhas.push(`Perfil inicial (já decidido): ${PERFIS[classe.perfil].nome}. ${PERFIS[classe.perfil].txt}`);
-  linhas.push(`O resultado sempre vem acompanhado deste aviso: "${AVISO}"`);
   linhas.push("");
-  linhas.push("Escreva a leitura, os sinais positivos, os pontos de atenção e a orientação.");
+  linhas.push("Cruze as respostas e escreva a análise.");
   return linhas.join("\n");
 }
 
-const semTravessao = (t) => String(t || "").replace(/\s*[—–]\s*/g, ", ").replace(/\s+,/g, ",").trim();
+const limpar = (t) => String(t || "").replace(/\s*[—–]\s*/g, ", ").replace(/\s+,/g, ",").trim();
 
 export async function escreverResultado(dados, classe) {
-  const client = new Anthropic({ apiKey: (Netlify.env.get("ANTHROPIC_API_KEY") ?? "").trim(), maxRetries: 1, timeout: 60_000 });
+  const client = new Anthropic({ apiKey: (Netlify.env.get("ANTHROPIC_API_KEY") ?? "").trim(), maxRetries: 1, timeout: 90_000 });
   const stream = client.beta.messages.stream({
     model: MODELO,
     max_tokens: 16000,
     betas: ["server-side-fallback-2026-07-01"],
     // Se o modelo principal recusar, a própria API tenta de novo com o modelo recomendado.
     fallbacks: "default",
-    output_config: { effort: "low", format: betaZodOutputFormat(TextoSchema) },
+    output_config: { effort: "medium", format: betaZodOutputFormat(AnaliseSchema) },
     system: SISTEMA,
     messages: [{ role: "user", content: montarPedido(dados, classe) }],
   });
   const resposta = await stream.finalMessage();
-  if (resposta.stop_reason === "refusal") throw new Error("A Inteligência Artificial recusou escrever o resultado.");
-  if (resposta.stop_reason === "max_tokens") throw new Error("O resultado foi cortado por limite de tamanho.");
+  if (resposta.stop_reason === "refusal") throw new Error("A Inteligência Artificial recusou escrever a análise.");
+  if (resposta.stop_reason === "max_tokens") throw new Error("A análise foi cortada por limite de tamanho.");
   const texto = resposta.content.filter((b) => b.type === "text").map((b) => b.text).join("");
-  const r = TextoSchema.parse(JSON.parse(texto));
-  console.log("Autoavaliação escrita", { tokens_entrada: resposta.usage?.input_tokens, tokens_saida: resposta.usage?.output_tokens });
+  const r = AnaliseSchema.parse(JSON.parse(texto));
+  console.log("Autoavaliação analisada", { tokens_entrada: resposta.usage?.input_tokens, tokens_saida: resposta.usage?.output_tokens });
+  const item = (x) => ({ titulo: limpar(x.titulo), texto: limpar(x.texto), natureza: x.natureza });
   return {
-    leitura: semTravessao(r.leitura),
-    positivos: r.positivos.slice(0, 2).map(semTravessao).filter(Boolean),
-    atencao: r.atencao.slice(0, 2).map(semTravessao).filter(Boolean),
-    orientacao: semTravessao(r.orientacao),
+    leitura: limpar(r.leitura),
+    pontos_fortes: r.pontos_fortes.slice(0, 3).map(item),
+    fragilidades: r.fragilidades.slice(0, 3).map(item),
+    consequencias: r.consequencias.slice(0, 3).map((c) => ({ area: c.area, texto: limpar(c.texto) })),
+    recomendacao: { prioridade: limpar(r.recomendacao.prioridade), porque: limpar(r.recomendacao.porque), orientacao: limpar(r.recomendacao.orientacao) },
   };
 }

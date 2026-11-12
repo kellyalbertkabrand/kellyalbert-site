@@ -176,6 +176,29 @@ button,input{font-family:inherit}
 .laudo .orientacao{margin-top:12px;padding:14px 16px;border-radius:14px;background:rgba(216,111,42,.1);border-left:4px solid #D86F2A;color:var(--marinho)}
 .laudo__sec--aviso p{font-size:.86rem!important;color:rgba(21,37,53,.65)!important}
 
+/* Relatório em cinco partes */
+.laudo .eyebrow .num{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:50%;background:#D86F2A;color:#fff;font-size:.68rem;letter-spacing:0;vertical-align:1px}
+.laudo .leitura{margin-top:12px;font-size:1.06rem;line-height:1.6;color:var(--marinho)}
+.cartoes{display:grid;gap:10px;margin-top:12px}
+.cartao{padding:14px;border-radius:14px;background:#fff;border:1px solid rgba(216,111,42,.22)}
+.cartao__topo{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.cartao__topo b{font-size:1rem;font-weight:700;line-height:1.3;color:var(--marinho)}
+.laudo .cartao p{margin-top:6px;font-size:.96rem;line-height:1.55}
+.nat{flex:none;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:100px;white-space:nowrap}
+.nat--relato{background:rgba(61,107,126,.14);color:#2B4865}
+.nat--hipotese{background:rgba(216,111,42,.14);color:#B5561A}
+.nat--verificar{background:rgba(21,37,53,.08);color:rgba(21,37,53,.7)}
+.consequencias{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+.consequencias li{display:grid;gap:4px;padding-left:14px;border-left:3px solid rgba(216,111,42,.45)}
+.consequencias .area{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#D86F2A}
+.laudo .consequencias p{font-size:.96rem}
+.recomendacao{margin-top:12px;padding:16px;border-radius:14px;background:rgba(216,111,42,.1);border-left:4px solid #D86F2A;display:grid;gap:4px}
+.laudo .rec__rot{margin-top:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B5561A}
+.laudo .rec__rot:first-child{margin-top:0}
+.laudo .rec__prio{font-size:1.15rem;font-weight:800;line-height:1.3;color:var(--marinho)}
+.laudo .vazio{margin-top:10px;font-size:.94rem;color:rgba(21,37,53,.7)}
+#rx-lista select{width:100%;min-height:52px;padding:12px 14px;border-radius:14px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-family:inherit;font-size:1rem}
+
 /* Resultado: fundo branco e caramelo vivo #D86F2A */
 .res{display:grid;gap:16px;margin-top:14px;animation:entra .3s ease}
 .laudo{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
@@ -258,7 +281,7 @@ button,input{font-family:inherit}
 <!-- Netlify Forms: backup dos leads (o formulário real fica no chat) -->
 <form name="raio-x-marca" netlify netlify-honeypot="bot-field" hidden>
   <input name="bot-field"><input name="nome"><input name="segmento"><input name="email"><input name="whatsapp">
-  <input name="consentimento"><input name="produto"><input name="clientes"><input name="perfil"><input name="pilar1"><input name="pilar2">
+  <input name="consentimento"><input name="clientes"><input name="compra"><input name="perfil"><input name="pilar1"><input name="pilar2">
   <input name="respostas"><input name="dificuldades"><input name="origem"><input name="utm_source"><input name="utm_medium"><input name="utm_campaign"><input name="utm_content">
 </form>
 
@@ -274,7 +297,7 @@ button,input{font-family:inherit}
     <span class="rotulo">Teste de Autoavaliação de Marca</span>
     <h1 class="topo__pergunta">Sua marca está dando motivos para o <b>cliente escolher você?</b></h1>
     <p class="topo__comp">Avalie sinais de força da sua marca, descubra se sua empresa está conseguindo demonstrar o próprio valor e identifique possíveis pontos de atenção.</p>
-    <p class="topo__info"><span>11 perguntas</span><span>Cerca de 5 minutos</span><span>Resultado imediato</span></p>
+    <p class="topo__info"><span>11 perguntas</span><span>3 a 5 minutos</span><span>Resultado imediato</span></p>
     <p class="topo__nota">A avaliação é baseada nas suas respostas, e não em uma pesquisa com os seus clientes.</p>
   </header>
 
@@ -300,7 +323,7 @@ button,input{font-family:inherit}
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=2';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
@@ -314,33 +337,32 @@ var CONFIG = {
   instagram: 'https://www.instagram.com/kellyalbert.brand',
   mailerliteGroupId: '183324004183967092', // grupo do Diagnóstico: dispara a "Automação Diagnóstico" no MailerLite
   origem: 'valorpercebido',
-  storageKey: 'ka_autoavaliacao_v1',
+  storageKey: 'ka_autoavaliacao_v2',
   leadKey: 'ka_raiox_marca_lead',
-  esperaMaxima: 30000 // tempo máximo esperando o texto da Inteligência Artificial antes de mostrar o resultado das regras
+  esperaMaxima: 50000 // tempo máximo esperando a análise da Inteligência Artificial antes de mostrar o resultado das regras
 };
 
 var TEXTOS = {
   abertura: [
     'Oi! Aqui é a assistente da Kelly.',
     'Este teste ajuda você a avaliar sinais de força da sua marca e a ver se a sua empresa está conseguindo demonstrar o próprio valor.',
-    'Primeiro, duas informações rápidas sobre o seu negócio. Depois, 11 perguntas e uma lista de dificuldades. Leva uns 5 minutos.'
+    'Primeiro, três informações rápidas sobre o seu negócio. Depois, 11 perguntas de múltipla escolha. Leva de 3 a 5 minutos.'
   ],
   captura: 'Pronto! Para te mostrar o seu resultado, me diz:',
   retomar: 'Que bom te ver de novo! Quer continuar de onde parou?',
-  montando: 'Estou analisando as suas respostas. Leva alguns segundos.'
+  montando: 'Estou cruzando as suas respostas para entender o que elas revelam juntas. Leva uns 20 segundos.'
 };
-var SEGMENTOS = ['Advocacia e serviços jurídicos','Agronegócio','Alimentação e gastronomia','Arquitetura e decoração','Automotivo','Beleza e estética','Bem-estar e terapias','Clínicas e consultórios','Comunicação e marketing','Construção civil e engenharia','Consultoria e gestão','Contabilidade e finanças','Educação e cursos','Eventos e casamentos','Fitness e academias','Fotografia e audiovisual','Imobiliário','Indústria','Moda e vestuário','Odontologia','Pet','Saúde','Seguros','Serviços para empresas','Tecnologia','Turismo e hotelaria','Varejo','Outro'];
 
 // ─── ETAPAS ─────────────────────────────────────────────────────
 // Cada etapa: opções (botões), texto (campo aberto) ou dificuldades (lista para marcar).
 var ETAPAS = [];
-ETAPAS.push({ id:'produto', tipo:'texto', q:CONTEXTO.produto.q, ajuda:CONTEXTO.produto.ajuda, max:CONTEXTO.produto.max, curto:true, bloco:'contexto' });
-ETAPAS.push({ id:'clientes', tipo:'opcoes', q:CONTEXTO.clientes.q, r:CONTEXTO.clientes.r });
+CONTEXTO.forEach(function(c, i){
+  if(c.lista) ETAPAS.push({ id:c.id, tipo:'lista', q:c.q, lista:c.lista, bloco: i===0 ? 'contexto' : null });
+  else ETAPAS.push({ id:c.id, tipo:'opcoes', q:c.q, r:c.r, bloco: i===0 ? 'contexto' : null });
+});
 PERGUNTAS.forEach(function(p){
   var bloco = p.id==='P1' ? 'p1' : (p.id==='P7' ? 'p2' : null);
-  if(p.aberta) ETAPAS.push({ id:p.id, tipo:'texto', q:p.q, ajuda:p.ajuda, max:p.max, bloco:bloco, pergunta:true });
-  else ETAPAS.push({ id:p.id, tipo:'opcoes', q:p.q, r:p.r.map(function(x){ return x[0]; }), bloco:bloco, pergunta:true });
-  if(p.complemento) ETAPAS.push({ id:p.complemento.id, tipo:'texto', q:p.complemento.q, ajuda:p.complemento.ajuda, max:p.complemento.max, opcional:true, curto:true });
+  ETAPAS.push({ id:p.id, tipo:'opcoes', q:p.q, r:p.r.map(function(x){ return x[0]; }), bloco:bloco, pergunta:true });
 });
 ETAPAS.push({ id:'dificuldades', tipo:'dificuldades' });
 var TOTAL_PERGUNTAS = PERGUNTAS.length;
@@ -425,6 +447,7 @@ function textoResposta(et){
   if(et.tipo==='dificuldades') return textoDificuldades();
   var v = estado.respostas[et.id];
   if(et.tipo==='opcoes') return et.r[v] || '';
+  if(et.tipo==='lista') return v || '';
   return v ? v : 'Pulei';
 }
 function textoDificuldades(){ var d = estado.dificuldades || []; return d.length ? d.join(', ') : DIFICULDADES.nenhuma; }
@@ -479,6 +502,7 @@ function perguntar(){
   if(et.bloco){ if(et.bloco==='p2') evento('pilar1_concluido'); marcaBloco(et.bloco); }
   if(et.tipo==='opcoes') return perguntarOpcoes(et);
   if(et.tipo==='texto') return perguntarTexto(et);
+  if(et.tipo==='lista') return perguntarLista(et);
   return perguntarDificuldades(et);
 }
 
@@ -493,6 +517,28 @@ function perguntarOpcoes(et){
       }};
     }));
     botaoVoltar();
+  });
+}
+
+function perguntarLista(et){
+  bot(et.q, function(){
+    footer.innerHTML =
+      '<form class="form" id="rx-lista" novalidate>'+
+        '<select id="rx-lista-campo" aria-label="'+esc(et.q)+'"><option value="">Escolha uma opção</option>'+
+          et.lista.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('')+
+        '</select>'+
+        '<p class="erro" id="rx-lista-erro" role="alert"></p>'+
+        '<button type="submit" class="btn btn--laranja">Continuar</button>'+
+      '</form>';
+    var campo = document.getElementById('rx-lista-campo'), err = document.getElementById('rx-lista-erro');
+    campo.addEventListener('change', function(){ err.style.display='none'; });
+    document.getElementById('rx-lista').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!campo.value){ err.textContent='Escolha uma opção para seguir.'; err.style.display='block'; return; }
+      avancar(et, campo.value, campo.value);
+    });
+    botaoVoltar();
+    rolar();
   });
 }
 
@@ -589,10 +635,6 @@ function capturar(){
         '<div class="campo"><label for="rx-nome">Nome <small>*</small></label><input id="rx-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" value="'+v('nome')+'" required></div>'+
         '<div class="campo"><label for="rx-email">E-mail <small>*</small></label><input id="rx-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="seu@email.com" value="'+v('email')+'" required></div>'+
         '<div class="campo"><label for="rx-wa">WhatsApp com DDD <small>*</small></label><input id="rx-wa" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" placeholder="(00) 00000-0000" value="'+v('whatsapp')+'" required></div>'+
-        '<div class="campo"><label for="rx-seg">Segmento <small>(opcional)</small></label><select id="rx-seg" name="segmento">'+
-          '<option value="">Escolha o seu segmento</option>'+
-          SEGMENTOS.map(function(x){ return '<option'+(salvo.segmento===x?' selected':'')+'>'+x+'</option>'; }).join('')+
-        '</select></div>'+
         '<label class="consent"><input id="rx-consent" type="checkbox" name="consentimento" required> <span>Aceito receber comunicações da KA por e-mail ou WhatsApp.</span></label>'+
         '<p class="erro" id="rx-erro" role="alert"></p>'+
         '<button type="submit" class="btn btn--laranja">Ver o meu resultado</button>'+
@@ -622,11 +664,10 @@ function validaEmail(e){
   return null;
 }
 
-function entrada(segmento){
+function entrada(){
   var r = {};
   PERGUNTAS.forEach(function(p){ r[p.id] = estado.respostas[p.id]; });
-  r.P4b = estado.respostas.P4b || '';
-  return { produto: estado.respostas.produto, clientes: CONTEXTO.clientes.r[estado.respostas.clientes], segmento: segmento||'', respostas: r, dificuldades: estado.dificuldades||[] };
+  return { segmento: estado.respostas.segmento, clientes: CONTEXTO[1].r[estado.respostas.clientes], compra: CONTEXTO[2].r[estado.respostas.compra], respostas: r, dificuldades: estado.dificuldades||[] };
 }
 
 function enviar(ev){
@@ -635,7 +676,7 @@ function enviar(ev){
   function falha(msg){ err.textContent=msg; err.style.display='block'; }
   err.style.display='none';
   var nome = f.nome.value.trim().replace(/\s+/g,' ');
-  var segmento = f.segmento.value;
+  var segmento = estado.respostas.segmento || '';
   var email = f.email.value.trim();
   var whatsapp = f.whatsapp.value.trim();
   if(nome.split(' ').filter(function(p){return p.length>=2;}).length<2) return falha('Digite o seu nome e sobrenome.');
@@ -646,7 +687,7 @@ function enviar(ev){
   try{ localStorage.setItem(CONFIG.leadKey, JSON.stringify(lead)); }catch(e){}
   var btn = f.querySelector('button[type=submit]'); btn.disabled=true; btn.textContent='Analisando as suas respostas…';
 
-  var dados = entrada(segmento);
+  var dados = entrada();
   // Resultado das regras, calculado aqui mesmo: garante resposta mesmo se a internet ou a função falharem.
   var classe = classificar(dados.respostas);
   var reserva = textosDeReserva(classe, dados.dificuldades);
@@ -696,12 +737,12 @@ function obterAnalise(dados, cb){
 // ─── ENVIO DO LEAD ─────────────────────────────────────────────
 function linhasDeRespostas(dados, classe){
   var linhas = [
-    {id:'CTX1', pergunta:CONTEXTO.produto.q, resposta:dados.produto, pontos:0},
-    {id:'CTX2', pergunta:CONTEXTO.clientes.q, resposta:dados.clientes, pontos:0}
+    {id:'CTX1', pergunta:CONTEXTO[0].q, resposta:dados.segmento, pontos:0},
+    {id:'CTX2', pergunta:CONTEXTO[1].q, resposta:dados.clientes, pontos:0},
+    {id:'CTX3', pergunta:CONTEXTO[2].q, resposta:dados.compra, pontos:0}
   ];
   classe.itens.forEach(function(x){
     linhas.push({id:x.id, pergunta:x.pergunta, resposta:(x.resposta||'(sem resposta)')+' · '+({A:'estruturada',B:'informal',C:'atenção',D:'sem informação',NA:'não se aplica'}[x.situacao]), pontos:0});
-    if(x.id==='P4' && dados.respostas.P4b) linhas.push({id:'P4b', pergunta:'Qual é o seu principal diferencial?', resposta:dados.respostas.P4b, pontos:0});
   });
   linhas.push({id:'DIF', pergunta:DIFICULDADES.titulo, resposta:textoDificuldades(), pontos:0});
   return linhas;
@@ -715,7 +756,7 @@ function enviarLead(lead, dados, classe){
     fd.append('form-name','raio-x-marca');
     fd.append('nome',lead.nome); fd.append('segmento',lead.segmento||''); fd.append('email',lead.email); fd.append('whatsapp',lead.whatsapp);
     fd.append('consentimento','sim');
-    fd.append('produto',dados.produto); fd.append('clientes',dados.clientes);
+    fd.append('clientes',dados.clientes); fd.append('compra',dados.compra);
     fd.append('perfil',PERFIS[classe.perfil].nome); fd.append('pilar1',pil(1)); fd.append('pilar2',pil(2));
     fd.append('respostas',linhas.map(function(l){ return l.id+': '+l.resposta; }).join(' | '));
     fd.append('dificuldades',textoDificuldades()); fd.append('origem',CONFIG.origem);
@@ -752,7 +793,7 @@ function mostrarResultado(lead, dados, classe, t){
   var p = PERFIS[classe.perfil] || PERFIS.inconclusiva;
   var msgAula = 'Oi, Kelly! Fiz o Teste de Autoavaliação de Marca e quero participar da aula ao vivo do dia '+CONFIG.aulaDataCurta+'.';
   var linkWhatsAula = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msgAula);
-  var positivos = (t.positivos||[]).slice(0,2), atencao = (t.atencao||[]).slice(0,2);
+  var fortes = (t.pontos_fortes||[]).slice(0,3), frag = (t.fragilidades||[]).slice(0,3), cons = (t.consequencias||[]).slice(0,3), rec = t.recomendacao || {};
   var pilar = function(n){
     var x = classe.pilares[n];
     var est = {favoravel:'Sinais favoráveis', atencao:'Pede atenção', inconclusivo:'Pouca informação'}[x.estado];
@@ -766,7 +807,12 @@ function mostrarResultado(lead, dados, classe, t){
         '<li><b>'+(x.D+x.NA)+'</b>sem informação ou não se aplica</li>'+
       '</ul></div>';
   };
-  var lista = function(itens, vazio){ return itens.length ? '<ul class="sinais">'+itens.map(function(i){ return '<li>'+esc(i)+'</li>'; }).join('')+'</ul>' : '<p>'+vazio+'</p>'; };
+  var selo = function(n){ return n && NATUREZA[n] ? '<span class="nat nat--'+n+'">'+NATUREZA[n]+'</span>' : ''; };
+  var cartoes = function(itens, vazio){
+    return itens.length ? '<div class="cartoes">'+itens.map(function(i){
+      return '<div class="cartao"><div class="cartao__topo"><b>'+esc(i.titulo)+'</b>'+selo(i.natureza)+'</div><p>'+esc(i.texto)+'</p></div>';
+    }).join('')+'</div>' : '<p class="vazio">'+vazio+'</p>';
+  };
 
   var wrap = document.createElement('div'); wrap.className='res';
   wrap.innerHTML =
@@ -775,23 +821,29 @@ function mostrarResultado(lead, dados, classe, t){
         '<p class="eyebrow">Teste de Autoavaliação de Marca</p>'+
         '<p class="laudo__nome">'+primeiro+', este é o seu perfil inicial:</p>'+
         '<h2 class="perfil__nome">'+p.nome+'</h2>'+
-        '<p>'+esc(t.leitura || p.txt)+'</p>'+
-      '</section>'+
-      '<section class="laudo__sec">'+
-        '<p class="eyebrow">Os dois pilares</p>'+
         '<div class="pilares">'+pilar(1)+pilar(2)+'</div>'+
         '<p class="nota-pilar">Contagem das suas respostas. É o resultado da sua autoavaliação, não uma medida do valor da sua marca.</p>'+
       '</section>'+
-      '<section class="laudo__sec"><p class="eyebrow">O que suas respostas indicam de positivo</p>'+
-        lista(positivos, 'Suas respostas ainda não trouxeram sinais positivos claros. Isso não quer dizer que eles não existam: vale organizar essas informações.')+
+      '<section class="laudo__sec"><p class="eyebrow"><span class="num">1</span>Leitura estratégica da marca</p>'+
+        '<p class="leitura">'+esc(t.leitura || p.txt)+'</p>'+
       '</section>'+
-      '<section class="laudo__sec"><p class="eyebrow">O que merece atenção</p>'+
-        lista(atencao, 'Suas respostas não indicaram pontos críticos. Reconhecer o que já funciona também é parte do trabalho.')+
+      '<section class="laudo__sec"><p class="eyebrow"><span class="num">2</span>Pontos fortes</p>'+
+        cartoes(fortes, 'Suas respostas ainda não trouxeram práticas estruturadas para destacar. Isso não quer dizer que elas não existam: talvez ainda não sejam acompanhadas.')+
       '</section>'+
-      '<section class="laudo__sec"><p class="eyebrow">Sua primeira orientação</p>'+
-        '<p class="orientacao">'+esc(t.orientacao)+'</p>'+
+      '<section class="laudo__sec"><p class="eyebrow"><span class="num">3</span>Fragilidades identificadas</p>'+
+        cartoes(frag, 'Analisadas em conjunto, suas respostas não revelaram fragilidades relevantes.')+
       '</section>'+
-      '<section class="laudo__sec laudo__sec--aviso"><p>'+AVISO+' É uma primeira avaliação e não substitui uma análise mais profunda.</p></section>'+
+      (cons.length ? '<section class="laudo__sec"><p class="eyebrow"><span class="num">4</span>Consequências para o negócio</p>'+
+        '<ul class="consequencias">'+cons.map(function(c){ return '<li><span class="area">'+esc(c.area)+'</span><p>'+esc(c.texto)+'</p></li>'; }).join('')+'</ul>'+
+      '</section>' : '')+
+      '<section class="laudo__sec"><p class="eyebrow"><span class="num">'+(cons.length?5:4)+'</span>Recomendação estratégica</p>'+
+        '<div class="recomendacao">'+
+          '<p class="rec__rot">Prioridade</p><p class="rec__prio">'+esc(rec.prioridade)+'</p>'+
+          '<p class="rec__rot">Por que começar por aqui</p><p>'+esc(rec.porque)+'</p>'+
+          '<p class="rec__rot">Por onde começar</p><p>'+esc(rec.orientacao)+'</p>'+
+        '</div>'+
+      '</section>'+
+      '<section class="laudo__sec laudo__sec--aviso"><p>'+AVISO+' É uma primeira avaliação: o aprofundamento acontece na aula e nos encontros práticos.</p></section>'+
       '<div class="laudo__acoes">'+
         '<button type="button" class="btn btn--caramelo-contorno" id="rx-copiar">Copiar o meu resultado</button>'+
         '<p class="copiado" id="rx-copiado" aria-live="polite"></p>'+
@@ -830,12 +882,14 @@ function mostrarResultado(lead, dados, classe, t){
   document.getElementById('rx-aula').addEventListener('click', function(){ evento('clique_aula',{perfil:classe.perfil}); });
   document.getElementById('rx-copiar').addEventListener('click', function(){
     var pl = function(n){ var x=classe.pilares[n]; return 'Pilar '+n+', '+PILARES[n].nome+': '+x.A+' estruturadas, '+x.B+' informais, '+x.C+' pontos de atenção, '+(x.D+x.NA)+' sem informação'; };
+    var it = function(l){ return l.length ? l.map(function(x){ return '• '+x.titulo+(x.natureza?' ('+NATUREZA[x.natureza]+')':'')+': '+x.texto; }).join('\n') : 'Nenhum item.'; };
     var txt = 'Teste de Autoavaliação de Marca\nKA | Inteligência para Marcas\n\n'+
-      'Perfil inicial: '+p.nome+'\n'+(t.leitura||p.txt)+'\n\n'+
-      pl(1)+'\n'+pl(2)+'\n\n'+
-      'O que minhas respostas indicam de positivo:\n'+(positivos.length?positivos.map(function(x){return '• '+x;}).join('\n'):'Nenhum sinal claro ainda.')+'\n\n'+
-      'O que merece atenção:\n'+(atencao.length?atencao.map(function(x){return '• '+x;}).join('\n'):'Nenhum ponto crítico indicado.')+'\n\n'+
-      'Minha primeira orientação:\n'+t.orientacao+'\n\n'+
+      'Perfil inicial: '+p.nome+'\n'+pl(1)+'\n'+pl(2)+'\n\n'+
+      'Leitura estratégica:\n'+(t.leitura||p.txt)+'\n\n'+
+      'Pontos fortes:\n'+it(fortes)+'\n\n'+
+      'Fragilidades identificadas:\n'+it(frag)+'\n\n'+
+      (cons.length ? 'Consequências para o negócio:\n'+cons.map(function(c){ return '• '+c.area+': '+c.texto; }).join('\n')+'\n\n' : '')+
+      'Recomendação estratégica: '+rec.prioridade+'\nPor que: '+rec.porque+'\nPor onde começar: '+rec.orientacao+'\n\n'+
       'Dificuldades que marquei: '+textoDificuldades()+'\n\n'+AVISO+
       '\n\nFaça o seu teste: https://kellyalbert.com.br/valorpercebido';
     var ok = function(){ document.getElementById('rx-copiado').textContent='Resultado copiado.'; };
