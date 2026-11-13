@@ -214,7 +214,7 @@ export const NATUREZA = {
   verificar: 'A verificar'   // falta informação para concluir
 };
 
-export const AVISO = 'Este resultado é baseado nas suas respostas, e não em uma pesquisa com os seus clientes. Pontos fortes são relatos seus; fragilidades e consequências são hipóteses para você investigar.';
+export const AVISO = 'Este resultado é baseado nas suas respostas, e não em uma pesquisa com os seus clientes. Os pontos a melhorar são hipóteses para você confirmar com seus clientes.';
 
 // ─── Classificação ───
 // respostas: { P1: índice da alternativa, ..., P11 }
