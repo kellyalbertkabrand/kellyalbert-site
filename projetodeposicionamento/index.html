@@ -70,7 +70,7 @@
     }
     .hero__linha2, .hero__linha3{
       font-family:'Outfit',sans-serif;font-weight:800;
-      font-size:clamp(2.8rem,13vw,4.4rem);line-height:.98;
+      font-size:clamp(2.2rem,10vw,3.5rem);line-height:.98;
       color:var(--papel);letter-spacing:-.02em;
       text-transform:uppercase;white-space:nowrap;
     }
@@ -101,7 +101,7 @@
       margin:0 0 .7rem;
     }
     .form-err-inline{
-      display:none;font-size:.82rem;color:#EF4444;font-weight:600;
+      display:none;font-size:.82rem;color:#EF4444;font-weight:400;
       margin:.45rem 0 0;line-height:1.4;
     }
     .form-err-inline.on{display:block;}
@@ -320,7 +320,7 @@
     var w1 = l1.getBoundingClientRect().width;
     if(!w1) return;
     var novo = (20 * w2 / w1);
-    novo = Math.max(12, Math.min(novo, 32));
+    novo = Math.max(12, Math.min(novo, 26));
     l1.style.fontSize = novo + 'px';
   }
   function debounce(fn){
