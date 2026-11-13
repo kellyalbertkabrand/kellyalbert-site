@@ -36,6 +36,7 @@ for (const [nome, corpo] of Object.entries(casos)) {
   console.log("3. Fragilidades:\n" + (t.fragilidades.map((x) => ` - [${x.natureza}] ${x.titulo}: ${x.texto}`).join("\n") || " (nenhuma)"));
   console.log("4. Consequências:\n" + (t.consequencias.map((x) => ` - ${x.area}: ${x.texto}`).join("\n") || " (nenhuma)"));
   console.log("5. Recomendação:", t.recomendacao.prioridade, "|", t.recomendacao.porque, "|", t.recomendacao.orientacao);
+  { const tudo = [t.leitura, ...(t.respostas||[]).map(x=>x.leitura), ...t.pontos_fortes.flatMap(x=>[x.titulo,x.texto]), ...t.fragilidades.flatMap(x=>[x.titulo,x.texto]), ...t.consequencias.map(x=>x.texto), t.recomendacao.prioridade, t.recomendacao.porque, t.recomendacao.orientacao].join(" "); console.log("TOTAL DE PALAVRAS:", tudo.split(/\s+/).filter(Boolean).length); }
   if (t.fonte !== "ia") falhas++;
 }
 process.exit(falhas ? 1 : 0);
