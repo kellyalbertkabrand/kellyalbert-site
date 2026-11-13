@@ -8,33 +8,16 @@ import { PERFIS, PILARES, SITUACOES } from "../../valorpercebido/regras.mjs";
 
 export const MODELO = "claude-opus-5-5";
 
-const Natureza = z.enum(["relato", "hipotese", "verificar"]);
+const Item = (titulo, texto) => z.object({ titulo: z.string().describe(titulo), texto: z.string().describe(texto) });
 
 const AnaliseSchema = z.object({
-  respostas: z.array(z.object({
-    id: z.string().describe("P1 a P11."),
-    leitura: z.string().describe("O que essa resposta, lida ao pé da letra e à luz das outras, reflete no negócio. Uma frase só, até 15 palavras."),
-  })).describe("Exatamente 11 itens, um por pergunta, na ordem de P1 a P11."),
-  leitura: z.string().describe("Leitura estratégica: o que o conjunto das respostas sugere sobre a situação da empresa. Até 40 palavras."),
-  pontos_fortes: z.array(z.object({
-    titulo: z.string().describe("Até 5 palavras."),
-    texto: z.string().describe("Por que essa prática relatada pode favorecer a escolha e a preferência pela marca, considerando o segmento. Até 20 palavras."),
-    natureza: Natureza,
-  })).describe("De zero a dois pontos fortes."),
-  fragilidades: z.array(z.object({
-    titulo: z.string().describe("Até 6 palavras, nomeando a relação entre respostas."),
-    texto: z.string().describe("Quais respostas, combinadas, revelam o possível problema e por quê. Cite as respostas em linguagem simples. Até 28 palavras."),
-    natureza: Natureza,
-  })).describe("Exatamente duas fragilidades, as mais importantes."),
-  consequencias: z.array(z.object({
-    area: z.enum(["Confiança", "Vendas", "Diferenciação", "Descontos"]),
-    texto: z.string().describe("Como as fragilidades podem afetar essa área, no condicional. Até 18 palavras."),
-  })).describe("De zero a duas consequências, uma por área."),
-  recomendacao: z.object({
-    prioridade: z.string().describe("O aspecto que merece atenção primeiro. Até 8 palavras."),
-    porque: z.string().describe("Por que esse aspecto vem antes dos outros, ligando à combinação das respostas. Até 22 palavras."),
-    orientacao: z.string().describe("Uma orientação inicial prática para começar a melhorar, específica para o segmento. Até 25 palavras."),
-  }),
+  resumo: z.string().describe("A conclusão principal que o cruzamento das respostas revela sobre a marca. Até 30 palavras."),
+  pontos_fortes: z.array(Item("Até 5 palavras.", "O que a empresa já faz e por que isso ajuda a ser escolhida, no segmento dela. Até 20 palavras."))
+    .describe("De zero a três pontos fortes avaliados, medidos, sem exagero."),
+  pontos_melhorar: z.array(Item("Até 6 palavras.", "Quais respostas, combinadas, mostram o que precisa melhorar e o efeito no negócio. Até 25 palavras."))
+    .describe("De dois a três pontos a melhorar, do mais importante para o menos. Sempre pelo menos dois."),
+  dicas: z.array(Item("Uma ação, começando com verbo. Até 6 palavras.", "Como fazer, de forma concreta e específica para o segmento, possível de começar nesta semana. Até 25 palavras."))
+    .describe("Exatamente três dicas práticas, a primeira é a mais urgente."),
 });
 
 const SISTEMA = `Você é a Inteligência Artificial da KA | Inteligência para Marcas (Kelly Albert, estrategista de marcas) e analisa o Teste de Autoavaliação de Marca, um teste gratuito. O empresário respondeu 11 perguntas de múltipla escolha em dois pilares:
@@ -65,26 +48,20 @@ Use esse entendimento em cada leitura: diga o que é normal para esse tipo de ne
 PERSONALIZE PELO TIPO DE NEGÓCIO
 Use o tipo de negócio, o tipo de cliente e a frequência de compra para interpretar. Um negócio de compra única não tem recompra frequente, e isso não é falha de fidelização. Em vendas para empresas, a proposta e a confiança técnica pesam mais; para consumidor final, a experiência e as avaliações pesam mais. Use exemplos e termos do segmento, sem inventar fatos sobre a empresa.
 
-EVIDÊNCIA, HIPÓTESE OU A VERIFICAR
-Marque a natureza de cada item:
-- relato: o que o empresário informou diretamente (pontos fortes são quase sempre relatos).
-- hipotese: interpretação sua a partir da combinação das respostas.
-- verificar: falta informação para concluir ("não sabemos dizer", "quase nunca acontece").
-Escreva de acordo: "você relata", "suas respostas sugerem", "pode indicar", "precisa ser verificado". Nunca afirme o que os clientes pensam ou percebem: o teste não ouviu os clientes. Nunca preveja perda de clientes como certeza. Não diga que a marca está mal posicionada. Objeção de preço não prova que o valor é baixo. Falta de acompanhamento não prova insatisfação: indica falta de informação.
+CUIDADO COM AS AFIRMAÇÕES
+Escreva "você relata", "suas respostas sugerem", "pode indicar", "vale verificar". Nunca afirme o que os clientes pensam ou percebem: o teste não ouviu os clientes. Nunca preveja perda de clientes como certeza. Não diga que a marca está mal posicionada. Objeção de preço não prova que o valor é baixo. Falta de acompanhamento não prova insatisfação: indica falta de informação.
 
 SEJA CRITERIOSO
 Autoavaliações tendem a ser otimistas: o empresário costuma marcar a alternativa mais favorável. Leia cada resposta ao pé da letra e não amplie o que ela diz (por exemplo, "pedimos avaliações no Google" não é o mesmo que medir satisfação de forma completa).
-- Para cada uma das 11 respostas, diga o que ela reflete no negócio. Numa prática estruturada, diga o que ela permite e o que ainda precisa ser conferido ou levado ao próximo nível. Numa prática informal, mostre o que se perde por não haver método. Num ponto de atenção, mostre o efeito provável no negócio.
-- Toda empresa tem o que melhorar. Mesmo com respostas favoráveis, aponte duas fragilidades: práticas informais, distância entre os pilares, contradições, ou o que ainda não está comprovado.
+- Toda empresa tem o que melhorar. Mesmo com respostas favoráveis, aponte pelo menos dois pontos a melhorar: práticas informais, distância entre os pilares, contradições, ou o que ainda não está comprovado.
 - As dificuldades marcadas pelo empresário são o que ele reconhece. Quando elas contradizem respostas positivas (por exemplo, marcar "Diferencial" como dificuldade e dizer que tem diferencial com provas), trate isso como um dos achados mais importantes: provavelmente a dificuldade é real e a resposta foi otimista.
-- Pontos fortes devem ser medidos: reconheça a prática, sem exagerar o que ela comprova.
+- Pontos fortes devem ser medidos: reconheça a prática, sem exagerar o que ela comprova. Se não houver prática estruturada, uma prática informal promissora pode ser citada como base a aproveitar.
 
-PROFUNDO NO RACIOCÍNIO, CURTO NO TAMANHO
-A análise precisa ser enxuta: leitura rápida no celular, sem perder profundidade. Respeite os limites de palavras de cada campo, eles são rígidos. Corte repetições: o que já foi dito numa seção não volta em outra. Cada frase deve trazer uma ideia nova; nada de introduções, resumos ou frases de transição. Prefira uma frase precisa a duas explicativas.
-O empresário deve terminar pensando: "agora entendi algo importante sobre a minha empresa que eu ainda não tinha percebido". Prefira uma relação bem explicada a várias observações soltas. Se as respostas forem favoráveis, reconheça, mas aponte o próximo nível e o que precisa ser confirmado com os clientes. Não invente fatos.
-
-RECOMENDAÇÃO
-Uma única prioridade: o aspecto que merece atenção primeiro, por que ele vem antes dos outros e uma orientação inicial concreta, que dê para começar nesta semana. Não entregue plano de implementação, posicionamento, proposta de valor pronta, plano de comunicação, identidade verbal ou planejamento estratégico: isso é aprofundado na aula e nos encontros práticos. Nada de "melhore sua comunicação" ou "fortaleça sua marca".
+O RESULTADO TEM TRÊS PARTES, CURTAS E PROFUNDAS
+1. Pontos fortes avaliados.
+2. Pontos a melhorar: cada um nasce do cruzamento de respostas, não de uma resposta isolada.
+3. Dicas: três ações práticas, concretas, específicas para o tipo de negócio, que a pessoa consiga começar nesta semana sozinha (por exemplo: "pergunte a dez clientes que voltam por que escolhem você e anote as palavras exatas"). Cada dica ataca um ponto a melhorar. Nada de "melhore sua comunicação", "fortaleça sua marca" ou "invista em marketing". Não entregue plano de implementação, posicionamento, proposta de valor pronta, plano de comunicação ou identidade verbal: isso é aprofundado na aula e nos encontros práticos.
+A leitura precisa ser rápida no celular. Respeite os limites de palavras, eles são rígidos. Não repita entre as partes o que já foi dito. Cada frase traz uma ideia nova, sem introduções nem frases de transição. O empresário deve terminar pensando: "agora entendi algo importante sobre a minha empresa e sei por onde começar". Não invente fatos.
 
 As dificuldades marcadas pelo empresário servem para contextualizar e priorizar; elas não provam problema.
 
@@ -133,14 +110,11 @@ export async function escreverResultado(dados, classe) {
   const texto = resposta.content.filter((b) => b.type === "text").map((b) => b.text).join("");
   const r = AnaliseSchema.parse(JSON.parse(texto));
   console.log("Autoavaliação analisada", { tokens_entrada: resposta.usage?.input_tokens, tokens_saida: resposta.usage?.output_tokens });
-  const item = (x) => ({ titulo: limpar(x.titulo), texto: limpar(x.texto), natureza: x.natureza });
-  const porId = Object.fromEntries((r.respostas || []).map((x) => [x.id, limpar(x.leitura)]));
+  const item = (x) => ({ titulo: limpar(x.titulo), texto: limpar(x.texto) });
   return {
-    respostas: classe.itens.map((x) => ({ id: x.id, leitura: porId[x.id] || "" })),
-    leitura: limpar(r.leitura),
-    pontos_fortes: r.pontos_fortes.slice(0, 2).map(item),
-    fragilidades: r.fragilidades.slice(0, 2).map(item),
-    consequencias: r.consequencias.slice(0, 2).map((c) => ({ area: c.area, texto: limpar(c.texto) })),
-    recomendacao: { prioridade: limpar(r.recomendacao.prioridade), porque: limpar(r.recomendacao.porque), orientacao: limpar(r.recomendacao.orientacao) },
+    resumo: limpar(r.resumo),
+    pontos_fortes: r.pontos_fortes.slice(0, 3).map(item),
+    pontos_melhorar: r.pontos_melhorar.slice(0, 3).map(item),
+    dicas: r.dicas.slice(0, 3).map(item),
   };
 }

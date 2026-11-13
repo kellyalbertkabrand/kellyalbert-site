@@ -324,7 +324,7 @@ export function textosDeReserva(classe, dificuldades) {
     return 0;
   };
   const escolhidos = padroes.map((p, i) => ({ p, i })).sort((a, b) => peso(b.p) - peso(a.p) || a.i - b.i).slice(0, 2).map(x => x.p);
-  const fortesIds = ['P2', 'P6', 'P4', 'P3', 'P1', 'P5', 'P8', 'P11', 'P7', 'P9', 'P10'].filter(id => s[id] === 'A').slice(0, 2);
+  const fortesIds = ['P2', 'P6', 'P4', 'P3', 'P1', 'P5', 'P8', 'P11', 'P7', 'P9', 'P10'].filter(id => s[id] === 'A').slice(0, 3);
   const pontos_fortes = fortesIds.map(id => ({ titulo: PERGUNTAS.find(p => p.id === id).tema, texto: FORTES[id], natureza: 'relato' }));
   const fragilidades = escolhidos.map(p => ({ titulo: p.titulo, texto: p.texto, natureza: 'hipotese' }));
   const semInfo = classe.itens.filter(x => x.situacao === 'D');
@@ -334,7 +334,7 @@ export function textosDeReserva(classe, dificuldades) {
   }
   // Sempre há o que melhorar: completa com práticas informais e, se tudo for favorável, com o próximo nível.
   classe.itens.filter(x => x.situacao === 'B').forEach(x => {
-    if (fragilidades.length < 2) fragilidades.push({ titulo: x.tema + ': prática sem método', texto: REFLETE[x.id].B, natureza: 'hipotese' });
+    if (fragilidades.length < 3) fragilidades.push({ titulo: x.tema + ': prática sem método', texto: REFLETE[x.id].B, natureza: 'hipotese' });
   });
   if (fragilidades.length < 2) {
     fragilidades.push({ titulo: 'Respostas que pedem confirmação', natureza: 'verificar',
@@ -356,7 +356,17 @@ export function textosDeReserva(classe, dificuldades) {
     ? PERFIS[classe.perfil].txt + ' O ponto que mais chama atenção na combinação das respostas: ' + principal.titulo.toLowerCase() + '.'
     : PERFIS[classe.perfil].txt;
   const respostas = classe.itens.map(x => ({ id: x.id, leitura: (REFLETE[x.id] || {})[x.situacao] || '' }));
-  return { leitura, respostas, pontos_fortes, fragilidades: fragilidades.slice(0, 2), consequencias, recomendacao };
+  // Formato atual do resultado: resumo, pontos fortes avaliados, pontos a melhorar e três dicas.
+  const dicas = [{ titulo: recomendacao.prioridade, texto: recomendacao.orientacao }];
+  escolhidos.slice(1).forEach(p => dicas.push({ titulo: p.prioridade, texto: p.orientacao }));
+  const extras = [
+    { titulo: 'Pergunte aos clientes por que escolhem você', texto: 'Converse com cinco clientes recentes e anote as palavras exatas que eles usam para explicar a escolha.' },
+    { titulo: 'Reúna três provas do seu valor', texto: 'Separe avaliações, fotos, números ou depoimentos que mostrem o resultado que você entrega e use nas conversas de venda.' },
+    { titulo: 'Combine uma resposta com a equipe', texto: 'Escreva em duas frases por que escolher sua empresa e peça que todos usem a mesma resposta com clientes novos.' },
+  ];
+  for (const e of extras) if (dicas.length < 3 && !dicas.some(d => d.titulo === e.titulo)) dicas.push(e);
+  const item = x => ({ titulo: x.titulo, texto: x.texto });
+  return { resumo: leitura, pontos_fortes: pontos_fortes.map(item), pontos_melhorar: fragilidades.slice(0, 3).map(item), dicas: dicas.slice(0, 3) };
 }
 
 // Validação das respostas recebidas pela função (nunca confiar no navegador).

@@ -30,13 +30,12 @@ for (const [nome, corpo] of Object.entries(casos)) {
   const t = final.resultado;
   console.log(`\n===== ${nome} (${((Date.now() - inicio) / 1000).toFixed(1)}s, texto: ${t.fonte}) =====`);
   console.log("Perfil:", final.classe.perfil, JSON.stringify(final.classe.pilares));
-  console.log("1. Leitura:", t.leitura);
-  console.log("2. Cada resposta:\n" + (t.respostas || []).map((x) => ` - ${x.id}: ${x.leitura}`).join("\n"));
-  console.log("2. Pontos fortes:\n" + (t.pontos_fortes.map((x) => ` - [${x.natureza}] ${x.titulo}: ${x.texto}`).join("\n") || " (nenhum)"));
-  console.log("3. Fragilidades:\n" + (t.fragilidades.map((x) => ` - [${x.natureza}] ${x.titulo}: ${x.texto}`).join("\n") || " (nenhuma)"));
-  console.log("4. Consequências:\n" + (t.consequencias.map((x) => ` - ${x.area}: ${x.texto}`).join("\n") || " (nenhuma)"));
-  console.log("5. Recomendação:", t.recomendacao.prioridade, "|", t.recomendacao.porque, "|", t.recomendacao.orientacao);
-  { const tudo = [t.leitura, ...(t.respostas||[]).map(x=>x.leitura), ...t.pontos_fortes.flatMap(x=>[x.titulo,x.texto]), ...t.fragilidades.flatMap(x=>[x.titulo,x.texto]), ...t.consequencias.map(x=>x.texto), t.recomendacao.prioridade, t.recomendacao.porque, t.recomendacao.orientacao].join(" "); console.log("TOTAL DE PALAVRAS:", tudo.split(/\s+/).filter(Boolean).length); }
+  console.log("Resumo:", t.resumo);
+  console.log("1. Pontos fortes avaliados:\n" + (t.pontos_fortes.map((x) => ` - ${x.titulo}: ${x.texto}`).join("\n") || " (nenhum)"));
+  console.log("2. Pontos a melhorar:\n" + t.pontos_melhorar.map((x) => ` - ${x.titulo}: ${x.texto}`).join("\n"));
+  console.log("3. Dicas:\n" + t.dicas.map((x, k) => ` ${k + 1}. ${x.titulo}: ${x.texto}`).join("\n"));
+  console.log("JSON:", JSON.stringify(t));
+  { const tudo = [t.resumo, ...[...t.pontos_fortes, ...t.pontos_melhorar, ...t.dicas].flatMap((x) => [x.titulo, x.texto])].join(" "); console.log("TOTAL DE PALAVRAS:", tudo.split(/\s+/).filter(Boolean).length); }
   if (t.fonte !== "ia") falhas++;
 }
 process.exit(falhas ? 1 : 0);
