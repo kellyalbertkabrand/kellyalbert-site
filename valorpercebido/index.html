@@ -252,40 +252,57 @@ button,input{font-family:inherit}
 .btn--caramelo-contorno{background:transparent;color:#D86F2A;border:1.5px solid #D86F2A}
 .btn--caramelo-contorno:hover{background:rgba(216,111,42,.06)}
 .copiado{font-size:.84rem;color:#D86F2A;text-align:center;min-height:1.2em;margin:8px 0 0}
-/* Aula: cartão escuro com destaque laranja (diferente do relatório claro) */
-.ponte{display:flex;flex-direction:column;align-items:center;gap:4px;margin:10px 0 -2px;font-size:.74rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--laranja-claro)}
-.ponte svg{width:26px;height:26px;animation:desce 1.2s ease-in-out infinite}
-@keyframes desce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-.aula{position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:24px;padding:28px 20px 24px;background:linear-gradient(165deg,#223A52 0%,#152535 70%);border:2px solid rgba(240,135,58,.55);box-shadow:0 0 0 6px rgba(240,135,58,.08),0 22px 50px rgba(0,0,0,.35);text-align:center;color:var(--papel)}
-.aula::before{content:'';position:absolute;top:0;right:0;width:220px;height:180px;background:url(/images/diagnostico/reticula-marinho.svg) top right/cover no-repeat;opacity:.55;pointer-events:none}
+/* Aula: cartão azul mais claro com destaque laranja (diferente do relatório claro) */
+@keyframes piscaTx{0%,100%{opacity:1}50%{opacity:.35}}
+.pisca{animation:piscaTx 1.3s ease-in-out infinite}
+.ponte{display:flex;flex-direction:column;align-items:center;gap:6px;margin:18px 0 0;font-size:1.15rem;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--laranja);animation:piscaTx 1.3s ease-in-out infinite}
+.ponte svg{width:42px;height:42px;animation:desce 1.2s ease-in-out infinite}
+@keyframes desce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.aula{position:relative;overflow:hidden;display:flex;flex-direction:column;border-radius:24px;padding:30px 20px 24px;background:linear-gradient(165deg,#3B5C7D 0%,#2B4865 55%,#223A52 100%);border:2px solid rgba(240,135,58,.7);box-shadow:0 0 0 6px rgba(240,135,58,.1),0 22px 50px rgba(0,0,0,.35);text-align:center;color:var(--papel)}
+.aula::before{content:'';position:absolute;top:0;right:0;width:220px;height:180px;background:url(/images/diagnostico/reticula-marinho.svg) top right/cover no-repeat;opacity:.35;pointer-events:none}
 .aula > *{position:relative}
-.aula__selo{display:inline-flex;width:max-content;max-width:100%;margin:0 auto;white-space:nowrap;align-items:center;gap:9px;padding:8px 16px;border-radius:100px;background:var(--laranja);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
-.aula__selo i{width:9px;height:9px;border-radius:50%;background:#fff;animation:pisca 1.4s ease-in-out infinite}
-.aula__tema{margin:18px auto 0;max-width:20ch;font-size:clamp(1.6rem,7vw,2.1rem);font-weight:300;line-height:1.15;letter-spacing:-.01em;color:var(--papel);text-wrap:balance}
+.aula__ao-vivo{margin:0;font-size:clamp(1.9rem,9.6vw,3rem);font-weight:800;line-height:1;letter-spacing:.02em;white-space:nowrap;text-transform:uppercase;color:var(--laranja);animation:piscaTx 1.3s ease-in-out infinite}
+.aula__fechada{margin:8px 0 0;font-size:1rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--papel-70)}
+.aula__rot{margin:26px 0 0;font-size:.74rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--laranja-claro)}
+.aula__rot--esq{text-align:left}
+.aula__tema{margin:8px auto 0;max-width:20ch;font-size:clamp(1.6rem,7vw,2.1rem);font-weight:300;line-height:1.15;letter-spacing:-.01em;color:var(--papel);text-wrap:balance}
 .aula__tema b{font-weight:800;color:#fff}
 .aula__sub{margin:12px auto 0;max-width:32ch;font-size:1rem;line-height:1.5;color:var(--papel-70);text-wrap:balance}
 .aula__quando{display:grid;gap:8px;margin:22px 0 0;text-align:left}
-.q{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(248,247,242,.06);border:1px solid rgba(248,247,242,.14)}
-.q__ic{width:40px;height:40px;flex:none;border-radius:12px;background:rgba(240,135,58,.14);display:grid;place-items:center}
+.q{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(21,37,53,.35);border:1px solid rgba(248,247,242,.16)}
+.q__ic{width:40px;height:40px;flex:none;border-radius:12px;background:rgba(240,135,58,.16);display:grid;place-items:center}
 .q__ic svg{width:22px;height:22px}
 .q small{display:block;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--papel-50)}
-.q b{display:block;font-size:1.05rem;font-weight:700;color:#fff;line-height:1.25}
-.aula__gancho{margin:22px 0 0;padding:14px 16px;border-left:4px solid var(--laranja);background:rgba(240,135,58,.1);border-radius:0 14px 14px 0;text-align:left;font-size:1.02rem;line-height:1.5;color:var(--papel)}
+.q b{display:block;font-size:1.08rem;font-weight:700;color:#fff;line-height:1.25}
+.aula__gancho{margin:22px 0 0;padding:14px 16px;border-left:4px solid var(--laranja);background:rgba(21,37,53,.3);border-radius:0 14px 14px 0;text-align:left;font-size:1.02rem;line-height:1.5;color:var(--papel)}
 .aula__gancho b{color:#fff}
-.aula__lista{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:14px;text-align:left}
+.aula__lista{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:14px;text-align:left}
 .aula__lista li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start}
 .ok{width:30px;height:30px;border-radius:50%;background:var(--laranja);display:grid;place-items:center}
 .ok svg{width:18px;height:18px}
 .aula__lista b{display:block;font-size:1rem;font-weight:700;color:#fff;line-height:1.3}
-.aula__lista span:not(.ok){display:block;font-style:normal;margin-top:2px;font-size:.92rem;line-height:1.45;color:var(--papel-70)}
-.aula__kelly{display:flex;align-items:center;gap:12px;margin:22px 0 0;padding-top:18px;border-top:1px solid rgba(248,247,242,.12);text-align:left}
+.aula__lista span:not(.ok){display:block;margin-top:2px;font-size:.92rem;line-height:1.45;font-style:normal;color:var(--papel-70)}
+/* Ferramenta da aula: cartão claro dentro do azul */
+.ferr{margin:24px 0 0;padding:20px 16px;border-radius:18px;background:var(--papel);color:var(--marinho);text-align:left}
+.ferr__selo{display:inline-block;margin:0;padding:6px 12px;border-radius:100px;background:#D86F2A;color:#fff;font-size:.66rem;font-weight:800;letter-spacing:.06em;white-space:nowrap;text-transform:uppercase}
+.ferr__tit{margin:12px 0 0;font-size:1.35rem;font-weight:800;line-height:1.2;color:var(--marinho)}
+.ferr__sub{margin:6px 0 0;font-size:1rem;font-weight:600;line-height:1.4;color:#B5561A}
+.ferr__txt{margin:10px 0 0;font-size:.95rem;line-height:1.5;color:rgba(21,37,53,.8)}
+.ferr__lista{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px;counter-reset:f}
+.ferr__lista li{counter-increment:f;position:relative;padding:12px 12px 12px 48px;border-radius:12px;background:#fff;border:1px solid rgba(216,111,42,.22)}
+.ferr__lista li::before{content:counter(f);position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:50%;background:#D86F2A;color:#fff;font-size:.82rem;font-weight:800;display:grid;place-items:center}
+.ferr__lista b{display:block;font-size:.98rem;color:var(--marinho)}
+.ferr__lista span{display:block;margin-top:2px;font-size:.9rem;line-height:1.45;color:rgba(21,37,53,.78)}
+.ferr__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ferr__chips span{padding:6px 10px;border-radius:100px;background:rgba(21,37,53,.07);font-size:.78rem;font-weight:600;color:var(--marinho)}
+.aula__kelly{display:flex;align-items:center;gap:12px;margin:22px 0 0;padding-top:18px;border-top:1px solid rgba(248,247,242,.16);text-align:left}
 .aula__kelly img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid var(--laranja);flex:none}
 .aula__kelly b{display:block;font-size:1rem;color:#fff}
-.aula__kelly span{display:block;font-size:.84rem;color:var(--papel-50)}
-.aula__bt{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0 0;min-height:62px;padding:16px 20px;border-radius:100px;background:var(--laranja);color:#fff;font-size:.95rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-decoration:none;box-shadow:0 10px 26px rgba(240,135,58,.4);animation:pulsaBt 1.8s ease-in-out infinite}
+.aula__kelly span{display:block;font-size:.84rem;color:var(--papel-70)}
+.aula__bt{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0 0;min-height:62px;padding:16px 20px;border-radius:100px;background:var(--laranja);color:#fff;font-size:.95rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;text-decoration:none;box-shadow:0 10px 26px rgba(240,135,58,.45);animation:pulsaBt 1.8s ease-in-out infinite}
 .aula__bt:hover{background:#F59B57}
 @keyframes pulsaBt{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-.aula__nota{margin:12px 0 0;font-size:.86rem;color:var(--papel-50)}
+.aula__nota{margin:12px 0 0;font-size:.86rem;color:var(--papel-70)}
 
 /* Aula */
 .convite{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
@@ -384,9 +401,10 @@ import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
   // Aula ao vivo: quem tem interesse manda mensagem no WhatsApp da Kelly (CONFIG.whatsapp)
-  aulaData: 'Sábado, 21/11',
+  aulaData: 'Sábado, 21/11/26',
   aulaDataCurta: '21/11',
   aulaHorario: 'Das 9h às 12h',
+  aulaLocal: 'Online, ao vivo, pelo Zoom',
   aulaTema: 'Com ou sem crise, faça o cliente enxergar o valor da sua marca',
   aulaTemaHtml: 'Com ou sem crise, faça o cliente <b>enxergar o&nbsp;valor</b> da sua marca',
   aulaSubtitulo: 'Na crise, o cliente compara mais. Depois dela, ele fica com quem valorizou.',
@@ -924,22 +942,39 @@ function mostrarResultado(lead, dados, classe, t){
         '<p class="copiado" id="rx-copiado" aria-live="polite"></p>'+
       '</div>'+
     '</article>'+
-    '<div class="ponte" aria-hidden="true"><span>Próximo passo</span><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg></div>'+
+    '<div class="ponte" aria-hidden="true"><span>Próximo passo</span><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg></div>'+
     '<section class="aula" aria-label="Aula ao vivo">'+
-      '<div class="aula__selo"><i></i>Aula ao vivo · sala fechada</div>'+
+      '<p class="aula__ao-vivo">Aula ao vivo</p>'+
+      '<p class="aula__fechada">Sala fechada</p>'+
+      '<p class="aula__rot">Tema</p>'+
       '<h3 class="aula__tema">'+CONFIG.aulaTemaHtml+'</h3>'+
       '<p class="aula__sub">'+CONFIG.aulaSubtitulo+'</p>'+
       '<div class="aula__quando">'+
-        '<div class="q"><span class="q__ic"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#F0873A\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><rect x=\'3.5\' y=\'5\' width=\'17\' height=\'15\' rx=\'2.5\'/><path d=\'M8 3v4M16 3v4M3.5 10h17\'/></svg></span><span><small>Quando</small><b>'+CONFIG.aulaData+'</b></span></div>'+
-        '<div class="q"><span class="q__ic"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#F0873A\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><circle cx=\'12\' cy=\'12\' r=\'8.5\'/><path d=\'M12 7.5V12l3 2\'/></svg></span><span><small>Horário</small><b>'+CONFIG.aulaHorario.replace(/^Das /,'')+'</b></span></div>'+
-        '<div class="q"><span class="q__ic"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#F0873A\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><rect x=\'2.5\' y=\'6\' width=\'13\' height=\'12\' rx=\'2.5\'/><path d=\'M15.5 10.5l6-3.5v10l-6-3.5z\'/></svg></span><span><small>Onde</small><b>Google Meet, ao vivo</b></span></div>'+
+        '<div class="q"><span class="q__ic"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#F0873A\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><rect x=\'3.5\' y=\'5\' width=\'17\' height=\'15\' rx=\'2.5\'/><path d=\'M8 3v4M16 3v4M3.5 10h17\'/></svg></span><span><small>Quando</small><b class="pisca">'+CONFIG.aulaData+'</b></span></div>'+
+        '<div class="q"><span class="q__ic"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#F0873A\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><circle cx=\'12\' cy=\'12\' r=\'8.5\'/><path d=\'M12 7.5V12l3 2\'/></svg></span><span><small>Horário</small><b class="pisca">'+CONFIG.aulaHorario+'</b></span></div>'+
+        '<div class="q"><span class="q__ic"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#F0873A\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><rect x=\'2.5\' y=\'6\' width=\'13\' height=\'12\' rx=\'2.5\'/><path d=\'M15.5 10.5l6-3.5v10l-6-3.5z\'/></svg></span><span><small>Onde</small><b class="pisca">'+CONFIG.aulaLocal+'</b></span></div>'+
       '</div>'+
-      '<p class="aula__gancho">O teste revela sinais. <b>Na aula, você aprende a entender esses sinais</b> e o que fazer com eles.</p>'+
+      '<p class="aula__gancho">O teste que você acabou de realizar revela sinais. <b>Na aula, você aprenderá a entender esses sinais e o que fazer com eles.</b></p>'+
+      '<p class="aula__rot aula__rot--esq">Na aula, você vai entender</p>'+
       '<ul class="aula__lista">'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Ferramenta Autoavaliação de Marca</b><span>Análise detalhada dos dois pilares, com os três principais pontos de melhoria e recomendações para a sua empresa.</span></div></li>'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Orientação ao vivo</b><span>Como entrega, comunicação e confiança influenciam a escolha do cliente, com exemplos reais.</span></div></li>'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Prioridades claras</b><span>Você sai sabendo por onde começar e como acompanhar as primeiras ações.</span></div></li>'+
+        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>O comportamento do consumidor na crise</b><span>Como mudanças nas prioridades e no orçamento influenciam a decisão de compra.</span></div></li>'+
+        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>O que faz uma marca ser escolhida</b><span>Confiança, reconhecimento, diferenciais, preço, conveniência e segurança.</span></div></li>'+
+        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Entrega e comunicação de valor</b><span>Por que entregar bem não basta: como demonstrar benefícios, apresentar provas e explicar por que sua empresa merece ser escolhida.</span></div></li>'+
+        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Onde a empresa pode perder valor</b><span>Exemplos práticos de falhas que prejudicam a confiança e a escolha do cliente.</span></div></li>'+
       '</ul>'+
+      '<div class="ferr">'+
+        '<p class="ferr__selo">Incluída para quem participa da aula</p>'+
+        '<h4 class="ferr__tit">Ferramenta Autoavaliação de Marca</h4>'+
+        '<p class="ferr__sub">Avalie como sua empresa entrega e comunica seu valor e descubra o que precisa melhorar.</p>'+
+        '<p class="ferr__txt">Mais completa que este teste, ela investiga com profundidade as práticas da sua empresa, considera o seu segmento e usa Inteligência Artificial para recomendar melhorias.</p>'+
+        '<ol class="ferr__lista">'+
+          '<li><b>Análise dos dois pilares</b><span>Entrega de valor e comunicação de valor: o que funciona, o que fragiliza e o que precisa ser verificado.</span></li>'+
+          '<li><b>Três principais pontos de melhoria</b><span>Os aspectos que merecem atenção primeiro na sua empresa.</span></li>'+
+          '<li><b>Recomendações personalizadas</b><span>Ações adaptadas ao seu segmento e à realidade do seu negócio.</span></li>'+
+          '<li><b>Práticas contínuas</b><span>O que melhorar, como implementar, como virar rotina, quem pode ser responsável e como acompanhar a evolução.</span></li>'+
+        '</ol>'+
+        '<div class="ferr__chips"><span>60 dias de acesso</span><span>Login e senha individuais</span><span>Liberada no fim da aula</span></div>'+
+      '</div>'+
       '<div class="aula__kelly"><img src="/images/kelly-hero.jpg" alt="" width="64" height="64"><div><b>Com Kelly Albert</b><span>Estrategista de marcas · KA | Inteligência para Marcas</span></div></div>'+
       '<a class="aula__bt" id="rx-aula" href="'+linkWhatsAula+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" style="flex:none"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>Quero participar da aula</a>'+
       '<p class="aula__nota">Vagas limitadas. Você fala direto comigo no WhatsApp e eu te passo todos os detalhes.</p>'+
