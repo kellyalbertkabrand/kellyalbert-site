@@ -67,13 +67,23 @@
     }
     .hero__titulo{
       font-family:'Outfit',sans-serif;font-weight:200;
-      font-size:clamp(2rem,7.5vw,2.8rem);line-height:1.1;
-      margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
+      line-height:1.12;margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
+      display:flex;flex-direction:column;gap:.35rem;
     }
-    .hero__titulo strong{font-weight:800;color:var(--papel);}
+    .hero__linha1{
+      font-size:clamp(1rem,3.6vw,1.2rem);font-weight:400;
+      color:var(--suave);letter-spacing:.02em;
+    }
+    .hero__linha2{
+      font-family:'Outfit',sans-serif;font-weight:800;
+      font-size:clamp(1.9rem,8vw,2.9rem);line-height:1;
+      color:var(--papel);letter-spacing:-.015em;
+      text-transform:uppercase;
+    }
+    .hero__copy{font-size:.4em;vertical-align:super;margin-left:.1em;font-weight:600;}
     .hero__subt{
       font-size:.98rem;color:var(--suave);line-height:1.55;
-      margin:0 auto;max-width:440px;
+      margin:1.2rem auto 0;max-width:440px;
     }
 
     /* Formulario */
@@ -149,17 +159,32 @@
 
     .btn{
       display:block;width:100%;padding:1.1rem 1.4rem;
-      font-family:inherit;font-size:.95rem;font-weight:800;
-      letter-spacing:.12em;text-transform:uppercase;
-      color:var(--marinho);background:var(--laranja);
-      border:0;border-radius:100px;cursor:pointer;
-      box-shadow:0 8px 24px rgba(240,135,58,.35);
-      transition:transform .15s,background .2s;
+      font-family:inherit;font-size:1rem;font-weight:800;
+      letter-spacing:.08em;text-transform:uppercase;
+      color:var(--papel);background:var(--marinho);
+      border:1.5px solid var(--laranja);border-radius:100px;cursor:pointer;
+      position:relative;white-space:nowrap;
+      transition:transform .15s,background .2s,color .2s;
       margin-top:.5rem;
+      animation:btnNeonPulse 1.6s ease-in-out infinite;
     }
-    .btn:hover{background:var(--laranja2);transform:translateY(-2px);}
+    .btn:hover{background:var(--laranja);color:var(--marinho);transform:translateY(-2px);}
     .btn:active{transform:translateY(0);}
-    .btn:disabled{opacity:.55;cursor:wait;transform:none;}
+    .btn:disabled{opacity:.55;cursor:wait;transform:none;animation:none;}
+    @keyframes btnNeonPulse{
+      0%,100%{
+        box-shadow:0 0 0 0 rgba(240,135,58,.7),
+                   0 0 14px rgba(240,135,58,.5),
+                   0 0 28px rgba(240,135,58,.25);
+        border-color:var(--laranja);
+      }
+      50%{
+        box-shadow:0 0 0 14px rgba(240,135,58,0),
+                   0 0 22px rgba(240,135,58,.85),
+                   0 0 42px rgba(240,135,58,.55);
+        border-color:var(--laranja2);
+      }
+    }
 
     .form-nota{
       font-size:.78rem;color:var(--suave);text-align:center;
@@ -218,8 +243,7 @@
   </header>
 
   <section class="hero">
-    <span class="hero__eyebrow">● Projeto de Posicionamento de Marca</span>
-    <h1 class="hero__titulo">A sua marca merece <strong>ser lembrada</strong>.</h1>
+    <h1 class="hero__titulo"><span class="hero__linha1">Projeto de Posicionamento de Marca</span><strong class="hero__linha2">MARCA COM ESSÊNCIA<sup class="hero__copy">©</sup></strong></h1>
     <p class="hero__subt">Preencha abaixo e a nossa equipe entra em contato para explicar como funciona o Projeto de Posicionamento de Marca da KA.</p>
   </section>
 
@@ -286,7 +310,7 @@
 
       <p class="form-err" id="form-err"></p>
 
-      <button type="submit" class="btn" id="btn-submit">Quero conversar com a KA</button>
+      <button type="submit" class="btn" id="btn-submit">Quero falar com a KA</button>
       <p class="form-nota">Seus dados ficam só com a KA. Sem spam.</p>
     </form>
   </section>
