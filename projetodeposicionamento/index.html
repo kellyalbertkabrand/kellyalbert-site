@@ -97,9 +97,18 @@
     .form-row{margin:0 0 1.1rem;}
     .form-row:last-of-type{margin-bottom:0;}
     .form-label{
-      display:block;font-size:.78rem;font-weight:600;
-      letter-spacing:.08em;text-transform:uppercase;
-      color:var(--papel);margin:0 0 .5rem;
+      display:block;font-size:.95rem;font-weight:600;
+      letter-spacing:.01em;color:var(--papel);
+      margin:0 0 .35rem;line-height:1.3;
+    }
+    .form-obrig{
+      display:inline-block;font-size:.62rem;font-weight:700;
+      letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);
+      margin:0 0 .5rem;
+    }
+    .form-hint{
+      font-size:.82rem;color:var(--suave);line-height:1.5;
+      margin:0 0 .7rem;
     }
     .form-input, .form-select{
       width:100%;padding:.9rem 1rem;
@@ -251,42 +260,32 @@
     <form id="lead-form" novalidate>
       <div class="form-row">
         <label class="form-label" for="f-nome">Nome completo</label>
+        <span class="form-obrig">Resposta obrigatória</span>
         <input id="f-nome" class="form-input" type="text" name="nome" autocomplete="name" placeholder="Ex: Maria Silva" required>
       </div>
 
       <div class="form-row">
         <label class="form-label" for="f-whats">WhatsApp</label>
+        <span class="form-obrig">Resposta obrigatória</span>
         <input id="f-whats" class="form-input" type="tel" name="whatsapp" autocomplete="tel" inputmode="numeric" placeholder="DDD + número" required>
       </div>
 
       <div class="form-row">
         <label class="form-label" for="f-email">Melhor e-mail</label>
+        <span class="form-obrig">Resposta obrigatória</span>
         <input id="f-email" class="form-input" type="email" name="email" autocomplete="email" placeholder="voce@email.com" required>
       </div>
 
       <div class="form-row">
-        <label class="form-label" for="f-tipo">Qual o tipo do seu negócio?</label>
-        <select id="f-tipo" class="form-select" name="tipo_negocio" required>
-          <option value="" disabled selected>Selecione</option>
-          <option>Clínica odontológica</option>
-          <option>Clínica de estética</option>
-          <option>Clínica médica</option>
-          <option>Farmácia de manipulação</option>
-          <option>Varejo / loja física</option>
-          <option>E-commerce</option>
-          <option>Indústria</option>
-          <option>Prestação de serviços</option>
-          <option>Alimentação / restaurante</option>
-          <option>Agência</option>
-          <option>Educação / cursos</option>
-          <option>Imobiliária / construção</option>
-          <option>Marca pessoal</option>
-          <option>Outro</option>
-        </select>
+        <label class="form-label" for="f-tipo">Qual é o seu tipo de negócio?</label>
+        <span class="form-obrig">Resposta obrigatória</span>
+        <p class="form-hint">Quanto mais específico, mais precisa fica a análise. Ex.: padaria artesanal, loja de roupas infantis, loja de roupas masculinas, escritório de advocacia tributária, clínica de estética facial, farmácia de manipulação.</p>
+        <input id="f-tipo" class="form-input" type="text" name="tipo_negocio" placeholder="Escreva aqui o seu tipo de negócio" maxlength="200" required>
       </div>
 
       <div class="form-row">
         <label class="form-label" for="f-func">Quantos funcionários a sua empresa tem?</label>
+        <span class="form-obrig">Resposta obrigatória</span>
         <select id="f-func" class="form-select" name="funcionarios" required>
           <option value="" disabled selected>Selecione</option>
           <option>Só eu</option>
@@ -300,6 +299,7 @@
 
       <div class="form-row">
         <label class="form-label">Você está disposto a investir</label>
+        <span class="form-obrig">Resposta obrigatória</span>
         <ul class="radio-list" role="radiogroup">
           <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 3 a 6 mil" required><span class="radio-text">De R$ 3 mil a R$ 6 mil</span></label></li>
           <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 6 a 14 mil"><span class="radio-text">De R$ 6 mil a R$ 14 mil</span></label></li>
@@ -393,7 +393,7 @@
     if(!validaEmail(dados.email)){
       return showErr('Digite um e-mail válido.');
     }
-    if(!dados.tipo_negocio){ return showErr('Escolha o tipo do seu negócio.'); }
+    if(!dados.tipo_negocio || dados.tipo_negocio.length < 3){ return showErr('Descreva o seu tipo de negócio (quanto mais específico, melhor).'); }
     if(!dados.funcionarios){ return showErr('Escolha quantos funcionários.'); }
     if(!dados.investimento){ return showErr('Escolha a faixa de investimento.'); }
 
