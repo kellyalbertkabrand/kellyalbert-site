@@ -99,17 +99,19 @@
     .form-label{
       display:block;font-size:.95rem;font-weight:600;
       letter-spacing:.01em;color:var(--papel);
-      margin:0 0 .35rem;line-height:1.3;
+      margin:0 0 .55rem;line-height:1.3;
     }
-    .form-obrig{
-      display:inline-block;font-size:.62rem;font-weight:700;
-      letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);
-      margin:0 0 .5rem;
-    }
+    .form-req{color:#EF4444;margin-left:.2em;font-weight:700;}
     .form-hint{
       font-size:.82rem;color:var(--suave);line-height:1.5;
       margin:0 0 .7rem;
     }
+    .form-err-inline{
+      display:none;font-size:.82rem;color:#EF4444;font-weight:600;
+      margin:.45rem 0 0;line-height:1.4;
+    }
+    .form-err-inline.on{display:block;}
+    .form-input.has-err, .form-select.has-err{border-color:#EF4444;}
     .form-input, .form-select{
       width:100%;padding:.9rem 1rem;
       font-family:inherit;font-size:1rem;font-weight:400;
@@ -259,33 +261,32 @@
   <section id="form-wrap" class="form-card">
     <form id="lead-form" novalidate>
       <div class="form-row">
-        <label class="form-label" for="f-nome">Nome completo</label>
-        <span class="form-obrig">Resposta obrigatória</span>
+        <label class="form-label" for="f-nome">Nome completo<span class="form-req">*</span></label>
         <input id="f-nome" class="form-input" type="text" name="nome" autocomplete="name" placeholder="Ex: Maria Silva" required>
+        <p class="form-err-inline" id="err-nome">Resposta obrigatória</p>
       </div>
 
       <div class="form-row">
-        <label class="form-label" for="f-whats">WhatsApp</label>
-        <span class="form-obrig">Resposta obrigatória</span>
+        <label class="form-label" for="f-whats">WhatsApp<span class="form-req">*</span></label>
         <input id="f-whats" class="form-input" type="tel" name="whatsapp" autocomplete="tel" inputmode="numeric" placeholder="DDD + número" required>
+        <p class="form-err-inline" id="err-whats">Resposta obrigatória</p>
       </div>
 
       <div class="form-row">
-        <label class="form-label" for="f-email">Melhor e-mail</label>
-        <span class="form-obrig">Resposta obrigatória</span>
+        <label class="form-label" for="f-email">Melhor e-mail<span class="form-req">*</span></label>
         <input id="f-email" class="form-input" type="email" name="email" autocomplete="email" placeholder="voce@email.com" required>
+        <p class="form-err-inline" id="err-email">Resposta obrigatória</p>
       </div>
 
       <div class="form-row">
-        <label class="form-label" for="f-tipo">Qual é o seu tipo de negócio?</label>
-        <span class="form-obrig">Resposta obrigatória</span>
+        <label class="form-label" for="f-tipo">Qual é o seu tipo de negócio?<span class="form-req">*</span></label>
         <p class="form-hint">Quanto mais específico, mais precisa fica a análise. Ex.: padaria artesanal, loja de roupas infantis, loja de roupas masculinas, escritório de advocacia tributária, clínica de estética facial, farmácia de manipulação.</p>
         <input id="f-tipo" class="form-input" type="text" name="tipo_negocio" placeholder="Escreva aqui o seu tipo de negócio" maxlength="200" required>
+        <p class="form-err-inline" id="err-tipo">Resposta obrigatória</p>
       </div>
 
       <div class="form-row">
-        <label class="form-label" for="f-func">Quantos funcionários a sua empresa tem?</label>
-        <span class="form-obrig">Resposta obrigatória</span>
+        <label class="form-label" for="f-func">Quantos funcionários a sua empresa tem?<span class="form-req">*</span></label>
         <select id="f-func" class="form-select" name="funcionarios" required>
           <option value="" disabled selected>Selecione</option>
           <option>Só eu</option>
@@ -295,17 +296,18 @@
           <option>De 31 a 100</option>
           <option>Mais de 100</option>
         </select>
+        <p class="form-err-inline" id="err-func">Resposta obrigatória</p>
       </div>
 
       <div class="form-row">
-        <label class="form-label">Você está disposto a investir</label>
-        <span class="form-obrig">Resposta obrigatória</span>
+        <label class="form-label">Você está disposto a investir<span class="form-req">*</span></label>
         <ul class="radio-list" role="radiogroup">
           <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 3 a 6 mil" required><span class="radio-text">De R$ 3 mil a R$ 6 mil</span></label></li>
           <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 6 a 14 mil"><span class="radio-text">De R$ 6 mil a R$ 14 mil</span></label></li>
           <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 14 a 25 mil"><span class="radio-text">De R$ 14 mil a R$ 25 mil</span></label></li>
           <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 25 a 35 mil"><span class="radio-text">De R$ 25 mil a R$ 35 mil</span></label></li>
         </ul>
+        <p class="form-err-inline" id="err-inv">Resposta obrigatória</p>
       </div>
 
       <p class="form-err" id="form-err"></p>
@@ -353,12 +355,28 @@
     });
   } catch(_){}
 
-  function showErr(msg){
-    errBox.textContent = msg;
-    errBox.classList.add('on');
-    errBox.scrollIntoView({behavior:'smooth', block:'center'});
+  // Erros inline, por campo (texto vermelho)
+  function setErr(id, inputEl, msg){
+    var el = document.getElementById(id);
+    if(el){
+      el.textContent = msg;
+      el.classList.add('on');
+    }
+    if(inputEl) inputEl.classList.add('has-err');
   }
-  function clearErr(){ errBox.classList.remove('on'); errBox.textContent=''; }
+  function clearErrOne(id, inputEl){
+    var el = document.getElementById(id);
+    if(el) el.classList.remove('on');
+    if(inputEl) inputEl.classList.remove('has-err');
+  }
+  function clearAllErr(){
+    ['nome','whats','email','tipo','func','inv'].forEach(function(k){
+      var el = document.getElementById('err-'+k);
+      if(el) el.classList.remove('on');
+    });
+    document.querySelectorAll('.has-err').forEach(function(el){ el.classList.remove('has-err'); });
+    errBox.classList.remove('on'); errBox.textContent='';
+  }
 
   function validaEmail(v){
     v = (v||'').trim();
@@ -369,9 +387,21 @@
     return d.length >= 10 && d.length <= 13;
   }
 
+  // Limpa erro do campo assim que a pessoa comeca a corrigir
+  ['f-nome','f-whats','f-email','f-tipo','f-func'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var map = {'f-nome':'err-nome','f-whats':'err-whats','f-email':'err-email','f-tipo':'err-tipo','f-func':'err-func'};
+    el.addEventListener('input', function(){ clearErrOne(map[id], el); });
+    el.addEventListener('change', function(){ clearErrOne(map[id], el); });
+  });
+  document.querySelectorAll('input[name="investimento"]').forEach(function(el){
+    el.addEventListener('change', function(){ clearErrOne('err-inv', null); });
+  });
+
   form.addEventListener('submit', async function(e){
     e.preventDefault();
-    clearErr();
+    clearAllErr();
 
     var fd = new FormData(form);
     var dados = {
@@ -383,19 +413,27 @@
       investimento: (fd.get('investimento')||'').trim()
     };
 
-    // Validacao
-    if(dados.nome.split(/\s+/).filter(function(p){return p.length>=2;}).length < 2){
-      return showErr('Digite seu nome e sobrenome (ex: Maria Silva).');
+    // Validacao campo por campo (mostra erros em vermelho abaixo de cada um).
+    var temErr = false;
+    if(!dados.nome){ setErr('err-nome', document.getElementById('f-nome'), 'Resposta obrigatória'); temErr = true; }
+    else if(dados.nome.split(/\s+/).filter(function(p){return p.length>=2;}).length < 2){
+      setErr('err-nome', document.getElementById('f-nome'), 'Digite seu nome e sobrenome (ex: Maria Silva).'); temErr = true;
     }
-    if(!validaWhats(dados.whatsapp)){
-      return showErr('Digite um WhatsApp válido com DDD (mínimo 10 dígitos).');
+    if(!dados.whatsapp){ setErr('err-whats', document.getElementById('f-whats'), 'Resposta obrigatória'); temErr = true; }
+    else if(!validaWhats(dados.whatsapp)){ setErr('err-whats', document.getElementById('f-whats'), 'WhatsApp inválido (precisa de DDD + número).'); temErr = true; }
+    if(!dados.email){ setErr('err-email', document.getElementById('f-email'), 'Resposta obrigatória'); temErr = true; }
+    else if(!validaEmail(dados.email)){ setErr('err-email', document.getElementById('f-email'), 'E-mail inválido.'); temErr = true; }
+    if(!dados.tipo_negocio){ setErr('err-tipo', document.getElementById('f-tipo'), 'Resposta obrigatória'); temErr = true; }
+    else if(dados.tipo_negocio.length < 3){ setErr('err-tipo', document.getElementById('f-tipo'), 'Descreva com um pouco mais de detalhe.'); temErr = true; }
+    if(!dados.funcionarios){ setErr('err-func', document.getElementById('f-func'), 'Resposta obrigatória'); temErr = true; }
+    if(!dados.investimento){ setErr('err-inv', null, 'Resposta obrigatória'); temErr = true; }
+
+    if(temErr){
+      // Rola para o primeiro erro
+      var primEl = document.querySelector('.form-err-inline.on');
+      if(primEl) primEl.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
     }
-    if(!validaEmail(dados.email)){
-      return showErr('Digite um e-mail válido.');
-    }
-    if(!dados.tipo_negocio || dados.tipo_negocio.length < 3){ return showErr('Descreva o seu tipo de negócio (quanto mais específico, melhor).'); }
-    if(!dados.funcionarios){ return showErr('Escolha quantos funcionários.'); }
-    if(!dados.investimento){ return showErr('Escolha a faixa de investimento.'); }
 
     // Salva no localStorage
     try{ localStorage.setItem('ka_projetodeposic_lead', JSON.stringify(dados)); }catch(_){}
@@ -434,7 +472,7 @@
     try{
       var utm = new URLSearchParams(location.search);
       var payload = {
-        ferramenta: 'Projeto de Posicionamento de Marca',
+        ferramenta: 'Formulário Posicionamento de Marca',
         nome: dados.nome,
         email: dados.email,
         whatsapp: dados.whatsapp,
@@ -445,7 +483,7 @@
           { id:'Q2', pergunta:'Número de funcionários', resposta: dados.funcionarios, pontos: 0 },
           { id:'Q3', pergunta:'Faixa de investimento',  resposta: dados.investimento, pontos: 0 }
         ],
-        origem: 'projetodeposicionamento',
+        origem: '/projetodeposicionamento',
         utm_source:   utm.get('utm_source')   || null,
         utm_medium:   utm.get('utm_medium')   || null,
         utm_campaign: utm.get('utm_campaign') || null
