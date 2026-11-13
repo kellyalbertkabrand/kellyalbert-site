@@ -112,14 +112,14 @@ body{
 .teste-box{
   display:flex;flex-direction:column;align-items:center;text-align:center;
   background:linear-gradient(135deg,#223A52 0%,#152535 70%);
-  border:2.5px solid #D86F2A;border-radius:22px;
+  border:1.5px solid #D86F2A;border-radius:22px;
   padding:1.7rem 1.3rem 1.6rem;
   margin:0 0 1.8rem;
   text-decoration:none;color:#EDE8DD;
-  box-shadow:0 0 0 0 rgba(216,111,42,.6),
-             0 0 22px rgba(216,111,42,.55),
-             0 10px 36px rgba(216,111,42,.3);
-  animation:testeBoxPulse 1.6s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(216,111,42,.5),
+             0 0 12px rgba(216,111,42,.3),
+             0 8px 24px rgba(0,0,0,.35);
+  animation:testeBoxPulse 1.8s ease-in-out infinite;
   transition:transform .15s;
 }
 .teste-box:hover{transform:translateY(-2px);}
@@ -138,36 +138,27 @@ body{
   margin:0 0 1.4rem;line-height:1.4;
   letter-spacing:.02em;
 }
+/* Botao igual ao 'Quero um Projeto' do hero-prod (neon transparente) */
 .teste-box__btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:#D86F2A;color:#fff;
-  padding:1rem 1.8rem;border-radius:100px;
-  font-size:.85rem;font-weight:800;letter-spacing:.1em;
-  text-transform:uppercase;
-  box-shadow:0 0 0 0 rgba(216,111,42,.75),
-             0 0 18px rgba(216,111,42,.6),
-             0 6px 20px rgba(216,111,42,.4);
-  animation:testeBtnPulse 1.4s ease-in-out infinite;
-  transition:background .25s;
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  background:transparent;color:#fff;
+  padding:1rem 1.6rem;border-radius:100px;
+  border:1.5px solid #D86F2A;
+  font-size:.92rem;font-weight:700;letter-spacing:.06em;
+  animation:kaBtnNeonPulse 1.6s ease-in-out infinite;
+  position:relative;
+  transition:background .25s,color .25s;
 }
-.teste-box:hover .teste-box__btn{background:#E88550;}
+.teste-box:hover .teste-box__btn{background:#D86F2A;color:#fff;}
 @keyframes testeBoxPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.6),
-                     0 0 22px rgba(216,111,42,.55),
-                     0 10px 36px rgba(216,111,42,.3);
+  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.5),
+                     0 0 12px rgba(216,111,42,.3),
+                     0 8px 24px rgba(0,0,0,.35);
           border-color:#D86F2A;}
-  50%{box-shadow:0 0 0 20px rgba(216,111,42,0),
-                 0 0 36px rgba(216,111,42,.85),
-                 0 14px 48px rgba(216,111,42,.55);
-      border-color:#F28A4C;}
-}
-@keyframes testeBtnPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.75),
-                     0 0 18px rgba(216,111,42,.6),
-                     0 6px 20px rgba(216,111,42,.4);}
-  50%{box-shadow:0 0 0 12px rgba(216,111,42,0),
-                 0 0 30px rgba(216,111,42,.9),
-                 0 8px 28px rgba(216,111,42,.6);}
+  50%{box-shadow:0 0 0 10px rgba(216,111,42,0),
+                 0 0 20px rgba(216,111,42,.55),
+                 0 10px 32px rgba(216,111,42,.3);
+      border-color:#E88550;}
 }
 /* CTA Diagnostico — Opcao 1: marinho + caramelo pulsando (dark autoridade) */
 .quiz-cta--diag{
@@ -1165,7 +1156,7 @@ a.foot__s:hover{color:var(--accent);}
       <p class="hero-prod__subtitle">Nossa solução principal</p>
       <p class="hero-prod__desc">Posicionamento estratégico + identidade verbal e visual + agentes de IA. Conduzido pela equipe da KA.</p>
       <div class="hero-prod__actions">
-        <span class="hero-prod__btn hero-prod__btn--neon">Quero esse Projeto
+        <span class="hero-prod__btn hero-prod__btn--neon">Quero um Projeto
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
       </div>
