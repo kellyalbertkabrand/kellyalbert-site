@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acessos · Autoavaliação de Marca</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#152535">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap">
+<style>
+:root{--marinho:#152535;--azul2:#223A52;--papel:#F8F7F2;--papel-70:rgba(248,247,242,.72);--papel-20:rgba(248,247,242,.2);--papel-08:rgba(248,247,242,.08);--laranja:#F0873A;--caramelo:#D86F2A;--whats:#25D366}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Outfit',Arial,sans-serif;background:var(--marinho);color:var(--papel);font-weight:300;line-height:1.5}
+b{font-weight:600}
+button,input,textarea{font-family:inherit}
+[hidden]{display:none!important}
+.faixa{padding:16px;background:var(--azul2);border-bottom:3px solid var(--laranja);text-align:center}
+.faixa img{width:140px}
+.app{max-width:880px;margin:0 auto;padding:24px 16px 60px}
+h1{margin:0;font-size:1.7rem;font-weight:800}
+h2{margin:30px 0 10px;font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--laranja)}
+.sub{margin:4px 0 0;color:var(--papel-70)}
+.cartao{margin-top:12px;padding:20px;border-radius:18px;background:var(--azul2);border:1px solid var(--papel-08)}
+label{display:block;margin-top:12px;font-size:.88rem;font-weight:600}
+label:first-child{margin-top:0}
+input,textarea{width:100%;margin-top:6px;padding:12px 13px;border-radius:12px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-size:.98rem}
+textarea{min-height:120px;resize:vertical}
+input:focus,textarea:focus{outline:none;border-color:var(--laranja)}
+small{display:block;margin-top:4px;color:var(--papel-70);font-size:.82rem}
+.linha{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media (max-width:640px){.linha{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;margin-top:14px;padding:10px 20px;border:0;border-radius:100px;background:var(--laranja);color:#fff;font-weight:700;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn--p{min-height:34px;margin:0;padding:6px 12px;font-size:.72rem;background:transparent;border:1.5px solid var(--papel-20);color:var(--papel)}
+.btn--p:hover{border-color:var(--laranja)}
+.btn--w{background:var(--whats)}
+.erro{margin-top:10px;color:#FFD9BD;font-size:.92rem}
+.tabs{display:flex;gap:8px;margin-top:12px}
+.tab{padding:8px 14px;border-radius:100px;border:1.5px solid var(--papel-20);background:none;color:var(--papel);cursor:pointer;font-size:.86rem}
+.tab.sel{background:var(--laranja);border-color:var(--laranja);color:#fff;font-weight:600}
+.criado{margin-top:12px;padding:14px;border-radius:14px;background:rgba(240,135,58,.12);border:1px solid rgba(240,135,58,.4)}
+.criado pre{margin:8px 0 0;white-space:pre-wrap;font-family:inherit;font-size:.92rem;color:var(--papel)}
+.criado .acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pessoas{display:grid;gap:10px;margin-top:12px}
+.pessoa{padding:14px 16px;border-radius:14px;background:var(--azul2);border:1px solid var(--papel-08)}
+.pessoa__topo{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pessoa__info{font-size:.86rem;color:var(--papel-70)}
+.pessoa__acoes{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.exp{color:var(--laranja);font-weight:600}
+.busca{margin-top:12px}
+.rels{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.rels a{font-size:.82rem;color:var(--laranja);text-decoration:none;padding:4px 10px;border:1px solid rgba(240,135,58,.4);border-radius:100px}
+.resumo-num{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;font-size:.92rem;color:var(--papel-70)}
+.resumo-num b{color:var(--papel);font-size:1.2rem}
+</style>
+</head>
+<body>
+<div class="faixa"><img src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas"></div>
+<main class="app">
+  <h1>Acessos da ferramenta</h1>
+  <p class="sub">Autoavaliação de Marca · participantes da aula</p>
+
+  <form class="cartao" id="f-login">
+    <label for="adm">Senha de administração</label>
+    <input id="adm" type="password" autocomplete="current-password">
+    <p class="erro" id="l-erro" hidden></p>
+    <button class="btn" type="submit">Entrar</button>
+  </form>
+
+  <div id="painel" hidden>
+    <div class="resumo-num" id="numeros"></div>
+
+    <h2>Liberar acesso</h2>
+    <div class="cartao">
+      <div class="tabs"><button class="tab sel" data-t="um">Uma pessoa</button><button class="tab" data-t="varios">Várias de uma vez</button></div>
+      <form id="f-um" style="margin-top:14px">
+        <div class="linha">
+          <div><label for="n-nome">Nome</label><input id="n-nome" required></div>
+          <div><label for="n-email">E-mail</label><input id="n-email" type="email" required></div>
+          <div><label for="n-wa">WhatsApp (opcional)</label><input id="n-wa" inputmode="tel" placeholder="51999999999"></div>
+        </div>
+        <button class="btn" type="submit">Criar acesso</button>
+      </form>
+      <form id="f-varios" hidden style="margin-top:14px">
+        <label for="n-lista">Uma pessoa por linha: Nome; e-mail; WhatsApp</label>
+        <textarea id="n-lista" placeholder="Maria Souza; maria@empresa.com.br; 51999999999&#10;João Lima; joao@loja.com"></textarea>
+        <small>Dá para colar direto de uma planilha (colunas nome, e-mail e WhatsApp).</small>
+        <button class="btn" type="submit">Criar acessos</button>
+      </form>
+      <p class="erro" id="c-erro" hidden></p>
+      <small id="validade-padrao"></small>
+      <div id="criados"></div>
+    </div>
+
+    <h2>Participantes</h2>
+    <input class="busca" id="busca" placeholder="Buscar por nome ou e-mail">
+    <div class="pessoas" id="pessoas"></div>
+  </div>
+</main>
+
+<script>
+var senhaAdm = '';
+try { senhaAdm = localStorage.getItem('ka_ferr_adm') || ''; } catch (e) {}
+var pessoas = [], validadePadrao = null;
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function dataBR(iso){ return new Date(iso).toLocaleDateString('pt-BR'); }
+function $(id){ return document.getElementById(id); }
+
+function api(corpo){
+  return fetch('/api/ferramenta/admin', { method:'POST', headers:{ 'content-type':'application/json', 'x-admin-senha': senhaAdm }, body: JSON.stringify(corpo) })
+    .then(function(r){ return r.json().then(function(d){ if(!r.ok) throw new Error(d.erro || 'Erro'); return d; }); });
+}
+
+function mensagem(p, senha){
+  return 'Oi, ' + p.nome.split(' ')[0] + '! Aqui está o seu acesso à ferramenta Autoavaliação de Marca, liberada na aula.\n\n' +
+    'Acesse: https://kellyalbert.com.br/autoavaliacao\nE-mail: ' + p.email + '\nSenha: ' + senha + '\n\n' +
+    'O acesso fica liberado até ' + dataBR(p.expiraEm) + '. Qualquer dúvida, é só me chamar.\nKelly Albert';
+}
+function cartaoSenha(p, senha){
+  var msg = mensagem(p, senha);
+  var wa = p.whatsapp ? 'https://wa.me/' + (p.whatsapp.replace(/\D/g,'').length <= 11 ? '55' : '') + p.whatsapp.replace(/\D/g,'') + '?text=' + encodeURIComponent(msg) : '';
+  var div = document.createElement('div'); div.className = 'criado';
+  div.innerHTML = '<b>' + esc(p.nome) + '</b> · senha <b>' + esc(senha) + '</b><pre>' + esc(msg) + '</pre><div class="acoes">' +
+    '<button class="btn btn--p" type="button">Copiar mensagem</button>' + (wa ? '<a class="btn btn--p btn--w" style="border:0;color:#fff" target="_blank" rel="noopener" href="' + wa + '">Enviar no WhatsApp</a>' : '') + '</div>';
+  div.querySelector('button').onclick = function(){ var b = this; navigator.clipboard.writeText(msg).then(function(){ b.textContent = 'Copiado'; }); };
+  return div;
+}
+
+function carregar(){
+  return api({ acao:'listar' }).then(function(d){
+    pessoas = d.pessoas; validadePadrao = d.validadePadrao;
+    $('validade-padrao').textContent = 'Novos acessos valem até ' + dataBR(validadePadrao) + ' (60 dias a partir da aula).';
+    var ativos = pessoas.filter(function(p){ return new Date(p.expiraEm) > new Date(); }).length;
+    var usaram = pessoas.filter(function(p){ return p.relatorios > 0; }).length;
+    $('numeros').innerHTML = '<span><b>' + pessoas.length + '</b> acessos</span><span><b>' + ativos + '</b> ativos</span><span><b>' + usaram + '</b> já fizeram a autoavaliação</span>';
+    listar();
+  });
+}
+
+function listar(){
+  var q = $('busca').value.trim().toLowerCase();
+  var lista = pessoas.filter(function(p){ return !q || (p.nome + ' ' + p.email).toLowerCase().indexOf(q) >= 0; });
+  $('pessoas').innerHTML = lista.length ? '' : '<p class="sub">Nenhum participante ainda.</p>';
+  lista.forEach(function(p){
+    var venceu = new Date(p.expiraEm) < new Date();
+    var div = document.createElement('div'); div.className = 'pessoa';
+    div.innerHTML = '<div class="pessoa__topo"><div><b>' + esc(p.nome) + '</b><div class="pessoa__info">' + esc(p.email) + (p.whatsapp ? ' · ' + esc(p.whatsapp) : '') + '</div></div>' +
+      '<div class="pessoa__info" style="text-align:right">' + (venceu ? '<span class="exp">Acesso encerrado</span>' : 'Até ' + dataBR(p.expiraEm)) + '<br>' + p.relatorios + ' relatório(s)' + (p.ultimoAcesso ? ' · último acesso ' + dataBR(p.ultimoAcesso) : ' · ainda não entrou') + '</div></div>' +
+      (p.ids.length ? '<div class="rels">' + p.ids.map(function(id, i){ return '<a href="/autoavaliacao/admin/relatorio.html#' + id + '" target="_blank">Relatório ' + (p.ids.length - i) + '</a>'; }).join('') + '</div>' : '') +
+      '<div class="pessoa__acoes"><button class="btn btn--p" data-a="senha">Nova senha</button><button class="btn btn--p" data-a="validade">Alterar validade</button><button class="btn btn--p" data-a="remover">Remover</button></div><div class="extra"></div>';
+    div.querySelector('[data-a=senha]').onclick = function(){
+      if(!confirm('Gerar uma nova senha para ' + p.nome + '? A senha antiga deixa de funcionar.')) return;
+      api({ acao:'nova-senha', email:p.email }).then(function(d){ var ex = div.querySelector('.extra'); ex.innerHTML=''; ex.appendChild(cartaoSenha(d.pessoa, d.senha)); }).catch(function(e){ alert(e.message); });
+    };
+    div.querySelector('[data-a=validade]').onclick = function(){
+      var atual = new Date(p.expiraEm).toISOString().slice(0,10);
+      var nova = prompt('Nova data de validade (AAAA-MM-DD):', atual); if(!nova) return;
+      api({ acao:'validade', email:p.email, expiraEm:nova }).then(carregar).catch(function(e){ alert(e.message); });
+    };
+    div.querySelector('[data-a=remover]').onclick = function(){
+      if(!confirm('Remover o acesso de ' + p.nome + '?')) return;
+      api({ acao:'remover', email:p.email }).then(carregar).catch(function(e){ alert(e.message); });
+    };
+    $('pessoas').appendChild(div);
+  });
+}
+
+function criar(lista){
+  $('c-erro').hidden = true;
+  return api({ acao:'criar', pessoas: lista }).then(function(d){
+    var box = $('criados'); box.innerHTML = '';
+    d.criados.forEach(function(p){ box.appendChild(cartaoSenha(p, p.senha)); });
+    if(d.erros.length){ $('c-erro').hidden = false; $('c-erro').innerHTML = d.erros.map(function(e){ return esc(e.linha) + ': ' + esc(e.erro); }).join('<br>'); }
+    return carregar();
+  }).catch(function(e){ $('c-erro').hidden = false; $('c-erro').textContent = e.message; });
+}
+
+$('f-login').addEventListener('submit', function(ev){
+  ev.preventDefault(); senhaAdm = $('adm').value;
+  entrar();
+});
+function entrar(){
+  carregar().then(function(){
+    try { localStorage.setItem('ka_ferr_adm', senhaAdm); } catch (e) {}
+    $('f-login').hidden = true; $('painel').hidden = false;
+  }).catch(function(e){ $('l-erro').hidden = false; $('l-erro').textContent = e.message; });
+}
+document.querySelectorAll('.tab').forEach(function(t){ t.onclick = function(){
+  document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('sel'); }); t.classList.add('sel');
+  $('f-um').hidden = t.dataset.t !== 'um'; $('f-varios').hidden = t.dataset.t !== 'varios';
+}; });
+$('f-um').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  criar([{ nome:$('n-nome').value, email:$('n-email').value, whatsapp:$('n-wa').value }]).then(function(){ $('f-um').reset(); });
+});
+$('f-varios').addEventListener('submit', function(ev){
+  ev.preventDefault();
+  var lista = $('n-lista').value.split('\n').map(function(l){ return l.split(/[;\t,]/).map(function(x){ return x.trim(); }); })
+    .filter(function(c){ return c.join('').length; })
+    .map(function(c){ var email = c.filter(function(x){ return x.indexOf('@') > 0; })[0] || ''; var resto = c.filter(function(x){ return x !== email; }); return { nome: resto[0] || '', email: email, whatsapp: resto[1] || '' }; });
+  if(!lista.length) return;
+  criar(lista).then(function(){ $('n-lista').value = ''; });
+});
+$('busca').addEventListener('input', listar);
+if(senhaAdm) entrar();
+</script>
+</body></html>

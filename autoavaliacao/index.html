@@ -1,0 +1,496 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Autoavaliação de Marca · KA | Inteligência para Marcas</title>
+<meta name="description" content="Ferramenta Autoavaliação de Marca: avalie como sua empresa entrega e comunica seu valor e descubra o que precisa melhorar. Acesso exclusivo para participantes da aula.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#152535">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap">
+<style>
+/* Ferramenta da aula · sistema visual KA v2026.10: Outfit, marinho, papel, laranja de campanha. */
+:root{
+  --marinho:#152535;--azul2:#223A52;--azul3:#2B4865;--essencia:#3D6B7E;
+  --papel:#F8F7F2;--bege:#EDE8DD;
+  --papel-70:rgba(248,247,242,.72);--papel-50:rgba(248,247,242,.5);--papel-20:rgba(248,247,242,.2);--papel-08:rgba(248,247,242,.08);
+  --laranja:#F0873A;--caramelo:#D86F2A;--whats:#25D366;
+  --fonte:'Outfit','Helvetica Neue',Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;overflow-x:hidden}
+body{font-family:var(--fonte);background:var(--marinho);color:var(--papel);font-weight:300;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+b,strong{font-weight:600}
+h1,h2,h3,h4,p,li,label,small,.btn,.opcao span{text-wrap:balance}
+button,input,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--laranja);outline-offset:3px}
+[hidden]{display:none!important}
+
+.reticula{position:absolute;top:72px;right:0;width:min(400px,34vw);opacity:.7;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(225deg,#000 35%,transparent 80%);mask-image:linear-gradient(225deg,#000 35%,transparent 80%)}
+.faixa{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;padding:20px 16px 18px;background:var(--azul2);border-bottom:3px solid var(--laranja);box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.faixa img{width:164px;height:auto;display:block}
+.app{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 16px 40px;min-height:70vh}
+
+/* Títulos */
+.topo{padding:34px 4px 24px;text-align:center;display:grid;justify-items:center}
+.selo{display:inline-block;padding:8px 18px;border-radius:100px;background:var(--laranja);color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.topo h1{margin:16px 0 0;font-size:clamp(1.9rem,7vw,2.5rem);font-weight:800;line-height:1.1;letter-spacing:-.01em}
+.topo h1 span{display:inline-flex;align-items:center;gap:10px}
+.topo h1 svg{width:.82em;height:.82em}
+.topo p{margin:12px 0 0;max-width:470px;font-size:1.06rem;color:var(--papel-70)}
+
+/* Cartões e formulários */
+.cartao{background:var(--azul2);border:1px solid var(--papel-08);border-radius:20px;padding:24px 20px;box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.campo{display:grid;gap:6px;margin-top:16px}
+.campo:first-child{margin-top:0}
+.campo label{font-size:.9rem;font-weight:600}
+.campo small{font-size:.84rem;color:var(--papel-70);line-height:1.45}
+.campo input,.campo textarea{width:100%;padding:13px 14px;border-radius:14px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-size:1rem;line-height:1.45}
+.campo textarea{resize:vertical;min-height:84px}
+.campo input:focus,.campo textarea:focus{border-color:var(--laranja);outline:none}
+.erro{display:none;margin:12px 0 0;padding:10px 12px;border-radius:12px;background:rgba(240,135,58,.14);color:#FFD9BD;font-size:.92rem}
+.erro.ver{display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:54px;margin-top:18px;padding:14px 20px;border:0;border-radius:100px;background:var(--laranja);color:#fff;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .2s,transform .1s}
+.btn:hover{background:#F59B57}.btn:active{transform:scale(.99)}
+.btn[disabled]{opacity:.5;cursor:default}
+.btn--contorno{background:transparent;border:1.5px solid var(--papel-20);color:var(--papel)}
+.btn--contorno:hover{background:var(--papel-08)}
+.link{background:none;border:0;padding:6px;color:var(--papel-70);font-size:.92rem;cursor:pointer;text-decoration:none}
+.link:hover{color:var(--papel)}
+.nota{margin:14px 0 0;text-align:center;font-size:.88rem;color:var(--papel-70)}
+.nota a{color:var(--laranja);text-decoration:none;font-weight:600}
+
+/* Painel */
+.ola{margin:0;font-size:1.4rem;font-weight:700}
+.validade{margin:6px 0 0;font-size:.94rem;color:var(--papel-70)}
+.validade b{color:var(--laranja)}
+.bloco-tit{margin:30px 0 12px;font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--laranja)}
+.lista-rel{display:grid;gap:10px}
+.rel{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;width:100%;padding:16px;border-radius:16px;background:var(--azul2);border:1px solid var(--papel-08);color:var(--papel);text-align:left;cursor:pointer}
+.rel:hover{border-color:rgba(240,135,58,.5)}
+.rel b{font-size:1rem}
+.rel small{grid-column:1;color:var(--papel-70);font-size:.86rem}
+.rel .seta{grid-row:1/3;grid-column:2;color:var(--laranja);font-size:1.4rem}
+.mini{grid-column:1;display:flex;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--papel-70)}
+.mini i{font-style:normal;font-weight:700;color:var(--papel)}
+.vazio{padding:18px;border-radius:16px;border:1.5px dashed var(--papel-20);color:var(--papel-70);text-align:center;font-size:.95rem}
+.evolucao{margin-top:12px;padding:16px;border-radius:16px;background:rgba(240,135,58,.1);border:1px solid rgba(240,135,58,.35);font-size:.95rem}
+.evolucao b{color:var(--laranja)}
+
+/* Perguntas */
+.progresso{position:sticky;top:0;z-index:5;margin:0 -16px;padding:14px 16px 12px;background:rgba(21,37,53,.94);backdrop-filter:blur(6px)}
+.progresso__txt{display:flex;justify-content:space-between;font-size:.82rem;color:var(--papel-70)}
+.progresso__txt b{color:var(--laranja);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.74rem}
+.barra{height:6px;margin-top:8px;border-radius:6px;background:var(--papel-08);overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:var(--laranja);border-radius:6px;transition:width .3s}
+.pergunta{padding:22px 0 8px;animation:entra .25s ease}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pergunta__tema{margin:0;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--papel-50)}
+.pergunta h2{margin:8px 0 0;font-size:1.45rem;font-weight:700;line-height:1.25}
+.pergunta__ajuda{margin:8px 0 0;color:var(--papel-70);font-size:.95rem}
+.opcoes{display:grid;gap:10px;margin-top:20px}
+.opcao{display:flex;align-items:center;gap:12px;width:100%;padding:15px 16px;border-radius:16px;border:1.5px solid var(--papel-20);background:rgba(34,58,82,.6);color:var(--papel);text-align:left;font-size:1rem;line-height:1.4;cursor:pointer;transition:border-color .15s,background .15s}
+.opcao:hover{border-color:rgba(240,135,58,.6)}
+.opcao.sel{border-color:var(--laranja);background:rgba(240,135,58,.16)}
+.opcao .marca{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--papel-50);display:grid;place-items:center}
+.opcao.multi .marca{border-radius:6px}
+.opcao.sel .marca{border-color:var(--laranja);background:var(--laranja)}
+.opcao.sel .marca::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.opcao.multi.sel .marca::after{width:10px;height:6px;border-radius:0;background:none;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.grupo{margin-top:18px}
+.grupo>p{margin:0 0 8px;font-size:.92rem;font-weight:600}
+.grupo .opcoes{margin-top:0}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+
+/* Aguardando */
+.espera{padding:60px 8px;text-align:center}
+.giro{width:54px;height:54px;margin:0 auto 22px;border-radius:50%;border:4px solid var(--papel-20);border-top-color:var(--laranja);animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.espera h2{margin:0;font-size:1.4rem}
+.espera p{margin:10px auto 0;max-width:420px;color:var(--papel-70)}
+
+/* Relatório */
+.relatorio{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28);margin-top:20px}
+.relatorio b{color:var(--marinho)}
+.r-sec{padding:24px 20px;border-top:1px solid rgba(216,111,42,.22)}
+.r-sec:first-child{border-top:6px solid var(--caramelo)}
+.r-eyebrow{margin:0;font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--caramelo)}
+.r-eyebrow .num{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:8px;border-radius:50%;background:var(--caramelo);color:#fff;font-size:.72rem;letter-spacing:0;vertical-align:1px}
+.r-empresa{margin:8px 0 0;font-size:1.7rem;font-weight:800;line-height:1.15;color:var(--caramelo)}
+.r-data{margin:4px 0 0;font-size:.9rem;color:rgba(21,37,53,.6)}
+.r-resumo{margin:14px 0 0;font-size:1.08rem;line-height:1.6}
+.indices{display:grid;gap:14px;margin-top:20px}
+.indice__topo{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.indice__topo b{font-size:.98rem}
+.indice__topo span{font-size:.86rem;font-weight:600;color:rgba(21,37,53,.65)}
+.indice__barra{height:10px;margin-top:6px;border-radius:10px;background:rgba(21,37,53,.1);overflow:hidden}
+.indice__barra i{display:block;height:100%;border-radius:10px;background:var(--essencia)}
+.indice__barra i.fragil{background:var(--caramelo)}
+.indice__barra i.desenvolvimento{background:#E3A04F}
+.indice small{display:block;margin-top:4px;font-size:.8rem;color:rgba(21,37,53,.55)}
+.pilar{margin-top:20px;padding-top:18px;border-top:1px dashed rgba(21,37,53,.18)}
+.pilar:first-of-type{border-top:0;padding-top:4px}
+.pilar h3{margin:0;font-size:1.15rem;font-weight:800}
+.pilar__sub{margin:2px 0 0;font-size:.88rem;color:rgba(21,37,53,.6)}
+.pilar__leitura{margin:10px 0 0;font-size:1rem;line-height:1.55}
+.itens{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.itens li{position:relative;padding:10px 12px 10px 38px;border-radius:12px;background:#fff;font-size:.95rem;line-height:1.5}
+.itens li::before{position:absolute;left:12px;top:10px;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff}
+.itens--ok li::before{content:"✓";background:var(--essencia)}
+.itens--fragil li::before{content:"!";background:var(--caramelo)}
+.itens--verificar li::before{content:"?";background:rgba(21,37,53,.45)}
+.itens__rot{margin:14px 0 0;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(21,37,53,.6)}
+details.respostas{margin-top:14px;border-radius:12px;background:rgba(21,37,53,.05)}
+details.respostas summary{padding:12px 14px;font-size:.9rem;font-weight:600;cursor:pointer}
+details.respostas ul{list-style:none;margin:0;padding:0 14px 12px;display:grid;gap:8px}
+details.respostas li{font-size:.88rem;line-height:1.45}
+.chip{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:100px;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;vertical-align:1px}
+.chip--A{background:rgba(61,107,126,.15);color:#2B4865}.chip--B{background:rgba(239,164,58,.2);color:#8A5A12}.chip--C{background:rgba(216,111,42,.16);color:#B5561A}.chip--D{background:rgba(21,37,53,.08);color:rgba(21,37,53,.7)}
+.prio{margin-top:16px;border-radius:16px;background:#fff;border:1px solid rgba(216,111,42,.25);overflow:hidden}
+.prio__topo{display:flex;gap:12px;align-items:flex-start;padding:16px;background:rgba(216,111,42,.1)}
+.prio__n{flex:none;width:32px;height:32px;border-radius:50%;background:var(--caramelo);color:#fff;font-weight:800;display:grid;place-items:center}
+.prio__topo h3{margin:3px 0 0;font-size:1.12rem;font-weight:800;line-height:1.3}
+.prio__porque{margin:6px 0 0;font-size:.92rem;line-height:1.5;color:rgba(21,37,53,.75)}
+.prio__corpo{padding:4px 16px 16px;display:grid}
+.prio__item{padding-top:12px}
+.prio__rot{margin:0;display:flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--caramelo)}
+.prio__rot svg{width:16px;height:16px;flex:none}
+.prio__item p{margin:4px 0 0;font-size:.96rem;line-height:1.5}
+.prio__item ol{margin:6px 0 0;padding-left:20px;display:grid;gap:4px;font-size:.96rem;line-height:1.5}
+.r-aviso{padding:18px 20px;font-size:.84rem;line-height:1.55;color:rgba(21,37,53,.65);background:rgba(21,37,53,.04)}
+.r-acoes{padding:18px 20px 22px;display:grid;gap:10px}
+.r-acoes .btn{margin:0}
+.btn--caramelo-contorno{background:transparent;border:1.5px solid var(--caramelo);color:var(--caramelo)}
+.btn--caramelo-contorno:hover{background:rgba(216,111,42,.08)}
+.encontros{margin-top:22px;padding:26px 22px;border-radius:22px;background:linear-gradient(160deg,#5A7FA3,#3B5C7D);border:2px solid var(--laranja);text-align:center}
+.encontros .selo{font-size:.7rem}
+.encontros h3{margin:14px 0 0;font-size:1.4rem;font-weight:800;line-height:1.2}
+.encontros p{margin:10px auto 0;max-width:440px;font-size:1rem;color:rgba(248,247,242,.9)}
+.encontros .btn{max-width:360px}
+
+.rodape{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.35;text-align:center;font-size:.86rem;color:var(--papel-70);letter-spacing:.04em;padding:10px 0 26px;margin:20px 0 0}
+.rodape__ka{font-weight:700;color:var(--papel)}
+.rodape__sep{display:none;color:var(--papel-50)}
+.rodape a{color:var(--papel-70);text-decoration:none}
+@media (min-width:720px){.rodape{flex-direction:row;justify-content:center;gap:10px;font-size:.82rem}.rodape>*{white-space:nowrap}.rodape__sep{display:inline}}
+
+@media print{
+  body{background:#fff}
+  .faixa,.reticula,.rodape,.r-acoes,.encontros,.nao-imprimir{display:none!important}
+  .app{max-width:none;padding:0}
+  .relatorio{box-shadow:none;border-radius:0;margin:0}
+  .prio,.pilar{break-inside:avoid}
+  details.respostas ul{display:grid!important}
+}
+</style>
+</head>
+<body>
+<div class="faixa"><a href="/" aria-label="KA | Inteligência para Marcas"><img src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas" width="150" height="29"></a></div>
+<img class="reticula" src="/images/diagnostico/reticula-marinho.svg" alt="" aria-hidden="true">
+
+<main class="app" id="app" aria-live="polite"></main>
+
+<p class="rodape"><span class="rodape__ka">KA | Inteligência para Marcas</span><span class="rodape__sep">/</span><a href="https://kellyalbert.com.br">www.kellyalbert.com.br</a><span class="rodape__sep">/</span><a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener">@kellyalbert.brand</a></p>
+
+<script type="module">
+import { FERRAMENTA, BLOCO1, PERGUNTAS, PILARES, ROTULOS, ESTADOS, AVISO, TOTAL_PERGUNTAS, classificar } from '/autoavaliacao/regras.mjs?v=1';
+
+const WHATS = '5551993163333';
+const app = document.getElementById('app');
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const dataBR = iso => new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+const guardar = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+const ler = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+const topo = () => window.scrollTo({ top: 0, behavior: 'auto' });
+const ICONE = '<svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3.6 17.2a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.2-5.4l-2.4 2.4-2.1-.6-.6-2.1z"/></svg>';
+
+let sessao = ler('ka_ferr_sessao'); // { token, nome, expiraEm }
+
+async function api(caminho, opcoes = {}) {
+  const adm = location.hash.startsWith('#adm=') ? (ler('ka_ferr_adm_txt') || (() => { try { return localStorage.getItem('ka_ferr_adm') || ''; } catch (e) { return ''; } })()) : '';
+  const r = await fetch(caminho, { ...opcoes, headers: { 'content-type': 'application/json', ...(adm ? { 'x-admin-senha': adm } : {}), ...(sessao && !adm ? { authorization: 'Bearer ' + sessao.token } : {}), ...(opcoes.headers || {}) } });
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 401 && sessao) { sair(d.erro); throw new Error('sessao'); }
+  if (r.status === 403 && d.expirado) { telaExpirado(d.erro); throw new Error('expirado'); }
+  if (!r.ok) throw new Error(d.erro || 'Não foi possível concluir. Tente de novo.');
+  return d;
+}
+
+function sair(msg) { sessao = null; guardar('ka_ferr_sessao', null); location.hash = ''; telaEntrar(msg); }
+
+// ─── ENTRAR ───────────────────────────────────────────────────
+function telaEntrar(msg) {
+  app.innerHTML = `
+    <header class="topo">
+      <span class="selo">Exclusiva para participantes da aula</span>
+      <h1><span>${ICONE}Autoavaliação</span><br>de Marca</h1>
+      <p>${esc(FERRAMENTA.complemento)}</p>
+    </header>
+    <form class="cartao" id="f-entrar" novalidate>
+      <div class="campo"><label for="e-email">E-mail</label><input id="e-email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="campo"><label for="e-senha">Senha</label><input id="e-senha" type="text" autocomplete="current-password" autocapitalize="characters" spellcheck="false" placeholder="Ex.: ABCD-1234" required></div>
+      <p class="erro" id="e-erro" role="alert"></p>
+      <button class="btn" type="submit">Entrar</button>
+      <p class="nota">Recebeu o acesso na aula. Esqueceu a senha? <a href="https://wa.me/${WHATS}?text=${encodeURIComponent('Oi, Kelly! Preciso de ajuda com o acesso à ferramenta Autoavaliação de Marca.')}" target="_blank" rel="noopener">Fale com a Kelly</a></p>
+    </form>`;
+  const err = document.getElementById('e-erro');
+  if (msg) { err.textContent = msg; err.classList.add('ver'); }
+  document.getElementById('f-entrar').addEventListener('submit', async ev => {
+    ev.preventDefault();
+    const bt = ev.target.querySelector('button'); bt.disabled = true; err.classList.remove('ver');
+    try {
+      const d = await api('/api/ferramenta/entrar', { method: 'POST', body: JSON.stringify({ email: document.getElementById('e-email').value, senha: document.getElementById('e-senha').value }) });
+      sessao = d; guardar('ka_ferr_sessao', d); rota();
+    } catch (e) {
+      if (e.message !== 'expirado') { err.textContent = e.message; err.classList.add('ver'); bt.disabled = false; }
+    }
+  });
+}
+
+function telaExpirado(msg) {
+  app.innerHTML = `<header class="topo"><span class="selo">Acesso encerrado</span><h1>Seu acesso terminou</h1><p>${esc(msg || 'O período de 60 dias de acesso terminou.')}</p></header>
+    <div class="cartao"><a class="btn" href="https://wa.me/${WHATS}?text=${encodeURIComponent('Oi, Kelly! Meu acesso à Autoavaliação de Marca terminou e quero saber como continuar.')}" target="_blank" rel="noopener">Falar com a Kelly</a>
+    <button class="btn btn--contorno" id="bt-sair2">Sair</button></div>`;
+  document.getElementById('bt-sair2').onclick = () => sair();
+}
+
+// ─── PAINEL ───────────────────────────────────────────────────
+async function telaPainel() {
+  app.innerHTML = '<div class="espera"><div class="giro"></div></div>';
+  let d; try { d = await api('/api/ferramenta/painel'); } catch (e) { if (e.message !== 'sessao' && e.message !== 'expirado') app.innerHTML = '<div class="espera"><p>' + esc(e.message) + '</p></div>'; return; }
+  const primeiro = esc(d.nome.split(' ')[0]);
+  const rascunho = ler(chaveRascunho());
+  const rels = d.relatorios;
+  let evolucao = '';
+  const prontos = rels.filter(r => r.pilares[1].indice != null);
+  if (prontos.length >= 2) {
+    const novo = prontos[0], velho = prontos[prontos.length - 1];
+    const linha = n => `${PILARES[n].nome}: <b>${velho.pilares[n].indice ?? '–'}</b> → <b>${novo.pilares[n].indice ?? '–'}</b>`;
+    evolucao = `<div class="evolucao"><b>Sua evolução</b> (primeira × última autoavaliação)<br>${linha(1)}<br>${linha(2)}</div>`;
+  }
+  app.innerHTML = `
+    <header class="topo" style="padding-bottom:10px">
+      <span class="selo">Autoavaliação de Marca</span>
+      <p class="ola" style="margin-top:16px;color:var(--papel)">Olá, ${primeiro}!</p>
+      <p class="validade">Seu acesso vai até <b>${dataBR(d.expiraEm)}</b>.</p>
+    </header>
+    <div class="cartao">
+      <p style="margin:0;font-size:1rem">São <b>${TOTAL_PERGUNTAS} perguntas</b> sobre a sua empresa, a entrega e a comunicação de valor. Leva cerca de 10 minutos. No fim, a Inteligência Artificial cruza as respostas e monta o seu relatório com três prioridades e as práticas para cada uma.</p>
+      ${d.restantes > 0
+        ? `<button class="btn" id="bt-nova">${rascunho ? 'Continuar de onde parei' : (rels.length ? 'Fazer nova autoavaliação' : 'Começar a autoavaliação')}</button>
+           ${rascunho ? '<button class="btn btn--contorno" id="bt-zerar">Começar do zero</button>' : ''}
+           <p class="nota">Você pode fazer mais ${d.restantes} ${d.restantes === 1 ? 'autoavaliação' : 'autoavaliações'} durante o acesso. Refaça depois de aplicar as melhorias para ver a evolução.</p>`
+        : '<p class="nota">Você já usou todas as autoavaliações do seu acesso. Seus relatórios continuam abaixo.</p>'}
+    </div>
+    <p class="bloco-tit">Seus relatórios</p>
+    ${evolucao}
+    <div class="lista-rel" style="margin-top:${evolucao ? '12px' : '0'}">${rels.length ? rels.map(r => `
+      <button class="rel" data-id="${r.id}">
+        <b>${esc(r.empresa)}</b><span class="seta">›</span>
+        <small>${dataBR(r.criadoEm)}${r.status === 'gerando' ? ' · em preparação' : ''}</small>
+        <span class="mini"><span>Entrega <i>${r.pilares[1].indice ?? '–'}</i></span><span>Comunicação <i>${r.pilares[2].indice ?? '–'}</i></span></span>
+      </button>`).join('') : '<div class="vazio">Seu primeiro relatório vai aparecer aqui.</div>'}</div>
+    <div class="nav nao-imprimir" style="justify-content:center;margin-top:24px"><button class="link" id="bt-sair">Sair</button></div>`;
+  const bn = document.getElementById('bt-nova'); if (bn) bn.onclick = () => { location.hash = 'nova'; };
+  const bz = document.getElementById('bt-zerar'); if (bz) bz.onclick = () => { guardar(chaveRascunho(), null); location.hash = 'nova'; };
+  app.querySelectorAll('.rel').forEach(b => b.onclick = () => { location.hash = 'r=' + b.dataset.id; });
+  document.getElementById('bt-sair').onclick = () => sair();
+  topo();
+}
+
+// ─── PERGUNTAS ────────────────────────────────────────────────
+const ETAPAS = [
+  ...BLOCO1.map(b => ({ ...b, bloco: 'Conhecendo a empresa' })),
+  ...PERGUNTAS.map(p => ({ ...p, tipo: 'opcao', bloco: 'Pilar ' + p.pilar + ' · ' + PILARES[p.pilar].nome })),
+];
+const chaveRascunho = () => 'ka_ferr_rascunho_' + (sessao ? sessao.nome : '');
+let resp = {}, passo = 0;
+
+function telaPerguntas() {
+  const r = ler(chaveRascunho());
+  resp = r?.resp || { canais: [], dificuldades: [], respostas: {} };
+  passo = Math.min(r?.passo || 0, ETAPAS.length - 1);
+  mostrarPasso();
+}
+const salvarRascunho = () => guardar(chaveRascunho(), { resp, passo });
+
+function mostrarPasso() {
+  const et = ETAPAS[passo];
+  const pct = Math.round(passo / ETAPAS.length * 100);
+  let corpo = '';
+  if (et.tipo === 'texto' || et.tipo === 'publico') {
+    corpo = '<form id="f-passo" novalidate>' + et.campos.map(c => c.opcoes ? `
+      <div class="grupo"><p>${esc(c.rotulo)}</p><div class="opcoes">${c.opcoes.map(o => `<button type="button" class="opcao${resp[c.id] === o ? ' sel' : ''}" data-campo="${c.id}" data-valor="${esc(o)}"><span class="marca"></span><span>${esc(o)}</span></button>`).join('')}</div></div>`
+      : `<div class="campo" style="margin-top:18px"><label for="c-${c.id}">${esc(c.rotulo)}</label>${c.ajuda ? `<small>${esc(c.ajuda)}</small>` : ''}
+         ${c.longo ? `<textarea id="c-${c.id}" maxlength="${c.max}">${esc(resp[c.id] || '')}</textarea>` : `<input id="c-${c.id}" type="text" maxlength="${c.max}" value="${esc(resp[c.id] || '')}" autocomplete="off">`}</div>`).join('') +
+      '<p class="erro" id="p-erro" role="alert"></p><button class="btn" type="submit">Continuar</button></form>';
+  } else if (et.tipo === 'multi') {
+    const marcados = resp[et.campo] || [];
+    const outro = (marcados.find(x => x.startsWith(et.outro + ': ')) || '').replace(et.outro + ': ', '');
+    corpo = `<div class="opcoes">${et.opcoes.map(o => `<button type="button" class="opcao multi${marcados.includes(o) ? ' sel' : ''}" data-valor="${esc(o)}"><span class="marca"></span><span>${esc(o)}</span></button>`).join('')}</div>
+      <div class="campo" style="margin-top:14px"><label for="c-outro">${esc(et.outro)} (opcional)</label><input id="c-outro" type="text" maxlength="100" value="${esc(outro)}" autocomplete="off"></div>
+      <p class="erro" id="p-erro" role="alert"></p><button class="btn" id="bt-ok">Continuar</button>`;
+  } else {
+    const atual = resp.respostas[et.id];
+    corpo = `<div class="opcoes">${et.r.map((o, i) => `<button type="button" class="opcao${atual === i ? ' sel' : ''}" data-i="${i}"><span class="marca"></span><span>${esc(o[0])}</span></button>`).join('')}</div>`;
+  }
+  app.innerHTML = `
+    <div class="progresso"><div class="progresso__txt"><b>${esc(et.bloco)}</b><span>Pergunta ${passo + 1} de ${ETAPAS.length}</span></div><div class="barra"><i style="width:${pct}%"></i></div></div>
+    <section class="pergunta">
+      ${et.tema ? `<p class="pergunta__tema">${esc(et.tema)}</p>` : ''}
+      <h2>${esc(et.q)}</h2>
+      ${et.ajuda && et.tipo === 'multi' ? `<p class="pergunta__ajuda">${esc(et.ajuda)}</p>` : ''}
+      ${corpo}
+      <div class="nav"><button class="link" id="bt-voltar">‹ ${passo ? 'Voltar' : 'Painel'}</button><button class="link" id="bt-depois">Continuar depois</button></div>
+    </section>`;
+  topo();
+  document.getElementById('bt-voltar').onclick = () => { if (passo) { passo--; salvarRascunho(); mostrarPasso(); } else location.hash = ''; };
+  document.getElementById('bt-depois').onclick = () => { salvarRascunho(); location.hash = ''; };
+  const err = document.getElementById('p-erro');
+  const falha = m => { err.textContent = m; err.classList.add('ver'); };
+
+  if (et.tipo === 'opcao') {
+    let escolhido = false;
+    app.querySelectorAll('.opcao').forEach(b => b.onclick = () => {
+      if (escolhido) return; escolhido = true;
+      app.querySelectorAll('.opcao').forEach(x => x.classList.remove('sel')); b.classList.add('sel');
+      resp.respostas[et.id] = Number(b.dataset.i);
+      setTimeout(avancar, 220);
+    });
+  } else if (et.tipo === 'multi') {
+    app.querySelectorAll('.opcao').forEach(b => b.onclick = () => { b.classList.toggle('sel'); err.classList.remove('ver'); });
+    document.getElementById('bt-ok').onclick = () => {
+      const lista = [...app.querySelectorAll('.opcao.sel')].map(b => b.dataset.valor);
+      const o = document.getElementById('c-outro').value.trim().replace(/\s+/g, ' ');
+      if (o.replace(/[^\p{L}]/gu, '').length >= 2) lista.push(et.outro + ': ' + o);
+      if (!lista.length) return falha('Marque pelo menos uma opção ou escreva no campo.');
+      resp[et.campo] = lista; avancar();
+    };
+  } else {
+    app.querySelectorAll('.opcao').forEach(b => b.onclick = () => {
+      app.querySelectorAll(`.opcao[data-campo="${b.dataset.campo}"]`).forEach(x => x.classList.remove('sel'));
+      b.classList.add('sel'); resp[b.dataset.campo] = b.dataset.valor; err.classList.remove('ver');
+    });
+    document.getElementById('f-passo').addEventListener('submit', ev => {
+      ev.preventDefault();
+      for (const c of et.campos) {
+        if (c.opcoes) { if (!resp[c.id]) return falha('Escolha uma opção em: ' + c.rotulo + '.'); continue; }
+        const v = document.getElementById('c-' + c.id).value.trim().replace(/\s+/g, ' ');
+        if (!c.opcional && v.replace(/[^\p{L}]/gu, '').length < c.min) { document.getElementById('c-' + c.id).focus(); return falha('Preencha: ' + c.rotulo + '.'); }
+        resp[c.id] = v;
+      }
+      avancar();
+    });
+  }
+}
+
+function avancar() {
+  if (passo < ETAPAS.length - 1) { passo++; salvarRascunho(); mostrarPasso(); return; }
+  salvarRascunho(); enviar();
+}
+
+async function enviar() {
+  app.innerHTML = '<div class="espera"><div class="giro"></div><h2>Enviando suas respostas…</h2></div>';
+  try {
+    const d = await api('/api/ferramenta/iniciar', { method: 'POST', body: JSON.stringify(resp) });
+    guardar(chaveRascunho(), null);
+    location.hash = 'r=' + d.id;
+  } catch (e) {
+    if (e.message === 'sessao' || e.message === 'expirado') return;
+    app.innerHTML = `<div class="espera"><h2>Não foi possível enviar</h2><p>${esc(e.message)}</p><button class="btn" id="bt-tentar" style="max-width:320px">Tentar de novo</button><button class="link" id="bt-p">Voltar ao painel</button></div>`;
+    document.getElementById('bt-tentar').onclick = enviar;
+    document.getElementById('bt-p').onclick = () => { location.hash = ''; };
+  }
+}
+
+// ─── RELATÓRIO ────────────────────────────────────────────────
+let espera = null;
+async function telaRelatorio(id) {
+  clearTimeout(espera);
+  const inicio = Date.now();
+  const frases = ['Lendo as respostas sobre a sua empresa…', 'Cruzando entrega e comunicação de valor…', 'Escolhendo as três prioridades…', 'Montando as práticas para cada prioridade…'];
+  app.innerHTML = `<div class="espera"><div class="giro"></div><h2>Preparando o seu relatório</h2><p id="frase">${frases[0]}</p><p style="font-size:.88rem">Leva cerca de 1 minuto. Se preferir, volte depois: ele fica salvo no seu painel.</p><button class="link" id="bt-p" style="margin-top:14px">Voltar ao painel</button></div>`;
+  document.getElementById('bt-p').onclick = () => { location.hash = ''; };
+  let k = 0;
+  const consulta = async () => {
+    if (location.hash !== '#r=' + id) return;
+    let d; try { d = await api('/api/ferramenta/relatorio?id=' + encodeURIComponent(id)); } catch (e) { if (e.message !== 'sessao' && e.message !== 'expirado') app.innerHTML = '<div class="espera"><p>' + esc(e.message) + '</p></div>'; return; }
+    if (d.status === 'pronto' || Date.now() - inicio > 240000) return mostrarRelatorio(d);
+    const f = document.getElementById('frase'); if (f) f.textContent = frases[++k % frases.length];
+    espera = setTimeout(consulta, 3000);
+  };
+  consulta();
+}
+
+const ICO = {
+  melhorar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>',
+  implementar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>',
+  rotina: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg>',
+  responsavel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+  acompanhar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
+};
+
+function mostrarRelatorio(d) {
+  const t = d.resultado || {}, c = d.classe, dados = d.dados;
+  let n = 0; const num = () => '<span class="num">' + (++n) + '</span>';
+  const lista = (itens, classe, rot) => itens && itens.length ? `<p class="itens__rot">${rot}</p><ul class="itens itens--${classe}">${itens.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` : '';
+  const pilar = p => {
+    const info = c.pilares[p.pilar];
+    return `<div class="pilar"><h3>${PILARES[p.pilar].nome}</h3><p class="pilar__sub">${PILARES[p.pilar].sub}</p>
+      ${p.leitura ? `<p class="pilar__leitura">${esc(p.leitura)}</p>` : ''}
+      ${lista(p.funciona, 'ok', 'Funciona bem')}${lista(p.fragil, 'fragil', 'Possíveis fragilidades')}${lista(p.verificar, 'verificar', 'Precisa ser verificado')}
+      <details class="respostas"><summary>Ver suas respostas neste pilar</summary><ul>${c.itens.filter(x => x.pilar === p.pilar).map(x => `<li><b>${esc(x.tema)}</b><span class="chip chip--${x.situacao}">${ROTULOS[x.situacao]}</span><br>${esc(x.resposta)}</li>`).join('')}</ul></details></div>`;
+  };
+  const indice = k => { const p = c.pilares[k]; return `<div class="indice"><div class="indice__topo"><b>${PILARES[k].nome}</b><span>${p.indice ?? '–'}/100 · ${ESTADOS[p.estado]}</span></div><div class="indice__barra"><i class="${p.estado}" style="width:${p.indice ?? 0}%"></i></div></div>`; };
+  const item = (ico, rot, conteudo) => conteudo ? `<div class="prio__item"><p class="prio__rot">${ICO[ico]}${rot}</p>${conteudo}</div>` : '';
+  const prio = (p, i) => `<div class="prio"><div class="prio__topo"><span class="prio__n">${i + 1}</span><div><h3>${esc(p.titulo)}</h3><p class="prio__porque">${esc(p.porque)}</p></div></div>
+    <div class="prio__corpo">
+      ${item('melhorar', 'O que melhorar', `<p>${esc(p.o_que_melhorar)}</p>`)}
+      ${item('implementar', 'Como implementar', `<ol>${(p.como_implementar || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>`)}
+      ${item('rotina', 'Como virar rotina', `<p>${esc(p.rotina)}</p>`)}
+      ${item('responsavel', 'Quem pode ser responsável', `<p>${esc(p.responsavel)}</p>`)}
+      ${item('acompanhar', 'Como acompanhar a evolução', `<p>${esc(p.acompanhar)}</p>`)}
+    </div></div>`;
+  const msg = 'Oi, Kelly! Fiz a Autoavaliação de Marca da ' + dados.empresa + ' e quero saber mais sobre os Encontros Práticos.';
+  app.innerHTML = `
+    <div class="nav nao-imprimir" style="margin-top:14px"><button class="link" id="bt-p">‹ Painel</button></div>
+    <article class="relatorio">
+      <section class="r-sec">
+        <p class="r-eyebrow">${esc(FERRAMENTA.nome)}</p>
+        <h1 class="r-empresa">${esc(dados.empresa)}</h1>
+        <p class="r-data">${esc(dados.segmento)} · ${dataBR(d.criadoEm)}</p>
+        <p class="r-resumo">${esc(t.resumo)}</p>
+        <div class="indices">${indice(1)}${indice(2)}<small style="font-size:.8rem;color:rgba(21,37,53,.55)">Índice de 0 a 100 calculado a partir das suas respostas. Refaça a autoavaliação depois de aplicar as melhorias para acompanhar a evolução.</small></div>
+      </section>
+      <section class="r-sec"><p class="r-eyebrow">${num()}Análise dos dois pilares</p>${(t.pilares || []).map(pilar).join('')}</section>
+      <section class="r-sec"><p class="r-eyebrow">${num()}Três prioridades de melhoria</p>
+        <p style="margin:10px 0 0;font-size:.95rem;color:rgba(21,37,53,.7)">Para cada prioridade, uma prática contínua: o que melhorar, como implementar, como virar rotina, quem cuida e como acompanhar.</p>
+        ${(t.prioridades || []).map(prio).join('')}</section>
+      <section class="r-aviso">${esc(AVISO)}</section>
+      <div class="r-acoes"><button class="btn btn--caramelo-contorno" id="bt-pdf">Salvar em PDF</button></div>
+    </article>
+    <section class="encontros">
+      <span class="selo">Próximo passo</span>
+      <h3>Direção de Marca · Encontros Práticos</h3>
+      <p>Trabalhe as prioridades deste relatório diretamente com Kelly Albert, em turma, com orientação para implementar as melhorias na sua empresa.</p>
+      <a class="btn" href="https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Quero saber mais</a>
+    </section>`;
+  document.getElementById('bt-p').onclick = () => { location.hash = ''; };
+  document.getElementById('bt-pdf').onclick = () => window.print();
+  topo();
+}
+
+// ─── ROTAS ────────────────────────────────────────────────────
+function rota() {
+  clearTimeout(espera);
+  const h = location.hash.slice(1);
+  // Visualização da Kelly (aberta pelo painel de acessos).
+  if (h.startsWith('adm=')) return api('/api/ferramenta/relatorio?id=' + encodeURIComponent(h.slice(4))).then(d => { mostrarRelatorio(d); const v = document.getElementById('bt-p'); if (v) v.parentElement.remove(); }).catch(e => { app.innerHTML = '<div class="espera"><p>' + esc(e.message) + '</p></div>'; });
+  if (!sessao) return telaEntrar();
+  if (h === 'nova') return telaPerguntas();
+  if (h.startsWith('r=')) return telaRelatorio(h.slice(2));
+  telaPainel();
+}
+window.addEventListener('hashchange', rota);
+rota();
+</script>
+</body></html>

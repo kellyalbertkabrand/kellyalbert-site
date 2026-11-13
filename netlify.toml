@@ -52,6 +52,16 @@
   to = "/valorpercebido/index.html"
   status = 200
 
+[[redirects]]
+  from = "/autoavaliacao"
+  to = "/autoavaliacao/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/autoavaliacao/admin"
+  to = "/autoavaliacao/admin/index.html"
+  status = 200
+
 # endereço antigo do teste: leva para o novo
 [[redirects]]
   from = "/raio-x-marca"
@@ -178,6 +188,13 @@
 # Teste de Autoavaliação de Marca: as regras são carregadas como módulo pela página.
 [[headers]]
   for = "/valorpercebido/*.mjs"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+    Cache-Control = "public, max-age=300"
+
+# Autoavaliação de Marca (ferramenta da aula): regras carregadas como módulo pela página.
+[[headers]]
+  for = "/autoavaliacao/*.mjs"
   [headers.values]
     Content-Type = "text/javascript; charset=utf-8"
     Cache-Control = "public, max-age=300"
