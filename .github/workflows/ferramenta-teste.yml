@@ -1,0 +1,19 @@
+name: Testar ferramenta Autoavaliação de Marca
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        description: Endereço do site
+        default: https://kellyalbert.com.br
+      admin:
+        description: Senha de administração de teste
+        required: true
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/testar-ferramenta.mjs "${{ inputs.site }}" "${{ inputs.admin }}"
