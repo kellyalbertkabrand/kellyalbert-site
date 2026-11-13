@@ -344,7 +344,7 @@ button,input{font-family:inherit}
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=4';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=5';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
@@ -358,7 +358,7 @@ var CONFIG = {
   instagram: 'https://www.instagram.com/kellyalbert.brand',
   mailerliteGroupId: '183324004183967092', // grupo do Diagnóstico: dispara a "Automação Diagnóstico" no MailerLite
   origem: 'valorpercebido',
-  storageKey: 'ka_autoavaliacao_v3',
+  storageKey: 'ka_autoavaliacao_v4',
   leadKey: 'ka_raiox_marca_lead',
   esperaMaxima: 75000 // tempo máximo esperando a análise da Inteligência Artificial antes de mostrar o resultado das regras
 };
@@ -378,7 +378,8 @@ var TEXTOS = {
 // Cada etapa: opções (botões), texto (campo aberto) ou dificuldades (lista para marcar).
 var ETAPAS = [];
 CONTEXTO.forEach(function(c, i){
-  if(c.lista) ETAPAS.push({ id:c.id, tipo:'lista', q:c.q, lista:c.lista, bloco: i===0 ? 'contexto' : null });
+  if(c.texto) ETAPAS.push({ id:c.id, tipo:'texto', q:c.q, ajuda:c.ajuda, max:c.max, curto:true, bloco: i===0 ? 'contexto' : null });
+  else if(c.lista) ETAPAS.push({ id:c.id, tipo:'lista', q:c.q, lista:c.lista, bloco: i===0 ? 'contexto' : null });
   else ETAPAS.push({ id:c.id, tipo:'opcoes', q:c.q, r:c.r, bloco: i===0 ? 'contexto' : null });
 });
 PERGUNTAS.forEach(function(p){

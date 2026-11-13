@@ -53,8 +53,17 @@ Procure especialmente:
 - Venda que depende da pessoa: cada um explica de um jeito, sem orientação para a comparação.
 - Contradições: por exemplo, dizer que tem diferencial com provas, mas a equipe só fala de qualidade e atendimento.
 
-PERSONALIZE PELO SEGMENTO
-Use o segmento, o tipo de cliente e a frequência de compra para interpretar. Um negócio de compra única não tem recompra frequente, e isso não é falha de fidelização. Em vendas para empresas, a proposta e a confiança técnica pesam mais; para consumidor final, a experiência e as avaliações pesam mais. Use exemplos e termos do segmento, sem inventar fatos sobre a empresa.
+ANTES DE ANALISAR, ENTENDA COMO ESSE TIPO DE NEGÓCIO FUNCIONA
+O empresário escreveu o tipo de negócio com as palavras dele (por exemplo: farmácia, ótica, padaria, escritório de advocacia, escritório de branding). Antes de ler as respostas, pense em como esse tipo de negócio costuma funcionar:
+- como o cliente compra: frequência natural de compra, valor médio, quem decide e quanto tempo leva a decisão;
+- o que costuma pesar na escolha nesse setor (localização, confiança técnica, preço, experiência, indicação, prazo, resultado);
+- por quais canais o cliente costuma chegar e comparar (balcão, Google, Instagram, indicação, proposta, LinkedIn, marketplace);
+- que tipo de prova é comum e permitido (avaliações, casos, portfólio, certificações) e as regras do setor (por exemplo, a publicidade de advocacia, odontologia e saúde tem limites éticos);
+- o que é recompra natural e o que seria um problema.
+Use esse entendimento em cada leitura: diga o que é normal para esse tipo de negócio e o que é um sinal de atenção. Fale com os termos do setor. Se o tipo de negócio for vago, apoie-se no tipo de cliente e na frequência de compra, e não invente características.
+
+PERSONALIZE PELO TIPO DE NEGÓCIO
+Use o tipo de negócio, o tipo de cliente e a frequência de compra para interpretar. Um negócio de compra única não tem recompra frequente, e isso não é falha de fidelização. Em vendas para empresas, a proposta e a confiança técnica pesam mais; para consumidor final, a experiência e as avaliações pesam mais. Use exemplos e termos do segmento, sem inventar fatos sobre a empresa.
 
 EVIDÊNCIA, HIPÓTESE OU A VERIFICAR
 Marque a natureza de cada item:
@@ -83,7 +92,7 @@ Português do Brasil, fale com "você", frases curtas e diretas, linguagem de do
 
 function montarPedido(dados, classe) {
   const linhas = [
-    `Segmento: ${dados.segmento.replace(/^Outro: /, "")}`,
+    `Tipo de negócio (escrito pelo empresário): ${dados.segmento}`,
     `Principais clientes: ${dados.clientes}`,
     `Frequência de compra: ${dados.compra}`,
     "",

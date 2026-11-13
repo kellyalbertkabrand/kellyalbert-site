@@ -26,7 +26,8 @@ export const SEGMENTOS = ['Advocacia e serviços jurídicos', 'Agronegócio', 'A
 
 // Contexto do negócio: só alternativas, para orientar a leitura (nunca entra na pontuação).
 export const CONTEXTO = [
-  { id: 'segmento', q: 'Qual é o segmento da sua empresa?', lista: SEGMENTOS },
+  { id: 'segmento', q: 'Qual é o seu tipo de negócio?', texto: true, max: 80,
+    ajuda: 'Escreva em poucas palavras. Ex.: farmácia, ótica, padaria, escritório de advocacia, contabilidade, clínica de estética, loja de roupas.' },
   { id: 'clientes', q: 'Quem são seus principais clientes?', r: ['Consumidores finais', 'Outras empresas', 'Os dois'] },
   { id: 'compra', q: 'Com que frequência um cliente costuma comprar de você?',
     r: ['Toda semana ou todo mês', 'Algumas vezes por ano', 'Uma vez a cada poucos anos', 'Normalmente uma vez só'] }
@@ -362,10 +363,9 @@ export function textosDeReserva(classe, dificuldades) {
 export function validarEntrada(e) {
   const erro = m => ({ ok: false, erro: m });
   if (!e || typeof e !== 'object') return erro('Envio vazio.');
-  const segTexto = String(e.segmento || '').trim().replace(/\s+/g, ' ');
-  const segmento = SEGMENTOS.includes(segTexto) && segTexto !== 'Outro' ? segTexto
-    : (/^Outro: .{2,}/.test(segTexto) ? segTexto.slice(0, 80) : '');
-  if (!segmento) return erro('Informe o segmento.');
+  // Tipo de negócio escrito pela pessoa (ex.: "padaria", "escritório de branding").
+  const segmento = String(e.segmento || '').trim().replace(/^Outro: /, '').replace(/\s+/g, ' ').slice(0, 80);
+  if (segmento.length < 2) return erro('Informe o seu tipo de negócio.');
   const clientes = CONTEXTO[1].r.includes(e.clientes) ? e.clientes : '';
   if (!clientes) return erro('Informe quem são seus principais clientes.');
   const compra = CONTEXTO[2].r.includes(e.compra) ? e.compra : '';
