@@ -41,21 +41,13 @@
     .wrap{max-width:540px;margin:0 auto;padding:2rem 1.3rem 3rem;position:relative;}
 
     /* Topo da pagina */
-    .topo{text-align:center;margin-bottom:1.6rem;}
-    .topo__rotulo{
-      display:inline-flex;align-items:center;gap:.55rem;
-      font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-      color:var(--papel);margin:0 0 1.1rem;
-    }
-    .topo__rotulo::before{
-      content:'';width:7px;height:7px;border-radius:50%;background:var(--laranja);
-    }
+    .topo{text-align:center;margin-bottom:1.6rem;padding-bottom:1rem;border-bottom:1px solid var(--borda);}
     .topo__logo{
-      display:inline-block;font-size:.76rem;font-weight:600;letter-spacing:.3em;
-      text-transform:uppercase;color:var(--papel);
-      padding-bottom:.65rem;border-bottom:1px solid var(--borda);
+      display:inline-block;line-height:0;
     }
-    .topo__logo b{font-weight:800;}
+    .topo__logo img{
+      height:40px;width:auto;display:block;margin:0 auto;
+    }
 
     /* Hero */
     .hero{text-align:center;margin:1.8rem 0 2rem;}
@@ -67,20 +59,20 @@
     }
     .hero__titulo{
       font-family:'Outfit',sans-serif;font-weight:200;
-      line-height:1.12;margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
-      display:flex;flex-direction:column;gap:.35rem;
+      line-height:1.1;margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
+      display:flex;flex-direction:column;gap:.15rem;
     }
     .hero__linha1{
-      font-size:clamp(1rem,3.6vw,1.2rem);font-weight:400;
-      color:var(--suave);letter-spacing:.02em;
+      font-size:clamp(1.15rem,4.3vw,1.45rem);font-weight:400;
+      color:var(--suave);letter-spacing:.01em;
     }
     .hero__linha2{
       font-family:'Outfit',sans-serif;font-weight:800;
-      font-size:clamp(1.9rem,8vw,2.9rem);line-height:1;
-      color:var(--papel);letter-spacing:-.015em;
+      font-size:clamp(2.3rem,10vw,3.4rem);line-height:1;
+      color:var(--papel);letter-spacing:-.02em;
       text-transform:uppercase;
     }
-    .hero__copy{font-size:.4em;vertical-align:super;margin-left:.1em;font-weight:600;}
+    .hero__copy{font-size:.3em;vertical-align:super;margin-left:.1em;font-weight:600;}
     .hero__subt{
       font-size:.98rem;color:var(--suave);line-height:1.55;
       margin:1.2rem auto 0;max-width:440px;
@@ -225,12 +217,15 @@
       margin-top:2.5rem;padding-top:1.5rem;
       border-top:1px solid var(--borda2);
       text-align:center;
+      display:flex;flex-direction:column;gap:.35rem;
     }
     .foot p{
-      font-size:.72rem;color:rgba(248,247,242,.4);
-      letter-spacing:.08em;margin:0;
+      font-size:.82rem;color:rgba(248,247,242,.55);
+      letter-spacing:.02em;margin:0;line-height:1.4;
     }
-    .foot a{color:rgba(248,247,242,.55);}
+    .foot__marca{font-weight:800;color:var(--papel);letter-spacing:.04em;}
+    .foot a{color:rgba(248,247,242,.7);text-decoration:none;}
+    .foot a:hover{color:var(--laranja);}
   </style>
 </head>
 <body>
@@ -250,7 +245,9 @@
 <main class="wrap">
 
   <header class="topo">
-    <p class="topo__logo">KA <b>|</b> INTELIGÊNCIA PARA MARCAS</p>
+    <div class="topo__logo">
+      <img src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas" width="340" height="40">
+    </div>
   </header>
 
   <section class="hero">
@@ -327,7 +324,9 @@
   </section>
 
   <footer class="foot">
-    <p>KA <b>|</b> Inteligência para Marcas · <a href="https://kellyalbert.com.br">kellyalbert.com.br</a></p>
+    <p class="foot__marca">KA | Inteligência para Marcas</p>
+    <p><a href="https://kellyalbert.com.br">kellyalbert.com.br</a></p>
+    <p><a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener">@kellyalbert.brand</a></p>
   </footer>
 
 </main>
