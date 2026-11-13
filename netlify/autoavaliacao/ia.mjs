@@ -13,27 +13,27 @@ const Natureza = z.enum(["relato", "hipotese", "verificar"]);
 const AnaliseSchema = z.object({
   respostas: z.array(z.object({
     id: z.string().describe("P1 a P11."),
-    leitura: z.string().describe("O que essa resposta, lida ao pé da letra e à luz das outras, reflete no negócio. Até 30 palavras."),
+    leitura: z.string().describe("O que essa resposta, lida ao pé da letra e à luz das outras, reflete no negócio. Uma frase só, até 15 palavras."),
   })).describe("Exatamente 11 itens, um por pergunta, na ordem de P1 a P11."),
-  leitura: z.string().describe("Leitura estratégica: o que o conjunto das respostas sugere sobre a situação da empresa. Até 80 palavras."),
+  leitura: z.string().describe("Leitura estratégica: o que o conjunto das respostas sugere sobre a situação da empresa. Até 40 palavras."),
   pontos_fortes: z.array(z.object({
-    titulo: z.string().describe("Até 6 palavras."),
-    texto: z.string().describe("Por que essa prática relatada pode favorecer a escolha e a preferência pela marca, considerando o segmento. Até 40 palavras."),
+    titulo: z.string().describe("Até 5 palavras."),
+    texto: z.string().describe("Por que essa prática relatada pode favorecer a escolha e a preferência pela marca, considerando o segmento. Até 20 palavras."),
     natureza: Natureza,
-  })).describe("De zero a três pontos fortes."),
+  })).describe("De zero a dois pontos fortes."),
   fragilidades: z.array(z.object({
-    titulo: z.string().describe("Até 7 palavras, nomeando a relação entre respostas."),
-    texto: z.string().describe("Quais respostas, combinadas, revelam o possível problema e por quê. Cite as respostas em linguagem simples. Até 55 palavras."),
+    titulo: z.string().describe("Até 6 palavras, nomeando a relação entre respostas."),
+    texto: z.string().describe("Quais respostas, combinadas, revelam o possível problema e por quê. Cite as respostas em linguagem simples. Até 28 palavras."),
     natureza: Natureza,
-  })).describe("De duas a três fragilidades. Sempre pelo menos duas."),
+  })).describe("Exatamente duas fragilidades, as mais importantes."),
   consequencias: z.array(z.object({
     area: z.enum(["Confiança", "Vendas", "Diferenciação", "Descontos"]),
-    texto: z.string().describe("Como as fragilidades podem afetar essa área, no condicional. Até 35 palavras."),
-  })).describe("De zero a três consequências, uma por área."),
+    texto: z.string().describe("Como as fragilidades podem afetar essa área, no condicional. Até 18 palavras."),
+  })).describe("De zero a duas consequências, uma por área."),
   recomendacao: z.object({
-    prioridade: z.string().describe("O aspecto que merece atenção primeiro. Até 10 palavras."),
-    porque: z.string().describe("Por que esse aspecto vem antes dos outros, ligando à combinação das respostas. Até 45 palavras."),
-    orientacao: z.string().describe("Uma orientação inicial prática para começar a melhorar, específica para o segmento. Até 50 palavras."),
+    prioridade: z.string().describe("O aspecto que merece atenção primeiro. Até 8 palavras."),
+    porque: z.string().describe("Por que esse aspecto vem antes dos outros, ligando à combinação das respostas. Até 22 palavras."),
+    orientacao: z.string().describe("Uma orientação inicial prática para começar a melhorar, específica para o segmento. Até 25 palavras."),
   }),
 });
 
@@ -75,11 +75,12 @@ Escreva de acordo: "você relata", "suas respostas sugerem", "pode indicar", "pr
 SEJA CRITERIOSO
 Autoavaliações tendem a ser otimistas: o empresário costuma marcar a alternativa mais favorável. Leia cada resposta ao pé da letra e não amplie o que ela diz (por exemplo, "pedimos avaliações no Google" não é o mesmo que medir satisfação de forma completa).
 - Para cada uma das 11 respostas, diga o que ela reflete no negócio. Numa prática estruturada, diga o que ela permite e o que ainda precisa ser conferido ou levado ao próximo nível. Numa prática informal, mostre o que se perde por não haver método. Num ponto de atenção, mostre o efeito provável no negócio.
-- Toda empresa tem o que melhorar. Mesmo com respostas favoráveis, aponte pelo menos duas fragilidades: práticas informais, distância entre os pilares, contradições, ou o que ainda não está comprovado.
+- Toda empresa tem o que melhorar. Mesmo com respostas favoráveis, aponte duas fragilidades: práticas informais, distância entre os pilares, contradições, ou o que ainda não está comprovado.
 - As dificuldades marcadas pelo empresário são o que ele reconhece. Quando elas contradizem respostas positivas (por exemplo, marcar "Diferencial" como dificuldade e dizer que tem diferencial com provas), trate isso como um dos achados mais importantes: provavelmente a dificuldade é real e a resposta foi otimista.
 - Pontos fortes devem ser medidos: reconheça a prática, sem exagerar o que ela comprova.
 
 PROFUNDO NO RACIOCÍNIO, CURTO NO TAMANHO
+A análise precisa ser enxuta: leitura rápida no celular, sem perder profundidade. Respeite os limites de palavras de cada campo, eles são rígidos. Corte repetições: o que já foi dito numa seção não volta em outra. Cada frase deve trazer uma ideia nova; nada de introduções, resumos ou frases de transição. Prefira uma frase precisa a duas explicativas.
 O empresário deve terminar pensando: "agora entendi algo importante sobre a minha empresa que eu ainda não tinha percebido". Prefira uma relação bem explicada a várias observações soltas. Se as respostas forem favoráveis, reconheça, mas aponte o próximo nível e o que precisa ser confirmado com os clientes. Não invente fatos.
 
 RECOMENDAÇÃO
@@ -137,9 +138,9 @@ export async function escreverResultado(dados, classe) {
   return {
     respostas: classe.itens.map((x) => ({ id: x.id, leitura: porId[x.id] || "" })),
     leitura: limpar(r.leitura),
-    pontos_fortes: r.pontos_fortes.slice(0, 3).map(item),
-    fragilidades: r.fragilidades.slice(0, 3).map(item),
-    consequencias: r.consequencias.slice(0, 3).map((c) => ({ area: c.area, texto: limpar(c.texto) })),
+    pontos_fortes: r.pontos_fortes.slice(0, 2).map(item),
+    fragilidades: r.fragilidades.slice(0, 2).map(item),
+    consequencias: r.consequencias.slice(0, 2).map((c) => ({ area: c.area, texto: limpar(c.texto) })),
     recomendacao: { prioridade: limpar(r.recomendacao.prioridade), porque: limpar(r.recomendacao.porque), orientacao: limpar(r.recomendacao.orientacao) },
   };
 }
