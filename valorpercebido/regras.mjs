@@ -27,7 +27,7 @@ export const SEGMENTOS = ['Advocacia e serviços jurídicos', 'Agronegócio', 'A
 // Contexto do negócio: só alternativas, para orientar a leitura (nunca entra na pontuação).
 export const CONTEXTO = [
   { id: 'segmento', q: 'Qual é o seu tipo de negócio?', texto: true, max: 80,
-    ajuda: 'Escreva em poucas palavras. Ex.: farmácia, ótica, padaria, escritório de advocacia, contabilidade, clínica de estética, loja de roupas.' },
+    ajuda: 'Quanto mais específico, mais precisa fica a análise. Ex.: padaria artesanal, loja de roupas infantis, loja de roupas masculinas, escritório de advocacia tributária, clínica de estética facial, farmácia de manipulação.' },
   { id: 'clientes', q: 'Quem são seus principais clientes?', r: ['Consumidores finais', 'Outras empresas', 'Os dois'] },
   { id: 'compra', q: 'Com que frequência um cliente costuma comprar de você?',
     r: ['Toda semana ou todo mês', 'Algumas vezes por ano', 'Uma vez a cada poucos anos', 'Normalmente uma vez só'] }
