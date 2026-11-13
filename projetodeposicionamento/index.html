@@ -320,7 +320,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
     <h2>Recebemos o seu <strong>contato</strong>.</h2>
-    <p>A nossa equipe vai falar com você em breve pelo WhatsApp.</p>
+    <p>Já abrimos uma conversa no <strong style="color:#F0873A;">WhatsApp</strong> com todos os seus dados. É só mandar a mensagem pra Kelly.</p>
     <p>Enquanto isso, você pode acompanhar a Kelly no <a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener" style="color:var(--laranja);font-weight:600;">@kellyalbert.brand</a>.</p>
   </section>
 
@@ -402,6 +402,19 @@
 
     btn.disabled = true;
     btn.textContent = 'Enviando...';
+
+    // Abre o WhatsApp da Kelly com mensagem personalizada (feito ANTES do await
+    // pra não ser bloqueado pelo browser — precisa estar no mesmo tick do clique).
+    try{
+      var msg = 'Olá Kelly! Acabei de preencher o formulário em kellyalbert.com.br/projetodeposicionamento' +
+                '\n\nMe chamo ' + dados.nome + '.' +
+                '\nTipo de negócio: ' + dados.tipo_negocio +
+                '\nFuncionários: ' + dados.funcionarios +
+                '\nFaixa de investimento: ' + dados.investimento +
+                '\n\nGostaria de conversar sobre o Projeto de Posicionamento de Marca.';
+      var waUrl = 'https://wa.me/5551993163333?text=' + encodeURIComponent(msg);
+      window.open(waUrl, '_blank', 'noopener');
+    }catch(err){ console.error('[WhatsApp] erro:', err); }
 
     // 1) Netlify Forms (backup)
     try{
