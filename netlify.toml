@@ -48,8 +48,8 @@
   status = 200
 
 [[redirects]]
-  from = "/projeto-de-posicionamento"
-  to = "/projeto-de-posicionamento/index.html"
+  from = "/projetodeposicionamento"
+  to = "/projetodeposicionamento/index.html"
   status = 200
 
 [[redirects]]

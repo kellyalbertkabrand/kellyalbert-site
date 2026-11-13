@@ -6,7 +6,7 @@
   <title>Projeto de Posicionamento de Marca · Kelly Albert</title>
   <meta name="description" content="Preencha o formulário e a equipe da KA | Inteligência para Marcas entra em contato para falar sobre o Projeto de Posicionamento de Marca.">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://kellyalbert.com.br/projeto-de-posicionamento/">
+  <link rel="canonical" href="https://kellyalbert.com.br/projetodeposicionamento/">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,7 +200,7 @@
 <body>
 
 <!-- Netlify Forms: form oculto para captura de leads (backup) -->
-<form name="projeto-de-posicionamento" netlify netlify-honeypot="bot-field" hidden>
+<form name="projetodeposicionamento" netlify netlify-honeypot="bot-field" hidden>
   <input name="nome">
   <input name="whatsapp">
   <input name="email">
@@ -316,7 +316,7 @@
 
   // Restaura dados salvos (se a pessoa fechou e voltou)
   try{
-    var saved = JSON.parse(localStorage.getItem('ka_projeto_posic_lead') || '{}');
+    var saved = JSON.parse(localStorage.getItem('ka_projetodeposic_lead') || '{}');
     ['nome','whatsapp','email','tipo_negocio','funcionarios','investimento'].forEach(function(n){
       if(!saved[n]) return;
       var el = form.elements[n];
@@ -374,7 +374,7 @@
     if(!dados.investimento){ return showErr('Escolha a faixa de investimento.'); }
 
     // Salva no localStorage
-    try{ localStorage.setItem('ka_projeto_posic_lead', JSON.stringify(dados)); }catch(_){}
+    try{ localStorage.setItem('ka_projetodeposic_lead', JSON.stringify(dados)); }catch(_){}
 
     btn.disabled = true;
     btn.textContent = 'Enviando...';
@@ -382,9 +382,9 @@
     // 1) Netlify Forms (backup)
     try{
       var nfd = new FormData();
-      nfd.append('form-name', 'projeto-de-posicionamento');
+      nfd.append('form-name', 'projetodeposicionamento');
       Object.keys(dados).forEach(function(k){ nfd.append(k, dados[k]); });
-      nfd.append('origem', 'projeto-de-posicionamento');
+      nfd.append('origem', 'projetodeposicionamento');
       nfd.append('pagina', location.href);
       fetch('/', { method:'POST', body:nfd })
         .then(function(r){ console.log('[Netlify Forms]', r.ok?'ok':'erro '+r.status); })
@@ -408,7 +408,7 @@
           { id:'Q2', pergunta:'Número de funcionários', resposta: dados.funcionarios, pontos: 0 },
           { id:'Q3', pergunta:'Faixa de investimento',  resposta: dados.investimento, pontos: 0 }
         ],
-        origem: 'projeto-de-posicionamento',
+        origem: 'projetodeposicionamento',
         utm_source:   utm.get('utm_source')   || null,
         utm_medium:   utm.get('utm_medium')   || null,
         utm_campaign: utm.get('utm_campaign') || null
