@@ -26,7 +26,8 @@ export const SEGMENTOS = ['Advocacia e serviços jurídicos', 'Agronegócio', 'A
 
 // Contexto do negócio: só alternativas, para orientar a leitura (nunca entra na pontuação).
 export const CONTEXTO = [
-  { id: 'segmento', q: 'Qual é o seu tipo de negócio?', texto: true, max: 80,
+  { id: 'segmento', q: 'Qual é o seu tipo de negócio?', texto: true, curto: true, obrigatorio: true, max: 80,
+    erro: 'Escreva o seu tipo de negócio para continuar. Ex.: padaria artesanal.',
     ajuda: 'Quanto mais específico, mais precisa fica a análise. Ex.: padaria artesanal, loja de roupas infantis, loja de roupas masculinas, escritório de advocacia tributária, clínica de estética facial, farmácia de manipulação.' },
   { id: 'clientes', q: 'Quem são seus principais clientes?', r: ['Consumidores finais', 'Outras empresas', 'Os dois'] },
   { id: 'compra', q: 'Com que frequência um cliente costuma comprar de você?',
@@ -375,7 +376,7 @@ export function validarEntrada(e) {
   if (!e || typeof e !== 'object') return erro('Envio vazio.');
   // Tipo de negócio escrito pela pessoa (ex.: "padaria", "escritório de branding").
   const segmento = String(e.segmento || '').trim().replace(/^Outro: /, '').replace(/\s+/g, ' ').slice(0, 80);
-  if (segmento.length < 2) return erro('Informe o seu tipo de negócio.');
+  if (segmento.replace(/[^\p{L}]/gu, '').length < 3) return erro('Informe o seu tipo de negócio.');
   const clientes = CONTEXTO[1].r.includes(e.clientes) ? e.clientes : '';
   if (!clientes) return erro('Informe quem são seus principais clientes.');
   const compra = CONTEXTO[2].r.includes(e.compra) ? e.compra : '';

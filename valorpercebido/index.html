@@ -111,7 +111,7 @@ button,input{font-family:inherit}
 .opcao:active,.opcao.escolhida{background:var(--laranja);border-color:var(--laranja);color:var(--marinho);font-weight:600}
 .btn{min-height:54px;width:100%;border:0;border-radius:100px;padding:15px 20px;font-size:.9rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;transition:transform .15s,background .15s}
 .btn:active{transform:scale(.98)}
-.btn--laranja{background:var(--laranja);color:var(--marinho)}
+.btn--laranja{background:var(--laranja);color:#fff}
 .btn--laranja:hover{background:#F59B57}
 .btn--contorno{background:transparent;color:var(--papel);border:1.5px solid var(--papel-20)}
 .btn--contorno:hover{border-color:var(--papel)}
@@ -156,6 +156,8 @@ button,input{font-family:inherit}
 .campo-ajuda{margin:0;font-size:.86rem;line-height:1.45;color:var(--papel-70)}
 #rx-txt textarea,#rx-txt input[type=text]{width:100%;padding:13px 14px;border-radius:14px;border:1.5px solid var(--papel-20);background:rgba(21,37,53,.6);color:var(--papel);font-family:inherit;font-size:1rem;line-height:1.45;resize:vertical}
 #rx-txt textarea:focus,#rx-txt input[type=text]:focus{border-color:var(--laranja);outline:none}
+.campo-obrig{margin:0 0 6px;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--laranja)}
+.btn--inativo{opacity:.45}
 .contador{margin:-4px 0 0;font-size:.74rem;color:var(--papel-50);text-align:right}
 /* Resultado: pilares e sinais */
 .pilares{display:grid;gap:12px;margin-top:14px}
@@ -410,7 +412,7 @@ button,input{font-family:inherit}
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=9';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=10';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
@@ -446,7 +448,7 @@ var TEXTOS = {
 // Cada etapa: opções (botões), texto (campo aberto) ou dificuldades (lista para marcar).
 var ETAPAS = [];
 CONTEXTO.forEach(function(c, i){
-  if(c.texto) ETAPAS.push({ id:c.id, tipo:'texto', q:c.q, ajuda:c.ajuda, max:c.max, curto:true, bloco: i===0 ? 'contexto' : null });
+  if(c.texto) ETAPAS.push({ id:c.id, tipo:'texto', q:c.q, ajuda:c.ajuda, max:c.max, curto:true, obrigatorio:c.obrigatorio, erro:c.erro, bloco: i===0 ? 'contexto' : null });
   else if(c.lista) ETAPAS.push({ id:c.id, tipo:'lista', q:c.q, lista:c.lista, bloco: i===0 ? 'contexto' : null });
   else ETAPAS.push({ id:c.id, tipo:'opcoes', q:c.q, r:c.r, bloco: i===0 ? 'contexto' : null });
 });
@@ -649,24 +651,27 @@ function perguntarTexto(et){
     var atual = estado.respostas[et.id] || '';
     footer.innerHTML =
       '<form class="form" id="rx-txt" novalidate>'+
+        (et.obrigatorio ? '<p class="campo-obrig">Resposta obrigatória</p>' : '')+
         (et.ajuda ? '<p class="campo-ajuda">'+esc(et.ajuda)+'</p>' : '')+
         (et.curto
           ? '<input id="rx-txt-campo" type="text" maxlength="'+et.max+'" autocomplete="off" value="'+esc(atual)+'" aria-label="'+esc(et.q)+'">'
           : '<textarea id="rx-txt-campo" rows="4" maxlength="'+et.max+'" aria-label="'+esc(et.q)+'">'+esc(atual)+'</textarea>')+
         '<p class="contador" id="rx-txt-cont">0/'+et.max+'</p>'+
         '<p class="erro" id="rx-txt-erro" role="alert"></p>'+
-        '<button type="submit" class="btn btn--laranja">Continuar</button>'+
+        '<button type="submit" class="btn btn--laranja" id="rx-txt-ok">Continuar</button>'+
         (et.opcional ? '<button type="button" class="btn btn--contorno" id="rx-txt-pular">Pular</button>' : '')+
       '</form>';
     var campo = document.getElementById('rx-txt-campo'), cont = document.getElementById('rx-txt-cont'), err = document.getElementById('rx-txt-erro');
-    var conta = function(){ cont.textContent = campo.value.length+'/'+et.max; };
+    var ok = document.getElementById('rx-txt-ok');
+    var conta = function(){ cont.textContent = campo.value.length+'/'+et.max; if(et.obrigatorio) ok.classList.toggle('btn--inativo', campo.value.replace(/[^\p{L}]/gu,'').length < 3); };
     campo.addEventListener('input', function(){ conta(); err.style.display='none'; }); conta();
     document.getElementById('rx-txt').addEventListener('submit', function(ev){
       ev.preventDefault();
       var v = campo.value.trim().replace(/\s+/g,' ');
       if(!v && et.opcional){ avancar(et, '', 'Pulei'); return; }
-      var minimo = et.curto ? 2 : 10;
-      if(v.length < minimo){ err.textContent = et.curto ? 'Escreva em poucas palavras para seguir.' : 'Escreva uma frase para seguir. Pode ser do seu jeito.'; err.style.display='block'; campo.focus(); return; }
+      var minimo = et.curto ? (et.obrigatorio ? 3 : 2) : 10;
+      var letras = v.replace(/[^\p{L}]/gu,'').length;
+      if(v.length < minimo || letras < Math.min(minimo,3)){ err.textContent = et.erro ? et.erro : et.curto ? 'Escreva em poucas palavras para seguir.' : 'Escreva uma frase para seguir. Pode ser do seu jeito.'; err.style.display='block'; campo.focus(); return; }
       avancar(et, v, v);
     });
     var pular = document.getElementById('rx-txt-pular');
