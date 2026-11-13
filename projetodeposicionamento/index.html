@@ -59,22 +59,22 @@
     }
     .hero__titulo{
       font-family:'Outfit',sans-serif;font-weight:200;
-      line-height:1.1;margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
-      display:flex;flex-direction:column;align-items:center;gap:.15rem;
+      line-height:.95;margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
+      display:flex;flex-direction:column;align-items:center;gap:.08rem;
     }
     .hero__linha1{
       font-size:1rem;font-weight:400;
       color:var(--suave);letter-spacing:.01em;
-      white-space:nowrap;line-height:1;
-      /* O JS ajusta o font-size pra bater com a largura da linha 2 */
+      white-space:nowrap;line-height:1;margin-bottom:.35rem;
+      /* O JS ajusta o font-size pra bater com a largura de 'MARCA COM' */
     }
-    .hero__linha2{
+    .hero__linha2, .hero__linha3{
       font-family:'Outfit',sans-serif;font-weight:800;
-      font-size:clamp(2.3rem,10vw,3.4rem);line-height:1;
+      font-size:clamp(2.8rem,13vw,4.4rem);line-height:.98;
       color:var(--papel);letter-spacing:-.02em;
       text-transform:uppercase;white-space:nowrap;
     }
-    .hero__copy{font-size:.3em;vertical-align:super;margin-left:.1em;font-weight:600;}
+    .hero__copy{font-size:.3em;vertical-align:super;margin-left:.08em;font-weight:600;}
     .hero__subt{
       font-size:.98rem;color:var(--suave);line-height:1.55;
       margin:1.2rem auto 0;max-width:440px;
@@ -235,7 +235,7 @@
   </header>
 
   <section class="hero">
-    <h1 class="hero__titulo"><span class="hero__linha1">Projeto de Posicionamento de Marca</span><strong class="hero__linha2">MARCA COM ESSÊNCIA<sup class="hero__copy">©</sup></strong></h1>
+    <h1 class="hero__titulo"><span class="hero__linha1">Projeto de Posicionamento de Marca</span><strong class="hero__linha2">MARCA COM</strong><strong class="hero__linha3">ESSÊNCIA<sup class="hero__copy">©</sup></strong></h1>
     <p class="hero__subt">Preencha abaixo e a nossa equipe entra em contato para explicar como funciona o Projeto de Posicionamento de Marca da KA.</p>
   </section>
 
@@ -307,24 +307,20 @@
 </main>
 
 <script>
-// Ajusta o font-size da linha 1 pra que tenha a mesma LARGURA da linha 2
-// (M de MARCA ao A de ESSENCIA)
+// Ajusta o font-size da linha 1 pra que tenha a MESMA LARGURA de 'MARCA COM'
+// (do M de MARCA ao M final de COM). ESSENCIA fica na linha 3, abaixo.
 (function(){
   function alinharTitulo(){
     var l1 = document.querySelector('.hero__linha1');
     var l2 = document.querySelector('.hero__linha2');
     if(!l1 || !l2) return;
-    // Mede a largura final da linha 2 (incluindo o © como sup)
     var w2 = l2.getBoundingClientRect().width;
     if(!w2) return;
-    // Reseta linha 1 pra medir seu tamanho natural a um font-size conhecido
     l1.style.fontSize = '20px';
     var w1 = l1.getBoundingClientRect().width;
     if(!w1) return;
-    // Calcula o font-size novo pra que w1 bata com w2
     var novo = (20 * w2 / w1);
-    // Limita entre minimo legivel e maximo razoavel (pra nao gigantesco em desktop)
-    novo = Math.max(14, Math.min(novo, 36));
+    novo = Math.max(12, Math.min(novo, 32));
     l1.style.fontSize = novo + 'px';
   }
   function debounce(fn){
@@ -335,7 +331,6 @@
   }
   window.addEventListener('load', alinharTitulo);
   window.addEventListener('resize', debounce(alinharTitulo));
-  // Primeira tentativa logo (antes das fontes, melhor que nada)
   setTimeout(alinharTitulo, 50);
 })();
 (function(){
