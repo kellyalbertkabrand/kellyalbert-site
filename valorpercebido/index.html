@@ -276,7 +276,12 @@ button,input{font-family:inherit}
 .aula__fechada{margin:8px 0 0;font-size:1rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--papel-70)}
 .aula__rot{margin:26px 0 0;font-size:.74rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--laranja-claro)}
 .aula__rot--esq{text-align:left}
-.aula__quando-linha{margin:14px 0 0;font-size:1rem;font-weight:600;letter-spacing:.02em;color:#fff}
+.aula__data{display:flex;justify-content:center;align-items:stretch;margin:18px auto 0;border-radius:18px;background:var(--marinho);border:2px solid var(--laranja);box-shadow:0 10px 24px rgba(0,0,0,.25);overflow:hidden;max-width:360px;width:100%}
+.aula__data > div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:12px 10px}
+.aula__data > div + div{border-left:2px solid rgba(240,135,58,.45)}
+.aula__data small{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja-claro)}
+.aula__data small svg{width:16px;height:16px}
+.aula__data b{font-size:clamp(1.25rem,5.6vw,1.55rem);font-weight:800;line-height:1.15;color:#fff;white-space:nowrap}
 .aula__meet{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:16px auto 0;padding:8px 16px;border-radius:100px;background:rgba(21,37,53,.35);font-size:.95rem;font-weight:600;color:#fff}
 .aula__meet svg{width:20px;height:20px;flex:none}
 .aula__tema{margin:22px auto 0;max-width:18ch;font-size:clamp(2rem,9vw,2.7rem);font-weight:300;line-height:1.15;letter-spacing:-.01em;color:var(--papel);text-wrap:balance}
@@ -940,7 +945,10 @@ function mostrarResultado(lead, dados, classe, t){
     '<div class="ponte" aria-hidden="true"><span>Próximo passo</span><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg></div>'+
     '<section class="aula" aria-label="Aula ao vivo">'+
       '<p class="aula__ao-vivo"><span>Aula ao vivo</span></p>'+
-      '<p class="aula__quando-linha">'+CONFIG.aulaQuando+'</p>'+
+      '<div class="aula__data">'+
+        '<div><small><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>Neste sábado</small><b>'+CONFIG.aulaDataCurta+'</b></div>'+
+        '<div><small><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Horário</small><b>9h às 12h</b></div>'+
+      '</div>'+
       '<h3 class="aula__tema">'+CONFIG.aulaTemaHtml+'</h3>'+
       '<p class="aula__meet"><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5l6-3.5v10l-6-3.5z"/></svg>'+CONFIG.aulaLocal+'</p>'+
       '<p class="aula__sub">'+CONFIG.aulaSubtitulo+'</p>'+
