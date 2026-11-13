@@ -48,6 +48,11 @@
   status = 200
 
 [[redirects]]
+  from = "/projeto-de-marca"
+  to = "/projeto-de-marca/index.html"
+  status = 200
+
+[[redirects]]
   from = "/valorpercebido"
   to = "/valorpercebido/index.html"
   status = 200

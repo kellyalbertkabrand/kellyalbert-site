@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projeto de Posicionamento de Marca · Kelly Albert</title>
+  <meta name="description" content="Preencha o formulário e a equipe da KA | Inteligência para Marcas entra em contato para falar sobre o Projeto de Posicionamento de Marca.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://kellyalbert.com.br/projeto-de-marca/">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Paleta campanha v2026.10 */
+    :root{
+      --marinho:#152535;
+      --azul2:#223A52;
+      --azul3:#2B4865;
+      --essencia:#3D6B7E;
+      --papel:#F8F7F2;
+      --bege:#EDE8DD;
+      --laranja:#F0873A;
+      --laranja2:#F2914A;
+      --caramelo:#D86F2A;
+      --borda:rgba(248,247,242,.18);
+      --borda2:rgba(248,247,242,.08);
+      --suave:rgba(248,247,242,.68);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;overflow-x:hidden;max-width:100vw;}
+    body{
+      font-family:'Outfit',system-ui,sans-serif;font-weight:300;
+      background:var(--marinho);color:var(--papel);
+      min-height:100vh;line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;}
+
+    .wrap{max-width:540px;margin:0 auto;padding:2rem 1.3rem 3rem;position:relative;}
+
+    /* Topo da pagina */
+    .topo{text-align:center;margin-bottom:1.6rem;}
+    .topo__rotulo{
+      display:inline-flex;align-items:center;gap:.55rem;
+      font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--papel);margin:0 0 1.1rem;
+    }
+    .topo__rotulo::before{
+      content:'';width:7px;height:7px;border-radius:50%;background:var(--laranja);
+    }
+    .topo__logo{
+      display:inline-block;font-size:.76rem;font-weight:600;letter-spacing:.3em;
+      text-transform:uppercase;color:var(--papel);
+      padding-bottom:.65rem;border-bottom:1px solid var(--borda);
+    }
+    .topo__logo b{font-weight:800;}
+
+    /* Hero */
+    .hero{text-align:center;margin:1.8rem 0 2rem;}
+    .hero__eyebrow{
+      display:inline-block;font-size:.72rem;font-weight:600;
+      letter-spacing:.2em;text-transform:uppercase;color:var(--laranja);
+      padding:.5rem 1rem;border:1px solid var(--laranja);
+      border-radius:100px;margin:0 0 1.3rem;
+    }
+    .hero__titulo{
+      font-family:'Outfit',sans-serif;font-weight:200;
+      font-size:clamp(2rem,7.5vw,2.8rem);line-height:1.1;
+      margin:0 0 1rem;letter-spacing:-.01em;color:var(--papel);
+    }
+    .hero__titulo strong{font-weight:800;color:var(--papel);}
+    .hero__subt{
+      font-size:.98rem;color:var(--suave);line-height:1.55;
+      margin:0 auto;max-width:440px;
+    }
+
+    /* Formulario */
+    .form-card{
+      background:var(--azul2);
+      border:1px solid var(--borda2);
+      border-radius:18px;
+      padding:1.6rem 1.3rem;
+      box-shadow:0 20px 50px rgba(0,0,0,.3);
+    }
+    .form-row{margin:0 0 1.1rem;}
+    .form-row:last-of-type{margin-bottom:0;}
+    .form-label{
+      display:block;font-size:.78rem;font-weight:600;
+      letter-spacing:.08em;text-transform:uppercase;
+      color:var(--papel);margin:0 0 .5rem;
+    }
+    .form-input, .form-select{
+      width:100%;padding:.9rem 1rem;
+      font-family:inherit;font-size:1rem;font-weight:400;
+      color:var(--papel);background:var(--marinho);
+      border:1px solid var(--borda);border-radius:10px;
+      transition:border-color .2s,background .2s;
+      appearance:none;-webkit-appearance:none;
+    }
+    .form-input::placeholder{color:rgba(248,247,242,.4);}
+    .form-input:focus, .form-select:focus{
+      outline:none;border-color:var(--laranja);
+      background:#1a2d41;
+    }
+    .form-select{
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23F0873A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat:no-repeat;
+      background-position:right 1rem center;
+      padding-right:2.4rem;
+      background-color:var(--marinho);
+    }
+    .form-select option{background:var(--marinho);color:var(--papel);}
+
+    /* Radio list pra investimento */
+    .radio-list{display:flex;flex-direction:column;gap:.55rem;margin:0;padding:0;list-style:none;}
+    .radio-item{margin:0;}
+    .radio-item label{
+      display:flex;align-items:center;gap:.8rem;cursor:pointer;
+      padding:.85rem 1rem;background:var(--marinho);
+      border:1px solid var(--borda);border-radius:10px;
+      font-size:.95rem;font-weight:400;
+      transition:border-color .15s,background .15s;
+    }
+    .radio-item label:hover{border-color:rgba(240,135,58,.55);background:#1a2d41;}
+    .radio-item input[type="radio"]{
+      appearance:none;-webkit-appearance:none;
+      width:20px;height:20px;border-radius:50%;
+      border:2px solid var(--borda);background:transparent;
+      flex-shrink:0;margin:0;cursor:pointer;
+      transition:border-color .15s;position:relative;
+    }
+    .radio-item input[type="radio"]:checked{border-color:var(--laranja);}
+    .radio-item input[type="radio"]:checked::before{
+      content:'';position:absolute;inset:3px;border-radius:50%;background:var(--laranja);
+    }
+    .radio-item input[type="radio"]:checked ~ .radio-text{color:var(--papel);font-weight:600;}
+    .radio-item input[type="radio"]:checked + .radio-text,
+    .radio-item label:has(input:checked){border-color:var(--laranja);background:#1a2d41;}
+    .radio-text{color:var(--papel);line-height:1.3;}
+
+    .form-err{
+      display:none;font-size:.85rem;color:#FCA5A5;
+      background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);
+      border-radius:8px;padding:.7rem .9rem;margin:0 0 1rem;
+    }
+    .form-err.on{display:block;}
+
+    .btn{
+      display:block;width:100%;padding:1.1rem 1.4rem;
+      font-family:inherit;font-size:.95rem;font-weight:800;
+      letter-spacing:.12em;text-transform:uppercase;
+      color:var(--marinho);background:var(--laranja);
+      border:0;border-radius:100px;cursor:pointer;
+      box-shadow:0 8px 24px rgba(240,135,58,.35);
+      transition:transform .15s,background .2s;
+      margin-top:.5rem;
+    }
+    .btn:hover{background:var(--laranja2);transform:translateY(-2px);}
+    .btn:active{transform:translateY(0);}
+    .btn:disabled{opacity:.55;cursor:wait;transform:none;}
+
+    .form-nota{
+      font-size:.78rem;color:var(--suave);text-align:center;
+      margin:1rem 0 0;line-height:1.5;
+    }
+
+    /* Obrigado */
+    .obrigado{
+      display:none;text-align:center;padding:1.4rem 1rem;
+    }
+    .obrigado.on{display:block;}
+    .obrigado__check{
+      width:72px;height:72px;margin:0 auto 1.2rem;
+      background:var(--laranja);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 30px rgba(240,135,58,.4);
+    }
+    .obrigado__check svg{width:36px;height:36px;color:var(--marinho);}
+    .obrigado h2{
+      font-weight:200;font-size:1.8rem;line-height:1.2;margin:0 0 .7rem;color:var(--papel);
+    }
+    .obrigado h2 strong{font-weight:800;}
+    .obrigado p{font-size:.95rem;color:var(--suave);margin:0 0 .7rem;max-width:380px;margin-left:auto;margin-right:auto;}
+
+    /* Rodape */
+    .foot{
+      margin-top:2.5rem;padding-top:1.5rem;
+      border-top:1px solid var(--borda2);
+      text-align:center;
+    }
+    .foot p{
+      font-size:.72rem;color:rgba(248,247,242,.4);
+      letter-spacing:.08em;margin:0;
+    }
+    .foot a{color:rgba(248,247,242,.55);}
+  </style>
+</head>
+<body>
+
+<!-- Netlify Forms: form oculto para captura de leads (backup) -->
+<form name="projeto-de-marca" netlify netlify-honeypot="bot-field" hidden>
+  <input name="nome">
+  <input name="whatsapp">
+  <input name="email">
+  <input name="tipo_negocio">
+  <input name="funcionarios">
+  <input name="investimento">
+  <input name="origem">
+  <input name="pagina">
+</form>
+
+<main class="wrap">
+
+  <header class="topo">
+    <p class="topo__logo">KA <b>|</b> INTELIGÊNCIA PARA MARCAS</p>
+  </header>
+
+  <section class="hero">
+    <span class="hero__eyebrow">● Projeto de Posicionamento de Marca</span>
+    <h1 class="hero__titulo">A sua marca merece <strong>ser lembrada</strong>.</h1>
+    <p class="hero__subt">Preencha abaixo e a nossa equipe entra em contato para explicar como funciona o Projeto de Posicionamento de Marca da KA.</p>
+  </section>
+
+  <section id="form-wrap" class="form-card">
+    <form id="lead-form" novalidate>
+      <div class="form-row">
+        <label class="form-label" for="f-nome">Nome completo</label>
+        <input id="f-nome" class="form-input" type="text" name="nome" autocomplete="name" placeholder="Ex: Maria Silva" required>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="f-whats">WhatsApp</label>
+        <input id="f-whats" class="form-input" type="tel" name="whatsapp" autocomplete="tel" inputmode="numeric" placeholder="DDD + número" required>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="f-email">Melhor e-mail</label>
+        <input id="f-email" class="form-input" type="email" name="email" autocomplete="email" placeholder="voce@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="f-tipo">Qual o tipo do seu negócio?</label>
+        <select id="f-tipo" class="form-select" name="tipo_negocio" required>
+          <option value="" disabled selected>Selecione</option>
+          <option>Clínica odontológica</option>
+          <option>Clínica de estética</option>
+          <option>Clínica médica</option>
+          <option>Farmácia de manipulação</option>
+          <option>Varejo / loja física</option>
+          <option>E-commerce</option>
+          <option>Indústria</option>
+          <option>Prestação de serviços</option>
+          <option>Alimentação / restaurante</option>
+          <option>Agência</option>
+          <option>Educação / cursos</option>
+          <option>Imobiliária / construção</option>
+          <option>Marca pessoal</option>
+          <option>Outro</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="f-func">Quantos funcionários a sua empresa tem?</label>
+        <select id="f-func" class="form-select" name="funcionarios" required>
+          <option value="" disabled selected>Selecione</option>
+          <option>Só eu</option>
+          <option>De 2 a 5</option>
+          <option>De 6 a 15</option>
+          <option>De 16 a 30</option>
+          <option>De 31 a 100</option>
+          <option>Mais de 100</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Você está disposto a investir</label>
+        <ul class="radio-list" role="radiogroup">
+          <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 3 a 6 mil" required><span class="radio-text">De R$ 3 mil a R$ 6 mil</span></label></li>
+          <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 6 a 14 mil"><span class="radio-text">De R$ 6 mil a R$ 14 mil</span></label></li>
+          <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 14 a 25 mil"><span class="radio-text">De R$ 14 mil a R$ 25 mil</span></label></li>
+          <li class="radio-item"><label><input type="radio" name="investimento" value="De R$ 25 a 35 mil"><span class="radio-text">De R$ 25 mil a R$ 35 mil</span></label></li>
+        </ul>
+      </div>
+
+      <p class="form-err" id="form-err"></p>
+
+      <button type="submit" class="btn" id="btn-submit">Quero conversar com a KA</button>
+      <p class="form-nota">Seus dados ficam só com a KA. Sem spam.</p>
+    </form>
+  </section>
+
+  <section id="obrigado" class="obrigado">
+    <div class="obrigado__check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Recebemos o seu <strong>contato</strong>.</h2>
+    <p>A nossa equipe vai falar com você em breve pelo WhatsApp.</p>
+    <p>Enquanto isso, você pode acompanhar a Kelly no <a href="https://instagram.com/kellyalbert.brand" target="_blank" rel="noopener" style="color:var(--laranja);font-weight:600;">@kellyalbert.brand</a>.</p>
+  </section>
+
+  <footer class="foot">
+    <p>KA <b>|</b> Inteligência para Marcas · <a href="https://kellyalbert.com.br">kellyalbert.com.br</a></p>
+  </footer>
+
+</main>
+
+<script>
+(function(){
+  var form = document.getElementById('lead-form');
+  var errBox = document.getElementById('form-err');
+  var btn = document.getElementById('btn-submit');
+  var formWrap = document.getElementById('form-wrap');
+  var obrigado = document.getElementById('obrigado');
+
+  // Restaura dados salvos (se a pessoa fechou e voltou)
+  try{
+    var saved = JSON.parse(localStorage.getItem('ka_projeto_lead') || '{}');
+    ['nome','whatsapp','email','tipo_negocio','funcionarios','investimento'].forEach(function(n){
+      if(!saved[n]) return;
+      var el = form.elements[n];
+      if(!el) return;
+      if(el.type === 'radio' || (el.length && el[0] && el[0].type==='radio')){
+        for(var i=0;i<el.length;i++){ if(el[i].value===saved[n]){ el[i].checked=true; break; } }
+      } else {
+        el.value = saved[n];
+      }
+    });
+  } catch(_){}
+
+  function showErr(msg){
+    errBox.textContent = msg;
+    errBox.classList.add('on');
+    errBox.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  function clearErr(){ errBox.classList.remove('on'); errBox.textContent=''; }
+
+  function validaEmail(v){
+    v = (v||'').trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  }
+  function validaWhats(v){
+    var d = (v||'').replace(/\D/g,'');
+    return d.length >= 10 && d.length <= 13;
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    clearErr();
+
+    var fd = new FormData(form);
+    var dados = {
+      nome: (fd.get('nome')||'').trim(),
+      whatsapp: (fd.get('whatsapp')||'').trim(),
+      email: (fd.get('email')||'').trim(),
+      tipo_negocio: (fd.get('tipo_negocio')||'').trim(),
+      funcionarios: (fd.get('funcionarios')||'').trim(),
+      investimento: (fd.get('investimento')||'').trim()
+    };
+
+    // Validacao
+    if(dados.nome.split(/\s+/).filter(function(p){return p.length>=2;}).length < 2){
+      return showErr('Digite seu nome e sobrenome (ex: Maria Silva).');
+    }
+    if(!validaWhats(dados.whatsapp)){
+      return showErr('Digite um WhatsApp válido com DDD (mínimo 10 dígitos).');
+    }
+    if(!validaEmail(dados.email)){
+      return showErr('Digite um e-mail válido.');
+    }
+    if(!dados.tipo_negocio){ return showErr('Escolha o tipo do seu negócio.'); }
+    if(!dados.funcionarios){ return showErr('Escolha quantos funcionários.'); }
+    if(!dados.investimento){ return showErr('Escolha a faixa de investimento.'); }
+
+    // Salva no localStorage
+    try{ localStorage.setItem('ka_projeto_lead', JSON.stringify(dados)); }catch(_){}
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+
+    // 1) Netlify Forms (backup)
+    try{
+      var nfd = new FormData();
+      nfd.append('form-name', 'projeto-de-marca');
+      Object.keys(dados).forEach(function(k){ nfd.append(k, dados[k]); });
+      nfd.append('origem', 'projeto-de-marca');
+      nfd.append('pagina', location.href);
+      fetch('/', { method:'POST', body:nfd })
+        .then(function(r){ console.log('[Netlify Forms]', r.ok?'ok':'erro '+r.status); })
+        .catch(function(err){ console.error('[Netlify Forms] erro:', err); });
+    }catch(err){ console.error('[Netlify Forms] excecao:', err); }
+
+    // 2) Estúdio de Marca (Firestore via função salvar-lead)
+    // Payload no formato PLANO que a function espera. Campos custom (tipo_negocio,
+    // funcionarios, investimento) vão como "respostas" pra aparecerem na ficha.
+    try{
+      var utm = new URLSearchParams(location.search);
+      var payload = {
+        ferramenta: 'Campanha Projeto de Posicionamento de Marca',
+        nome: dados.nome,
+        email: dados.email,
+        whatsapp: dados.whatsapp,
+        segmento: dados.tipo_negocio,
+        consentimento: true,
+        respostas: [
+          { id:'Q1', pergunta:'Tipo do negócio',       resposta: dados.tipo_negocio, pontos: 0 },
+          { id:'Q2', pergunta:'Número de funcionários', resposta: dados.funcionarios, pontos: 0 },
+          { id:'Q3', pergunta:'Faixa de investimento',  resposta: dados.investimento, pontos: 0 }
+        ],
+        origem: 'projeto-de-marca',
+        utm_source:   utm.get('utm_source')   || null,
+        utm_medium:   utm.get('utm_medium')   || null,
+        utm_campaign: utm.get('utm_campaign') || null
+      };
+      var resp = await fetch('/.netlify/functions/salvar-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var data = await resp.json().catch(function(){ return {}; });
+      if(resp.ok){
+        console.log('[Estudio]', data);
+      } else {
+        console.warn('[Estudio] erro', resp.status, data);
+      }
+    }catch(err){
+      console.error('[Estudio] excecao:', err);
+    }
+
+    // Mostra tela de obrigado
+    formWrap.style.display = 'none';
+    obrigado.classList.add('on');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
