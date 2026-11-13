@@ -116,10 +116,10 @@ body{
   padding:1.7rem 1.3rem 1.6rem;
   margin:0 0 1.8rem;
   text-decoration:none;color:#EDE8DD;
-  box-shadow:0 0 0 0 rgba(216,111,42,.5),
-             0 0 12px rgba(216,111,42,.3),
-             0 8px 24px rgba(0,0,0,.35);
-  animation:testeBoxPulse 1.8s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(216,111,42,.35),
+             0 0 6px rgba(216,111,42,.18),
+             0 8px 22px rgba(0,0,0,.3);
+  animation:testeBoxPulse 2s ease-in-out infinite;
   transition:transform .15s;
 }
 .teste-box:hover{transform:translateY(-2px);}
@@ -154,13 +154,13 @@ body{
 }
 .teste-box:hover .teste-box__btn{background:#D86F2A;color:#fff;}
 @keyframes testeBoxPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.5),
-                     0 0 12px rgba(216,111,42,.3),
-                     0 8px 24px rgba(0,0,0,.35);
+  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.35),
+                     0 0 6px rgba(216,111,42,.18),
+                     0 8px 22px rgba(0,0,0,.3);
           border-color:#D86F2A;}
-  50%{box-shadow:0 0 0 10px rgba(216,111,42,0),
-                 0 0 20px rgba(216,111,42,.55),
-                 0 10px 32px rgba(216,111,42,.3);
+  50%{box-shadow:0 0 0 6px rgba(216,111,42,0),
+                 0 0 12px rgba(216,111,42,.35),
+                 0 10px 28px rgba(216,111,42,.2);
       border-color:#E88550;}
 }
 /* CTA Diagnostico — Opcao 1: marinho + caramelo pulsando (dark autoridade) */
