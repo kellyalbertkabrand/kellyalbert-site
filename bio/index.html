@@ -112,44 +112,62 @@ body{
 .teste-box{
   display:flex;flex-direction:column;align-items:center;text-align:center;
   background:linear-gradient(135deg,#223A52 0%,#152535 70%);
-  border:1.5px solid #D86F2A;border-radius:22px;
-  padding:1.6rem 1.3rem 1.4rem;
+  border:2.5px solid #D86F2A;border-radius:22px;
+  padding:1.7rem 1.3rem 1.6rem;
   margin:0 0 1.8rem;
   text-decoration:none;color:#EDE8DD;
-  box-shadow:0 0 0 0 rgba(216,111,42,.5),0 10px 30px rgba(0,0,0,.35);
-  animation:testeBoxPulse 2s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(216,111,42,.6),
+             0 0 22px rgba(216,111,42,.55),
+             0 10px 36px rgba(216,111,42,.3);
+  animation:testeBoxPulse 1.6s ease-in-out infinite;
   transition:transform .15s;
 }
 .teste-box:hover{transform:translateY(-2px);}
 .teste-box__eyebrow{
-  display:inline-flex;align-items:center;gap:.4rem;
-  font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  display:inline-block;
+  font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
   color:#D86F2A;margin:0 0 1.1rem;
 }
 .teste-box__titulo{
   font-family:'Playfair Display',serif;font-weight:700;
   font-size:1.65rem;line-height:1.15;color:#fff;
-  margin:0 0 .9rem;letter-spacing:-.01em;
+  margin:0 0 .75rem;letter-spacing:-.01em;
 }
 .teste-box__info{
-  font-size:.95rem;color:rgba(237,232,221,.78);
-  margin:0 0 .3rem;line-height:1.4;
+  font-size:.78rem;color:rgba(237,232,221,.6);
+  margin:0 0 1.4rem;line-height:1.4;
+  letter-spacing:.02em;
 }
-.teste-box__info:last-of-type{margin-bottom:1.4rem;}
 .teste-box__btn{
-  display:inline-flex;align-items:center;gap:.6rem;
+  display:inline-flex;align-items:center;justify-content:center;
   background:#D86F2A;color:#fff;
-  padding:.95rem 1.5rem;border-radius:100px;
-  font-size:.82rem;font-weight:800;letter-spacing:.1em;
+  padding:1rem 1.8rem;border-radius:100px;
+  font-size:.85rem;font-weight:800;letter-spacing:.1em;
   text-transform:uppercase;
-  transition:background .25s,transform .15s;
+  box-shadow:0 0 0 0 rgba(216,111,42,.75),
+             0 0 18px rgba(216,111,42,.6),
+             0 6px 20px rgba(216,111,42,.4);
+  animation:testeBtnPulse 1.4s ease-in-out infinite;
+  transition:background .25s;
 }
-.teste-box__btn svg{width:14px;height:14px;transition:transform .2s;}
 .teste-box:hover .teste-box__btn{background:#E88550;}
-.teste-box:hover .teste-box__btn svg{transform:translateX(3px);}
 @keyframes testeBoxPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.55),0 10px 30px rgba(0,0,0,.35);border-color:#D86F2A;}
-  50%{box-shadow:0 0 0 14px rgba(216,111,42,0),0 14px 40px rgba(216,111,42,.35);border-color:#E88550;}
+  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.6),
+                     0 0 22px rgba(216,111,42,.55),
+                     0 10px 36px rgba(216,111,42,.3);
+          border-color:#D86F2A;}
+  50%{box-shadow:0 0 0 20px rgba(216,111,42,0),
+                 0 0 36px rgba(216,111,42,.85),
+                 0 14px 48px rgba(216,111,42,.55);
+      border-color:#F28A4C;}
+}
+@keyframes testeBtnPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(216,111,42,.75),
+                     0 0 18px rgba(216,111,42,.6),
+                     0 6px 20px rgba(216,111,42,.4);}
+  50%{box-shadow:0 0 0 12px rgba(216,111,42,0),
+                 0 0 30px rgba(216,111,42,.9),
+                 0 8px 28px rgba(216,111,42,.6);}
 }
 /* CTA Diagnostico — Opcao 1: marinho + caramelo pulsando (dark autoridade) */
 .quiz-cta--diag{
@@ -1125,13 +1143,10 @@ a.foot__s:hover{color:var(--accent);}
 
   <!-- CTA TESTE GRATUITO · Autoavaliação de Marca (/valorpercebido) -->
   <a href="/valorpercebido?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=lives" class="teste-box" aria-label="Teste Gratuito: Autoavaliação de Marca. 11 perguntas rápidas, resultado na hora">
-    <span class="teste-box__eyebrow">● Teste Gratuito</span>
+    <span class="teste-box__eyebrow">Teste Gratuito</span>
     <h2 class="teste-box__titulo">Autoavaliação de Marca</h2>
-    <p class="teste-box__info">11 perguntas rápidas</p>
-    <p class="teste-box__info">Resultado na hora</p>
-    <span class="teste-box__btn">Fazer o teste agora
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </span>
+    <p class="teste-box__info">11 perguntas rápidas · Resultado na hora</p>
+    <span class="teste-box__btn">Fazer o teste agora</span>
   </a>
 
   <!-- HERO DO PROJETO — mosaico de cases + título em destaque -->
