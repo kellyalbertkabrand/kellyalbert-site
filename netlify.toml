@@ -58,6 +58,11 @@
   status = 200
 
 [[redirects]]
+  from = "/aulaaovivo"
+  to = "/aulaaovivo/index.html"
+  status = 200
+
+[[redirects]]
   from = "/autoavaliacao"
   to = "/autoavaliacao/index.html"
   status = 200
