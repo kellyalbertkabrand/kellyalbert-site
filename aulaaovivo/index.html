@@ -48,7 +48,7 @@ b,strong{font-weight:600;color:#fff}
 h1,h2,h3,p,li{text-wrap:balance}
 :focus-visible{outline:2px solid var(--laranja);outline-offset:3px}
 
-.reticula{position:absolute;top:72px;right:0;width:min(420px,40vw);height:auto;opacity:.7;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(225deg,#000 35%,transparent 80%);mask-image:linear-gradient(225deg,#000 35%,transparent 80%)}
+.reticula{position:absolute;top:0;right:0;width:min(420px,40vw);height:auto;opacity:.7;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(225deg,#000 35%,transparent 80%);mask-image:linear-gradient(225deg,#000 35%,transparent 80%)}
 
 /* Faixa da marca */
 .marca-faixa{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;padding:20px 16px 18px;background:var(--azul2);border-bottom:3px solid var(--laranja);box-shadow:0 6px 24px rgba(0,0,0,.18)}
@@ -58,8 +58,9 @@ h1,h2,h3,p,li{text-wrap:balance}
 .wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 20px}
 
 /* Primeira dobra */
-.hero{padding-top:40px;padding-bottom:48px;text-align:center;display:grid;justify-items:center}
-.selo{display:inline-flex;align-items:center;gap:.6em;padding:9px 20px;border:1.5px solid var(--laranja);border-radius:100px;background:var(--marinho);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;box-shadow:0 0 0 5px rgba(240,135,58,.1),0 0 22px rgba(240,135,58,.18)}
+.hero{padding-top:48px;padding-bottom:48px;text-align:center;display:grid;justify-items:center}
+.selo{display:inline-flex;align-items:center;gap:.6em;padding:9px 20px;border:1.5px solid var(--laranja);border-radius:100px;background:var(--marinho);color:#fff;font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;box-shadow:0 0 6px rgba(240,135,58,.9),0 0 18px rgba(240,135,58,.55),0 0 42px rgba(240,135,58,.35),inset 0 0 10px rgba(240,135,58,.25);text-shadow:0 0 10px rgba(240,135,58,.6);animation:neon 2.8s ease-in-out infinite}
+@keyframes neon{0%,100%{box-shadow:0 0 6px rgba(240,135,58,.9),0 0 18px rgba(240,135,58,.55),0 0 42px rgba(240,135,58,.35),inset 0 0 10px rgba(240,135,58,.25)}50%{box-shadow:0 0 4px rgba(240,135,58,.7),0 0 12px rgba(240,135,58,.4),0 0 28px rgba(240,135,58,.2),inset 0 0 6px rgba(240,135,58,.15)}}
 .selo i{width:8px;height:8px;border-radius:50%;background:var(--laranja);display:block;flex:none;animation:pisca 1.4s ease-in-out infinite}
 @keyframes pisca{0%,100%{opacity:1}50%{opacity:.25}}
 .hero h1{margin:22px 0 0;max-width:20ch;font-weight:300;font-size:clamp(1.9rem,7vw,2.9rem);line-height:1.12;letter-spacing:-.015em}
@@ -68,8 +69,11 @@ h1,h2,h3,p,li{text-wrap:balance}
 .com{margin:20px 0 0;display:inline-flex;align-items:center;gap:12px;font-size:1rem;color:var(--papel-80);text-align:left}
 .com img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--laranja);flex:none}
 .com b{font-weight:600}
-.info{margin:24px 0 0;width:100%;max-width:440px;display:grid;gap:0;background:rgba(34,58,82,.55);border:1px solid var(--papel-10);border-radius:20px;overflow:hidden}
-.info__item{display:flex;align-items:center;gap:14px;padding:14px 20px;text-align:left;font-size:1.12rem;font-weight:400}
+.info{margin:24px 0 0;width:auto;min-width:260px;max-width:360px;display:grid;gap:0;background:rgba(34,58,82,.55);border:1px solid var(--papel-10);border-radius:20px;overflow:hidden}
+.info__item{display:grid;justify-items:center;gap:2px;padding:12px 28px;text-align:center;font-size:1.1rem;font-weight:400;line-height:1.35}
+.info__item small{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--laranja-claro)}
+.info__meet{display:inline-flex;align-items:center;gap:10px}
+.info__meet img{width:30px;height:auto;display:block}
 .info__item + .info__item{border-top:1px solid var(--papel-10)}
 .info__item svg{width:22px;height:22px;flex:none;stroke:var(--laranja);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .info__item b{font-weight:600}
@@ -79,12 +83,14 @@ h1,h2,h3,p,li{text-wrap:balance}
 .preco__valor{margin:6px 0 0;font-size:1.15rem;color:var(--papel-80)}
 .preco__valor s{color:var(--papel-60)}
 .preco__valor strong{display:inline-block;margin-left:.2em;font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.02em;vertical-align:-.12em}
-.preco__parc{margin:2px 0 0;font-size:.92rem;color:var(--papel-60)}
+.preco__12x{margin:2px 0 0;font-size:1.15rem;color:var(--papel-80)}
+.preco__12x b{font-weight:800;color:#fff}
+.nota,.secao p.nota{margin:12px 0 0;font-size:.78rem;color:var(--papel-60);text-wrap:balance}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:58px;padding:18px 36px;border-radius:100px;background:var(--laranja);color:var(--marinho);font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;box-shadow:0 10px 30px rgba(240,135,58,.28);transition:transform .15s ease,box-shadow .15s ease,background .15s ease;animation:pulso 2.4s ease-in-out infinite}
-.btn:hover{background:var(--laranja-claro);transform:translateY(-2px);box-shadow:0 14px 34px rgba(240,135,58,.36)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:58px;padding:18px 36px;border-radius:100px;background:var(--laranja);color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 1px 2px rgba(120,50,0,.35);box-shadow:0 0 8px rgba(240,135,58,.95),0 0 24px rgba(240,135,58,.7),0 0 56px rgba(240,135,58,.45);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
+.btn:hover{background:var(--laranja-claro);transform:translateY(-2px)}
 .btn svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-@keyframes pulso{0%,100%{box-shadow:0 10px 30px rgba(240,135,58,.28),0 0 0 0 rgba(240,135,58,.45)}60%{box-shadow:0 10px 30px rgba(240,135,58,.28),0 0 0 14px rgba(240,135,58,0)}}
+@keyframes neonbtn{0%,100%{box-shadow:0 0 8px rgba(240,135,58,.95),0 0 24px rgba(240,135,58,.7),0 0 56px rgba(240,135,58,.45)}50%{box-shadow:0 0 12px rgba(240,135,58,1),0 0 36px rgba(240,135,58,.85),0 0 80px rgba(240,135,58,.6)}}
 .hero .btn{margin-top:24px;width:100%;max-width:440px}
 .seguro{margin:12px 0 0;font-size:.82rem;color:var(--papel-60);display:flex;align-items:center;gap:.45em}
 .seguro svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
@@ -154,37 +160,34 @@ h1,h2,h3,p,li{text-wrap:balance}
 
 <img class="reticula" src="/images/diagnostico/reticula-marinho.svg" alt="" aria-hidden="true">
 
-<div class="marca-faixa">
-  <a href="/" aria-label="KA | Inteligência para Marcas"><img class="marca-faixa__logo" src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas" width="150" height="29"></a>
-</div>
-
 <main>
   <!-- Primeira dobra: título, data, horário, preço e botão -->
   <header class="wrap hero">
-    <span class="selo"><i></i>Aula online e ao vivo</span>
+    <span class="selo">Aula online e ao vivo</span>
     <h1>Com ou sem crise, faça o cliente enxergar o <b>valor da sua marca.</b></h1>
     <p class="com"><img src="/images/aulaaovivo-kelly-avatar.jpg" alt="" width="240" height="240"><span>com <b>Kelly Albert</b><br>Estrategista de marcas</span></p>
 
     <div class="info">
-      <div class="info__item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span><b>Quinta-feira, 26/11</b></span></div>
-      <div class="info__item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Das <b>19h30 às 22h</b></span></div>
-      <div class="info__item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>Ao vivo pelo <b>Google Meet</b></span></div>
+      <div class="info__item"><small>O que</small><span><b>Aula online e ao vivo</b></span></div>
+      <div class="info__item"><small>Quando</small><span><b>Quinta-feira, 26/11</b><br>das 19h30 às 22h</span></div>
+      <div class="info__item"><small>Para quem</small><span>Empresários e profissionais liberais</span></div>
+      <div class="info__item"><small>Como</small><span class="info__meet"><img src="/images/aulaaovivo-meet.png" alt="" width="208" height="168">pelo <b>Google Meet</b></span></div>
     </div>
 
     <div class="preco">
       <span class="preco__tag">Black Friday</span>
-      <p class="preco__valor">de <s>R$ 420</s> por <strong>R$ 290</strong></p>
-      <p class="preco__parc">Até 12x no cartão, com juros pela Hotmart.</p>
+      <p class="preco__valor">de <s>R$ 420</s> por <strong>R$ 290</strong> à vista</p>
+      <p class="preco__12x">ou <b>12x de R$ 29,99*</b></p>
     </div>
 
-    <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="hero">Quero garantir minha vaga<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="hero">Quero garantir minha vaga</a>
     <p class="seguro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Pagamento seguro pela Hotmart</p>
+    <p class="nota">*Parcelamento com juros pela Hotmart. Total parcelado: R$ 359,88.</p>
   </header>
 
   <!-- Não basta ter uma boa marca -->
   <section class="secao secao--azul">
     <div class="wrap">
-      <span class="rotulo">Por que esta aula</span>
       <h2>Não basta ter uma boa marca. <b>O cliente precisa reconhecer seu valor.</b></h2>
       <p>Criar sua marca, seja ela pessoal ou empresarial, é construir um dos ativos mais importantes do seu negócio.</p>
       <p>Mas não basta ser bom no que faz, oferecer qualidade ou ter anos de experiência.</p>
@@ -196,7 +199,6 @@ h1,h2,h3,p,li{text-wrap:balance}
   <!-- O que você vai aprender -->
   <section class="secao">
     <div class="wrap">
-      <span class="rotulo">Conteúdo da aula</span>
       <h2>O que você vai <b>aprender?</b></h2>
       <ol class="lista">
         <li>Por que o cliente escolhe uma marca e não outra.</li>
@@ -246,10 +248,11 @@ h1,h2,h3,p,li{text-wrap:balance}
       <div class="final__info"><span>26/11</span><span>19h30 às 22h</span><span>Google Meet</span></div>
       <div class="preco">
         <span class="preco__tag">Black Friday</span>
-        <p class="preco__valor">de <s>R$ 420</s> por <strong>R$ 290</strong></p>
-        <p class="preco__parc">Até 12x no cartão, com juros pela Hotmart.</p>
+        <p class="preco__valor">de <s>R$ 420</s> por <strong>R$ 290</strong> à vista</p>
+        <p class="preco__12x">ou <b>12x de R$ 29,99*</b></p>
       </div>
-      <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="final">Quero participar da aula<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="final">Quero participar da aula</a>
+      <p class="nota">*Parcelamento com juros pela Hotmart. Total parcelado: R$ 359,88.</p>
     </div>
   </section>
 </main>
