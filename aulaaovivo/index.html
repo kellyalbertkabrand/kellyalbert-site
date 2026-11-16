@@ -84,17 +84,18 @@ h1,h2,h3,p,li{text-wrap:balance}
 .preco__col{display:flex;flex-direction:column;align-items:flex-start}
 .preco__de s{color:var(--papel-60)}
 .preco__por{margin:6px 0 0;display:flex;align-items:flex-end;gap:.35em;line-height:1;color:#fff}
-.preco__por > b{font-size:3.4rem;font-weight:800;letter-spacing:-.02em}
-.preco__num{display:inline-flex;align-items:flex-start;font-size:3.4rem;font-weight:800;letter-spacing:-.02em;color:#fff}
-.preco__num sup{font-size:.36em;font-weight:800;line-height:1;margin:.14em .1em 0 0;letter-spacing:0}
-.preco__12x{margin:2px 0 0;font-size:1.15rem;color:var(--papel-80)}
-.preco__12x b{font-weight:800;color:#fff}
+.preco__por > b{font-size:clamp(2.2rem,9.5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+.preco__num{display:inline-flex;align-items:flex-start;gap:0;white-space:nowrap;font-size:clamp(2.2rem,9.5vw,3.2rem);font-weight:800;letter-spacing:-.02em;color:#fff}
+.preco__num sup{font-size:.36em;font-weight:800;line-height:1;margin:.4em .12em 0 .5em;letter-spacing:0}
+.preco__num small{font-size:.5em;font-weight:400;align-self:flex-end;margin:0 0 .12em .3em;color:var(--papel-80)}
+.preco__12x{margin:6px 0 0;font-size:1.15rem;color:var(--papel-80)}
+.preco__12x b{font-weight:600;color:#fff}
 .nota,.secao p.nota{margin:12px 0 0;font-size:.78rem;color:var(--papel-60);text-wrap:balance}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:58px;padding:18px 36px;border-radius:100px;background:#2F6E9E;border:1.5px solid #7FC4EE;color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 0 8px rgba(160,215,255,.6);box-shadow:0 0 10px rgba(110,190,245,1),0 0 30px rgba(90,175,240,.85),0 0 70px rgba(70,160,235,.6);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
-.btn:hover{background:#3A80B3;transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:64px;padding:20px 36px;border-radius:100px;background:var(--marinho);border:2px solid var(--laranja);color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 0 10px rgba(240,135,58,.6);box-shadow:0 0 6px rgba(240,135,58,.9),0 0 18px rgba(240,135,58,.55),0 0 42px rgba(240,135,58,.35),inset 0 0 10px rgba(240,135,58,.25);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
+.btn:hover{background:var(--azul2);transform:translateY(-2px)}
 .btn svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-@keyframes neonbtn{0%,100%{box-shadow:0 0 10px rgba(110,190,245,1),0 0 30px rgba(90,175,240,.85),0 0 70px rgba(70,160,235,.6)}50%{box-shadow:0 0 14px rgba(130,205,250,1),0 0 44px rgba(90,175,240,1),0 0 100px rgba(70,160,235,.75)}}
+@keyframes neonbtn{0%,100%{box-shadow:0 0 8px rgba(240,135,58,.95),0 0 24px rgba(240,135,58,.65),0 0 54px rgba(240,135,58,.42),inset 0 0 12px rgba(240,135,58,.3)}50%{box-shadow:0 0 5px rgba(240,135,58,.75),0 0 15px rgba(240,135,58,.45),0 0 34px rgba(240,135,58,.25),inset 0 0 7px rgba(240,135,58,.18)}}
 .hero .btn{margin-top:24px;width:100%;max-width:440px}
 .seguro,.secao p.seguro{margin:14px 0 0;justify-content:center;font-size:.92rem;font-weight:400;color:var(--papel-60);display:flex;align-items:center;gap:.45em}
 .seguro svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
@@ -183,8 +184,8 @@ h1,h2,h3,p,li{text-wrap:balance}
 
     <div class="preco">
       <span class="preco__tag">Black Friday</span>
-      <div class="preco__por"><b>por</b><span class="preco__col"><span class="preco__de">De <s>R$ 420</s></span><span class="preco__num"><sup>R$</sup>290</span></span></div>
-      <p class="preco__12x">ou <b>12x de R$ 29,99</b></p>
+      <div class="preco__por"><b>por</b><span class="preco__col"><span class="preco__de">De <s>R$ 420</s></span><span class="preco__num">12x <small>de</small> <sup>R$</sup>29,99</span></span></div>
+      <p class="preco__12x">ou <b>R$ 290 à vista</b></p>
     </div>
 
     <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="hero">Quero garantir minha vaga</a>
@@ -259,8 +260,8 @@ h1,h2,h3,p,li{text-wrap:balance}
       <div class="final__info"><span><b>Quinta-feira, 26/11</b></span><span>19h30 às 22h</span><span class="info__meet">Google Meet<img src="/images/aulaaovivo-google-meet.svg" alt="" width="256" height="201"></span></div>
       <div class="preco">
       <span class="preco__tag">Black Friday</span>
-      <div class="preco__por"><b>por</b><span class="preco__col"><span class="preco__de">De <s>R$ 420</s></span><span class="preco__num"><sup>R$</sup>290</span></span></div>
-      <p class="preco__12x">ou <b>12x de R$ 29,99</b></p>
+      <div class="preco__por"><b>por</b><span class="preco__col"><span class="preco__de">De <s>R$ 420</s></span><span class="preco__num">12x <small>de</small> <sup>R$</sup>29,99</span></span></div>
+      <p class="preco__12x">ou <b>R$ 290 à vista</b></p>
     </div>
       <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="final">Quero participar da aula</a>
       <p class="seguro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 3 7.6 7 9 4-1.4 7-4.8 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>7 dias de garantia</p>
