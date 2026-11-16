@@ -78,24 +78,21 @@ h1,h2,h3,p,li{text-wrap:balance}
 .info__item svg{width:22px;height:22px;flex:none;stroke:var(--laranja);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .info__item b{font-weight:600}
 
-.preco{margin:26px 0 0;display:grid;justify-items:center;gap:6px}
+.preco{margin:40px 0 0;display:grid;justify-items:center;gap:8px}
+.final .preco{margin-top:28px}
 .preco__tag{display:inline-block;padding:6px 16px;border-radius:100px;background:var(--laranja);color:var(--marinho);font-size:.8rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase}
-.preco__de{display:block;margin:0 0 4px;font-size:1.1rem;font-weight:400;color:var(--papel-60);line-height:1;text-align:left;padding-left:.15em}
-.preco__col{display:flex;flex-direction:column;align-items:flex-start}
+.preco .preco__de{margin:4px 0 0;font-size:1.45rem;font-weight:400;color:var(--papel-60);line-height:1.1}
 .preco__de s{color:var(--papel-60)}
-.preco__por{margin:6px 0 0;display:flex;align-items:flex-end;gap:.35em;line-height:1;color:#fff}
-.preco__por > b{font-size:clamp(2.2rem,9.5vw,3.2rem);font-weight:800;letter-spacing:-.02em}
-.preco__num{display:inline-flex;align-items:flex-start;gap:0;white-space:nowrap;font-size:clamp(2.2rem,9.5vw,3.2rem);font-weight:800;letter-spacing:-.02em;color:#fff}
-.preco__num sup{font-size:.36em;font-weight:800;line-height:1;margin:.4em .12em 0 .5em;letter-spacing:0}
-.preco__num small{font-size:.5em;font-weight:400;align-self:flex-end;margin:0 0 .12em .3em;color:var(--papel-80)}
-.preco__12x{margin:6px 0 0;font-size:1.15rem;color:var(--papel-80)}
+.preco .preco__por{margin:0;font-size:clamp(1.9rem,8.4vw,2.9rem);font-weight:300;line-height:1.1;letter-spacing:-.015em;color:#fff;white-space:nowrap}
+.preco__por b{font-weight:800}
+.preco .preco__12x{margin:2px 0 0;font-size:1.2rem;color:var(--papel-80)}
 .preco__12x b{font-weight:600;color:#fff}
 .nota,.secao p.nota{margin:12px 0 0;font-size:.78rem;color:var(--papel-60);text-wrap:balance}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:64px;padding:20px 36px;border-radius:100px;background:var(--marinho);border:2px solid var(--laranja);color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 0 10px rgba(240,135,58,.6);box-shadow:0 0 6px rgba(240,135,58,.9),0 0 18px rgba(240,135,58,.55),0 0 42px rgba(240,135,58,.35),inset 0 0 10px rgba(240,135,58,.25);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
-.btn:hover{background:var(--azul2);transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:64px;padding:20px 36px;border-radius:100px;background:var(--laranja);border:2px solid #FFD7A8;color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 1px 3px rgba(110,45,0,.45);box-shadow:0 0 10px rgba(255,214,160,.95),0 0 28px rgba(255,196,120,.75),0 0 64px rgba(255,170,80,.5);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
+.btn:hover{background:var(--laranja-claro);transform:translateY(-2px)}
 .btn svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-@keyframes neonbtn{0%,100%{box-shadow:0 0 8px rgba(240,135,58,.95),0 0 24px rgba(240,135,58,.65),0 0 54px rgba(240,135,58,.42),inset 0 0 12px rgba(240,135,58,.3)}50%{box-shadow:0 0 5px rgba(240,135,58,.75),0 0 15px rgba(240,135,58,.45),0 0 34px rgba(240,135,58,.25),inset 0 0 7px rgba(240,135,58,.18)}}
+@keyframes neonbtn{0%,100%{box-shadow:0 0 10px rgba(255,214,160,.95),0 0 28px rgba(255,196,120,.75),0 0 64px rgba(255,170,80,.5)}50%{box-shadow:0 0 16px rgba(255,226,185,1),0 0 44px rgba(255,200,130,.95),0 0 96px rgba(255,170,80,.7)}}
 .hero .btn{margin-top:24px;width:100%;max-width:440px}
 .seguro,.secao p.seguro{margin:14px 0 0;justify-content:center;font-size:.92rem;font-weight:400;color:var(--papel-60);display:flex;align-items:center;gap:.45em}
 .seguro svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
@@ -104,6 +101,11 @@ h1,h2,h3,p,li{text-wrap:balance}
 .paraquem h2{max-width:22ch;margin:0 auto}
 .meet-h2{display:inline-block;width:.95em;height:auto;vertical-align:-.08em;margin-left:.15em}
 .final__info .info__meet img{width:20px}
+.clientes{margin-top:40px;padding-top:32px;border-top:1px solid var(--papel-10);text-align:center}
+.secao p.clientes__txt{margin:0 auto;max-width:34ch;font-size:1.1rem}
+.clientes__grid{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px;align-items:center;justify-items:center}
+.clientes__grid img{max-width:100%;max-height:44px;width:auto;height:auto;opacity:.85}
+@media (max-width:520px){.clientes__grid{grid-template-columns:repeat(2,1fr);gap:28px 26px}.clientes__grid img{max-height:40px;max-width:130px}}
 /* Seções */
 .secao{position:relative;padding:64px 0}
 .secao--azul{background:var(--azul2)}
@@ -184,18 +186,20 @@ h1,h2,h3,p,li{text-wrap:balance}
 
     <div class="preco">
       <span class="preco__tag">Black Friday</span>
-      <div class="preco__por"><b>por</b><span class="preco__col"><span class="preco__de">De <s>R$ 420</s></span><span class="preco__num">12x <small>de</small> <sup>R$</sup>29,99</span></span></div>
+      <p class="preco__de">De <s>R$ 420</s></p>
+      <p class="preco__por">por <b>12x de R$ 29,99</b></p>
       <p class="preco__12x">ou <b>R$ 290 à vista</b></p>
     </div>
 
     <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="hero">Quero garantir minha vaga</a>
-    <p class="seguro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 3 7.6 7 9 4-1.4 7-4.8 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>7 dias de garantia</p>
+    <p class="seguro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura pela Hotmart</p>
   </header>
 
-  <!-- O QUE -->
+  <!-- PARA QUEM / O QUE -->
   <section class="secao secao--azul">
     <div class="wrap">
-      <h2>Não basta ter uma boa marca. <b>O cliente precisa reconhecer seu valor.</b></h2>
+      <h2>Esta aula é para <b>Empresários e Profissionais Liberais.</b></h2>
+      <p>Não basta ter uma boa marca. O cliente precisa reconhecer seu valor.</p>
       <p>Criar sua marca, seja ela pessoal ou empresarial, é construir um dos ativos mais importantes do seu negócio.</p>
       <p>Mas não basta ser bom no que faz, oferecer qualidade ou ter anos de experiência.</p>
       <p class="destaque">O cliente precisa entender <strong>por que vale a pena escolher você.</strong></p>
@@ -204,20 +208,13 @@ h1,h2,h3,p,li{text-wrap:balance}
 
   <section class="secao">
     <div class="wrap">
-      <h2>O que você vai <b>aprender?</b></h2>
+      <h2>Para Empresários e Profissionais Liberais que querem <b>entender:</b></h2>
       <ol class="lista">
-        <li>Por que o cliente escolhe uma marca e não outra.</li>
+        <li>Por que o cliente escolhe o concorrente, e não a sua marca.</li>
         <li>O que faz o cliente reconhecer valor além do preço.</li>
         <li>Onde sua marca pode estar perdendo valor.</li>
         <li>Como demonstrar seus diferenciais e dar mais motivos para o cliente escolher você.</li>
       </ol>
-    </div>
-  </section>
-
-  <!-- PARA QUEM -->
-  <section class="secao secao--azul paraquem">
-    <div class="wrap">
-      <h2>Foi pensando nisso que criei esta aula, especialmente para <b>Empresários e Profissionais Liberais.</b></h2>
     </div>
   </section>
 
@@ -241,13 +238,28 @@ h1,h2,h3,p,li{text-wrap:balance}
   <!-- Quem conduz -->
   <section class="secao secao--azul">
     <div class="wrap">
-      <span class="rotulo">Quem vai conduzir a aula?</span>
       <div class="kelly">
         <img class="kelly__foto" src="/images/aulaaovivo-kelly.jpg" alt="Kelly Albert, estrategista de marcas" width="900" height="1125" loading="lazy">
         <div>
           <p class="kelly__nome">Kelly Albert</p>
           <p class="kelly__ka">KA | Inteligência para Marcas</p>
-          <p>Publicitária e estrategista de marcas, com <strong>20 anos de experiência</strong> em Comunicação, Marketing e Posicionamento de Marcas.</p>
+          <p>Fundadora da <strong>KA | Inteligência para Marcas</strong>, escritório de branding especializado em posicionamento e reposicionamento de marcas pessoais e empresariais.</p>
+          <p>Publicitária, com <strong>MBA em Gestão Estratégica de Negócios pela FGV/SP</strong> e especializações pela <strong>ESPM/SP</strong>.</p>
+          <p>São <strong>mais de 20 anos de experiência</strong> em Comunicação, Marketing e Posicionamento de Marcas: como executiva em departamentos de marketing, em agências de propaganda e à frente da própria agência de marketing digital por mais de 13 anos.</p>
+          <p>Criadora do <strong>Método Marca com Essência<sup style="font-size:.55em;">©</sup></strong>, que une branding, posicionamento, comunicação e Inteligência Artificial.</p>
+        </div>
+      </div>
+      <div class="clientes">
+        <p class="clientes__txt">Já atendeu ou atuou em empresas como <strong>McDonald's, Sebrae, Atacadão do Grupo Carrefour</strong>, Suvinil, Grupo Ramarim e Band FM.</p>
+        <div class="clientes__grid">
+          <img src="/images/aulaaovivo-logos/mcdonalds.png" alt="McDonald's">
+          <img src="/images/aulaaovivo-logos/sebrae.png" alt="Sebrae">
+          <img src="/images/aulaaovivo-logos/atacadao.png" alt="Atacadão">
+          <img src="/images/aulaaovivo-logos/suvinil.png" alt="Suvinil">
+          <img src="/images/aulaaovivo-logos/ramarim.png" alt="Ramarim">
+          <img src="/images/aulaaovivo-logos/bandfm.png" alt="Rede Band FM">
+          <img src="/images/aulaaovivo-logos/comfortflex.png" alt="ComfortFlex">
+          <img src="/images/aulaaovivo-logos/usaflex.png" alt="Usaflex">
         </div>
       </div>
     </div>
@@ -260,11 +272,12 @@ h1,h2,h3,p,li{text-wrap:balance}
       <div class="final__info"><span><b>Quinta-feira, 26/11</b></span><span>19h30 às 22h</span><span class="info__meet">Google Meet<img src="/images/aulaaovivo-google-meet.svg" alt="" width="256" height="201"></span></div>
       <div class="preco">
       <span class="preco__tag">Black Friday</span>
-      <div class="preco__por"><b>por</b><span class="preco__col"><span class="preco__de">De <s>R$ 420</s></span><span class="preco__num">12x <small>de</small> <sup>R$</sup>29,99</span></span></div>
+      <p class="preco__de">De <s>R$ 420</s></p>
+      <p class="preco__por">por <b>12x de R$ 29,99</b></p>
       <p class="preco__12x">ou <b>R$ 290 à vista</b></p>
     </div>
       <a class="btn" href="https://pay.hotmart.com/S108362847M?" target="_blank" rel="noopener" data-cta="final">Quero participar da aula</a>
-      <p class="seguro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 3 7.6 7 9 4-1.4 7-4.8 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>7 dias de garantia</p>
+      <p class="seguro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Compra segura pela Hotmart</p>
     </div>
   </section>
 </main>
