@@ -6,6 +6,21 @@
 
 ## Abertas
 
+### Diagnóstico Completo (venda contínua) · respostas que a Kelly precisa dar
+
+Nova estratégia (16/11/2026): sem a aula de 21/11. Teste grátis (11 perguntas) → resultado com prévia embaçada → compra do Diagnóstico Completo (35 perguntas + masterclass gravada) → lives semanais para vender.
+
+- [ ] **Aula de 21/11:** alguém já comprou na Hotmart? Reembolsar ou dar o Diagnóstico Completo de presente?
+- [ ] **Preço final:** R$ 280 em até 10x? (decide se o valor aparece no resultado do teste)
+- [ ] **Validade do acesso:** 60 dias ou 12 meses? (recomendação: 12 meses)
+- [ ] **Hotmart:** criar o produto "Diagnóstico Completo + Masterclass" e enviar o link do checkout (vai em `CONFIG.checkout` no /valorpercebido; enquanto vazio, o botão abre o WhatsApp)
+- [ ] **Hotmart → site:** liberar o webhook da Hotmart (token) para o acesso ser criado sozinho após a compra
+- [ ] **Masterclass:** gravar e definir onde fica o vídeo (link não listado do YouTube/Vimeo ou área de membros da Hotmart)
+- [ ] **35 perguntas:** aprovar a lista proposta e decidir se as 2 perguntas abertas são opcionais (recomendação: opcionais)
+- [ ] **Seção "Entrega × Enxerga"** no relatório completo: aprovar
+- [ ] **Nome do produto:** "Diagnóstico Completo de Marca"? Outro?
+- [ ] **Lives semanais:** dia e horário fixos
+
 ### Produção / Deploy
 
 - [x] DNS `kellyalbert.com.br` → Netlify (concluído)

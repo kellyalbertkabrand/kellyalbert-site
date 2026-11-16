@@ -327,6 +327,39 @@ button,input{font-family:inherit}
 .aula__nota{margin:14px 0 0;font-size:1.15rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja-claro);text-wrap:balance}
 .aula__nota b{color:#fff;font-weight:700}
 
+/* Prévia do diagnóstico completo (embaçada até a compra) */
+.previa{margin-top:18px;border-radius:24px;padding:28px 20px 24px;background:var(--papel);color:var(--marinho);box-shadow:0 18px 40px rgba(0,0,0,.28);border-top:6px solid #D86F2A}
+.previa b{color:var(--marinho)}
+.previa__selo{display:inline-flex;align-items:center;gap:8px;margin:0;padding:7px 14px;border-radius:100px;background:#D86F2A;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.previa__selo svg{width:15px;height:15px}
+.previa__tit{margin:14px 0 0;font-size:1.6rem;font-weight:300;line-height:1.2}
+.previa__tit b{font-weight:800}
+.previa__sub{margin:6px 0 0;font-size:.9rem;color:rgba(21,37,53,.6)}
+.pv-bloco{margin-top:20px;padding-top:18px;border-top:1px solid rgba(216,111,42,.22)}
+.pv-rot{display:flex;align-items:center;gap:8px;margin:0;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#D86F2A}
+.pv-rot svg{width:15px;height:15px;flex:none}
+.embacado{filter:blur(6px);-webkit-user-select:none;user-select:none;pointer-events:none}
+.pv-ind{margin-top:12px}
+.pv-ind__topo{display:flex;justify-content:space-between;align-items:baseline;font-size:.96rem}
+.pv-ind__topo span{font-weight:700}
+.pv-ind__barra{height:10px;margin-top:6px;border-radius:10px;background:rgba(21,37,53,.1);overflow:hidden}
+.pv-ind__barra i{display:block;height:100%;border-radius:10px;background:#3D6B7E}
+.pv-txt{margin:10px 0 0;font-size:1rem;line-height:1.55}
+.pv-prio{display:flex;gap:12px;margin-top:12px;padding:14px;border-radius:14px;background:#fff;border:1px solid rgba(216,111,42,.22)}
+.pv-prio__n{flex:none;width:28px;height:28px;border-radius:50%;background:#D86F2A;color:#fff;font-weight:800;font-size:.85rem;display:grid;place-items:center}
+.pv-prio b{display:block;font-size:1rem;line-height:1.3}
+.pv-prio p{margin:6px 0 0;font-size:.94rem;line-height:1.5}
+.pv-prio__extra{font-size:.82rem!important;color:#B5561A}
+.pv-cta{margin-top:22px;padding:22px 18px;border-radius:18px;background:var(--marinho);color:var(--papel);text-align:center}
+.pv-cta h4{margin:0;font-size:1.35rem;font-weight:300;line-height:1.25;color:var(--papel)}
+.pv-cta h4 b{font-weight:800;color:#fff}
+.pv-lista{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px;text-align:left}
+.pv-lista li{position:relative;padding-left:26px;font-size:.94rem;line-height:1.45;color:rgba(248,247,242,.9)}
+.pv-lista li::before{content:"✓";position:absolute;left:0;top:0;color:var(--laranja);font-weight:800}
+.pv-bt{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;min-height:58px;padding:14px 16px;border-radius:100px;background:var(--laranja);color:#fff;font-size:.84rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;box-shadow:0 10px 26px rgba(240,135,58,.4)}
+.pv-bt svg{width:18px;height:18px;flex:none}
+.pv-bt:hover{background:#F59B57}
+
 /* Aula */
 .convite{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
 .convite__topo{background:#D86F2A;color:#fff;padding:26px 20px 24px;text-align:center;display:grid;justify-items:center;gap:14px}
@@ -420,11 +453,13 @@ button,input{font-family:inherit}
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=10';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/valorpercebido/regras.mjs?v=11';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
-  // Aula ao vivo: quem tem interesse manda mensagem no WhatsApp da Kelly (CONFIG.whatsapp)
+  // Diagnóstico completo: link do checkout da Hotmart. Enquanto estiver vazio, o botão abre o WhatsApp da Kelly.
+  checkout: '',
+  // (dados da aula antiga, não aparecem mais na página)
   aulaData: 'Sábado, 21/11/26',
   aulaDataCurta: '21/11',
   aulaHorario: 'Das 9h às 12h',
@@ -904,11 +939,38 @@ function enviarLead(lead, dados, classe){
 // ─── RESULTADO ─────────────────────────────────────────────────
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 
+// Prévia do diagnóstico completo: conteúdo real (feito a partir das 11 respostas), embaçado até a compra.
+function indicePilar(x){ var v = x.A + x.B + x.C; return v ? Math.round((x.A*100 + x.B*50)/v) : null; }
+function previaHtml(classe, t){
+  var pv = t.previa || {}, prios = (pv.prioridades||[]).slice(0,3);
+  var link = CONFIG.checkout || ('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Oi, Kelly! Fiz o Teste de Autoavaliação de Marca e quero o diagnóstico completo.'));
+  var cad = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+  var barra = function(n){ var i = indicePilar(classe.pilares[n]); return '<div class="pv-ind"><div class="pv-ind__topo"><b>'+PILARES[n].nome+'</b><span class="embacado">'+(i==null?'–':i)+'/100</span></div><div class="pv-ind__barra embacado"><i style="width:'+(i||8)+'%"></i></div></div>'; };
+  return '<section class="previa" aria-label="Prévia do diagnóstico completo">'+
+    '<p class="previa__selo">'+cad+'Prévia do diagnóstico completo</p>'+
+    '<h3 class="previa__tit">Suas respostas revelam <b>mais do que isso</b></h3>'+
+    '<p class="previa__sub">Esta prévia foi feita com base nas suas 11 respostas.</p>'+
+    '<div class="pv-bloco"><p class="pv-rot">'+cad+'Seu índice nos dois pilares</p>'+barra(1)+barra(2)+'</div>'+
+    '<div class="pv-bloco"><p class="pv-rot">'+cad+'O que sua marca entrega × O que seu cliente enxerga</p><p class="pv-txt embacado" aria-hidden="true">'+esc(pv.entrega_enxerga)+'</p></div>'+
+    '<div class="pv-bloco"><p class="pv-rot">'+cad+'Suas 3 prioridades, com o passo a passo</p>'+
+      prios.map(function(p,k){ return '<div class="pv-prio"><span class="pv-prio__n">'+(k+1)+'</span><div><b>'+esc(p.titulo)+'</b><p class="embacado" aria-hidden="true">'+esc(p.texto)+'</p><p class="embacado pv-prio__extra" aria-hidden="true">Como implementar · Como virar rotina · Quem é responsável · Como acompanhar</p></div></div>'; }).join('')+
+    '</div>'+
+    '<div class="pv-cta">'+
+      '<h4>Desbloqueie o seu <b>diagnóstico completo</b></h4>'+
+      '<ul class="pv-lista">'+
+        '<li>Você responde mais 24 perguntas, cerca de 10 minutos. As 11 de hoje já ficam salvas.</li>'+
+        '<li>Análise aprofundada da entrega e da comunicação de valor da sua marca.</li>'+
+        '<li>As 3 prioridades com o passo a passo, a rotina, o responsável e como acompanhar.</li>'+
+        '<li>Masterclass gravada da Kelly Albert.</li>'+
+      '</ul>'+
+      '<a class="pv-bt" id="rx-completo" href="'+link+'" target="_blank" rel="noopener">'+cad+'Desbloquear meu diagnóstico completo</a>'+
+    '</div>'+
+  '</section>';
+}
+
 function mostrarResultado(lead, dados, classe, t){
   var primeiro = esc(lead.nome.split(' ')[0]);
   var p = PERFIS[classe.perfil] || PERFIS.inconclusiva;
-  var msgAula = 'Oi, Kelly! Fiz o Teste de Autoavaliação de Marca e quero participar da aula ao vivo do dia '+CONFIG.aulaDataCurta+'.';
-  var linkWhatsAula = 'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msgAula);
   var fortes = (t.pontos_fortes||[]).slice(0,3), melhorar = (t.pontos_melhorar||[]).slice(0,3), dicas = (t.dicas||[]).slice(0,3);
   var resumo = t.resumo || p.txt;
   var n = 0, numero = function(){ n++; return '<span class="num">'+n+'</span>'; };
@@ -936,52 +998,19 @@ function mostrarResultado(lead, dados, classe, t){
       '<section class="laudo__sec"><p class="eyebrow">'+numero()+'Dicas para começar</p>'+
         '<ol class="dicas">'+dicas.map(function(d){ return '<li><b>'+esc(d.titulo)+'</b><p>'+esc(d.texto)+'</p></li>'; }).join('')+'</ol>'+
       '</section>'+
-      '<section class="laudo__sec laudo__sec--aviso"><p>'+AVISO+' É uma primeira avaliação: o aprofundamento acontece na aula e nos encontros práticos.</p></section>'+
+      '<section class="laudo__sec laudo__sec--aviso"><p>'+AVISO+' É uma primeira avaliação: o aprofundamento acontece no diagnóstico completo.</p></section>'+
       '<div class="laudo__acoes">'+
         '<button type="button" class="btn btn--caramelo-contorno" id="rx-copiar">Copiar o meu resultado</button>'+
         '<p class="copiado" id="rx-copiado" aria-live="polite"></p>'+
       '</div>'+
     '</article>'+
-    '<div class="ponte" aria-hidden="true"><span>Próximo passo</span><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg></div>'+
-    '<section class="aula" aria-label="Aula ao vivo">'+
-      '<p class="aula__ao-vivo"><span>Aula ao vivo</span></p>'+
-      '<div class="aula__data">'+
-        '<div><small><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>Neste sábado</small><b>'+CONFIG.aulaDataCurta+'</b></div>'+
-        '<div><small><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Horário</small><b>9h às 12h</b></div>'+
-      '</div>'+
-      '<h3 class="aula__tema">'+CONFIG.aulaTemaHtml+'</h3>'+
-      '<p class="aula__meet"><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5l6-3.5v10l-6-3.5z"/></svg>'+CONFIG.aulaLocal+'</p>'+
-      '<p class="aula__sub">'+CONFIG.aulaSubtitulo+'</p>'+
-      '<p class="aula__gancho">O teste que você acabou de realizar revela sinais. <b>Na aula, você aprenderá a entender esses sinais e o que fazer com eles.</b></p>'+
-      '<p class="aula__rot aula__rot--esq">Na aula, você vai entender</p>'+
-      '<ul class="aula__lista">'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>O comportamento do consumidor na crise</b><span>Como mudanças nas prioridades e no orçamento influenciam a decisão de compra.</span></div></li>'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>O que faz uma marca ser escolhida</b><span>Confiança, reconhecimento, diferenciais, preço, conveniência e segurança.</span></div></li>'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Entrega e comunicação de valor</b><span>Por que entregar bem não basta: como demonstrar benefícios, apresentar provas e explicar por que sua empresa merece ser escolhida.</span></div></li>'+
-        '<li><span class="ok"><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#fff\' stroke-width=\'2.6\' stroke-linecap=\'round\' stroke-linejoin=\'round\' aria-hidden=\'true\'><path d=\'M6.5 12.5l3.5 3.5 7.5-8\'/></svg></span><div><b>Onde a empresa pode perder valor</b><span>Exemplos práticos de falhas que prejudicam a confiança e a escolha do cliente.</span></div></li>'+
-      '</ul>'+
-      '<div class="ferr">'+
-        '<p class="ferr__selo">Incluída para quem participa da aula</p>'+
-        '<h4 class="ferr__tit"><span class="ferr__f"><svg viewBox="0 0 24 24" fill="none" stroke="#F0873A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3.6 17.2a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.2-5.4l-2.4 2.4-2.1-.6-.6-2.1z"/></svg><u>Ferramenta</u></span> Autoavaliação de Marca</h4>'+
-        '<p class="ferr__sub">Avalie como sua empresa entrega e comunica seu valor e descubra o que precisa melhorar.</p>'+
-        '<p class="ferr__txt">Mais completa que este teste, ela investiga com profundidade as práticas da sua empresa, considera o seu segmento e usa Inteligência Artificial para recomendar melhorias.</p>'+
-        '<ol class="ferr__lista">'+
-          '<li><b>Análise dos dois pilares</b><span>Entrega de valor e comunicação de valor: o que funciona, o que fragiliza e o que precisa ser verificado.</span></li>'+
-          '<li><b>Três principais pontos de melhoria</b><span>Os aspectos que merecem atenção primeiro na sua empresa.</span></li>'+
-          '<li><b>Recomendações personalizadas</b><span>Ações adaptadas ao seu segmento e à realidade do seu negócio.</span></li>'+
-          '<li><b>Práticas contínuas</b><span>O que melhorar, como implementar, como virar rotina, quem pode ser responsável e como acompanhar a evolução.</span></li>'+
-        '</ol>'+
-        '<div class="ferr__chips"><span>60 dias de acesso liberado</span></div>'+
-      '</div>'+
-      '<a class="aula__bt" id="rx-aula" href="'+linkWhatsAula+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" style="flex:none"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.7-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.4-.3z"/></svg>Quero participar da aula</a>'+
-      '<p class="aula__nota">Vagas limitadas</p>'+
-    '</section>';
+    previaHtml(classe, t);
   body.appendChild(wrap);
   document.getElementById('rx-prog-txt').textContent='Pronto';
   document.getElementById('rx-prog').style.width='100%';
   setTimeout(function(){ wrap.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 60);
 
-  document.getElementById('rx-aula').addEventListener('click', function(){ evento('clique_aula',{perfil:classe.perfil}); });
+  document.getElementById('rx-completo').addEventListener('click', function(){ evento('clique_diagnostico_completo',{perfil:classe.perfil}); });
   document.getElementById('rx-copiar').addEventListener('click', function(){
     var it = function(l){ return l.length ? l.map(function(x){ return '• '+x.titulo+': '+x.texto; }).join('\n') : 'Nenhum item.'; };
     var txt = 'Teste de Autoavaliação de Marca\nKA | Inteligência para Marcas\n\n'+

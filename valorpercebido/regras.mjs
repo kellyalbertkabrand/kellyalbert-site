@@ -367,7 +367,16 @@ export function textosDeReserva(classe, dificuldades) {
   ];
   for (const e of extras) if (dicas.length < 3 && !dicas.some(d => d.titulo === e.titulo)) dicas.push(e);
   const item = x => ({ titulo: x.titulo, texto: x.texto });
-  return { resumo: leitura, pontos_fortes: pontos_fortes.map(item), pontos_melhorar: fragilidades.slice(0, 3).map(item), dicas: dicas.slice(0, 3) };
+  // Prévia do diagnóstico completo (aparece embaçada no resultado).
+  const prevPrio = [...escolhidos.map(p => ({ titulo: p.prioridade, texto: p.porque })), ...dicas.map(d => ({ titulo: d.titulo, texto: d.texto }))]
+    .filter((x, i, a) => a.findIndex(y => y.titulo === x.titulo) === i).slice(0, 3);
+  const previa = {
+    entrega_enxerga: principal
+      ? 'Suas respostas sugerem uma distância entre o que a empresa entrega e o que o cliente consegue enxergar: ' + principal.titulo.toLowerCase() + '. O diagnóstico completo mostra onde essa distância aparece e como reduzi-la.'
+      : 'Suas respostas indicam boas práticas. O diagnóstico completo verifica se o valor que a empresa entrega aparece da mesma forma em todos os pontos de contato com o cliente.',
+    prioridades: prevPrio,
+  };
+  return { resumo: leitura, pontos_fortes: pontos_fortes.map(item), pontos_melhorar: fragilidades.slice(0, 3).map(item), dicas: dicas.slice(0, 3), previa };
 }
 
 // Validação das respostas recebidas pela função (nunca confiar no navegador).

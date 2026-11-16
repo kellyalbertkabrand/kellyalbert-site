@@ -18,6 +18,11 @@ const AnaliseSchema = z.object({
     .describe("De dois a três pontos a melhorar, do mais importante para o menos. Sempre pelo menos dois."),
   dicas: z.array(Item("Uma ação, começando com verbo. Até 6 palavras.", "Como fazer, de forma concreta e específica para o segmento, possível de começar nesta semana. Até 25 palavras."))
     .describe("Exatamente três dicas práticas, a primeira é a mais urgente."),
+  previa: z.object({
+    entrega_enxerga: z.string().describe("O que sua marca entrega × o que seu cliente enxerga: a distância entre o valor que a empresa relata ter e o que ela consegue mostrar ao cliente, com base nas respostas. Até 45 palavras."),
+    prioridades: z.array(Item("A melhoria, começando com verbo. Até 7 palavras.", "Por que vem primeiro e o caminho inicial para resolver, específico para o segmento. Até 35 palavras."))
+      .describe("Exatamente três prioridades do diagnóstico completo, da mais urgente para a menos."),
+  }).describe("Prévia do diagnóstico completo. Aparece embaçada para o empresário, como amostra do que ele recebe ao comprar. Precisa ser real, específica e diferente das dicas: não repita o texto das outras partes."),
 });
 
 const SISTEMA = `Você é a Inteligência Artificial da KA | Inteligência para Marcas (Kelly Albert, estrategista de marcas) e analisa o Teste de Autoavaliação de Marca, um teste gratuito. O empresário respondeu 11 perguntas de múltipla escolha em dois pilares:
@@ -60,7 +65,7 @@ Autoavaliações tendem a ser otimistas: o empresário costuma marcar a alternat
 O RESULTADO TEM TRÊS PARTES, CURTAS E PROFUNDAS
 1. Pontos fortes avaliados.
 2. Pontos a melhorar: cada um nasce do cruzamento de respostas, não de uma resposta isolada.
-3. Dicas: três ações práticas, concretas, específicas para o tipo de negócio, que a pessoa consiga começar nesta semana sozinha (por exemplo: "pergunte a dez clientes que voltam por que escolhem você e anote as palavras exatas"). Cada dica ataca um ponto a melhorar. Nada de "melhore sua comunicação", "fortaleça sua marca" ou "invista em marketing". Não entregue plano de implementação, posicionamento, proposta de valor pronta, plano de comunicação ou identidade verbal: isso é aprofundado na aula e nos encontros práticos.
+3. Dicas: três ações práticas, concretas, específicas para o tipo de negócio, que a pessoa consiga começar nesta semana sozinha (por exemplo: "pergunte a dez clientes que voltam por que escolhem você e anote as palavras exatas"). Cada dica ataca um ponto a melhorar. Nada de "melhore sua comunicação", "fortaleça sua marca" ou "invista em marketing". Não entregue plano de implementação, posicionamento, proposta de valor pronta, plano de comunicação ou identidade verbal: isso é aprofundado no diagnóstico completo.
 A leitura precisa ser rápida no celular. Respeite os limites de palavras, eles são rígidos. Não repita entre as partes o que já foi dito. Cada frase traz uma ideia nova, sem introduções nem frases de transição. O empresário deve terminar pensando: "agora entendi algo importante sobre a minha empresa e sei por onde começar". Não invente fatos.
 
 As dificuldades marcadas pelo empresário servem para contextualizar e priorizar; elas não provam problema.
@@ -116,5 +121,6 @@ export async function escreverResultado(dados, classe) {
     pontos_fortes: r.pontos_fortes.slice(0, 3).map(item),
     pontos_melhorar: r.pontos_melhorar.slice(0, 3).map(item),
     dicas: r.dicas.slice(0, 3).map(item),
+    previa: { entrega_enxerga: limpar(r.previa?.entrega_enxerga), prioridades: (r.previa?.prioridades || []).slice(0, 3).map(item) },
   };
 }
