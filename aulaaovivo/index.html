@@ -89,10 +89,10 @@ h1,h2,h3,p,li{text-wrap:balance}
 .preco__12x b{font-weight:600;color:#fff}
 .nota,.secao p.nota{margin:12px 0 0;font-size:.78rem;color:var(--papel-60);text-wrap:balance}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:64px;padding:20px 36px;border-radius:100px;background:var(--laranja);border:2px solid #FFD7A8;color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 1px 3px rgba(110,45,0,.45);box-shadow:0 0 10px rgba(255,214,160,.95),0 0 28px rgba(255,196,120,.75),0 0 64px rgba(255,170,80,.5);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:64px;padding:20px 36px;border-radius:100px;background:var(--laranja);border:2px solid rgba(255,215,168,.7);color:#fff;font-family:inherit;font-size:1rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;text-align:center;text-shadow:0 1px 3px rgba(110,45,0,.45);box-shadow:0 0 6px rgba(255,214,160,.55),0 0 18px rgba(255,190,110,.35);transition:transform .15s ease,background .15s ease;animation:neonbtn 2.4s ease-in-out infinite}
 .btn:hover{background:var(--laranja-claro);transform:translateY(-2px)}
 .btn svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-@keyframes neonbtn{0%,100%{box-shadow:0 0 10px rgba(255,214,160,.95),0 0 28px rgba(255,196,120,.75),0 0 64px rgba(255,170,80,.5)}50%{box-shadow:0 0 16px rgba(255,226,185,1),0 0 44px rgba(255,200,130,.95),0 0 96px rgba(255,170,80,.7)}}
+@keyframes neonbtn{0%,100%{box-shadow:0 0 6px rgba(255,214,160,.55),0 0 18px rgba(255,190,110,.35)}50%{box-shadow:0 0 9px rgba(255,220,170,.75),0 0 28px rgba(255,190,110,.5)}}
 .hero .btn{margin-top:24px;width:100%;max-width:440px}
 .seguro,.secao p.seguro{margin:14px 0 0;justify-content:center;font-size:.92rem;font-weight:400;color:var(--papel-60);display:flex;align-items:center;gap:.45em}
 .seguro svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
@@ -130,6 +130,7 @@ h1,h2,h3,p,li{text-wrap:balance}
 .ferramenta h3{margin:0;font-size:clamp(1.45rem,5vw,1.9rem);font-weight:300;line-height:1.18}
 .ferramenta h3 b{font-weight:800;color:var(--marinho)}
 .ferramenta p{color:#2B3A4A !important;font-size:1.06rem !important}
+.ferramenta p strong{color:var(--marinho)}
 .ferramenta__itens{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:10px}
 .ferramenta__itens li{display:flex;align-items:flex-start;gap:12px;font-size:1.02rem;color:#2B3A4A;line-height:1.45}
 .ferramenta__itens svg{width:22px;height:22px;flex:none;margin-top:1px;stroke:#D86F2A;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -200,7 +201,7 @@ h1,h2,h3,p,li{text-wrap:balance}
     <div class="wrap">
       <h2>Esta aula é para <b>Empresários e Profissionais Liberais.</b></h2>
       <p>Não basta ter uma boa marca. O cliente precisa reconhecer seu valor.</p>
-      <p>Criar sua marca, seja ela pessoal ou empresarial, é construir um dos ativos mais importantes do seu negócio.</p>
+      <p>Sua marca, seja ela pessoal ou empresarial, é um dos ativos mais importantes do seu negócio.</p>
       <p>Mas não basta ser bom no que faz, oferecer qualidade ou ter anos de experiência.</p>
       <p class="destaque">O cliente precisa entender <strong>por que vale a pena escolher você.</strong></p>
     </div>
@@ -208,12 +209,13 @@ h1,h2,h3,p,li{text-wrap:balance}
 
   <section class="secao">
     <div class="wrap">
-      <h2>Para Empresários e Profissionais Liberais que querem <b>entender:</b></h2>
+      <h2>O que você vai <b>aprender na aula:</b></h2>
       <ol class="lista">
-        <li>Por que o cliente escolhe o concorrente, e não a sua marca.</li>
-        <li>O que faz o cliente reconhecer valor além do preço.</li>
-        <li>Onde sua marca pode estar perdendo valor.</li>
-        <li>Como demonstrar seus diferenciais e dar mais motivos para o cliente escolher você.</li>
+        <li>Como fazer o cliente escolher sua empresa e não o concorrente.</li>
+        <li>Como demonstrar que seu produto ou serviço vale o preço que você cobra.</li>
+        <li>Como identificar e comunicar os diferenciais que realmente importam para o cliente.</li>
+        <li>Como transmitir confiança e demonstrar a qualidade da sua empresa.</li>
+        <li>Como identificar onde sua marca está perdendo valor e o que fazer para melhorar.</li>
       </ol>
     </div>
   </section>
@@ -222,14 +224,11 @@ h1,h2,h3,p,li{text-wrap:balance}
   <section class="secao">
     <div class="wrap">
       <h2>Aula online e ao vivo, pelo <b>Google Meet</b> <img class="meet-h2" src="/images/aulaaovivo-google-meet.svg" alt="" width="256" height="201"></h2>
-      <p style="margin-bottom:28px">E você também recebe uma <strong>ferramenta exclusiva!</strong></p>
-      <div class="ferramenta">
-        <span class="rotulo">Incluída na inscrição</span>
-        <h3><b>Autoavaliação de Marca</b> com Inteligência Artificial</h3>
-        <ul class="ferramenta__itens">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Avalie como sua marca pessoal ou empresarial <b>entrega e comunica seu valor.</b></span></li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Receba uma <b>análise personalizada</b> com pontos de melhoria e recomendações práticas.</span></li>
-        </ul>
+      <div class="ferramenta" style="margin-top:32px">
+        <span class="rotulo">Ferramenta exclusiva</span>
+        <h3><b>Autoavaliação de Marca</b></h3>
+        <p>Você também receberá <strong>60 dias de acesso à Autoavaliação de Marca</strong>, uma ferramenta com análise por Inteligência Artificial, desenvolvida a partir do método Marca com Essência<sup style="font-size:.55em;">©</sup>.</p>
+        <p>A ferramenta avalia, com base nas suas respostas, como sua empresa <strong>entrega e comunica valor</strong>, identificando pontos de melhoria e oferecendo recomendações práticas.</p>
         <span class="ferramenta__60">Acesso por 60 dias</span>
       </div>
     </div>
