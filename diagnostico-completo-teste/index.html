@@ -365,6 +365,63 @@ button,input{font-family:inherit}
 .pv-bt svg{width:18px;height:18px;flex:none}
 .pv-bt:hover{background:#F59B57}
 
+/* Diagnóstico completo (relatório) */
+.pv-bt{width:100%;border:0;cursor:pointer;font-family:inherit}
+.pv-teste{margin:8px 0 0;font-size:.8rem;color:rgba(248,247,242,.6)}
+.dc{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28);margin-top:16px}
+.dc b{color:var(--marinho)}
+.dc-sec{padding:24px 18px;border-top:1px solid rgba(216,111,42,.22)}
+.dc-sec:first-child{border-top:6px solid #D86F2A}
+.dc-eyebrow{margin:0;font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#D86F2A}
+.dc-eyebrow .num{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:50%;background:#D86F2A;color:#fff;font-size:.68rem;letter-spacing:0;vertical-align:1px}
+.dc-empresa{margin:8px 0 0;font-size:1.7rem;font-weight:800;line-height:1.15;color:#D86F2A}
+.dc-data{margin:4px 0 0;font-size:.88rem;color:rgba(21,37,53,.6)}
+.dc-resumo{margin:14px 0 0;font-size:1.06rem;line-height:1.6}
+.dc-inds{display:grid;gap:12px;margin-top:18px}
+.dc-inds small{font-size:.8rem;color:rgba(21,37,53,.55)}
+.dc-ind__topo{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:.95rem}
+.dc-ind__topo span{font-size:.84rem;font-weight:600;color:rgba(21,37,53,.65)}
+.dc-ind__barra{height:10px;margin-top:6px;border-radius:10px;background:rgba(21,37,53,.1);overflow:hidden}
+.dc-ind__barra i{display:block;height:100%;border-radius:10px;background:#3D6B7E}
+.dc-ind__barra i.fragil{background:#D86F2A}.dc-ind__barra i.desenvolvimento{background:#E3A04F}
+.dc-ee{display:grid;gap:10px;margin-top:14px}
+.dc-ee__col{padding:14px;border-radius:14px;background:#fff;border:1px solid rgba(21,37,53,.1)}
+.dc-ee__col b{display:block;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.dc-ee__col p,.dc-ee__dist p{margin:6px 0 0;font-size:.98rem;line-height:1.55}
+.dc-ee__x{justify-self:center;font-size:1.6rem;font-weight:800;color:#D86F2A;line-height:1}
+.dc-ee__dist{margin-top:12px;padding:14px;border-radius:14px;background:rgba(216,111,42,.1);border-left:4px solid #D86F2A}
+.dc-ee__dist b{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#B5561A}
+.dc-pilar{margin-top:18px}
+.dc-pilar h3{margin:0;font-size:1.12rem;font-weight:800}
+.dc-pilar__sub{margin:2px 0 0;font-size:.86rem;color:rgba(21,37,53,.6)}
+.dc-pilar__leitura{margin:10px 0 0;font-size:1rem;line-height:1.55}
+.dc-rot{margin:14px 0 0;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(21,37,53,.6)}
+.dc-itens{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.dc-itens li{position:relative;padding:10px 12px 10px 38px;border-radius:12px;background:#fff;font-size:.95rem;line-height:1.5}
+.dc-itens li::before{position:absolute;left:12px;top:10px;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;font-weight:800;color:#fff}
+.dc-itens--ok li::before{content:"✓";background:#3D6B7E}.dc-itens--fragil li::before{content:"!";background:#D86F2A}.dc-itens--verificar li::before{content:"?";background:rgba(21,37,53,.45)}
+.dc-intro{margin:10px 0 0;font-size:.94rem;color:rgba(21,37,53,.7)}
+.dc-prio{margin-top:14px;border-radius:16px;background:#fff;border:1px solid rgba(216,111,42,.25);overflow:hidden}
+.dc-prio__topo{display:flex;gap:12px;padding:14px;background:rgba(216,111,42,.1)}
+.dc-prio__n{flex:none;width:30px;height:30px;border-radius:50%;background:#D86F2A;color:#fff;font-weight:800;display:grid;place-items:center}
+.dc-prio__topo h3{margin:3px 0 0;font-size:1.08rem;font-weight:800;line-height:1.3}
+.dc-prio__porque{margin:6px 0 0;font-size:.9rem;line-height:1.5;color:rgba(21,37,53,.75)}
+.dc-prio__corpo{padding:2px 14px 14px}
+.dc-prio__item{padding-top:12px}
+.dc-prio__rot{margin:0;display:flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#D86F2A}
+.dc-prio__rot svg{width:16px;height:16px;flex:none}
+.dc-prio__item p{margin:4px 0 0;font-size:.95rem;line-height:1.5}
+.dc-prio__item ol{margin:6px 0 0;padding-left:20px;display:grid;gap:4px;font-size:.95rem;line-height:1.5}
+.dc-mc__card{display:flex;gap:14px;align-items:center;margin-top:12px;padding:16px;border-radius:16px;background:var(--marinho);color:var(--papel)}
+.dc-mc__card b{color:#fff;font-size:1.05rem}
+.dc-mc__card p{margin:4px 0 0;font-size:.9rem;color:rgba(248,247,242,.85)}
+.dc-mc__play{flex:none;width:46px;height:46px;border-radius:50%;background:var(--laranja);color:#fff;display:grid;place-items:center;font-size:1rem}
+.dc-aviso{padding:16px 18px;font-size:.84rem;line-height:1.55;color:rgba(21,37,53,.65);background:rgba(21,37,53,.04)}
+.dc-acoes{padding:16px 18px 22px;display:grid;gap:10px}
+.dc-acoes .btn{margin:0}
+.btn--contorno-escuro{background:transparent;border:1.5px solid rgba(21,37,53,.25);color:var(--marinho)}
+@media print{body>*:not(.app){display:none!important}.dc{box-shadow:none}.dc-acoes{display:none}.dc-prio,.dc-itens li{break-inside:avoid}}
+
 /* Aula */
 .convite{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
 .convite__topo{background:#D86F2A;color:#fff;padding:26px 20px 24px;text-align:center;display:grid;justify-items:center;gap:14px}
@@ -453,12 +510,13 @@ button,input{font-family:inherit}
 <script type="module">
 // Teste de Autoavaliação de Marca (Campanha Crise).
 // Perguntas, classificação e textos de reserva ficam em /valorpercebido/regras.mjs (o mesmo arquivo que a função usa).
-import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva } from '/diagnostico-completo-teste/regras.mjs?v=1';
+import { CONTEXTO, PERGUNTAS, PILARES, DIFICULDADES, PERFIS, NATUREZA, ROTULOS, REFLETE, AVISO, FERRAMENTA, classificar, textosDeReserva, COMPLETO, TOTAL_COMPLETO, PILARES_COMPLETO, ESTADOS_COMPLETO, classificarCompleto, completoDeReserva } from '/diagnostico-completo-teste/regras.mjs?v=2';
 
 // ─── CONFIGURAÇÃO ───────────────────────────────────────────────
 var CONFIG = {
   // Diagnóstico completo: link do checkout da Hotmart. Enquanto estiver vazio, o botão abre o WhatsApp da Kelly.
   checkout: '',
+  modoTeste: true, // ambiente de teste: o botão Desbloquear libera o diagnóstico completo sem pagamento
   // (dados da aula antiga, não aparecem mais na página)
   aulaData: 'Sábado, 21/11/26',
   aulaDataCurta: '21/11',
@@ -502,13 +560,20 @@ PERGUNTAS.forEach(function(p){
 });
 ETAPAS.push({ id:'dificuldades', tipo:'dificuldades' });
 var TOTAL_PERGUNTAS = PERGUNTAS.length;
+// Fase 2 (diagnóstico completo): 24 perguntas novas.
+var ETAPAS2 = COMPLETO.map(function(p){
+  if(p.tipo==='texto') return { id:p.id, tipo:'texto', q:p.q, ajuda:p.ajuda, max:p.max, curto:!p.longo, obrigatorio:!!p.obrigatorio, opcional:!!p.opcional, bloco:p.bloco||null, fase2:true };
+  if(p.tipo==='multi') return { id:p.id, tipo:'multi', q:p.q, ajuda:p.ajuda, opcoes:p.opcoes, outro:p.outro, bloco:p.bloco||null, fase2:true };
+  return { id:p.id, tipo:'opcoes', q:p.q, r:p.r.map(function(x){ return x[0]; }), bloco:p.bloco||null, fase2:true };
+});
+function ativarFase2(){ if(!ETAPAS.some(function(e){ return e.fase2; })) { estado.inicio2 = ETAPAS.length; ETAPAS = ETAPAS.concat(ETAPAS2); } }
 
 // ─── ESTADO ─────────────────────────────────────────────────────
 var body = document.getElementById('rx-body');
 var footer = document.getElementById('rx-footer');
 var reduz = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var DIGITANDO = reduz ? 0 : 600;
-function novoEstado(){ return {passo:0, respostas:{}, dificuldades:null, concluido:false}; }
+function novoEstado(){ return {passo:0, respostas:{}, dificuldades:null, concluido:false, fase:1, inicio2:null}; }
 var estado = novoEstado();
 var utm = lerUTM();
 
@@ -532,6 +597,12 @@ function evento(nome, dados){
   if(window.console) console.log('[autoavaliacao]', nome, dados||'');
 }
 function progresso(){
+  if(estado.fase===2){
+    var f2 = COMPLETO.filter(function(p){ return estado.respostas[p.id]!==undefined; }).length;
+    document.getElementById('rx-prog-txt').textContent = (11+f2)+' de '+TOTAL_COMPLETO;
+    document.getElementById('rx-prog').style.width = Math.round((11+f2)*100/TOTAL_COMPLETO)+'%';
+    return;
+  }
   var feitas = PERGUNTAS.filter(function(p){ return estado.respostas[p.id]!==undefined; }).length;
   document.getElementById('rx-prog-txt').textContent = feitas+' de '+TOTAL_PERGUNTAS;
   document.getElementById('rx-prog').style.width = Math.round(Math.min(estado.passo, ETAPAS.length)*100/ETAPAS.length)+'%';
@@ -556,7 +627,10 @@ function marcaBloco(chave){
   var M = {
     contexto: ['Antes de começar', 'Sobre o seu negócio', 'Para a leitura considerar o seu tipo de empresa'],
     p1: ['Pilar 1 de 2', PILARES[1].nome, PILARES[1].sub],
-    p2: ['Pilar 2 de 2', PILARES[2].nome, PILARES[2].sub]
+    p2: ['Pilar 2 de 2', PILARES[2].nome, PILARES[2].sub],
+    empresa: ['Diagnóstico completo', 'Sobre a sua empresa', 'Para o diagnóstico considerar o que você vende e onde'],
+    entrega: ['Parte 1 de 2', PILARES_COMPLETO[1].nome, PILARES_COMPLETO[1].sub],
+    comunicacao: ['Parte 2 de 2', PILARES_COMPLETO[2].nome, PILARES_COMPLETO[2].sub]
   }[chave];
   if(!M) return;
   var b=document.createElement('div'); b.className='bloco-marca'; b.setAttribute('role','heading'); b.setAttribute('aria-level','2');
@@ -565,6 +639,7 @@ function marcaBloco(chave){
 }
 function botaoVoltar(){
   if(estado.passo<=0) return;
+  if(estado.fase===2 && estado.passo<=estado.inicio2) return;
   var v=document.createElement('button'); v.type='button'; v.className='voltar';
   v.innerHTML='<span aria-hidden="true">‹</span> Voltar à pergunta anterior';
   v.addEventListener('click', voltar);
@@ -584,6 +659,7 @@ function textoResposta(et){
   if(et.tipo==='dificuldades') return textoDificuldades();
   var v = estado.respostas[et.id];
   if(et.tipo==='opcoes') return et.r[v] || '';
+  if(et.tipo==='multi') return (v||[]).map(function(x){ return x.replace(/^Outro canal: /,''); }).join(', ');
   if(et.tipo==='lista') return String(v||'').replace(/^Outro: /,'');
   return v ? v : 'Pulei';
 }
@@ -592,8 +668,10 @@ function textoDificuldades(){ var d = estado.dificuldades || []; return d.length
 // Reconstrói a conversa até o passo atual (usado ao voltar).
 function redesenhar(){
   footer.innerHTML=''; body.innerHTML='';
-  TEXTOS.abertura.forEach(bolhaFixa);
-  for(var i=0;i<estado.passo;i++){
+  var de = 0;
+  if(estado.fase===2){ bolhaFixa('Diagnóstico completo: mais 24 perguntas. As 11 do teste já estão salvas.'); de = estado.inicio2; }
+  else TEXTOS.abertura.forEach(bolhaFixa);
+  for(var i=de;i<estado.passo;i++){
     var et = ETAPAS[i];
     if(et.bloco) marcaBloco(et.bloco);
     bolhaFixa(et.tipo==='dificuldades' ? DIFICULDADES.titulo : et.q);
@@ -619,7 +697,7 @@ function avancar(et, valor, mostrar){
 function iniciar(){
   var salvo = carregar();
   if(salvo && !salvo.concluido && salvo.passo>0){
-    estado = salvo; progresso();
+    estado = salvo; if(estado.fase===2) ativarFase2(); progresso();
     bot(TEXTOS.retomar, function(){
       botoes([
         {t:'Continuar de onde parei', classe:'btn btn--laranja', f:function(){ evento('retomou',{passo:estado.passo}); redesenhar(); perguntar(); }},
@@ -634,12 +712,13 @@ function iniciar(){
 }
 
 function perguntar(){
-  if(estado.passo >= ETAPAS.length){ capturar(); return; }
+  if(estado.passo >= ETAPAS.length){ if(estado.fase===2) enviarCompleto(); else capturar(); return; }
   var et = ETAPAS[estado.passo];
   if(et.bloco){ if(et.bloco==='p2') evento('pilar1_concluido'); marcaBloco(et.bloco); }
   if(et.tipo==='opcoes') return perguntarOpcoes(et);
   if(et.tipo==='texto') return perguntarTexto(et);
   if(et.tipo==='lista') return perguntarLista(et);
+  if(et.tipo==='multi') return perguntarMulti(et);
   return perguntarDificuldades(et);
 }
 
@@ -725,6 +804,127 @@ function perguntarTexto(et){
     rolar();
     if(!reduz) campo.focus({preventScroll:true});
   });
+}
+
+function perguntarMulti(et){
+  bot(et.q, function(){
+    var atual = estado.respostas[et.id] || [];
+    var outroAtual = (atual.filter(function(x){ return x.indexOf(et.outro+': ')===0; })[0]||'').replace(et.outro+': ','');
+    footer.innerHTML =
+      '<form class="dif" id="rx-multi" novalidate>'+
+        (et.ajuda ? '<p class="campo-ajuda">'+esc(et.ajuda)+'</p>' : '')+
+        '<fieldset class="dif__grupo">'+et.opcoes.map(function(o){ return '<label class="dif__item"><input type="checkbox" name="mt" value="'+esc(o)+'"'+(atual.indexOf(o)>=0?' checked':'')+'><span>'+esc(o)+'</span></label>'; }).join('')+
+        '<input class="dif__outra aberta" id="rx-multi-outro" type="text" maxlength="80" placeholder="'+esc(et.outro)+' (opcional)" value="'+esc(outroAtual)+'"></fieldset>'+
+        '<p class="erro" id="rx-multi-erro" role="alert"></p>'+
+        '<button type="submit" class="btn btn--laranja">Continuar</button>'+
+      '</form>';
+    var form = document.getElementById('rx-multi'), erro = document.getElementById('rx-multi-erro');
+    form.addEventListener('change', function(){ erro.style.display='none'; });
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var lista = [].slice.call(form.querySelectorAll('input[name="mt"]:checked')).map(function(c){ return c.value; });
+      var o = document.getElementById('rx-multi-outro').value.trim().replace(/\s+/g,' ');
+      if(o.replace(/[^\p{L}]/gu,'').length>=2) lista.push(et.outro+': '+o);
+      if(!lista.length){ erro.textContent='Marque pelo menos uma opção ou escreva no campo.'; erro.style.display='block'; return; }
+      avancar(et, lista, lista.map(function(x){ return x.replace(et.outro+': ',''); }).join(', '));
+    });
+    botaoVoltar();
+    var pergunta = body.lastElementChild;
+    setTimeout(function(){ if(pergunta) pergunta.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 80);
+  });
+}
+
+// ─── FASE 2: DIAGNÓSTICO COMPLETO ──────────────────────────────
+function desbloquear(){
+  var cta = document.querySelector('.pv-cta');
+  if(cta) cta.innerHTML = '<h4>🔓 Diagnóstico completo <b>liberado</b></h4>';
+  estado.fase = 2; ativarFase2(); estado.passo = estado.inicio2; estado.concluido = false; salvar(); progresso();
+  evento('desbloqueou_completo');
+  bots(['Seu diagnóstico completo foi liberado! 🔓', 'Agora são mais 24 perguntas, cerca de 10 minutos. As 11 que você já respondeu ficam salvas.', 'Quanto mais sinceras as respostas, mais útil fica o diagnóstico.'], function(){ perguntar(); });
+}
+
+function entradaCompleta(){
+  var d = entrada(), r = {};
+  COMPLETO.forEach(function(p){ r[p.id] = estado.respostas[p.id]; });
+  d.completo = { respostas: r };
+  return d;
+}
+
+function enviarCompleto(){
+  var dados = entradaCompleta();
+  var lead = {}; try{ lead = JSON.parse(localStorage.getItem(CONFIG.leadKey)||'{}'); }catch(e){}
+  var r24 = {}; COMPLETO.forEach(function(p){ if(p.r) r24[p.id] = estado.respostas[p.id]; });
+  var cc = classificarCompleto(dados.respostas, r24);
+  var reserva = completoDeReserva(cc);
+  estado.concluido = true; salvar();
+  footer.innerHTML='';
+  bot('Pronto! Estou montando o seu diagnóstico completo, cruzando as 35 respostas. Leva cerca de 1 minuto.', function(){
+    var espera = document.createElement('div'); espera.className='digitando'; espera.innerHTML='<span></span><span></span><span></span>';
+    body.appendChild(espera); rolar(espera);
+    var fim = Date.now() + 150000, feito = false;
+    var termina = function(res){ if(feito) return; feito = true; espera.remove(); mostrarCompleto(lead, dados, (res&&res.classe)||cc, (res&&res.resultado)||reserva); };
+    setTimeout(function(){ termina(null); }, 152000);
+    fetch('/api/completo-teste/iniciar', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(dados)})
+      .then(function(x){ return x.ok ? x.json() : x.json().then(function(e){ console.warn('[completo]', e); return null; }); })
+      .then(function(r){
+        if(!r){ termina(null); return; }
+        if(r.status==='pronto'){ termina(r); return; }
+        var melhor = r;
+        (function consulta(){
+          if(feito) return;
+          if(Date.now() > fim){ termina(melhor); return; }
+          setTimeout(function(){
+            fetch('/api/completo-teste/resultado?id='+encodeURIComponent(r.id)).then(function(x){ return x.ok ? x.json() : null; })
+              .then(function(x){ if(x){ melhor = x; if(x.status==='pronto'){ termina(x); return; } } consulta(); }).catch(consulta);
+          }, 2500);
+        })();
+      }).catch(function(){ termina(null); });
+  });
+}
+
+var ICO = {
+  melhorar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>',
+  implementar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>',
+  rotina: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></svg>',
+  responsavel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+  acompanhar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>'
+};
+
+function mostrarCompleto(lead, dados, cc, t){
+  var c = dados.completo.respostas, n = 0, num = function(){ n++; return '<span class="num">'+n+'</span>'; };
+  var primeiro = esc(String(lead.nome||'').split(' ')[0]);
+  var hoje = new Date().toLocaleDateString('pt-BR');
+  var lista = function(itens, cls, rot){ return itens && itens.length ? '<p class="dc-rot">'+rot+'</p><ul class="dc-itens dc-itens--'+cls+'">'+itens.map(function(i){ return '<li>'+esc(i)+'</li>'; }).join('')+'</ul>' : ''; };
+  var indice = function(k){ var p = cc.pilares[k]; return '<div class="dc-ind"><div class="dc-ind__topo"><b>'+PILARES_COMPLETO[k].nome+'</b><span>'+(p.indice==null?'–':p.indice)+'/100 · '+ESTADOS_COMPLETO[p.estado]+'</span></div><div class="dc-ind__barra"><i class="'+p.estado+'" style="width:'+(p.indice||0)+'%"></i></div></div>'; };
+  var pilar = function(p){ return '<div class="dc-pilar"><h3>'+PILARES_COMPLETO[p.pilar].nome+'</h3><p class="dc-pilar__sub">'+PILARES_COMPLETO[p.pilar].sub+'</p>'+(p.leitura?'<p class="dc-pilar__leitura">'+esc(p.leitura)+'</p>':'')+lista(p.funciona,'ok','Funciona bem')+lista(p.fragil,'fragil','Possíveis fragilidades')+lista(p.verificar,'verificar','Precisa ser verificado')+'</div>'; };
+  var item = function(ico, rot, conteudo){ return '<div class="dc-prio__item"><p class="dc-prio__rot">'+ICO[ico]+rot+'</p>'+conteudo+'</div>'; };
+  var prio = function(p, i){ return '<div class="dc-prio"><div class="dc-prio__topo"><span class="dc-prio__n">'+(i+1)+'</span><div><h3>'+esc(p.titulo)+'</h3><p class="dc-prio__porque">'+esc(p.porque)+'</p></div></div><div class="dc-prio__corpo">'+
+    item('melhorar','O que melhorar','<p>'+esc(p.o_que_melhorar)+'</p>')+
+    item('implementar','Como implementar','<ol>'+(p.como_implementar||[]).map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('')+'</ol>')+
+    item('rotina','Como virar rotina','<p>'+esc(p.rotina)+'</p>')+
+    item('responsavel','Quem pode ser responsável','<p>'+esc(p.responsavel)+'</p>')+
+    item('acompanhar','Como acompanhar a evolução','<p>'+esc(p.acompanhar)+'</p>')+'</div></div>'; };
+  var ee = t.entrega_enxerga || {};
+  var wrap = document.createElement('div'); wrap.className='res';
+  wrap.innerHTML =
+    '<article class="dc" aria-label="Diagnóstico completo">'+
+      '<section class="dc-sec"><p class="dc-eyebrow">Diagnóstico Completo de Marca</p>'+
+        '<h2 class="dc-empresa">'+esc(c.CE||'')+'</h2><p class="dc-data">'+esc(String(dados.segmento||'').replace(/^Outro: /,''))+' · '+hoje+(primeiro?' · '+primeiro:'')+'</p>'+
+        '<p class="dc-resumo">'+esc(t.resumo)+'</p><div class="dc-inds">'+indice(1)+indice(2)+'<small>Índice de 0 a 100 calculado a partir das suas 35 respostas.</small></div></section>'+
+      '<section class="dc-sec"><p class="dc-eyebrow">'+num()+'O que sua marca entrega × O que seu cliente enxerga</p>'+
+        '<div class="dc-ee"><div class="dc-ee__col"><b>O que sua marca entrega</b><p>'+esc(ee.entrega)+'</p></div><div class="dc-ee__x">×</div><div class="dc-ee__col"><b>O que o cliente provavelmente enxerga</b><p>'+esc(ee.enxerga)+'</p></div></div>'+
+        '<div class="dc-ee__dist"><b>A distância</b><p>'+esc(ee.distancia)+'</p></div></section>'+
+      '<section class="dc-sec"><p class="dc-eyebrow">'+num()+'Análise dos dois pilares</p>'+(t.pilares||[]).map(pilar).join('')+'</section>'+
+      '<section class="dc-sec"><p class="dc-eyebrow">'+num()+'Suas 3 prioridades</p><p class="dc-intro">Para cada prioridade, uma prática contínua: o que melhorar, como implementar, como virar rotina, quem cuida e como acompanhar.</p>'+(t.prioridades||[]).map(prio).join('')+'</section>'+
+      '<section class="dc-sec dc-mc"><p class="dc-eyebrow">'+num()+'Sua masterclass</p><div class="dc-mc__card"><span class="dc-mc__play">▶</span><div><b>Do diagnóstico à prática</b><p>Masterclass gravada da Kelly Albert para você aplicar este diagnóstico. <i>Vídeo em breve.</i></p></div></div></section>'+
+      '<section class="dc-aviso">Este diagnóstico é baseado nas informações fornecidas por você, e não em uma pesquisa com os seus clientes. Ele identifica oportunidades e orienta melhorias; não substitui um projeto completo de posicionamento.</section>'+
+      '<div class="dc-acoes"><button type="button" class="btn btn--caramelo-contorno" id="dc-pdf">Salvar em PDF</button><button type="button" class="btn btn--contorno-escuro" id="dc-refazer">Recomeçar o teste (ambiente de teste)</button></div>'+
+    '</article>';
+  body.appendChild(wrap);
+  setTimeout(function(){ wrap.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 60);
+  document.getElementById('dc-pdf').addEventListener('click', function(){ window.print(); });
+  document.getElementById('dc-refazer').addEventListener('click', function(){ limpar(); location.reload(); });
+  evento('completo_mostrado',{fonte:t.fonte||'regras'});
 }
 
 function perguntarDificuldades(et){
@@ -967,7 +1167,9 @@ function previaHtml(classe, t){
         '<li>As 3 prioridades com o passo a passo, a rotina, o responsável e como acompanhar.</li>'+
         '<li>Masterclass gravada da Kelly Albert.</li>'+
       '</ul>'+
-      '<a class="pv-bt" id="rx-completo" href="'+link+'" target="_blank" rel="noopener">'+cad+'Desbloquear meu diagnóstico completo</a>'+
+      (CONFIG.modoTeste
+        ? '<button type="button" class="pv-bt" id="rx-completo">'+cad+'Desbloquear meu diagnóstico completo</button><p class="pv-teste">Ambiente de teste: libera sem pagamento.</p>'
+        : '<a class="pv-bt" id="rx-completo" href="'+link+'" target="_blank" rel="noopener">'+cad+'Desbloquear meu diagnóstico completo</a>')+
     '</div>'+
   '</section>';
 }
@@ -1014,7 +1216,7 @@ function mostrarResultado(lead, dados, classe, t){
   document.getElementById('rx-prog').style.width='100%';
   setTimeout(function(){ wrap.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 60);
 
-  document.getElementById('rx-completo').addEventListener('click', function(){ evento('clique_diagnostico_completo',{perfil:classe.perfil}); });
+  document.getElementById('rx-completo').addEventListener('click', function(){ evento('clique_diagnostico_completo',{perfil:classe.perfil}); if(CONFIG.modoTeste) desbloquear(); });
   document.getElementById('rx-copiar').addEventListener('click', function(){
     var it = function(l){ return l.length ? l.map(function(x){ return '• '+x.titulo+': '+x.texto; }).join('\n') : 'Nenhum item.'; };
     var txt = 'Teste de Autoavaliação de Marca\nKA | Inteligência para Marcas\n\n'+
