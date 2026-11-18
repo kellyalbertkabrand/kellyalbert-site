@@ -72,6 +72,12 @@
   to = "/autoavaliacao/admin/index.html"
   status = 200
 
+# Ambiente de teste do Diagnóstico Completo (não divulgar)
+[[redirects]]
+  from = "/diagnostico-completo-teste"
+  to = "/diagnostico-completo-teste/index.html"
+  status = 200
+
 # endereço antigo do teste: leva para o novo
 [[redirects]]
   from = "/raio-x-marca"
@@ -208,3 +214,14 @@
   [headers.values]
     Content-Type = "text/javascript; charset=utf-8"
     Cache-Control = "public, max-age=300"
+
+[[headers]]
+  for = "/diagnostico-completo-teste/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/diagnostico-completo-teste/*.mjs"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+    Cache-Control = "no-cache"
