@@ -420,7 +420,8 @@ button,input{font-family:inherit}
 .dc-acoes{padding:16px 18px 22px;display:grid;gap:10px}
 .dc-acoes .btn{margin:0}
 .btn--contorno-escuro{background:transparent;border:1.5px solid rgba(21,37,53,.25);color:var(--marinho)}
-@media print{body>*:not(.app){display:none!important}.dc{box-shadow:none}.dc-acoes{display:none}.dc-prio,.dc-itens li{break-inside:avoid}}
+#print-root{display:none}
+@media print{body.so-dc>*:not(#print-root){display:none!important}body.so-dc{background:#fff;padding:0}body.so-dc #print-root{display:block}#print-root .dc{box-shadow:none;margin:0;border-radius:0}#print-root .dc-acoes{display:none}.dc-prio__item,.dc-itens li,.dc-ee__col,.dc-ind{break-inside:avoid}.dc-eyebrow,.dc-rot,.dc-prio__rot{break-after:avoid}}
 
 /* Aula */
 .convite{background:var(--papel);color:var(--marinho);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.28)}
@@ -922,7 +923,12 @@ function mostrarCompleto(lead, dados, cc, t){
     '</article>';
   body.appendChild(wrap);
   setTimeout(function(){ wrap.scrollIntoView({behavior: reduz?'auto':'smooth', block:'start'}); }, 60);
-  document.getElementById('dc-pdf').addEventListener('click', function(){ window.print(); });
+  document.getElementById('dc-pdf').addEventListener('click', function(){
+    var raiz = document.getElementById('print-root'); if(!raiz){ raiz = document.createElement('div'); raiz.id='print-root'; document.body.appendChild(raiz); }
+    raiz.innerHTML = ''; raiz.appendChild(wrap.querySelector('.dc').cloneNode(true));
+    document.body.classList.add('so-dc'); window.print();
+    setTimeout(function(){ document.body.classList.remove('so-dc'); }, 500);
+  });
   document.getElementById('dc-refazer').addEventListener('click', function(){ limpar(); location.reload(); });
   evento('completo_mostrado',{fonte:t.fonte||'regras'});
 }
