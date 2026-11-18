@@ -404,3 +404,170 @@ export function validarEntrada(e) {
     .slice(0, 20);
   return { ok: true, dados: { segmento, clientes, compra, respostas, dificuldades } };
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// DIAGNÓSTICO COMPLETO · 24 perguntas novas (as 11 do teste já ficam salvas: 11 + 24 = 35)
+// Pilares do completo: 1 Entrega de valor · 2 Comunicação de valor.
+// ═══════════════════════════════════════════════════════════════════
+export const PILARES_COMPLETO = {
+  1: { nome: 'Entrega de valor', sub: 'O que a empresa efetivamente faz e oferece aos clientes' },
+  2: { nome: 'Comunicação de valor', sub: 'Como a empresa explica e demonstra o valor que oferece' },
+};
+// Onde cada pergunta do teste gratuito entra no diagnóstico completo.
+export const PILAR_DO_TESTE = { P1: 1, P2: 1, P3: 1, P5: 1, P4: 2, P6: 2, P7: 2, P8: 2, P9: 2, P10: 2, P11: 2 };
+
+export const CANAIS = ['Loja ou escritório físico', 'Site ou loja virtual', 'Instagram', 'WhatsApp', 'Google (Perfil da empresa)', 'LinkedIn', 'Marketplace', 'Vendedores ou representantes', 'Indicação de clientes', 'Feiras e eventos', 'Telefone ou e-mail'];
+
+export const COMPLETO = [
+  // Sobre a empresa (3)
+  { id: 'CE', tipo: 'texto', bloco: 'empresa', q: 'Qual é o nome da sua empresa?', max: 80, min: 2, obrigatorio: true },
+  { id: 'CO', tipo: 'texto', longo: true, q: 'Quais são os principais produtos ou serviços da sua empresa?', max: 240, min: 3, obrigatorio: true,
+    ajuda: 'Ex.: pães de fermentação natural, bolos e cafés; ou consultoria tributária e planejamento para empresas.' },
+  { id: 'CC', tipo: 'multi', q: 'Por quais canais sua empresa vende e atende?', ajuda: 'Marque todos os que você usa.', opcoes: CANAIS, outro: 'Outro canal' },
+  // Pilar 1 · Entrega de valor (11)
+  { id: 'E1', pilar: 1, bloco: 'entrega', tema: 'Qualidade', q: 'Como a empresa garante a qualidade do que entrega?', r: [
+    ['Temos padrões definidos e conferimos antes de cada entrega.', 'A'], ['Temos padrões, mas a conferência depende de quem faz.', 'B'],
+    ['Confiamos na experiência da equipe, sem padrão definido.', 'B'], ['A qualidade varia e às vezes recebemos reclamações.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'E2', pilar: 1, tema: 'Retrabalho e trocas', q: 'Com que frequência acontece retrabalho, troca ou devolução?', r: [
+    ['Quase nunca, e quando acontece registramos o motivo.', 'A'], ['Quase nunca, mas não registramos.', 'B'], ['De vez em quando.', 'B'], ['Com frequência.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'E3', pilar: 1, tema: 'Experiência do cliente', q: 'Como é a experiência do cliente, do primeiro contato até depois da compra?', r: [
+    ['Cada etapa tem um jeito combinado de atender, inclusive o pós-venda.', 'A'], ['O atendimento é bom, mas cada pessoa atende do seu jeito.', 'B'],
+    ['Atendemos bem na venda, mas depois da compra quase não há contato.', 'C'], ['Recebemos reclamações de demora ou falta de retorno.', 'C'], ['Nunca olhamos o atendimento como etapas.', 'D']] },
+  { id: 'E4', pilar: 1, tema: 'Tempo de resposta', q: 'Quanto tempo o cliente costuma esperar por uma resposta?', r: [
+    ['Pouco tempo, com um prazo combinado com a equipe.', 'A'], ['Respondemos no mesmo dia, mas sem prazo definido.', 'B'],
+    ['Depende de quem atende e do dia.', 'B'], ['Às vezes o cliente fica sem resposta.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'E5', pilar: 1, tema: 'Pós-venda', q: 'O que acontece depois que o cliente compra?', r: [
+    ['Temos um contato combinado de pós-venda para saber como foi.', 'A'], ['Mandamos mensagem de vez em quando, sem rotina.', 'B'],
+    ['Oferecemos algo novo quando surge oportunidade.', 'B'], ['Só falamos com o cliente se ele procurar.', 'C']] },
+  { id: 'E6', pilar: 1, tema: 'Venda e entrega alinhadas', q: 'O que a venda promete é o mesmo que a entrega cumpre?', r: [
+    ['Sim: venda e entrega combinam as promessas e conferimos.', 'A'], ['Quem vende é quem entrega, então fica igual.', 'B'],
+    ['Quase sempre, mas às vezes a venda promete mais.', 'B'], ['Já tivemos problemas por prometer o que não foi entregue.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'E7', pilar: 1, tema: 'Consistência do atendimento', q: 'Se o cliente for atendido por pessoas diferentes, a experiência é a mesma?', r: [
+    ['Sim, temos processos definidos e a equipe é treinada neles.', 'A'], ['Na maior parte das vezes, mas depende de quem atende.', 'B'],
+    ['É igual quando eu estou presente; sem mim, muda.', 'B'], ['Varia bastante de um atendimento para outro.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'E8', pilar: 1, tema: 'Dependência do dono', q: 'Se você ficar uma semana fora, o que acontece com o atendimento e a entrega?', r: [
+    ['Segue igual: a equipe sabe o que fazer.', 'A'], ['Segue, mas com algumas falhas.', 'B'],
+    ['Trabalho sozinho: aviso os clientes e reorganizo os prazos.', 'B'], ['Muita coisa para ou atrasa.', 'C'], ['Nunca aconteceu, não sei dizer.', 'D']] },
+  { id: 'E9', pilar: 1, tema: 'Motivos de saída', q: 'Você sabe por que alguns clientes deixam de comprar?', r: [
+    ['Sim, perguntamos e registramos os motivos.', 'A'], ['Temos uma ideia, pelas conversas.', 'B'], ['Desconfiamos, mas nunca perguntamos.', 'C'],
+    ['Não sabemos.', 'C'], ['Não se aplica: o cliente normalmente compra uma vez só.', 'NA']] },
+  { id: 'E10', pilar: 1, tema: 'Melhoria contínua', q: 'O que acontece com reclamações, sugestões e erros?', r: [
+    ['Registramos, analisamos e mudamos processos a partir deles.', 'A'], ['Resolvemos cada caso, mas não registramos nem mudamos o processo.', 'B'],
+    ['Conversamos sobre isso quando dá tempo.', 'B'], ['Os mesmos problemas costumam se repetir.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'E11', pilar: 1, tipo: 'texto', longo: true, opcional: true, tema: 'O que faz o cliente desistir (aberta)', max: 240, min: 0,
+    q: 'Na sua visão, o que mais faz um cliente reclamar ou desistir da sua empresa hoje?', ajuda: 'Opcional. Escreva do seu jeito.' },
+  // Pilar 2 · Comunicação de valor (10)
+  { id: 'M1', pilar: 2, tipo: 'texto', longo: true, opcional: true, bloco: 'comunicacao', tema: 'Por que escolhem a empresa (aberta)', max: 240, min: 0,
+    q: 'Na sua visão, por que os clientes escolhem a sua empresa?', ajuda: 'Opcional. Escreva do seu jeito, como você explicaria para um amigo.' },
+  { id: 'M2', pilar: 2, tema: 'Diferencial próprio', q: 'Um concorrente poderia dizer o mesmo diferencial que você diz?', r: [
+    ['Não: é algo que só a gente pode dizer, e conseguimos provar.', 'A'], ['Em parte: temos algo próprio, mas falamos de forma parecida.', 'B'],
+    ['Sim: falamos de qualidade, atendimento e preço, como todos.', 'C'], ['Nunca comparei.', 'D']] },
+  { id: 'M3', pilar: 2, tema: 'Clareza do que o cliente paga', q: 'O cliente entende o que está pagando e o resultado que vai ter?', r: [
+    ['Sim: mostramos o que está incluído e o resultado esperado antes do preço.', 'A'], ['Em parte: explicamos quando o cliente pergunta.', 'B'],
+    ['Mostramos o produto ou serviço e o preço.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'M4', pilar: 2, tema: 'Material de venda', q: 'Existe material de apoio para vender (apresentação, proposta, catálogo, roteiro)?', r: [
+    ['Sim, atualizado e usado por todos.', 'A'], ['Sim, mas desatualizado ou pouco usado.', 'B'], ['Cada um usa o que tem.', 'B'], ['Não temos.', 'C']] },
+  { id: 'M5', pilar: 2, tema: 'Momento do preço', q: 'Quando o preço aparece na conversa com o cliente?', r: [
+    ['Depois de o cliente entender o valor e os benefícios.', 'A'], ['Varia conforme quem atende.', 'B'],
+    ['Logo no começo, porque o cliente pergunta.', 'C'], ['O preço é a primeira coisa que mostramos.', 'C']] },
+  { id: 'M6', pilar: 2, tema: 'Demonstração de resultados', q: 'A empresa mostra resultados concretos do que entrega (números, antes e depois, casos)?', r: [
+    ['Sim, temos resultados organizados e usamos na venda e na comunicação.', 'A'], ['Temos resultados, mas mostramos pouco ou só quando pedem.', 'B'],
+    ['Temos bons resultados, mas nunca registramos.', 'C'], ['Não sabemos medir os resultados que entregamos.', 'C']] },
+  { id: 'M7', pilar: 2, tema: 'Perfil no Google', q: 'Como está o perfil da sua empresa no Google (nota, avaliações e respostas)?', r: [
+    ['Nota alta, muitas avaliações e respondemos todas.', 'A'], ['Temos avaliações, mas respondemos pouco.', 'B'],
+    ['Poucas avaliações ou perfil desatualizado.', 'C'], ['Não temos perfil no Google.', 'C'], ['Não sei como está.', 'D']] },
+  { id: 'M8', pilar: 2, tema: 'Pedido de avaliações', q: 'A empresa pede avaliações e depoimentos com regularidade?', r: [
+    ['Sim, faz parte da rotina após cada venda ou entrega.', 'A'], ['Às vezes, quando lembramos.', 'B'],
+    ['Só quando o cliente elogia por conta própria.', 'B'], ['Não pedimos.', 'C']] },
+  { id: 'M9', pilar: 2, tema: 'Mensagem nos canais', q: 'Site, redes sociais, WhatsApp, propostas e atendimento passam a mesma mensagem?', r: [
+    ['Sim, seguimos um padrão de mensagem e de tom em todos os canais.', 'A'], ['Em parte: alguns canais estão alinhados, outros não.', 'B'],
+    ['Cada canal fala de um jeito.', 'C'], ['Não sei dizer.', 'D']] },
+  { id: 'M10', pilar: 2, tema: 'Identidade visual', q: 'A identidade visual (logo, cores, materiais) segue um padrão em tudo?', r: [
+    ['Sim, temos um padrão e todos os materiais seguem.', 'A'], ['Temos logo e cores, mas cada material sai de um jeito.', 'B'],
+    ['Cada coisa é feita de um jeito.', 'C'], ['Não temos identidade visual definida.', 'C']] },
+];
+export const TOTAL_COMPLETO = 11 + COMPLETO.length; // 35
+
+export const ESTADOS_COMPLETO = { forte: 'Estruturado', desenvolvimento: 'Em desenvolvimento', fragil: 'Frágil', inconclusivo: 'Precisa ser verificado' };
+
+// Junta as 11 respostas do teste com as 24 novas e calcula o índice de 0 a 100 de cada pilar.
+export function classificarCompleto(resp11, resp24) {
+  const base = classificar(resp11).itens.map(x => ({ ...x, pilar: PILAR_DO_TESTE[x.id] }));
+  const novas = COMPLETO.filter(p => p.r).map(p => {
+    const [resposta, situacao] = p.r[Number(resp24[p.id])];
+    return { id: p.id, pilar: p.pilar, tema: p.tema, pergunta: p.q, resposta, situacao };
+  });
+  const itens = [...base, ...novas];
+  const pilares = {};
+  for (const n of [1, 2]) {
+    const lista = itens.filter(x => x.pilar === n);
+    const c = { A: 0, B: 0, C: 0, D: 0, NA: 0 };
+    lista.forEach(x => c[x.situacao]++);
+    const validos = c.A + c.B + c.C;
+    const indice = validos ? Math.round((c.A * 100 + c.B * 50) / validos) : null;
+    let estado = 'desenvolvimento';
+    if (validos < 4) estado = 'inconclusivo';
+    else if (c.A / validos >= 0.7 && c.C === 0) estado = 'forte';
+    else if (c.C >= 5 || indice < 35) estado = 'fragil';
+    pilares[n] = { ...c, validos, indice, estado };
+  }
+  return { itens, pilares };
+}
+
+const limpaTxt = (v, max) => String(v ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
+export function validarCompleto(e) {
+  const erro = m => ({ ok: false, erro: m });
+  const base = validarEntrada(e);
+  if (!base.ok) return base;
+  const c = (e && e.completo) || {};
+  const r = c.respostas || {};
+  const respostas = {}, abertas = {};
+  for (const p of COMPLETO) {
+    if (p.tipo === 'texto') {
+      const v = limpaTxt(r[p.id], p.max);
+      if (p.obrigatorio && v.replace(/[^\p{L}]/gu, '').length < p.min) return erro('Preencha: ' + p.q);
+      abertas[p.id] = v;
+    } else if (p.tipo === 'multi') {
+      const lista = (Array.isArray(r[p.id]) ? r[p.id] : []).map(x => limpaTxt(x, 100))
+        .filter(x => p.opcoes.includes(x) || (x.startsWith(p.outro + ': ') && x.length > p.outro.length + 3)).slice(0, 15);
+      if (!lista.length) return erro('Marque pelo menos um canal.');
+      abertas[p.id] = lista;
+    } else {
+      const i = Number(r[p.id]);
+      if (!Number.isInteger(i) || i < 0 || i >= p.r.length) return erro('Resposta inválida em ' + p.id + '.');
+      respostas[p.id] = i;
+    }
+  }
+  return { ok: true, dados: { ...base.dados, completo: { empresa: abertas.CE, oferta: abertas.CO, canais: abertas.CC, desistir: abertas.E11 || '', motivo: abertas.M1 || '', respostas } } };
+}
+
+// Relatório de reserva do completo (usado se a Inteligência Artificial não responder).
+export function completoDeReserva(cc) {
+  const peso = { C: 0, D: 1, B: 2, A: 3, NA: 4 };
+  const frase = x => x.tema + ': ' + x.resposta.replace(/\.$/, '').toLowerCase() + '.';
+  const pilares = [1, 2].map(n => {
+    const lista = cc.itens.filter(x => x.pilar === n);
+    return {
+      pilar: n,
+      leitura: { forte: 'Suas respostas indicam práticas estruturadas neste pilar. O desafio é manter e comprovar.', desenvolvimento: 'Há práticas que funcionam, mas parte delas depende de pessoas e não de método.', fragil: 'Este pilar concentra os principais pontos de atenção da empresa.', inconclusivo: 'Faltam informações para concluir. Vale verificar estes pontos.' }[cc.pilares[n].estado],
+      funciona: lista.filter(x => x.situacao === 'A').slice(0, 3).map(frase),
+      fragil: lista.filter(x => x.situacao === 'C' || x.situacao === 'B').sort((a, b) => peso[a.situacao] - peso[b.situacao]).slice(0, 3).map(frase),
+      verificar: lista.filter(x => x.situacao === 'D').slice(0, 2).map(x => x.tema + ': vale verificar como isso acontece hoje.'),
+    };
+  });
+  const piores = cc.itens.filter(x => x.situacao === 'C' || x.situacao === 'B').sort((a, b) => peso[a.situacao] - peso[b.situacao]).slice(0, 3);
+  const prioridades = piores.map(x => ({
+    titulo: 'Fortalecer: ' + x.tema.toLowerCase(),
+    porque: 'Você respondeu: "' + x.resposta + '"',
+    o_que_melhorar: 'Transformar essa prática em algo com método, que não dependa de uma pessoa nem da memória.',
+    como_implementar: ['Escreva como essa prática deve acontecer, em poucas linhas.', 'Combine com a equipe quem faz e quando.', 'Teste por 30 dias e ajuste o que não funcionar.'],
+    rotina: 'Revisão rápida uma vez por semana, nos primeiros 30 dias.',
+    responsavel: 'O dono da empresa, com uma pessoa da equipe.',
+    acompanhar: 'Anote uma vez por semana se a prática aconteceu e o que mudou.',
+  }));
+  return {
+    resumo: 'Suas respostas mostram onde a empresa pode fortalecer a entrega e a comunicação de valor. As três prioridades abaixo indicam por onde começar.',
+    entrega_enxerga: { entrega: 'O que você relata entregar aparece nas respostas sobre qualidade, atendimento e promessas.', enxerga: 'O cliente que ainda não conhece a empresa vê principalmente o que os canais, as provas e os argumentos de venda mostram.', distancia: 'Quanto mais essas duas partes se distanciam, mais a decisão tende a ir para o preço.' },
+    pilares, prioridades,
+  };
+}

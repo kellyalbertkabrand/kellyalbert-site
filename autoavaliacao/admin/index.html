@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acessos · Autoavaliação de Marca</title>
+<title>Painel · Diagnóstico e ferramenta</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#152535">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -54,8 +54,8 @@ small{display:block;margin-top:4px;color:var(--papel-70);font-size:.82rem}
 <body>
 <div class="faixa"><img src="/images/raio-x-marca/ka-logo-horizontal-papel.svg" alt="KA | Inteligência para Marcas"></div>
 <main class="app">
-  <h1>Acessos da ferramenta</h1>
-  <p class="sub">Autoavaliação de Marca · participantes da aula</p>
+  <h1>Painel da Kelly</h1>
+  <p class="sub">Códigos do Diagnóstico Completo e acessos da ferramenta</p>
 
   <form class="cartao" id="f-login">
     <label for="adm">Senha de administração</label>
@@ -65,6 +65,24 @@ small{display:block;margin-top:4px;color:var(--papel-70);font-size:.82rem}
   </form>
 
   <div id="painel" hidden>
+    <h2>Diagnóstico Completo · códigos de liberação</h2>
+    <div class="cartao">
+      <p class="sub" style="margin:0 0 6px">Cada código libera um Diagnóstico Completo (as 24 perguntas e o relatório). Gere depois do pagamento e envie para a pessoa.</p>
+      <form id="f-cod">
+        <div class="linha">
+          <div><label for="cod-nome">Nome de quem comprou (opcional)</label><input id="cod-nome"></div>
+          <div><label for="cod-wa">WhatsApp (opcional)</label><input id="cod-wa" inputmode="tel" placeholder="51999999999"></div>
+          <div><label for="cod-qtd">Quantidade</label><input id="cod-qtd" type="number" min="1" max="50" value="1"></div>
+        </div>
+        <button class="btn" type="submit">Gerar código</button>
+      </form>
+      <p class="erro" id="cod-erro" hidden></p>
+      <div id="cod-criados"></div>
+    </div>
+    <div class="resumo-num" id="cod-numeros"></div>
+    <div class="pessoas" id="cod-lista"></div>
+
+    <h2 style="margin-top:44px">Ferramenta da aula (17 perguntas)</h2>
     <div class="resumo-num" id="numeros"></div>
 
     <h2>Liberar acesso</h2>
@@ -179,7 +197,7 @@ $('f-login').addEventListener('submit', function(ev){
 function entrar(){
   carregar().then(function(){
     try { localStorage.setItem('ka_ferr_adm', senhaAdm); } catch (e) {}
-    $('f-login').hidden = true; $('painel').hidden = false;
+    $('f-login').hidden = true; $('painel').hidden = false; carregarCodigos();
   }).catch(function(e){ $('l-erro').hidden = false; $('l-erro').textContent = e.message; });
 }
 document.querySelectorAll('.tab').forEach(function(t){ t.onclick = function(){
@@ -199,6 +217,45 @@ $('f-varios').addEventListener('submit', function(ev){
   criar(lista).then(function(){ $('n-lista').value = ''; });
 });
 $('busca').addEventListener('input', listar);
+
+// ─── Códigos do Diagnóstico Completo ───
+function msgCodigo(c){
+  return 'Oi'+(c.nome ? ', '+c.nome.split(' ')[0] : '')+'! Aqui está o seu código para liberar o Diagnóstico Completo de Marca:\n\n'+c.codigo+'\n\n'+
+    'Como usar:\n1. Acesse kellyalbert.com.br/valorpercebido e faça o teste (se já fez, ele continua salvo no seu celular).\n'+
+    '2. No resultado, toque em "Desbloquear meu diagnóstico completo".\n3. Digite o código e responda as 24 perguntas.\n\nQualquer dúvida, é só me chamar.\nKelly Albert';
+}
+function cartaoCodigo(c){
+  var msg = msgCodigo(c);
+  var d = c.whatsapp ? c.whatsapp.replace(/\D/g,'') : '';
+  var wa = d ? 'https://wa.me/'+(d.length<=11?'55':'')+d+'?text='+encodeURIComponent(msg) : '';
+  var div = document.createElement('div'); div.className='criado';
+  div.innerHTML = '<b style="font-size:1.2rem;letter-spacing:.08em">'+esc(c.codigo)+'</b>'+(c.nome?' · '+esc(c.nome):'')+'<pre>'+esc(msg)+'</pre><div class="acoes"><button class="btn btn--p" type="button">Copiar mensagem</button>'+(wa?'<a class="btn btn--p btn--w" style="border:0;color:#fff" target="_blank" rel="noopener" href="'+wa+'">Enviar no WhatsApp</a>':'')+'</div>';
+  div.querySelector('button').onclick = function(){ var b=this; navigator.clipboard.writeText(msg).then(function(){ b.textContent='Copiado'; }); };
+  return div;
+}
+function carregarCodigos(){
+  return api({ acao:'codigos-listar' }).then(function(d){
+    var usados = d.codigos.filter(function(c){ return c.usadoEm; }).length;
+    $('cod-numeros').innerHTML = '<span><b>'+d.codigos.length+'</b> códigos</span><span><b>'+usados+'</b> usados</span><span><b>'+(d.codigos.length-usados)+'</b> disponíveis</span>';
+    $('cod-lista').innerHTML = d.codigos.length ? '' : '<p class="sub">Nenhum código ainda.</p>';
+    d.codigos.forEach(function(c){
+      var div = document.createElement('div'); div.className='pessoa';
+      div.innerHTML = '<div class="pessoa__topo"><div><b style="letter-spacing:.06em">'+esc(c.codigo)+'</b><div class="pessoa__info">'+(c.nome?esc(c.nome):'Sem nome')+(c.whatsapp?' · '+esc(c.whatsapp):'')+' · criado em '+dataBR(c.criadoEm)+'</div></div>'+
+        '<div class="pessoa__info" style="text-align:right">'+(c.usadoEm ? '<span class="exp">Usado em '+dataBR(c.usadoEm)+'</span><br>'+esc(c.empresa||'') : 'Disponível')+'</div></div>';
+      if(!c.usadoEm){ var ac=document.createElement('div'); ac.className='pessoa__acoes'; var b=document.createElement('button'); b.className='btn btn--p'; b.textContent='Mensagem com o código'; b.onclick=function(){ div.appendChild(cartaoCodigo(c)); b.remove(); }; ac.appendChild(b); div.appendChild(ac); }
+      $('cod-lista').appendChild(div);
+    });
+  });
+}
+$('f-cod').addEventListener('submit', function(ev){
+  ev.preventDefault(); $('cod-erro').hidden = true;
+  api({ acao:'codigos-criar', nome:$('cod-nome').value, whatsapp:$('cod-wa').value, quantidade:$('cod-qtd').value }).then(function(d){
+    var box = $('cod-criados'); box.innerHTML = '';
+    d.criados.forEach(function(c){ box.appendChild(cartaoCodigo(c)); });
+    $('f-cod').reset(); $('cod-qtd').value = 1;
+    carregarCodigos();
+  }).catch(function(e){ $('cod-erro').hidden = false; $('cod-erro').textContent = e.message; });
+});
 if(senhaAdm) entrar();
 </script>
 </body></html>

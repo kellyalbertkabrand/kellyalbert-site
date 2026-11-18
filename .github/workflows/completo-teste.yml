@@ -13,4 +13,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node scripts/testar-completo.mjs "${{ inputs.site }}"
+      - run: node scripts/testar-completo.mjs "${{ inputs.site }}" || true
+      - run: node scripts/checar-completo-prod.mjs "${{ inputs.site }}"

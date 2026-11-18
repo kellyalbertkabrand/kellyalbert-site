@@ -1,5 +1,6 @@
 // Autoavaliação de Marca (ferramenta da aula): painel da Kelly para liberar e gerenciar acessos.
 // Protegido pela variável FERRAMENTA_ADMIN_SENHA (enviada no cabeçalho x-admin-senha).
+import { criarCodigos, formatar, listarCodigos } from "../completo/codigos.mjs";
 import { adminAutorizado, chaveUsuario, emailValido, gerarSenha, json, loja, normalizarEmail, protegerSenha, publico, validadePadrao } from "../ferramenta/base.mjs";
 
 const limpa = (v, max) => String(v ?? "").replace(/\s+/g, " ").trim().slice(0, max);
@@ -9,6 +10,17 @@ export default async (req) => {
   if (!adminAutorizado(req)) return json({ erro: "Senha de administração incorreta." }, 401);
   const corpo = await req.json().catch(() => ({}));
   const store = loja();
+
+  // Diagnóstico Completo de Marca: códigos de liberação.
+  if (corpo.acao === "codigos-listar") {
+    const lista = await listarCodigos();
+    return json({ codigos: lista.map((c) => ({ ...c, codigo: formatar(c.codigo) })) });
+  }
+  if (corpo.acao === "codigos-criar") {
+    const qtd = Math.max(1, Math.min(50, Number(corpo.quantidade) || 1));
+    const criados = await criarCodigos(qtd, limpa(corpo.nome, 80), limpa(corpo.whatsapp, 30));
+    return json({ criados: criados.map((c) => ({ ...c, codigo: formatar(c.codigo) })) });
+  }
 
   if (corpo.acao === "listar") {
     const { blobs } = await store.list({ prefix: "u-" });
